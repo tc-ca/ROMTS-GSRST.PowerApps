@@ -18,6 +18,7 @@ steps:
     authenticationType: 'PowerPlatformSPN'
     PowerPlatformSPN: 'ROMTS-GSRST DEV'
 - task: PowerPlatformExportSolution@0
+  displayName: 'Export Unmanaged Solution'
   inputs:
     authenticationType: 'PowerPlatformSPN'
     PowerPlatformSPN: 'ROMTS-GSRST DEV'
@@ -25,7 +26,16 @@ steps:
     SolutionOutputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
     AsyncOperation: true
     MaxAsyncWaitTime: '240'
-
+- task: PowerPlatformExportSolution@0
+  displayName: 'Export Managed Solution'
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    SolutionName: '$(SolutionName)'
+    SolutionOutputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName)_managed.zip'
+    Managed: true
+    AsyncOperation: true
+    MaxAsyncWaitTime: '240'
 - task: PowerPlatformUnpackSolution@0
   inputs:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
@@ -41,4 +51,4 @@ steps:
       git commit -m "Update Solution - $env:SOLUTIONNAME"
       
       echo "Push solution to remote repository"
-      git -c http.extraheader="AUTHORIZATION: bearer $(System.AccessToken)" push origin master
+      git -c http.extraheader="AUTHORIZATION: bearer $(System.AccessToken)" push origin main
