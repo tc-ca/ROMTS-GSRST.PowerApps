@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{f50613c8-c10f-eb11-a813-000d3af3a7a7}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_workorderid">
+          <cell name="msdyn_name" width="73" />
+          <cell name="ovs_oversighttype" width="100" />
+          <cell name="ovs_rational" width="92" />
+          <cell name="msdyn_serviceterritory" width="125" />
+          <cell name="msdyn_billingaccount" imageproviderfunctionname="" imageproviderwebresource="$webresource:" width="150" />
+          <cell name="msdyn_serviceaccount" width="100" />
+          <cell name="msdyn_address1" width="100" />
+          <cell name="msdyn_city" width="100" />
+          <cell name="msdyn_stateorprovince" width="100" />
+          <cell name="msdyn_postalcode" width="100" />
+          <cell name="ovs_primaryinspector" width="100" />
+          <cell name="ovs_fiscalquarter" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="msdyn_workorder">
+          <attribute name="msdyn_serviceaccount" />
+          <attribute name="ovs_fiscalquarter" />
+          <attribute name="msdyn_billingaccount" />
+          <attribute name="msdyn_workorderid" />
+          <attribute name="ovs_oversighttype" />
+          <attribute name="ovs_rational" />
+          <attribute name="msdyn_address1" />
+          <attribute name="msdyn_city" />
+          <attribute name="msdyn_stateorprovince" />
+          <attribute name="msdyn_postalcode" />
+          <attribute name="ovs_primaryinspector" />
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_serviceterritory" />
+          <order attribute="ovs_fiscalquarter" descending="false" />
+          <filter type="and">
+            <condition attribute="ovs_rational" operator="eq" value="{994C3EC1-C104-EB11-A813-000D3AF3A7A7}" />
+          </filter>
+          <link-entity name="tc_tcfiscalyear" to="ovs_fiscalyear" from="tc_tcfiscalyearid" alias="aa">
+            <filter type="and">
+              <condition attribute="tc_iscurrentfiscalyear" operator="eq" value="1" />
+            </filter>
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.9</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Planned OA by Region by Quarter" languagecode="1033" />
+      <LocalizedName description="OA prévus par trimestre par région" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>1</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{215cd71d-1670-445e-9b4e-71f2df45237e}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ovs_name" select="1" icon="1" preview="1">
+        <row name="result" id="ovs_cysafetyassessmentid">
+          <cell name="ovs_name" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>4</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ovs_cysafetyassessment">
+          <attribute name="ovs_cysafetyassessmentid" />
+          <attribute name="ovs_name" />
+          <attribute name="createdon" />
+          <order attribute="ovs_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="ovs_name" operator="like" value="{0}" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>4.2.1.4</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Quick Find Active Safety Assessments" languagecode="1033" />
+      <LocalizedName description="Recherche rapide — Évaluations de la sécurité actives" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

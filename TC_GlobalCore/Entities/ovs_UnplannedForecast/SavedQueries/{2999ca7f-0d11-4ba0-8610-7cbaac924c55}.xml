@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{2999ca7f-0d11-4ba0-8610-7cbaac924c55}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ovs_name" select="1" icon="1" preview="1">
+        <row name="result" id="ovs_unplannedforecastid">
+          <cell name="ovs_region" width="100" />
+          <cell name="ovs_fiscalyear" width="100" />
+          <cell name="ovs_quarter" width="100" />
+          <cell name="ovs_capacity" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ovs_unplannedforecast">
+          <attribute name="ovs_unplannedforecastid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ovs_region" />
+          <attribute name="ovs_capacity" />
+          <attribute name="ovs_fiscalyear" />
+          <attribute name="ovs_quarter" />
+          <order attribute="ovs_region" descending="false" />
+          <order attribute="ovs_fiscalyear" descending="false" />
+          <order attribute="ovs_quarter" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.9</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Unplanned Forecasts" languagecode="1033" />
+      <LocalizedName description="Prévisions imprévues actives" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

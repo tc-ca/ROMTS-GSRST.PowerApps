@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <CustomAction Id="qm.TC.QM.Template.Buttons.CloneTemplate.CustomAction" Location="Mscrm.Form.qm_sytemplate.MainTab.Save.Controls._children" Sequence="45">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:TC.QM.Template.Buttons.CloneTemplate.Alt" Command="TC.QM.Template.Commands.CloneTemplate" Id="TC.QM.Template.Buttons.CloneTemplate" Image32by32="$webresource:Marketing/_images/SFA/CopyToList_32.png" Image16by16="$webresource:Marketing/_images/SFA/CopyToList_16.png" LabelText="$LocLabels:TC.QM.Template.Buttons.CloneTemplate.LabelText" Sequence="45" TemplateAlias="o2" ToolTipTitle="$LocLabels:TC.QM.Template.Buttons.CloneTemplate.ToolTipTitle" ToolTipDescription="$LocLabels:TC.QM.Template.Buttons.CloneTemplate.ToolTipDescription" ModernImage="$webresource:Marketing/_images/SFA/CopyToList_32.png" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="qm.TC.QM.Template.Buttons.PublishTemplate.CustomAction" Location="Mscrm.Form.qm_sytemplate.MainTab.Save.Controls._children" Sequence="40">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:TC.QM.Template.Buttons.PublishTemplate.Alt" Command="TC.QM.Template.Commands.PublishTemplate" Id="TC.QM.Template.Buttons.PublishTemplate" Image32by32="$webresource:Activities/Images/SaveAsDraft32.png" Image16by16="$webresource:Activities/Images/SaveAsDraft16.png" LabelText="$LocLabels:TC.QM.Template.Buttons.PublishTemplate.LabelText" Sequence="40" TemplateAlias="o2" ToolTipTitle="$LocLabels:TC.QM.Template.Buttons.PublishTemplate.ToolTipTitle" ToolTipDescription="$LocLabels:TC.QM.Template.Buttons.PublishTemplate.ToolTipDescription" ModernImage="$webresource:AACWebResources/_imgs/msdynce_ADCVirtualEntityIcon.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="TC.QM.Template.Commands.CloneTemplate">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="CloneTemplate" Library="$webresource:qm_templateForm.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="TC.QM.Template.Commands.PublishTemplate">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="PublishTemplate" Library="$webresource:qm_templateForm.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules />
+    <EnableRules />
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="TC.QM.Template.Buttons.CloneTemplate.Alt">
+      <Titles>
+        <Title description="Clone Template" languagecode="1033" />
+        <Title description="Modèle de clone" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="TC.QM.Template.Buttons.CloneTemplate.LabelText">
+      <Titles>
+        <Title description="Clone Template" languagecode="1033" />
+        <Title description="Modèle de clone" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="TC.QM.Template.Buttons.CloneTemplate.ToolTipDescription">
+      <Titles>
+        <Title description="Make an exact copy of this template with related records." languagecode="1033" />
+        <Title description="Faire une copie exacte de ce modèle avec les enregistrements connexes." languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="TC.QM.Template.Buttons.CloneTemplate.ToolTipTitle">
+      <Titles>
+        <Title description="Clone Template" languagecode="1033" />
+        <Title description="Modèle de clone" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="TC.QM.Template.Buttons.PublishTemplate.Alt">
+      <Titles>
+        <Title description="Publish Template" languagecode="1033" />
+        <Title description="Publier le modèle" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="TC.QM.Template.Buttons.PublishTemplate.LabelText">
+      <Titles>
+        <Title description="Publish Template" languagecode="1033" />
+        <Title description="Publier le modèle" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="TC.QM.Template.Buttons.PublishTemplate.ToolTipDescription">
+      <Titles>
+        <Title description="Publishing a template makes it available to create questionnaires." languagecode="1033" />
+        <Title description="La publication d’un modèle permet de créer des questionnaires." languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="TC.QM.Template.Buttons.PublishTemplate.ToolTipTitle">
+      <Titles>
+        <Title description="Publish Template" languagecode="1033" />
+        <Title description="Publier le modèle" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>

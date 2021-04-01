@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{3b18fb95-1b8a-4f5b-95d0-5d5aa9b8f57b}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="tc_name" select="1" icon="1" preview="1">
+        <row name="result" id="tc_tcfiscalperiodid">
+          <cell name="tc_name" width="300" />
+          <cell name="tc_fiscalperiodlonglbl" width="100" />
+          <cell name="tc_tcfiscalquarterid" width="100" />
+          <cell name="tc_tcmonthid" width="100" />
+          <cell name="tc_tcfiscalyearid" width="100" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="tc_tcfiscalperiod">
+          <attribute name="tc_tcfiscalperiodid" />
+          <attribute name="tc_name" />
+          <attribute name="createdon" />
+          <order attribute="tc_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="tc_fiscalperiodlonglbl" />
+          <attribute name="tc_tcfiscalquarterid" />
+          <attribute name="tc_tcmonthid" />
+          <attribute name="tc_tcfiscalyearid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active TCFiscalPeriods" languagecode="1033" />
+      <LocalizedName description="PériodesFiscalesTC actives" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{f9dda4c6-88cb-43df-a281-d8558fc61697}</formid>
+    <IntroducedVersion>4.2.1.4</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{554a397f-e0b4-4291-a7e9-434198e8911e}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{50bceab7-28e0-414d-89b6-a0850d0f7635}" name="{50bceab7-28e0-414d-89b6-a0850d0f7635}" columns="11" locklevel="0" labelwidth="130" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{8ce5b539-4c4c-4725-9c90-966773eb3d2e}">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ovs_name" />
+                      </cell>
+                      <cell id="{1a861e79-e685-1909-1e9e-db27a82d3a53}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Likelihood Of Harm" languagecode="1033" />
+                          <label description="Probabilité de préjudice" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_cylikelihoodofharm" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ovs_cylikelihoodofharm" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e64509d4-8f7e-4d55-b4f3-daf18504bdac}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                          <label description="Propriétaire" languagecode="1036" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                      <cell id="{0e1ba338-d3d8-6102-2bda-c1ccb667a9c6}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Magnitude Of Harm" languagecode="1033" />
+                          <label description="Ampleur du préjudice" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_cymagnitudeofharm" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ovs_cymagnitudeofharm" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a354cdee-d3d5-4c71-2086-da379127b6e8}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{a0500ea4-b2d9-963e-2698-2610bcd5d138}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Harm" languagecode="1033" />
+                          <label description="Nuire" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_cyharm" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ovs_cyharm" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_2" id="{55799b94-2c89-138e-846a-ee72204088d1}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+          <labels>
+            <label description="Enforcement Actions" languagecode="1033" />
+            <label description="Mesures d’application de la loi" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" showlabel="true" showbar="true" locklevel="0" id="{9e04b417-a69e-de5a-c693-805a7ac8e575}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Awaiting Actions" languagecode="1033" />
+                    <label description="En attente de mesures" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{17bd8ba8-ad03-4159-a645-a95b3027b7d7}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                        <labels>
+                          <label description="Activities (Regarding)" languagecode="1033" />
+                          <label description="Activités (concernant)" languagecode="1036" />
+                        </labels>
+                        <control id="Actions" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{4be32709-d6cc-482a-bea6-d5776469b9ba}">
+                          <parameters>
+                            <ViewId>{29B6BB28-92F1-4E00-A26F-8853C3084561}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ovs_cysafetyassessment_ovs_CYActions</RelationshipName>
+                            <TargetEntityType>ovs_cyaction</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{57B64B1A-F79E-4754-A9DF-8A1F9B836287},{29B6BB28-92F1-4E00-A26F-8853C3084561}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>Grid</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>false</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+                <section name="tab_2_section_2" showlabel="true" showbar="true" locklevel="0" id="{a9c22e23-1997-dcec-7587-dade56926144}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Closed Action" languagecode="1033" />
+                    <label description="Mesures de suivi réglées" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{1e7905c4-256b-a74b-8998-955b6b876632}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                        <labels>
+                          <label description="Enforcement Actions (Regarding)" languagecode="1033" />
+                          <label description="Mesures d’application de la loi (concernant)" languagecode="1036" />
+                        </labels>
+                        <control id="ActionsClosed" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{3E4AE105-C5E8-4260-AA3D-BA4BFBEAB978}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ovs_cysafetyassessment_ovs_CYActions</RelationshipName>
+                            <TargetEntityType>ovs_cyaction</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{3E4AE105-C5E8-4260-AA3D-BA4BFBEAB978},{29B6BB28-92F1-4E00-A26F-8853C3084561}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>Grid</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>false</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{f511ee02-c5e2-4b5d-be79-d57b320087d2}" columns="111">
+        <rows>
+          <row>
+            <cell id="{6081e02d-42de-245d-ec93-562535622866}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Inspection" languagecode="1033" />
+                <label description="Inspection" languagecode="1036" />
+              </labels>
+              <control id="header_ovs_inspectionid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_inspectionid" disabled="false" uniqueid="{0b3ade9a-e725-da46-10a0-67d8c2227ae7}">
+                <parameters>
+                  <AutoResolve>true</AutoResolve>
+                  <DisableMru>false</DisableMru>
+                  <DisableQuickFind>false</DisableQuickFind>
+                  <DisableViewPicker>false</DisableViewPicker>
+                  <DefaultViewId>{C0C4FD32-F265-497D-BFAE-546C88D5BB3B}</DefaultViewId>
+                  <AllowFilterOff>false</AllowFilterOff>
+                </parameters>
+              </control>
+            </cell>
+            <cell id="{cd2291fa-51fe-41bd-81bf-d5045d9c412d}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a69a9b3e-64a4-5a0d-9da9-46627d2889ec}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Status Reason" languagecode="1033" />
+                <label description="Raison du statut" languagecode="1036" />
+              </labels>
+              <control id="header_statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="true" uniqueid="{e31aa835-313a-bd47-ba2e-60ca09c09270}" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+      <LocalizedName description="Information" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+      <Description description="Formulaire pour cette entité." languagecode="1036" />
+    </Descriptions>
+  </systemform>
+</forms>

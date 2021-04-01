@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{59878fb0-d8e2-42ad-a729-ef38a2442a23}</savedqueryid>
+    <layoutxml>
+      <grid name="ovs_cyactions" jump="subject" select="1" icon="1" preview="0">
+        <row name="ovs_cyaction" id="activityid">
+          <cell name="subject" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ovs_cyaction">
+          <attribute name="activityid" />
+          <attribute name="subject" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="in">
+              <value>0</value>
+              <value>3</value>
+            </condition>
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>4.2.1.4</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Enforcement Action Lookup View" languagecode="1033" />
+      <LocalizedName description="Mesure d’application de la loi — Vue Recherche" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{063662d0-db4c-e111-93b3-000c2959f9b8}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" preview="1" icon="1">
+        <row name="result" id="msdyn_workorderservicetaskid">
+          <cell name="msdyn_name" width="100" />
+          <cell name="statuscode" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="msdyn_inspectiontaskresult" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="msdyn_workorderservicetask">
+          <attribute name="msdyn_name" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="msdyn_inspectiontaskresult" />
+          <attribute name="statuscode" />
+          <attribute name="msdyn_workorderservicetaskid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>3.1.0.3</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Inspection - Work Order Service Task View" languagecode="1033" />
+      <LocalizedName description="Inspection - Vue des tâches du service des ordres de travail" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Inspection - Used on Work Order and Work Order Incident forms" languagecode="1033" />
+      <Description description="Inspection - Utilisée sur les formulaires Ordre de travail et Incident d’ordre de travail" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

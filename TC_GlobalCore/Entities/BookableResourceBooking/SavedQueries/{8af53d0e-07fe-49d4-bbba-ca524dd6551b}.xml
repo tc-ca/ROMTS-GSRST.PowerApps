@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{8af53d0e-07fe-49d4-bbba-ca524dd6551b}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" icon="1" preview="1">
+        <row name="result" id="bookableresourcebookingid">
+          <cell name="name" width="100" />
+          <cell name="msdyn_workorder" width="100" />
+          <cell name="starttime" width="100" />
+          <cell name="endtime" width="100" />
+          <cell name="duration" width="100" />
+          <cell name="resource" width="100" />
+          <cell name="a_7973f34cdb9de51180e5000d3a1177a6.msdyn_serviceaccount" width="150" disableSorting="1" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="bookableresourcebooking">
+          <attribute name="createdon" />
+          <order attribute="starttime" descending="true" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="msdyn_workorder" />
+          <attribute name="starttime" />
+          <attribute name="endtime" />
+          <attribute name="resource" />
+          <attribute name="name" />
+          <attribute name="duration" />
+          <link-entity alias="a_7973f34cdb9de51180e5000d3a1177a6" name="msdyn_workorder" from="msdyn_workorderid" to="msdyn_workorder" link-type="outer" visible="false">
+            <attribute name="msdyn_serviceaccount" />
+          </link-entity>
+          <attribute name="bookableresourcebookingid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Resource Bookings (Field Service Information)" languagecode="1033" />
+      <LocalizedName description="Réservations de ressources actives (informations de Field Service)" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

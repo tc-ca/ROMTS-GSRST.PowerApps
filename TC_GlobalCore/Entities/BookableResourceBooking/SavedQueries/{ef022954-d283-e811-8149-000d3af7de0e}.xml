@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{ef022954-d283-e811-8149-000d3af7de0e}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" preview="1" icon="1">
+        <row name="result" id="bookableresourcebookingid">
+          <cell name="a_68f1b016a283e8118149000d3af7de0e.subject" width="100" disableSorting="1" />
+          <cell name="a_68f1b016a283e8118149000d3af7de0e.regardingobjectid" width="100" disableSorting="1" />
+          <cell name="resource" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_68f1b016a283e8118149000d3af7de0e.prioritycode" width="100" disableSorting="1" />
+          <cell name="a_68f1b016a283e8118149000d3af7de0e.scheduledstart" width="100" disableSorting="1" />
+          <cell name="a_68f1b016a283e8118149000d3af7de0e.scheduledend" width="100" disableSorting="1" />
+          <cell name="a_68f1b016a283e8118149000d3af7de0e.location" width="100" disableSorting="1" />
+          <cell name="a_68f1b016a283e8118149000d3af7de0e.statecode" width="100" disableSorting="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="bookableresourcebooking">
+          <order attribute="resource" descending="false" />
+          <attribute name="resource" />
+          <link-entity alias="a_68f1b016a283e8118149000d3af7de0e" name="appointment" from="activityid" to="msdyn_appointmentbookingid" link-type="outer" visible="false">
+            <attribute name="subject" />
+            <attribute name="statecode" />
+            <attribute name="scheduledstart" />
+            <attribute name="regardingobjectid" />
+            <attribute name="prioritycode" />
+            <attribute name="location" />
+            <attribute name="scheduledend" />
+          </link-entity>
+          <attribute name="bookableresourcebookingid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>3.0.0.1216</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Bookings View" languagecode="1033" />
+      <LocalizedName description="Vue réservations" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Bookings View" languagecode="1033" />
+      <Description description="Vue réservations" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

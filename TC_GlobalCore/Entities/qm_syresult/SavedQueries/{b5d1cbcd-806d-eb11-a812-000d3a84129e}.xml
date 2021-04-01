@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{b5d1cbcd-806d-eb11-a812-000d3a84129e}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="qm_name" select="1" icon="1" preview="1">
+        <row name="result" id="qm_syresultid">
+          <cell name="a_67baa5b71d6346da9d37b2cd3f7df940.qm_legislationlbl" width="96" />
+          <cell name="a_67baa5b71d6346da9d37b2cd3f7df940.qm_legislationftxt" width="200" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="qm_violationcount" width="25" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="qm_externalcomments" width="240" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="qm_internalcomments" width="238" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="qm_syresult">
+          <attribute name="qm_violationcount" />
+          <attribute name="qm_internalcomments" />
+          <attribute name="qm_externalcomments" />
+          <filter type="and">
+            <condition attribute="qm_rclegislationid" operator="not-null" />
+          </filter>
+          <link-entity name="qm_rclegislation" from="qm_rclegislationid" to="qm_rclegislationid" visible="false" link-type="outer" alias="a_67baa5b71d6346da9d37b2cd3f7df940">
+            <attribute name="qm_legislationlbl" />
+            <attribute name="qm_legislationftxt" />
+          </link-entity>
+          <attribute name="qm_syresultid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Violations des ordres de travail TMD" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="TDG" languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{07b35bc7-8776-4f13-bc1b-204170d505f6}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="qm_name" select="1" icon="1" preview="1">
+        <row name="result" id="qm_rclegislationid">
+          <cell name="qm_rcparentlegislationid" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="qm_name" width="100" />
+          <cell name="qm_legislationetxt" width="200" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="qm_legislationftxt" width="200" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="qm_legislationlbl" width="53" />
+          <cell name="qm_tylegislationsourceid" width="158" />
+          <cell name="qm_tylegislationtypeid" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="qm_ordernbr" width="75" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>1</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="qm_rclegislation">
+          <attribute name="qm_legislationlbl" />
+          <attribute name="qm_tylegislationsourceid" />
+          <attribute name="qm_tylegislationtypeid" />
+          <attribute name="qm_ordernbr" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <order attribute="qm_ordernbr" descending="false" />
+          <attribute name="qm_rcparentlegislationid" />
+          <attribute name="qm_name" />
+          <attribute name="qm_legislationftxt" />
+          <attribute name="qm_legislationetxt" />
+          <attribute name="qm_rclegislationid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.6</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Legislation Advanced Find View" languagecode="1033" />
+      <LocalizedName description="Recherche avancée Règlement" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

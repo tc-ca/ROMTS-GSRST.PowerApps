@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{ca1718be-c7db-e511-80f2-000d3a10dc9c}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" preview="1" icon="1">
+        <row name="result" id="bookableresourcebookingid">
+          <cell name="resource" width="100" />
+          <cell name="starttime" width="100" />
+          <cell name="endtime" width="100" />
+          <cell name="msdyn_estimatedarrivaltime" width="100" />
+          <cell name="msdyn_estimatedtravelduration" width="100" />
+          <cell name="msdyn_actualarrivaltime" width="100" />
+          <cell name="msdyn_actualtravelduration" width="100" />
+          <cell name="msdyn_workorder" width="100" />
+          <cell name="a_66a07b959edbe51180f2000d3a10dc9c.msdyn_workordertype" width="100" disableSorting="1" />
+          <cell name="a_66a07b959edbe51180f2000d3a10dc9c.msdyn_addressname" width="100" disableSorting="1" />
+          <cell name="a_66a07b959edbe51180f2000d3a10dc9c.msdyn_address1" width="100" disableSorting="1" />
+          <cell name="a_66a07b959edbe51180f2000d3a10dc9c.msdyn_address2" width="100" disableSorting="1" />
+          <cell name="a_66a07b959edbe51180f2000d3a10dc9c.msdyn_address3" width="100" disableSorting="1" />
+          <cell name="a_66a07b959edbe51180f2000d3a10dc9c.msdyn_city" width="100" disableSorting="1" />
+          <cell name="a_66a07b959edbe51180f2000d3a10dc9c.msdyn_postalcode" width="100" disableSorting="1" />
+          <cell name="a_66a07b959edbe51180f2000d3a10dc9c.msdyn_stateorprovince" width="100" disableSorting="1" />
+          <cell name="a_66a07b959edbe51180f2000d3a10dc9c.msdyn_timefrompromised" width="100" disableSorting="1" />
+          <cell name="a_66a07b959edbe51180f2000d3a10dc9c.msdyn_timetopromised" width="100" disableSorting="1" />
+          <cell name="a_66a07b959edbe51180f2000d3a10dc9c.msdyn_instructions" width="100" disableSorting="1" />
+          <cell name="a_66a07b959edbe51180f2000d3a10dc9c.msdyn_workordersummary" width="100" disableSorting="1" />
+          <cell name="a_66a07b959edbe51180f2000d3a10dc9c.msdyn_primaryincidentdescription" width="100" disableSorting="1" />
+          <cell name="duration" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="bookableresourcebooking">
+          <order attribute="resource" descending="false" />
+          <attribute name="msdyn_workorder" />
+          <attribute name="starttime" />
+          <attribute name="resource" />
+          <attribute name="msdyn_estimatedtravelduration" />
+          <attribute name="msdyn_estimatedarrivaltime" />
+          <attribute name="endtime" />
+          <attribute name="msdyn_actualtravelduration" />
+          <attribute name="msdyn_actualarrivaltime" />
+          <link-entity alias="a_66a07b959edbe51180f2000d3a10dc9c" name="msdyn_workorder" from="msdyn_workorderid" to="msdyn_workorder" link-type="outer" visible="false">
+            <attribute name="msdyn_workordertype" />
+            <attribute name="msdyn_timefrompromised" />
+            <attribute name="msdyn_stateorprovince" />
+            <attribute name="msdyn_postalcode" />
+            <attribute name="msdyn_city" />
+            <attribute name="msdyn_address3" />
+            <attribute name="msdyn_address2" />
+            <attribute name="msdyn_address1" />
+            <attribute name="msdyn_addressname" />
+            <attribute name="msdyn_workordersummary" />
+            <attribute name="msdyn_timetopromised" />
+            <attribute name="msdyn_primaryincidentdescription" />
+            <attribute name="msdyn_instructions" />
+          </link-entity>
+          <attribute name="duration" />
+          <attribute name="bookableresourcebookingid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>6.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Schedule Board Details Pane Field Layout" languagecode="1033" />
+      <LocalizedName description="Présentation du champ du volet Détails du tableau de planification" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

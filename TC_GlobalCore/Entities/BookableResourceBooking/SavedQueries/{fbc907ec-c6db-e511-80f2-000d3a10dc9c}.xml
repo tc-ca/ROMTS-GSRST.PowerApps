@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{fbc907ec-c6db-e511-80f2-000d3a10dc9c}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" preview="1" icon="1">
+        <row name="result" id="bookableresourcebookingid">
+          <cell name="msdyn_workorder" width="100" />
+          <cell name="starttime" width="100" />
+          <cell name="endtime" width="100" />
+          <cell name="duration" width="100" />
+          <cell name="resource" width="100" />
+          <cell name="a_66a07b959edbe51180f2000d3a10dc9c.msdyn_serviceaccount" width="100" disableSorting="1" />
+          <cell name="createdon" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="bookableresourcebooking">
+          <attribute name="msdyn_workorder" />
+          <attribute name="starttime" />
+          <attribute name="resource" />
+          <attribute name="endtime" />
+          <attribute name="duration" />
+          <attribute name="createdon" />
+          <order attribute="starttime" descending="true" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="starttime" operator="this-fiscal-period" />
+          </filter>
+          <link-entity name="msdyn_workorder" from="msdyn_workorderid" to="msdyn_workorder" visible="false" link-type="outer" alias="a_66a07b959edbe51180f2000d3a10dc9c">
+            <attribute name="msdyn_serviceaccount" />
+          </link-entity>
+          <attribute name="bookableresourcebookingid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>6.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Resource Bookings This Fiscal Period" languagecode="1033" />
+      <LocalizedName description="Réservations de ressources actives sur cette période fiscale" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

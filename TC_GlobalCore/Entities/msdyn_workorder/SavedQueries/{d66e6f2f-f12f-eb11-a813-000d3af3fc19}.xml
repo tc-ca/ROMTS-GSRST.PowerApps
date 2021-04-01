@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{d66e6f2f-f12f-eb11-a813-000d3af3fc19}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_workorderid">
+          <cell name="msdyn_name" width="200" />
+          <cell name="ovs_oversighttype" width="100" />
+          <cell name="ovs_rational" width="100" />
+          <cell name="msdyn_serviceterritory" width="100" />
+          <cell name="msdyn_billingaccount" width="100" />
+          <cell name="msdyn_serviceaccount" width="100" />
+          <cell name="msdyn_address1" width="100" />
+          <cell name="msdyn_city" width="100" />
+          <cell name="msdyn_stateorprovince" width="100" />
+          <cell name="msdyn_postalcode" width="100" />
+          <cell name="ovs_primaryinspector" width="100" />
+          <cell name="ovs_fiscalquarter" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="msdyn_workorder">
+          <attribute name="msdyn_name" />
+          <attribute name="ovs_oversighttype" />
+          <attribute name="ovs_rational" />
+          <attribute name="msdyn_serviceterritory" />
+          <attribute name="msdyn_billingaccount" />
+          <attribute name="msdyn_serviceaccount" />
+          <attribute name="msdyn_address1" />
+          <attribute name="msdyn_city" />
+          <attribute name="msdyn_stateorprovince" />
+          <attribute name="msdyn_postalcode" />
+          <attribute name="ovs_primaryinspector" />
+          <attribute name="ovs_fiscalquarter" />
+          <link-entity name="bookableresourcebooking" from="msdyn_workorder" to="msdyn_workorderid" alias="aa">
+            <filter type="and">
+              <condition attribute="bookableresourcebookingid" operator="null" />
+            </filter>
+          </link-entity>
+          <attribute name="msdyn_workorderid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="My Assigned and Unbooked Work Orders" languagecode="1033" />
+      <LocalizedName description="Mes ordres de travail assignés et annulés" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Work Orders where I am the Primary Inspector that do not have a booking associated with it in the current fiscal year." languagecode="1033" />
+      <Description description="Ordres de travail dont je suis l'inspecteur pricipal et qui ne sont pas associés à une réservation pour l'année courante" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

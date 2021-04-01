@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{c218571e-468c-4271-815f-811c72c2f338}</savedqueryid>
+    <layoutxml>
+      <grid name="" jump="name" select="1" icon="1" preview="0">
+        <row name="bookableresourcebooking" id="bookableresourcebookingid">
+          <cell name="name" width="125" />
+          <cell name="resource" width="100" />
+          <cell name="starttime" width="100" />
+          <cell name="endtime" width="100" />
+          <cell name="duration" width="100" />
+          <cell name="bookingtype" width="100" />
+          <cell name="bookingstatus" width="100" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="bookableresourcebooking">
+          <attribute name="bookableresourcebookingid" />
+          <attribute name="name" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <order attribute="starttime" descending="true" />
+          <attribute name="resource" />
+          <attribute name="starttime" />
+          <attribute name="endtime" />
+          <attribute name="duration" />
+          <attribute name="bookingtype" />
+          <attribute name="bookingstatus" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>8.1.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Bookable Resource Booking Lookup View" languagecode="1033" />
+      <LocalizedName description="Vue Recherche de réservation de ressources pouvant être réservées" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

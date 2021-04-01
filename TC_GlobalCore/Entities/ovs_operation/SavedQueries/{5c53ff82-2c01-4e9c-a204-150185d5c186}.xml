@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{5c53ff82-2c01-4e9c-a204-150185d5c186}</savedqueryid>
+    <layoutxml>
+      <grid name="ovs_operations" jump="ovs_name" select="1" icon="1" preview="1">
+        <row name="ovs_operation" id="ovs_operationid">
+          <cell name="ovs_regulatedentityid" width="100" />
+          <cell name="ovs_siteid" width="100" />
+          <cell name="statecode" width="100" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ovs_operation">
+          <attribute name="createdon" />
+          <order attribute="createdon" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="statecode" />
+          <attribute name="ovs_siteid" />
+          <attribute name="ovs_regulatedentityid" />
+          <attribute name="ovs_operationid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.11</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Operation Associated View" languagecode="1033" />
+      <LocalizedName description="Vue associée Opération" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

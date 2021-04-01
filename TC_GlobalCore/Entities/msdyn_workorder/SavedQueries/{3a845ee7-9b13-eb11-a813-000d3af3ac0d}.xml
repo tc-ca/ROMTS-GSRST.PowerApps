@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{3a845ee7-9b13-eb11-a813-000d3af3ac0d}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" preview="1" icon="1">
+        <row name="result" id="msdyn_workorderid">
+          <cell name="msdyn_serviceterritory" width="100" />
+          <cell name="ovs_primaryinspector" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="msdyn_name" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="msdyn_workordertype" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ovs_oversighttype" width="100" />
+          <cell name="msdyn_billingaccount" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="msdyn_address1" width="100" />
+          <cell name="msdyn_city" width="75" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="msdyn_stateorprovince" width="75" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="msdyn_postalcode" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="msdyn_systemstatus" width="100" />
+          <cell name="ovs_fiscalquarter" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ovs_revisedquarterid" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="msdyn_workorder">
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_systemstatus" />
+          <attribute name="msdyn_address1" />
+          <attribute name="msdyn_stateorprovince" />
+          <attribute name="msdyn_billingaccount" />
+          <attribute name="msdyn_postalcode" />
+          <attribute name="ovs_oversighttype" />
+          <attribute name="ovs_fiscalquarter" />
+          <attribute name="msdyn_city" />
+          <order attribute="ovs_fiscalquarter" descending="false" />
+          <order attribute="msdyn_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <link-entity name="bookableresource" from="bookableresourceid" to="ovs_primaryinspector" alias="aa">
+            <filter type="and">
+              <condition attribute="userid" operator="eq-userid" />
+            </filter>
+          </link-entity>
+          <attribute name="msdyn_workordertype" />
+          <attribute name="ovs_revisedquarterid" />
+          <attribute name="msdyn_serviceterritory" />
+          <attribute name="ovs_primaryinspector" />
+          <attribute name="msdyn_workorderid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.11</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="My Assigned Work Orders" languagecode="1033" />
+      <LocalizedName description="Les ordres de travail qui me sont assignés" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

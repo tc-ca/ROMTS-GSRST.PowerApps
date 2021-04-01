@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{58dc656d-6051-493b-a993-7ed79abd809c}</savedqueryid>
+    <layoutxml>
+      <grid name="" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="msdyn_servicetasktype" id="msdyn_servicetasktypeid">
+          <cell name="msdyn_name" width="200" />
+          <cell name="msdyn_description" width="300" disableSorting="1" />
+          <cell name="msdyn_estimatedduration" width="150" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="msdyn_servicetasktype">
+          <attribute name="msdyn_name" />
+          <attribute name="createdon" />
+          <order attribute="msdyn_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="msdyn_estimatedduration" />
+          <attribute name="msdyn_description" />
+          <attribute name="msdyn_servicetasktypeid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>3.1.0.3</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Service Task Type Associated View" languagecode="1033" />
+      <LocalizedName description="Vue associée Type de tâche relative aux services" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

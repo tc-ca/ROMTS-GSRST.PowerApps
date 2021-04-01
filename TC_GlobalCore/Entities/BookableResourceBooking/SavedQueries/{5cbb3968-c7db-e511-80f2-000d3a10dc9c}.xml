@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{5cbb3968-c7db-e511-80f2-000d3a10dc9c}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" preview="1" icon="1">
+        <row name="result" id="bookableresourcebookingid">
+          <cell name="starttime" width="100" />
+          <cell name="endtime" width="100" />
+          <cell name="duration" width="100" />
+          <cell name="msdyn_estimatedarrivaltime" width="150" />
+          <cell name="msdyn_actualarrivaltime" width="150" />
+          <cell name="msdyn_workorder" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="bookableresourcebooking">
+          <order attribute="endtime" descending="true" />
+          <attribute name="starttime" />
+          <attribute name="msdyn_estimatedarrivaltime" />
+          <attribute name="endtime" />
+          <attribute name="duration" />
+          <attribute name="msdyn_actualarrivaltime" />
+          <attribute name="msdyn_workorder" />
+          <attribute name="bookableresourcebookingid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>6.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Schedule Board Slot Tooltip Field Layout" languagecode="1033" />
+      <LocalizedName description="Présentation du champ Info-bulle de la plage du tableau de planification" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

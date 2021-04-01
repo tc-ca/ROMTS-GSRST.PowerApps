@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <CustomAction Id="ovs.Mscrm.Form.msdyn_workorder.Activate.TSIS.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="55">
+      <CommandUIDefinition>
+        <Button Alt="$Resources:Ribbon.HomepageGrid.account.Record.Status.Activate" Command="Mscrm.Form.Activate.TSIS" Id="Mscrm.Form.msdyn_workorder.Activate.TSIS" Image32by32="/_imgs/ribbon/Activate_32.png" Image16by16="/_imgs/ribbon/Activate_16.png" LabelText="$Resources:Ribbon.HomepageGrid.account.Record.Status.Activate" Sequence="55" TemplateAlias="o2" ToolTipTitle="$Resources:Ribbon.HomepageGrid.account.Record.Status.Activate" ToolTipDescription="$Resources(EntityPluralDisplayName):Ribbon.Tooltip.Activate" ModernImage="Activate" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ovs.msdyn_workorder.TSIS.msdyn_workorder.Assign.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="63">
+      <CommandUIDefinition>
+        <Button Alt="$Resources:Ribbon.HomepageGrid.MainTab.Actions.Assign" Command="ovs.msdyn_workorder.TSIS.AssignPrimaryRecord" Id="ovs.msdyn_workorder.TSIS.msdyn_workorder.Assign" Image32by32="/_imgs/ribbon/Assign_32.png" Image16by16="/_imgs/ribbon/Assign_16.png" LabelText="$Resources:Ribbon.HomepageGrid.MainTab.Actions.Assign" Sequence="63" TemplateAlias="o1" ToolTipTitle="$Resources:Ribbon.HomepageGrid.MainTab.Actions.Assign" ToolTipDescription="$Resources(EntityPluralDisplayName):Ribbon.Tooltip.Assign" ModernImage="Assign" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="Mscrm.AssignPrimaryRecord">
+      <EnableRules>
+        <EnableRule Id="Mscrm.FormStateNotNew" />
+        <EnableRule Id="Mscrm.AssignPrimaryPermission" />
+        <EnableRule Id="Mscrm.NotOffline" />
+        <EnableRule Id="ovs.msdyn_workorder.TSIS.isROMRole.inverted" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AssignPrimaryPermission" />
+        <DisplayRule Id="Mscrm.NotClosedActivity" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Assign.assignObject" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.Form.Activate">
+      <EnableRules>
+        <EnableRule Id="Mscrm.CanWritePrimary" />
+        <EnableRule Id="ovs.msdyn_workorder.TSIS.isROMRole.inverted" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CanWritePrimary" />
+        <DisplayRule Id="Mscrm.PrimaryIsInactive" />
+        <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode" />
+        <DisplayRule Id="Mscrm.PrimaryIsNotActivity" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Activate.activatePrimaryRecord" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.Form.Activate.TSIS">
+      <EnableRules>
+        <EnableRule Id="Mscrm.CanWritePrimary" />
+        <EnableRule Id="ovs.msdyn_workorder.TSIS.isROMRole" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CanWritePrimary" />
+        <DisplayRule Id="Mscrm.PrimaryIsInactive" />
+        <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode" />
+        <DisplayRule Id="Mscrm.PrimaryIsNotActivity" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="ActivateWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ovs.msdyn_workorder.TSIS.AssignPrimaryRecord">
+      <EnableRules>
+        <EnableRule Id="Mscrm.FormStateNotNew" />
+        <EnableRule Id="Mscrm.AssignPrimaryPermission" />
+        <EnableRule Id="Mscrm.NotOffline" />
+        <EnableRule Id="ovs.msdyn_workorder.TSIS.isROMRole" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AssignPrimaryPermission" />
+        <DisplayRule Id="Mscrm.NotClosedActivity" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Assign.assignObject" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules>
+      <DisplayRule Id="Mscrm.AssignPrimaryPermission">
+        <EntityPrivilegeRule PrivilegeType="Assign" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.CanWritePrimary">
+        <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.NotClosedActivity">
+        <OrRule>
+          <Or>
+            <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="false" />
+          </Or>
+          <Or>
+            <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="true" />
+            <ValueRule Field="statecode" Value="Open" />
+          </Or>
+          <Or>
+            <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="true" />
+            <ValueRule Field="statecode" Value="Scheduled" />
+          </Or>
+        </OrRule>
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="HasStateCode" PropertyValue="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsInactive">
+        <FormStateRule State="Disabled" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsNotActivity">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="false" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules>
+      <EnableRule Id="Mscrm.AssignPrimaryPermission">
+        <RecordPrivilegeRule PrivilegeType="Assign" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.CanWritePrimary">
+        <RecordPrivilegeRule PrivilegeType="Write" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.FormStateNotNew">
+        <FormStateRule State="Create" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.NotOffline">
+        <CrmOfflineAccessStateRule State="Offline" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ovs.msdyn_workorder.TSIS.isROMRole">
+        <CustomRule FunctionName="isROMRole" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="true" />
+      </EnableRule>
+      <EnableRule Id="ovs.msdyn_workorder.TSIS.isROMRole.inverted">
+        <CustomRule FunctionName="isROMRole" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false" InvertResult="true" />
+      </EnableRule>
+    </EnableRules>
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="FieldServiceFieldService.Form.msdyn_workorder.MainTab.Actions.ScheduleAssistant.Description">
+      <Titles>
+        <Title languagecode="1033" description="Open Schedule Assistant to easily schedule this Work Order" />
+        <Title languagecode="1025" description="فتح مساعد الجدولة لجدولة أمر العمل هذا بسهولة" />
+        <Title languagecode="1026" description="Отваряне на асистента на графика за лесно планиране на тази работна поръчка" />
+        <Title languagecode="1027" description="Obre l'auxiliar de planificació per planificar fàcilment aquesta ordre de treball" />
+        <Title languagecode="1029" description="Otevře pomocníka plánování pro snadné naplánování tohoto pracovního příkazu." />
+        <Title languagecode="1030" description="Åbn planlægningsassistent for nemt at planlægge denne arbejdsordre" />
+        <Title languagecode="1031" description="Zeitplan-Assistent öffnen, um diesen Arbeitsauftrag einfach zu planen" />
+        <Title languagecode="1032" description="Άνοιγμα βοηθού χρονοδιαγράμματος για εύκολο προγραμματισμό αυτής της παραγγελίας εργασίας" />
+        <Title languagecode="3082" description="Abrir el Asistente de programación para programar fácilmente esta orden de trabajo" />
+        <Title languagecode="1061" description="Avage selle töökäsu lihtsaks plaanimiseks Ajakavaabiline" />
+        <Title languagecode="1069" description="Ireki antolaketa-laguntzailea lan-eskaera hau erraz antolatzeko" />
+        <Title languagecode="1035" description="Avaa ajoitusavustaja, kun haluat ajoittaa tämän työtilauksen helposti" />
+        <Title languagecode="1036" description="Ouvrez l'assistant de planification pour planifier facilement cet ordre de travail" />
+        <Title languagecode="1110" description="Abrir asistente de programación para programar facilmente este pedido de traballo" />
+        <Title languagecode="1037" description="פתח מסייע לוחות זמנים כדי לתזמן בקלות הזמנת עבודה זו" />
+        <Title languagecode="1081" description="इस कार्य ऑर्डर को आसानी से शेड्यूल करने के लिए शेड्यूल सहायक खोलें" />
+        <Title languagecode="1050" description="Otvorite pomoćnik za raspored za jednostavno određivanje rasporeda radnog naloga" />
+        <Title languagecode="1038" description="Ütemezési segéd megnyitása a munkarendelés ütemezésének megkönnyítése érdekében" />
+        <Title languagecode="1057" description="Buka Asisten Jadwal untuk menjadwalkan Perintah Kerja ini dengan mudah" />
+        <Title languagecode="1040" description="Apri l'assistente di pianificazione per pianificare facilmente l'ordine di lavoro" />
+        <Title languagecode="1041" description="スケジュール アシスタントを開いてこの作業指示書を簡単にスケジュールします" />
+        <Title languagecode="1087" description="Осы жұмысқа тапсырысты оңай жоспарлау үшін кесте көмекшісін ашу" />
+        <Title languagecode="1042" description="일정 도우미를 시작하여 이 작업 주문 쉽게 예약" />
+        <Title languagecode="1063" description="Atidaryti planavimo pagalbinę priemonę ir lengvai planuoti šį darbo užsakymą" />
+        <Title languagecode="1062" description="Atvērt plānošanas palīgu, lai viegli saplānotu šo darba pasūtījumu" />
+        <Title languagecode="1086" description="Buka Pembantu Jadual untuk menjadualkan Pesanan Kerja ini dengan mudah" />
+        <Title languagecode="1044" description="Åpne Planleggingsassistent for å planlegge denne arbeidsordren på en enkel måte" />
+        <Title languagecode="1043" description="Planningsassistent openen om deze werkorder gemakkelijk te kunnen plannen" />
+        <Title languagecode="1045" description="Otwórz asystenta planowania, aby łatwo zaplanować to zlecenie pracy" />
+        <Title languagecode="1046" description="Abrir o Assistente de Agendamento para agendar facilmente esta Ordem de Serviço" />
+        <Title languagecode="2070" description="Abrir Assistente da Agenda para agendar facilmente esta Ordem de Intervenção" />
+        <Title languagecode="1048" description="Deschideți asistentul de planificare pentru a planifica ușor această comandă de lucru" />
+        <Title languagecode="1049" description="Откройте помощник по расписанию, чтобы удобно запланировать этот заказ на работу" />
+        <Title languagecode="1051" description="Otvorí asistenta plánovania na jednoduché plánovanie tejto objednávky prác" />
+        <Title languagecode="1060" description="Odprite pomočnika za razporejanje, da preprosto razporedite ta delovni nalog." />
+        <Title languagecode="3098" description="Отвори помоћник за заказивање ради лаког заказивања овог радног налога" />
+        <Title languagecode="2074" description="Otvori pomoćnik za zakazivanje radi lakog zakazivanja ovog radnog naloga" />
+        <Title languagecode="1053" description="Öppna Schemaläggningsassistenten för att enkelt schemalägga den här arbetsordern" />
+        <Title languagecode="1054" description="เปิดตัวช่วยจัดกำหนดการเพื่อให้จัดกำหนดการใบสั่งงานนี้ได้ง่ายๆ" />
+        <Title languagecode="1055" description="Bu İş Emrini kolayca zamanlamak için Zamanlama Yardımcısı'nı aç" />
+        <Title languagecode="1058" description="Відкрийте помічник із планування, щоб зручно запланувати цей наряд-замовлення" />
+        <Title languagecode="1066" description="Mở Trợ lý Lịch trình để dễ dàng lên lịch trình cho Lệnh sản xuất này" />
+        <Title languagecode="2052" description="打开日程安排助理可轻松计划此工作订单" />
+        <Title languagecode="3076" description="開啟排程小幫手，輕鬆地排程此工單" />
+        <Title languagecode="1028" description="開啟排程小幫手，輕鬆地排程此工單" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="FieldServiceFieldService.Form.msdyn_workorder.MainTab.Actions.ScheduleAssistant.LabelText">
+      <Titles>
+        <Title languagecode="1033" description="Schedule Assistant" />
+        <Title languagecode="1025" description="مساعد الجدولة" />
+        <Title languagecode="1026" description="Асистент на графика" />
+        <Title languagecode="1027" description="Auxiliar de planificació" />
+        <Title languagecode="1029" description="Pomocník plánování" />
+        <Title languagecode="1030" description="Planlægningsassistent" />
+        <Title languagecode="1031" description="Zeitplan-Assistent" />
+        <Title languagecode="1032" description="Βοηθός χρονοδιαγράμματος" />
+        <Title languagecode="3082" description="Asistente de programación" />
+        <Title languagecode="1061" description="Ajakavaabiline" />
+        <Title languagecode="1069" description="Antolaketa-laguntzailea" />
+        <Title languagecode="1035" description="Ajoitusavustaja" />
+        <Title languagecode="1036" description="Assistant de planification" />
+        <Title languagecode="1110" description="Asistente de programación" />
+        <Title languagecode="1037" description="מסייע לוח הזמנים" />
+        <Title languagecode="1081" description="शेड्यूल सहायक" />
+        <Title languagecode="1050" description="Pomoćnik za raspored" />
+        <Title languagecode="1038" description="Ütemezési segéd" />
+        <Title languagecode="1057" description="Asisten Jadwal" />
+        <Title languagecode="1040" description="Assistente di pianificazione" />
+        <Title languagecode="1041" description="スケジュール アシスタント" />
+        <Title languagecode="1087" description="Жоспарлау бойынша көмекші" />
+        <Title languagecode="1042" description="일정 도우미" />
+        <Title languagecode="1063" description="Planavimo pagalbinė priemonė" />
+        <Title languagecode="1062" description="Plānošanas palīgs" />
+        <Title languagecode="1086" description="Pembantu Jadual" />
+        <Title languagecode="1044" description="Planleggingsassistent" />
+        <Title languagecode="1043" description="Planningsassistent" />
+        <Title languagecode="1045" description="Asystent planowania" />
+        <Title languagecode="1046" description="Assistente de Agendamento" />
+        <Title languagecode="2070" description="Assistente da Agenda" />
+        <Title languagecode="1048" description="Asistent de planificare" />
+        <Title languagecode="1049" description="Помощник по расписанию" />
+        <Title languagecode="1051" description="Asistent plánovania" />
+        <Title languagecode="1060" description="Pomočnik za razporejanje" />
+        <Title languagecode="3098" description="Помоћник за заказивање" />
+        <Title languagecode="2074" description="Pomoćnik za zakazivanje" />
+        <Title languagecode="1053" description="Schemaläggningsassistenten" />
+        <Title languagecode="1054" description="ตัวช่วยจัดกำหนดการ" />
+        <Title languagecode="1055" description="Zamanlama Yardımcısı" />
+        <Title languagecode="1058" description="Помічник із планування" />
+        <Title languagecode="1066" description="Trợ lý Lịch trình" />
+        <Title languagecode="2052" description="日程安排助理" />
+        <Title languagecode="3076" description="排程小幫手" />
+        <Title languagecode="1028" description="排程小幫手" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>

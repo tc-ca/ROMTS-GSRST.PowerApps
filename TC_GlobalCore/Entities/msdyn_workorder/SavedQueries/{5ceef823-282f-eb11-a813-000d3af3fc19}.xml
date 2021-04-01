@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{5ceef823-282f-eb11-a813-000d3af3fc19}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_workorderid">
+          <cell name="msdyn_serviceterritory" width="100" />
+          <cell name="ovs_primaryinspector" width="100" />
+          <cell name="msdyn_name" width="100" />
+          <cell name="ovs_oversighttype" width="100" />
+          <cell name="msdyn_billingaccount" width="100" />
+          <cell name="msdyn_serviceaccount" width="100" />
+          <cell name="msdyn_systemstatus" width="100" />
+          <cell name="ovs_fiscalquarter" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="msdyn_workorder">
+          <attribute name="msdyn_workorderid" />
+          <attribute name="msdyn_serviceterritory" />
+          <attribute name="ovs_primaryinspector" />
+          <attribute name="msdyn_name" />
+          <attribute name="ovs_oversighttype" />
+          <attribute name="msdyn_billingaccount" />
+          <attribute name="msdyn_serviceaccount" />
+          <attribute name="msdyn_systemstatus" />
+          <attribute name="ovs_fiscalquarter" />
+          <order attribute="ovs_fiscalquarter" descending="false" />
+          <order attribute="msdyn_name" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="My Work Orders by Region" languagecode="1033" />
+      <LocalizedName description="Mes ordres de travail par région" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Work Orders where I am the Owner and sorted by Planned Fiscal Quarter" languagecode="1033" />
+      <Description description="Mes ordres de travail trier par trimestre de travail planifié" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

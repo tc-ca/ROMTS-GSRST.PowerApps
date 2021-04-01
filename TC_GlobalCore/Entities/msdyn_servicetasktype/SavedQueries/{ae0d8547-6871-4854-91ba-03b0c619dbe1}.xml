@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{ae0d8547-6871-4854-91ba-03b0c619dbe1}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_servicetasktypeid">
+          <cell name="msdyn_name" width="200" />
+          <cell name="msdyn_description" width="300" disableSorting="1" />
+          <cell name="msdyn_estimatedduration" width="125" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="msdyn_servicetasktype">
+          <attribute name="msdyn_name" />
+          <attribute name="createdon" />
+          <order attribute="msdyn_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="msdyn_estimatedduration" />
+          <attribute name="msdyn_description" />
+          <attribute name="msdyn_servicetasktypeid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>3.1.0.3</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Service Task Types" languagecode="1033" />
+      <LocalizedName description="Types de tâches actives relatives aux services" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
