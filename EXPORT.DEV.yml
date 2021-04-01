@@ -5,6 +5,9 @@ pool:
   vmImage: windows-latest
 
 steps:
+- checkout: self
+  persistCredentials: true
+  clean: true
 - task: PowerPlatformToolInstaller@0
   inputs:
     DefaultVersion: true
@@ -31,6 +34,11 @@ steps:
     Managed: true
     AsyncOperation: true
     MaxAsyncWaitTime: '240'
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)\*.zip'
+    artifact: 'drop'
+    publishLocation: 'pipeline'
 - task: PowerPlatformUnpackSolution@0
   inputs:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
@@ -48,8 +56,3 @@ steps:
       
       echo "Push solution changes to the remote repository"
       git -c http.extraheader="AUTHORIZATION: basic $(System.AccessToken)" push --force origin main
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)\*.zip'
-    artifact: 'drop'
-    publishLocation: 'pipeline'
