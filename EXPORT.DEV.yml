@@ -1,0 +1,44 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- none
+
+pool:
+  vmImage: windows-latest
+
+steps:
+- task: PowerPlatformToolInstaller@0
+  inputs:
+    DefaultVersion: true
+- task: PowerPlatformPublishCustomizations@0
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROM Dev'
+- task: PowerPlatformExportSolution@0
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROM Dev'
+    SolutionName: '$(SolutionName)'
+    SolutionOutputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
+    AsyncOperation: true
+    MaxAsyncWaitTime: '240'
+
+- task: PowerPlatformUnpackSolution@0
+  inputs:
+    SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
+    SolutionTargetFolder: '$(Build.SourcesDirectory)\$(SolutionName)'
+- task: CmdLine@2
+  inputs:
+    script: |
+      echo "Commit all solution changes"
+      git config user.email "nepasrepondre-noreply@tc.gc.ca"
+      git config user.name "Automatic Build"
+      git checkout main
+      git add --all
+      git commit -m "Update Solution - $env:SOLUTIONNAME"
+      
+      echo "Push solution to remote repository"
+      git -c http.extraheader="AUTHORIZATION: bearer $(System.AccessToken)" push origin master
