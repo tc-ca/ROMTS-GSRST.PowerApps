@@ -36,6 +36,8 @@ steps:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
     SolutionTargetFolder: '$(Build.SourcesDirectory)\$(SolutionName)'
 - task: CmdLine@2
+  env:
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
   inputs:
     script: |
       echo "Commit all solution changes"
@@ -46,4 +48,9 @@ steps:
       git commit -m "Update Solution - $env:SOLUTIONNAME"
       
       echo "Push solution to remote repository"
-      git -c http.extraheader="AUTHORIZATION: basic $(System.AccessToken)" push --force origin main
+      git -c http.extraheader="AUTHORIZATION: bearer $(SYSTEM_ACCESSTOKEN)" push origin main
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)\*.zip'
+    artifact: 'drop'
+    publishLocation: 'pipeline'
