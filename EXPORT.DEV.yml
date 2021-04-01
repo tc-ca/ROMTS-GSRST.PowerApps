@@ -24,21 +24,21 @@ steps:
     SolutionOutputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
     AsyncOperation: true
     MaxAsyncWaitTime: '240'
-#- task: PowerPlatformExportSolution@0
-#  displayName: 'Export Managed Solution'
-#  inputs:
-#    authenticationType: 'PowerPlatformSPN'
-#    PowerPlatformSPN: 'ROMTS-GSRST DEV'
-#    SolutionName: '$(SolutionName)'
-#    SolutionOutputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName)_managed.zip'
-#    Managed: true
-#    AsyncOperation: true
-#    MaxAsyncWaitTime: '240'
-#- task: PublishPipelineArtifact@1
-#  inputs:
-#    targetPath: '$(Build.ArtifactStagingDirectory)\*.zip'
-#    artifact: 'drop'
-#    publishLocation: 'pipeline'
+- task: PowerPlatformExportSolution@0
+  displayName: 'Export Managed Solution'
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    SolutionName: '$(SolutionName)'
+    SolutionOutputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName)_managed.zip'
+    Managed: true
+    AsyncOperation: true
+    MaxAsyncWaitTime: '240'
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    artifact: 'drop'
+    publishLocation: 'pipeline'
 - task: PowerPlatformUnpackSolution@0
   inputs:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
