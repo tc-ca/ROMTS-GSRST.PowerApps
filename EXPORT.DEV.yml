@@ -35,20 +35,19 @@ steps:
   inputs:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
     SolutionTargetFolder: '$(Build.SourcesDirectory)\$(SolutionName)'
-- task: CmdLine@2
-  env:
-    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+- task: PowerShell@2
   inputs:
+    targetType: 'inline'
     script: |
-      echo "Commit all solution changes"
+      echo "Committing all solution changes"
       git config user.email "nepasrepondre-noreply@tc.gc.ca"
-      git config user.name "Automatic Build"
+      git config user.name "tc-buildbot"
       git checkout main
       git add --all
       git commit -m "Update Solution - $env:SOLUTIONNAME"
       
-      echo "Push solution to remote repository"
-      git -c http.extraheader="AUTHORIZATION: bearer $(SYSTEM_ACCESSTOKEN)" push origin main
+      echo "Push solution changes to the remote repository"
+      git -c http.extraheader="AUTHORIZATION: basic $(System.AccessToken)" push --force origin main
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)\*.zip'
