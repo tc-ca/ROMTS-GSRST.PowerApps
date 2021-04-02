@@ -13,40 +13,13 @@ var ROM;
             form.getAttribute("ovs_regulatedentity").setRequiredLevel("required");
             //Prevent enabling controls if record is Inactive and set the right views (active/inactive)
             if (state == 1) {
-                var inactiveWorkOrderServiceTasksView = {
-                    entityType: "savedquery",
-                    id: "{2F145106-BCB3-4F0F-9D02-E8C3B6BB25E8}",
-                    name: "Inactive Work Order Service Tasks"
-                };
-                var inactiveBookingsView = {
-                    entityType: "savedquery",
-                    id: "{B74D2E1A-37CB-4DA9-AA06-156CBF7BC3DD}",
-                    name: "Inactive Bookable Resource Bookings"
-                };
-                //Check if the view are correctly set to avoid refreshing for no reason
-                if (form.getControl("workorderservicetasksgrid").getViewSelector().getCurrentView() != inactiveWorkOrderServiceTasksView ||
-                    form.getControl("bookings").getViewSelector().getCurrentView() != inactiveBookingsView) {
-                    form.getControl("workorderservicetasksgrid").getViewSelector().setCurrentView(inactiveWorkOrderServiceTasksView);
-                    form.getControl("bookings").getViewSelector().setCurrentView(inactiveBookingsView);
-                }
+                setWorkOrderServiceTasksView(form, false);
+                setBookableResourceBookingsView(form, false);
                 return;
             }
-            else {
-                var activeWorkOrderServiceTasksView = {
-                    entityType: "savedquery",
-                    id: "{C9FD8F4D-8184-4DDB-A31A-89E66E8E710E}",
-                    name: "Active Work Order Service Tasks"
-                };
-                var activeBookingsView = {
-                    entityType: "savedquery",
-                    id: "{8AF53D0E-07FE-49D4-BBBA-CA524DD6551B}",
-                    name: "Active Resource Bookings (Field Service Information)"
-                };
-                if (form.getControl("workorderservicetasksgrid").getViewSelector().getCurrentView() != activeWorkOrderServiceTasksView ||
-                    form.getControl("bookings").getViewSelector().getCurrentView() != activeBookingsView) {
-                    form.getControl("workorderservicetasksgrid").getViewSelector().setCurrentView(activeWorkOrderServiceTasksView);
-                    form.getControl("bookings").getViewSelector().setCurrentView(activeBookingsView);
-                }
+            else { //If the work order is active, show the active views
+                setWorkOrderServiceTasksView(form, true);
+                setBookableResourceBookingsView(form, true);
             }
             switch (form.ui.getFormType()) {
                 //Create
@@ -84,9 +57,12 @@ var ROM;
                         "statuscode": 2 //open -> 1
                     };
                 //Close/Open associated work order service task(s)
-                toggleWorkOrderServiceTasksState(form, workOrderServiceTaskData);
+                closeWorkOrderServiceTasks(form, workOrderServiceTaskData);
                 //Close/Open Bookable Resource Booking
-                toggleBookableResourceBookingsState(form, bookableResourceBookingData);
+                //closeBookableResourceBookings(form, bookableResourceBookingData); //disabled until we know the usage of bookings
+                //Set inactive views
+                setWorkOrderServiceTasksView(form, false);
+                setBookableResourceBookingsView(form, false);
             }
         }
         WorkOrder.onSave = onSave;
@@ -331,8 +307,6 @@ var ROM;
         function systemStatusOnChange(eContext) {
             var formContext = eContext.getFormContext();
             var systemStatus = formContext.getAttribute("msdyn_systemstatus").getValue();
-            var workOrderServiceTaskData;
-            var bookableResourceBookingData;
             //If system status is set to closed
             if (systemStatus == 690970004 || systemStatus == 690970005) {
                 //Set state to Inactive
@@ -423,7 +397,7 @@ var ROM;
                 Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(function () { });
             });
         }
-        function toggleWorkOrderServiceTasksState(formContext, workOrderServiceTaskData) {
+        function closeWorkOrderServiceTasks(formContext, workOrderServiceTaskData) {
             Xrm.WebApi.online.retrieveMultipleRecords("msdyn_workorderservicetask", "?$select=msdyn_workorder&$filter=msdyn_workorder/msdyn_workorderid eq " + formContext.data.entity.getId()).then(function success(result) {
                 for (var i = 0; i < result.entities.length; i++) {
                     Xrm.WebApi.updateRecord("msdyn_workorderservicetask", result.entities[i].msdyn_workorderservicetaskid, workOrderServiceTaskData).then(function success(result) {
@@ -435,7 +409,7 @@ var ROM;
             }, function (error) {
             });
         }
-        function toggleBookableResourceBookingsState(formContext, bookableResourceBookingData) {
+        function closeBookableResourceBookings(formContext, bookableResourceBookingData) {
             Xrm.WebApi.online.retrieveMultipleRecords("bookableresourcebooking", "?$select=msdyn_workorder&$filter=msdyn_workorder/msdyn_workorderid eq " + formContext.data.entity.getId()).then(function success(result) {
                 for (var i = 0; i < result.entities.length; i++) {
                     Xrm.WebApi.updateRecord("bookableresourcebooking", result.entities[i].bookableresourcebookingid, bookableResourceBookingData).then(function success(result) {
@@ -446,6 +420,50 @@ var ROM;
                 }
             }, function (error) {
             });
+        }
+        function setWorkOrderServiceTasksView(form, active) {
+            var workOrderView;
+            if (active) {
+                workOrderView =
+                    {
+                        entityType: "savedquery",
+                        id: "{C9FD8F4D-8184-4DDB-A31A-89E66E8E710E}",
+                        name: "Active Work Order Service Tasks"
+                    };
+            }
+            else {
+                workOrderView =
+                    {
+                        entityType: "savedquery",
+                        id: "{2F145106-BCB3-4F0F-9D02-E8C3B6BB25E8}",
+                        name: "Inactive Work Order Service Tasks"
+                    };
+            }
+            if (form.getControl("workorderservicetasksgrid").getViewSelector().getCurrentView() != workOrderView) {
+                form.getControl("workorderservicetasksgrid").getViewSelector().setCurrentView(workOrderView);
+            }
+        }
+        function setBookableResourceBookingsView(form, active) {
+            var bookingsView;
+            if (active) {
+                bookingsView =
+                    {
+                        entityType: "savedquery",
+                        id: "{8AF53D0E-07FE-49D4-BBBA-CA524DD6551B}",
+                        name: "Active Resource Bookings (Field Service Information)"
+                    };
+            }
+            else {
+                bookingsView =
+                    {
+                        entityType: "savedquery",
+                        id: "{B74D2E1A-37CB-4DA9-AA06-156CBF7BC3DD}",
+                        name: "Inactive Bookable Resource Bookings"
+                    };
+            }
+            if (form.getControl("bookings").getViewSelector().getCurrentView() != bookingsView) {
+                form.getControl("bookings").getViewSelector().setCurrentView(bookingsView);
+            }
         }
     })(WorkOrder = ROM.WorkOrder || (ROM.WorkOrder = {}));
 })(ROM || (ROM = {}));

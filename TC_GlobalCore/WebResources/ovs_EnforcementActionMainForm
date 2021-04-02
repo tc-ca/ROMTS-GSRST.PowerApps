@@ -1,0 +1,143 @@
+///<reference path="../../Utilities/GlobalHelper.js"/>
+
+var globalFormContext;
+var actionSubStatus;
+function OnLoad(executionContext) {
+
+
+    //get context
+    globalContext = glHelper.getGlobalContext();
+    var formContext = executionContext.getFormContext();
+    var id = glHelper.GetCurrentRecordId(formContext);
+
+    globalFormContext = formContext;
+
+    // 0 = Undefined, 1 = Create, 2 = Update, 3 = Read Only, 4 = Disabled, 6 = Bulk Edit
+    formType = glHelper.GetFormType(formContext);
+
+    //If form is new, set the Action Date to today.
+    if (formType == 1) {
+
+        glHelper.SetValue(formContext, "ovs_actiondate",Date.now());
+
+        glHelper.SetValue(formContext, "ovs_name", inspectionName + " - Safety Assessment");
+    }
+    else {
+
+        var actionType = glHelper.GetValue(formContext, "ovs_actiontype");
+        actionSubStatus = glHelper.GetValue(formContext, "ovs_actionstatus");
+        
+        switch (actionType)
+        {
+            case 918640001:
+                manageNoticeToRemedyForm(formContext, actionSubStatus);
+                break;
+
+            default:
+                break;
+
+        }
+
+        
+
+    }
+
+}
+
+function ActionSubstatus_OnChange(executionContext)
+{
+    globalContext = glHelper.getGlobalContext();
+    var formContext = executionContext.getFormContext();
+
+    var newActionSubStatus = glHelper.GetValue(formContext, "ovs_actionstatus");
+    var actionType = glHelper.GetValue(formContext, "ovs_actiontype");
+
+    switch (actionType)
+    {
+        case 918640001:
+            manageNoticeToRemedyForm(formContext, newActionSubStatus);
+            break; 
+    }
+    
+}
+
+function manageNoticeToRemedyForm(formContext, actionSubStatus) 
+{
+    //Show Notice section, hide others.
+    glHelper.SetSectionVisibility(formContext, "generalTab", "sectionNoticeToRemedy", true);
+    glHelper.SetSectionVisibility(formContext, "generalTab", "sectionDetentionNotice", false);
+
+    //In-Progress
+    if (actionSubStatus == 918640000)
+    {
+        //This a new record, show fields needed before moving to next step.
+        glHelper.SetRequiredLevel(formContext, "ovs_directiontxt", true);
+        glHelper.SetControlVisibility(formContext, "ovs_directiontxt", true);
+
+        //hide revocation
+        glHelper.SetRequiredLevel(formContext, "ovs_revocationjustificationtxt", false);
+        glHelper.SetControlVisibility(formContext, "ovs_revocationjustificationtxt", false);
+    }
+    //Active
+    else if (actionSubStatus == 918640001)
+    {
+        //Direction text visible and required.
+        
+        //Visibility
+        glHelper.SetControlVisibility(formContext, "ovs_directiontxt", true);
+        glHelper.SetControlVisibility(formContext, "ovs_releasedate", true);
+
+        //Required
+        glHelper.SetRequiredLevel(formContext, "ovs_releasedate", true);
+
+
+        //Enabled/Disabled
+        glHelper.SetDisabled(formContext, "ovs_directiontxt", false);       
+        
+        
+    }
+    //Closed - Alternative Measures Taken
+    else if (actionSubStatus == 918640003)
+    {
+        //Justification text visible and required
+        //Revocation text visible and required
+        //Release Date visible and mandatory
+        glHelper.SetDisabled(formContext, "ovs_directiontxt", true);
+        glHelper.SetControlVisibility(formContext, "ovs_directiontxt", true);
+
+        glHelper.SetRequiredLevel(formContext, "ovs_releasedate", true);
+        glHelper.SetControlVisibility(formContext, "ovs_releasedate", true);
+
+        glHelper.SetRequiredLevel(formContext, "ovs_revocationjustificationtxt", true);
+        glHelper.SetControlVisibility(formContext, "ovs_revocationjustificationtxt", true);
+    }
+}
+
+function OnSave(executionContext)
+{
+    globalContext = glHelper.getGlobalContext();
+    var formContext = executionContext.getFormContext();
+
+    var newActionSubStatus = glHelper.GetValue(formContext, "ovs_actionstatus");
+    var actionType = glHelper.GetValue(formContext, "ovs_actiontype");
+    var inspectionId = glHelper.GetValue(formContext, "regardingobjectid")[0].id;
+    
+
+    if (newActionSubStatus != actionSubStatus)
+    {
+        //Status was changed.
+        //Need to have the Flow URL in Config entity somewhere
+        var flowUrl = "https://prod-09.canadacentral.logic.azure.com:443/workflows/2d07d234ec4c4a419fd1b755b7cc22f9/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=gU6Fml_vM0C4fEvuAWrmaReyOlAkGop1LdZDIRs3S28";
+        var input = JSON.stringify({
+            "msdyn_workorderid": inspectionId.replace(/[{}]/g, "")
+
+        });
+        var req = new XMLHttpRequest();
+        req.open("POST", flowUrl, true);
+        req.setRequestHeader('Content-Type', 'application/json');
+        req.send(input);
+    }
+    
+}
+
+//common function to trigger Flows
