@@ -12,6 +12,12 @@ steps:
   displayName: 'Install Power Platform Build Tools'
   inputs:
     DefaultVersion: true
+- task: PowerPlatformSetSolutionVersion@0
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    SolutionName: '$(SolutionName)'
+    SolutionVersionNumber: '$(Build.BuildNumber)'
 - task: PowerPlatformPublishCustomizations@0
   displayName: 'Publish All Customizations'
   inputs:
