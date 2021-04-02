@@ -9,9 +9,15 @@ steps:
   persistCredentials: true
   clean: true
 - task: PowerPlatformToolInstaller@0
+  displayName: 'Install Power Platform Build Tools'
   inputs:
-    DefaultVersion: true
+    DefaultVersion: false
+    PowerAppsAdminVersion: '2.0.112'
+    XrmToolingPackageDeploymentVersion: '3.3.0.901'
+    MicrosoftPowerAppsCheckerVersion: '1.0.29'
+    CrmSdkCoreToolsVersion: '9.1.0.64'
 - task: PowerPlatformPublishCustomizations@0
+  displayName: 'Publish All Customizations'
   inputs:
     authenticationType: 'PowerPlatformSPN'
     PowerPlatformSPN: 'ROMTS-GSRST DEV'
@@ -35,15 +41,18 @@ steps:
     AsyncOperation: true
     MaxAsyncWaitTime: '240'
 - task: PublishPipelineArtifact@1
+  displayName: 'Publish Artifacts'
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     artifact: 'drop'
     publishLocation: 'pipeline'
 - task: PowerPlatformUnpackSolution@0
+  displayName: 'Unpack Unmanaged Solution'
   inputs:
     SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
     SolutionTargetFolder: '$(Build.SourcesDirectory)\$(SolutionName)'
 - task: PowerShell@2
+  displayName: 'Commit Unpacked Solution to Source Control'
   inputs:
     targetType: 'inline'
     script: |
