@@ -26,7 +26,13 @@
           <cell name="a_7973f34cdb9de51180e5000d3a1177a6.msdyn_stateorprovince" width="150" disableSorting="1" ishidden="1" />
           <cell name="ab.msdyn_statuscolor" width="150" disableSorting="1" ishidden="1" />
           <cell name="ab.status" width="150" disableSorting="1" ishidden="1" />
+          <cell name="ab.msdyn_fieldservicestatus" width="150" disableSorting="1" ishidden="1" />
+          <cell name="sa.contact" width="150" disableSorting="1" ishidden="1" />
+          <cell name="sa_primatycontact.telephone1" width="150" disableSorting="1" ishidden="1" />
+          <cell name="sa_primatycontact.fullname" width="150" disableSorting="1" ishidden="1" />
           <cell name="createdon" width="125" />
+          <cell name="msdyn_latitude" width="100" disableSorting="1" ishidden="1" />
+          <cell name="msdyn_longitude" width="100" disableSorting="1" ishidden="1" />
         </row>
       </grid>
     </layoutxml>
@@ -56,6 +62,12 @@
             <attribute name="msdyn_postalcode" />
             <attribute name="msdyn_primaryincidenttype" />
             <attribute name="msdyn_stateorprovince" />
+            <link-entity name="account" from="accountid" to="msdyn_serviceaccount" link-type="outer">
+              <link-entity name="contact" from="contactid" to="primarycontactid" link-type="outer" alias="sa_primatycontact">
+                <attribute name="telephone1" />
+                <attribute name="fullname" />
+              </link-entity>
+            </link-entity>
           </link-entity>
           <link-entity name="bookableresource" from="bookableresourceid" to="resource" alias="aa">
             <filter type="and">
@@ -66,6 +78,7 @@
           <link-entity name="bookingstatus" from="bookingstatusid" to="bookingstatus" alias="ab">
             <attribute name="msdyn_statuscolor" />
             <attribute name="status" />
+            <attribute name="msdyn_fieldservicestatus" />
             <filter type="and">
               <condition attribute="msdyn_fieldservicestatus" operator="in">
                 <value>690970004</value>
@@ -79,6 +92,8 @@
           </link-entity>
           <attribute name="msdyn_estimatedarrivaltime" />
           <attribute name="bookableresourcebookingid" />
+          <attribute name="msdyn_longitude" />
+          <attribute name="msdyn_latitude" />
         </entity>
       </fetch>
     </fetchxml>
