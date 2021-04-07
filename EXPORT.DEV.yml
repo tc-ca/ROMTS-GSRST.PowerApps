@@ -4,7 +4,12 @@ trigger:
 pool:
   vmImage: windows-latest
 
+variables:
+  solutionVersion: $[format('{0:yyyy}.{0:MM}.{0:dd}.{0:rr}', Build.BuildId)]
+
 steps:
+- bash: echo $(solutionVersion)
+
 - checkout: self
   persistCredentials: true
   clean: true
