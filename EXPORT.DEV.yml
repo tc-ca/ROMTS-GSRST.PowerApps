@@ -17,25 +17,18 @@ steps:
   inputs:
     authenticationType: 'PowerPlatformSPN'
     PowerPlatformSPN: 'ROMTS-GSRST DEV'
-- task: PowerPlatformExportSolution@0
-  displayName: 'Export Unmanaged Solution'
+- task: MSCRMExportSolution@12
+  # Use Wael Hamze's Power DevOps Tools to do export of both solution types in the same task
+  displayName: 'Export Managed and Unmanaged Solutions'
   inputs:
-    authenticationType: 'PowerPlatformSPN'
-    PowerPlatformSPN: 'ROMTS-GSRST DEV'
-    SolutionName: '$(SolutionName)'
-    SolutionOutputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
-    AsyncOperation: true
-    MaxAsyncWaitTime: '240'
-- task: PowerPlatformExportSolution@0
-  displayName: 'Export Managed Solution'
-  inputs:
-    authenticationType: 'PowerPlatformSPN'
-    PowerPlatformSPN: 'ROMTS-GSRST DEV'
-    SolutionName: '$(SolutionName)'
-    SolutionOutputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName)_managed.zip'
-    Managed: true
-    AsyncOperation: true
-    MaxAsyncWaitTime: '240'
+    crmConnectionString: '$(ConnectionStringDev)'
+    solutionName: '$(SolutionName)'
+    exportManaged: true
+    exportUnmanaged: true
+    outputPath: '$(Build.ArtifactStagingDirectory)'
+    crmConnectionTimeout: '1960'
+    useAsyncMode: true
+    asyncWaitTimeout: '1900'
 - task: PublishPipelineArtifact@1
   displayName: 'Publish Artifacts'
   inputs:
