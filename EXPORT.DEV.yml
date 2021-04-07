@@ -5,7 +5,8 @@ pool:
   vmImage: windows-latest
 
 variables:
-  solutionVersion: $[format('{0:yyyy}.{0:MM}.{0:dd}.{0:rr}', build.buildid)]
+  #solutionVersion: $[format('{0:yyyy}.{0:MM}.{0:dd}.{0:rr}', Build.BuildId)]
+  solutionVersion: $[format('1.0.3.{0:yyyyMMdd}', pipeline.startTime)]
 
 steps:
 - bash: echo $(solutionVersion)
