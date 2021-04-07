@@ -5,9 +5,9 @@ pool:
   vmImage: windows-latest
 
 steps:
-- bash: echo '##vso[task.setvariable variable=solutionVersion]$[format('{0:yyyy}.{0:MM}.{0:dd}.{0:rr}', Build.BuildId)]'
-- script: |
-    echo $(solutionVersion)
+- bash: |
+    echo "##vso[task.setvariable variable=solutionVersion]$[format('{0:yyyy}.{0:MM}.{0:dd}.{0:rr}', Build.BuildId)]"
+    echo "Solution Version = $(solutionVersion)"
 
 - checkout: self
   persistCredentials: true
