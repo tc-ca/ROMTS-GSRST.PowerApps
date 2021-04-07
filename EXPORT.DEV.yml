@@ -4,12 +4,10 @@ trigger:
 pool:
   vmImage: windows-latest
 
-variables:
-  #solutionVersion: $[format('{0:yyyy}.{0:MM}.{0:dd}.{0:rr}', Build.BuildId)]
-  solutionVersion: $[format('1.0.3.{0:yyyyMMdd}', pipeline.startTime)]
-
 steps:
-- bash: echo $(solutionVersion)
+- bash: echo '##vso[task.setvariable variable=solutionVersion]$[format('{0:yyyy}.{0:MM}.{0:dd}.{0:rr}', Build.BuildId)]'
+- script: |
+    echo $(solutionVersion)
 
 - checkout: self
   persistCredentials: true
