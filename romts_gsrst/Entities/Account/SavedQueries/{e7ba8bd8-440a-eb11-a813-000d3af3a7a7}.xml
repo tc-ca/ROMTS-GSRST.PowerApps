@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{e7ba8bd8-440a-eb11-a813-000d3af3a7a7}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" preview="1" icon="1">
+        <row name="result" id="accountid">
+          <cell name="name" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="account">
+          <attribute name="name" />
+          <order attribute="name" descending="false" />
+          <filter type="and">
+            <condition attribute="customertypecode" operator="eq" value="948010001" />
+          </filter>
+          <attribute name="accountid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.9</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Sites" languagecode="1033" />
+      <LocalizedName description="Sites" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{90871801-b829-4f28-9fcd-70de41d716c8}</savedqueryid>
+    <layoutxml>
+      <grid name="" jump="msdyn_name" select="1" icon="1" preview="0">
+        <row name="msdyn_workordersubstatus" id="msdyn_workordersubstatusid">
+          <cell name="msdyn_name" width="300" />
+          <cell name="msdyn_systemstatus" width="150" />
+          <cell name="msdyn_defaultsubstatus" width="125" />
+          <cell name="statecode" width="100" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="msdyn_workordersubstatus">
+          <attribute name="msdyn_workordersubstatusid" />
+          <attribute name="msdyn_name" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <order attribute="msdyn_name" descending="false" />
+          <attribute name="msdyn_systemstatus" />
+          <attribute name="statecode" />
+          <attribute name="msdyn_defaultsubstatus" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Work Order Substatus Lookup View" languagecode="1033" />
+      <LocalizedName description="Vue Recherche de sous-statuts d'ordre de travail" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

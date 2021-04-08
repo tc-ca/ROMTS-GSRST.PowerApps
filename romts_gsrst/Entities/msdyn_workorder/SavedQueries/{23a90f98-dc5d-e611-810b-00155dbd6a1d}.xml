@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{23a90f98-dc5d-e611-810b-00155dbd6a1d}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" preview="1" icon="1">
+        <row name="result" id="msdyn_workorderid">
+          <cell name="msdyn_name" width="150" />
+          <cell name="msdyn_iotalert" width="100" />
+          <cell name="createdon" width="100" />
+          <cell name="msdyn_serviceaccount" width="100" />
+          <cell name="msdyn_systemstatus" width="100" />
+          <cell name="msdyn_substatus" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="msdyn_workorder">
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_systemstatus" />
+          <attribute name="msdyn_substatus" />
+          <attribute name="msdyn_iotalert" />
+          <attribute name="msdyn_serviceaccount" />
+          <attribute name="createdon" />
+          <order attribute="msdyn_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="msdyn_iotalert" operator="not-null" />
+          </filter>
+          <attribute name="msdyn_workorderid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Work orders for IoT Alerts" languagecode="1033" />
+      <LocalizedName description="Ordres de travail pour les alertes IoT" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Work orders created for iot alerts" languagecode="1033" />
+      <Description description="Ordres de travail créés pour les alertes IoT" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

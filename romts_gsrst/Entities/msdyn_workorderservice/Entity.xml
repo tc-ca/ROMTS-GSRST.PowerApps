@@ -1,0 +1,956 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Entity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name LocalizedName="Work Order Service" OriginalName="Work Order Service">msdyn_workorderservice</Name>
+  <EntityInfo>
+    <entity Name="msdyn_workorderservice" unmodified="1">
+      <attributes>
+        <attribute PhysicalName="msdyn_AdditionalCost" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_additionalcost</Name>
+          <LogicalName>msdyn_additionalcost</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Additional Cost" languagecode="1033" />
+            <displayname description="Coût supplémentaire" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Enter any additional costs associated with this service. The values are manually entered. Note: additional cost is not unit dependent." languagecode="1033" />
+            <Description description="Entrez les éventuels coûts supplémentaires associés à ce service. Les valeurs sont saisies manuellement. Remarque : le coût supplémentaire ne dépend pas de l'unité." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_CalculatedUnitAmount" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_calculatedunitamount</Name>
+          <LogicalName>msdyn_calculatedunitamount</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Calculated Unit Amount" languagecode="1033" />
+            <displayname description="Montant des unités calculé" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the sale amount per unit calculated by the system considering the minimum charge, if applicable." languagecode="1033" />
+            <Description description="Affiche le montant des ventes par unité calculé par le système en prenant en compte les frais minimum, le cas échéant." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_CommissionCosts" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_commissioncosts</Name>
+          <LogicalName>msdyn_commissioncosts</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Commission Costs" languagecode="1033" />
+            <displayname description="Coûts des commissions" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Enter the commission costs associated with this service. The value is manually specified and isn't automatically calculated." languagecode="1033" />
+            <Description description="Entrez les coûts de commission associés à ce service. La valeur est spécifiée manuellement et n'est pas automatiquement calculée." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_DiscountAmount" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_discountamount</Name>
+          <LogicalName>msdyn_discountamount</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Discount Amount" languagecode="1033" />
+            <displayname description="Montant de la remise" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Specify any discount amount on this service. Note: If you enter a discount amount you cannot enter a discount %" languagecode="1033" />
+            <Description description="Spécifiez un montant de remise sur ce service. Remarque : si vous entrez un montant de remise, vous ne pouvez pas entrer de pourcentage de remise" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_DiscountPercent" unmodified="1">
+          <Type>float</Type>
+          <Name>msdyn_discountpercent</Name>
+          <LogicalName>msdyn_discountpercent</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <displaynames>
+            <displayname description="Discount %" languagecode="1033" />
+            <displayname description="Pourcentage de remise" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Specify any discount % on this service. Note: If you enter a discount % it will overwrite the discount $" languagecode="1033" />
+            <Description description="Spécifiez un pourcentage de remise sur ce service. Remarque : si vous entrez un pourcentage de remise, il remplacera le montant de remise" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_Duration" unmodified="1">
+          <Type>int</Type>
+          <Name>msdyn_duration</Name>
+          <LogicalName>msdyn_duration</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>duration</Format>
+          <MinValue>0</MinValue>
+          <MaxValue>2147483647</MaxValue>
+          <displaynames>
+            <displayname description="Duration" languagecode="1033" />
+            <displayname description="Durée" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the actual duration of service." languagecode="1033" />
+            <Description description="Affiche la durée réelle du service." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_DurationToBill" unmodified="1">
+          <Type>int</Type>
+          <Name>msdyn_durationtobill</Name>
+          <LogicalName>msdyn_durationtobill</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>duration</Format>
+          <MinValue>0</MinValue>
+          <MaxValue>2147483647</MaxValue>
+          <displaynames>
+            <displayname description="Duration To Bill" languagecode="1033" />
+            <displayname description="Durée de facturation" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Enter the quantity you wish to bill the customer for. By default, this will default to the same value as &quot;Quantity.&quot;" languagecode="1033" />
+            <Description description="Entrez la quantité que vous souhaitez facturer au client. Par défaut, cette valeur sera identique à celle de « Quantité »." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_EstimateCalculatedUnitAmount" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_estimatecalculatedunitamount</Name>
+          <LogicalName>msdyn_estimatecalculatedunitamount</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Estimate Calculated Unit Amount" languagecode="1033" />
+            <displayname description="Estimer le montant calculé des unités" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the estimated sale amount per unit calculated by the system considering the initial charge (if applicable)." languagecode="1033" />
+            <Description description="Affiche le montant des ventes estimé par unité calculé par le système en prenant en compte les frais initiaux (le cas échéant)." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_EstimateDiscountAmount" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_estimatediscountamount</Name>
+          <LogicalName>msdyn_estimatediscountamount</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Estimate Discount Amount" languagecode="1033" />
+            <displayname description="Estimer le montant de la remise" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Enter a discount amount on the subtotal amount. Note: If you enter a discount amount you cannot enter a discount %" languagecode="1033" />
+            <Description description="Entrez un montant de remise sur le sous-total. Remarque : si vous entrez un montant de remise, vous ne pouvez pas entrer de pourcentage de remise" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_EstimateDiscountPercent" unmodified="1">
+          <Type>float</Type>
+          <Name>msdyn_estimatediscountpercent</Name>
+          <LogicalName>msdyn_estimatediscountpercent</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <displaynames>
+            <displayname description="Estimate Discount %" languagecode="1033" />
+            <displayname description="Estimer la remise (%)" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Enter a discount % on the subtotal amount. Note: If you enter a discount % it will overwrite the discount $" languagecode="1033" />
+            <Description description="Entrez un pourcentage de remise sur le sous-total. Remarque : si vous entrez un pourcentage de remise, il remplacera le montant de remise" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_EstimateDuration" unmodified="1">
+          <Type>int</Type>
+          <Name>msdyn_estimateduration</Name>
+          <LogicalName>msdyn_estimateduration</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>duration</Format>
+          <MinValue>0</MinValue>
+          <MaxValue>2147483647</MaxValue>
+          <displaynames>
+            <displayname description="Estimate Duration" languagecode="1033" />
+            <displayname description="Estimer Durée" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Enter the estimated duration of this service." languagecode="1033" />
+            <Description description="Entrez la durée estimée de ce service." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_EstimateSubtotal" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_estimatesubtotal</Name>
+          <LogicalName>msdyn_estimatesubtotal</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Estimate Subtotal" languagecode="1033" />
+            <displayname description="Estimer le sous-total" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the total amount for this service, excluding discounts." languagecode="1033" />
+            <Description description="Affiche le montant total pour ce service, à l'exclusion des remises." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_EstimateTotalAmount" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_estimatetotalamount</Name>
+          <LogicalName>msdyn_estimatetotalamount</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Estimate Total Amount" languagecode="1033" />
+            <displayname description="Estimer le montant du total" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the estimated total amount of this service, including discounts." languagecode="1033" />
+            <Description description="Affiche le montant total estimé de ce service, remises incluses." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_EstimateTotalCost" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_estimatetotalcost</Name>
+          <LogicalName>msdyn_estimatetotalcost</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Estimate Total Cost" languagecode="1033" />
+            <displayname description="Estimer le coût total" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the estimated total cost of this service." languagecode="1033" />
+            <Description description="Affiche le coût total estimé de ce service." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_EstimateUnitAmount" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_estimateunitamount</Name>
+          <LogicalName>msdyn_estimateunitamount</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Estimate Unit Amount" languagecode="1033" />
+            <displayname description="Estimer le montant des unités" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the estimated sale amount per unit." languagecode="1033" />
+            <Description description="Affiche le montant estimé des ventes par unité." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_EstimateUnitCost" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_estimateunitcost</Name>
+          <LogicalName>msdyn_estimateunitcost</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Estimate Unit Cost" languagecode="1033" />
+            <displayname description="Estimer le coût unitaire" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the estimated cost amount per unit." languagecode="1033" />
+            <Description description="Affiche le coût estimé par unité." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_MinimumChargeAmount" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_minimumchargeamount</Name>
+          <LogicalName>msdyn_minimumchargeamount</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Minimum Charge Amount" languagecode="1033" />
+            <displayname description="Montant des frais minimum" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Enter the amount charged as a minimum charge." languagecode="1033" />
+            <Description description="Entrez le montant facturé comme frais minimum." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_MinimumChargeDuration" unmodified="1">
+          <Type>int</Type>
+          <Name>msdyn_minimumchargeduration</Name>
+          <LogicalName>msdyn_minimumchargeduration</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>duration</Format>
+          <MinValue>0</MinValue>
+          <MaxValue>2147483647</MaxValue>
+          <displaynames>
+            <displayname description="Minimum Charge Duration" languagecode="1033" />
+            <displayname description="Durée minimale des frais" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Enter the duration of up to how long the minimum charge applies." languagecode="1033" />
+            <Description description="Entrez la durée maximale pendant laquelle les frais minimum s'appliquent." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_PriceList" unmodified="1">
+          <Type>lookup</Type>
+          <Name>msdyn_pricelist</Name>
+          <LogicalName>msdyn_pricelist</LogicalName>
+          <RequiredLevel>required</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="Price List" languagecode="1033" />
+            <displayname description="Tarifs" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Price List that determines the pricing for this service" languagecode="1033" />
+            <Description description="Tarifs qui déterminent la tarification pour ce service" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_Subtotal" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_subtotal</Name>
+          <LogicalName>msdyn_subtotal</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Subtotal" languagecode="1033" />
+            <displayname description="Sous-total" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Enter the total amount excluding discounts." languagecode="1033" />
+            <Description description="Entrez le montant total, à l'exclusion des remises." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_Taxable" unmodified="1">
+          <Type>bit</Type>
+          <Name>msdyn_taxable</Name>
+          <LogicalName>msdyn_taxable</LogicalName>
+          <RequiredLevel>required</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="msdyn_workorderservice_msdyn_taxable">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>3.1.0.3</IntroducedVersion>
+            <displaynames>
+              <displayname description="Taxable" languagecode="1033" />
+              <displayname description="Imposable" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Specify if service is taxable. If you do not wish to charge tax set this field to No." languagecode="1033" />
+              <Description description="Spécifiez si le service est soumis à taxe. Si vous ne voulez pas facturer de taxe, définissez ce champ sur Non." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Taxable" languagecode="1033" />
+            <displayname description="Imposable" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Specify if service is taxable. If you do not wish to charge tax set this field to No." languagecode="1033" />
+            <Description description="Spécifiez si le service est soumis à taxe. Si vous ne voulez pas facturer de taxe, définissez ce champ sur Non." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_TotalAmount" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_totalamount</Name>
+          <LogicalName>msdyn_totalamount</LogicalName>
+          <RequiredLevel>required</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Total Amount" languagecode="1033" />
+            <displayname description="Montant total" languagecode="1036" />
+          </displaynames>
+        </attribute>
+        <attribute PhysicalName="msdyn_TotalCost" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_totalcost</Name>
+          <LogicalName>msdyn_totalcost</LogicalName>
+          <RequiredLevel>required</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Total Cost" languagecode="1033" />
+            <displayname description="Coût total" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the total cost of this service. This is calculated by (Unit Cost * Units) + Additional Cost + Commission Costs." languagecode="1033" />
+            <Description description="Affiche le coût total du service. Il est calculé de la façon suivante : (Coût unitaire * unités) + coût additionnel + coûts de commission." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_Unit" unmodified="1">
+          <Type>lookup</Type>
+          <Name>msdyn_unit</Name>
+          <LogicalName>msdyn_unit</LogicalName>
+          <RequiredLevel>required</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="Unit" languagecode="1033" />
+            <displayname description="Unité" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="The unit that determines the final quantity for this service" languagecode="1033" />
+            <Description description="L'unité qui détermine la quantité finale pour ce service" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_UnitAmount" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_unitamount</Name>
+          <LogicalName>msdyn_unitamount</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Unit Amount" languagecode="1033" />
+            <displayname description="Montant de l'unité" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Enter the amount you want to charge the customer per unit. By default, this is calculated based on the selected price list. The amount can be changed." languagecode="1033" />
+            <Description description="Entrez le montant que vous voulez facturer au client par unité. Par défaut, il est calculé en fonction des tarifs sélectionnés. Le montant peut être modifié." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_UnitCost" unmodified="1">
+          <Type>money</Type>
+          <Name>msdyn_unitcost</Name>
+          <LogicalName>msdyn_unitcost</LogicalName>
+          <RequiredLevel>required</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>1</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <AccuracySource>1</AccuracySource>
+          <displaynames>
+            <displayname description="Unit Cost" languagecode="1033" />
+            <displayname description="Coût unitaire" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the actual cost per unit." languagecode="1033" />
+            <Description description="Affiche le coût réel par unité." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+      </attributes>
+    </entity>
+  </EntityInfo>
+  <RibbonDiffXml />
+</Entity>

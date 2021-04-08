@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{82e357fe-4361-e111-ac14-000c2959f9b8}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" preview="1" icon="1">
+        <row name="result" id="msdyn_incidenttypeid">
+          <cell name="msdyn_name" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ovs_incidenttypenameenglish" width="236" />
+          <cell name="ovs_incidenttypenamefrench" width="209" />
+          <cell name="msdyn_estimatedduration" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="msdyn_incidenttype">
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_estimatedduration" />
+          <order attribute="msdyn_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ovs_incidenttypenamefrench" />
+          <attribute name="ovs_incidenttypenameenglish" />
+          <attribute name="msdyn_incidenttypeid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>3.1.0.3</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Allow On Work Order Lookup" languagecode="1033" />
+      <LocalizedName description="Autoriser sur la recherche d'ordre de travail" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

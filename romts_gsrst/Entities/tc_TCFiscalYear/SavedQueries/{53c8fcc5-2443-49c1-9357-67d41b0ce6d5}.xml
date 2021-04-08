@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{53c8fcc5-2443-49c1-9357-67d41b0ce6d5}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="tc_name" select="1" icon="1" preview="1">
+        <row name="result" id="tc_tcfiscalyearid">
+          <cell name="tc_name" width="199" />
+          <cell name="tc_fiscalyearnum" width="210" />
+          <cell name="tc_fiscalyearlonglbl" width="238" />
+          <cell name="tc_fiscalstart" width="100" />
+          <cell name="tc_fiscalend" width="100" />
+          <cell name="tc_todaysdate" width="100" />
+          <cell name="tc_iscurrentfiscalyear" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="tc_tcfiscalyear">
+          <attribute name="tc_tcfiscalyearid" />
+          <attribute name="tc_name" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="tc_fiscalyearlonglbl" />
+          <attribute name="tc_fiscalyearnum" />
+          <order attribute="tc_fiscalyearnum" descending="true" />
+          <attribute name="tc_fiscalend" />
+          <attribute name="tc_fiscalstart" />
+          <attribute name="tc_todaysdate" />
+          <attribute name="tc_iscurrentfiscalyear" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active TCFiscalYears" languagecode="1033" />
+      <LocalizedName description="AnnéesFiscalesTC actives" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

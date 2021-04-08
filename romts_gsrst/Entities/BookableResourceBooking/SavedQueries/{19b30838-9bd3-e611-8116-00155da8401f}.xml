@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{19b30838-9bd3-e611-8116-00155da8401f}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" preview="1" icon="1">
+        <row name="result" id="bookableresourcebookingid">
+          <cell name="msdyn_workorder" width="100" />
+          <cell name="a_60ab433e8fd3e611811600155da8401f.msdyn_serviceaccount" width="100" disableSorting="1" />
+          <cell name="resource" width="100" />
+          <cell name="starttime" width="100" />
+          <cell name="endtime" width="100" />
+          <cell name="bookingstatus" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="bookableresourcebooking">
+          <order attribute="bookingstatus" descending="false" />
+          <attribute name="msdyn_workorder" />
+          <attribute name="starttime" />
+          <attribute name="resource" />
+          <attribute name="endtime" />
+          <attribute name="bookingstatus" />
+          <link-entity alias="a_60ab433e8fd3e611811600155da8401f" name="msdyn_workorder" from="msdyn_workorderid" to="msdyn_workorder" link-type="outer" visible="false">
+            <attribute name="msdyn_serviceaccount" />
+          </link-entity>
+          <attribute name="bookableresourcebookingid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>6.1.2.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Work Order Booking Map Tooltips view" languagecode="1033" />
+      <LocalizedName description="Vue Info-bulles de la carte de réservation des ordres de travail" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Work Order Booking Map Tooltips view" languagecode="1033" />
+      <Description description="Vue Info-bulles de la carte de réservation des ordres de travail" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

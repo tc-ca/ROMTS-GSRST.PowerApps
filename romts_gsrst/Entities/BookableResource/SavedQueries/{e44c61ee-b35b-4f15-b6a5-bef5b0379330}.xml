@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>1</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{e44c61ee-b35b-4f15-b6a5-bef5b0379330}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" icon="1" preview="1">
+        <row name="result" id="bookableresourceid">
+          <cell name="name" width="300" />
+          <cell name="resourcetype" width="100" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>4</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="bookableresource">
+          <attribute name="name" />
+          <attribute name="createdon" />
+          <order attribute="name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="name" operator="like" value="{0}" />
+          </filter>
+          <attribute name="resourcetype" />
+          <attribute name="bookableresourceid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>8.1.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Quick Find Active Bookable Resources" languagecode="1033" />
+      <LocalizedName description="Recherche rapide de ressources pouvant être réservées actives" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

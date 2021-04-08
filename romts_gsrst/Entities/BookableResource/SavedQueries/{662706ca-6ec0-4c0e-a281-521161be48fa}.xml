@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{662706ca-6ec0-4c0e-a281-521161be48fa}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" icon="1" preview="1">
+        <row name="result" id="bookableresourceid">
+          <cell name="name" width="300" />
+          <cell name="resourcetype" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="bookableresource">
+          <attribute name="name" />
+          <order attribute="name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="resourcetype" />
+          <attribute name="bookableresourceid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>8.1.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Bookable Resources" languagecode="1033" />
+      <LocalizedName description="Ressources pouvant être réservées actives" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

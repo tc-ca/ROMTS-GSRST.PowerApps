@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>1</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{9197a6aa-f22c-496e-b298-5801e85aa407}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_workorderid">
+          <cell name="msdyn_name" width="125" />
+          <cell name="msdyn_serviceaccount" width="150" />
+          <cell name="msdyn_functionallocation" width="150" />
+          <cell name="msdyn_workordertype" width="125" />
+          <cell name="createdon" width="125" />
+          <cell name="msdyn_substatus" width="100" />
+          <cell name="msdyn_systemstatus" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>4</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="msdyn_workorder">
+          <attribute name="msdyn_name" />
+          <attribute name="createdon" />
+          <order attribute="createdon" descending="true" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="msdyn_name" operator="like" value="{0}" />
+            <condition attribute="msdyn_serviceaccount" operator="like" value="{0}" />
+          </filter>
+          <attribute name="msdyn_systemstatus" />
+          <attribute name="msdyn_serviceaccount" />
+          <attribute name="msdyn_workordertype" />
+          <attribute name="msdyn_substatus" />
+          <attribute name="msdyn_workorderid" />
+          <attribute name="msdyn_functionallocation" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>3.1.0.3</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Quick Find Active Work Orders" languagecode="1033" />
+      <LocalizedName description="Recherche rapide d'ordres de travail" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

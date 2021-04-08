@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{1d3a0a34-653a-e911-8185-000d3a070f2c}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" preview="1" icon="1">
+        <row name="result" id="contactid">
+          <cell name="firstname" width="100" />
+          <cell name="lastname" width="100" />
+          <cell name="jobtitle" width="100" />
+          <cell name="parentcustomerid" width="100" />
+          <cell name="modifiedon" width="100" />
+          <cell name="createdon" width="100" />
+          <cell name="ownerid" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="contact">
+          <order attribute="firstname" descending="false" />
+          <filter type="and">
+            <condition attribute="msdyn_orgchangestatus" operator="eq" value="1" />
+            <condition attribute="ownerid" operator="eq-userid" />
+          </filter>
+          <attribute name="ownerid" />
+          <attribute name="modifiedon" />
+          <attribute name="lastname" />
+          <attribute name="jobtitle" />
+          <attribute name="firstname" />
+          <attribute name="createdon" />
+          <attribute name="parentcustomerid" />
+          <attribute name="contactid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="My Contacts Not at Company" languagecode="1033" />
+      <LocalizedName description="Mes contacts externes à la société" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

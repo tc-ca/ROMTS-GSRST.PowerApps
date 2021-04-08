@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{72cca668-4e5d-4ab1-afef-9b00703a5c41}</savedqueryid>
+    <layoutxml>
+      <grid name="tc_tcfiscalquarters" jump="tc_name" select="1" icon="1" preview="0">
+        <row name="tc_tcfiscalquarter" id="tc_tcfiscalquarterid">
+          <cell name="tc_name" width="300" />
+          <cell name="a_3ee5854c79934798967fe429a67e800b.tc_fiscalyearlonglbl" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="tc_tcfiscalquarter">
+          <attribute name="tc_tcfiscalquarterid" />
+          <attribute name="tc_name" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <link-entity alias="a_3ee5854c79934798967fe429a67e800b" name="tc_tcfiscalyear" to="tc_tcfiscalyearid" from="tc_tcfiscalyearid" link-type="outer" visible="false">
+            <attribute name="tc_fiscalyearlonglbl" />
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="TCFiscalQuarter Lookup View" languagecode="1033" />
+      <LocalizedName description="Recherche rapide TrimestreFiscalTC" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

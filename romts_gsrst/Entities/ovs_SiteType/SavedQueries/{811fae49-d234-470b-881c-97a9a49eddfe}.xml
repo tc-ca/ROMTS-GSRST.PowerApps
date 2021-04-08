@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{811fae49-d234-470b-881c-97a9a49eddfe}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ovs_name" select="1" icon="1" preview="1">
+        <row name="result" id="ovs_sitetypeid">
+          <cell name="ovs_name" width="212" />
+          <cell name="ovs_sitetypeelbl" width="199" />
+          <cell name="ovs_sitetypeflbl" width="203" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ovs_sitetype">
+          <attribute name="ovs_sitetypeid" />
+          <attribute name="ovs_name" />
+          <order attribute="ovs_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ovs_sitetypeelbl" />
+          <attribute name="ovs_sitetypeflbl" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.9</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Site Types" languagecode="1033" />
+      <LocalizedName description="Types de sites actifs" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

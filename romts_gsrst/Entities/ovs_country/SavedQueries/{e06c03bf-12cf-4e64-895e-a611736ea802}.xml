@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{e06c03bf-12cf-4e64-895e-a611736ea802}</savedqueryid>
+    <layoutxml>
+      <grid name="ovs_countries" jump="ovs_name" select="1" icon="1" preview="0">
+        <row name="ovs_country" id="ovs_countryid">
+          <cell name="ovs_name" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ovs_country">
+          <attribute name="ovs_countryid" />
+          <attribute name="ovs_name" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <link-entity name="account" alias="aa" link-type="inner" from="ovs_country" to="ovs_countryid">
+            <filter type="and">
+              <condition attribute="statecode" operator="eq" value="0" />
+            </filter>
+            <link-entity name="ovs_operation" alias="ac" link-type="inner" from="ovs_siteid" to="accountid">
+              <filter type="and">
+                <condition attribute="statecode" operator="eq" value="0" />
+              </filter>
+            </link-entity>
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Country Lookup View" languagecode="1033" />
+      <LocalizedName description="Pays — Vue Recherche" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

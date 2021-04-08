@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{fce37246-eba1-4e92-bb9d-f8cb3ec38e3f}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_workorderid">
+          <cell name="msdyn_name" width="100" />
+          <cell name="ovs_rational" width="125" />
+          <cell name="msdyn_serviceterritory" width="125" />
+          <cell name="msdyn_billingaccount" width="150" />
+          <cell name="msdyn_serviceaccount" width="150" />
+          <cell name="msdyn_address1" width="150" />
+          <cell name="msdyn_city" width="150" />
+          <cell name="msdyn_stateorprovince" width="150" />
+          <cell name="msdyn_postalcode" width="150" />
+          <cell name="ovs_primaryinspector" width="150" />
+          <cell name="ovs_fiscalquarter" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="msdyn_workorder">
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_serviceaccount" />
+          <attribute name="msdyn_workorderid" />
+          <attribute name="ovs_rational" />
+          <attribute name="msdyn_billingaccount" />
+          <attribute name="msdyn_address1" />
+          <attribute name="msdyn_city" />
+          <attribute name="msdyn_stateorprovince" />
+          <attribute name="msdyn_postalcode" />
+          <attribute name="ovs_primaryinspector" />
+          <attribute name="ovs_fiscalquarter" />
+          <attribute name="msdyn_serviceterritory" />
+          <order attribute="msdyn_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>3.1.0.3</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Work Orders" languagecode="1033" />
+      <LocalizedName description="Ordres de travail actifs" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
