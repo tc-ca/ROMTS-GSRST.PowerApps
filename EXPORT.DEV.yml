@@ -4,12 +4,11 @@ trigger:
 pool:
   vmImage: windows-latest
 
-# Format 1.0.20210408.1
+# Format 1.0.yyyyMMdd.r
 name: '1.0.$(year:yyyy)$(Date:MM)$(Date:dd).$(rev:r)'
 
 steps:
-- bash: echo "Build Number = $(Build.BuildNumber)"
-
+#- bash: echo "Build Number = $(Build.BuildNumber)"
 - checkout: self
   persistCredentials: true
   clean: true
@@ -63,3 +62,10 @@ steps:
       
       echo "Push solution changes to the remote repository"
       git -c http.extraheader="AUTHORIZATION: basic $(System.AccessToken)" push --force origin main
+- task: PowerPlatformSetSolutionVersion@0
+  displayName: 'Update Solution Version'
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    SolutionName: '$(SolutionName)'
+    SolutionVersionNumber: '$(Build.BuildNumber)'
