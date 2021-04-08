@@ -4,8 +4,9 @@ trigger:
 pool:
   vmImage: windows-latest
 
-name: '$(year:yyyy).$(Date:MM).$(Date:dd).$(rev:rr)'
-    
+# Format 1.0.20210408.1
+name: '$(year:yyyy).$(Date:MM)$(Date:dd).$(rev:r)'
+
 steps:
 - bash: echo "Build Number = $(Build.BuildNumber)"
 
