@@ -9,6 +9,13 @@ name: '1.0.$(Date:yyyyMMdd).$(rev:r)'
 
 steps:
 #- bash: echo "Build Number = $(Build.BuildNumber)"
+- checkout: self
+  persistCredentials: true
+  clean: true
+- task: PowerPlatformToolInstaller@0
+  displayName: 'Install Power Platform Build Tools'
+  inputs:
+    DefaultVersion: true
 - task: PowerPlatformSetSolutionVersion@0
   # Update the PowerApps solution using this build number
   displayName: 'Update Solution Version'
@@ -17,13 +24,6 @@ steps:
     PowerPlatformSPN: 'ROMTS-GSRST DEV'
     SolutionName: '$(SolutionName)'
     SolutionVersionNumber: '$(Build.BuildNumber)'
-- checkout: self
-  persistCredentials: true
-  clean: true
-- task: PowerPlatformToolInstaller@0
-  displayName: 'Install Power Platform Build Tools'
-  inputs:
-    DefaultVersion: true
 - task: PowerPlatformPublishCustomizations@0
   displayName: 'Publish All Customizations'
   inputs:
