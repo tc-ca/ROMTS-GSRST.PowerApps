@@ -9,6 +9,14 @@ name: '1.0.$(Date:yyyyMMdd).$(rev:r)'
 
 steps:
 #- bash: echo "Build Number = $(Build.BuildNumber)"
+- task: PowerPlatformSetSolutionVersion@0
+  # Update the PowerApps solution using this build number
+  displayName: 'Update Solution Version'
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    SolutionName: '$(SolutionName)'
+    SolutionVersionNumber: '$(Build.BuildNumber)'
 - checkout: self
   persistCredentials: true
   clean: true
@@ -62,10 +70,3 @@ steps:
       
       echo "Push solution changes to the remote repository"
       git -c http.extraheader="AUTHORIZATION: basic $(System.AccessToken)" push --force origin main
-- task: PowerPlatformSetSolutionVersion@0
-  displayName: 'Update Solution Version'
-  inputs:
-    authenticationType: 'PowerPlatformSPN'
-    PowerPlatformSPN: 'ROMTS-GSRST DEV'
-    SolutionName: '$(SolutionName)'
-    SolutionVersionNumber: '$(Build.BuildNumber)'
