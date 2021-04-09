@@ -76,6 +76,7 @@ function InitializeSurveyRender(surveyDefinition, surveyResponse, surveyLocale, 
         options.html = str;
     });
 
+    survey.maxTextLength = 1000;
     survey.onAfterRenderQuestion.add(function (survey, options) {
         if (options.question.getType() !== "comment") return;
         var comment = options.htmlElement.getElementsByTagName('textarea')[0];
