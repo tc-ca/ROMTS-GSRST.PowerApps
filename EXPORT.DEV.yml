@@ -4,7 +4,7 @@ trigger:
 pool:
   vmImage: windows-latest
 
-# Format 1.0.yyyyMMdd.r
+# Set the BuildNumber = Format 1.0.yyyyMMdd.r
 name: '1.0.$(Date:yyyyMMdd).$(rev:r)'
 
 steps:
@@ -66,7 +66,8 @@ steps:
       git config user.name "tc-buildbot"
       git checkout main
       git add --all
-      git commit -m "Update Solution - $env:SOLUTIONNAME"
+      git commit -m "Update Solution - $env:SOLUTIONNAME $env:BUILD_BUILDNUMBER"
       
       echo "Push solution changes to the remote repository"
-      git -c http.extraheader="AUTHORIZATION: basic $(System.AccessToken)" push --force origin main
+      git -c http.extraheader="AUTHORIZATION: basuc $(System.AccessToken)" push origin main
+      #git -c http.extraheader="AUTHORIZATION: basic $(System.AccessToken)" push --force origin main
