@@ -8,7 +8,6 @@ pool:
 name: '1.0.$(Date:yyyyMMdd).$(rev:r)'
 
 steps:
-#- bash: echo "Build Number = $(Build.BuildNumber)"
 - checkout: self
   persistCredentials: true
   clean: true
@@ -70,4 +69,3 @@ steps:
       
       echo "Push solution changes to the remote repository"
       git -c http.extraheader="AUTHORIZATION: basuc $(System.AccessToken)" push origin main
-      #git -c http.extraheader="AUTHORIZATION: basic $(System.AccessToken)" push --force origin main
