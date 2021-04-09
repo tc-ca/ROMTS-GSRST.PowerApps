@@ -76,19 +76,21 @@ function InitializeSurveyRender(surveyDefinition, surveyResponse, surveyLocale, 
         options.html = str;
     });
 
-    survey.maxTextLength = 1000;
     survey.onAfterRenderQuestion.add(function (survey, options) {
         if (options.question.getType() !== "comment") return;
         var comment = options.htmlElement.getElementsByTagName('textarea')[0];
         var maxLength = options.question.maxLength;
-        if (maxLength !== -1) {
+        if (maxLength == -1) {
+            maxLength = 1000;
+        }
+        if (maxLength !== 0) {
             comment.setAttribute("maxLength", maxLength);
             var div = document.createElement("div");
             div.style.textAlign = "left";
             comment.parentNode.appendChild(div);
             var changingHandler = function () {
                 var currLength = comment.value.length;
-                div.innerText = (options.question.maxLength - currLength) + " " + CharactersRemaining;
+                div.innerText = (maxLength - currLength) + " " + CharactersRemaining;
             }
             changingHandler();
             comment.onkeyup = changingHandler;
