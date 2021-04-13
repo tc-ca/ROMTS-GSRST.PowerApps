@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{c9fd8f4d-8184-4ddb-a31a-89e66e8e710e}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_workorderservicetaskid">
+          <cell name="msdyn_name" width="165" />
+          <cell name="statuscode" width="187" />
+          <cell name="msdyn_inspectiontaskresult" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="msdyn_workorderservicetask">
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_workorderservicetaskid" />
+          <attribute name="statuscode" />
+          <attribute name="msdyn_inspectiontaskresult" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>3.1.0.3</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Work Order Service Tasks" languagecode="1033" />
+      <LocalizedName description="Tâches actives relatives au service d'ordre de travail" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
