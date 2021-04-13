@@ -118,7 +118,7 @@
                         </labels>
                         <control id="msdyn_functionallocation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_functionallocation" disabled="false">
                           <parameters>
-                            <DisableViewPicker>false</DisableViewPicker>
+                            <DisableViewPicker>true</DisableViewPicker>
                             <DefaultViewId>{750E041A-F88C-4B3C-887A-1F1946B8D86B}</DefaultViewId>
                             <AvailableViewIds>{750E041A-F88C-4B3C-887A-1F1946B8D86B},{9FC31307-BF85-EA11-A81F-000D3AAB1E57},{8ED11338-0AD3-4EA2-A31E-7774E9195AEF},{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4},{CE3D1B20-7143-4293-BBC8-BCE3BBC7ECF0},{A5D1F403-C185-EA11-A81F-000D3AAB1E57},{27332682-C585-EA11-A81F-000D3AAB1E57}</AvailableViewIds>
                             <DisableMru>true</DisableMru>
@@ -2768,6 +2768,7 @@
         <Library name="msdyn_/Utils/FieldServiceTrial.js" libraryUniqueId="{c8daeb2a-4593-8c82-1b0c-83be5e6acc94}" />
         <Library name="msdyn_/CFS/WorkOrder/WorkOrderForm.js" libraryUniqueId="{66c75878-8967-ee9a-4dae-5d4142dbb309}" />
         <Library name="ovs_/js/WorkOrder.js" libraryUniqueId="{ed68d241-5966-3dae-2d71-e4d9bbe7668a}" />
+        <Library name="ovs_/lib/dg.xrmquery.web.min.js" libraryUniqueId="{0d997e24-b2e9-4957-b63e-5cfa0001c6c6}" />
       </formLibraries>
       <events>
         <event name="onload" application="false" active="false">
@@ -2782,21 +2783,6 @@
           <Handlers>
             <Handler passExecutionContext="true" parameters="" enabled="true" handlerUniqueId="{c21e80a3-caac-d778-c228-499cdb811686}" libraryName="$webresource:msdyn_/CFS/Utils/RibbonUtils.js" functionName="msdyn.RibbonUtils.refreshRibbonFnFromExecutionFormContext" />
             <Handler passExecutionContext="false" parameters="" enabled="true" handlerUniqueId="{4a403021-45a7-9154-c9d0-67de208e4787}" libraryName="msdyn_/CFS/WorkOrder/WorkOrderForm.js" functionName="msdyn.workOrderForm.ShoworHideDeviceInsights" />
-          </Handlers>
-        </event>
-        <event name="onchange" application="true" active="true" attribute="msdyn_serviceterritory">
-          <Handlers>
-            <Handler functionName="ROM.WorkOrder.regionOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{9b71bf1e-bd53-4c51-9b89-adccedd228b3}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
-        <event name="onchange" application="true" active="true" attribute="ovs_operationtypeid">
-          <Handlers>
-            <Handler functionName="ROM.WorkOrder.operationTypeOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{2ba9ffe2-2d34-4417-9420-62c71dff6325}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
-        <event name="onchange" application="true" active="true" attribute="ovs_regulatedentity">
-          <Handlers>
-            <Handler functionName="ROM.WorkOrder.regulatedEntityOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{c875e01d-9d3a-443f-9974-49de0e82a300}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="true" active="true" attribute="msdyn_systemstatus">
@@ -2819,11 +2805,6 @@
             <Handler functionName="ROM.WorkOrder.stateCodeOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{6c7210ba-2880-4f7b-a896-d925f21db9db}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
-        <event name="onchange" application="true" active="true" attribute="msdyn_functionallocation">
-          <Handlers>
-            <Handler functionName="ROM.WorkOrder.functionalLocationOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{4d78fad8-a5ee-4696-8d96-e84c2ebf9235}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
         <event name="onchange" application="true" active="true" attribute="ovs_assetcategory">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.assetCategoryOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{e26aba81-016c-4a6c-a58f-1589d71ff73d}" enabled="true" parameters="" passExecutionContext="true" />
@@ -2832,6 +2813,31 @@
         <event name="onsave" application="true" active="true">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.onSave" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{132a1e82-f9fa-45d0-8180-fa6bd0e6c0e7}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_serviceterritory">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.regionOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{8fe1859c-82dd-472a-980b-34e16dac92f1}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ovs_operationtypeid">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.operationTypeOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{369cae03-1625-49dc-9c99-d6170adf7853}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ovs_regulatedentity">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.regulatedEntityOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{4c176e64-f4ff-4a61-9545-0ac30635bf65}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_serviceaccount">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.siteOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{996abee5-68cf-47e9-8c17-701ff22aedd3}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_functionallocation">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.functionalLocationOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{16fecb5a-aee0-4c23-b4a7-536f6967156d}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

@@ -133,27 +133,6 @@ creator.showToolbox = "right";
 creator.showPropertyGrid = "right";
 creator.rightContainerActiveItem("toolbox");
 
-creator.survey.onAfterRenderQuestion.add(function (survey, options) {
-    if (options.question.getType() !== "multipletext") return;
-    var elements = options.htmlElement.getElementsByTagName('input');
-    var items = options.question.items;
-    items.forEach(function (value, index) {
-        var maxLength = items[index].maxLength;
-        if (maxLength !== -1) {
-            elements[index].setAttribute("maxLength", maxLength);
-            var div = document.createElement("div");
-            div.style.textAlign = "right";
-            elements[index].parentNode.insertBefore(div, elements[index]);
-            var changingHandler = function () {
-                var currLength = elements[index].value.length;
-                div.innerText = currLength + "/" + items[index].maxLength;
-            }
-            changingHandler();
-            elements[index].onkeyup = changingHandler;
-        }
-    });
-});
-
 creator
     .survey
     .onTextMarkdown

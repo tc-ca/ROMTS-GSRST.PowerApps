@@ -3,7 +3,7 @@ var lang = parent.Xrm.Utility.getGlobalContext().userSettings.languageId;
 var CharactersRemaining;
 
 if (lang == 1036) {
-    CharactersRemaining = "caractÃ¨res restants";
+    CharactersRemaining = "caractères restants";
 }
 else {
     CharactersRemaining = "characters remaining";
@@ -76,6 +76,10 @@ function InitializeSurveyRender(surveyDefinition, surveyResponse, surveyLocale, 
         options.html = str;
     });
 
+    
+    // Add a character count and limit to Comment questions.
+    // If the maxLength is the default value of -1, set maxLength to 1000.
+    // No character count if maxLength was set to 0
     survey.onAfterRenderQuestion.add(function (survey, options) {
         if (options.question.getType() !== "comment") return;
         var comment = options.htmlElement.getElementsByTagName('textarea')[0];

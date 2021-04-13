@@ -30,6 +30,16 @@
                           <label description="Site" languagecode="1033" solutionaction="Added" />
                           <label description="Site" languagecode="1036" solutionaction="Added" />
                         </labels>
+                        <control id="msdyn_serviceaccount" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_serviceaccount" disabled="true" uniqueid="{4e15a600-da1e-661c-eb6b-81b9a1321e6c}" solutionaction="Modified">
+                          <parameters solutionaction="Added">
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -38,6 +48,16 @@
                           <label description="Regulated Entity" languagecode="1033" solutionaction="Added" />
                           <label description="Entité règlementée" languagecode="1036" solutionaction="Added" />
                         </labels>
+                        <control id="msdyn_billingaccount" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_billingaccount" disabled="true" uniqueid="{9ed78d0e-8a0a-4982-87c8-a2a15b17eed0}" solutionaction="Modified">
+                          <parameters solutionaction="Added">
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -159,7 +179,16 @@
                           <label description="Region" languagecode="1033" solutionaction="Added" />
                           <label description="Région" languagecode="1036" solutionaction="Added" />
                         </labels>
-                        <control id="msdyn_serviceterritory" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_serviceterritory" disabled="false" uniqueid="{17793498-90b9-05b1-b2b1-00b8ee604a1e}" solutionaction="Modified" />
+                        <control id="msdyn_serviceterritory" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_serviceterritory" disabled="true" uniqueid="{17793498-90b9-05b1-b2b1-00b8ee604a1e}" solutionaction="Modified">
+                          <parameters solutionaction="Added">
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{AD81B2CA-9789-4465-8C56-94C10830A6ED}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -171,12 +200,21 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{3a2ddc9b-35db-a729-d005-4306571c5b91}" showlabel="true" locklevel="0" ordinalvalue="10004" solutionaction="Added">
+                      <cell id="{3a2ddc9b-35db-a729-d005-4306571c5b91}" showlabel="true" locklevel="0" visible="false" ordinalvalue="10004" solutionaction="Added">
                         <labels>
                           <label description="Country" languagecode="1033" />
                           <label description="Pays" languagecode="1036" />
                         </labels>
-                        <control id="ovs_ovscountry" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_ovscountry" disabled="false" />
+                        <control id="ovs_ovscountry" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_ovscountry" disabled="true" uniqueid="{8d3e80d7-6bca-2b34-6365-b822aaed7469}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{E06C03BF-12CF-4E64-895E-A611736EA802}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                   </rows>
@@ -186,6 +224,22 @@
           </columns>
         </tab>
       </tabs>
+      <formLibraries>
+        <Library name="ts_/js/WorkOrderQuickCreate.js" libraryUniqueId="{15edb4d1-c006-ea3a-4930-d80835b61a61}" solutionaction="Added" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderQuickCreate.onLoad" libraryName="ts_/js/WorkOrderQuickCreate.js" handlerUniqueId="{79b48963-5103-44e7-b884-3cf7fbec44af}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="2" solutionaction="Added" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_serviceterritory" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderQuickCreate.regionOnChange" libraryName="ts_/js/WorkOrderQuickCreate.js" handlerUniqueId="{891c25c3-79d7-4292-bd31-3647853a5cd6}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+      </events>
+      <controlDescriptions solutionaction="Added" />
     </form>
     <LocalizedNames>
       <LocalizedName description="Quick Create Work Order" languagecode="1033" />

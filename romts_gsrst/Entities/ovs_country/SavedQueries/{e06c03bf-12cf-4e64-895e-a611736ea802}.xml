@@ -24,12 +24,13 @@
           <attribute name="createdon" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="ovs_countryid" operator="ne" value="{208ef8a1-8e75-eb11-a812-000d3af3fac7}" uiname="CANADA" uitype="ovs_country" />
           </filter>
           <link-entity name="account" alias="aa" link-type="inner" from="ovs_country" to="ovs_countryid">
             <filter type="and">
               <condition attribute="statecode" operator="eq" value="0" />
             </filter>
-            <link-entity name="ovs_operation" alias="ac" link-type="inner" from="ovs_siteid" to="accountid">
+            <link-entity name="ovs_operation" alias="ab" link-type="inner" from="ovs_siteid" to="accountid">
               <filter type="and">
                 <condition attribute="statecode" operator="eq" value="0" />
               </filter>

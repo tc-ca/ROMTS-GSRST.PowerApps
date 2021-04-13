@@ -11,7 +11,7 @@
       <grid name="resultset" jump="ovs_name" select="1" icon="1" preview="1">
         <row name="result" id="ovs_questionnaireid">
           <cell name="ovs_name" width="300" />
-          <cell name="createdon" width="125" />
+          <cell name="modifiedon" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -21,11 +21,11 @@
         <entity name="ovs_questionnaire">
           <attribute name="ovs_questionnaireid" />
           <attribute name="ovs_name" />
-          <attribute name="createdon" />
           <order attribute="ovs_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="modifiedon" />
         </entity>
       </fetch>
     </fetchxml>
