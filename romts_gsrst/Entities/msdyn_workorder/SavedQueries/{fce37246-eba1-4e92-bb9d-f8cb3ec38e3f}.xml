@@ -11,7 +11,7 @@
           <cell name="msdyn_name" width="100" />
           <cell name="ovs_rational" width="125" />
           <cell name="msdyn_serviceterritory" width="125" />
-          <cell name="msdyn_billingaccount" width="150" />
+          <cell name="ovs_regulatedentity" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="msdyn_serviceaccount" width="150" />
           <cell name="msdyn_address1" width="150" />
           <cell name="msdyn_city" width="150" />
@@ -28,9 +28,7 @@
         <entity name="msdyn_workorder">
           <attribute name="msdyn_name" />
           <attribute name="msdyn_serviceaccount" />
-          <attribute name="msdyn_workorderid" />
           <attribute name="ovs_rational" />
-          <attribute name="msdyn_billingaccount" />
           <attribute name="msdyn_address1" />
           <attribute name="msdyn_city" />
           <attribute name="msdyn_stateorprovince" />
@@ -42,6 +40,8 @@
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="ovs_regulatedentity" />
+          <attribute name="msdyn_workorderid" />
         </entity>
       </fetch>
     </fetchxml>
