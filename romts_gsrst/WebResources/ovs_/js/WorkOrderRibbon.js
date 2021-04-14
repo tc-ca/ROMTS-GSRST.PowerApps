@@ -1,3 +1,67 @@
+function addExistingCaseToWorkOrder(primaryControl, selectedEntityTypeName, selectedControl){
+    try {
+
+        const formContext = primaryControl;
+
+        const caseAttribute = formContext.getAttribute("msdyn_servicerequest");
+        
+        const regionAttribute = formContext.getAttribute("msdyn_serviceterritory");
+        const countryAttribute = formContext.getAttribute("ovs_ovscountry");
+        const regulatedEntityAttribute = formContext.getAttribute("ovs_regulatedentity");
+        const siteAttribute = formContext.getAttribute("msdyn_serviceaccount");
+
+        var mismatchedFields = "";
+
+        if (caseAttribute != null && caseAttribute != undefined) {
+
+            const caseAttributeValue = caseAttribute.getValue();
+
+            const regionAttributeValue = regionAttribute.getValue();
+            const countryAttributeValue = countryAttribute.getValue();
+            const regulatedEntityAttributeValue = regulatedEntityAttribute.getValue();
+            const siteAttributeValue = siteAttribute.getValue();
+
+
+            if (caseAttributeValue != null && caseAttributeValue != undefined) {
+                Xrm.WebApi.online.retrieveRecord("incident", caseAttributeValue[0].id).then(
+                    function success(result) {
+                        if(result.ovs_region != regionAttributeValue){
+                            mismatchedFields += "Region\n";
+                        }
+                        if(result.ovs_region != countryAttributeValue && countryAttributeValue != null){
+                            mismatchedFields += "Country\n";
+                        }
+                        if(result.ovs_regulatedentity != regulatedEntityAttributeValue){
+                            mismatchedFields += "Regulated Entity\n";
+                        }
+                        if(result.ovs_site != siteAttributeValue){
+                            mismatchedFields += "Site\n";
+                        }
+                    },
+                    function (error) {
+                    }
+                );
+            }
+
+            if(mismatchedFields != ""){
+                var alertStrings = { text: "The Case has to have the same Region, Country, Regulated Entity and Site fields as the Work Order. The following fields have been found to not match.\n\n" + mismatchedFields, title: "Mismatched fields" };
+                var alertOptions = { height: 120, width: 260 };
+                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
+                    function (success) {
+                    },
+                    function (error) {
+                    }
+                );
+
+                XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridAssociated(selectedEntityTypeName, selectedControl);
+            }
+            
+        }
+    } catch (e) {
+        throw new Error(e.Message);
+    }
+}
+
 function ActivateWorkOrder(primaryControl) {
     const formContext = primaryControl;
 
