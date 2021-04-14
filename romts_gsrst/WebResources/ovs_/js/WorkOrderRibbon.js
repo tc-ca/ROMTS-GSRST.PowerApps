@@ -1,6 +1,9 @@
 function addExistingCaseToWorkOrder(primaryControl, selectedEntityTypeName, selectedControl){
     try {
 
+        XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridAssociated(selectedEntityTypeName, selectedControl);
+
+
         const formContext = primaryControl;
 
         const caseAttribute = formContext.getAttribute("msdyn_servicerequest");

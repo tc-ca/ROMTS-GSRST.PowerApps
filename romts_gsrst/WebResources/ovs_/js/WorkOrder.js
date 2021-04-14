@@ -12,10 +12,17 @@ var ROM;
             form.getAttribute("ovs_operationtypeid").setRequiredLevel("required");
             form.getAttribute("ovs_regulatedentity").setRequiredLevel("required");
             //Set visible fields
-            if (form.getAttribute("ovs_assetcategory").getValue != null) {
+            if (form.getAttribute("ovs_assetcategory").getValue != null || form.getAttribute("ovs_assetcategory").getValue != undefined || form.getAttribute("ovs_assetcategory").getValue != "") {
+                console.log("z123z" + form.getAttribute("ovs_assetcategory").getValue());
                 form.getControl("ovs_assetcategory").setVisible(true);
             }
-            if (form.getAttribute("ovs_asset").getValue != null) {
+            else if(form.getAttribute("ovs_assetcategory").getValue === null){
+                console.log("z555z" + form.getAttribute("ovs_assetcategory").getValue());
+            }
+            else if(form.getAttribute("ovs_assetcategory").getValue == "null"){
+                console.log("z999z" + form.getAttribute("ovs_assetcategory").getValue());
+            }
+            if (form.getAttribute("ovs_asset").getValue != null || form.getAttribute("ovs_asset").getValue != undefined || form.getAttribute("ovs_asset").getValue != "") {
                 form.getControl("ovs_asset").setVisible(true);
             }
             //Prevent enabling controls if record is Inactive and set the right views (active/inactive)
