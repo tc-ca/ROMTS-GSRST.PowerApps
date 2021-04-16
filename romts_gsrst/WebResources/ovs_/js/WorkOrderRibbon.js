@@ -1,69 +1,71 @@
-function addExistingCaseToWorkOrder(primaryControl, selectedEntityTypeName, selectedControl){
-    try {
+function addExistingWorkOrdersToCase(primaryControl, selectedEntityTypeName, selectedControl){
+    const formContext = primaryControl;
 
-        XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridAssociated(selectedEntityTypeName, selectedControl);
-
-
-        const formContext = primaryControl;
-
-        const caseAttribute = formContext.getAttribute("msdyn_servicerequest");
+    const caseId = Xrm.Page.data.entity.getId().replace(/({|})/g,'');
         
-        const regionAttribute = formContext.getAttribute("msdyn_serviceterritory");
-        const countryAttribute = formContext.getAttribute("ovs_ovscountry");
-        const regulatedEntityAttribute = formContext.getAttribute("ovs_regulatedentity");
-        const siteAttribute = formContext.getAttribute("msdyn_serviceaccount");
-
-        var mismatchedFields = "";
-
-        if (caseAttribute != null && caseAttribute != undefined) {
-
-            const caseAttributeValue = caseAttribute.getValue();
-
-            const regionAttributeValue = regionAttribute.getValue();
-            const countryAttributeValue = countryAttribute.getValue();
-            const regulatedEntityAttributeValue = regulatedEntityAttribute.getValue();
-            const siteAttributeValue = siteAttribute.getValue();
+    const regionAttribute = formContext.getAttribute("ovs_region");
+    const countryAttribute = formContext.getAttribute("ovs_countryid");
+    const regulatedEntityAttribute = formContext.getAttribute("ovs_regulatedentity");
+    const siteAttribute = formContext.getAttribute("ovs_site");
 
 
-            if (caseAttributeValue != null && caseAttributeValue != undefined) {
-                Xrm.WebApi.online.retrieveRecord("incident", caseAttributeValue[0].id).then(
-                    function success(result) {
-                        if(result.ovs_region != regionAttributeValue){
-                            mismatchedFields += "Region\n";
-                        }
-                        if(result.ovs_region != countryAttributeValue && countryAttributeValue != null){
-                            mismatchedFields += "Country\n";
-                        }
-                        if(result.ovs_regulatedentity != regulatedEntityAttributeValue){
-                            mismatchedFields += "Regulated Entity\n";
-                        }
-                        if(result.ovs_site != siteAttributeValue){
-                            mismatchedFields += "Site\n";
-                        }
-                    },
-                    function (error) {
-                    }
-                );
-            }
+    const regionAttributeValue = regionAttribute.getValue();
+    const countryAttributeValue = countryAttribute.getValue();
+    const regulatedEntityAttributeValue = regulatedEntityAttribute.getValue();
+    const siteAttributeValue = siteAttribute.getValue();
 
-            if(mismatchedFields != ""){
-                var alertStrings = { text: "The Case has to have the same Region, Country, Regulated Entity and Site fields as the Work Order. The following fields have been found to not match.\n\n" + mismatchedFields, title: "Mismatched fields" };
-                var alertOptions = { height: 120, width: 260 };
-                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(
-                    function (success) {
-                    },
-                    function (error) {
-                    }
-                );
+    var countryCondition = "";
 
-                XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridAssociated(selectedEntityTypeName, selectedControl);
-            }
-            
-        }
-    } catch (e) {
-        throw new Error(e.Message);
+    if(countryAttributeValue != null){
+         countryCondition = `<condition attribute="ovs_ovscountry" operator="eq" value="${countryAttributeValue[0].id}" />`;
     }
+
+    var lookupOptions = 
+    {
+        defaultEntityType: "msdyn_workorder",
+        entityTypes: ["msdyn_workorder"],
+        allowMultiSelect: true,
+        defaultViewId:"fce37246-eba1-4e92-bb9d-f8cb3ec38e3f",
+        disableMru: true,
+        filters: [
+            {
+                filterXml: `<filter type="and">` + 
+                    `<condition attribute="msdyn_serviceterritory" operator="eq" value="${regionAttributeValue[0].id}" />` +
+                    countryCondition +
+                    `<condition attribute="ovs_regulatedentity" operator="eq" value="${regulatedEntityAttributeValue[0].id}" />` +
+                    `<condition attribute="msdyn_serviceaccount" operator="eq" value="${siteAttributeValue[0].id}" />` +
+                    `<condition attribute="msdyn_servicerequest" operator="neq" value="${Xrm.Page.data.entity.getId()}" />` +
+                    `</filter>`,
+                entityLogicalName: "msdyn_workorder"
+            }
+        ]
+    };
+
+    Xrm.Utility.lookupObjects(lookupOptions).then(
+    function(result){
+        console.log(result);
+        for (var i = 0; i < result.length; i++) {
+            var req = new XMLHttpRequest();
+            
+            req.open("PATCH", formContext.context.getClientUrl() + "/api/data/v9.0/" + "msdyn_workorders" + "(" + result[i].id.replace(/({|})/g,'') + ")");
+            req.setRequestHeader("Content-Type", "application/json");
+            req.setRequestHeader("Accept", "application/json");
+            req.setRequestHeader("OData-MaxVersion", "4.0");
+            req.setRequestHeader("OData-Version", "4.0");
+
+            var payload = 
+                {
+                    "msdyn_servicerequest@odata.bind" : formContext.context.getClientUrl() + "/api/data/v9.0/" + "incidents" + "(" + caseId + ")"
+                };
+
+            req.send(JSON.stringify(payload));
+        }
+    },
+    function(error){
+        console.log(error);
+    });
 }
+
 
 function ActivateWorkOrder(primaryControl) {
     const formContext = primaryControl;
