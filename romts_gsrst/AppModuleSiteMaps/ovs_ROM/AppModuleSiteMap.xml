@@ -16,6 +16,7 @@
         <SubArea Id="NewSubArea_d91a412a" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="bookableresourcebooking" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
           <Titles>
             <Title LCID="1033" Title="Bookings" />
+            <Title LCID="1036" Title="Réservations" />
           </Titles>
         </SubArea>
         <SubArea Id="NewSubArea_50999ebb" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="incident" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
@@ -68,11 +69,14 @@
         <SubArea Id="NewSubArea_985bfebe" Entity="msdyn_workordertype" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
           <Privilege Entity="msdyn_workordertype" Privilege="Create,Write" />
         </SubArea>
-        <SubArea Id="NewSubArea_c15c3848" Entity="msdyn_workordersubstatus" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
+        <SubArea Id="NewSubArea_c15c3848" Entity="msdyn_workordersubstatus" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
+          <Privilege Entity="msdyn_workordersubstatus" Privilege="All,Create,Read,Write,Delete,Append,AppendTo,Share,Assign" />
+        </SubArea>
         <SubArea Id="NewSubArea_7ad443be" Entity="ovs_sitetype" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
           <Titles>
             <Title LCID="1036" Title="Types de sites" />
           </Titles>
+          <Privilege Entity="ovs_sitetype" Privilege="All,Create,Read,Write,Delete,Append,AppendTo,Share,Assign" />
         </SubArea>
         <SubArea Id="NewSubArea_b7fac165" Entity="ovs_operationtype" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
           <Titles>
@@ -90,6 +94,7 @@
             <Title LCID="1033" Title="Activity Types" />
             <Title LCID="1036" Title="Types d'activités" />
           </Titles>
+          <Privilege Entity="msdyn_incidenttype" Privilege="All,Create,Read,Write,Delete,Append,AppendTo,Share,Assign" />
         </SubArea>
         <SubArea Id="NewSubArea_4c16ab43" Entity="msdyn_servicetasktype" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
           <Titles>
@@ -106,6 +111,7 @@
         <SubArea Id="NewSubArea_ab754427" Entity="qm_rclegislation" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
           <Titles>
             <Title LCID="1033" Title="Provisions" />
+            <Title LCID="1036" Title="Dispositions" />
           </Titles>
         </SubArea>
         <SubArea Id="NewSubArea_491494bb" Entity="qm_tylegislationsource" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
@@ -125,7 +131,9 @@
         <SubArea Id="NewSubArea_c3fb9219" Entity="msdyn_customerasset" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
           <Privilege Entity="msdyn_customerasset" Privilege="Write,Create" />
         </SubArea>
-        <SubArea Id="NewSubArea_7db614e6" Entity="msdyn_customerassetcategory" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
+        <SubArea Id="NewSubArea_7db614e6" Entity="msdyn_customerassetcategory" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
+          <Privilege Entity="msdyn_customerassetcategory" Privilege="All,Create,Read,Write,Delete,Append,AppendTo,Share,Assign" />
+        </SubArea>
       </Group>
     </Area>
   </SiteMap>
