@@ -8,6 +8,7 @@ var ROM;
         function onLoad(eContext) {
             var form = eContext.getFormContext();
             var state = form.getAttribute("statecode").getValue();
+            updateCaseView(eContext);
             //Set required field
             form.getAttribute("ovs_operationtypeid").setRequiredLevel("required");
             form.getAttribute("ovs_regulatedentity").setRequiredLevel("required");
@@ -378,48 +379,43 @@ var ROM;
         WorkOrder.stateCodeOnChange = stateCodeOnChange;
         function updateCaseView(eContext) {
             try {
-                var form = eContext.getFormContext();
-                var caseAttribute = form.getAttribute("msdyn_servicerequest");
-                var regionAttribute = form.getAttribute("msdyn_serviceterritory");
-                var countryAttribute = form.getAttribute("ovs_ovscountry");
-                var regulatedEntityAttribute = form.getAttribute("ovs_regulatedentity");
-                var siteAttribute = form.getAttribute("msdyn_serviceaccount");
+                var form_1 = eContext.getFormContext();
+                var caseAttribute = form_1.getAttribute("msdyn_servicerequest");
+                var regionAttribute = form_1.getAttribute("msdyn_serviceterritory");
+                var countryAttribute = form_1.getAttribute("ovs_ovscountry");
+                var regulatedEntityAttribute = form_1.getAttribute("ovs_regulatedentity");
+                var siteAttribute = form_1.getAttribute("msdyn_serviceaccount");
                 var caseAttributeValue = caseAttribute.getValue();
-                var regionAttributeValue = regionAttribute.getValue();
-                var countryAttributeValue = countryAttribute.getValue();
-                var regulatedEntityAttributeValue = regulatedEntityAttribute.getValue();
-                var siteAttributeValue = siteAttribute.getValue();
-                var regionCondition = regionAttributeValue == null ? "" : '<condition attribute="ovs_region" operator="eq" value="' + regionAttributeValue[0].id + '" />';
-                var countryCondition = countryAttributeValue == null ? "" : '<condition attribute="ovs_countryid" operator="eq" value="' + countryAttributeValue[0].id + '" />';
-                var regulateEntityCondition = regulatedEntityAttributeValue == null ? "" : '<condition attribute="ovs_regulatedentity" operator="eq" value="' + regulatedEntityAttributeValue[0].id + '" />';
-                var siteCondition = siteAttributeValue == null ? "" : '<condition attribute="ovs_site" operator="eq" value="' + siteAttributeValue[0].id + '" />';
+                var regionAttributeValue_1 = regionAttribute.getValue();
+                var countryAttributeValue_1 = countryAttribute.getValue();
+                var regulatedEntityAttributeValue_1 = regulatedEntityAttribute.getValue();
+                var siteAttributeValue_1 = siteAttribute.getValue();
+                var regionCondition = regionAttributeValue_1 == null ? "" : '<condition attribute="ovs_region" operator="eq" value="' + regionAttributeValue_1[0].id + '" />';
+                var countryCondition = countryAttributeValue_1 == null ? "" : '<condition attribute="ovs_countryid" operator="eq" value="' + countryAttributeValue_1[0].id + '" />';
+                var regulateEntityCondition = regulatedEntityAttributeValue_1 == null ? "" : '<condition attribute="ovs_regulatedentity" operator="eq" value="' + regulatedEntityAttributeValue_1[0].id + '" />';
+                var siteCondition = siteAttributeValue_1 == null ? "" : '<condition attribute="ovs_site" operator="eq" value="' + siteAttributeValue_1[0].id + '" />';
+                var caseData;
                 if (caseAttribute != null && caseAttribute != undefined) {
                     if (caseAttributeValue != null) {
-                        Xrm.WebApi.retrieveRecord("incident", caseAttributeValue[0].id.replace(/({|})/g, ''), "?$select=_ovs_region_value, _ovs_countryid_value, _ovs_regulatedentity_value, _ovs_site_value").then(
-                            function success(result) {
-                                console.log("caseData " + result);
-                                if (regionCondition != "" && (result != null && regionAttributeValue != null && regionAttributeValue[0].id != result.ovs_region) ||
-                                    countryCondition != "" && (result != null && countryAttributeValue != null && countryAttributeValue[0].id != result.ovs_countryid) ||
-                                    regulateEntityCondition != "" && (result != null && regulatedEntityAttributeValue != null && regulatedEntityAttributeValue[0].id != result.ovs_regulatedentity) ||
-                                    siteCondition != "" && (result != null && siteAttributeValue != null && siteAttributeValue[0].id != result.ovs_site)) {
-                                    form.getAttribute("msdyn_servicerequest").setValue(null);
-                                    // Setup a custom view
-                                    // This value is never saved and only needs to be unique among the other available views for the lookup.
-                                    var viewId = '{5B58559F-F162-5428-4771-79BC825240B3}';
-                                    var entityName = "incident";
-                                    var viewDisplayName = Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "FilteredCases");
-                                    var layoutXml = '<grid name="resultset" object="10010" jump="msdyn_name" select="1" icon="1" preview="1"><row name="result" id="msdyn_customerassetid"><cell name="msdyn_name" width="200" /></row></grid>';
-                                    var fetchXml = '<fetch version="1.0" mapping="logical" returntotalrecordcount="true" page="1" count="25" no-lock="false" > <entity name="incident" > <attribute name="statecode" /> <attribute name="title" /> <attribute name="customerid" /> <attribute name="incidentid" /> <filter type="and" >' + regionCondition + countryCondition + regulateEntityCondition + siteCondition + '</filter> <order attribute="title" descending="false" /> </entity> </fetch>';
-                                    form.getControl("msdyn_servicerequest").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
-                                }
-                            },
-                            function (error) {
-                                console.log(error.message);
+                        Xrm.WebApi.online.retrieveRecord("incident", caseAttributeValue[0].id.replace(/({|})/g, ''), "?$select=_ovs_region_value, _ovs_countryid_value, _ovs_regulatedentity_value, _ovs_site_value").then(function success(result) {
+                            if ((regionCondition != "" && (result != null && regionAttributeValue_1 != null && regionAttributeValue_1[0].id.replace(/({|})/g, '') != result._ovs_region_value.toUpperCase())) ||
+                                (countryCondition != "" && (result != null && countryAttributeValue_1 != null && countryAttributeValue_1[0].id.replace(/({|})/g, '') != result._ovs_countryid_value.toUpperCase())) ||
+                                (regulateEntityCondition != "" && (result != null && regulatedEntityAttributeValue_1 != null && regulatedEntityAttributeValue_1[0].id.replace(/({|})/g, '') != result._ovs_regulatedentity_value.toUpperCase())) ||
+                                (siteCondition != "" && (result != null && siteAttributeValue_1 != null && siteAttributeValue_1[0].id.replace(/({|})/g, '') != result._ovs_site_value.toUpperCase()))) {
+                                form_1.getAttribute("msdyn_servicerequest").setValue(null);
                             }
-                        );
+                        }, function (error) {
+                        });
                     }
+                    // Setup a custom view
+                    // This value is never saved and only needs to be unique among the other available views for the lookup.
+                    var viewId = '{5B58559F-F162-5428-4771-79BC825240B3}';
+                    var entityName = "incident";
+                    var viewDisplayName = Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "FilteredCases");
+                    var layoutXml = '<grid name="resultset" object="10010" jump="title" select="1" icon="1" preview="1"><row name="result" id="incidentid"><cell name="title" width="200" /><cell name="customerid" width="200" /></row></grid>';
+                    var fetchXml = '<fetch version="1.0" mapping="logical" returntotalrecordcount="true" page="1" count="25" no-lock="false" > <entity name="incident" > <attribute name="statecode" /> <attribute name="title" /> <attribute name="customerid" /> <attribute name="incidentid" /> <filter type="and" >' + regionCondition + countryCondition + regulateEntityCondition + siteCondition + '</filter> <order attribute="title" descending="false" /> </entity> </fetch>';
+                    form_1.getControl("msdyn_servicerequest").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
                 }
-            
             }
             catch (e) {
                 throw new Error(e.Message);
