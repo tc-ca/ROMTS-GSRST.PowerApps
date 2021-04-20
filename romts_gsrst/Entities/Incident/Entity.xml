@@ -37,9 +37,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Country" languagecode="1033" />
+            <displayname description="Pays" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Unique identifier for Country associated with Case." languagecode="1033" />
+            <Description description="Identificateur unique du pays associé au cas." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ovs_Region">
@@ -75,6 +77,7 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Region" languagecode="1033" />
+            <displayname description="Région" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
@@ -113,6 +116,7 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Regulated Entity" languagecode="1033" />
+            <displayname description="Entité réglementée" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
@@ -151,6 +155,7 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Site" languagecode="1033" />
+            <displayname description="Site" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
@@ -184,11 +189,46 @@
           <Length>200</Length>
           <displaynames>
             <displayname description="Case Number" languagecode="1033" />
-            <displayname description="Numéro de l'incident" languagecode="1036" />
+            <displayname description="Numéro du cas" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Shows the case number for customer reference and searching capabilities. This cannot be modified." languagecode="1033" />
             <Description description="Affiche le numéro d'incident pour servir de référence client et permettre les recherches. Vous ne pouvez pas le modifier." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="Title">
+          <Type>nvarchar</Type>
+          <Name>title</Name>
+          <LogicalName>title</LogicalName>
+          <RequiredLevel>required</RequiredLevel>
+          <DisplayMask>ActivityRegardingName|QueueItemTitle|ActivityPointerRegardingName|PrimaryName|ValidForAdvancedFind|ValidForForm|ValidForGrid|RequiredForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>1</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>1</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>1</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>200</MaxLength>
+          <Length>400</Length>
+          <displaynames>
+            <displayname description="Case Title" languagecode="1033" />
+            <displayname description="Titre du cas" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Type a subject or descriptive name, such as the request, issue, or company name, to identify the case in Microsoft Dynamics 365 views." languagecode="1033" />
+            <Description description="Tapez un sujet ou un nom descriptif, comme la requête, la demande ou le nom de la société, pour identifier l'incident dans les vues Microsoft Dynamics 365." languagecode="1036" />
           </Descriptions>
         </attribute>
       </attributes>
@@ -250,4 +290,585 @@
   <FormXml />
   <SavedQueries />
   <RibbonDiffXml />
+  <Strings>
+    <Strings ResourceKey="Area_Label_Cases">
+      <String languagecode="1036" Comment="">Cas</String>
+    </Strings>
+    <Strings ResourceKey="Article_SubArea_Description">
+      <String languagecode="1036" Comment="">Créer du contenu pour l’article. Référencer ces articles lorsque vous travaillez sur des cas ou les envoyez directement par courrier électronique aux clients.</String>
+    </Strings>
+    <Strings ResourceKey="Associate_Child_Description">
+      <String languagecode="1036" Comment="">Sélectionnez un cas parent pour ces cas.</String>
+    </Strings>
+    <Strings ResourceKey="Case_Cancel_Dlg_Title">
+      <String languagecode="1036" Comment="">Confirmation de l'annulation de cas</String>
+    </Strings>
+    <Strings ResourceKey="Case_Reactivate_Dlg_Title">
+      <String languagecode="1036" Comment="">Réactiver le cas</String>
+    </Strings>
+    <Strings ResourceKey="Case_Resolve_Dlg_Confirm_Activities">
+      <String languagecode="1036" Comment="">Des activités associées à ce cas sont toujours ouvertes. Vous devez les fermer avant de fermer le cas.</String>
+    </Strings>
+    <Strings ResourceKey="Case_Resolve_Dlg_Confirm_Allotments">
+      <String languagecode="1036" Comment="">Il n'y a pas assez d'unités liées au contrat pour résoudre ce cas. Souhaitez-vous toujours résoudre ce cas ?</String>
+    </Strings>
+    <Strings ResourceKey="Case_Resolve_Dlg_Confirm_ContractDetailState">
+      <String languagecode="1036" Comment="">La ligne de contrat parente de ce cas a été annulée ou a expiré. Souhaitez-vous toujours résoudre ce cas ?</String>
+    </Strings>
+    <Strings ResourceKey="Case_Resolve_Dlg_Confirm_Parent">
+      <String languagecode="1036" Comment="">Le contrat parent de ce cas n'est pas actif. Souhaitez-vous toujours résoudre ce cas ?</String>
+    </Strings>
+    <Strings ResourceKey="Case_Resolve_Dlg_Desc">
+      <String languagecode="1036" Comment="">Complétez les zones ci-dessous pour résoudre le cas.</String>
+    </Strings>
+    <Strings ResourceKey="Case_Resolve_Dlg_Not_Enough_Allotments">
+      <String languagecode="1036" Comment="">Il n'y a pas assez d'unités liées au contrat pour résoudre ce cas.</String>
+    </Strings>
+    <Strings ResourceKey="Case_Resolve_Dlg_Title">
+      <String languagecode="1036" Comment="">Résoudre le cas</String>
+    </Strings>
+    <Strings ResourceKey="CaseResearch.PendingAssociation">
+      <String languagecode="1036" Comment="">Les activités enregistrées ne vont pas être associées à le cas existant que vous avez sélectionné. Voulez-vous continuer ?</String>
+    </Strings>
+    <Strings ResourceKey="Contract_SubArea_Description">
+      <String languagecode="1036" Comment="">Enregistrer les accords consistant à fournir un service clientèle pendant les dates de couverture définies, pour un nombre de cas ou une durée spécifique.</String>
+    </Strings>
+    <Strings ResourceKey="Convert_Activity_To_Case_Dlg_Desc">
+      <String languagecode="1036" Comment="">Spécifiez les détails du nouvel cas.</String>
+    </Strings>
+    <Strings ResourceKey="Convert_Activity_To_Case_InlineDlg_Title">
+      <String languagecode="1036" Comment="">Convertir en cas</String>
+    </Strings>
+    <Strings ResourceKey="ConvertActivity_Action_OpenNewCase">
+      <String languagecode="1036" Comment="">Ouvrir le nouvel cas</String>
+    </Strings>
+    <Strings ResourceKey="Dlg_RouteCase_AddRequiredConfirm_Title">
+      <String languagecode="1036" Comment="">Acheminer le cas</String>
+    </Strings>
+    <Strings ResourceKey="Dlg_RouteCase_AddRequiredConfirmForMultipleCase_Body">
+      <String languagecode="1036" Comment="">Voulez-vous acheminer les cas {0} sélectionnés sur la base de l'ensemble de règles d'acheminement actif ? Les cas qui répondent aux conditions de la règle sont acheminés en conséquence.</String>
+    </Strings>
+    <Strings ResourceKey="Dlg_RouteCase_AddRequiredConfirmForMultipleCase_Title">
+      <String languagecode="1036" Comment="">Acheminer les cas</String>
+    </Strings>
+    <Strings ResourceKey="Dlg_RouteCase_AddRequiredConfirmForSingleCase_Body">
+      <String languagecode="1036" Comment="">Voulez-vous acheminer ce cas en fonction de l'ensemble de règles d'acheminement actif ?</String>
+    </Strings>
+    <Strings ResourceKey="Dlg_RouteCase_Validation_ActiveRouteRuleReqdMsg">
+      <String languagecode="1036" Comment="">Il n'y a aucune règle active pour ce cas.</String>
+    </Strings>
+    <Strings ResourceKey="Dlg_SaveAndRouteCase_AddRequiredConfirmForSingleCase_Body">
+      <String languagecode="1036" Comment="">Voulez-vous enregistrer et acheminer ce cas en fonction de l'ensemble de règles d'acheminement actif ?</String>
+    </Strings>
+    <Strings ResourceKey="Dlg_SetStateModelStatusConfirmation_No_TransitionPath_From_Active_Resolve_Case">
+      <String languagecode="1036" Comment="">Vous n'avez pas défini le mode de transition d'un cas de l'état Actif à l'état Résolu ou Annulé. Vous ne pourrez ni résoudre ni annuler les enregistrements de cas. Pour continuer, cliquez sur OK. Pour revenir en arrière et modifier les transitions de la raison du statut, cliquez sur Annuler.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8003f450">
+      <String languagecode="1036" Comment="">Nous ne pouvons pas fusionner des cas enfants qui n'ont pas le même cas parent.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8003f450_MultiAction">
+      <String languagecode="1036" Comment="">{0} cas ont échoué, car des cas enfants n'ayant pas le même cas parent ne peuvent pas être fusionnés.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8003f451">
+      <String languagecode="1036" Comment="">Vous ne pouvez pas annuler le cas parent, car il comporte des cas enfants actifs.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8003f451_MultiAction">
+      <String languagecode="1036" Comment="">{1} cas ont échoué, car ce cas a déjà {0} cas enfants actifs. Annulez les cas enfants actifs et recommencez.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8003f452">
+      <String languagecode="1036" Comment="">Vous ne pouvez pas résoudre le cas parent, car il comporte des cas enfants actifs.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8003f452_MultiAction">
+      <String languagecode="1036" Comment="">{0} cas ont échoué, car ce cas a des cas enfants actifs. Fermez les cas enfants actifs et recommencez.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8003f453">
+      <String languagecode="1036" Comment="">Vous ne pouvez pas créer de cass enfants pour des cas enfants.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8003f453_MultiAction">
+      <String languagecode="1036" Comment="">{0} cas ont échoué, car un cas ne peut pas être associé à un cas enfant.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8003f454">
+      <String languagecode="1036" Comment="">Un cas parent ne peut pas avoir plus de {0} cas enfants. Pour plus d'informations, contactez votre administrateur.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8003f455">
+      <String languagecode="1036" Comment="">Vous ne pouvez pas ajouter un cas parent en tant que cas enfant</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x800404cf">
+      <String languagecode="1036" Comment="">Ce cas a déjà été résolu. Fermez, puis rouvrez l'enregistrement de cas pour voir les mises à jour.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80040809">
+      <String languagecode="1036" Comment="">ID de cas manquant</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8004320a">
+      <String languagecode="1036" Comment="">Des cass sont ouverts dans cette ligne de contrat.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80044400">
+      <String languagecode="1036" Comment="">Impossible de créer le cas avec ce contrat en raison du statut du contrat.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80044403">
+      <String languagecode="1036" Comment="">Le contrat n'a pas assez d'unités. Le cas ne peut pas être créé avec ce contrat.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80044404">
+      <String languagecode="1036" Comment="">Le statut de ce cas n'est pas valide.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80044405">
+      <String languagecode="1036" Comment="">L'activité associée à ce cas est endommagée.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80044406">
+      <String languagecode="1036" Comment="">Impossible de résoudre le cas car le type de résolution sélectionné n'est pas valide. Sélectionnez un autre type de résolution puis réessayez.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80044407">
+      <String languagecode="1036" Comment="">Impossible de résoudre le cas car le type de résolution n'est pas spécifié. Sélectionnez un type de résolution, puis réessayez.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80044408">
+      <String languagecode="1036" Comment="">Impossible de résoudre le cas car la résolution ne renvoie pas à une entité valide.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80044409">
+      <String languagecode="1036" Comment="">Le cas que vous tentez de résoudre est introuvable.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8004440a">
+      <String languagecode="1036" Comment="">Impossible de fermer ce cas car des activités ouvertes lui sont associées.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8004440c">
+      <String languagecode="1036" Comment="">Impossible de résoudre ce cas car le temps indiqué pour la résolution du cas n'est pas valide.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8004440d">
+      <String languagecode="1036" Comment="">Impossible de créer ce cas sur cet élément de ligne de contrat, car l’élément en question est annulé ou a expiré.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8004440e">
+      <String languagecode="1036" Comment="">Impossible d'annuler ce cas car des activités ouvertes lui sont associées.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80044410">
+      <String languagecode="1036" Comment="">Le cas n’a pas de client.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80044411">
+      <String languagecode="1036" Comment="">Le cas est fermé. Vous ne pouvez pas résoudre ou annuler un cas fermé.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8004f457">
+      <String languagecode="1036" Comment="">La fusion ne peut pas être effectuée. Un ou plusieurs cass sélectionnés ne peuvent pas être annulés à cause des règles de transition du statut définies pour les cass.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80055000">
+      <String languagecode="1036" Comment="">Vous n'êtes pas autorisé à suspendre ce cas. Contactez votre administrateur système.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80055001">
+      <String languagecode="1036" Comment="">Vous ne pouvez appliquer que des contrats de niveau de service (contrats SLA) actifs à des cas.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80055002">
+      <String languagecode="1036" Comment="">Vous ne disposez pas des autorisations appropriées pour appliquer le contrat de niveau de service (contrat SLA) à cet enregistrement de cas.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80060609">
+      <String languagecode="1036" Comment="">Vous ne pouvez pas créer un cas pour ce droit, car aucune condition d'octroi n'est disponible.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80060619">
+      <String languagecode="1036" Comment="">Si le type de répartition est le nombre de cas, le total des unités ne peut pas être une valeur décimale. Spécifiez un nombre entier.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80060620">
+      <String languagecode="1036" Comment="">Si le type de répartition est le nombre de cas, le total des unités ne peut pas être une valeur décimale. Spécifiez un nombre entier.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x80060730">
+      <String languagecode="1036" Comment="">Sélectionnez un modèle de cas ou un modèle global.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8006074">
+      <String languagecode="1036" Comment="">Les règles de transition du statut vous empêchent d'annuler un cas avec le statut actuel. Modifiez le statut du cas, essayez de résoudre le cas ou contactez votre administrateur système.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_0x8063111a">
+      <String languagecode="1036" Comment="">Il n'y a aucune règle active pour ce cas.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_Fail">
+      <String languagecode="1036" Comment="">Échec de {0} cas :</String>
+    </Strings>
+    <Strings ResourceKey="Error_Message_Fail_Single">
+      <String languagecode="1036" Comment="">Échec de 1 cas :</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x8003f451">
+      <String languagecode="1036" Comment="">Annulez les cas enfants actifs avant le cas parent.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x8003f452">
+      <String languagecode="1036" Comment="">Fermez le cas enfant actif avant le cas parent.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x8003f453">
+      <String languagecode="1036" Comment="">Nous n'avons pas pu créer le cas enfant</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x8003f454">
+      <String languagecode="1036" Comment="">Limite de cas enfants dépassée</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x80044400">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x80044401">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x80044402">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x80044403">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x80044404">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x80044405">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x80044406">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x80044407">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x80044408">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x80044409">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x8004440a">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x8004440b">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x8004440c">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x8004440d">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x8004440e">
+      <String languagecode="1036" Comment="">Impossible d'annuler le cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x8004f457">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x80055000">
+      <String languagecode="1036" Comment="">Impossible de suspendre le cas.</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x80060609">
+      <String languagecode="1036" Comment="">Nous ne pouvons pas associer le cas au droit</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x80060611">
+      <String languagecode="1036" Comment="">Nous ne pouvons pas associer le cas</String>
+    </Strings>
+    <Strings ResourceKey="Error_Title_0x8006074">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="incident_contract_does_not_have_allotments">
+      <String languagecode="1036" Comment="">Il ne reste pas suffisamment d'unités dans la ligne de contrat. Vérifiez cette ligne et tous les cas ouverts pour savoir si le client est en droit de recevoir des services.</String>
+    </Strings>
+    <Strings ResourceKey="incident_contract_is_inactive">
+      <String languagecode="1036" Comment="">Le contrat pour ce cas est inactif.</String>
+    </Strings>
+    <Strings ResourceKey="incident_contract_not_found_no_allotments">
+      <String languagecode="1036" Comment="">En mode hors connexion, Microsoft Dynamics 365 ne peut pas vérifier que le contrat dispose de suffisamment d'unités pour ce cas.</String>
+    </Strings>
+    <Strings ResourceKey="incident_contractdetail_is_invalid">
+      <String languagecode="1036" Comment="">Les détails du contrat pour ce cas sont arrivés à expiration ou ont été annulés.</String>
+    </Strings>
+    <Strings ResourceKey="incident_contractdetail_is_null">
+      <String languagecode="1036" Comment="">Les détails du contrat pour ce cas ont la valeur NULL.</String>
+    </Strings>
+    <Strings ResourceKey="InlineEditControls.InlineLookup.ExistingCasesHeaderTitle">
+      <String languagecode="1036" Comment="">CHOISIR UN CAS EXISTANT</String>
+    </Strings>
+    <Strings ResourceKey="MenuItem_Add_A_Case">
+      <String languagecode="1036" Comment="">Ajouter un cas</String>
+    </Strings>
+    <Strings ResourceKey="MenuItem_Cancel_Case">
+      <String languagecode="1036" Comment="">Annuler le cas</String>
+    </Strings>
+    <Strings ResourceKey="MenuItem_Label_ConvertToCase">
+      <String languagecode="1036" Comment="">En cas</String>
+    </Strings>
+    <Strings ResourceKey="MenuItem_ToolTip_Convert_Email_Mask">
+      <String languagecode="1036" Comment="">Convertit cette activité {0} en prospect, opportunité ou cas</String>
+    </Strings>
+    <Strings ResourceKey="MenuItem_ToolTip_Convert_Entity_Mask">
+      <String languagecode="1036" Comment="">Créer une opportunité ou un cas avec les informations provenant de cet enregistrement {0}.</String>
+    </Strings>
+    <Strings ResourceKey="MenuItem_ToolTip_ConvertToCase">
+      <String languagecode="1036" Comment="">Convertir en cas</String>
+    </Strings>
+    <Strings ResourceKey="MergeRecords_Cases_Maxlimit">
+      <String languagecode="1036" Comment="">Vous pouvez fusionner seulement {0} cas à la fois.</String>
+    </Strings>
+    <Strings ResourceKey="MergeRecords_Cases_Merged_Fail">
+      <String languagecode="1036" Comment="">Nous n'avons pas pu fusionner {0} cas.</String>
+    </Strings>
+    <Strings ResourceKey="MergeRecords_Cases_Merged_Fail_Single">
+      <String languagecode="1036" Comment="">Un cas n'a pas pu être fusionné. Vérifiez que vous disposez de privilèges suffisants ou contactez votre administrateur.</String>
+    </Strings>
+    <Strings ResourceKey="MergeRecords_Cases_Merged_Success">
+      <String languagecode="1036" Comment="">{0} cas fusionnés en {1}.</String>
+    </Strings>
+    <Strings ResourceKey="MergeRecords_Cases_Merged_Success_Single">
+      <String languagecode="1036" Comment="">Un cas a fusionné en {0}.</String>
+    </Strings>
+    <Strings ResourceKey="Message_Cannot_Assign_Case">
+      <String languagecode="1036" Comment="">Impossible d'attribuer des cas dans cet état.</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm.Form.incident.MainTab.Actions.CreateChildcase">
+      <String languagecode="1036" Comment="">Créer un cas enfant</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_Appointment_OutlookTab_Actions_Convert_Case_ToolTipDescription">
+      <String languagecode="1036" Comment="">Créez un cas avec les informations de cette activité Rendez-vous.</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_Appointment_OutlookTab_Actions_Convert_Case_ToolTipTitle">
+      <String languagecode="1036" Comment="">Convertir l’activité en cas</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_Appointment_OutlookTab_Actions_Convert_ToolTipDescription">
+      <String languagecode="1036" Comment="">Créez une opportunité ou un cas avec les informations de cette activité Rendez-vous.</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_contract_MainTab_Actions_Hold_ToolTipDescription">
+      <String languagecode="1036" Comment="">Suspendre ce contrat. &lt;br&gt;&lt;br&gt;Cette action le suspend de manière temporaire. Lorsque ce contrat est suspendu, aucun cas ne peut être ouvert dans le cadre de celui-ci.</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_contract_MainTab_Actions_Release_ToolTipDescription">
+      <String languagecode="1036" Comment="">Annuler la suspension de ce contrat. &lt;br&gt;&lt;br&gt;Le contrat devient alors actif, et des cas peuvent y être ouverts.</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_Email_OutlookTab_Actions_Convert_Case_ToolTipDescription">
+      <String languagecode="1036" Comment="">Créez un cas avec les informations de cette activité Courrier électronique.</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_Email_OutlookTab_Actions_Convert_Case_ToolTipTitle">
+      <String languagecode="1036" Comment="">Convertir l’activité en cas</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_Email_OutlookTab_Actions_Convert_ToolTipDescription">
+      <String languagecode="1036" Comment="">Créez une opportunité ou un cas avec les informations de cette activité Courrier électronique.</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_incident_MainTab_Actions_DoNotDecrementEntitlementTerms_ToolTipDescription">
+      <String languagecode="1036" Comment="">Pour les droits associés, les conditions ne seront pas réduites pour les cas sélectionnés.</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_incident_MainTab_Actions_Reactivate_ToolTipDescription">
+      <String languagecode="1036" Comment="">Réactiver le cas. &lt;br&gt;&lt;br&gt;Procédez à la réactivation si des actions supplémentaires sont requises pour le cas. Le cas est attribué à l’utilisateur qui en était le propriétaire lorsqu’il a été fermé.</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_incident_MainTab_Actions_Reactivate_ToolTipTitle">
+      <String languagecode="1036" Comment="">Réactiver le cas</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_Other_MainTab_Actions_Convert_Case_ToolTipDescription">
+      <String languagecode="1036" Comment="">Convertir cette activité en cas. &lt;br&gt;&lt;br&gt;Cette activité est automatiquement fermée et peut être affichée dans le nouvel cas dans la section Activités fermées.</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_Other_MainTab_Actions_Convert_Case_ToolTipTitle">
+      <String languagecode="1036" Comment="">En cas</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_Other_MainTab_Actions_Convert_KA_ToolTipDescription">
+      <String languagecode="1036" Comment="">Convertir ce cas en article de Base de connaissances. &lt;br&gt;&lt;br&gt;Ce cas est automatiquement fermé et peut être affiché dans le nouvel article de Base de connaissances dans la section Cas fermés.</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_Other_MainTab_Actions_Convert_Opportunity_ToolTipDescription">
+      <String languagecode="1036" Comment="">Convertir cette activité en opportunité. &lt;br&gt;&lt;br&gt;L’activité est automatiquement fermée et peut être affichée dans le nouvel cas dans la section Activités fermées.</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_Recurringappointmentmaster_OutlookTab_Actions_Convert_Case_ToolTipDescription">
+      <String languagecode="1036" Comment="">Créez un cas avec les informations de cette activité Rendez-vous périodique.</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_Recurringappointmentmaster_OutlookTab_Actions_Convert_Case_ToolTipTitle">
+      <String languagecode="1036" Comment="">Convertir l’activité en cas</String>
+    </Strings>
+    <Strings ResourceKey="Mscrm_Form_Recurringappointmentmaster_OutlookTab_Actions_Convert_ToolTipDescription">
+      <String languagecode="1036" Comment="">Créez une opportunité ou un cas avec les informations de cette activité Rendez-vous périodique.</String>
+    </Strings>
+    <Strings ResourceKey="Multiple_Dialog_Merge_Description">
+      <String languagecode="1036" Comment="">Sélectionnez le cas dans lequel les autres cas seront fusionnés. Passez en revue les cas et les clients correspondants avant de fusionner les cas. Vous ne pouvez pas annuler cette action.</String>
+    </Strings>
+    <Strings ResourceKey="Multiple_Merge_Title">
+      <String languagecode="1036" Comment="">Fusionner les cas</String>
+    </Strings>
+    <Strings ResourceKey="No_TransitionPath_From_Active_Resolve_Case">
+      <String languagecode="1036" Comment="">Vous n'avez pas défini la manière dont un cas passera de l'état actif à l'état résolu ou annulé.</String>
+    </Strings>
+    <Strings ResourceKey="ParentChild_Cases_Associate_Success">
+      <String languagecode="1036" Comment="">La relation parent-enfant a été établie entre les {0} cas sélectionnés.</String>
+    </Strings>
+    <Strings ResourceKey="ParentChild_Cases_Associate_Success_Single">
+      <String languagecode="1036" Comment="">La relation parent-enfant a été établie entre les cas sélectionnés.</String>
+    </Strings>
+    <Strings ResourceKey="ParentChild_Cases_NoSuccess_Fail">
+      <String languagecode="1036" Comment="">L'opération a échoué pour {0} cas sélectionnés.</String>
+    </Strings>
+    <Strings ResourceKey="ParentChild_Cases_NoSuccess_Fail_Single">
+      <String languagecode="1036" Comment="">L'opération a échoué pour un cas sélectionné. Vérifiez que vous disposez de privilèges suffisants ou contactez votre administrateur.</String>
+    </Strings>
+    <Strings ResourceKey="PickList_AllotmentType_Value_1">
+      <String languagecode="1036" Comment="">Nombre de cas</String>
+    </Strings>
+    <Strings ResourceKey="ProcessControl.Configurator.SystemSteps.IdentifyIssueDescription">
+      <String languagecode="1036" Comment="">Rechercher le cas</String>
+    </Strings>
+    <Strings ResourceKey="ProcessControl.Configurator.SystemSteps.Resolve">
+      <String languagecode="1036" Comment="">Résoudre le cas</String>
+    </Strings>
+    <Strings ResourceKey="ProcessControl.Configurator.SystemSteps.Solutions">
+      <String languagecode="1036" Comment="">Cas similaires</String>
+    </Strings>
+    <Strings ResourceKey="RefreshCommandBar.Case.AddToQueue.ToolTip">
+      <String languagecode="1036" Comment="">Ajouter ce cas à la file d'attente</String>
+    </Strings>
+    <Strings ResourceKey="RefreshCommandBar.Case.Cancel">
+      <String languagecode="1036" Comment="">ANNULER LE CAS</String>
+    </Strings>
+    <Strings ResourceKey="RefreshCommandBar.Case.Cancel.ToolTip">
+      <String languagecode="1036" Comment="">Annulez ce cas.</String>
+    </Strings>
+    <Strings ResourceKey="RefreshCommandBar.Case.Reactivate">
+      <String languagecode="1036" Comment="">RÉACTIVER LE CAS</String>
+    </Strings>
+    <Strings ResourceKey="RefreshCommandBar.Case.Reactivate.ToolTip">
+      <String languagecode="1036" Comment="">Réactivez ce cas.</String>
+    </Strings>
+    <Strings ResourceKey="RefreshCommandBar.Case.Resolve">
+      <String languagecode="1036" Comment="">RÉSOUDRE LE CAS</String>
+    </Strings>
+    <Strings ResourceKey="RefreshCommandBar.Case.Resolve.ToolTip">
+      <String languagecode="1036" Comment="">Clôturez ce cas comme résolu.</String>
+    </Strings>
+    <Strings ResourceKey="RelatedInformation_Tips_incident_contractdetailid">
+      <String languagecode="1036" Comment="">Sélectionnez une ligne de contrat pour spécifier le type de droit. La liaison de lignes de contrat à le cas vous permet de suivre l'utilisation des unités et de vérifier si le client reçoit le niveau de service approprié.</String>
+    </Strings>
+    <Strings ResourceKey="RelatedInformation_Tips_incident_contractid">
+      <String languagecode="1036" Comment="">Sélectionnez un contrat pour spécifier le type de droit. La liaison du contrat à le cas vous permet de suivre l'utilisation des unités et de vérifier si le client reçoit le niveau de service approprié.</String>
+    </Strings>
+    <Strings ResourceKey="RelatedInformation_Tips_incident_customerid">
+      <String languagecode="1036" Comment="">Sélectionnez le client auquel s'applique ce cas.</String>
+    </Strings>
+    <Strings ResourceKey="RelatedInformation_Tips_incident_subjectid">
+      <String languagecode="1036" Comment="">La sélection d'un sujet pour le cas permet d'associer ce dernier à des cas similaires. Cela s'avère utile pour la recherche de cas présentant des problèmes similaires, ainsi que pour la recherche d'articles associés.</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.Form.email.MainTab.Actions.ConvertToCase">
+      <String languagecode="1036" Comment="">Convertir en cas...</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.Form.incident.MainTab.Actions.AssociateParentChildCase">
+      <String languagecode="1036" Comment="">Associer les cas enfants</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.Form.incident.MainTab.Actions.Cancel">
+      <String languagecode="1036" Comment="">Annuler le cas</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.Form.incident.MainTab.Actions.CreateChildcase">
+      <String languagecode="1036" Comment="">Créer un cas enfant</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.Form.incident.MainTab.Actions.CreateChildcase.Tooltip">
+      <String languagecode="1036" Comment="">Créer un cas enfant</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.Form.incident.MainTab.Actions.Reactivate">
+      <String languagecode="1036" Comment="">Réactiver le cas</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.Form.incident.MainTab.Actions.Resolve">
+      <String languagecode="1036" Comment="">Résoudre le cas</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.Form.ToolTip.RunRoutingRule">
+      <String languagecode="1036" Comment="">Acheminez les cas en fonction de la règle d'acheminement active.</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.Form.ToolTip.SaveAndRunRoutingRule">
+      <String languagecode="1036" Comment="">Enregistrez et acheminez ce cas en fonction de l'ensemble de règles d'acheminement actif.</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.HomepageGrid.incident.MainTab.Management.Controls.New">
+      <String languagecode="1036" Comment="">Nouvel cas</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.Tooltip.AssociateParentChildCase">
+      <String languagecode="1036" Comment="">Associer les cas en tant que cas enfants à un cas parent.</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.Tooltip.CancelCase">
+      <String languagecode="1036" Comment="">Annulez ce cas. Une fois annulé, il ne peut plus être attribué, mais vous pouvez le réactiver.</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.Tooltip.CreateChildcase">
+      <String languagecode="1036" Comment="">Créez un cas enfant pour un cas parent.</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.Tooltip.MergeCase">
+      <String languagecode="1036" Comment="">Fusionner les cas dans le cas sélectionné</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.Tooltip.ResolveCase">
+      <String languagecode="1036" Comment="">Fermez ce cas comme étant résolu. &lt;br&gt;&lt;br&gt;Vous devez fermer toutes les activités associées avant de pouvoir fermer ce cas.</String>
+    </Strings>
+    <Strings ResourceKey="Ribbon.ToolTip.RunRoutingRule">
+      <String languagecode="1036" Comment="">Acheminer le cas en fonction de la règle d'acheminement active.</String>
+    </Strings>
+    <Strings ResourceKey="Service_DetailedDesc">
+      <String languagecode="1036" Comment="">Accédez aux cas contrats de service et Gestionnaire de la Base de connaissances</String>
+    </Strings>
+    <Strings ResourceKey="SystemCustomization.SettingsPage.AutoNumbering.Help">
+      <String languagecode="1036" Comment="">Spécifiez les préfixes numériques des contrats, cas, devis, commandes, articles, factures et campagnes. Sélectionnez la longueur du suffixe pour les contrats, cas, devis, commandes et factures.</String>
+    </Strings>
+    <Strings ResourceKey="Tab_Label_Cases">
+      <String languagecode="1036" Comment="">Cas</String>
+    </Strings>
+    <Strings ResourceKey="Web._cs.Cases.dlg_ConfirmCancel.aspx_2">
+      <String languagecode="1036" Comment="">Annuler le cas</String>
+    </Strings>
+    <Strings ResourceKey="Web._cs.Cases.dlg_ConfirmResolve.aspx_1">
+      <String languagecode="1036" Comment="">Résoudre le cas</String>
+    </Strings>
+    <Strings ResourceKey="Web._cs.Cases.dlg_ConfirmResolve.aspx_3">
+      <String languagecode="1036" Comment="">Des activités ouvertes sont associées à ce cas. Elles seront annulées si vous résolvez ce cas. Voulez-vous résoudre le cas ?</String>
+    </Strings>
+    <Strings ResourceKey="Web._cs.Cases.dlg_ConfirmResolve.aspx_4">
+      <String languagecode="1036" Comment="">Des activités ouvertes sont associées à ce cas. Elles seront annulées si vous annulez ce cas. Voulez-vous annuler le cas ?</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.bulkemail.xsl_56">
+      <String languagecode="1036" Comment="">Modèles de cas</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.dlg_applycasehierarchy.aspx">
+      <String languagecode="1036" Comment="">Application des paramètres de cas sélectionnés</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.dlg_cancel.aspx_87">
+      <String languagecode="1036" Comment="">Définir le statut du cas sur</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.dlg_casehierarchy.aspx_1">
+      <String languagecode="1036" Comment="">Paramètres du cas</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.dlg_casehierarchy.aspx_10">
+      <String languagecode="1036" Comment="">Créer et gérer les paramètres de hiérarchie des cas</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.dlg_casehierarchy.aspx_11">
+      <String languagecode="1036" Comment="">Vous pouvez sélectionner une préférence de clôture en cascade pour les cas parents et enfants.</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.dlg_casehierarchy.aspx_2">
+      <String languagecode="1036" Comment="">Sélectionnez les attributs Cas à récupérer du cas parent pour le cas enfant.</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.dlg_casehierarchy.aspx_3">
+      <String languagecode="1036" Comment="">Ne pas autoriser la clôture du cas parent tant que tous les cas enfants ne sont pas clôturés</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.dlg_casehierarchy.aspx_4">
+      <String languagecode="1036" Comment="">Clôturer tous les cas enfants quand le cas parent est clôturé</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.dlg_casehierarchy.aspx_5">
+      <String languagecode="1036" Comment="">Ne pas autoriser la clôture du cas parent tant que tous les cas enfants ne sont pas clôturés</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.dlg_casehierarchy.aspx_6">
+      <String languagecode="1036" Comment="">Sélectionner tous les champs obligatoires pour héritage pour que les cas enfants soient créés correctement</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.dlg_casehierarchy.aspx_7">
+      <String languagecode="1036" Comment="">Vous ne pouvez pas résoudre le cas parent, car il comporte des cas enfants actifs</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.dlg_casehierarchy.ServiceManagement_Help_Title">
+      <String languagecode="1036" Comment="">Spécifiez les informations que les cas enfants hériteront des cas parents. Définissez les paramètres de clôture en cascade entre les cas parents et enfants.</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.dlg_casehierarchy.ServiceManagement_Title">
+      <String languagecode="1036" Comment="">Paramètres des cas parents et enfants</String>
+    </Strings>
+    <Strings ResourceKey="Web._grid.cmds.dlg_delete_contact.aspx_54">
+      <String languagecode="1036" Comment="">La suppression du/des {0} supprimera également tous les enregistrements sous le/les {0} (par exemple, les profils sociaux, opportunités, activités et cas).</String>
+    </Strings>
+    <Strings ResourceKey="Web.CS.cases.dlg_cancel.aspx_50">
+      <String languagecode="1036" Comment="">Voulez-vous annuler ce cas ?</String>
+    </Strings>
+    <Strings ResourceKey="Web.CS.cases.dlg_closecase.aspx_50">
+      <String languagecode="1036" Comment="">Vous devez entrer des informations dans la zone Résolution avant de résoudre ce cas.</String>
+    </Strings>
+    <Strings ResourceKey="Web.CS.cases.dlg_reactivate.aspx_50">
+      <String languagecode="1036" Comment="">Cette action réactivera un cas résolu ou annulé. Souhaitez-vous continuer ?</String>
+    </Strings>
+    <Strings ResourceKey="Web.CS.home_cases.aspx_47">
+      <String languagecode="1036" Comment="">Gestionnaire de cas</String>
+    </Strings>
+    <Strings ResourceKey="Web.Record.NoValidStatusReasonTransition.Window_Title01">
+      <String languagecode="1036" Comment="">Erreur de cas</String>
+    </Strings>
+    <Strings ResourceKey="Web.Record.NoValidStatusReasonTransition01">
+      <String languagecode="1036" Comment="">Les règles de transition du statut vous empêchent de résoudre un cas avec le statut actuel. Modifiez le statut du cas, essayez de résoudre le cas ou contactez votre administrateur système.</String>
+    </Strings>
+    <Strings ResourceKey="Web.Record.NoValidStatusReasonTransition02">
+      <String languagecode="1036" Comment="">Les règles de transition du statut vous empêchent d'annuler le cas avec le statut actuel. Modifiez le statut du cas, essayez d'annuler le cas ou contactez votre administrateur système.</String>
+    </Strings>
+    <Strings ResourceKey="Web.Record.NoValidStatusReasonTransition03">
+      <String languagecode="1036" Comment="">Vu les règles de transition du statut, vous ne pouvez pas activer le cas à partir du statut actuel. Contactez votre administrateur système.</String>
+    </Strings>
+    <Strings ResourceKey="Web.Tools.SubjectEditor.SubjectEditor.aspx_154">
+      <String languagecode="1036" Comment="">L’arborescence des sujets de votre organisation vous permet de catégoriser vos produits, cas, documentation commerciale et articles. Gérez l’arborescence grâce aux options disponibles dans la zone Tâches courantes.</String>
+    </Strings>
+  </Strings>
 </Entity>

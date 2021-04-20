@@ -12,12 +12,15 @@
             <column width="30%" id="0">
               <sections>
                 <section name="Details" showlabel="true" labelwidth="102" showbar="false" id="{09d03c8d-5a6b-4a94-b7d9-cfa1b5364015}" IsUserDefined="0" locklevel="0" celllabelposition="Left" ordinalvalue="0">
+                  <labels>
+                    <label description="DÉTAILS DU CAS" languagecode="1036" solutionaction="Modified" />
+                  </labels>
                   <rows>
                     <row>
                       <cell id="{70cc3529-ab81-650b-3bd0-3147ba77667d}" showlabel="true" locklevel="0" ordinalvalue="10000">
                         <labels>
                           <label description="Case Title" languagecode="1033" solutionaction="Added" />
-                          <label description="Titre de l'incident" languagecode="1036" solutionaction="Added" />
+                          <label description="Titre du cas" languagecode="1036" solutionaction="Added" />
                         </labels>
                       </cell>
                     </row>
@@ -81,6 +84,7 @@
                       <cell id="{1e659cd8-9e14-5220-44c7-2deca7247da4}" showlabel="true" locklevel="0" ordinalvalue="10003" solutionaction="Added">
                         <labels>
                           <label description="Region" languagecode="1033" />
+                          <label description="Région" languagecode="1036" />
                         </labels>
                         <control id="ovs_region" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_region" disabled="false" />
                       </cell>
@@ -139,7 +143,58 @@
             </column>
           </columns>
         </tab>
-        <tab name="CASERELATIONSHIP_TAB" id="{820e1ad0-5b40-4d15-9746-32f10735edde}" IsUserDefined="0" showlabel="true" expanded="false" ordinalvalue="2" solutionaction="Modified" />
+        <tab name="CASERELATIONSHIP_TAB" id="{820e1ad0-5b40-4d15-9746-32f10735edde}" IsUserDefined="0" showlabel="true" expanded="false" ordinalvalue="2" solutionaction="Modified">
+          <labels>
+            <label description="Relations de cas" languagecode="1036" solutionaction="Modified" />
+          </labels>
+          <columns>
+            <column width="34%" id="0">
+              <sections>
+                <section name="Solutions" showlabel="false" showbar="false" id="{d2609a6b-8ee5-4731-9895-97c00b502e7c}" IsUserDefined="0" layout="varwidth" labelwidth="102" celllabelposition="Left" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{75bc5581-dde6-d9e8-a877-5a28e96246ee}" showlabel="true" colspan="1" auto="false" rowspan="7" ordinalvalue="10000">
+                        <labels>
+                          <label description="CAS SIMILAIRES" languagecode="1036" solutionaction="Modified" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%" id="1">
+              <sections>
+                <section name="MergedCases" showlabel="false" showbar="false" id="{f344f3e4-c7c1-43ff-8514-6405d7b8fa35}" IsUserDefined="0" layout="varwidth" labelwidth="102" celllabelposition="Left" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{db20c8bd-b402-4323-83ac-514921ab7ca5}" showlabel="true" colspan="1" auto="false" rowspan="7" ordinalvalue="10000">
+                        <labels>
+                          <label description="CAS FUSIONNÉS" languagecode="1036" solutionaction="Modified" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%" id="2">
+              <sections>
+                <section name="ChildCases" showlabel="false" showbar="false" id="{b1f997ea-9b7b-4a2d-9a33-eb3cb14e08f7}" IsUserDefined="0" layout="varwidth" labelwidth="102" celllabelposition="Left" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{363a5e29-8bfe-492f-8a8f-d0e1c114f2f9}" showlabel="true" colspan="1" auto="false" rowspan="7" ordinalvalue="10000">
+                        <labels>
+                          <label description="CAS ENFANTS" languagecode="1036" solutionaction="Modified" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
         <tab name="AssociatedKnowledgeBaseRecords" id="{39ba3269-5e29-49ff-9f59-a0c0e26c3ca7}" IsUserDefined="0" showlabel="true" expanded="false" ordinalvalue="3" solutionaction="Modified" />
         <tab name=" Enhanced_SLA_Details_Tab" id="{70a83419-91af-4c8e-b39e-42bf8fa286f3}" IsUserDefined="0" showlabel="true" expanded="false" visible="false" ordinalvalue="4" solutionaction="Modified">
           <columns>
@@ -188,7 +243,7 @@
                       <cell id="{622a5065-a78e-4caf-ad1a-9ccafe579e93}" showlabel="true" locklevel="0" ordinalvalue="10001">
                         <labels>
                           <label description="Parent Case" languagecode="1033" solutionaction="Added" />
-                          <label description="Incident parent" languagecode="1036" solutionaction="Added" />
+                          <label description="Cas parent" languagecode="1036" solutionaction="Added" />
                         </labels>
                       </cell>
                     </row>
@@ -393,7 +448,7 @@
                       <cell id="{60a7bec5-5c86-0194-babb-a0c08b7d9236}" showlabel="true" colspan="1" auto="false" rowspan="7" ordinalvalue="10000" solutionaction="Added">
                         <labels>
                           <label description="Work Order Service Tasks (Case)" languagecode="1033" />
-                          <label description="Connexions" languagecode="1036" />
+                          <label description="Tâche de service de l'ordre de travail (cas)" languagecode="1036" />
                         </labels>
                         <control id="FailedServiceTasks" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
@@ -425,6 +480,7 @@
         <tab name="tab_11" id="688e3ef5-cd2b-497d-bb86-9dacaf424770" IsUserDefined="0" locklevel="0" showlabel="true" visible="true" ordinalvalue="1" solutionaction="Added">
           <labels>
             <label description="Findings" languagecode="1033" />
+            <label description="Constatations" languagecode="1036" />
           </labels>
           <columns>
             <column width="100%" id="0">
@@ -432,13 +488,14 @@
                 <section name="tab_11_section_1" id="daa3a022-1302-45b4-b8e1-81e177b8b880" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
                   <labels>
                     <label description="New Section" languagecode="1033" />
+                    <label description="Nouvelle section" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
                       <cell locklevel="0" id="{4e6317d2-39a5-4ba9-8fba-e3c221a0892f}" rowspan="1" colspan="1" showlabel="true" ordinalvalue="10000">
                         <labels>
                           <label description="FINDINGS" languagecode="1033" />
-                          <label description="Constatations" languagecode="1036" />
+                          <label description="CONSTATATIONS" languagecode="1036" />
                         </labels>
                         <control id="Subgrid_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
@@ -460,7 +517,7 @@
         <tab name="tab_10" id="76116b19-7ce6-4666-a955-ef2dab454fe6" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="10" solutionaction="Added">
           <labels>
             <label description="Work Orders" languagecode="1033" />
-            <label description="Ordre de travail" languagecode="1036" />
+            <label description="Ordres de travail" languagecode="1036" />
           </labels>
           <columns>
             <column width="100%" id="0">
@@ -557,11 +614,11 @@
     </form>
     <LocalizedNames>
       <LocalizedName description="Case" languagecode="1033" />
-      <LocalizedName description="Incident" languagecode="1036" />
+      <LocalizedName description="Cas" languagecode="1036" />
     </LocalizedNames>
     <Descriptions>
       <Description description="Updated default Case form." languagecode="1033" />
-      <Description description="Formulaire d'incident par défaut mis à jour." languagecode="1036" />
+      <Description description="Formulaire de cas par défaut mis à jour." languagecode="1036" />
     </Descriptions>
   </systemform>
 </forms>
