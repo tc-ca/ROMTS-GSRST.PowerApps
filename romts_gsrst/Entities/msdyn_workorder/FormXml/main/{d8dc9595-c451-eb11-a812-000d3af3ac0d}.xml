@@ -58,12 +58,11 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{e94e2462-a792-edeb-c9ee-a62927c022cb}" showlabel="true" locklevel="0" visible="false">
+                      <cell id="{01c9fbde-8648-44c4-9179-2dc42591d2a2}" locklevel="0" visible="false">
                         <labels>
                           <label description="Country" languagecode="1033" />
-                          <label description="Pays" languagecode="1036" />
                         </labels>
-                        <control id="ovs_ovscountry" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_ovscountry" disabled="false" />
+                        <control id="ts_country" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_country" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -84,7 +83,7 @@
                     <row>
                       <cell id="{2f5a2bd0-bf1e-4462-a715-ce6d0eb573e5}" locklevel="0">
                         <labels>
-                          <label description="Regulated Entity" languagecode="1033" />
+                          <label description="Stakeholder" languagecode="1033" />
                           <label description="Entité règlementée" languagecode="1036" />
                         </labels>
                         <control id="ovs_regulatedentity" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_regulatedentity" disabled="false">
@@ -111,17 +110,15 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{ea762428-d14a-45eb-8278-194a01eb8f08}" locklevel="0">
+                      <cell id="{0a92fd3e-5501-4b21-815b-e0a2e913929a}" locklevel="0">
                         <labels>
                           <label description="Functional Location" languagecode="1033" />
                           <label description="Poste technique" languagecode="1036" />
                         </labels>
                         <control id="msdyn_functionallocation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_functionallocation" disabled="false">
                           <parameters>
-                            <DisableViewPicker>false</DisableViewPicker>
-                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
-                            <AvailableViewIds>{750E041A-F88C-4B3C-887A-1F1946B8D86B},{9FC31307-BF85-EA11-A81F-000D3AAB1E57},{8ED11338-0AD3-4EA2-A31E-7774E9195AEF},{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4},{CE3D1B20-7143-4293-BBC8-BCE3BBC7ECF0},{A5D1F403-C185-EA11-A81F-000D3AAB1E57},{27332682-C585-EA11-A81F-000D3AAB1E57}</AvailableViewIds>
-                            <DisableMru>true</DisableMru>
+                            <DefaultViewId>{750E041A-F88C-4B3C-887A-1F1946B8D86B}</DefaultViewId>
+                            <AvailableViewIds>{750E041A-F88C-4B3C-887A-1F1946B8D86B},{9FC31307-BF85-EA11-A81F-000D3AAB1E57},{8ED11338-0AD3-4EA2-A31E-7774E9195AEF},{27332682-C585-EA11-A81F-000D3AAB1E57},{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4},{CE3D1B20-7143-4293-BBC8-BCE3BBC7ECF0},{A5D1F403-C185-EA11-A81F-000D3AAB1E57}</AvailableViewIds>
                           </parameters>
                         </control>
                       </cell>
@@ -2832,14 +2829,19 @@
             <Handler functionName="ROM.WorkOrder.regulatedEntityOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{4c176e64-f4ff-4a61-9545-0ac30635bf65}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
+        <event name="onchange" application="true" active="true" attribute="ts_country">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.countryOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{04579c97-300b-4617-949c-c441213e521c}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
         <event name="onchange" application="true" active="true" attribute="msdyn_functionallocation">
           <Handlers>
-            <Handler functionName="ROM.WorkOrder.functionalLocationOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{16fecb5a-aee0-4c23-b4a7-536f6967156d}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.WorkOrder.functionalLocationOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{7a66d68b-c967-435f-b7fa-675a59b60ab7}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="true" active="true" attribute="msdyn_serviceaccount">
           <Handlers>
-            <Handler functionName="ROM.WorkOrder.siteOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{2a3b5f95-dc18-46a7-9d61-6ef6c6499440}" enabled="false" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.WorkOrder.siteOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{c0754b45-fdaf-4e20-8859-d680a2c9bdc0}" enabled="false" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

@@ -6,11 +6,11 @@
     <isquickfindquery>1</isquickfindquery>
     <isprivate>0</isprivate>
     <isdefault>1</isdefault>
-    <savedqueryid>{f1398a96-5117-4a03-882d-fa1676338377}</savedqueryid>
+    <savedqueryid>{9d78ef26-07d7-4423-bbce-6ab65ec6b29e}</savedqueryid>
     <layoutxml>
-      <grid name="resultset" jump="ovs_name" select="1" icon="1" preview="1">
-        <row name="result" id="ovs_countryid">
-          <cell name="ovs_name" width="300" />
+      <grid name="resultset" jump="tc_name" select="1" icon="1" preview="1">
+        <row name="result" id="tc_countryid">
+          <cell name="tc_name" width="300" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -18,24 +18,24 @@
     <querytype>4</querytype>
     <fetchxml>
       <fetch version="1.0" mapping="logical">
-        <entity name="ovs_country">
-          <attribute name="ovs_countryid" />
-          <attribute name="ovs_name" />
+        <entity name="tc_country">
+          <attribute name="tc_countryid" />
+          <attribute name="tc_name" />
           <attribute name="createdon" />
-          <order attribute="ovs_name" descending="false" />
+          <order attribute="tc_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <filter type="or" isquickfindfields="1">
-            <condition attribute="ovs_name" operator="like" value="{0}" />
+            <condition attribute="tc_name" operator="like" value="{0}" />
           </filter>
         </entity>
       </fetch>
     </fetchxml>
-    <IntroducedVersion>1.0</IntroducedVersion>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <LocalizedNames>
       <LocalizedName description="Quick Find Active Countries" languagecode="1033" />
-      <LocalizedName description="Recherche rapide — Pays actifs" languagecode="1036" />
+      <LocalizedName description="Quick Find Active Countries(fr)" languagecode="1036" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

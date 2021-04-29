@@ -4,7 +4,6 @@
   <EntityRelationship Name="business_unit_msdyn_servicetasktype" />
   <EntityRelationship Name="business_unit_msdyn_workorder" />
   <EntityRelationship Name="business_unit_msdyn_workordersubstatus" />
-  <EntityRelationship Name="business_unit_ovs_country" />
   <EntityRelationship Name="business_unit_ovs_finding" />
   <EntityRelationship Name="business_unit_ovs_lob" />
   <EntityRelationship Name="business_unit_ovs_operation" />
@@ -13,6 +12,7 @@
   <EntityRelationship Name="business_unit_ovs_sitetype" />
   <EntityRelationship Name="business_unit_ovs_tyrational" />
   <EntityRelationship Name="business_unit_ovs_workorderservicetaskprovision" />
+  <EntityRelationship Name="business_unit_tc_country" />
   <EntityRelationship Name="business_unit_tc_tcfiscalperiod" />
   <EntityRelationship Name="business_unit_tc_tcfiscalquarter" />
   <EntityRelationship Name="business_unit_tc_tcfiscalyear" />
@@ -28,8 +28,6 @@
   <EntityRelationship Name="lk_msdyn_workorder_modifiedby" />
   <EntityRelationship Name="lk_msdyn_workordersubstatus_createdby" />
   <EntityRelationship Name="lk_msdyn_workordersubstatus_modifiedby" />
-  <EntityRelationship Name="lk_ovs_country_createdby" />
-  <EntityRelationship Name="lk_ovs_country_modifiedby" />
   <EntityRelationship Name="lk_ovs_finding_createdby" />
   <EntityRelationship Name="lk_ovs_finding_modifiedby" />
   <EntityRelationship Name="lk_ovs_lob_createdby" />
@@ -54,6 +52,8 @@
   <EntityRelationship Name="lk_qm_tylegislationsource_modifiedby" />
   <EntityRelationship Name="lk_qm_tylegislationtype_createdby" />
   <EntityRelationship Name="lk_qm_tylegislationtype_modifiedby" />
+  <EntityRelationship Name="lk_tc_country_createdby" />
+  <EntityRelationship Name="lk_tc_country_modifiedby" />
   <EntityRelationship Name="lk_tc_tcfiscalperiod_createdby" />
   <EntityRelationship Name="lk_tc_tcfiscalperiod_modifiedby" />
   <EntityRelationship Name="lk_tc_tcfiscalquarter_createdby" />
@@ -110,7 +110,7 @@
   <EntityRelationship Name="msdyn_territory_account_ServiceTerritory" />
   <EntityRelationship Name="msdyn_territory_msdyn_workorder_ServiceTerritory" />
   <EntityRelationship Name="msdyn_workorder_ovs_asset_msdyn_customera" />
-  <EntityRelationship Name="msdyn_workorder_ovsCountry_ovs_country" />
+  <EntityRelationship Name="msdyn_workorder_Region_Territory" />
   <EntityRelationship Name="msdyn_workorder_TYRational_ovs_TYRational" />
   <EntityRelationship Name="organization_qm_rclegislation" />
   <EntityRelationship Name="organization_qm_tylegislationcharacteristic" />
@@ -124,7 +124,6 @@
   <EntityRelationship Name="ovs_Incident_Region_Territory" />
   <EntityRelationship Name="ovs_Incident_Site_Account" />
   <EntityRelationship Name="ovs_incidenttypeservicetask_Questionnaire" />
-  <EntityRelationship Name="ovs_msdyn_customerassetcategory_msdyn_custome" />
   <EntityRelationship Name="ovs_msdyn_servicetasktype_qm_rclegislation" />
   <EntityRelationship Name="ovs_msdyn_servicetasktype_Questionnaire_ovs_Q" />
   <EntityRelationship Name="ovs_msdyn_workorder_AssetCategory_msdyn_custo" />
@@ -138,8 +137,6 @@
   <EntityRelationship Name="ovs_msdyn_workorder_SecondaryInspector_Bookab" />
   <EntityRelationship Name="ovs_msdyn_workorderservicetask_ovs_finding" />
   <EntityRelationship Name="ovs_msdyn_workorderservicetask_ovs_workorders" />
-  <EntityRelationship Name="ovs_ovs_country_account_Country" />
-  <EntityRelationship Name="ovs_ovs_country_incident" />
   <EntityRelationship Name="ovs_ovs_lob_ovs_operation" />
   <EntityRelationship Name="ovs_ovs_operation_msdyn_workorder" />
   <EntityRelationship Name="ovs_ovs_operationtype_ovs_operation" />
@@ -154,7 +151,6 @@
   <EntityRelationship Name="owner_msdyn_servicetasktype" />
   <EntityRelationship Name="owner_msdyn_workorder" />
   <EntityRelationship Name="owner_msdyn_workordersubstatus" />
-  <EntityRelationship Name="owner_ovs_country" />
   <EntityRelationship Name="owner_ovs_finding" />
   <EntityRelationship Name="owner_ovs_lob" />
   <EntityRelationship Name="owner_ovs_operation" />
@@ -163,6 +159,7 @@
   <EntityRelationship Name="owner_ovs_sitetype" />
   <EntityRelationship Name="owner_ovs_tyrational" />
   <EntityRelationship Name="owner_ovs_workorderservicetaskprovision" />
+  <EntityRelationship Name="owner_tc_country" />
   <EntityRelationship Name="owner_tc_tcfiscalperiod" />
   <EntityRelationship Name="owner_tc_tcfiscalquarter" />
   <EntityRelationship Name="owner_tc_tcfiscalyear" />
@@ -172,7 +169,6 @@
   <EntityRelationship Name="qm_qm_rclegislation_qm_rclegislation" />
   <EntityRelationship Name="qm_rclegislation_enablingprovision" />
   <EntityRelationship Name="qm_rclegislation_tylegislationcharacteristic" />
-  <EntityRelationship Name="qm_syresponse_rclegislation" />
   <EntityRelationship Name="qm_tylegislationcharacteristic_itself" />
   <EntityRelationship Name="qm_tylegislationsource_rclegislation" />
   <EntityRelationship Name="qm_tylegislationtype_rclegislation" />
@@ -184,7 +180,6 @@
   <EntityRelationship Name="team_msdyn_servicetasktype" />
   <EntityRelationship Name="team_msdyn_workorder" />
   <EntityRelationship Name="team_msdyn_workordersubstatus" />
-  <EntityRelationship Name="team_ovs_country" />
   <EntityRelationship Name="team_ovs_finding" />
   <EntityRelationship Name="team_ovs_lob" />
   <EntityRelationship Name="team_ovs_operation" />
@@ -193,17 +188,22 @@
   <EntityRelationship Name="team_ovs_sitetype" />
   <EntityRelationship Name="team_ovs_tyrational" />
   <EntityRelationship Name="team_ovs_workorderservicetaskprovision" />
+  <EntityRelationship Name="team_tc_country" />
   <EntityRelationship Name="team_tc_tcfiscalperiod" />
   <EntityRelationship Name="team_tc_tcfiscalquarter" />
   <EntityRelationship Name="team_tc_tcfiscalyear" />
   <EntityRelationship Name="team_tc_tcmonth" />
   <EntityRelationship Name="territory_parent_territory" />
   <EntityRelationship Name="TransactionCurrency_msdyn_workorder" />
+  <EntityRelationship Name="ts_Account_Country_tc_Country" />
+  <EntityRelationship Name="ts_Incident_Country_tc_Country" />
+  <EntityRelationship Name="ts_msdyn_workorder_Country_tc_Country" />
+  <EntityRelationship Name="ts_msdyn_workorder_msdyn_customer_asset" />
+  <EntityRelationship Name="ts_ovs_AirCarrier_Country_tc_Country" />
   <EntityRelationship Name="user_msdyn_incidenttypeservicetask" />
   <EntityRelationship Name="user_msdyn_servicetasktype" />
   <EntityRelationship Name="user_msdyn_workorder" />
   <EntityRelationship Name="user_msdyn_workordersubstatus" />
-  <EntityRelationship Name="user_ovs_country" />
   <EntityRelationship Name="user_ovs_finding" />
   <EntityRelationship Name="user_ovs_lob" />
   <EntityRelationship Name="user_ovs_operation" />
@@ -212,6 +212,7 @@
   <EntityRelationship Name="user_ovs_sitetype" />
   <EntityRelationship Name="user_ovs_tyrational" />
   <EntityRelationship Name="user_ovs_workorderservicetaskprovision" />
+  <EntityRelationship Name="user_tc_country" />
   <EntityRelationship Name="user_tc_tcfiscalperiod" />
   <EntityRelationship Name="user_tc_tcfiscalquarter" />
   <EntityRelationship Name="user_tc_tcfiscalyear" />

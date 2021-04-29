@@ -6,27 +6,25 @@
     <isquickfindquery>0</isquickfindquery>
     <isprivate>0</isprivate>
     <isdefault>1</isdefault>
-    <savedqueryid>{e06c03bf-12cf-4e64-895e-a611736ea802}</savedqueryid>
+    <savedqueryid>{f03304ab-1c4b-4922-8270-5a134bd054a9}</savedqueryid>
     <layoutxml>
-      <grid name="ovs_countries" jump="ovs_name" select="1" icon="1" preview="0">
-        <row name="ovs_country" id="ovs_countryid">
-          <cell name="ovs_name" width="300" />
-          <cell name="createdon" width="125" />
+      <grid name="tc_countries" jump="tc_name" select="1" icon="1" preview="0">
+        <row name="tc_country" id="tc_countryid">
+          <cell name="tc_name" width="300" />
         </row>
       </grid>
     </layoutxml>
     <querytype>64</querytype>
     <fetchxml>
       <fetch version="1.0" mapping="logical">
-        <entity name="ovs_country">
-          <attribute name="ovs_countryid" />
-          <attribute name="ovs_name" />
-          <attribute name="createdon" />
+        <entity name="tc_country">
+          <attribute name="tc_countryid" />
+          <attribute name="tc_name" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
-            <condition attribute="ovs_countryid" operator="ne" value="{208ef8a1-8e75-eb11-a812-000d3af3fac7}" uiname="CANADA" uitype="ovs_country" />
+            <condition attribute="tc_countryid" operator="ne" value="{208ef8a1-8e75-eb11-a812-000d3af3fac7}" uiname="CANADA" uitype="tc_country" />
           </filter>
-          <link-entity name="account" alias="aa" link-type="inner" from="ovs_country" to="ovs_countryid">
+          <link-entity name="account" alias="aa" link-type="inner" from="ts_country" to="tc_countryid">
             <filter type="and">
               <condition attribute="statecode" operator="eq" value="0" />
             </filter>
@@ -39,10 +37,10 @@
         </entity>
       </fetch>
     </fetchxml>
-    <IntroducedVersion>1.0</IntroducedVersion>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <LocalizedNames>
       <LocalizedName description="Country Lookup View" languagecode="1033" />
-      <LocalizedName description="Pays — Vue Recherche" languagecode="1036" />
+      <LocalizedName description="Country Lookup View(fr)" languagecode="1036" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

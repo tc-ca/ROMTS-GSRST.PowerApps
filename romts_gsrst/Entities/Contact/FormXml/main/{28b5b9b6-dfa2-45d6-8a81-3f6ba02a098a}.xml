@@ -5,7 +5,7 @@
     <IntroducedVersion>6.1.0.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form showImage="true">
       <tabs>
         <tab name="fstab_summary" id="{15bb2d4b-71da-74ea-3c5b-e497d78a55a2}" IsUserDefined="0" showlabel="true" expanded="true" labelid="{f38bf2e8-ff5a-442a-baae-7f9ba8a550c9}" locklevel="0" ordinalvalue="0">
           <columns>
@@ -13,6 +13,13 @@
               <sections>
                 <section name="fstab_summary_section_contact_information" showlabel="true" showbar="false" id="{9d943649-0387-1882-caa1-36de40d5a86c}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelposition="Left" labelid="{778fd21b-00c9-4430-bf93-bb95e45783a9}" locklevel="0" celllabelalignment="Left" ordinalvalue="0">
                   <rows>
+                    <row>
+                      <cell id="{a54c19c9-4722-ce25-60c5-2bb9452680d2}" showlabel="true" locklevel="0" labelid="{0101103b-6fe9-4c4f-8a36-30b0c35e0317}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Nom de la société" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{542e581d-cca1-5e40-e6d9-d67a9d1468b4}" showlabel="true" locklevel="0" labelid="{d0029b7c-a204-4c8f-a74f-b9a426488708}" ordinalvalue="10001">
                         <labels>
@@ -75,6 +82,32 @@
             </column>
           </columns>
         </tab>
+        <tab name="fstab_address" id="{1522d221-be18-2002-2b38-18626a0c64a9}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="1">
+          <columns>
+            <column width="28%" id="0">
+              <sections>
+                <section name="fstab_address_section_address" showlabel="true" showbar="false" locklevel="0" id="{bb765a60-c8c4-76a8-bb89-d6174b30ce6a}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{133d09d6-c374-954a-315b-435e1eeb722c}" showlabel="true" locklevel="0" visible="false" labelid="{1c77c696-a800-4387-88ce-244e923af950}" ordinalvalue="10000">
+                        <labels>
+                          <label description="Adresse 1" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{29689087-DC73-4574-A1B7-A9A30790A64F}" showlabel="false" locklevel="0" ordinalvalue="10001">
+                        <labels>
+                          <label description="Adresse 1 : Rue 1" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
         <tab name="fstab_other" id="{2290a93c-5e14-bc7a-21b3-427b2ee98cbd}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" visible="false" availableforphone="false" ordinalvalue="2">
           <columns>
             <column width="28%" id="0">
@@ -86,6 +119,46 @@
                         <labels>
                           <label description="Owner" languagecode="1033" solutionaction="Added" />
                           <label description="Propriétaire" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="fstab_sub_grids" id="{5a5a2ab7-ac90-3d98-539b-5a8e0a5909a4}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="3">
+          <columns>
+            <column width="28%" id="0">
+              <sections>
+                <section name="fstab_sub_grids_section" showlabel="false" showbar="false" locklevel="0" id="{182348c3-343a-e8c8-4324-7bac600b8725}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
+                  <rows>
+                    <row>
+                      <cell id="{ba8ca628-7322-e9e6-9bc2-4be20e305cc1}" showlabel="true" colspan="1" auto="false" rowspan="4" ordinalvalue="10000">
+                        <labels>
+                          <label description="Contacts" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{14c6b0ad-0226-ea35-2de6-b03b13292b2e}" showlabel="true" colspan="1" auto="false" rowspan="4" ordinalvalue="10001">
+                        <labels>
+                          <label description="Devis" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{345140c1-e108-09b3-a738-cc007318a880}" showlabel="true" colspan="1" auto="false" rowspan="4" ordinalvalue="10002">
+                        <labels>
+                          <label description="Commandes" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6d8c98a1-7c4b-6c47-cbad-6be478b57a81}" showlabel="true" colspan="1" auto="false" rowspan="4" ordinalvalue="10003">
+                        <labels>
+                          <label description="Factures" languagecode="1036" solutionaction="Added" />
                         </labels>
                       </cell>
                     </row>

@@ -37,11 +37,15 @@
                       <cell id="{01a01b94-b157-96c0-350c-b5a832756125}" showlabel="true" locklevel="0" ordinalvalue="10004" solutionaction="Modified">
                         <labels>
                           <label description="Has MS Inspection" languagecode="1033" solutionaction="Modified" />
+                          <label description="Inspection effectuée" languagecode="1036" solutionaction="Added" />
                         </labels>
                       </cell>
                     </row>
                     <row>
                       <cell id="{688ad2c9-4096-4e1b-690d-08dc7b3cbadc}" showlabel="true" locklevel="0" visible="false" ordinalvalue="20005" solutionaction="Modified">
+                        <labels>
+                          <label description="Inspection" languagecode="1036" solutionaction="Added" />
+                        </labels>
                         <control id="msdyn_inspection" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_inspection" disabled="false" uniqueid="{85609344-6b6c-c513-a820-54bd0b44dc53}" solutionaction="Modified" />
                       </cell>
                       <cell id="{eeb915ab-9047-0dec-5694-dea1a9e98ec4}" showlabel="false" ordinalvalue="20005" solutionaction="Removed" />
@@ -83,6 +87,17 @@
                       <cell id="{ca32bb1e-60ca-29ee-d05b-5381c96bb57c}" showlabel="false" ordinalvalue="20007" solutionaction="Added">
                         <labels>
                           <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="InspectionFormSection" showlabel="true" showbar="false" locklevel="0" id="{d07ba674-5365-6573-50a6-8479a0802433}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" visible="false" ordinalvalue="1">
+                  <rows>
+                    <row>
+                      <cell id="{5303630d-b685-5313-7bb9-d715bb63c85d}" showlabel="false" ordinalvalue="10000">
+                        <labels>
+                          <label description="Inspection" languagecode="1036" solutionaction="Added" />
                         </labels>
                       </cell>
                     </row>
@@ -158,22 +173,6 @@
             </column>
           </columns>
         </tab>
-        <tab id="{97cf9e25-4271-4b5f-8b67-c8728895f86c}" IsUserDefined="0" expanded="false" ordinalvalue="1">
-          <labels>
-            <label description="Remarques" languagecode="1036" solutionaction="Modified" />
-          </labels>
-          <columns>
-            <column width="100%" id="0">
-              <sections>
-                <section showlabel="false" showbar="false" id="{c8b63561-6930-4bbd-a641-6f64d318ae2e}" IsUserDefined="0" height="auto" ordinalvalue="0">
-                  <labels>
-                    <label description="Remarques" languagecode="1036" solutionaction="Modified" />
-                  </labels>
-                </section>
-              </sections>
-            </column>
-          </columns>
-        </tab>
       </tabs>
       <footer id="{8d91da9c-85e8-4dcd-a0e8-8153c3b32374}">
         <rows>
@@ -212,9 +211,9 @@
         </controlDescription>
       </controlDescriptions>
       <header id="{e9fc45e2-2983-4af8-97d2-8179c9f5fdcf}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
-        <rows></rows>
+        <rows />
       </header>
-      <DisplayConditions Order="2" FallbackForm="true" solutionaction="Added">
+      <DisplayConditions FallbackForm="true" Order="2" solutionaction="Added">
         <Everyone />
       </DisplayConditions>
     </form>

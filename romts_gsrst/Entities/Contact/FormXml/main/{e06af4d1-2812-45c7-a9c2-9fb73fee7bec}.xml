@@ -6,7 +6,75 @@
     <FormPresentation>0</FormPresentation>
     <FormActivationState>1</FormActivationState>
     <form>
+      <tabs>
+        <tab name="SUMMARY_TAB" id="{13c118dd-d4ad-48ee-8087-d35f5b5f2490}" IsUserDefined="0" showlabel="false" expanded="true" labelid="{c5ca1165-f5b8-4908-87f9-016bbb5035ee}" ordinalvalue="1" solutionaction="Modified" />
+        <tab name="DETAILS_TAB" id="{3f11f670-7ed1-4efa-b43b-9b2f07531d21}" IsUserDefined="0" expanded="true" showlabel="true" labelid="{5bf24e9e-ca44-4379-ac52-b3b6f3bc20f6}" ordinalvalue="2" solutionaction="Modified" />
+        <tab name="tab_recordwall" id="{e94e6ac4-12db-bc8c-ec81-8b20c5987655}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false" labelid="{a8132b4a-ae81-47a6-a32a-834e3aa9f44a}" ordinalvalue="0" solutionaction="Added">
+          <labels>
+            <label description="What's New" languagecode="1033" />
+            <label description="Nouveautés" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%" id="0">
+              <sections>
+                <section name="tab_recordwall_section_1" showlabel="false" showbar="false" locklevel="0" id="{ac0addcc-a626-6c98-40ee-b11edac36204}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" labelid="{2badeee0-d550-4d5b-9dd3-9e2cf7625e60}" ordinalvalue="0">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{be13b312-b6ac-83d7-34e1-e90dc1ecbec7}" showlabel="false" colspan="1" auto="false" rowspan="15" labelid="{609aeccd-958f-44fc-9453-eeb8788cdba5}" ordinalvalue="10000">
+                        <labels>
+                          <label description="RecordWall" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RecordWall" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>msdyn_/RecordWall.htm</Url>
+                            <PassParameters>true</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="0">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <events>
+            <event name="tabstatechange" application="false" active="false">
+              <Handlers>
+                <Handler functionName="ActivityFeeds.Form.CustomizationUtils.updateRecordWallRenderingState" libraryName="msdyn_/ActivityFeeds.Form.js" handlerUniqueId="{9beb6ce6-2666-8033-a406-3d68d44b9592}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+              </Handlers>
+            </event>
+          </events>
+        </tab>
+      </tabs>
       <DisplayConditions FallbackForm="true" Order="11" solutionaction="Modified" />
+      <formLibraries solutionaction="Added">
+        <Library name="msdyn_/ActivityFeeds.Form.js" libraryUniqueId="{4181da4c-6d13-ba3c-c859-be404e4ee2e3}" />
+      </formLibraries>
     </form>
     <LocalizedNames>
       <LocalizedName description="Contact for Multisession experience" languagecode="1033" />

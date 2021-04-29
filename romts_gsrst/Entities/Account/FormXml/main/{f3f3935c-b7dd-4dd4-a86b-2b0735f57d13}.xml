@@ -150,19 +150,14 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{548aabea-b760-0688-ac16-1ddb353e3ba2}" showlabel="true" locklevel="0" visible="true">
+                      <cell id="{6638c01d-fd65-4ca1-a75d-def624c49aaf}" locklevel="0">
                         <labels>
                           <label description="Country" languagecode="1033" />
-                          <label description="Pays" languagecode="1036" />
                         </labels>
-                        <control id="ovs_country" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_country" disabled="false" uniqueid="{5592d9b2-e6e2-b4d6-d76e-ed6cbe815b73}">
+                        <control id="ts_country" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_country" disabled="false">
                           <parameters>
-                            <AutoResolve>true</AutoResolve>
-                            <DisableMru>false</DisableMru>
-                            <DisableQuickFind>false</DisableQuickFind>
-                            <DisableViewPicker>false</DisableViewPicker>
-                            <DefaultViewId>{E06C03BF-12CF-4E64-895E-A611736EA802}</DefaultViewId>
-                            <AllowFilterOff>false</AllowFilterOff>
+                            <DefaultViewId>{2670AB65-5FE1-441F-B0E1-B2056E6AA402}</DefaultViewId>
+                            <AvailableViewIds>{2670AB65-5FE1-441F-B0E1-B2056E6AA402},{F03304AB-1C4B-4922-8270-5A134BD054A9},{BA5148DA-164F-46F5-93F4-744239F0CA2C}</AvailableViewIds>
                           </parameters>
                         </control>
                       </cell>
@@ -718,11 +713,17 @@
             <Handler passExecutionContext="true" enabled="true" handlerUniqueId="{58a9e819-d88b-c572-d1d3-601017c57b37}" libraryName="msdyn_/Utils/FieldServiceTrial.js" functionName="FieldServiceTrial.Library.Load" parameters="" />
             <Handler functionName="AssetCommon.Account.OnLoad" libraryName="msdyn_/Account/AssetCommon.Account.Library.js" handlerUniqueId="{281eb247-9ea4-d89b-59d2-8b29711499e9}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler passExecutionContext="true" enabled="true" handlerUniqueId="{CA3D9A4B-7A5C-4238-BAD6-5810FB05E86C}" libraryName="Sales/ClientCommon/Sales_ClientCommon.js" functionName="Sales.DocumentsTabController.shouldShowDocumentsTab" parameters="" />
+            <Handler functionName="ROM.Account.onLoad" libraryName="ovs_/js/Account.js" handlerUniqueId="{0d91863f-d1a5-4d15-911d-4734fb9f64b8}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="true" active="true" attribute="ovs_country">
           <Handlers>
             <Handler functionName="ROM.Account.countryOnChange" libraryName="ovs_/js/Account.js" handlerUniqueId="{36a5e07d-b2c7-433f-909f-f2c1e14d61fe}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_country">
+          <Handlers>
+            <Handler functionName="ROM.Account.countryOnChange" libraryName="ovs_/js/Account.js" handlerUniqueId="{2930e826-1c7c-4d9d-b049-aa31ccc54e9b}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

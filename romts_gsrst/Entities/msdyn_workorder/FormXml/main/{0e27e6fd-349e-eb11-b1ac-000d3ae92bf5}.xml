@@ -40,7 +40,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{1d890da4-a767-d1d9-44d5-472e75a9be26}" labelid="{72d3e8b0-e0f8-4f0a-9cb4-6effb1b0cba2}" showlabel="true" locklevel="0">
+                      <cell id="{1d890da4-a767-d1d9-44d5-472e75a9be26}" labelid="{72d3e8b0-e0f8-4f0a-9cb4-6effb1b0cba2}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Region" languagecode="1033" />
                           <label description="Région" languagecode="1036" />
@@ -58,12 +58,40 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{767b73ff-03da-4d95-9a84-d2a9c5d78f8f}" locklevel="0">
+                        <labels>
+                          <label description="Region" languagecode="1033" />
+                        </labels>
+                        <control id="ts_region" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_region" disabled="false">
+                          <parameters>
+                            <DisableMru>true</DisableMru>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{e94e2462-a792-edeb-c9ee-a62927c022cb}" showlabel="true" locklevel="0" visible="false" labelid="{cda0e6aa-cf72-497f-a392-85662de71429}">
                         <labels>
                           <label description="Country" languagecode="1033" />
                           <label description="Pays" languagecode="1036" />
                         </labels>
                         <control id="ovs_ovscountry" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_ovscountry" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{63dd127f-dfd1-4bd7-9889-a1409b8e2569}" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Country" languagecode="1033" />
+                        </labels>
+                        <control id="ts_country" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_country" disabled="false">
+                          <parameters>
+                            <DisableMru>true</DisableMru>
+                            <DefaultViewId>{2670AB65-5FE1-441F-B0E1-B2056E6AA402}</DefaultViewId>
+                            <AvailableViewIds>{2670AB65-5FE1-441F-B0E1-B2056E6AA402},{F03304AB-1C4B-4922-8270-5A134BD054A9},{BA5148DA-164F-46F5-93F4-744239F0CA2C}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -104,6 +132,7 @@
                         <control id="ovs_assetcategory" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_assetcategory" disabled="false">
                           <parameters>
                             <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
                           </parameters>
                         </control>
                       </cell>
@@ -133,22 +162,8 @@
                         <control id="msdyn_functionallocation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_functionallocation" disabled="false">
                           <parameters>
                             <DisableViewPicker>false</DisableViewPicker>
-                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
-                            <AvailableViewIds>{750E041A-F88C-4B3C-887A-1F1946B8D86B},{9FC31307-BF85-EA11-A81F-000D3AAB1E57},{8ED11338-0AD3-4EA2-A31E-7774E9195AEF},{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4},{CE3D1B20-7143-4293-BBC8-BCE3BBC7ECF0},{A5D1F403-C185-EA11-A81F-000D3AAB1E57},{27332682-C585-EA11-A81F-000D3AAB1E57}</AvailableViewIds>
-                            <DisableMru>true</DisableMru>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{5b2af071-b056-4955-a597-35dfe6e4d289}" locklevel="0" visible="true" labelid="{ef3c94a1-e030-4b82-9b8f-55eedc605d19}">
-                        <labels>
-                          <label description="Physical Asset" languagecode="1033" />
-                          <label description="Opération" languagecode="1036" />
-                        </labels>
-                        <control id="ovs_asset" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_asset" disabled="false">
-                          <parameters>
-                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{750E041A-F88C-4B3C-887A-1F1946B8D86B}</DefaultViewId>
+                            <AvailableViewIds>{750E041A-F88C-4B3C-887A-1F1946B8D86B}</AvailableViewIds>
                             <DisableMru>true</DisableMru>
                           </parameters>
                         </control>
@@ -179,6 +194,22 @@
                           <label description="Résumé de l'ordre de travail" languagecode="1036" />
                         </labels>
                         <control disabled="false" id="msdyn_workordersummary" datafieldname="msdyn_workordersummary" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5b2af071-b056-4955-a597-35dfe6e4d289}" locklevel="0" visible="true" labelid="{ef3c94a1-e030-4b82-9b8f-55eedc605d19}">
+                        <labels>
+                          <label description="Operation" languagecode="1033" />
+                          <label description="Opération" languagecode="1036" />
+                        </labels>
+                        <control id="ovs_asset" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_asset" disabled="true">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
+                            <DefaultViewId>{6D5B19DF-82A7-EB11-9442-000D3A8419E6}</DefaultViewId>
+                            <AvailableViewIds>{6ECB03A4-ACDA-44AE-83E3-C60BA8338DBB},{64F8ED51-5066-449D-8BF9-73A39737ECE7},{D70BCFF2-816A-E611-8106-00155DB8820B},{6DA9A965-1899-471C-9478-915527225A92},{FD2FDA4C-4B7F-4A68-A2CB-C1E1C6A31C8F},{38CC036F-FBFE-E911-A81C-000D3AC2C6CB},{718410E5-6A96-4D6E-9A7C-781265EEDFB9},{EFFE12A3-5558-47F5-9932-6B56B52EC8E7},{6D5B19DF-82A7-EB11-9442-000D3A8419E6},{BF49A9FC-82A7-EB11-9442-000D3A8410DC},{4F2F6A85-816A-E611-8106-00155DB8820B}</AvailableViewIds>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                   </rows>
@@ -229,9 +260,9 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{4c9d4dd2-1665-c4b5-800c-7564435e00cb}" labelid="{425bfffb-fda5-4f9e-9971-acad0b098df9}" showlabel="true" locklevel="0" visible="true">
+                      <cell id="{4c9d4dd2-1665-c4b5-800c-7564435e00cb}" labelid="{425bfffb-fda5-4f9e-9971-acad0b098df9}" showlabel="true" locklevel="0" visible="false">
                         <labels>
-                          <label description="Operation" languagecode="1033" />
+                          <label description="Primary Incident Customer Asset" languagecode="1033" />
                           <label description="Actif client principal de l'incident" languagecode="1036" />
                         </labels>
                         <control disabled="false" id="msdyn_customerasset" datafieldname="msdyn_customerasset" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" uniqueid="{3e63d73e-1d69-bb35-9327-3804484290c9}">
@@ -261,6 +292,32 @@
                             <DisableViewPicker>false</DisableViewPicker>
                             <DefaultViewId>{B96D141D-A429-E611-8107-00155DB9CD0A}</DefaultViewId>
                             <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="physical_assets_section" id="a04b62af-e9a4-4dd5-a565-391e4b53e8f0" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="PHYSICAL ASSETS" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{a93b17f7-bac4-4873-a8cb-3480b66ad4af}" rowspan="1" colspan="1" showlabel="false" auto="true">
+                        <labels>
+                          <label description="New SG control 1619117864312" languagecode="1033" />
+                          <label description="Actifs du client" languagecode="1036" />
+                        </labels>
+                        <control id="PhysicalAssets" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <TargetEntityType>msdyn_customerasset</TargetEntityType>
+                            <ViewId>{BF49A9FC-82A7-EB11-9442-000D3A8410DC}</ViewId>
+                            <ViewIds>{64F8ED51-5066-449D-8BF9-73A39737ECE7},{6ECB03A4-ACDA-44AE-83E3-C60BA8338DBB},{BF49A9FC-82A7-EB11-9442-000D3A8410DC}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>ts_msdyn_workorder_msdyn_customer_asset</RelationshipName>
+                            <AutoExpand>Auto</AutoExpand>
+                            <RecordsPerPage>10</RecordsPerPage>
                           </parameters>
                         </control>
                       </cell>
@@ -2760,6 +2817,7 @@
         <Library name="msdyn_/Utils/FieldServiceTrial.js" libraryUniqueId="{c8daeb2a-4593-8c82-1b0c-83be5e6acc94}" />
         <Library name="msdyn_/CFS/WorkOrder/WorkOrderForm.js" libraryUniqueId="{66c75878-8967-ee9a-4dae-5d4142dbb309}" />
         <Library name="ovs_/lib/dg.xrmquery.web.min.js" libraryUniqueId="{0d997e24-b2e9-4957-b63e-5cfa0001c6c6}" />
+        <Library name="ts_WorkOrderTest" libraryUniqueId="{bf525a5c-6d85-41a5-960a-5a92054a284a}" />
       </formLibraries>
       <events>
         <event name="onload" application="false" active="false">
@@ -2767,12 +2825,38 @@
             <Handler passExecutionContext="true" parameters="" enabled="true" handlerUniqueId="{8a748511-45ae-9991-76ad-253800974873}" libraryName="msdyn_/Utils/FieldServiceTrial.js" functionName="FieldServiceTrial.Library.Load" />
             <Handler functionName="msdyn.workOrderForm.onLoad" libraryName="msdyn_/CFS/WorkOrder/WorkOrderForm.js" handlerUniqueId="{56e4c9eb-ba02-4319-841d-deec4f5ce6f5}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler functionName="WorkOrders.Library.Load" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{e1fc70a3-64bc-4e4d-a397-e2d0ba64274b}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.WorkOrder.onLoad" libraryName="ts_WorkOrderTest" handlerUniqueId="{26f0005f-6090-4f4e-8603-c2b2736c8881}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="false" active="false" attribute="msdyn_iotalert">
           <Handlers>
             <Handler passExecutionContext="true" parameters="" enabled="true" handlerUniqueId="{c21e80a3-caac-d778-c228-499cdb811686}" libraryName="$webresource:msdyn_/CFS/Utils/RibbonUtils.js" functionName="msdyn.RibbonUtils.refreshRibbonFnFromExecutionFormContext" />
             <Handler passExecutionContext="false" parameters="" enabled="true" handlerUniqueId="{4a403021-45a7-9154-c9d0-67de208e4787}" libraryName="msdyn_/CFS/WorkOrder/WorkOrderForm.js" functionName="msdyn.workOrderForm.ShoworHideDeviceInsights" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="true" active="true">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.onSave" libraryName="ts_WorkOrderTest" handlerUniqueId="{eac32e1a-ad71-44ed-bbbf-8115e8ba23b2}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_region">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.regionOnChange" libraryName="ts_WorkOrderTest" handlerUniqueId="{6f23e0c0-167d-4248-a3c5-93b5b9f8609d}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ovs_assetcategory">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.operationTypeOnChange" libraryName="ts_WorkOrderTest" handlerUniqueId="{a8968de0-a146-4476-8f63-125e4ccfce92}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_serviceaccount">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.stakeholderOnChange" libraryName="ts_WorkOrderTest" handlerUniqueId="{a203d755-1c55-4e60-987f-de4e7854b7d2}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_country">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.countryOnChange" libraryName="ts_WorkOrderTest" handlerUniqueId="{a00fc00b-9d91-4ad2-8dee-02206515cd20}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

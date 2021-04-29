@@ -74,12 +74,12 @@
                   <sco:Collection x:TypeArguments="Variable" x:Key="Variables" />
                   <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
                     <Sequence DisplayName="SetVisibilityStep1: Show the country field">
-                      <mcwc:SetVisibility ControlId="ovs_ovscountry" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="msdyn_workorder" IsVisible="True" />
+                      <mcwc:SetVisibility ControlId="ts_country" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="msdyn_workorder" IsVisible="True" />
                     </Sequence>
                     <Sequence DisplayName="SetFieldRequiredLevelStep3: Set country as a required field">
                       <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;msdyn_workorder&quot;)]" />
                       <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
-                      <mcwc:SetFieldRequiredLevel ControlId="ovs_ovscountry" ControlType="standard" DisplayName="SetFieldRequiredLevelStep3" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="msdyn_workorder" RequiredLevel="Required" />
+                      <mcwc:SetFieldRequiredLevel ControlId="ts_country" ControlType="standard" DisplayName="SetFieldRequiredLevelStep3" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="msdyn_workorder" RequiredLevel="Required" />
                     </Sequence>
                   </sco:Collection>
                 </mxswa:ActivityReference.Properties>
@@ -108,12 +108,12 @@
                   <sco:Collection x:TypeArguments="Variable" x:Key="Variables" />
                   <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
                     <Sequence DisplayName="SetVisibilityStep4: Hide the country field">
-                      <mcwc:SetVisibility ControlId="ovs_ovscountry" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="msdyn_workorder" IsVisible="False" />
+                      <mcwc:SetVisibility ControlId="ts_country" ControlType="standard" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="msdyn_workorder" IsVisible="False" />
                     </Sequence>
                     <Sequence DisplayName="SetFieldRequiredLevelStep3447: Set country as an optional">
                       <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;msdyn_workorder&quot;)]" />
                       <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
-                      <mcwc:SetFieldRequiredLevel ControlId="ovs_ovscountry" ControlType="standard" DisplayName="SetFieldRequiredLevelStep3447" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="msdyn_workorder" RequiredLevel="None" />
+                      <mcwc:SetFieldRequiredLevel ControlId="ts_country" ControlType="standard" DisplayName="SetFieldRequiredLevelStep3447" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="msdyn_workorder" RequiredLevel="None" />
                     </Sequence>
                     <Sequence DisplayName="SetAttributeValueStep5: Clear country field">
                       <Sequence.Variables>
@@ -121,7 +121,7 @@
                       </Sequence.Variables>
                       <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;msdyn_workorder&quot;)]" />
                       <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
-                      <mxswa:SetEntityProperty Attribute="ovs_ovscountry" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="msdyn_workorder" Value="[SetAttributeValueStep5_1]">
+                      <mxswa:SetEntityProperty Attribute="ts_country" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="msdyn_workorder" Value="[SetAttributeValueStep5_1]">
                         <mxswa:SetEntityProperty.TargetType>
                           <InArgument x:TypeArguments="s:Type">
                             <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:EntityReference" />
