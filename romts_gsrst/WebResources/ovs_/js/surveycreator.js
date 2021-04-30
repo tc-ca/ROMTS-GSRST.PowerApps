@@ -1,20 +1,22 @@
 var lang = parent.Xrm.Utility.getGlobalContext().userSettings.languageId;
 
-var CharactersRemaining;
-var detailTextAdd;
-var detailTextMinus;
+var charactersRemainingLocalizedText;
+var detailTextAddLocalizedText;
+var detailTextMinusLocalizedText;
+var submitLocalizedText;
 
 if (lang == 1036) {
-    CharactersRemaining = "caractères restants";
-    detailTextAdd = "+ Détail";
-    detailTextMinus = "- Détail";
+    charactersRemainingLocalizedText = "caractères restants";
+    detailTextAddLocalizedText = "+ Détail";
+    detailTextMinusLocalizedText = "- Détail";
+    submitLocalizedText = "Soumettre";
 }
 else {
-    CharactersRemaining = "characters remaining";
-    detailTextAdd = "+ Detail";
-    detailTextMinus = "- Detail";
+    charactersRemainingLocalizedText = "characters remaining";
+    detailTextAddLocalizedText = "+ Detail";
+    detailTextMinusLocalizedText = "- Detail";
+    submitLocalizedText = "Submit";
 }
-
 
 // Show Designer, Test Survey, JSON Editor and additionally Logic tabs
 var options = {
@@ -52,6 +54,7 @@ var autocompleteEditor = {
         var submit = document.createElement("input");
         submit.setAttribute("type", "submit");
         submit.setAttribute("class", "btn btn-primary sv-btn svd-toolbar-button");
+        submit.value = submitLocalizedText;
         submit.onclick = function () {
         //Change to empty string first to trigger onChange event even on resubmission of same provision name. Needed to update existing provisions.
           editor.koValue("");
@@ -144,6 +147,14 @@ if (parent.Xrm.Utility.getGlobalContext().userSettings.languageId == 1036) {
     surveyLocale = 'fr';
 }
 
+//Add custom property text localization
+SurveyCreator
+    .localization
+    .locales["fr"].p.hasDetail = "Champ détail ?";
+SurveyCreator
+    .localization
+    .locales["fr"].p.provision = "Dispositions";
+
 SurveyCreator
     .localization
     .currentLocale = surveyLocale;
@@ -183,7 +194,7 @@ hasDetailQuestions.forEach(function (questionName) {
     Survey
         .Serializer
         .addProperty(questionName, {
-            name: "hasDetail:boolean",
+            name: "hasDetail:switch",
             category: "general",
             default: true
         });
@@ -202,7 +213,18 @@ function appendDetailToQuestion(survey, options) {
     var detailBox = document.createElement("textarea");
     var characterCount = document.createElement("span");
 
-    //Append HTML elements to each other
+    /* Append HTML elements to each other forming the following structure
+
+    <div id="detailContainer">
+        <div id="header">
+            <span id="detailText"></span>
+        </div>
+        <div id="content">
+            <textarea id="detailBox"></textarea>
+            <span id="characterCount"></span>
+        </div>
+    </div>
+    */
 
     header.appendChild(detailText);
     content.appendChild(detailBox);
@@ -225,40 +247,53 @@ function appendDetailToQuestion(survey, options) {
     detailBox.style.resize = "vertical";
     characterCount.style.textAlign = "left";
 
+    //Expand content if detailBox has text saved previously, and load previous detailBox text
     if (survey.getValue(options.question.name + "-Detail") != null) {
         detailBox.value = survey.getValue(options.question.name + "-Detail");
-        content.style.display = "inline";
-        detailText.innerHTML = detailTextMinus;
+        content.style.display = "block";
+        detailText.innerHTML = detailTextMinusLocalizedText;
     } else {
         content.style.display = "none";
-        detailText.innerHTML = detailTextAdd;
+        detailText.innerHTML = detailTextAddLocalizedText;
     }
 
     //Add functionality to HTML elements
 
+    //Update character count onKeyUp in detailBox
     var detailBoxOnKeyUpHandler = function () {
         var currLength = detailBox.value.length;
-        characterCount.innerText = (1000 - currLength) + " " + CharactersRemaining;
+        characterCount.innerText = (1000 - currLength) + " " + charactersRemainingLocalizedText;
     }
     detailBoxOnKeyUpHandler();
     detailBox.onkeyup = detailBoxOnKeyUpHandler;
 
+    //Update detail text in survey response
     detailBox.onchange = function () {
         survey.setValue((options.question.name +"-Detail"), detailBox.value);
     }
 
+    //Toggle visibilty of content when header is clicked
     header.onclick = function () {
-        if (content.style.display == "inline" && detailBox.value == "") {
+        if (content.style.display == "block" && detailBox.value == "") {
             content.style.display = "none";
-            detailText.innerHTML = detailTextAdd;
+            detailText.innerHTML = detailTextAddLocalizedText;
         } else {
-            content.style.display = "inline";
-            detailText.innerHTML = detailTextMinus;
+            content.style.display = "block";
+            detailText.innerHTML = detailTextMinusLocalizedText;
         }
     };
 
+    //Toggle visibilty of Detail when hasDetail property is changed in creator
+    options.question.registerFunctionOnPropertyValueChanged("hasDetail", function () {
+        if (options.question.hasDetail == true) {
+            detailContainer.style.display = "block";
+        } else {
+            detailContainer.style.display = "none";
+        }
+    });
 }
 
+//Add Detail content to questions when they are rendered in the survey designer and test survey
 creator
     .onSurveyInstanceCreated
     .add(function (sender, options) {
@@ -280,6 +315,55 @@ creator
                 .add(function (survey, options) {
                     if (options.question.hasDetail != true) return;
                     appendDetailToQuestion(survey, options);
+                });
+        }
+    });
+
+// Add a character count and limit to Comment questions.
+// If the maxLength is the default value of -1, set maxLength to 1000.
+// No character count if maxLength was set to 0
+function appendCharacterCountToQuestion(survey, options) {
+    var comment = options.htmlElement.getElementsByTagName('textarea')[0];
+    var maxLength = options.question.maxLength;
+    if (maxLength == -1) {
+        maxLength = 1000;
+    }
+    if (maxLength !== 0) {
+        comment.setAttribute("maxLength", maxLength);
+        var div = document.createElement("div");
+        div.style.textAlign = "left";
+        comment.parentNode.appendChild(div);
+        var changingHandler = function () {
+            var currLength = comment.value.length;
+            div.innerText = (maxLength - currLength) + " " + charactersRemainingLocalizedText;
+        }
+        changingHandler();
+        comment.onkeyup = changingHandler;
+    }
+}
+
+//Add Character Count to Comment questions when they are rendered in the survey designer and test survey
+creator
+    .onSurveyInstanceCreated
+    .add(function (sender, options) {
+        //If we are creating a surface for designer surface
+        if (options.reason == "designer") {
+            options
+                .survey
+                .onAfterRenderQuestion
+                .add(function (survey, options) {
+                    if (options.question.getType() !== "comment") return;
+                    appendCharacterCountToQuestion(survey, options);
+                });
+        }
+        //If we are creating a surface for "Test Survey" tab
+        if (options.reason == "test") {
+            options
+                .survey
+                .onAfterRenderQuestion
+                .add(function (survey, options) {
+                    if (options.question.getType() !== "comment") return;
+                    appendCharacterCountToQuestion(survey, options);
                 });
         }
     });

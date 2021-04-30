@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{6ecb03a4-acda-44ae-83e3-c60ba8338dbb}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_customerassetid">
+          <cell name="msdyn_name" width="300" />
+          <cell name="msdyn_account" width="150" />
+          <cell name="msdyn_functionallocation" width="150" />
+          <cell name="msdyn_customerassetcategory" width="100" />
+          <cell name="msdyn_parentasset" width="150" />
+          <cell name="msdyn_masterasset" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="msdyn_customerasset">
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="msdyn_parentasset" />
+          <attribute name="msdyn_masterasset" />
+          <attribute name="msdyn_account" />
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_functionallocation" />
+          <attribute name="msdyn_customerassetid" />
+          <attribute name="msdyn_customerassetcategory" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Customer Assets" languagecode="1033" />
+      <LocalizedName description="Appareils actifs" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

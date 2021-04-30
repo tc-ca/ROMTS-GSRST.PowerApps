@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{91deb2cd-5411-4171-ae61-d76c31d09e76}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_customerassetcategoryid">
+          <cell name="msdyn_name" width="186" />
+          <cell name="ts_assetcategorytype" width="184" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="msdyn_customerassetcategory">
+          <attribute name="msdyn_customerassetcategoryid" />
+          <attribute name="msdyn_name" />
+          <order attribute="msdyn_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_assetcategorytype" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>8.3.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Customer Asset Categories" languagecode="1033" />
+      <LocalizedName description="Catégories d’actif client actives" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
