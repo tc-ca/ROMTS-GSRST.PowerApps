@@ -19,11 +19,12 @@
         <entity name="msdyn_customerassetcategory">
           <attribute name="msdyn_customerassetcategoryid" />
           <attribute name="msdyn_name" />
-          <order attribute="msdyn_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <attribute name="ts_assetcategorytype" />
+          <order attribute="ts_assetcategorytype" descending="false" />
+          <order attribute="msdyn_name" descending="false" />
         </entity>
       </fetch>
     </fetchxml>
