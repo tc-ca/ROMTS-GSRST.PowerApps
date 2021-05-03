@@ -154,9 +154,9 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{ea762428-d14a-45eb-8278-194a01eb8f08}" locklevel="0" labelid="{16960dfa-0cdb-4a11-b8f4-4e6064045962}">
+                      <cell id="{ea762428-d14a-45eb-8278-194a01eb8f08}" locklevel="0" labelid="{16960dfa-0cdb-4a11-b8f4-4e6064045962}" visible="false">
                         <labels>
-                          <label description="Site" languagecode="1033" />
+                          <label description="Functional Location" languagecode="1033" />
                           <label description="Poste technique" languagecode="1036" />
                         </labels>
                         <control id="msdyn_functionallocation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_functionallocation" disabled="false">
@@ -165,6 +165,20 @@
                             <DefaultViewId>{750E041A-F88C-4B3C-887A-1F1946B8D86B}</DefaultViewId>
                             <AvailableViewIds>{750E041A-F88C-4B3C-887A-1F1946B8D86B}</AvailableViewIds>
                             <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{83db9802-d4f2-4690-b5b8-ffc08cc2e783}" locklevel="0">
+                        <labels>
+                          <label description="Site" languagecode="1033" />
+                        </labels>
+                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="false">
+                          <parameters>
+                            <DisableMru>true</DisableMru>
+                            <AvailableViewIds>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
                           </parameters>
                         </control>
                       </cell>
@@ -202,12 +216,12 @@
                           <label description="Operation" languagecode="1033" />
                           <label description="Opération" languagecode="1036" />
                         </labels>
-                        <control id="ovs_asset" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_asset" disabled="true">
+                        <control id="ovs_asset" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_asset" disabled="false">
                           <parameters>
-                            <DisableViewPicker>true</DisableViewPicker>
+                            <DisableViewPicker>false</DisableViewPicker>
                             <DisableMru>true</DisableMru>
                             <DefaultViewId>{6D5B19DF-82A7-EB11-9442-000D3A8419E6}</DefaultViewId>
-                            <AvailableViewIds>{6ECB03A4-ACDA-44AE-83E3-C60BA8338DBB},{64F8ED51-5066-449D-8BF9-73A39737ECE7},{D70BCFF2-816A-E611-8106-00155DB8820B},{6DA9A965-1899-471C-9478-915527225A92},{FD2FDA4C-4B7F-4A68-A2CB-C1E1C6A31C8F},{38CC036F-FBFE-E911-A81C-000D3AC2C6CB},{718410E5-6A96-4D6E-9A7C-781265EEDFB9},{EFFE12A3-5558-47F5-9932-6B56B52EC8E7},{6D5B19DF-82A7-EB11-9442-000D3A8419E6},{BF49A9FC-82A7-EB11-9442-000D3A8410DC},{4F2F6A85-816A-E611-8106-00155DB8820B}</AvailableViewIds>
+                            <AvailableViewIds>{6ECB03A4-ACDA-44AE-83E3-C60BA8338DBB},{6D5B19DF-82A7-EB11-9442-000D3A8419E6},{FD2FDA4C-4B7F-4A68-A2CB-C1E1C6A31C8F}</AvailableViewIds>
                           </parameters>
                         </control>
                       </cell>
@@ -2857,6 +2871,16 @@
         <event name="onchange" application="true" active="true" attribute="ts_country">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.countryOnChange" libraryName="ts_WorkOrderTest" handlerUniqueId="{a00fc00b-9d91-4ad2-8dee-02206515cd20}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_site">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.siteOnChange" libraryName="ts_WorkOrderTest" handlerUniqueId="{274fd2ec-8b68-466e-bddd-e91425963df6}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_workordertype">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.workOrderTypeOnChange" libraryName="ts_WorkOrderTest" handlerUniqueId="{45c657dd-b751-455e-a87f-dd2394de84ca}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

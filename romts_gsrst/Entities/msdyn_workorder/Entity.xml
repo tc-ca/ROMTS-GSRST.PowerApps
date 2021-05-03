@@ -5,15 +5,12 @@
     <entity Name="msdyn_workorder">
       <LocalizedNames>
         <LocalizedName description="Work Order" languagecode="1033" />
-        <LocalizedName description="Ordre de travail" languagecode="1036" />
       </LocalizedNames>
       <LocalizedCollectionNames>
         <LocalizedCollectionName description="Work Orders" languagecode="1033" />
-        <LocalizedCollectionName description="Ordres de travail" languagecode="1036" />
       </LocalizedCollectionNames>
       <Descriptions>
         <Description description="Work orders store all information about the job performed for an account. Stores incident details, resource, expenses, tasks, communications, billing and more" languagecode="1033" />
-        <Description description="Les ordres de travail stockent toutes les informations sur le travail exécuté pour un compte. Stocke les détails des incidents, les ressources, les dépenses, les tâches, les communications, la facturation et plus encore" languagecode="1036" />
       </Descriptions>
       <attributes>
         <attribute PhysicalName="CreatedBy">
@@ -54,7 +51,7 @@
           </displaynames>
           <Descriptions>
             <Description description="Unique identifier of the user who created the record." languagecode="1033" />
-            <Description description="Identificateur unique de l’utilisateur qui a créé l’enregistrement." languagecode="1036" />
+            <Description description="Identificateur unique de l'utilisateur ayant créé l'enregistrement." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="CreatedOn">
@@ -206,7 +203,7 @@
           </displaynames>
           <Descriptions>
             <Description description="Shows the sequence number of the import that created this record." languagecode="1033" />
-            <Description description="Affiche le numéro séquentiel de l'importation ayant créé cet enregistrement." languagecode="1036" />
+            <Description description="Affiche le Numéro séquentiel de l'importation ayant créé cet enregistrement." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ModifiedBy">
@@ -247,7 +244,7 @@
           </displaynames>
           <Descriptions>
             <Description description="Unique identifier of the user who modified the record." languagecode="1033" />
-            <Description description="Identificateur unique de l’utilisateur qui a modifié l’enregistrement." languagecode="1036" />
+            <Description description="Identificateur unique de l'utilisateur ayant modifié l'enregistrement." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ModifiedOn">
@@ -737,7 +734,7 @@
           </displaynames>
           <Descriptions>
             <Description description="When Bookings are used on a Work Order, this field is auto-populated based on the latest End Time from the related Bookings. Otherwise, this field is populated based on the change of System Status" languagecode="1033" />
-            <Description description="Lorsque des réservations sont utilisées sur un ordre de travail, ce champ est renseigné automatiquement en fonction de l’heure de fin la plus récente des réservations associées. Sinon, ce champ est renseigné en fonction de la modification du statut du système" languagecode="1036" />
+            <Description description="Lorsque des réservations sont utilisées sur un ordre de travail, ce champ est renseigné automatiquement en fonction de l’heure de fin la plus récente des réservations associées. Sinon, ce champ est renseigné en fonction de la modification du statut du système." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="msdyn_Country">
@@ -1718,7 +1715,7 @@
           <LookupStyle>single</LookupStyle>
           <LookupTypes />
           <displaynames>
-            <displayname description="Primary Incident Type" languagecode="1033" />
+            <displayname description="Activity Type" languagecode="1033" />
             <displayname description="Type d'incident principal" languagecode="1036" />
           </displaynames>
           <Descriptions>
@@ -1820,11 +1817,11 @@
           <LookupStyle>single</LookupStyle>
           <LookupTypes />
           <displaynames>
-            <displayname description="Site" languagecode="1033" />
+            <displayname description="Stakeholder" languagecode="1033" />
             <displayname description="Site" languagecode="1036" />
           </displaynames>
           <Descriptions>
-            <Description description="Site of Oversight Activity" languagecode="1033" />
+            <Description description="" languagecode="1033" />
             <Description description="Site de l'activité de surveillance" languagecode="1036" />
           </Descriptions>
         </attribute>
@@ -3601,6 +3598,7 @@
           </displaynames>
           <Descriptions>
             <Description description="Unique identifier for the team that owns the record." languagecode="1033" />
+            <Description description="Identificateur unique de l'équipe propriétaire de l'enregistrement." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="OwningUser">
@@ -3677,6 +3675,7 @@
           </displaynames>
           <Descriptions>
             <Description description="Shows the ID of the process associated with the entity." languagecode="1033" />
+            <Description description="Affiche l'ID du processus associé à l'entité." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="qm_BlobPath">
@@ -3868,6 +3867,7 @@
           </displaynames>
           <Descriptions>
             <Description description="Shows the ID of the stage where the entity is located." languagecode="1033" />
+            <Description description="Affiche l'ID de la phase dans laquelle se trouve l'entité." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="statecode">
@@ -4144,6 +4144,44 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Region" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ts_Site">
+          <Type>lookup</Type>
+          <Name>ts_site</Name>
+          <LogicalName>ts_site</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.0.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="Site" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />

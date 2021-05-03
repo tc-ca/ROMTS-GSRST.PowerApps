@@ -1,22 +1,30 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Survey Render</title>
+﻿<html>
+<head>
+</head>
+<body style="overflow-wrap: break-word;" onfocusout="parent.setEmailRange();">
+    <div id="div1">
 
-        <meta name="viewport" content="width=device-width">
+    </div>
+    <script src="../js/buildprovisiontext.js"></script>
+    <script language="javascript">
+        provisionName = "SATR 10"
+        langId = 1033
+        parent.Xrm.WebApi.retrieveMultipleRecords("qm_rclegislation", `?$select=qm_name,qm_legislationlbl,qm_legislationetxt,qm_legislationftxt,_qm_tylegislationtypeid_value,_qm_rcparentlegislationid_value&$filter=qm_name eq '${provisionName}'`).then(
+            async function success(result) {
+                if (result.entities.length > 0) {
+                    provisionText = await buildProvisionText(result.entities[0], langId);
+                    var span = document.createElement("Span");
+                    span.innerHTML = provisionText;
+                    document.getElementById("div1").appendChild(span);
+                }
+            },
+            function (error) {
+                console.log(error.message);
+                // handle error conditions
+            }
+        );
 
-        <script src="../js/jquery.js"></script>
-        <script src="../js/survey.jquery.min.js"></script>
-        <script src="../js/showdown.min.js"></script>
-        <script src="../js/tsis2findingwidget.js"></script>
-      
-        <link rel="stylesheet" href="../css/survey.min.css">
-    </head>
-
-    <body style="overflow-wrap: break-word;">
-        <div id="surveyElement" style="display:inline-block;width:100%;"></div>
-        <div id="surveyResult"></div>
-
-        <script type="text/javascript" src="../js/surveyRender.js"></script>
-    </body>
+        
+    </script>
+</body>
 </html>
