@@ -190,7 +190,6 @@ var ROM;
                 var alertOptions = { height: 120, width: 260 };
                 Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(function () { });
             });
-
         }
     })(Incident = ROM.Incident || (ROM.Incident = {}));
 })(ROM || (ROM = {}));

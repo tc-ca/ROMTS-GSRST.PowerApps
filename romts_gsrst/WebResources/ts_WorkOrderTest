@@ -8,7 +8,7 @@ var ROM;
         function onLoad(eContext) {
             var form = eContext.getFormContext();
             var state = form.getAttribute("statecode").getValue();
-            updateCaseView(eContext); //TODO: not sure why this breaks
+            updateCaseView(eContext);
             //Set required field
             form.getAttribute("ts_region").setRequiredLevel("required");
             form.getAttribute("ovs_assetcategory").setRequiredLevel("required");
@@ -41,7 +41,7 @@ var ROM;
                     form.getControl("ovs_assetcategory").setDisabled(false);
                     form.getControl("msdyn_serviceaccount").setDisabled(false);
                     form.getControl("ts_site").setDisabled(false);
-                    form.getControl("msdyn_primaryincidenttype").setDisabled(true);
+                    form.getControl("msdyn_primaryincidenttype").setDisabled(false);
                     break;
             }
         }
@@ -79,9 +79,6 @@ var ROM;
                 if (workOrderTypeAttribute != null && workOrderTypeAttribute != undefined) {
                     // Clear out all dependent fields' value
                     // Clear out all dependent fields' value
-                    if (!form.getControl("ts_region").getDisabled() || form.getAttribute("ts_region").getValue() != null) {
-                        form.getAttribute("ts_region").setValue(null);
-                    }
                     if (!form.getControl("ts_country").getDisabled() || form.getAttribute("ts_country").getValue() != null) {
                         form.getAttribute("ts_country").setValue(null);
                     }
@@ -94,13 +91,14 @@ var ROM;
                     if (!form.getControl("ts_site").getDisabled() || form.getAttribute("ts_site").getValue() != null) {
                         form.getAttribute("ts_site").setValue(null);
                     }
+                    if (!form.getControl("msdyn_primaryincidenttype").getDisabled() || form.getAttribute("msdyn_primaryincidenttype").getValue() != null) {
+                        form.getAttribute("msdyn_primaryincidenttype").setValue(null);
+                    }
                     // Disable all dependent fields
-                    form.getControl("ts_region").setDisabled(true);
-                    form.getAttribute("ts_country").setRequiredLevel("none");
-                    form.getControl("ts_country").setVisible(false);
                     form.getControl("ovs_assetcategory").setDisabled(true);
                     form.getControl("msdyn_serviceaccount").setDisabled(true);
                     form.getControl("ts_site").setDisabled(true);
+                    form.getControl("msdyn_primaryincidenttype").setDisabled(true);
                     // If previous fields have values, we use the filtered fetchxml in a custom lookup view
                     var workOrderTypeAttributeValue = workOrderTypeAttribute.getValue();
                     if (workOrderTypeAttributeValue != null && workOrderTypeAttributeValue != undefined) {
@@ -131,12 +129,16 @@ var ROM;
                     if (!form.getControl("ts_site").getDisabled() || form.getAttribute("ts_site").getValue() != null) {
                         form.getAttribute("ts_site").setValue(null);
                     }
+                    if (!form.getControl("msdyn_primaryincidenttype").getDisabled() || form.getAttribute("msdyn_primaryincidenttype").getValue() != null) {
+                        form.getAttribute("msdyn_primaryincidenttype").setValue(null);
+                    }
                     // Disable all dependent fields
                     form.getAttribute("ts_country").setRequiredLevel("none");
                     form.getControl("ts_country").setVisible(false);
                     form.getControl("ovs_assetcategory").setDisabled(true);
                     form.getControl("msdyn_serviceaccount").setDisabled(true);
                     form.getControl("ts_site").setDisabled(true);
+                    form.getControl("msdyn_primaryincidenttype").setDisabled(true);
                     // If previous fields have values, we use the filtered fetchxml in a custom lookup view
                     var regionAttributeValue = regionAttribute.getValue();
                     if (regionAttributeValue != null && regionAttributeValue != undefined) {
@@ -189,6 +191,14 @@ var ROM;
                     if (!form.getControl("ts_site").getDisabled() || form.getAttribute("ts_site").getValue() != null) {
                         form.getAttribute("ts_site").setValue(null);
                     }
+                    if (!form.getControl("msdyn_primaryincidenttype").getDisabled() || form.getAttribute("msdyn_primaryincidenttype").getValue() != null) {
+                        form.getAttribute("msdyn_primaryincidenttype").setValue(null);
+                    }
+                    // Disable all dependent fields
+                    form.getControl("ovs_assetcategory").setDisabled(true);
+                    form.getControl("msdyn_serviceaccount").setDisabled(true);
+                    form.getControl("ts_site").setDisabled(true);
+                    form.getControl("msdyn_primaryincidenttype").setDisabled(true);
                     var regionAttributeValue = regionAttribute.getValue();
                     var countryAttributeValue = countryAttribute.getValue();
                     if (regionAttributeValue != null && regionAttributeValue != undefined) {
@@ -239,9 +249,13 @@ var ROM;
                     if (!form.getControl("ts_site").getDisabled() || form.getAttribute("ts_site").getValue() != null) {
                         form.getAttribute("ts_site").setValue(null);
                     }
+                    if (!form.getControl("msdyn_primaryincidenttype").getDisabled() || form.getAttribute("msdyn_primaryincidenttype").getValue() != null) {
+                        form.getAttribute("msdyn_primaryincidenttype").setValue(null);
+                    }
                     // Disable all dependent fields
                     form.getControl("msdyn_serviceaccount").setDisabled(true);
                     form.getControl("ts_site").setDisabled(true);
+                    form.getControl("msdyn_primaryincidenttype").setDisabled(true);
                     // If previous fields have values, we use the filtered fetchxml in a custom lookup view
                     var workOrderTypeAttributeValue = workOrderTypeAttribute.getValue();
                     var regionAttributeValue = regionAttribute.getValue();
@@ -499,8 +513,10 @@ var ROM;
                         if (lookup[0].name == "International") {
                             form.getControl("ts_country").setVisible(true);
                         }
-                        // Enable the Operation Type if we've successfully set the Region
-                        form.getControl("ovs_assetcategory").setDisabled(false);
+                        else {
+                            form.getControl("ovs_assetcategory").setDisabled(false);
+                        }
+                        form.getControl("ts_region").setDisabled(false);
                     }, function (error) {
                         showErrorMessageAlert(error);
                     });
