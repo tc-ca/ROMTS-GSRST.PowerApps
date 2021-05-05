@@ -8,17 +8,13 @@
     <layoutxml>
       <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
         <row name="result" id="msdyn_workorderid">
-          <cell name="msdyn_name" width="100" />
-          <cell name="ovs_rational" width="125" />
-          <cell name="msdyn_serviceterritory" width="125" />
-          <cell name="ovs_regulatedentity" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="msdyn_name" width="122" />
+          <cell name="ovs_rational" width="96" />
+          <cell name="msdyn_primaryincidenttype" width="140" />
           <cell name="msdyn_serviceaccount" width="150" />
-          <cell name="msdyn_address1" width="150" />
-          <cell name="msdyn_city" width="150" />
-          <cell name="msdyn_stateorprovince" width="150" />
-          <cell name="msdyn_postalcode" width="150" />
-          <cell name="ovs_primaryinspector" width="150" />
-          <cell name="ovs_fiscalquarter" width="125" />
+          <cell name="ts_site" width="155" />
+          <cell name="ts_region" width="100" />
+          <cell name="ownerid" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -29,19 +25,15 @@
           <attribute name="msdyn_name" />
           <attribute name="msdyn_serviceaccount" />
           <attribute name="ovs_rational" />
-          <attribute name="msdyn_address1" />
-          <attribute name="msdyn_city" />
-          <attribute name="msdyn_stateorprovince" />
-          <attribute name="msdyn_postalcode" />
-          <attribute name="ovs_primaryinspector" />
-          <attribute name="ovs_fiscalquarter" />
-          <attribute name="msdyn_serviceterritory" />
-          <order attribute="msdyn_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <attribute name="ovs_regulatedentity" />
           <attribute name="msdyn_workorderid" />
+          <attribute name="ts_site" />
+          <attribute name="msdyn_primaryincidenttype" />
+          <attribute name="ownerid" />
+          <attribute name="ts_region" />
+          <order attribute="msdyn_name" descending="true" />
         </entity>
       </fetch>
     </fetchxml>

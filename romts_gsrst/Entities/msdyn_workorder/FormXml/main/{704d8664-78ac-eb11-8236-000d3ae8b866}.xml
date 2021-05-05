@@ -56,20 +56,6 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{01c9fbde-8648-44c4-9179-2dc42591d2a2}" locklevel="0" visible="false" labelid="{6091dae9-c0e6-4ef4-9b48-c098184a30c9}">
-                        <labels>
-                          <label description="Country" languagecode="1033" />
-                        </labels>
-                        <control id="ts_country" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_country" disabled="false">
-                          <parameters>
-                            <DefaultViewId>{2670AB65-5FE1-441F-B0E1-B2056E6AA402}</DefaultViewId>
-                            <AvailableViewIds>{2670AB65-5FE1-441F-B0E1-B2056E6AA402},{F03304AB-1C4B-4922-8270-5A134BD054A9},{BA5148DA-164F-46F5-93F4-744239F0CA2C}</AvailableViewIds>
-                            <DisableViewPicker>true</DisableViewPicker>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                    <row>
                       <cell id="{4bc22ef3-c6b1-4004-b78e-24a35dc1fc95}" locklevel="0">
                         <labels>
                           <label description="Region" languagecode="1033" />
@@ -78,6 +64,20 @@
                           <parameters>
                             <DisableMru>true</DisableMru>
                             <AvailableViewIds>{AD81B2CA-9789-4465-8C56-94C10830A6ED}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{01c9fbde-8648-44c4-9179-2dc42591d2a2}" locklevel="0" visible="false" labelid="{6091dae9-c0e6-4ef4-9b48-c098184a30c9}">
+                        <labels>
+                          <label description="Country" languagecode="1033" />
+                        </labels>
+                        <control id="ts_country" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_country" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{2670AB65-5FE1-441F-B0E1-B2056E6AA402}</DefaultViewId>
+                            <AvailableViewIds>{2670AB65-5FE1-441F-B0E1-B2056E6AA402},{F03304AB-1C4B-4922-8270-5A134BD054A9},{BA5148DA-164F-46F5-93F4-744239F0CA2C}</AvailableViewIds>
                             <DisableViewPicker>true</DisableViewPicker>
                           </parameters>
                         </control>
@@ -167,6 +167,22 @@
                         </control>
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{a2f1ae0b-4e24-4851-8749-37abfd3f460f}" locklevel="0">
+                        <labels>
+                          <label description="Work Order Start Date" languagecode="1033" />
+                        </labels>
+                        <control id="ts_workorderstartdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_workorderstartdate" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{07135285-b3ce-403b-a28d-731c1b71a662}" locklevel="0">
+                        <labels>
+                          <label description="Work Order End Date" languagecode="1033" />
+                        </labels>
+                        <control id="ts_workorderenddate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_workorderenddate" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
                 <section id="{6c515330-89dd-096d-58b4-04c65bebed43}" name="activity_details_section" height="auto" labelid="{1bbf60dd-72b6-4d79-8e41-9b935b12ec69}" showlabel="true" locklevel="0" IsUserDefined="0" celllabelposition="Left" celllabelalignment="Left" labelwidth="220" columns="1" showbar="false" layout="varwidth">
@@ -251,32 +267,6 @@
                     </row>
                   </rows>
                 </section>
-                <section name="physical_assets_section" id="d82c92ca-1c2e-4ab4-a4ad-165564ce5647" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
-                  <labels>
-                    <label description="PHYSICAL ASSETS" languagecode="1033" />
-                  </labels>
-                  <rows>
-                    <row>
-                      <cell locklevel="0" id="{a5a51fa0-9ef6-4ab4-af25-0b7252c4c14d}" rowspan="1" colspan="1" showlabel="false" auto="true">
-                        <labels>
-                          <label description="Physical Assets" languagecode="1033" />
-                          <label description="Appareils" languagecode="1036" />
-                        </labels>
-                        <control id="Physical_Assets" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
-                          <parameters>
-                            <TargetEntityType>msdyn_customerasset</TargetEntityType>
-                            <ViewId>{BF49A9FC-82A7-EB11-9442-000D3A8410DC}</ViewId>
-                            <ViewIds>{64F8ED51-5066-449D-8BF9-73A39737ECE7},{BF49A9FC-82A7-EB11-9442-000D3A8410DC}</ViewIds>
-                            <EnableViewPicker>false</EnableViewPicker>
-                            <RelationshipName>ts_msdyn_workorder_msdyn_customer_asset</RelationshipName>
-                            <AutoExpand>Auto</AutoExpand>
-                            <RecordsPerPage>10</RecordsPerPage>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                  </rows>
-                </section>
                 <section id="{39157b41-e4c2-e421-1159-6c4ac5a37c3c}" name="tab_8_section_1" labelid="{01a93939-082e-4031-896c-afa25059ce66}" showlabel="true" locklevel="0" IsUserDefined="0" celllabelposition="Left" celllabelalignment="Left" labelwidth="220" columns="1" showbar="false" layout="varwidth" visible="false">
                   <labels>
                     <label description="TOTAL" languagecode="1033" />
@@ -354,7 +344,7 @@
                     <label description="INSPECTION DETAILS" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row height="auto">
+                    <row>
                       <cell id="{8a4bb59b-9259-b521-a154-dc22b8d04889}" labelid="{7ccddc96-3938-4a01-83a7-03b8591e5047}" showlabel="true" auto="true" rowspan="1" colspan="1">
                         <labels>
                           <label description="SERVICE TASKS" languagecode="1033" />
@@ -377,32 +367,6 @@
                             <EnableChartPicker>true</EnableChartPicker>
                             <RecordsPerPage>5</RecordsPerPage>
                             <HeaderColorCode>#F3F3F3</HeaderColorCode>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{3e88a7d6-b5b9-13d2-0615-dc61a0d03d4b}" labelid="{c075020f-fb79-4e89-ad6f-402633329ac2}" showlabel="true" auto="false" rowspan="1" colspan="1">
-                        <labels>
-                          <label description="BOOKINGS" languagecode="1033" />
-                          <label description="RÉSERVATIONS" languagecode="1036" />
-                        </labels>
-                        <control id="bookings" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" uniqueid="{8529769c-0a7b-3311-8e4d-13a75400e0d5}" indicationOfSubgrid="true">
-                          <parameters>
-                            <ViewId>{8AF53D0E-07FE-49D4-BBBA-CA524DD6551B}</ViewId>
-                            <IsUserView>false</IsUserView>
-                            <RelationshipName>msdyn_msdyn_workorder_bookableresourcebooking_WorkOrder</RelationshipName>
-                            <TargetEntityType>bookableresourcebooking</TargetEntityType>
-                            <AutoExpand>Fixed</AutoExpand>
-                            <EnableQuickFind>false</EnableQuickFind>
-                            <EnableViewPicker>true</EnableViewPicker>
-                            <ViewIds>{8AF53D0E-07FE-49D4-BBBA-CA524DD6551B},{B74D2E1A-37CB-4DA9-AA06-156CBF7BC3DD}</ViewIds>
-                            <EnableJumpBar>false</EnableJumpBar>
-                            <ChartGridMode>All</ChartGridMode>
-                            <VisualizationId />
-                            <IsUserChart>false</IsUserChart>
-                            <EnableChartPicker>true</EnableChartPicker>
-                            <RecordsPerPage>2</RecordsPerPage>
                           </parameters>
                         </control>
                       </cell>
@@ -479,6 +443,43 @@
                           <label description="Opportunité" languagecode="1036" />
                         </labels>
                         <control disabled="false" id="msdyn_opportunityid" datafieldname="msdyn_opportunityid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" uniqueid="{3aa0081a-0320-c59d-7830-1edd2cda6c55}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tags_tab" id="bb2e1ab9-ad6f-4439-a83a-dafb3f0c907e" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Tags" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="physical_assets_section" id="9f88b48c-61fa-4f87-9f2e-adc21d3751e2" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="PHYSICAL ASSETS" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{a5a51fa0-9ef6-4ab4-af25-0b7252c4c14d}" rowspan="1" colspan="1" showlabel="false" auto="true">
+                        <labels>
+                          <label description="Physical Assets" languagecode="1033" />
+                          <label description="Appareils" languagecode="1036" />
+                        </labels>
+                        <control id="Physical_Assets" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <TargetEntityType>msdyn_customerasset</TargetEntityType>
+                            <ViewId>{BF49A9FC-82A7-EB11-9442-000D3A8410DC}</ViewId>
+                            <ViewIds>{64F8ED51-5066-449D-8BF9-73A39737ECE7},{BF49A9FC-82A7-EB11-9442-000D3A8410DC}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>ts_msdyn_workorder_msdyn_customer_asset</RelationshipName>
+                            <AutoExpand>Auto</AutoExpand>
+                            <RecordsPerPage>10</RecordsPerPage>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                   </rows>
@@ -2797,12 +2798,6 @@
             <Handler functionName="ROM.WorkOrder.onSave" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{132a1e82-f9fa-45d0-8180-fa6bd0e6c0e7}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
-        <event name="onchange" application="true" active="true" attribute="msdyn_serviceterritory">
-          <Handlers>
-            <Handler functionName="ROM.WorkOrder.regionOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{8fe1859c-82dd-472a-980b-34e16dac92f1}" enabled="true" parameters="" passExecutionContext="true" />
-            <Handler functionName="ROM.WorkOrder.updateCaseView" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{0e2d7cee-d4f7-469b-8449-887c69a133c2}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
         <event name="onchange" application="true" active="true" attribute="ovs_operationtypeid">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.operationTypeOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{369cae03-1625-49dc-9c99-d6170adf7853}" enabled="true" parameters="" passExecutionContext="true" />
@@ -2844,8 +2839,14 @@
             <Handler functionName="ROM.WorkOrder.siteOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{70d6011e-410c-4aad-8867-5280b61dd201}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_workordertype">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.workOrderTypeOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{ff19dadc-1d59-4c6b-ab10-1faf39c7f4a8}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
       </events>
-      <DisplayConditions FallbackForm="true" Order="10">
+      <DisplayConditions FallbackForm="true" Order="1">
+        <Role Id="{158781C7-F92C-EB11-A813-000D3AF3A7A7}" />
         <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
         <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
       </DisplayConditions>

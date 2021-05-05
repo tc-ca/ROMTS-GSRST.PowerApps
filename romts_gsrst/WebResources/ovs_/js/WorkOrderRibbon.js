@@ -2,25 +2,25 @@ function addExistingWorkOrdersToCase(primaryControl, selectedEntityTypeName, sel
     const formContext = primaryControl;
 
     const caseId = Xrm.Page.data.entity.getId().replace(/({|})/g,'');
-        
+
     const regionAttribute = formContext.getAttribute("ovs_region");
     const countryAttribute = formContext.getAttribute("ts_country");
-    const regulatedEntityAttribute = formContext.getAttribute("ovs_regulatedentity");
-    const siteAttribute = formContext.getAttribute("ovs_site");
+    const stakeholderAttribute = formContext.getAttribute("customerid");
+    const siteAttribute = formContext.getAttribute("msdyn_functionallocation");
 
 
     const regionAttributeValue = regionAttribute.getValue();
     const countryAttributeValue = countryAttribute.getValue();
-    const regulatedEntityAttributeValue = regulatedEntityAttribute.getValue();
+    const stakeholderAttributeValue = stakeholderAttribute.getValue();
     const siteAttributeValue = siteAttribute.getValue();
 
     var countryCondition = "";
 
-    if(countryAttributeValue != null){
+    if (countryAttributeValue != null) {
          countryCondition = `<condition attribute="ts_country" operator="eq" value="${countryAttributeValue[0].id}" />`;
     }
 
-    var lookupOptions = 
+    var lookupOptions =
     {
         defaultEntityType: "msdyn_workorder",
         entityTypes: ["msdyn_workorder"],
@@ -29,11 +29,11 @@ function addExistingWorkOrdersToCase(primaryControl, selectedEntityTypeName, sel
         disableMru: true,
         filters: [
             {
-                filterXml: `<filter type="and">` + 
-                    `<condition attribute="msdyn_serviceterritory" operator="eq" value="${regionAttributeValue[0].id}" />` +
+                filterXml: `<filter type="and">` +
+                    `<condition attribute="ts_region" operator="eq" value="${regionAttributeValue[0].id}" />` +
                     countryCondition +
-                    `<condition attribute="ovs_regulatedentity" operator="eq" value="${regulatedEntityAttributeValue[0].id}" />` +
-                    `<condition attribute="msdyn_serviceaccount" operator="eq" value="${siteAttributeValue[0].id}" />` +
+                    `<condition attribute="msdyn_serviceaccount" operator="eq" value="${stakeholderAttributeValue[0].id}" />` +
+                    `<condition attribute="ts_site" operator="eq" value="${siteAttributeValue[0].id}" />` +
                     `<condition attribute="msdyn_servicerequest" operator="neq" value="${Xrm.Page.data.entity.getId()}" />` +
                     `</filter>`,
                 entityLogicalName: "msdyn_workorder"
@@ -46,14 +46,14 @@ function addExistingWorkOrdersToCase(primaryControl, selectedEntityTypeName, sel
         console.log(result);
         for (var i = 0; i < result.length; i++) {
             var req = new XMLHttpRequest();
-            
+
             req.open("PATCH", formContext.context.getClientUrl() + "/api/data/v9.0/" + "msdyn_workorders" + "(" + result[i].id.replace(/({|})/g,'') + ")");
             req.setRequestHeader("Content-Type", "application/json");
             req.setRequestHeader("Accept", "application/json");
             req.setRequestHeader("OData-MaxVersion", "4.0");
             req.setRequestHeader("OData-Version", "4.0");
 
-            var payload = 
+            var payload =
                 {
                     "msdyn_servicerequest@odata.bind" : formContext.context.getClientUrl() + "/api/data/v9.0/" + "incidents" + "(" + caseId + ")"
                 };
@@ -61,13 +61,12 @@ function addExistingWorkOrdersToCase(primaryControl, selectedEntityTypeName, sel
             req.send(JSON.stringify(payload));
         }
     },
-    function(error){
+    function (error){
         showErrorMessageAlert(error);
     });
 }
 
-
-function ActivateWorkOrder(primaryControl) {
+function ActivateWorkOrder(primaryControl){
     const formContext = primaryControl;
 
     var confirmStrings = { confirmButtonLabel: "Activate",  cancelButtonLabel: "Cancel" , text: "Are you sure you want to activate the selected 1 Work Order?\nThis will set the Work Order to the Active state.", title: "Confirm Work Order Activation" }
@@ -75,11 +74,11 @@ function ActivateWorkOrder(primaryControl) {
     Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
         function (success) {
             if (success.confirmed){
-                
+
                 formContext.getAttribute("statecode").setValue(0);
                 formContext.getAttribute("statuscode").setValue(1);
                 formContext.getAttribute("msdyn_systemstatus").setValue(690970003); //Open - Completed
-            
+
                 openWorkOrderServiceTasks(formContext);
                 openBookableResourceBookings(formContext);
 
@@ -89,45 +88,45 @@ function ActivateWorkOrder(primaryControl) {
                 formContext.data.save();
             }
         },
-        function (error) {
+        function (error){
             showErrorMessageAlert(error);
         }
     );
 }
 
-function openWorkOrderServiceTasks(formContext) {
-    workOrderServiceTaskData = 
+function openWorkOrderServiceTasks(formContext){
+    workOrderServiceTaskData =
     {
         "statecode" :  0,           //closed -> 1
         "statuscode" : 918640002    //closed -> 918640003
     };
 
     Xrm.WebApi.online.retrieveMultipleRecords("msdyn_workorderservicetask", `?$select=msdyn_workorder&$filter=msdyn_workorder/msdyn_workorderid eq ${formContext.data.entity.getId()}`).then(
-        function success(result) {
+        function success(result){
             for (var i = 0; i < result.entities.length; i++) {
                 Xrm.WebApi.updateRecord("msdyn_workorderservicetask", result.entities[i].msdyn_workorderservicetaskid, workOrderServiceTaskData).then(
                     function success(result) {
                     },
-                    function (error) {
+                    function (error){
                         showErrorMessageAlert(error);
                     }
                 );
             }
         },
-        function (error) {
+        function (error){
             showErrorMessageAlert(error);
         }
     );
 }
 
-function openBookableResourceBookings(formContext) {
-    bookableResourceBookingData = 
+function openBookableResourceBookings(formContext){
+    bookableResourceBookingData =
             {
                 "statecode" :  0,           //closed -> 1
                 "statuscode" : 1            //closed -> 2
             };
     Xrm.WebApi.online.retrieveMultipleRecords("bookableresourcebooking", `?$select=msdyn_workorder&$filter=msdyn_workorder/msdyn_workorderid eq ${formContext.data.entity.getId()}`).then(
-        function success(result) {
+        function success(result){
             for (var i = 0; i < result.entities.length; i++) {
                 Xrm.WebApi.updateRecord("bookableresourcebooking", result.entities[i].bookableresourcebookingid, bookableResourceBookingData).then(
                     function success(result) {
@@ -138,30 +137,30 @@ function openBookableResourceBookings(formContext) {
                 );
             }
         },
-        function (error) {
+        function (error){
             showErrorMessageAlert(error);
         }
     );
 }
 
 function setWorkOrderServiceTasksView(formContext){
-    var activeWorkOrderServiceTasksView = 
+    var activeWorkOrderServiceTasksView =
     {
         entityType: "savedquery",
         id: "{C9FD8F4D-8184-4DDB-A31A-89E66E8E710E}",
         name: "Active Work Order Service Tasks"
     }
-    
+
     formContext.getControl("workorderservicetasksgrid").getViewSelector().setCurrentView(activeWorkOrderServiceTasksView);
 }
 
 function setBookableResourceBookingsView(formContext){
-    var activeBookingsView = 
+    var activeBookingsView =
     {
         entityType: "savedquery",
         id: "{8AF53D0E-07FE-49D4-BBBA-CA524DD6551B}",
         name: "Active Resource Bookings (Field Service Information)"
-    };   
+    };
 
     formContext.getControl("bookings").getViewSelector().setCurrentView(activeBookingsView);
 }

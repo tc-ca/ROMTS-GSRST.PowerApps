@@ -13,7 +13,8 @@
           <cell name="ticketnumber" width="124" />
           <cell name="statuscode" width="150" />
           <cell name="customerid" width="150" />
-          <cell name="prioritycode" width="150" />
+          <cell name="msdyn_functionallocation" width="100" />
+          <cell name="ovs_region" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -23,7 +24,6 @@
         <entity name="incident">
           <attribute name="incidentid" />
           <attribute name="ticketnumber" />
-          <attribute name="prioritycode" />
           <attribute name="title" />
           <attribute name="customerid" />
           <attribute name="statuscode" />
@@ -32,6 +32,8 @@
             <condition attribute="ownerid" operator="eq-userid" />
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="msdyn_functionallocation" />
+          <attribute name="ovs_region" />
         </entity>
       </fetch>
     </fetchxml>

@@ -14,10 +14,10 @@
           <cell name="msdyn_systemstatus" width="143" />
           <cell name="ovs_rational" width="92" />
           <cell name="msdyn_primaryincidenttype" width="184" />
-          <cell name="ovs_regulatedentity" width="189" />
-          <cell name="msdyn_serviceaccount" width="219" />
+          <cell name="msdyn_serviceaccount" width="175" />
+          <cell name="ts_site" width="178" />
+          <cell name="ts_region" width="100" />
           <cell name="ownerid" width="100" />
-          <cell name="msdyn_serviceterritory" width="153" />
         </row>
       </grid>
     </layoutxml>
@@ -30,7 +30,6 @@
           <attribute name="ovs_rational" />
           <attribute name="msdyn_primaryincidenttype" />
           <attribute name="msdyn_serviceaccount" />
-          <attribute name="msdyn_serviceterritory" />
           <attribute name="msdyn_systemstatus" />
           <filter type="and">
             <condition attribute="ownerid" operator="eq-userid" />
@@ -40,13 +39,15 @@
             </filter>
           </filter>
           <attribute name="ownerid" />
-          <attribute name="ovs_regulatedentity" />
+          <attribute name="ts_site" />
+          <order attribute="msdyn_name" descending="true" />
+          <attribute name="ts_region" />
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0.0.2</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="My Work Orders (TSIS)" languagecode="1033" />
+      <LocalizedName description="My Work Orders" languagecode="1033" />
       <LocalizedName description="Mes ordres de travail (SIST)" languagecode="1036" />
     </LocalizedNames>
     <Descriptions>

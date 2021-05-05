@@ -54,11 +54,18 @@
                         <labels>
                           <label description="Country" languagecode="1033" />
                         </labels>
-                        <control id="ts_country" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_country" disabled="false" />
+                        <control id="ts_country" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_country" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{2670AB65-5FE1-441F-B0E1-B2056E6AA402}</DefaultViewId>
+                            <AvailableViewIds>{2670AB65-5FE1-441F-B0E1-B2056E6AA402},{F03304AB-1C4B-4922-8270-5A134BD054A9},{BA5148DA-164F-46F5-93F4-744239F0CA2C}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
-                      <cell id="{01b373db-df2c-402a-862a-94cd31e5e72d}" locklevel="0">
+                      <cell id="{01b373db-df2c-402a-862a-94cd31e5e72d}" locklevel="0" visible="false">
                         <labels>
                           <label description="Stakeholder" languagecode="1033" />
                           <label description="Entité réglementée" languagecode="1036" />
@@ -75,14 +82,32 @@
                     <row>
                       <cell id="{b579ee22-ced2-44ed-0bb8-8290e9b23164}" showlabel="true" locklevel="0" labelid="{5a740611-c2aa-47b3-bbc4-1a7c8bbbdb3e}">
                         <labels>
-                          <label description="Customer" languagecode="1033" />
+                          <label description="Stakeholder" languagecode="1033" />
                           <label description="Client" languagecode="1036" />
                         </labels>
-                        <control id="customerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="customerid" disabled="false" />
+                        <control id="customerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="customerid" disabled="false">
+                          <parameters>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
-                      <cell id="{23230c9c-db54-4b6b-8384-ee2009eed624}" locklevel="0">
+                      <cell id="{15e5a376-70d7-0435-9aae-8c5b232c3dae}" showlabel="true" locklevel="0" labelid="{664c56b2-b923-4517-b6c3-0484aa0496d8}">
+                        <labels>
+                          <label description="Site" languagecode="1033" />
+                          <label description="Poste technique" languagecode="1036" />
+                        </labels>
+                        <control id="msdyn_functionallocation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_functionallocation" disabled="false">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{23230c9c-db54-4b6b-8384-ee2009eed624}" locklevel="0" visible="false">
                         <labels>
                           <label description="Site" languagecode="1033" />
                           <label description="Site" languagecode="1036" />
@@ -144,6 +169,9 @@
                           <parameters>
                             <IsInlineNewEnabled>false</IsInlineNewEnabled>
                             <AllowFilterOff>true</AllowFilterOff>
+                            <DisableMru>true</DisableMru>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <AvailableViewIds>{A2D479C5-53E3-4C69-ADDD-802327E67A0D},{00000000-0000-0000-00AA-000010001004},{00000000-0000-0000-00AA-000010001003},{3A282DA1-5D90-E011-95AE-00155D9CFA02},{3A282DA1-5D90-E011-95AE-00155D9CFA03}</AvailableViewIds>
                           </parameters>
                         </control>
                       </cell>
@@ -279,15 +307,6 @@
                           <label description="Type d'incident" languagecode="1036" />
                         </labels>
                         <control id="msdyn_incidenttype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_incidenttype" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{15e5a376-70d7-0435-9aae-8c5b232c3dae}" showlabel="true" locklevel="0" labelid="{664c56b2-b923-4517-b6c3-0484aa0496d8}">
-                        <labels>
-                          <label description="Functional Location" languagecode="1033" />
-                          <label description="Poste technique" languagecode="1036" />
-                        </labels>
-                        <control id="msdyn_functionallocation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_functionallocation" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -1792,11 +1811,6 @@
             <Handler functionName="ROM.Incident.regionOnChange" libraryName="ovs_/js/Incident.js" handlerUniqueId="{9d83e87d-f18d-47db-9807-0800d4685b85}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
-        <event name="onchange" application="true" active="true" attribute="ovs_regulatedentity">
-          <Handlers>
-            <Handler functionName="ROM.Incident.regulatedEntityOnChange" libraryName="ovs_/js/Incident.js" handlerUniqueId="{c951fbb0-8a0a-4dd7-ab07-39da42e08f5b}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
         <event name="onchange" application="true" active="true" attribute="ovs_countryid">
           <Handlers>
             <Handler functionName="ROM.Incident.countryOnChange" libraryName="ovs_/js/Incident.js" handlerUniqueId="{b8d8d58a-0f5a-43e5-9bf8-0dbe02824854}" enabled="true" parameters="" passExecutionContext="true" />
@@ -1805,6 +1819,11 @@
         <event name="onchange" application="true" active="true" attribute="ts_country">
           <Handlers>
             <Handler functionName="ROM.Incident.countryOnChange" libraryName="ovs_/js/Incident.js" handlerUniqueId="{34c2813d-5cae-446c-abe8-f34edb670beb}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="customerid">
+          <Handlers>
+            <Handler functionName="ROM.Incident.stakeholderOnChange" libraryName="ovs_/js/Incident.js" handlerUniqueId="{31ad64bd-2466-463e-8b23-60de37a9e43e}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
