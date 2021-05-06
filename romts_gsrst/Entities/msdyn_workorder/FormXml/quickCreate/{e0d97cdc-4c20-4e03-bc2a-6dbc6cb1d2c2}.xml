@@ -80,7 +80,7 @@
                         </labels>
                         <control id="msdyn_workordertype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_workordertype" disabled="false">
                           <parameters>
-                            <DefaultViewId>{88536F02-3C15-456A-8419-350767CCD053}</DefaultViewId>
+                            <DefaultViewId>{8F0514CA-D271-46CC-B531-41791C56949A}</DefaultViewId>
                             <AvailableViewIds>{88536F02-3C15-456A-8419-350767CCD053},{35E9D617-27B4-4A9C-8BE9-4EF13A0D9851},{8F0514CA-D271-46CC-B531-41791C56949A}</AvailableViewIds>
                             <DisableViewPicker>true</DisableViewPicker>
                           </parameters>
@@ -323,6 +323,16 @@
         <event name="onchange" application="true" active="true" attribute="ts_region" solutionaction="Added">
           <Handlers>
             <Handler functionName="ROM.WorkOrderQuickCreate.regionOnChange" libraryName="ts_/js/WorkOrderQuickCreate.js" handlerUniqueId="{baf5738a-4f9c-4fe0-9149-b4e1c6961e97}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ovs_assetcategory" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderQuickCreate.operationTypeOnChange" libraryName="ts_/js/WorkOrderQuickCreate.js" handlerUniqueId="{0602ff38-dfea-4398-82c2-65ffcb7d99fe}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_workordertype" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderQuickCreate.workOrderTypeOnChange" libraryName="ts_/js/WorkOrderQuickCreate.js" handlerUniqueId="{aa768546-86a8-4a58-8bc6-1329c449f13b}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
           </Handlers>
         </event>
       </events>
