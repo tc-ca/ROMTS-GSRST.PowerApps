@@ -478,7 +478,7 @@
                             <ViewId>{BF49A9FC-82A7-EB11-9442-000D3A8410DC}</ViewId>
                             <ViewIds>{64F8ED51-5066-449D-8BF9-73A39737ECE7},{BF49A9FC-82A7-EB11-9442-000D3A8410DC}</ViewIds>
                             <EnableViewPicker>false</EnableViewPicker>
-                            <RelationshipName>ts_msdyn_workorder_msdyn_customer_asset</RelationshipName>
+                            <RelationshipName>ts_msdyn_customerasset_msdyn_workorder_msdyn</RelationshipName>
                             <AutoExpand>Auto</AutoExpand>
                             <RecordsPerPage>10</RecordsPerPage>
                           </parameters>
@@ -2846,6 +2846,11 @@
         <event name="onchange" application="true" active="true" attribute="msdyn_workordertype">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.workOrderTypeOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{ff19dadc-1d59-4c6b-ab10-1faf39c7f4a8}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_servicerequest">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.caseOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{3f05a116-1963-4cf0-8972-21b1b0f22464}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
