@@ -5,12 +5,15 @@
     <entity Name="msdyn_workorder">
       <LocalizedNames>
         <LocalizedName description="Work Order" languagecode="1033" />
+        <LocalizedName description="Ordre de travail" languagecode="1036" />
       </LocalizedNames>
       <LocalizedCollectionNames>
         <LocalizedCollectionName description="Work Orders" languagecode="1033" />
+        <LocalizedCollectionName description="Ordres de travail" languagecode="1036" />
       </LocalizedCollectionNames>
       <Descriptions>
         <Description description="Work orders store all information about the job performed for an account. Stores incident details, resource, expenses, tasks, communications, billing and more" languagecode="1033" />
+        <Description description="Les ordres de travail stockent toutes les informations sur le travail exécuté pour un compte. Stocke les détails des incidents, les ressources, les dépenses, les tâches, les communications, la facturation et plus encore" languagecode="1036" />
       </Descriptions>
       <attributes>
         <attribute PhysicalName="CreatedBy">
@@ -1721,6 +1724,40 @@
           <Descriptions>
             <Description description="Primary incident type reported" languagecode="1033" />
             <Description description="Type d'incident principal signalé" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_PrimaryResolution">
+          <Type>lookup</Type>
+          <Name>msdyn_primaryresolution</Name>
+          <LogicalName>msdyn_primaryresolution</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>8.8.39.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="Primary Resolution" languagecode="1033" />
+            <displayname description="Résolution principale" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="msdyn_Priority">

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
+<html><head>
         <title>Survey Render</title>
 
         <meta name="viewport" content="width=device-width">
@@ -11,12 +9,26 @@
         <script src="../js/tsis2findingwidget.js"></script>
       
         <link rel="stylesheet" href="../css/survey.min.css">
-    </head>
+    <meta></head>
 
     <body style="overflow-wrap: break-word;">
-        <div id="surveyElement" style="display:inline-block;width:100%;"></div>
+        <input type="button" onclick="printDiv('printableArea')" value="Print Survey">
+        <div id="printableArea">
+            <div id="surveyElement" style="display:inline-block;width:100%;"></div>
+        </div>
         <div id="surveyResult"></div>
+        <script>
+            function printDiv(divName) {
+                var printContents = document.getElementById(divName).innerHTML;
+                var originalContents = document.body.innerHTML;
 
+                document.body.innerHTML = printContents;
+
+                window.print();
+
+                document.body.innerHTML = originalContents;
+            }
+        </script>
         <script type="text/javascript" src="../js/surveyRender.js"></script>
-    </body>
-</html>
+    
+</body></html>

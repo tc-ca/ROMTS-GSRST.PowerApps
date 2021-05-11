@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Transportation Security" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20210511.1</Version>
+    <Version>1.0.20210511.3</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -285,10 +285,12 @@
       <RootComponent type="92" id="{07f41e2f-dc72-eb11-a812-000d3af399b3}" behavior="0" />
       <RootComponent type="92" id="{0d658354-de72-eb11-a812-000d3af399b3}" behavior="0" />
       <RootComponent type="92" id="{14720053-b97a-eb11-a812-000d3af31ad8}" behavior="0" />
+      <RootComponent type="92" id="{15c66a16-83b2-eb11-8236-000d3af3d03c}" behavior="0" />
       <RootComponent type="92" id="{1724e0d8-d872-eb11-a812-000d3af399b3}" behavior="0" />
       <RootComponent type="92" id="{18973aac-de72-eb11-a812-000d3af399b3}" behavior="0" />
       <RootComponent type="92" id="{1c24a837-c822-eb11-a813-000d3af3a7a7}" behavior="0" />
       <RootComponent type="92" id="{1efbc2d8-9817-eb11-a813-000d3af3a7a7}" behavior="0" />
+      <RootComponent type="92" id="{1f994271-84b2-eb11-8236-000d3af3d03c}" behavior="0" />
       <RootComponent type="92" id="{224f8619-dd72-eb11-a812-000d3af399b3}" behavior="0" />
       <RootComponent type="92" id="{25295884-6c18-eb11-a813-000d3af3ac0d}" behavior="0" />
       <RootComponent type="92" id="{2941def0-d872-eb11-a812-000d3af399b3}" behavior="0" />
@@ -1555,42 +1557,6 @@
         <Dependent type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="10" schemaName="ovs_msdyn_workorder_AssetCategory_msdyn_custo" displayName="ovs_msdyn_workorder_AssetCategory_msdyn_custo" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="2" schemaName="ts_assetcategorynameenglish" displayName="Asset Category Name (English)" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="2" schemaName="ts_assetcategorynamefrench" displayName="Asset Category Name (French)" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="2" schemaName="ts_assetcategorytype" displayName="Asset Category Type" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="26" schemaName="Operations" displayName="Operations" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{6d5b19df-82a7-eb11-9442-000d3a8419e6}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="26" schemaName="Physical Assets" displayName="Physical Assets" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{bf49a9fc-82a7-eb11-9442-000d3a8410dc}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="26" schemaName="Operation Categories" displayName="Operation Categories" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" id="{e02e567a-81a7-eb11-9442-000d3a8410dc}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="62" schemaName="ovs_ROM" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="1" schemaName="msdyn_functionallocation" displayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
         <Dependent type="1" schemaName="msdyn_functionallocation" displayName="Functional Location" />
       </MissingDependency>
@@ -2613,6 +2579,14 @@
       <MissingDependency>
         <Required type="10" schemaName="msdyn_equipment_bookableresource_FacilityEquipmentId" displayName="msdyn_equipment_bookableresource_FacilityEquipmentId" parentSchemaName="equipment" parentDisplayName="Facility/Equipment" solution="msdynce_CoreServiceScheduling (9.0.21024.1004)" />
         <Dependent type="60" displayName="Add/Edit Inspector Form" parentDisplayName="Bookable Resource" id="{eae25a08-d9fd-ea11-a813-000d3af3ac0d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_incident_msdyn_customerasset" displayName="msdyn_incident_msdyn_customerasset" parentSchemaName="incident" parentDisplayName="Case" solution="msdyn_ConnectedCustomerService (9.0.20115.1014)" />
+        <Dependent type="10" schemaName="msdyn_incident_msdyn_customerasset" displayName="msdyn_incident_msdyn_customerasset" parentSchemaName="incident" parentDisplayName="Case" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_incident_msdyn_customerasset" displayName="msdyn_incident_msdyn_customerasset" parentSchemaName="incident" parentDisplayName="Case" solution="msdyn_ConnectedCustomerService (9.0.20115.1014)" />
+        <Dependent type="60" displayName="ROM Case" parentDisplayName="Case" id="{45b022a4-928d-eb11-b1ac-000d3ae92dbf}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_incident_msdyn_customerasset" displayName="msdyn_incident_msdyn_customerasset" parentSchemaName="incident" parentDisplayName="Case" solution="msdyn_ConnectedCustomerService (9.0.20115.1014)" />
@@ -3989,6 +3963,10 @@
       <MissingDependency>
         <Required type="10" schemaName="msdyn_opportunity_msdyn_workorder" displayName="msdyn_opportunity_msdyn_workorder" parentSchemaName="opportunity" parentDisplayName="Opportunity" solution="FieldService (8.8.0.88)" />
         <Dependent type="60" displayName="Main form" parentDisplayName="Work Order" id="{f10dda58-3203-eb11-a813-000d3af3ac0d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="ts_msdyn_FunctionalLocation_SiteType_ovs_Sit" displayName="ts_msdyn_FunctionalLocation_SiteType_ovs_Sit" parentSchemaName="ovs_sitetype" parentDisplayName="Site Type" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_pricelevel_msdyn_workorder_PriceList" displayName="msdyn_pricelevel_msdyn_workorder_PriceList" parentSchemaName="pricelevel" parentDisplayName="Price List" solution="FieldService (8.8.0.88)" />
@@ -5711,26 +5689,6 @@
         <Dependent type="2" schemaName="msdyn_functionallocation" displayName="Functional Location" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_functionallocation" displayName="Functional Location" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="26" schemaName="Operations" displayName="Operations" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{6d5b19df-82a7-eb11-9442-000d3a8419e6}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_functionallocation" displayName="Functional Location" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="26" schemaName="Active Customer Assets" displayName="Active Customer Assets" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{6ecb03a4-acda-44ae-83e3-c60ba8338dbb}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_functionallocation" displayName="Functional Location" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="26" schemaName="Physical Assets" displayName="Physical Assets" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{bf49a9fc-82a7-eb11-9442-000d3a8410dc}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_functionallocation" displayName="Functional Location" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_functionallocation" displayName="Functional Location" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="2" schemaName="msdyn_latitude" displayName="Latitude" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.96)" />
         <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
       </MissingDependency>
@@ -5977,6 +5935,14 @@
       <MissingDependency>
         <Required type="2" schemaName="statecode" displayName="Status" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
         <Dependent type="26" schemaName="Active Functional Locations" displayName="Active Functional Locations" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" id="{750e041a-f88c-4b3c-887a-1f1946b8d86b}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="ts_businessunit" displayName="BusinessUnit" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="ts_sitetype" displayName="Site Type" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="createdon" displayName="Created On" parentSchemaName="msdyn_incidenttype" parentDisplayName="Incident Type" solution="FieldService (8.8.0.88)" />
@@ -6608,19 +6574,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_primaryresolution" displayName="Primary Resolution" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="msdyn_FieldService_patch_update (8.8.41.28)" />
-        <Dependent type="10" schemaName="msdyn_msdyn_resolution_msdyn_workorder_PrimaryResolution" displayName="msdyn_msdyn_resolution_msdyn_workorder_PrimaryResolution" parentSchemaName="msdyn_resolution" parentDisplayName="Resolution" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_primaryresolution" displayName="Primary Resolution" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="msdyn_FieldService_patch_update (8.8.41.28)" />
-        <Dependent type="60" displayName="Work Order - Service" parentDisplayName="Work Order" id="{613513a1-322d-4ecc-81bd-bd65640d834c}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_primaryresolution" displayName="Primary Resolution" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="msdyn_FieldService_patch_update (8.8.41.28)" />
-        <Dependent type="60" displayName="Work Order" parentDisplayName="Work Order" id="{6bfd1f9f-759e-459a-b752-3536e6513d25}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_primaryresolution" displayName="Primary Resolution" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="msdyn_FieldService_patch_update (8.8.41.28)" />
-        <Dependent type="60" displayName="Work Order - Mobile" parentDisplayName="Work Order" id="{f25cecf6-2f00-4eab-aeef-d773af32e027}" />
+        <Dependent type="2" schemaName="msdyn_primaryresolution" displayName="Primary Resolution" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_priority" displayName="Priority" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
@@ -6845,10 +6799,6 @@
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
         <Dependent type="26" schemaName="Unscheduled Work Orders" displayName="Unscheduled Work Orders" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" id="{c4398499-b242-e111-9bb9-00155d28960b}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
-        <Dependent type="26" schemaName="Failed Inspection - Work Order Service Task View" displayName="Failed Inspection - Work Order Service Task View" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{c9481231-e438-eb11-a813-000d3af3fc19}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
@@ -7236,10 +7186,6 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_description" displayName="Description" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="26" schemaName="Failed Inspection - Work Order Service Task View" displayName="Failed Inspection - Work Order Service Task View" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{c9481231-e438-eb11-a813-000d3af3fc19}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_description" displayName="Description" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
         <Dependent type="60" displayName="Work Order Service Task - Mobile" parentDisplayName="Work Order Service Task" id="{06a480e2-69e6-4283-8aa5-9fa17c86671f}" />
       </MissingDependency>
       <MissingDependency>
@@ -7252,19 +7198,11 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_estimatedduration" displayName="Estimated Duration" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="26" schemaName="Failed Inspection - Work Order Service Task View" displayName="Failed Inspection - Work Order Service Task View" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{c9481231-e438-eb11-a813-000d3af3fc19}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_estimatedduration" displayName="Estimated Duration" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
         <Dependent type="60" displayName="Work Order Service Task - Mobile" parentDisplayName="Work Order Service Task" id="{06a480e2-69e6-4283-8aa5-9fa17c86671f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_estimatedduration" displayName="Estimated Duration" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Work Order Service Task" id="{12a5be6b-b565-4d80-a2bc-3d4f652a3d98}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_inspection" displayName="Inspection Template" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="msdyn_FieldService_patch_update (8.8.41.28)" />
-        <Dependent type="26" schemaName="Failed Inspection - Work Order Service Task View" displayName="Failed Inspection - Work Order Service Task View" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{c9481231-e438-eb11-a813-000d3af3fc19}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_inspection" displayName="Inspection Template" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="msdyn_FieldService_patch_update (8.8.41.28)" />
@@ -7333,10 +7271,6 @@
       <MissingDependency>
         <Required type="2" schemaName="msdyn_inspectiontaskresult" displayName="Result" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="msdyn_FieldService_patch_update (8.8.41.28)" />
         <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_lineorder" displayName="Line Order" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="26" schemaName="Failed Inspection - Work Order Service Task View" displayName="Failed Inspection - Work Order Service Task View" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{c9481231-e438-eb11-a813-000d3af3fc19}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_lineorder" displayName="Line Order" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
@@ -7409,6 +7343,10 @@
       <MissingDependency>
         <Required type="2" schemaName="msdyn_tasktype" displayName="Task Type" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
         <Dependent type="26" schemaName="Inactive Work Order Service Tasks" displayName="Inactive Work Order Service Tasks" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{2f145106-bcb3-4f0f-9d02-e8c3b6bb25e8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_tasktype" displayName="Task Type" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
+        <Dependent type="26" schemaName="Failed Inspection - Work Order Service Task View" displayName="Failed Inspection - Work Order Service Task View" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{c9481231-e438-eb11-a813-000d3af3fc19}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_tasktype" displayName="Task Type" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
@@ -8689,6 +8627,10 @@
       <MissingDependency>
         <Required type="26" schemaName="Active Contracts" displayName="Active Contracts" parentSchemaName="contract" parentDisplayName="Contract" solution="msdynce_Service (9.0.5.56)" id="{646de3ee-ebfb-4d19-8a44-4a619505e188}" />
         <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Active Devices" displayName="Active Devices" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_ConnectedCustomerService (9.0.20115.1014)" id="{64f8ed51-5066-449d-8bf9-73a39737ece7}" />
+        <Dependent type="60" displayName="ROM Case" parentDisplayName="Case" id="{45b022a4-928d-eb11-b1ac-000d3ae92dbf}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Active Devices" displayName="Active Devices" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_ConnectedCustomerService (9.0.20115.1014)" id="{64f8ed51-5066-449d-8bf9-73a39737ece7}" />
@@ -10055,6 +9997,14 @@
         <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="61" schemaName="msdyn_/Icons/Entity/CustomerAssetCategory_16.png" displayName="msdyn_/Icons/Entity/CustomerAssetCategory_16.png" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/Icons/Entity/CustomerAssetCategory_32/_imgs/NavBar/Invisible.gif" displayName="msdyn_/Icons/Entity/CustomerAssetCategory_32/_imgs/NavBar/Invisible.gif" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="61" schemaName="msdyn_/Icons/Entity/CustomerEquipment_16.png" displayName="msdyn_/Icons/Entity/CustomerEquipment_16.png" solution="msdyn_AssetCommon (1.0.7.96)" />
         <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
       </MissingDependency>
@@ -10193,6 +10143,10 @@
       <MissingDependency>
         <Required type="61" schemaName="msdyn_/Icons/SVG/Agreement.svg" displayName="msdyn_/Icons/SVG/Agreement.svg" solution="FieldService (8.8.0.88)" />
         <Dependent type="1" schemaName="msdyn_agreement" displayName="Agreement" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/Icons/SVG/CustomerAssetCategory.svg" displayName="msdyn_/Icons/SVG/CustomerAssetCategory.svg" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="msdyn_/Icons/SVG/CustomerAssets.svg" displayName="msdyn_/Icons/SVG/CustomerAssets.svg" solution="msdyn_AssetCommon (1.0.7.96)" />
