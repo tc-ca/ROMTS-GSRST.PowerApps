@@ -2,22 +2,22 @@
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
     <HideCustomAction HideActionId="ovs.FieldService.Form.msdyn_workorderservicetask.MainTab.Save.AsComplete.Hide" Location="FieldService.Form.msdyn_workorderservicetask.MainTab.Save.AsComplete" />
-    <CustomAction Id="ovs.FieldService.SubGrid.msdyn_workorderservicetask.MainTab.Management.SaveAsComplete.CustomAction" Location="Mscrm.SubGrid.msdyn_workorderservicetask.MainTab.Management.Controls._children" Sequence="55">
+    <CustomAction Id="ts.FieldService.SubGrid.msdyn_workorderservicetask.MainTab.Management.SaveAsComplete.CustomAction" Location="Mscrm.SubGrid.msdyn_workorderservicetask.MainTab.Management.Controls._children" Sequence="55">
       <CommandUIDefinition>
         <Button Command="FieldService.SubGrid.msdyn_workorderservicetask.MainTab.Management.SaveAsComplete.Command" Id="FieldService.SubGrid.msdyn_workorderservicetask.MainTab.Management.SaveAsComplete" Image32by32="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_32.png" Image16by16="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_16.png" LabelText="$LocLabels:FieldService.SubGrid.msdyn_workorderservicetask.MainTab.Management.SaveAsComplete.LabelText" Sequence="55" TemplateAlias="o2" ToolTipTitle="$LocLabels:FieldService.SubGrid.msdyn_workorderservicetask.MainTab.Management.SaveAsComplete.ToolTipTitle" ToolTipDescription="$LocLabels:FieldService.SubGrid.msdyn_workorderservicetask.MainTab.Management.SaveAsComplete.ToolTipDescription" ModernImage="SaveAsComplete" />
       </CommandUIDefinition>
     </CustomAction>
-    <CustomAction Id="ovs.Mscrm.Form.msdyn_workorderservicetask.Save.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="10">
+    <CustomAction Id="ts.Mscrm.Form.msdyn_workorderservicetask.Save.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="10">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.Save.Alt" Command="Mscrm.SavePrimary" Id="Mscrm.Form.msdyn_workorderservicetask.Save" Image32by32="/_imgs/ribbon/Save_32.png" Image16by16="/_imgs/ribbon/Save_16.png" LabelText="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.Save.LabelText" Sequence="10" TemplateAlias="o1" ToolTipTitle="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.Save.ToolTipTitle" ToolTipDescription="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.Save.ToolTipDescription" ModernImage="Save" />
       </CommandUIDefinition>
     </CustomAction>
-    <CustomAction Id="ovs.Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="11">
+    <CustomAction Id="ts.Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="11">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.Alt" Command="Mscrm.SaveAndClosePrimary" Id="Mscrm.Form.msdyn_workorderservicetask.SaveAndClose" Image32by32="/_imgs/ribbon/SaveAndClose_32.png" Image16by16="/_imgs/FormEditorRibbon/SaveAndClose_16.png" LabelText="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.LabelText" Sequence="11" TemplateAlias="o1" ToolTipTitle="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.ToolTipTitle" ToolTipDescription="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.ToolTipDescription" ModernImage="SaveAndClose" />
       </CommandUIDefinition>
     </CustomAction>
-    <CustomAction Id="ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="4">
+    <CustomAction Id="ts.ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="4">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.Alt" Command="ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.Command" Id="ovs.msdyn_workorderservicetask.TSISMarkComplete.Form" Image32by32="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_32.png" Image16by16="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_16.png" LabelText="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.LabelText" Sequence="4" TemplateAlias="o1" ToolTipTitle="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.ToolTipDescription" ModernImage="SaveAsComplete" />
       </CommandUIDefinition>
@@ -304,6 +304,7 @@
       <EnableRules>
         <EnableRule Id="FieldService.Form.msdyn_workorderservicetask.MainTab.Save.AsComplete.Command.EnableRule.FormStateRule" />
         <EnableRule Id="FieldService.Form.msdyn_workorderservicetask.MainTab.Save.AsComplete.Command.EnableRule.FormStateRule2" />
+        <EnableRule Id="ts.msdyn_workorderservicetask.TSIS.isStatusReasonNew.Inverted" />
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="FieldService.Form.msdyn_workorderservicetask.MainTab.Save.AsComplete.Command.DisplayRule.EntityPrivilegeRule" />
@@ -562,6 +563,11 @@
       </EnableRule>
       <EnableRule Id="qm.msdyn_workorderservicetask.IsQuestionnaireParams">
         <CustomRule FunctionName="ServiceTaskRibbon.isQuestionnaireForm" Library="$webresource:qm_ServiceTask_Ribbons.js">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorderservicetask.TSIS.isStatusReasonNew.Inverted">
+        <CustomRule FunctionName="isStatusReasonNew" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false" InvertResult="true">
           <CrmParameter Value="PrimaryControl" />
         </CustomRule>
       </EnableRule>
