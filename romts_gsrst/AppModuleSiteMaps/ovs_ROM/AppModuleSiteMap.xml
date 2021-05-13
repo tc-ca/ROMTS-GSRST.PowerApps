@@ -13,12 +13,6 @@
           <Title LCID="1036" Title="Planification" />
         </Titles>
         <SubArea Id="New_SubArea" Icon="/_imgs/imagestrips/transparent_spacer.gif" IntroducedVersion="7.0.0.0" Entity="msdyn_workorder" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
-        <SubArea Id="NewSubArea_d91a412a" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="bookableresourcebooking" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
-          <Titles>
-            <Title LCID="1033" Title="Bookings" />
-            <Title LCID="1036" Title="Réservations" />
-          </Titles>
-        </SubArea>
         <SubArea Id="NewSubArea_50999ebb" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="incident" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
           <Titles>
             <Title LCID="1036" Title="Cas" />
@@ -36,11 +30,10 @@
             <Title LCID="1033" Title="Stakeholders" />
           </Titles>
         </SubArea>
-        <SubArea Id="NewSubArea_e0ef7766" Entity="msdyn_functionallocation" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
+        <SubArea Id="NewSubArea_e0ef7766" Icon="/_imgs/imagestrips/transparent_spacer.gif" Entity="msdyn_functionallocation" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
           <Titles>
             <Title LCID="1033" Title="Sites" />
           </Titles>
-          <Privilege Entity="msdyn_functionallocation" Privilege="Write,Create" />
         </SubArea>
       </Group>
       <Group Id="NewGroup_0a41e602" ResourceId="SitemapDesigner.NewGroup" IsProfile="false" ToolTipResourseId="SitemapDesigner.Unknown">
@@ -127,8 +120,11 @@
           <Titles>
             <Title LCID="1036" Title="Types de tâches de service" />
           </Titles>
+          <Privilege Entity="msdyn_servicetasktype" Privilege="All,Create,Read,Write,Delete,Append,AppendTo,Share,Assign" />
         </SubArea>
-        <SubArea Id="NewSubArea_7e7e65f2" Entity="ovs_questionnaire" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA" />
+        <SubArea Id="NewSubArea_7e7e65f2" Entity="ovs_questionnaire" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
+          <Privilege Entity="ovs_questionnaire" Privilege="All,Create,Read,Write,Delete,Append,AppendTo,Share,Assign" />
+        </SubArea>
       </Group>
       <Group Id="NewGroup_8dd066b9" ResourceId="SitemapDesigner.NewGroup" IsProfile="false" ToolTipResourseId="SitemapDesigner.Unknown">
         <Titles>
@@ -140,12 +136,14 @@
             <Title LCID="1033" Title="Provisions" />
             <Title LCID="1036" Title="Dispositions" />
           </Titles>
+          <Privilege Entity="qm_rclegislation" Privilege="All,Create,Read,Write,Delete,Append,AppendTo,Share,Assign" />
         </SubArea>
         <SubArea Id="NewSubArea_491494bb" Entity="qm_tylegislationsource" Client="All,Outlook,OutlookLaptopClient,OutlookWorkstationClient,Web" AvailableOffline="true" PassParams="false" Sku="All,OnPremise,Live,SPLA">
           <Titles>
             <Title LCID="1033" Title="Legislation Sources" />
             <Title LCID="1036" Title="Sources de la législation" />
           </Titles>
+          <Privilege Entity="qm_tylegislationsource" Privilege="All,Create,Read,Write,Delete,Append,AppendTo,Share,Assign" />
         </SubArea>
       </Group>
     </Area>

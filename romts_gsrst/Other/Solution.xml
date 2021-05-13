@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20210513.4</Version>
+    <Version>1.0.20210513.5</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -106,7 +106,7 @@
       <RootComponent type="1" schemaName="msdyn_bookingjournal" behavior="2" />
       <RootComponent type="1" schemaName="msdyn_customerasset" behavior="1" />
       <RootComponent type="1" schemaName="msdyn_customerassetcategory" behavior="1" />
-      <RootComponent type="1" schemaName="msdyn_functionallocation" behavior="1" />
+      <RootComponent type="1" schemaName="msdyn_functionallocation" behavior="0" />
       <RootComponent type="1" schemaName="msdyn_incidenttype" behavior="1" />
       <RootComponent type="1" schemaName="msdyn_incidenttypeproduct" behavior="2" />
       <RootComponent type="1" schemaName="msdyn_incidenttypeservice" behavior="2" />
@@ -132,7 +132,7 @@
       <RootComponent type="1" schemaName="ovs_operation" behavior="0" />
       <RootComponent type="1" schemaName="ovs_operationtype" behavior="0" />
       <RootComponent type="1" schemaName="ovs_questionnaire" behavior="0" />
-      <RootComponent type="1" schemaName="ovs_sitetype" behavior="2" />
+      <RootComponent type="1" schemaName="ovs_sitetype" behavior="0" />
       <RootComponent type="1" schemaName="ovs_tyrational" behavior="0" />
       <RootComponent type="1" schemaName="ovs_workorderservicetaskprovision" behavior="0" />
       <RootComponent type="1" schemaName="phonecall" behavior="1" />
@@ -185,9 +185,7 @@
       <RootComponent type="60" id="{15915835-b87c-49ec-9ffc-bfac3ac44ef1}" behavior="0" />
       <RootComponent type="60" id="{1f40eda5-fe03-435b-bd01-e18eb5e246eb}" behavior="0" />
       <RootComponent type="60" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" behavior="0" />
-      <RootComponent type="60" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
       <RootComponent type="60" id="{2dbe9c3a-901a-484d-9e68-8424cd897f8d}" behavior="0" />
-      <RootComponent type="60" id="{2ee0f0dd-f245-40d7-a998-706aeb7b9246}" />
       <RootComponent type="60" id="{396ccc86-fa22-4351-8cc5-83d8cf209720}" behavior="0" />
       <RootComponent type="60" id="{3e8942a7-ff8e-4634-84ec-8ce174ab807c}" behavior="0" />
       <RootComponent type="60" id="{45b022a4-928d-eb11-b1ac-000d3ae92dbf}" behavior="0" />
@@ -222,7 +220,6 @@
       <RootComponent type="60" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" behavior="0" />
       <RootComponent type="60" id="{b0a1ab16-2d2f-eb11-a813-000d3af3fc19}" behavior="0" />
       <RootComponent type="60" id="{b6466851-a1fd-ea11-a813-000d3af3ac0d}" behavior="0" />
-      <RootComponent type="60" id="{b6627ebb-062e-4b86-9771-46ed5fabaf62}" />
       <RootComponent type="60" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" behavior="0" />
       <RootComponent type="60" id="{cb430327-bcc1-416d-959d-db7592e685af}" behavior="0" />
       <RootComponent type="60" id="{ccd4012b-d9f5-490c-94b4-1b8f78f0868b}" behavior="0" />
@@ -232,7 +229,6 @@
       <RootComponent type="60" id="{d8dc9595-c451-eb11-a812-000d3af3ac0d}" behavior="0" />
       <RootComponent type="60" id="{e0d97cdc-4c20-4e03-bc2a-6dbc6cb1d2c2}" behavior="0" />
       <RootComponent type="60" id="{e11e2c2d-9314-eb11-a813-000d3af3a7a7}" behavior="0" />
-      <RootComponent type="60" id="{e279a266-8ecf-489f-bcfb-2d2911136738}" />
       <RootComponent type="60" id="{e631a301-3f03-eb11-a813-000d3af3a7a7}" behavior="0" />
       <RootComponent type="60" id="{e8f97346-4f58-47de-964f-cbd64a52011b}" behavior="0" />
       <RootComponent type="60" id="{eb3748b8-5f90-4050-a039-8b7d279ad8fe}" behavior="0" />
@@ -1463,6 +1459,10 @@
         <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="1" schemaName="msdyn_agreementbookingincident" displayName="Agreement Booking Incident" solution="FieldService (8.8.0.88)" />
+        <Dependent type="1" schemaName="msdyn_functionallocation" displayName="Functional Location" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="1" schemaName="msdyn_agreementbookingproduct" displayName="Agreement Booking Product" solution="FieldService (8.8.0.88)" />
         <Dependent type="1" schemaName="msdyn_agreementbookingproduct" displayName="Agreement Booking Product" />
       </MissingDependency>
@@ -1971,10 +1971,6 @@
         <Dependent type="92" displayName="Core.Localization.Update: Update of ovs_facility" id="{f060c4fb-3b15-eb11-a813-000d3af3a7a7}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="ovs_sitetype" displayName="Site Type" solution="Active" />
-        <Dependent type="1" schemaName="ovs_sitetype" displayName="Site Type" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="1" schemaName="ppp_traveller" displayName="Traveller Validation" solution="Active" />
         <Dependent type="1" schemaName="ppp_traveller" displayName="Traveller Validation" />
       </MissingDependency>
@@ -2340,7 +2336,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.41.28)" />
-        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" displayName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.41.28)" />
@@ -2428,7 +2424,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)" />
@@ -2965,6 +2961,14 @@
       <MissingDependency>
         <Required type="10" schemaName="msdyn_customerasset_FunctionalLocation_ms" displayName="msdyn_customerasset_FunctionalLocation_ms" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
         <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_FunctionalLocation_ParentFunctional" displayName="msdyn_FunctionalLocation_ParentFunctional" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="10" schemaName="msdyn_FunctionalLocation_ParentFunctional" displayName="msdyn_FunctionalLocation_ParentFunctional" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_FunctionalLocation_ParentFunctional" displayName="msdyn_FunctionalLocation_ParentFunctional" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="2" schemaName="msdyn_parentfunctionallocationname" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_FunctionalLocation_ParentFunctional" displayName="msdyn_FunctionalLocation_ParentFunctional" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
@@ -5912,6 +5916,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="10" schemaName="msdyn_FunctionalLocation_ParentFunctional" displayName="msdyn_FunctionalLocation_ParentFunctional" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
         <Dependent type="10" schemaName="msdyn_msdyn_functionallocation_msdyn_workorder_FunctionalLocation" displayName="msdyn_msdyn_functionallocation_msdyn_workorder_FunctionalLocation" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
@@ -5925,6 +5933,10 @@
       <MissingDependency>
         <Required type="2" schemaName="msdyn_longitude" displayName="Longitude" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_FieldService_patch_update (8.8.41.28)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="10" schemaName="msdyn_FunctionalLocation_ParentFunctional" displayName="msdyn_FunctionalLocation_ParentFunctional" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
@@ -5944,6 +5956,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_parentfunctionallocation" displayName="Parent Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="10" schemaName="msdyn_FunctionalLocation_ParentFunctional" displayName="msdyn_FunctionalLocation_ParentFunctional" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_parentfunctionallocation" displayName="Parent Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
         <Dependent type="26" schemaName="Active Functional Locations" displayName="Active Functional Locations" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" id="{750e041a-f88c-4b3c-887a-1f1946b8d86b}" />
       </MissingDependency>
       <MissingDependency>
@@ -5959,12 +5975,16 @@
         <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="ownerid" displayName="Owner" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="Active" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
+        <Required type="2" schemaName="overriddencreatedon" displayName="Record Created On" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="2" schemaName="overriddencreatedon" displayName="Record Created On" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="statecode" displayName="Status" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
-        <Dependent type="26" schemaName="Active Functional Locations" displayName="Active Functional Locations" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" id="{750e041a-f88c-4b3c-887a-1f1946b8d86b}" />
+        <Dependent type="2" schemaName="statecode" displayName="Status" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="createdon" displayName="Created On" parentSchemaName="msdyn_incidenttype" parentDisplayName="Incident Type" solution="FieldService (8.8.0.88)" />
@@ -10512,7 +10532,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)" />
-        <Dependent type="60" displayName="Contact Main Form" parentDisplayName="Contact" id="{2c961780-b9f9-ea11-a815-000d3af3ac0d}" />
+        <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)" />
@@ -10584,11 +10604,11 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)" />
-        <Dependent type="60" displayName="App for Outlook Case Quick Create" parentDisplayName="Case" id="{ac33e173-6502-4816-ab48-c3eefd7be580}" />
+        <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)" />
-        <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)" />
@@ -10605,6 +10625,14 @@
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="ts_/html/SurveyRenderPrint.html" displayName="ts_/html/SurveyRenderPrint.html" solution="Active" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="ts_/js/FunctionalLocation.js" displayName="ts_/js/FunctionalLocation.js" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="65" schemaName="Account Hierarchy" displayName="Account Hierarchy" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_AppCommon (9.0.4.0066)" id="{4ef9fbbf-dcca-e311-b3e2-0024e84720c0}" />

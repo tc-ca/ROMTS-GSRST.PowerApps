@@ -405,7 +405,7 @@ var ROM;
                                 // do not set a default if multiple records are found, error.
                             }
                         }, function (error) {
-                            console.log(error.message);
+                            showErrorMessageAlert(error);
                         });
                     }
                 }

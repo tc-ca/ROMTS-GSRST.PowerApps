@@ -17,6 +17,11 @@
         <Button Alt="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.Alt" Command="Mscrm.SaveAndClosePrimary" Id="Mscrm.Form.msdyn_workorderservicetask.SaveAndClose" Image32by32="/_imgs/ribbon/SaveAndClose_32.png" Image16by16="/_imgs/FormEditorRibbon/SaveAndClose_16.png" LabelText="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.LabelText" Sequence="11" TemplateAlias="o1" ToolTipTitle="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.ToolTipTitle" ToolTipDescription="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.ToolTipDescription" ModernImage="SaveAndClose" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="63">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.Alt" Command="ts.msdyn_workorderservicetask.TSIS.PrintSurvey" CommandValueId="" Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form" LabelText="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.LabelText" Sequence="63" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="4">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.Alt" Command="ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.Command" Id="ovs.msdyn_workorderservicetask.TSISMarkComplete.Form" Image32by32="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_32.png" Image16by16="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_16.png" LabelText="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.LabelText" Sequence="4" TemplateAlias="o1" ToolTipTitle="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.ToolTipDescription" ModernImage="SaveAsComplete" />
@@ -401,6 +406,17 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorderservicetask.TSIS.PrintSurvey">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorderservicetask.TSIS.isStatusReasonNew.Inverted" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="printSurvey" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
   </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
@@ -662,6 +678,26 @@
       <Titles>
         <Title description="Mark Complete" languagecode="1033" />
         <Title description="Marquer comme terminé SIST" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.Alt">
+      <Titles>
+        <Title description="Print Survey" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.LabelText">
+      <Titles>
+        <Title description="Print Survey" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.ToolTipDescription">
+      <Titles>
+        <Title description="Print Survey" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.ToolTipTitle">
+      <Titles>
+        <Title description="Print Survey" languagecode="1033" />
       </Titles>
     </LocLabel>
   </LocLabels>
