@@ -4,17 +4,16 @@
     <isquickfindquery>0</isquickfindquery>
     <isprivate>0</isprivate>
     <isdefault>1</isdefault>
-    <savedqueryid>{750e041a-f88c-4b3c-887a-1f1946b8d86b}</savedqueryid>
+    <savedqueryid>{57f1ece8-04ac-4178-b2bd-cbd292d2ecc4}</savedqueryid>
     <layoutxml>
-      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
-        <row name="result" id="msdyn_functionallocationid">
+      <grid name="msdyn_functionallocations" jump="msdyn_name" select="1" icon="1" preview="0">
+        <row name="msdyn_functionallocation" id="msdyn_functionallocationid">
           <cell name="msdyn_name" width="300" />
-          <cell name="msdyn_parentfunctionallocation" width="196" />
-          <cell name="ts_region" width="185" />
+          <cell name="msdyn_parentfunctionallocation" width="100" />
         </row>
       </grid>
     </layoutxml>
-    <querytype>0</querytype>
+    <querytype>64</querytype>
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="msdyn_functionallocation">
@@ -23,16 +22,15 @@
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <attribute name="ts_region" />
-          <attribute name="msdyn_parentfunctionallocation" />
           <order attribute="msdyn_name" descending="false" />
+          <attribute name="msdyn_parentfunctionallocation" />
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Active Functional Locations" languagecode="1033" />
-      <LocalizedName description="Sites actifs" languagecode="1036" />
+      <LocalizedName description="Functional Location Lookup View" languagecode="1033" />
+      <LocalizedName description="Vue Recherche Poste technique" languagecode="1036" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

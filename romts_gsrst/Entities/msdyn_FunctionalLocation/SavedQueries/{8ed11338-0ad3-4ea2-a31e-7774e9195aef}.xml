@@ -3,14 +3,13 @@
   <savedquery>
     <isquickfindquery>0</isquickfindquery>
     <isprivate>0</isprivate>
-    <isdefault>1</isdefault>
-    <savedqueryid>{750e041a-f88c-4b3c-887a-1f1946b8d86b}</savedqueryid>
+    <isdefault>0</isdefault>
+    <savedqueryid>{8ed11338-0ad3-4ea2-a31e-7774e9195aef}</savedqueryid>
     <layoutxml>
       <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
         <row name="result" id="msdyn_functionallocationid">
           <cell name="msdyn_name" width="300" />
-          <cell name="msdyn_parentfunctionallocation" width="196" />
-          <cell name="ts_region" width="185" />
+          <cell name="createdon" width="125" />
         </row>
       </grid>
     </layoutxml>
@@ -20,19 +19,19 @@
         <entity name="msdyn_functionallocation">
           <attribute name="msdyn_functionallocationid" />
           <attribute name="msdyn_name" />
+          <attribute name="createdon" />
+          <order attribute="msdyn_name" descending="false" />
           <filter type="and">
+            <condition attribute="msdyn_parentfunctionallocation" operator="null" />
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <attribute name="ts_region" />
-          <attribute name="msdyn_parentfunctionallocation" />
-          <order attribute="msdyn_name" descending="false" />
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Active Functional Locations" languagecode="1033" />
-      <LocalizedName description="Sites actifs" languagecode="1036" />
+      <LocalizedName description="Active Functional Locations (Top Level)" languagecode="1033" />
+      <LocalizedName description="Postes techniques actifs (Niveau supérieur)" languagecode="1036" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

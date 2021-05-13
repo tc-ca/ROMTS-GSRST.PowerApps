@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{27332682-c585-ea11-a81f-000d3aab1e57}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" preview="1" icon="1">
+        <row name="result" id="msdyn_functionallocationid">
+          <cell name="msdyn_name" width="150" />
+          <cell name="msdyn_address1" width="150" />
+          <cell name="msdyn_city" width="100" />
+          <cell name="msdyn_stateorprovince" />
+          <cell name="msdyn_postalcode" width="100" />
+          <cell name="msdyn_latitude" width="100" />
+          <cell name="msdyn_longitude" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="msdyn_functionallocation">
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_address1" />
+          <attribute name="msdyn_stateorprovince" />
+          <attribute name="msdyn_postalcode" />
+          <attribute name="msdyn_longitude" />
+          <attribute name="msdyn_latitude" />
+          <attribute name="msdyn_city" />
+          <attribute name="msdyn_functionallocationid" />
+          <order attribute="msdyn_name" descending="false" />
+          <filter type="and">
+            <condition attribute="msdyn_parentfunctionallocation" operator="null" />
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Functional Locations (Top-Level)" languagecode="1033" />
+      <LocalizedName description="Postes techniques actifs (Niveau supérieur)" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

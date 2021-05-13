@@ -1,38 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <savedquery>
-    <isquickfindquery>0</isquickfindquery>
+    <isquickfindquery>1</isquickfindquery>
     <isprivate>0</isprivate>
     <isdefault>1</isdefault>
-    <savedqueryid>{750e041a-f88c-4b3c-887a-1f1946b8d86b}</savedqueryid>
+    <savedqueryid>{c37c87e5-99eb-450b-aaa7-e4607d7ac068}</savedqueryid>
     <layoutxml>
       <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
         <row name="result" id="msdyn_functionallocationid">
           <cell name="msdyn_name" width="300" />
-          <cell name="msdyn_parentfunctionallocation" width="196" />
-          <cell name="ts_region" width="185" />
+          <cell name="createdon" width="125" />
         </row>
       </grid>
     </layoutxml>
-    <querytype>0</querytype>
+    <querytype>4</querytype>
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="msdyn_functionallocation">
           <attribute name="msdyn_functionallocationid" />
           <attribute name="msdyn_name" />
+          <attribute name="createdon" />
+          <order attribute="msdyn_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <attribute name="ts_region" />
-          <attribute name="msdyn_parentfunctionallocation" />
-          <order attribute="msdyn_name" descending="false" />
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="msdyn_name" operator="like" value="{0}" />
+          </filter>
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Active Functional Locations" languagecode="1033" />
-      <LocalizedName description="Sites actifs" languagecode="1036" />
+      <LocalizedName description="Quick Find Active Functional Locations" languagecode="1033" />
+      <LocalizedName description="Recherche rapide Postes techniques actifs" languagecode="1036" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

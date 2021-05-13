@@ -4,35 +4,33 @@
     <isquickfindquery>0</isquickfindquery>
     <isprivate>0</isprivate>
     <isdefault>1</isdefault>
-    <savedqueryid>{750e041a-f88c-4b3c-887a-1f1946b8d86b}</savedqueryid>
+    <savedqueryid>{0d73f687-cd70-4dc9-89e2-2e97ffd148f2}</savedqueryid>
     <layoutxml>
-      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
-        <row name="result" id="msdyn_functionallocationid">
+      <grid name="msdyn_functionallocations" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="msdyn_functionallocation" id="msdyn_functionallocationid">
           <cell name="msdyn_name" width="300" />
-          <cell name="msdyn_parentfunctionallocation" width="196" />
-          <cell name="ts_region" width="185" />
+          <cell name="createdon" width="125" />
         </row>
       </grid>
     </layoutxml>
-    <querytype>0</querytype>
+    <querytype>2</querytype>
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="msdyn_functionallocation">
           <attribute name="msdyn_functionallocationid" />
           <attribute name="msdyn_name" />
+          <attribute name="createdon" />
+          <order attribute="msdyn_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <attribute name="ts_region" />
-          <attribute name="msdyn_parentfunctionallocation" />
-          <order attribute="msdyn_name" descending="false" />
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Active Functional Locations" languagecode="1033" />
-      <LocalizedName description="Sites actifs" languagecode="1036" />
+      <LocalizedName description="Functional Location Associated View" languagecode="1033" />
+      <LocalizedName description="Vue associée Poste technique" languagecode="1036" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>
