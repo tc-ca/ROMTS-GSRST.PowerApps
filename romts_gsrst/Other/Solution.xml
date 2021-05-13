@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20210512.1</Version>
+    <Version>1.0.20210513.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -2340,7 +2340,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.41.28)" />
-        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="bookableresource_bookableresourcebooking_Resource" displayName="bookableresource_bookableresourcebooking_Resource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.41.28)" />
@@ -3337,6 +3337,10 @@
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_servicetasktype_msdyn_workorderservicetask_TaskType" displayName="msdyn_msdyn_servicetasktype_msdyn_workorderservicetask_TaskType" parentSchemaName="msdyn_servicetasktype" parentDisplayName="Service Task Type" solution="FieldService (8.8.0.88)" />
         <Dependent type="163" id="{4a6f6212-d24e-eb11-a812-000d3af3ac0d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_servicetasktype_msdyn_workorderservicetask_TaskType" displayName="msdyn_msdyn_servicetasktype_msdyn_workorderservicetask_TaskType" parentSchemaName="msdyn_servicetasktype" parentDisplayName="Service Task Type" solution="FieldService (8.8.0.88)" />
+        <Dependent type="2" schemaName="msdyn_tasktype" displayName="Task Type" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_servicetasktype_msdyn_workorderservicetask_TaskType" displayName="msdyn_msdyn_servicetasktype_msdyn_workorderservicetask_TaskType" parentSchemaName="msdyn_servicetasktype" parentDisplayName="Service Task Type" solution="FieldService (8.8.0.88)" />
@@ -6632,7 +6636,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
@@ -7300,47 +7304,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="ovs_msdyn_workorderservicetask_ovs_finding" displayName="ovs_msdyn_workorderservicetask_ovs_finding" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="ovs_msdyn_workorderservicetask_ovs_workorders" displayName="ovs_msdyn_workorderservicetask_ovs_workorders" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="26" schemaName="Inspection - Work Order Service Task View" displayName="Inspection - Work Order Service Task View" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{063662d0-db4c-e111-93b3-000c2959f9b8}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="26" schemaName="Inactive Work Order Service Tasks" displayName="Inactive Work Order Service Tasks" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{2f145106-bcb3-4f0f-9d02-e8c3b6bb25e8}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="26" schemaName="Failed Inspection - Work Order Service Task View" displayName="Failed Inspection - Work Order Service Task View" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{c9481231-e438-eb11-a813-000d3af3fc19}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="26" schemaName="Active Work Order Service Tasks" displayName="Active Work Order Service Tasks" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{c9fd8f4d-8184-4ddb-a31a-89e66e8e710e}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="60" displayName="Work Order Service Task - Mobile" parentDisplayName="Work Order Service Task" id="{06a480e2-69e6-4283-8aa5-9fa17c86671f}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Service Task" id="{12a5be6b-b565-4d80-a2bc-3d4f652a3d98}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="60" displayName="Work Order - Service" parentDisplayName="Work Order" id="{613513a1-322d-4ecc-81bd-bd65640d834c}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="93" id="{4e37f485-4c66-eb11-a812-000d3aff148f}" />
+        <Dependent type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_percentcomplete" displayName="% Complete" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
@@ -7360,27 +7324,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_tasktype" displayName="Task Type" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="26" schemaName="Inactive Work Order Service Tasks" displayName="Inactive Work Order Service Tasks" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{2f145106-bcb3-4f0f-9d02-e8c3b6bb25e8}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_tasktype" displayName="Task Type" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="26" schemaName="Failed Inspection - Work Order Service Task View" displayName="Failed Inspection - Work Order Service Task View" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{c9481231-e438-eb11-a813-000d3af3fc19}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_tasktype" displayName="Task Type" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="26" schemaName="Active Work Order Service Tasks" displayName="Active Work Order Service Tasks" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{c9fd8f4d-8184-4ddb-a31a-89e66e8e710e}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_tasktype" displayName="Task Type" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="60" displayName="Work Order Service Task - Mobile" parentDisplayName="Work Order Service Task" id="{06a480e2-69e6-4283-8aa5-9fa17c86671f}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_tasktype" displayName="Task Type" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Service Task" id="{12a5be6b-b565-4d80-a2bc-3d4f652a3d98}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_tasktype" displayName="Task Type" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
-        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="2" schemaName="msdyn_tasktype" displayName="Task Type" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workorder" displayName="Work Order" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)" />
@@ -10661,6 +10605,10 @@
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="ts_/js/FunctionalLocation.js" displayName="ts_/js/FunctionalLocation.js" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="65" schemaName="Account Hierarchy" displayName="Account Hierarchy" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_AppCommon (9.0.4.0066)" id="{4ef9fbbf-dcca-e311-b3e2-0024e84720c0}" />

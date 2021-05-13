@@ -28,7 +28,7 @@
                           <label description="Business Unit" languagecode="1033" />
                           <label description="BusinessUnit" languagecode="1036" />
                         </labels>
-                        <control id="ts_businessunit" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_businessunit" disabled="false" />
+                        <control id="ts_businessunit" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_businessunit" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -51,7 +51,7 @@
                       <cell id="{70605a8d-e587-b064-44e5-4133cb1ad77e}" showlabel="true" locklevel="0" visible="true" ordinalvalue="20009" solutionaction="Modified" />
                     </row>
                     <row>
-                      <cell locklevel="0" id="{169db83c-3cbc-4642-9056-198a39345772}" ordinalvalue="10010" solutionaction="Added">
+                      <cell locklevel="0" id="{169db83c-3cbc-4642-9056-198a39345772}" showlabel="false" ordinalvalue="10010" solutionaction="Added">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -70,7 +70,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell locklevel="0" id="{5c239b6a-cfb4-4dc9-a84c-03142db96ab3}" ordinalvalue="10012" solutionaction="Added">
+                      <cell locklevel="0" id="{5c239b6a-cfb4-4dc9-a84c-03142db96ab3}" showlabel="false" ordinalvalue="10012" solutionaction="Added">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -90,12 +90,12 @@
                       </cell>
                     </row>
                     <row>
-                      <cell locklevel="0" id="{a0d3fafb-6f13-4dd1-9976-9ecc5e53c6a1}" ordinalvalue="10014" solutionaction="Added">
+                      <cell locklevel="0" id="{a0d3fafb-6f13-4dd1-9976-9ecc5e53c6a1}" showlabel="false" ordinalvalue="10014" solutionaction="Added">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                      <cell locklevel="0" id="{e032b8c8-21ab-4051-8fca-f7d7ad35e36b}" ordinalvalue="20015" solutionaction="Added">
+                      <cell locklevel="0" id="{e032b8c8-21ab-4051-8fca-f7d7ad35e36b}" showlabel="false" ordinalvalue="20015" solutionaction="Added">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -108,7 +108,20 @@
             <column width="33%" id="2">
               <sections>
                 <section id="{2e043c65-f14e-44ea-94c3-55d86206a248}" name="tab_3_column_3_section_1" columns="11" showlabel="false" showbar="false" IsUserDefined="0" ordinalvalue="0">
-                  <rows />
+                  <rows>
+                    <row>
+                      <cell id="{e0d9e929-50aa-4abe-8d8e-ec271f277d6b}" ordinalvalue="10000" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{61e7fa05-12af-4fab-a031-f1b66af605eb}" ordinalvalue="20001" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
                 </section>
               </sections>
             </column>
@@ -134,12 +147,88 @@
           </columns>
         </tab>
       </tabs>
+      <formLibraries>
+        <Library name="ts_/js/FunctionalLocation.js" libraryUniqueId="{568936c6-846d-c573-bd50-18d09d752622}" solutionaction="Added" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.onLoad" libraryName="ts_/js/FunctionalLocation.js" handlerUniqueId="{a69c4934-866a-496a-1746-9690b89bc176}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="1" solutionaction="Added" />
+          </Handlers>
+        </event>
+      </events>
       <header id="{163ea3df-ebcb-477c-8912-3a3c14b62a87}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
-        <rows />
+        <rows>
+          <row>
+            <cell id="{f489c7b0-9423-4829-ba67-5ced55ea281b}" ordinalvalue="10000">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{4abafbb4-a651-42b6-9a1a-3ba55e5e4101}" ordinalvalue="20001">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{bdbbf941-d5b3-4e98-bc98-607c2acf7439}" ordinalvalue="30002">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
       </header>
       <footer id="{88a644ea-0f70-4b1f-ba54-70abd90d154c}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
-        <rows />
+        <rows>
+          <row>
+            <cell id="{b31aaef2-68a7-4d82-a889-4eaf683ecb4f}" ordinalvalue="10000">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{86c885a1-34f4-48fb-9d2e-611860435d00}" ordinalvalue="20001">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{701177c0-d2b3-4fb2-93dc-9306217fc91f}" ordinalvalue="30002">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
       </footer>
+      <Navigation solutionaction="Added">
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
     </form>
     <LocalizedNames>
       <LocalizedName description="Information" languagecode="1033" />
