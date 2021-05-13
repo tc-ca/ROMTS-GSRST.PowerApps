@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20210513.5</Version>
+    <Version>1.0.20210513.7</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -277,6 +277,7 @@
       <RootComponent type="61" schemaName="ts_/html/FindingProvisionText.html" behavior="0" />
       <RootComponent type="61" schemaName="ts_/html/ProvisionRender.html" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/buildprovisiontext.js" behavior="0" />
+      <RootComponent type="61" schemaName="ts_/js/FunctionalLocation.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/IncidentQuickCreate.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/WorkOrderQuickCreate.js" behavior="0" />
       <RootComponent type="62" schemaName="ovs_ROM" behavior="0" />
@@ -2336,7 +2337,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.41.28)" />
-        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" displayName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.41.28)" />
@@ -4044,7 +4045,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)" />
@@ -4052,7 +4053,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)" />
@@ -6656,7 +6657,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
@@ -10625,14 +10626,6 @@
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_/html/SurveyRenderPrint.html" displayName="ts_/html/SurveyRenderPrint.html" solution="Active" />
-        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_/js/FunctionalLocation.js" displayName="ts_/js/FunctionalLocation.js" solution="Active" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="65" schemaName="Account Hierarchy" displayName="Account Hierarchy" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_AppCommon (9.0.4.0066)" id="{4ef9fbbf-dcca-e311-b3e2-0024e84720c0}" />
