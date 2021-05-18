@@ -1,4 +1,9 @@
-﻿var lang = parent.Xrm.Utility.getGlobalContext().userSettings.languageId;
+var lang = '1033';
+if (parent.Xrm != null) {
+    lang = parent.Xrm.Utility.getGlobalContext().userSettings.languageId;
+} else if (locale != undefined) {
+    lang = (locale == 'fr') ? 1036 : 1033;
+}
 
 var inspectorCommentsLocalizedText;
 var charactersRemainingLocalizedText;
@@ -61,6 +66,11 @@ var widget = {
         var comments = el.getElementsByClassName("inspectorComments")[0];
         var characterCount = el.getElementsByClassName("character-count")[0];
 
+        if (Survey.mode = "display") {
+            comments.rows = 5;
+            comments.readOnly = true;
+            characterCount.style.display = 'none';
+        }
         //The form has data to load
         if (question.value != null) {
             //Populate question property and form value

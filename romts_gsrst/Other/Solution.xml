@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ImportExportXml version="9.2.21044.121" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<ImportExportXml version="9.2.21051.130" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SolutionManifest>
     <UniqueName>romts_gsrst</UniqueName>
     <LocalizedNames>
@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20210514.1</Version>
+    <Version>1.0.20210518.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -112,6 +112,8 @@
       <RootComponent type="1" schemaName="msdyn_incidenttypeservice" behavior="2" />
       <RootComponent type="1" schemaName="msdyn_incidenttypeservicetask" behavior="0" />
       <RootComponent type="1" schemaName="msdyn_orderinvoicingproduct" behavior="2" />
+      <RootComponent type="1" schemaName="msdyn_propertyassetassociation" behavior="1" />
+      <RootComponent type="1" schemaName="msdyn_propertylog" behavior="1" />
       <RootComponent type="1" schemaName="msdyn_purchaseorder" behavior="2" />
       <RootComponent type="1" schemaName="msdyn_purchaseorderproduct" behavior="2" />
       <RootComponent type="1" schemaName="msdyn_quoteinvoicingproduct" behavior="2" />
@@ -278,6 +280,7 @@
       <RootComponent type="61" schemaName="ts_/html/FindingProvisionText.html" behavior="0" />
       <RootComponent type="61" schemaName="ts_/html/ProvisionRender.html" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/buildprovisiontext.js" behavior="0" />
+      <RootComponent type="61" schemaName="ts_/js/CustomerAsset.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/CustomerAssetRibbon.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/FunctionalLocation.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/IncidentQuickCreate.js" behavior="0" />
@@ -1699,8 +1702,28 @@
         <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="1" schemaName="msdyn_propertyassetassociation" displayName="Property Asset Association" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="1" schemaName="msdyn_propertyassetassociation" displayName="Property Asset Association" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_propertyassetassociation" displayName="Property Asset Association" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="2" schemaName="ts_msdyn_functionallocation_paa" displayName="Functional Location" parentSchemaName="msdyn_propertyassetassociation" parentDisplayName="Property Asset Association" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_propertylog" displayName="Property Log" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="1" schemaName="msdyn_propertylog" displayName="Property Log" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_propertylog" displayName="Property Log" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="2" schemaName="ts_msdyn_functionallocation" displayName="Functional Location" parentSchemaName="msdyn_propertylog" parentDisplayName="Property Log" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="1" schemaName="msdyn_propertylog" displayName="Property Log" solution="msdyn_AssetCommon (1.0.7.96)" />
         <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_propertylog" displayName="Property Log" solution="msdyn_AssetCommon (1.0.7.96)" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_propertylog" displayName="Property Log" solution="msdyn_AssetCommon (1.0.7.96)" />
@@ -2428,7 +2451,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)" />
@@ -6656,7 +6679,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
@@ -7947,7 +7970,7 @@
         <Dependent type="2" schemaName="overriddencreatedon" displayName="Record Created On" parentSchemaName="territory" parentDisplayName="Region" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="parentterritoryid" displayName="Parent" parentSchemaName="territory" parentDisplayName="Region" solution="msdynce_AppCommonPatch201904 (9.0.21043.10002)" />
+        <Required type="2" schemaName="parentterritoryid" displayName="Parent" parentSchemaName="territory" parentDisplayName="Region" solution="msdynce_AppCommonPatch201904 (9.0.21051.10001)" />
         <Dependent type="2" schemaName="parentterritoryid" displayName="Parent" parentSchemaName="territory" parentDisplayName="Region" />
       </MissingDependency>
       <MissingDependency>
@@ -8123,8 +8146,20 @@
         <Dependent type="60" displayName="Cases Dashboard" parentDisplayName="Case" id="{eb3748b8-5f90-4050-a039-8b7d279ad8fe}" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="26" schemaName="My Resolved Cases" displayName="My Resolved Cases" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)" id="{00000000-0000-0000-00aa-000010001029}" />
+        <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="All Cases" displayName="All Cases" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)" id="{00000000-0000-0000-00aa-000010001030}" />
+        <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="26" schemaName="Active Cases" displayName="Active Cases" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)" id="{00000000-0000-0000-00aa-000010001032}" />
         <Dependent type="60" displayName="Cases Dashboard" parentDisplayName="Case" id="{eb3748b8-5f90-4050-a039-8b7d279ad8fe}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Active Cases" displayName="Active Cases" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)" id="{00000000-0000-0000-00aa-000010001032}" />
+        <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="All Cases for Customer" displayName="All Cases for Customer" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)" id="{00000000-0000-0000-00aa-000010001039}" />
@@ -8261,6 +8296,10 @@
       <MissingDependency>
         <Required type="26" schemaName="Current Property Log Values" displayName="Current Property Log Values" parentSchemaName="msdyn_propertylog" parentDisplayName="Property Log" solution="msdyn_AssetCommon (1.0.7.96)" id="{0e8a1d80-9abf-ea11-a81d-000d3a7599db}" />
         <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Current Property Log Values" displayName="Current Property Log Values" parentSchemaName="msdyn_propertylog" parentDisplayName="Property Log" solution="msdyn_AssetCommon (1.0.7.96)" id="{0e8a1d80-9abf-ea11-a81d-000d3a7599db}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Current Property Log Values" displayName="Current Property Log Values" parentSchemaName="msdyn_propertylog" parentDisplayName="Property Log" solution="msdyn_AssetCommon (1.0.7.96)" id="{0e8a1d80-9abf-ea11-a81d-000d3a7599db}" />
@@ -8888,6 +8927,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Active Property Logs" displayName="Active Property Logs" parentSchemaName="msdyn_propertylog" parentDisplayName="Property Log" solution="msdyn_AssetCommon (1.0.7.96)" id="{76901db2-cd2a-4cea-b7ac-a47e18b55b84}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Active Property Logs" displayName="Active Property Logs" parentSchemaName="msdyn_propertylog" parentDisplayName="Property Log" solution="msdyn_AssetCommon (1.0.7.96)" id="{76901db2-cd2a-4cea-b7ac-a47e18b55b84}" />
         <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
       </MissingDependency>
       <MissingDependency>
@@ -9388,6 +9431,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Active Property Log Values" displayName="Active Property Log Values" parentSchemaName="msdyn_propertylog" parentDisplayName="Property Log" solution="msdyn_AssetCommon (1.0.7.96)" id="{fb319cbc-a9bc-ea11-a81c-000d3a7599db}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Active Property Log Values" displayName="Active Property Log Values" parentSchemaName="msdyn_propertylog" parentDisplayName="Property Log" solution="msdyn_AssetCommon (1.0.7.96)" id="{fb319cbc-a9bc-ea11-a81c-000d3a7599db}" />
         <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
       </MissingDependency>
       <MissingDependency>
@@ -9551,15 +9598,15 @@
         <Dependent type="60" displayName="Accounts Dashboard" parentDisplayName="Account" id="{15915835-b87c-49ec-9ffc-bfac3ac44ef1}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21043.1007)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}" />
+        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21051.1009)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}" />
         <Dependent type="60" displayName="ROM Case" parentDisplayName="Case" id="{45b022a4-928d-eb11-b1ac-000d3ae92dbf}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21043.1007)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}" />
+        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21051.1009)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}" />
         <Dependent type="60" displayName="Case" parentDisplayName="Case" id="{4a63c8d1-6c1e-48ec-9db4-3e6c7155334c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21043.1007)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}" />
+        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21051.1009)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}" />
         <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
@@ -9611,7 +9658,7 @@
         <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Live Persona Card Form" parentDisplayName="Contact" solution="msdynce_AppCommonPatch201904 (9.0.21043.10002)" id="{449faa0e-f471-48ec-87d0-4719909546d2}" />
+        <Required type="60" displayName="Live Persona Card Form" parentDisplayName="Contact" solution="msdynce_AppCommonPatch201904 (9.0.21051.10001)" id="{449faa0e-f471-48ec-87d0-4719909546d2}" />
         <Dependent type="60" displayName="Live Persona Card Form" parentDisplayName="Contact" id="{449faa0e-f471-48ec-87d0-4719909546d2}" />
       </MissingDependency>
       <MissingDependency>
@@ -9747,7 +9794,7 @@
         <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{aa6c8228-0b79-43e4-906b-f382d015b0cf}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="App for Outlook Case Quick Create" parentDisplayName="Case" solution="AppforOutlookPatch (1.2.379)" id="{ac33e173-6502-4816-ab48-c3eefd7be580}" />
+        <Required type="60" displayName="App for Outlook Case Quick Create" parentDisplayName="Case" solution="AppforOutlookPatch (1.2.379.121051)" id="{ac33e173-6502-4816-ab48-c3eefd7be580}" />
         <Dependent type="60" displayName="App for Outlook Case Quick Create" parentDisplayName="Case" id="{ac33e173-6502-4816-ab48-c3eefd7be580}" />
       </MissingDependency>
       <MissingDependency>
@@ -9759,7 +9806,7 @@
         <Dependent type="60" displayName="Information" parentDisplayName="Account" id="{b053a39a-041a-4356-acef-ddf00182762b}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Case for Multisession experience" parentDisplayName="Case" solution="msdynce_ServicePatch201911 (9.0.21043.1014)" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
+        <Required type="60" displayName="Case for Multisession experience" parentDisplayName="Case" solution="msdynce_ServicePatch201911 (9.0.21051.1012)" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
         <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
       </MissingDependency>
       <MissingDependency>
@@ -9803,7 +9850,7 @@
         <Dependent type="60" displayName="Contact Reference Panel" parentDisplayName="Contact" id="{d880c3cf-80e2-42f3-82f9-24d040d09f17}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Contact for Multisession experience" parentDisplayName="Contact" solution="msdynce_ServicePatch201911 (9.0.21043.1014)" id="{e06af4d1-2812-45c7-a9c2-9fb73fee7bec}" />
+        <Required type="60" displayName="Contact for Multisession experience" parentDisplayName="Contact" solution="msdynce_ServicePatch201911 (9.0.21051.1012)" id="{e06af4d1-2812-45c7-a9c2-9fb73fee7bec}" />
         <Dependent type="60" displayName="Contact for Multisession experience" parentDisplayName="Contact" id="{e06af4d1-2812-45c7-a9c2-9fb73fee7bec}" />
       </MissingDependency>
       <MissingDependency>
@@ -9819,15 +9866,15 @@
         <Dependent type="60" displayName="Cases Dashboard" parentDisplayName="Case" id="{eb3748b8-5f90-4050-a039-8b7d279ad8fe}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21043.1007)" id="{ede9dac3-e143-4be4-acc8-237309e31210}" />
+        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21051.1009)" id="{ede9dac3-e143-4be4-acc8-237309e31210}" />
         <Dependent type="60" displayName="ROM Case" parentDisplayName="Case" id="{45b022a4-928d-eb11-b1ac-000d3ae92dbf}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21043.1007)" id="{ede9dac3-e143-4be4-acc8-237309e31210}" />
+        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21051.1009)" id="{ede9dac3-e143-4be4-acc8-237309e31210}" />
         <Dependent type="60" displayName="Case" parentDisplayName="Case" id="{4a63c8d1-6c1e-48ec-9db4-3e6c7155334c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21043.1007)" id="{ede9dac3-e143-4be4-acc8-237309e31210}" />
+        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21051.1009)" id="{ede9dac3-e143-4be4-acc8-237309e31210}" />
         <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
@@ -9839,7 +9886,7 @@
         <Dependent type="60" displayName="Recent Cases and Entitlements" parentDisplayName="Contact" id="{f3b707fb-3b5f-45f9-9c6b-5e573bb5d19e}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Case Quick Create for Multisession" parentDisplayName="Case" solution="msdynce_ServicePatch201911 (9.0.21043.1014)" id="{f43b46e9-17a4-4443-afc4-141d40a46f22}" />
+        <Required type="60" displayName="Case Quick Create for Multisession" parentDisplayName="Case" solution="msdynce_ServicePatch201911 (9.0.21051.1012)" id="{f43b46e9-17a4-4443-afc4-141d40a46f22}" />
         <Dependent type="60" displayName="Case Quick Create for Multisession" parentDisplayName="Case" id="{f43b46e9-17a4-4443-afc4-141d40a46f22}" />
       </MissingDependency>
       <MissingDependency>
@@ -10639,51 +10686,51 @@
         <Dependent type="65" schemaName="Account Hierarchy" displayName="Account Hierarchy" parentSchemaName="account" parentDisplayName="Account" id="{4ef9fbbf-dcca-e311-b3e2-0024e84720c0}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Contact Main Form" parentDisplayName="Contact" id="{2c961780-b9f9-ea11-a815-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Contact Quick Create" parentDisplayName="Contact" id="{661157fe-2fc9-4eaa-835f-5bfa2f7b64f7}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Contact - Mobile" parentDisplayName="Contact" id="{28b5b9b6-dfa2-45d6-8a81-3f6ba02a098a}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Work Order" parentDisplayName="Work Order" id="{6bfd1f9f-759e-459a-b752-3536e6513d25}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Account - Mobile" parentDisplayName="Account" id="{74da4947-5d1d-4400-9f99-c6ed578211bb}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Functional Location Quick Create" parentDisplayName="Functional Location" id="{77fb5987-41c3-4839-82f1-80d07d33c8ed}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Work Order - Customer" parentDisplayName="Work Order" id="{c0ebdf20-f27f-4acc-8c9f-a9a202a5e917}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="Microsoft.AddressInputUCI" displayName="Microsoft.AddressInputUCI" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Work Order - Mobile" parentDisplayName="Work Order" id="{f25cecf6-2f00-4eab-aeef-d773af32e027}" />
       </MissingDependency>
       <MissingDependency>
@@ -10711,31 +10758,31 @@
         <Dependent type="60" displayName="App for Outlook Contact Quick View" parentDisplayName="Contact" id="{3d22ab88-96c8-4b3f-a533-d4827e2925c9}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Contact Main Form" parentDisplayName="Contact" id="{2c961780-b9f9-ea11-a815-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Organisations" parentDisplayName="Account" id="{b6466851-a1fd-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Sales Insights" parentDisplayName="Account" id="{cb430327-bcc1-416d-959d-db7592e685af}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.CardFeedContainer.CardFeedContainer" displayName="MscrmControls.CardFeedContainer.CardFeedContainer" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="ROM Information" parentDisplayName="Account" id="{f3f3935c-b7dd-4dd4-a86b-2b0735f57d13}" />
       </MissingDependency>
       <MissingDependency>
@@ -10783,47 +10830,47 @@
         <Dependent type="60" displayName="Main form" parentDisplayName="Work Order" id="{f10dda58-3203-eb11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.FieldControls.ToggleControl" displayName="MscrmControls.FieldControls.ToggleControl" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.FieldControls.ToggleControl" displayName="MscrmControls.FieldControls.ToggleControl" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Service Task Type" id="{1f40eda5-fe03-435b-bd01-e18eb5e246eb}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.FieldControls.ToggleControl" displayName="MscrmControls.FieldControls.ToggleControl" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.FieldControls.ToggleControl" displayName="MscrmControls.FieldControls.ToggleControl" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="ROM Information" parentDisplayName="Service Task Type" id="{9f0e18fc-8a70-eb11-a812-000d3af390d5}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.FlipSwitch.FlipSwitchControl" displayName="MscrmControls.FlipSwitch.FlipSwitchControl" solution="CustomControlsCore (9.2.21044.00121)" />
+        <Required type="66" schemaName="MscrmControls.FlipSwitch.FlipSwitchControl" displayName="MscrmControls.FlipSwitch.FlipSwitchControl" solution="CustomControlsCore (9.2.21051.00130)" />
         <Dependent type="60" displayName="Work Order - Mobile" parentDisplayName="Work Order" id="{f25cecf6-2f00-4eab-aeef-d773af32e027}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.GridControl" displayName="MscrmControls.Grid.GridControl" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Grid.GridControl" displayName="MscrmControls.Grid.GridControl" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Field Service Information" parentDisplayName="Opportunity" id="{8335a04b-dc80-44b0-83ab-11ed80f93d3e}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="26" schemaName="Class and Division of DG" displayName="Class and Division of DG" parentSchemaName="qm_tylegislationcharacteristic" parentDisplayName="Legislation Characteristic" id="{03f0c2e4-7e58-eb11-a812-000d3a84da66}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="26" schemaName="Size of Means of Containment" displayName="Size of Means of Containment" parentSchemaName="qm_tylegislationcharacteristic" parentDisplayName="Legislation Characteristic" id="{19b9573b-7f58-eb11-a812-000d3a84da66}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="26" schemaName="HOTI Type" displayName="HOTI Type" parentSchemaName="qm_tylegislationcharacteristic" parentDisplayName="Legislation Characteristic" id="{3c53f358-7f58-eb11-a812-000d3a84da66}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="26" schemaName="UN Numbers" displayName="UN Numbers" parentSchemaName="qm_tylegislationcharacteristic" parentDisplayName="Legislation Characteristic" id="{5c14eb26-7f58-eb11-a812-000d3a84da66}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="26" schemaName="MOC Type" displayName="MOC Type" parentSchemaName="qm_tylegislationcharacteristic" parentDisplayName="Legislation Characteristic" id="{7bc9f704-7f58-eb11-a812-000d3a84da66}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="26" schemaName="MOC Facility Type" displayName="MOC Facility Type" parentSchemaName="qm_tylegislationcharacteristic" parentDisplayName="Legislation Characteristic" id="{c8c68eb4-7e58-eb11-a812-000d3a84da66}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Grid.ReadOnlyGrid" displayName="MscrmControls.Grid.ReadOnlyGrid" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="26" parentSchemaName="qm_tylegislationcharacteristic" parentDisplayName="Legislation Characteristic" id="{fe8f7daa-7d58-eb11-a812-000d3a84da66}" />
       </MissingDependency>
       <MissingDependency>
@@ -10831,59 +10878,59 @@
         <Dependent type="60" displayName="App for Outlook Contact Quick View" parentDisplayName="Contact" id="{3d22ab88-96c8-4b3f-a533-d4827e2925c9}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Work Order" parentDisplayName="Work Order" id="{6bfd1f9f-759e-459a-b752-3536e6513d25}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="ROM Oversight Activity" parentDisplayName="Work Order" id="{704d8664-78ac-eb11-8236-000d3ae8b866}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Work Order - Customer" parentDisplayName="Work Order" id="{c0ebdf20-f27f-4acc-8c9f-a9a202a5e917}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="TSIS Oversight Activity" parentDisplayName="Work Order" id="{d8dc9595-c451-eb11-a812-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Main form" parentDisplayName="Work Order" id="{f10dda58-3203-eb11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Work Order - Mobile" parentDisplayName="Work Order" id="{f25cecf6-2f00-4eab-aeef-d773af32e027}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.ModelForm.ModelFormControl" displayName="MscrmControls.ModelForm.ModelFormControl" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.ModelForm.ModelFormControl" displayName="MscrmControls.ModelForm.ModelFormControl" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Main Form" parentDisplayName="Bookable Resource" id="{3e8942a7-ff8e-4634-84ec-8ce174ab807c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.ModelForm.ModelFormControl" displayName="MscrmControls.ModelForm.ModelFormControl" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.ModelForm.ModelFormControl" displayName="MscrmControls.ModelForm.ModelFormControl" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Booking and Work Order" parentDisplayName="Bookable Resource Booking" id="{c0ace4ca-f0f1-42a7-aacb-618cb8e6751a}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.NumberInput.NumberInputControl" displayName="MscrmControls.NumberInput.NumberInputControl" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.NumberInput.NumberInputControl" displayName="MscrmControls.NumberInput.NumberInputControl" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Resource Booking - Mobile" parentDisplayName="Bookable Resource Booking" id="{396ccc86-fa22-4351-8cc5-83d8cf209720}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.NumberInput.NumberInputControl" displayName="MscrmControls.NumberInput.NumberInputControl" solution="BaseCustomControlsCore (9.0.2104.4005)" />
+        <Required type="66" schemaName="MscrmControls.NumberInput.NumberInputControl" displayName="MscrmControls.NumberInput.NumberInputControl" solution="BaseCustomControlsCore (9.0.2105.1007)" />
         <Dependent type="60" displayName="Booking and Work Order" parentDisplayName="Bookable Resource Booking" id="{c0ace4ca-f0f1-42a7-aacb-618cb8e6751a}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Signature.SignatureControl" displayName="MscrmControls.Signature.SignatureControl" solution="CustomControlsCore (9.2.21044.00121)" />
+        <Required type="66" schemaName="MscrmControls.Signature.SignatureControl" displayName="MscrmControls.Signature.SignatureControl" solution="CustomControlsCore (9.2.21051.00130)" />
         <Dependent type="60" displayName="Resource Booking - Mobile" parentDisplayName="Bookable Resource Booking" id="{396ccc86-fa22-4351-8cc5-83d8cf209720}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Signature.SignatureControl" displayName="MscrmControls.Signature.SignatureControl" solution="CustomControlsCore (9.2.21044.00121)" />
+        <Required type="66" schemaName="MscrmControls.Signature.SignatureControl" displayName="MscrmControls.Signature.SignatureControl" solution="CustomControlsCore (9.2.21051.00130)" />
         <Dependent type="60" displayName="Booking and Work Order" parentDisplayName="Bookable Resource Booking" id="{c0ace4ca-f0f1-42a7-aacb-618cb8e6751a}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.Slider.LinearSliderControl" displayName="MscrmControls.Slider.LinearSliderControl" solution="CustomControlsCore (9.2.21044.00121)" />
+        <Required type="66" schemaName="MscrmControls.Slider.LinearSliderControl" displayName="MscrmControls.Slider.LinearSliderControl" solution="CustomControlsCore (9.2.21051.00130)" />
         <Dependent type="60" displayName="Work Order Service Task - Mobile" parentDisplayName="Work Order Service Task" id="{06a480e2-69e6-4283-8aa5-9fa17c86671f}" />
       </MissingDependency>
       <MissingDependency>
@@ -10907,15 +10954,15 @@
         <Dependent type="60" displayName="Contact Main Form" parentDisplayName="Contact" id="{2c961780-b9f9-ea11-a815-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.WebsitePreview.PreviewControl" displayName="MscrmControls.WebsitePreview.PreviewControl" solution="CustomControlsCore (9.2.21044.00121)" />
+        <Required type="66" schemaName="MscrmControls.WebsitePreview.PreviewControl" displayName="MscrmControls.WebsitePreview.PreviewControl" solution="CustomControlsCore (9.2.21051.00130)" />
         <Dependent type="60" displayName="Account - Mobile" parentDisplayName="Account" id="{74da4947-5d1d-4400-9f99-c6ed578211bb}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.WorkHourControl.WorkHourControl" displayName="MscrmControls.WorkHourControl.WorkHourControl" solution="msdyn_UCICalendar (1.0.0.978)" />
+        <Required type="66" schemaName="MscrmControls.WorkHourControl.WorkHourControl" displayName="MscrmControls.WorkHourControl.WorkHourControl" solution="msdyn_UCICalendar (1.0.0.1079)" />
         <Dependent type="60" displayName="Main Form" parentDisplayName="Bookable Resource" id="{3e8942a7-ff8e-4634-84ec-8ce174ab807c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.WorkHourControl.WorkHourControl" displayName="MscrmControls.WorkHourControl.WorkHourControl" solution="msdyn_UCICalendar (1.0.0.978)" />
+        <Required type="66" schemaName="MscrmControls.WorkHourControl.WorkHourControl" displayName="MscrmControls.WorkHourControl.WorkHourControl" solution="msdyn_UCICalendar (1.0.0.1079)" />
         <Dependent type="60" displayName="Add/Edit Inspector Form" parentDisplayName="Bookable Resource" id="{eae25a08-d9fd-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>

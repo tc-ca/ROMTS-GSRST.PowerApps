@@ -159,17 +159,30 @@
                     <label description="Sub Assets" languagecode="1033" solutionaction="Modified" />
                   </labels>
                 </section>
-                <section name="Asset_WorkOrder" showlabel="false" showbar="false" locklevel="0" id="{47928b8e-d9bc-68a6-46a9-1d1e9e51e5ab}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Top" ordinalvalue="1">
+                <section name="Asset_WorkOrder" showlabel="false" showbar="false" locklevel="0" id="{47928b8e-d9bc-68a6-46a9-1d1e9e51e5ab}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Top" height="auto" ordinalvalue="1" solutionaction="Modified">
                   <rows>
                     <row>
                       <cell id="{425c5250-a6a3-0da6-64ea-82d7d1528085}" showlabel="true" colspan="1" auto="true" rowspan="12" ordinalvalue="10000" solutionaction="Modified">
                         <labels>
                           <label description="RELATED WORK ORDERS (OPERATIONS)" languagecode="1033" solutionaction="Modified" />
                         </labels>
-                        <control id="Asset_WorkOrder" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" uniqueid="{1d344224-69c9-960e-0d00-a2618d950b3a}" indicationOfSubgrid="true">
+                        <control id="Asset_WorkOrder" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" uniqueid="{1d344224-69c9-960e-0d00-a2618d950b3a}" indicationOfSubgrid="true" solutionaction="Removed" />
+                        <control id="Asset_WorkOrder_Operations" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" uniqueid="{1d344224-69c9-960e-0d00-a2618d950b3a}" indicationOfSubgrid="true" solutionaction="Added">
                           <parameters>
-                            <RelationshipName solutionaction="Modified">msdyn_workorder_ovs_asset_msdyn_customera</RelationshipName>
-                            <AutoExpand solutionaction="Modified">Auto</AutoExpand>
+                            <ViewId>{D978C540-4718-E211-AEA8-000C2959F9B8}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>msdyn_workorder_ovs_asset_msdyn_customera</RelationshipName>
+                            <TargetEntityType>msdyn_workorder</TargetEntityType>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{FCE37246-EBA1-4E92-BB9D-F8CB3EC38E3F},{D978C540-4718-E211-AEA8-000C2959F9B8}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId>{8E746648-1A4E-E111-93B3-000C2959F9B8}</VisualizationId>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>10</RecordsPerPage>
                           </parameters>
                         </control>
                       </cell>
@@ -180,7 +193,7 @@
                           <label description="RELATED WORK ORDERS (TAGS)" languagecode="1033" />
                           <label description="Articles de base de connaissances" languagecode="1036" />
                         </labels>
-                        <control id="Subgrid_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="Asset_WorkOrder_Tags" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
                             <TargetEntityType>msdyn_workorder</TargetEntityType>
                             <ViewId>{D978C540-4718-E211-AEA8-000C2959F9B8}</ViewId>
@@ -276,7 +289,7 @@
                     <row />
                     <row />
                     <row />
-                    <row />
+                    <row height="auto" />
                     <row>
                       <cell id="{6a3ec6eb-3179-943a-7315-dcb614dd968e}" showlabel="false" userspacer="true" ordinalvalue="10001">
                         <labels>
@@ -325,6 +338,13 @@
       <Navigation>
         <NavBar />
       </Navigation>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.CustomerAsset.onLoad" libraryName="ts_/js/CustomerAsset.js" handlerUniqueId="{937669c0-3566-3858-b163-609e23beec49}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="3" solutionaction="Added" />
+          </Handlers>
+        </event>
+      </events>
       <controlDescriptions>
         <controlDescription forControl="{80938a6e-19d8-8289-9506-b035776c3db1}" solutionaction="Added">
           <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="0">
@@ -344,6 +364,9 @@
           </customControl>
         </controlDescription>
       </controlDescriptions>
+      <formLibraries>
+        <Library name="ts_/js/CustomerAsset.js" libraryUniqueId="{c950e6a2-7be1-326d-4693-d7aa6e300979}" solutionaction="Added" />
+      </formLibraries>
       <header id="{95f32c0a-3d56-4ce1-bb70-81c801e9ac3d}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
         <rows>
           <row>
