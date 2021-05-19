@@ -1,3 +1,4 @@
+//Set to 1033 by default. Update with parent.Xrm if it can, else use locale if it's been set in time.
 var lang = '1033';
 if (parent.Xrm != null) {
     lang = parent.Xrm.Utility.getGlobalContext().userSettings.languageId;
@@ -66,7 +67,7 @@ var widget = {
         var comments = el.getElementsByClassName("inspectorComments")[0];
         var characterCount = el.getElementsByClassName("character-count")[0];
 
-        if (Survey.mode = "display") {
+        if (survey.isDisplayMode) {
             comments.rows = 5;
             comments.readOnly = true;
             characterCount.style.display = 'none';

@@ -31,17 +31,16 @@
           <attribute name="msdyn_primaryincidenttype" />
           <attribute name="msdyn_serviceaccount" />
           <attribute name="msdyn_systemstatus" />
-          <filter type="and">
-            <condition attribute="ownerid" operator="eq-userid" />
-            <filter type="or">
-              <condition attribute="statecode" operator="eq" value="0" />
-              <condition attribute="statuscode" operator="eq" value="918640000" />
-            </filter>
-          </filter>
           <attribute name="ownerid" />
           <attribute name="ts_site" />
           <order attribute="msdyn_name" descending="true" />
           <attribute name="ts_region" />
+          <filter type="and">
+            <condition attribute="ownerid" operator="eq-userid" />
+            <filter type="or">
+              <condition attribute="statecode" operator="eq" value="0" />
+            </filter>
+          </filter>
         </entity>
       </fetch>
     </fetchxml>
