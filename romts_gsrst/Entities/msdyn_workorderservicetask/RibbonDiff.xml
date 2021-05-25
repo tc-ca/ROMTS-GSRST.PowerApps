@@ -19,7 +19,7 @@
     </CustomAction>
     <CustomAction Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="63">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.Alt" Command="ts.msdyn_workorderservicetask.TSIS.PrintSurvey" CommandValueId="" Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form" LabelText="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.LabelText" Sequence="63" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.ToolTipDescription" />
+        <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.Alt" Command="ts.msdyn_workorderservicetask.TSIS.PrintQuestionnaire" CommandValueId="" Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form" LabelText="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.LabelText" Sequence="63" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="4">
@@ -406,13 +406,14 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
-    <CommandDefinition Id="ts.msdyn_workorderservicetask.TSIS.PrintSurvey">
+    <CommandDefinition Id="ts.msdyn_workorderservicetask.TSIS.PrintQuestionnaire">
       <EnableRules>
         <EnableRule Id="ts.msdyn_workorderservicetask.TSIS.isStatusReasonNew.Inverted" />
+        <EnableRule Id="ts.msdyn_workorderservicetask.TSIS.hasQuestionnaireDefinition" />
       </EnableRules>
       <DisplayRules />
       <Actions>
-        <JavaScriptFunction FunctionName="printSurvey" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js">
+        <JavaScriptFunction FunctionName="printQuestionnaire" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js">
           <CrmParameter Value="PrimaryControl" />
         </JavaScriptFunction>
       </Actions>
@@ -582,6 +583,11 @@
           <CrmParameter Value="PrimaryControl" />
         </CustomRule>
       </EnableRule>
+      <EnableRule Id="ts.msdyn_workorderservicetask.TSIS.hasQuestionnaireDefinition">
+        <CustomRule FunctionName="hasQuestionnaireDefinition" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
       <EnableRule Id="ts.msdyn_workorderservicetask.TSIS.isStatusReasonNew.Inverted">
         <CustomRule FunctionName="isStatusReasonNew" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false" InvertResult="true">
           <CrmParameter Value="PrimaryControl" />
@@ -682,22 +688,26 @@
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.Alt">
       <Titles>
-        <Title description="Print Survey" languagecode="1033" />
+        <Title description="Print Questionnaire" languagecode="1033" />
+        <Title description="Imprimer le questionnaire" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.LabelText">
       <Titles>
-        <Title description="Print Survey" languagecode="1033" />
+        <Title description="Print Questionnaire" languagecode="1033" />
+        <Title description="Imprimer le questionnaire" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.ToolTipDescription">
       <Titles>
-        <Title description="Print Survey" languagecode="1033" />
+        <Title description="Print Questionnaire" languagecode="1033" />
+        <Title description="Imprimer le questionnaire" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.ToolTipTitle">
       <Titles>
-        <Title description="Print Survey" languagecode="1033" />
+        <Title description="Print Questionnaire" languagecode="1033" />
+        <Title description="Imprimer le questionnaire" languagecode="1036" />
       </Titles>
     </LocLabel>
   </LocLabels>
