@@ -190,6 +190,25 @@ creator
     .toolbox
     .orderedQuestions = ["radiogroup", "checkbox", "dropdown", "finding", "comment", "image", "imagepicker", "file", "boolean", "text", "multipletext", "matrix", "matrixdropdown", "matrixdynamic", "signaturepad", "rating", "expression", "html", "panel", "paneldynamic" , "flowpanel"];
 
+//Add hasFormValue property to Text
+Survey
+    .Serializer
+    .addProperty("Text", {
+        name: "hasFormValue:switch",
+        category: "general",
+        default: false
+    });
+Survey
+    .Serializer
+    .addProperty("Text", {
+        name: "formValueLogicalName:string",
+        category: "general",
+        dependsOn: ["hasFormValue"],
+        visibleIf: function (obj) {
+            return (obj.hasFormValue == true);
+        },
+    });
+
 //add hasDetail and detail Text properties to all questions in hasDetailQuestions array
 var hasDetailQuestions = ["radiogroup", "checkbox", "dropdown", "image", "imagepicker", "file", "boolean", "matrix", "matrixdropdown", "matrixdynamic", "signaturepad", "rating", "expression", "html", "panel", "paneldynamic", "flowpanel"];
 hasDetailQuestions.forEach(function (questionName) {

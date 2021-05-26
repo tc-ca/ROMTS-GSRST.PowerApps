@@ -16,6 +16,21 @@ window.parentExecutionContext = null;
 window.parentFormContext = null;
 Survey.StylesManager.applyTheme('default');
 
+//Add hasFormValue property to Text
+Survey
+    .Serializer
+    .addProperty("Text", {
+        name: "hasFormValue:boolean",
+        category: "general",
+        default: false
+    });
+Survey
+    .Serializer
+    .addProperty("Text", {
+        name: "formValueLogicalName:string"
+    });
+
+
 //add hasDetail and detail Text properties to all questions in hasDetailQuestions array. Required to load hasDetail value from JSON definition.
 var hasDetailQuestions = ["radiogroup", "checkbox", "dropdown", "image", "imagepicker", "file", "boolean", "matrix", "matrixdropdown", "matrixdynamic", "signaturepad", "rating", "expression", "html", "panel", "paneldynamic", "flowpanel"];
 hasDetailQuestions.forEach(function (questionName) {
@@ -93,6 +108,15 @@ function InitializeSurveyRender(surveyDefinition, surveyResponse, surveyLocale, 
         str = str.substring(0, str.length - 4);
         //set html
         options.html = str;
+    });
+
+    survey.onAfterRenderQuestion.add(function (survey, options) {
+        if (options.question.getType() !== "text") return;
+        console.log();
+        //var workOrderQuickView = parentFormContext.ui.quickForms.get('WorkOrderQuickView');
+        //var formValue = workOrderQuickView.getAttribute(options.question.formValueLogicalName).getValue();
+        //var formValueText = (formValue != null) ? formValue[0].name : "";
+        //options.question.value = formValueText;
     });
 
     
