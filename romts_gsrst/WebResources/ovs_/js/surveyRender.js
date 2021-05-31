@@ -19,15 +19,15 @@ Survey.StylesManager.applyTheme('default');
 //Add hasFormValue property to Text
 Survey
     .Serializer
-    .addProperty("Text", {
-        name: "hasFormValue:boolean",
+    .addProperty("dropdown", {
+        name: "hasWorkOrderValue:boolean",
         category: "general",
         default: false
     });
 Survey
     .Serializer
-    .addProperty("Text", {
-        name: "formValueLogicalName:string"
+    .addProperty("dropdown", {
+        name: "workOrderValueLogicalName:string"
     });
 
 
@@ -111,14 +111,48 @@ function InitializeSurveyRender(surveyDefinition, surveyResponse, surveyLocale, 
     });
 
     survey.onAfterRenderQuestion.add(function (survey, options) {
-        if (options.question.getType() !== "text") return;
-        console.log();
-        //var workOrderQuickView = parentFormContext.ui.quickForms.get('WorkOrderQuickView');
-        //var formValue = workOrderQuickView.getAttribute(options.question.formValueLogicalName).getValue();
-        //var formValueText = (formValue != null) ? formValue[0].name : "";
-        //options.question.value = formValueText;
-    });
+        if (options.question.hasWorkOrderValue != true) return;
+        if (options.question.getType() !== "dropdown") return;
 
+        //Get associated work order's id
+        var workOrderAttribute = parentFormContext.getAttribute('msdyn_workorder').getValue();
+        var workOrderId = workOrderAttribute != null ? workOrderAttribute[0].id : "";
+
+        //Retrieve associated Work Order, select the field to use as a value in the survey question
+        parent.Xrm.WebApi.online.retrieveRecord("msdyn_workorder", workOrderId, "?$select=_" + options.question.workOrderValueLogicalName + "_value").then(
+            async function success(results) {
+                var workOrderValueText = results["_" + options.question.workOrderValueLogicalName + "_value@OData.Community.Display.V1.FormattedValue"];
+                //Duplicate an existing choice to create a new choice object
+                var workOrderItem = options.question.choices[0];
+                //Replace text and value with the Work Order field's value
+                workOrderItem.text = workOrderValueText;
+                workOrderItem.value = "workOrderValue";
+                //Add new choice to the question's choices array
+                options.question.choices.push(workOrderItem);
+                //Set the question's value to the added choice
+                options.question.value = "workOrderValue";
+                //Set the question's value to the added choice in the survey data
+                survey.setValue((options.question.name), "workOrderValue");
+                //Toggle hasWorkOrderValue to false to prevent readding the Work Order field if the survey rerenders.
+                options.question.hasWorkOrderValue = false;
+
+                //Retrieve the survey definition json from the parent work order service task.
+                var surveyDefinition = JSON.parse(parentFormContext.getAttribute('ovs_questionnairedefinition').getValue());
+                //Find the current question in the survey definition json object
+                surveyDefinition.pages.forEach(function (page, index) {
+                    page.elements.forEach(function (element, index) {
+                        if (element.name == options.question.name) {
+                            //Toggle hasWorkOrderValue to false to prevent duplicate work next time the survey is loaded
+                            element.hasWorkOrderValue = false;
+                            //Add the new choice to the survey definition to be used next time the survey definition is loaded
+                            element.choices.push({ value: "workOrderValue", text: workOrderValueText });
+                        }
+                    });
+                });
+                //Save the changes made to questionnaire defintion
+                parentFormContext.getAttribute('ovs_questionnairedefinition').setValue(JSON.stringify(surveyDefinition));
+             });
+    });
     
     // Add a character count and limit to Comment questions.
     // If the maxLength is the default value of -1, set maxLength to 1000.

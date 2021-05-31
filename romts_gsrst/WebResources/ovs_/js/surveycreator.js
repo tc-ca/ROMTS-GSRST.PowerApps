@@ -193,19 +193,19 @@ creator
 //Add hasFormValue property to Text
 Survey
     .Serializer
-    .addProperty("Text", {
-        name: "hasFormValue:switch",
+    .addProperty("dropdown", {
+        name: "hasWorkOrderValue:switch",
         category: "general",
         default: false
     });
 Survey
     .Serializer
-    .addProperty("Text", {
-        name: "formValueLogicalName:string",
+    .addProperty("dropdown", {
+        name: "workOrderValueLogicalName:string",
         category: "general",
-        dependsOn: ["hasFormValue"],
+        dependsOn: ["hasWorkOrderValue"],
         visibleIf: function (obj) {
-            return (obj.hasFormValue == true);
+            return (obj.hasWorkOrderValue == true);
         },
     });
 
