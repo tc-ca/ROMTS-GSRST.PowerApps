@@ -13,6 +13,11 @@
         <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="Mscrm.AddExistingRecordFromSubGridAssociated" Id="Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Sequence="40" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipDescription" ModernImage="AddExisting" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="60">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.Alt" Command="ts.msdyn_workorder.TSIS.ExportToPdf" CommandValueId="ts.msdyn_workorder.TSIS.ExportToPdf" Id="ts.msdyn_workorder.TSIS.ExportToPdfButton" LabelText="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.LabelText" Sequence="60" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="35">
       <CommandUIDefinition>
         <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="ovs.msdyn_workorder.SubGrid.msdyn_workorder.AddExistingStandard" Id="ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Sequence="35" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipDescription" ModernImage="AddExisting" />
@@ -138,6 +143,15 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.TSIS.ExportToPdf">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="exportWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
   </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
@@ -229,6 +243,26 @@
     <LocLabel Id="Mscrm.Form.msdyn_workorder.Activate.TSIS.LabelText">
       <Titles>
         <Title description="Activate" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.Alt">
+      <Titles>
+        <Title description="Export to PDF" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.LabelText">
+      <Titles>
+        <Title description="Export to PDF" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.ToolTipDescription">
+      <Titles>
+        <Title description="Export to PDF" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.ToolTipTitle">
+      <Titles>
+        <Title description="Export to PDF" languagecode="1033" />
       </Titles>
     </LocLabel>
   </LocLabels>
