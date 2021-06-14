@@ -144,7 +144,9 @@
       </Actions>
     </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorder.TSIS.ExportToPdf">
-      <EnableRules />
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.TSIS.hasWorkOrderName" />
+      </EnableRules>
       <DisplayRules />
       <Actions>
         <JavaScriptFunction FunctionName="exportWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
@@ -237,32 +239,42 @@
       <EnableRule Id="ovs.msdyn_workorder.TSIS.isROMRole.inverted">
         <CustomRule FunctionName="isROMRole" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false" InvertResult="true" />
       </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.TSIS.hasWorkOrderName">
+        <CustomRule FunctionName="hasWorkOrderName" Library="$webresource:ovs_/js/WorkOrderRibbon.js" Default="false" InvertResult="false">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
     </EnableRules>
   </RuleDefinitions>
   <LocLabels>
     <LocLabel Id="Mscrm.Form.msdyn_workorder.Activate.TSIS.LabelText">
       <Titles>
         <Title description="Activate" languagecode="1033" />
+        <Title description="Activate" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.Alt">
       <Titles>
         <Title description="Export to PDF" languagecode="1033" />
+        <Title description="Exporter au format PDF" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.LabelText">
       <Titles>
         <Title description="Export to PDF" languagecode="1033" />
+        <Title description="Exporter au format PDF" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.ToolTipDescription">
       <Titles>
         <Title description="Export to PDF" languagecode="1033" />
+        <Title description="Exporter au format PDF" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.ToolTipTitle">
       <Titles>
         <Title description="Export to PDF" languagecode="1033" />
+        <Title description="Exporter au format PDF" languagecode="1036" />
       </Titles>
     </LocLabel>
   </LocLabels>

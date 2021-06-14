@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20210609.1</Version>
+    <Version>1.0.20210614.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -104,7 +104,7 @@
       <RootComponent type="1" schemaName="msdyn_agreementbookingservice" behavior="2" />
       <RootComponent type="1" schemaName="msdyn_agreementinvoiceproduct" behavior="2" />
       <RootComponent type="1" schemaName="msdyn_bookingjournal" behavior="2" />
-      <RootComponent type="1" schemaName="msdyn_customerasset" behavior="1" />
+      <RootComponent type="1" schemaName="msdyn_customerasset" behavior="0" />
       <RootComponent type="1" schemaName="msdyn_customerassetcategory" behavior="1" />
       <RootComponent type="1" schemaName="msdyn_functionallocation" behavior="0" />
       <RootComponent type="1" schemaName="msdyn_incidenttype" behavior="1" />
@@ -312,12 +312,14 @@
       <RootComponent type="92" id="{1eeaec14-aeb8-eb11-8236-000d3a84e276}" behavior="0" />
       <RootComponent type="92" id="{1efbc2d8-9817-eb11-a813-000d3af3a7a7}" behavior="0" />
       <RootComponent type="92" id="{1f994271-84b2-eb11-8236-000d3af3d03c}" behavior="0" />
+      <RootComponent type="92" id="{1fe62da0-5ec9-eb11-bacc-000d3a84a658}" behavior="0" />
       <RootComponent type="92" id="{224f8619-dd72-eb11-a812-000d3af399b3}" behavior="0" />
       <RootComponent type="92" id="{24250639-dcb8-eb11-8236-000d3a84e276}" behavior="0" />
       <RootComponent type="92" id="{25295884-6c18-eb11-a813-000d3af3ac0d}" behavior="0" />
       <RootComponent type="92" id="{2941def0-d872-eb11-a812-000d3af399b3}" behavior="0" />
       <RootComponent type="92" id="{33c9edb7-b0b8-eb11-8236-000d3a84e276}" behavior="0" />
       <RootComponent type="92" id="{38c5b839-9917-eb11-a813-000d3af3a7a7}" behavior="0" />
+      <RootComponent type="92" id="{43cb7574-3ac9-eb11-bacc-000d3a84a658}" behavior="0" />
       <RootComponent type="92" id="{4c5bdb1c-15ac-eb11-8236-000d3ae8b866}" behavior="0" />
       <RootComponent type="92" id="{59a65563-3d15-eb11-a813-000d3af3a7a7}" behavior="0" />
       <RootComponent type="92" id="{641cdb76-de72-eb11-a812-000d3af399b3}" behavior="0" />
@@ -326,7 +328,9 @@
       <RootComponent type="92" id="{6c7724ca-3f15-eb11-a813-000d3af3a7a7}" behavior="0" />
       <RootComponent type="92" id="{6c94bd92-d872-eb11-a812-000d3af399b3}" behavior="0" />
       <RootComponent type="92" id="{6f25253f-dd72-eb11-a812-000d3af399b3}" behavior="0" />
+      <RootComponent type="92" id="{76d12a61-37c9-eb11-bacc-000d3a84a658}" behavior="0" />
       <RootComponent type="92" id="{79272430-dd72-eb11-a812-000d3af399b3}" behavior="0" />
+      <RootComponent type="92" id="{7af0fc64-36c9-eb11-bacc-000d3a84a658}" behavior="0" />
       <RootComponent type="92" id="{7f38e9ac-d27a-eb11-a812-000d3af31ad8}" behavior="0" />
       <RootComponent type="92" id="{89332ae2-3b15-eb11-a813-000d3af3a7a7}" behavior="0" />
       <RootComponent type="92" id="{8a97f89c-b1b8-eb11-8236-000d3a84e276}" behavior="0" />
@@ -1474,6 +1478,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_agreementbookingincident" displayName="Agreement Booking Incident" solution="FieldService (8.8.0.88)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_agreementbookingincident" displayName="Agreement Booking Incident" solution="FieldService (8.8.0.88)" />
         <Dependent type="1" schemaName="msdyn_functionallocation" displayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
@@ -1483,6 +1491,10 @@
       <MissingDependency>
         <Required type="1" schemaName="msdyn_agreementbookingservice" displayName="Agreement Booking Service" solution="FieldService (8.8.0.88)" />
         <Dependent type="1" schemaName="msdyn_agreementbookingservice" displayName="Agreement Booking Service" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_agreementbookingservicetask" displayName="Agreement Booking Service Task" solution="FieldService (8.8.0.88)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_agreementbookingservicetask" displayName="Agreement Booking Service Task" solution="FieldService (8.8.0.88)" />
@@ -1511,6 +1523,10 @@
       <MissingDependency>
         <Required type="1" schemaName="msdyn_assetcategorytemplateassociation" displayName="Asset Category Template Association" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_assettemplateassociation" displayName="Asset Template Association" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_bookableresourceassociation" displayName="Bookable Resource Association" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
@@ -1581,8 +1597,16 @@
         <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="1" schemaName="msdyn_customerassetattachment" displayName="Customer Asset Attachment" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_entitlementapplication" displayName="Entitlement Application" solution="FieldService (8.8.0.88)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_functionallocation" displayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" />
@@ -1641,6 +1665,10 @@
         <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="1" schemaName="msdyn_inspectioninstance" displayName="Inspection" solution="msdyn_Inspections (1.0.11.0)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="1" schemaName="msdyn_inventoryadjustment" displayName="Inventory Adjustment" solution="FieldService (8.8.0.88)" />
         <Dependent type="1" schemaName="bookableresource" displayName="Bookable Resource" />
       </MissingDependency>
@@ -1654,6 +1682,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_iotalert" displayName="IoT Alert" solution="IoTConnector (1.8.18.0)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_iotalert" displayName="IoT Alert" solution="IoTConnector (1.8.18.0)" />
         <Dependent type="1" schemaName="msdyn_workorder" displayName="Work Order" />
       </MissingDependency>
       <MissingDependency>
@@ -1662,11 +1694,27 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_iotalert" displayName="IoT Alert" solution="IoTConnector (1.8.18.0)" />
+        <Dependent type="2" schemaName="msdyn_alertcount" displayName="Alert Count" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_iotalert" displayName="IoT Alert" solution="IoTConnector (1.8.18.0)" />
+        <Dependent type="2" schemaName="msdyn_lastalerttime" displayName="Last active alert time" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_iotalert" displayName="IoT Alert" solution="IoTConnector (1.8.18.0)" />
         <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_iotalert" displayName="IoT Alert" solution="IoTConnector (1.8.18.0)" />
         <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_iotdevicecommand" displayName="IoT Device Command" solution="IoTConnector (1.8.18.0)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_iotdevicecommand" displayName="IoT Device Command" solution="IoTConnector (1.8.18.0)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" displayName="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_iotdevicecommand" displayName="IoT Device Command" solution="IoTConnector (1.8.18.0)" />
@@ -1699,6 +1747,10 @@
       <MissingDependency>
         <Required type="1" schemaName="msdyn_priority" displayName="Priority" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
         <Dependent type="10" schemaName="msdyn_msdyn_priority_msdyn_workorder_Priority" displayName="msdyn_msdyn_priority_msdyn_workorder_Priority" parentSchemaName="msdyn_priority" parentDisplayName="Priority" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_problematicasset" displayName="Asset Suggestion" solution="msdyn_FieldService_patch_update (8.8.43.77)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_property" displayName="Property Definition" solution="msdyn_AssetCommon (1.0.7.102)" />
@@ -1751,6 +1803,22 @@
       <MissingDependency>
         <Required type="1" schemaName="msdyn_purchaseorderreceiptproduct" displayName="Purchase Order Receipt Product" solution="FieldServiceCommon (1.0.0.134)" />
         <Dependent type="1" schemaName="msdyn_workorder" displayName="Work Order" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_quotebookingincident" displayName="Quote Booking Incident" solution="FieldService (8.8.0.88)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_quotebookingproduct" displayName="Quote Booking Product" solution="FieldService (8.8.0.88)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_quotebookingservice" displayName="Quote Booking Service" solution="FieldService (8.8.0.88)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_quotebookingservicetask" displayName="Quote Booking Service Task" solution="FieldService (8.8.0.88)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_quotebookingservicetask" displayName="Quote Booking Service Task" solution="FieldService (8.8.0.88)" />
@@ -1811,6 +1879,10 @@
       <MissingDependency>
         <Required type="1" schemaName="msdyn_rma" displayName="RMA" solution="FieldService (8.8.0.88)" />
         <Dependent type="1" schemaName="msdyn_rma" displayName="RMA" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_rmaproduct" displayName="RMA Product" solution="FieldService (8.8.0.88)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_rtv" displayName="RTV" solution="FieldService (8.8.0.88)" />
@@ -1907,6 +1979,10 @@
       <MissingDependency>
         <Required type="1" schemaName="msdyn_workorderproduct" displayName="Work Order Product" solution="FieldService (8.8.0.88)" />
         <Dependent type="1" schemaName="msdyn_workorderproduct" displayName="Work Order Product" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_workorderresolution" displayName="Work Order Resolution" solution="msdyn_FieldService_patch_update (8.8.43.77)" />
+        <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_workorderresolution" displayName="Work Order Resolution" solution="msdyn_FieldService_patch_update (8.8.43.77)" />
@@ -2083,6 +2159,14 @@
       <MissingDependency>
         <Required type="1" schemaName="territory" displayName="Region" solution="msdynce_AppCommon (9.0.4.0066)" />
         <Dependent type="1" schemaName="territory" displayName="Region" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ts_request" displayName="Request" solution="Active" />
+        <Dependent type="62" schemaName="ovs_ROM" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ts_request" displayName="Request" solution="Active" />
+        <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_account_account_BillingAccount" displayName="msdyn_account_account_BillingAccount" parentSchemaName="account" parentDisplayName="Account" solution="FieldServiceCommon (1.0.0.134)" />
@@ -2370,7 +2454,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.43.77)" />
-        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" displayName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.43.77)" />
@@ -2458,7 +2542,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)" />
@@ -2634,10 +2718,6 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_incident_msdyn_customerasset" displayName="msdyn_incident_msdyn_customerasset" parentSchemaName="incident" parentDisplayName="Case" solution="msdyn_ConnectedCustomerService (9.0.20115.1014)" />
-        <Dependent type="10" schemaName="msdyn_incident_msdyn_customerasset" displayName="msdyn_incident_msdyn_customerasset" parentSchemaName="incident" parentDisplayName="Case" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="10" schemaName="msdyn_incident_msdyn_customerasset" displayName="msdyn_incident_msdyn_customerasset" parentSchemaName="incident" parentDisplayName="Case" solution="msdyn_ConnectedCustomerService (9.0.20115.1014)" />
         <Dependent type="60" displayName="ROM Case" parentDisplayName="Case" id="{45b022a4-928d-eb11-b1ac-000d3ae92dbf}" />
       </MissingDependency>
       <MissingDependency>
@@ -2774,6 +2854,18 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_account_msdyn_customerasset_Account" displayName="msdyn_account_msdyn_customerasset_Account" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="10" schemaName="msdyn_account_msdyn_customerasset_Account" displayName="msdyn_account_msdyn_customerasset_Account" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_account_msdyn_customerasset_Account" displayName="msdyn_account_msdyn_customerasset_Account" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="2" schemaName="msdyn_accountname" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_account_msdyn_customerasset_Account" displayName="msdyn_account_msdyn_customerasset_Account" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="2" schemaName="msdyn_accountyominame" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_account_msdyn_customerasset_Account" displayName="msdyn_account_msdyn_customerasset_Account" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
       </MissingDependency>
       <MissingDependency>
@@ -2822,6 +2914,14 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="2" schemaName="msdyn_masterassetname" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
       </MissingDependency>
       <MissingDependency>
@@ -2830,11 +2930,27 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="2" schemaName="msdyn_parentassetname" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_iotalert_CustomerAsset" displayName="msdyn_msdyn_customerasset_msdyn_iotalert_CustomerAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_IoTAssetCommon (1.9.0.0)" />
+        <Dependent type="2" schemaName="msdyn_alertcount" displayName="Alert Count" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_iotalert_CustomerAsset" displayName="msdyn_msdyn_customerasset_msdyn_iotalert_CustomerAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_IoTAssetCommon (1.9.0.0)" />
+        <Dependent type="2" schemaName="msdyn_lastalerttime" displayName="Last active alert time" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_iotalert_CustomerAsset" displayName="msdyn_msdyn_customerasset_msdyn_iotalert_CustomerAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_IoTAssetCommon (1.9.0.0)" />
@@ -2958,6 +3074,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_customerassetcategory_msdyn_customerasset_CustomerAssetCategory" displayName="msdyn_msdyn_customerassetcategory_msdyn_customerasset_CustomerAssetCategory" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="2" schemaName="msdyn_customerassetcategoryname" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_customerassetcategory_msdyn_customerasset_CustomerAssetCategory" displayName="msdyn_msdyn_customerassetcategory_msdyn_customerasset_CustomerAssetCategory" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
       </MissingDependency>
       <MissingDependency>
@@ -2967,6 +3087,22 @@
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_customerassetcategory_msdyn_customerasset_CustomerAssetCategory" displayName="msdyn_msdyn_customerassetcategory_msdyn_customerasset_CustomerAssetCategory" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="60" displayName="Customer Asset Quick Create" parentDisplayName="Customer Asset" id="{cef1eed6-7652-4053-b7cf-9246af579b4f}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" displayName="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_IoTAssetCommon (1.9.0.0)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" displayName="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" displayName="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_IoTAssetCommon (1.9.0.0)" />
+        <Dependent type="2" schemaName="msdyn_lastcommandsentname" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_product_msdyn_customerasset_Product" displayName="msdyn_product_msdyn_customerasset_Product" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="10" schemaName="msdyn_product_msdyn_customerasset_Product" displayName="msdyn_product_msdyn_customerasset_Product" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_product_msdyn_customerasset_Product" displayName="msdyn_product_msdyn_customerasset_Product" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="2" schemaName="msdyn_productname" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_product_msdyn_customerasset_Product" displayName="msdyn_product_msdyn_customerasset_Product" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
@@ -2983,6 +3119,10 @@
       <MissingDependency>
         <Required type="10" schemaName="msdyn_customerasset_FunctionalLocation_ms" displayName="msdyn_customerasset_FunctionalLocation_ms" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="10" schemaName="msdyn_customerasset_FunctionalLocation_ms" displayName="msdyn_customerasset_FunctionalLocation_ms" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_customerasset_FunctionalLocation_ms" displayName="msdyn_customerasset_FunctionalLocation_ms" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="2" schemaName="msdyn_functionallocationname" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_customerasset_FunctionalLocation_ms" displayName="msdyn_customerasset_FunctionalLocation_ms" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" />
@@ -3007,6 +3147,10 @@
       <MissingDependency>
         <Required type="10" schemaName="msdyn_FunctionalLocation_ParentFunctional" displayName="msdyn_FunctionalLocation_ParentFunctional" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Functional Location" id="{26ecd53c-05bd-4644-9fbf-0cab33789643}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_FunctionalLocation_ParentFunctional" displayName="msdyn_FunctionalLocation_ParentFunctional" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="60" displayName="ROM Oversight Activity" parentDisplayName="Work Order" id="{704d8664-78ac-eb11-8236-000d3ae8b866}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_FunctionalLocation_ParentFunctional" displayName="msdyn_FunctionalLocation_ParentFunctional" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" />
@@ -3886,6 +4030,14 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_workorderproduct_msdyn_customerasset_WorkOrderProduct" displayName="msdyn_msdyn_workorderproduct_msdyn_customerasset_WorkOrderProduct" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" solution="FieldService (8.8.0.88)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_workorderproduct_msdyn_customerasset_WorkOrderProduct" displayName="msdyn_msdyn_workorderproduct_msdyn_customerasset_WorkOrderProduct" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workorderproduct_msdyn_customerasset_WorkOrderProduct" displayName="msdyn_msdyn_workorderproduct_msdyn_customerasset_WorkOrderProduct" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" solution="FieldService (8.8.0.88)" />
+        <Dependent type="2" schemaName="msdyn_workorderproductname" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workorderproduct_msdyn_customerasset_WorkOrderProduct" displayName="msdyn_msdyn_workorderproduct_msdyn_customerasset_WorkOrderProduct" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" solution="FieldService (8.8.0.88)" />
         <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
       </MissingDependency>
       <MissingDependency>
@@ -4082,7 +4234,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)" />
@@ -4090,7 +4242,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)" />
@@ -5705,28 +5857,28 @@
         <Dependent type="10" schemaName="msdyn_msdyn_bookingsetupmetadata_bookableresourcebooking" displayName="msdyn_msdyn_bookingsetupmetadata_bookableresourcebooking" parentSchemaName="msdyn_bookingsetupmetadata" parentDisplayName="Booking Setup Metadata" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_account" displayName="Account" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="26" schemaName="Operations" displayName="Operations" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{6d5b19df-82a7-eb11-9442-000d3a8419e6}" />
+        <Required type="2" schemaName="createdon" displayName="Created On" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="2" schemaName="createdon" displayName="Created On" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="importsequencenumber" displayName="Import Sequence Number" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="2" schemaName="importsequencenumber" displayName="Import Sequence Number" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="modifiedon" displayName="Modified On" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="2" schemaName="modifiedon" displayName="Modified On" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_account" displayName="Account" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="26" schemaName="Active Customer Assets" displayName="Active Customer Assets" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{6ecb03a4-acda-44ae-83e3-c60ba8338dbb}" />
+        <Dependent type="2" schemaName="msdyn_account" displayName="Account" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_account" displayName="Account" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="26" schemaName="Physical Assets" displayName="Physical Assets" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{bf49a9fc-82a7-eb11-9442-000d3a8410dc}" />
+        <Required type="2" schemaName="msdyn_alert" displayName="Active or in-progress alerts" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_ConnectedCustomerService (9.0.20115.1014)" />
+        <Dependent type="2" schemaName="msdyn_alert" displayName="Active or in-progress alerts" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_account" displayName="Account" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_account" displayName="Account" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_account" displayName="Account" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset Quick Create" parentDisplayName="Customer Asset" id="{cef1eed6-7652-4053-b7cf-9246af579b4f}" />
+        <Required type="2" schemaName="msdyn_alertcount" displayName="Alert Count" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_ConnectedCustomerService (9.0.20115.1014)" />
+        <Dependent type="2" schemaName="msdyn_alertcount" displayName="Alert Count" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetcategory" displayName="Category" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
@@ -5734,7 +5886,19 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_workorder_CustomerAsset" displayName="msdyn_msdyn_customerasset_msdyn_workorder_CustomerAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="2" schemaName="msdyn_alert" displayName="Active or in-progress alerts" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="26" schemaName="Customer Assets - PAX" displayName="Customer Assets - PAX" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{5175913c-4dbe-eb11-bacc-000d3a84b079}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
@@ -5750,143 +5914,79 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_deviceid" displayName="Device ID" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_IoTAssetCommon (1.9.0.0)" />
-        <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_deviceid" displayName="Device ID" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_IoTAssetCommon (1.9.0.0)" />
-        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
+        <Dependent type="2" schemaName="msdyn_deviceid" displayName="Device ID" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_functionallocation" displayName="Functional Location" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="2" schemaName="msdyn_functionallocation" displayName="Functional Location" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_latitude" displayName="Latitude" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
+        <Required type="2" schemaName="msdyn_lastalerttime" displayName="Last active alert time" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_ConnectedCustomerService (9.0.20115.1014)" />
+        <Dependent type="2" schemaName="msdyn_lastalerttime" displayName="Last active alert time" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_lastcommandsent" displayName="Last Command Sent" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_IoTAssetCommon (1.9.0.0)" />
+        <Dependent type="2" schemaName="msdyn_lastcommandsent" displayName="Last Command Sent" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_lastcommandsenttime" displayName="Last Command Sent Time" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_IoTAssetCommon (1.9.0.0)" />
+        <Dependent type="2" schemaName="msdyn_lastcommandsenttime" displayName="Last Command Sent Time" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_latitude" displayName="Latitude" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
+        <Dependent type="2" schemaName="msdyn_latitude" displayName="Latitude" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_longitude" displayName="Longitude" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_longitude" displayName="Longitude" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
+        <Dependent type="2" schemaName="msdyn_longitude" displayName="Longitude" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_masterasset" displayName="Top-Level Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="26" schemaName="Active Customer Assets" displayName="Active Customer Assets" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{6ecb03a4-acda-44ae-83e3-c60ba8338dbb}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_masterasset" displayName="Top-Level Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_masterasset" displayName="Top-Level Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
+        <Dependent type="2" schemaName="msdyn_masterasset" displayName="Top-Level Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_workorder_CustomerAsset" displayName="msdyn_msdyn_customerasset_msdyn_workorder_CustomerAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="10" schemaName="msdyn_workorder_ovs_asset_msdyn_customera" displayName="msdyn_workorder_ovs_asset_msdyn_customera" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="26" schemaName="Operations" displayName="Operations" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{6d5b19df-82a7-eb11-9442-000d3a8419e6}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="26" schemaName="Active Customer Assets" displayName="Active Customer Assets" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{6ecb03a4-acda-44ae-83e3-c60ba8338dbb}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="26" schemaName="Physical Assets" displayName="Physical Assets" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{bf49a9fc-82a7-eb11-9442-000d3a8410dc}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset Quick Create" parentDisplayName="Customer Asset" id="{cef1eed6-7652-4053-b7cf-9246af579b4f}" />
+        <Dependent type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_parentasset" displayName="Parent Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="26" schemaName="Active Customer Assets" displayName="Active Customer Assets" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{6ecb03a4-acda-44ae-83e3-c60ba8338dbb}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_parentasset" displayName="Parent Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_parentasset" displayName="Parent Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
+        <Dependent type="2" schemaName="msdyn_parentasset" displayName="Parent Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_product" displayName="Product" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_product" displayName="Product" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_product" displayName="Product" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="Customer Asset Quick Create" parentDisplayName="Customer Asset" id="{cef1eed6-7652-4053-b7cf-9246af579b4f}" />
+        <Dependent type="2" schemaName="msdyn_product" displayName="Product" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_registrationstatus" displayName="Registration Status" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_IoTAssetCommon (1.9.0.0)" />
-        <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_registrationstatus" displayName="Registration Status" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_IoTAssetCommon (1.9.0.0)" />
-        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
+        <Dependent type="2" schemaName="msdyn_registrationstatus" displayName="Registration Status" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workorderproduct" displayName="Work Order Product" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="FieldService (8.8.0.88)" />
-        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
+        <Dependent type="2" schemaName="msdyn_workorderproduct" displayName="Work Order Product" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="ownerid" displayName="Owner" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="Active" />
-        <Dependent type="60" displayName="Customer Asset - Mobile" parentDisplayName="Customer Asset" id="{23a63844-ff18-4fcc-b641-eac69b6ef100}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="ownerid" displayName="Owner" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="Active" />
-        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
+        <Required type="2" schemaName="overriddencreatedon" displayName="Record Created On" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="2" schemaName="overriddencreatedon" displayName="Record Created On" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="statecode" displayName="Status" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="26" schemaName="Operations" displayName="Operations" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{6d5b19df-82a7-eb11-9442-000d3a8419e6}" />
+        <Dependent type="2" schemaName="statecode" displayName="Status" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="statecode" displayName="Status" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="26" schemaName="Active Customer Assets" displayName="Active Customer Assets" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{6ecb03a4-acda-44ae-83e3-c60ba8338dbb}" />
+        <Required type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="statecode" displayName="Status" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="26" schemaName="Physical Assets" displayName="Physical Assets" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{bf49a9fc-82a7-eb11-9442-000d3a8410dc}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="ts_customerassetenglish" displayName="Customer Asset Name (English)" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="Active" />
-        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="ts_customerassetfrench" displayName="Customer Asset Name (French)" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="Active" />
-        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
+        <Required type="2" schemaName="msdyn_customerassetcategoryid" displayName="Customer Asset Category" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_customerassetcategory_msdyn_customerasset_CustomerAssetCategory" displayName="msdyn_msdyn_customerassetcategory_msdyn_customerasset_CustomerAssetCategory" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetcategoryid" displayName="Customer Asset Category" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="10" schemaName="ovs_msdyn_workorder_AssetCategory_msdyn_custo" displayName="ovs_msdyn_workorder_AssetCategory_msdyn_custo" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_customerassetcategoryid" displayName="Customer Asset Category" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="26" schemaName="Customer Assets - PAX" displayName="Customer Assets - PAX" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{5175913c-4dbe-eb11-bacc-000d3a84b079}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetcategoryid" displayName="Customer Asset Category" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.102)" />
@@ -5903,6 +6003,10 @@
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetcategoryid" displayName="Customer Asset Category" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="26" schemaName="Operation Categories" displayName="Operation Categories" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" id="{e02e567a-81a7-eb11-9442-000d3a8410dc}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_customerassetcategory_msdyn_customerasset_CustomerAssetCategory" displayName="msdyn_msdyn_customerassetcategory_msdyn_customerasset_CustomerAssetCategory" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.102)" />
@@ -5975,6 +6079,10 @@
       <MissingDependency>
         <Required type="2" schemaName="msdyn_country" displayName="Country/Region" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_FieldService_patch_update (8.8.43.77)" />
         <Dependent type="2" schemaName="msdyn_country" displayName="Country/Region" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="10" schemaName="msdyn_customerasset_FunctionalLocation_ms" displayName="msdyn_customerasset_FunctionalLocation_ms" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" />
@@ -6201,12 +6309,44 @@
         <Dependent type="10" schemaName="msdyn_msdyn_inspection_msdyn_servicetasktype_Inspection" displayName="msdyn_msdyn_inspection_msdyn_servicetasktype_Inspection" parentSchemaName="msdyn_inspection" parentDisplayName="Inspection Template" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="2" schemaName="msdyn_alerttime" displayName="Alert Time" parentSchemaName="msdyn_iotalert" parentDisplayName="IoT Alert" solution="IoTConnector (1.8.18.0)" />
+        <Dependent type="2" schemaName="msdyn_lastalerttime" displayName="Last active alert time" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="2" schemaName="msdyn_description" displayName="Description" parentSchemaName="msdyn_iotalert" parentDisplayName="IoT Alert" solution="IoTConnector (1.8.18.0)" />
         <Dependent type="10" schemaName="msdyn_msdyn_iotalert_msdyn_workorder_IoTAlert" displayName="msdyn_msdyn_iotalert_msdyn_workorder_IoTAlert" parentSchemaName="msdyn_iotalert" parentDisplayName="IoT Alert" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_iotalertid" displayName="IoT Alert" parentSchemaName="msdyn_iotalert" parentDisplayName="IoT Alert" solution="IoTConnector (1.8.18.0)" />
         <Dependent type="10" schemaName="msdyn_msdyn_iotalert_msdyn_workorder_IoTAlert" displayName="msdyn_msdyn_iotalert_msdyn_workorder_IoTAlert" parentSchemaName="msdyn_iotalert" parentDisplayName="IoT Alert" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_iotalertid" displayName="IoT Alert" parentSchemaName="msdyn_iotalert" parentDisplayName="IoT Alert" solution="IoTConnector (1.8.18.0)" />
+        <Dependent type="2" schemaName="msdyn_alertcount" displayName="Alert Count" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_iotalertid" displayName="IoT Alert" parentSchemaName="msdyn_iotalert" parentDisplayName="IoT Alert" solution="IoTConnector (1.8.18.0)" />
+        <Dependent type="2" schemaName="msdyn_lastalerttime" displayName="Last active alert time" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_parentalert" displayName="Primary Alert" parentSchemaName="msdyn_iotalert" parentDisplayName="IoT Alert" solution="IoTConnector (1.8.18.0)" />
+        <Dependent type="2" schemaName="msdyn_alertcount" displayName="Alert Count" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="statuscode" displayName="Alert Status" parentSchemaName="msdyn_iotalert" parentDisplayName="IoT Alert" solution="IoTConnector (1.8.18.0)" />
+        <Dependent type="2" schemaName="msdyn_alertcount" displayName="Alert Count" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="statuscode" displayName="Alert Status" parentSchemaName="msdyn_iotalert" parentDisplayName="IoT Alert" solution="IoTConnector (1.8.18.0)" />
+        <Dependent type="2" schemaName="msdyn_lastalerttime" displayName="Last active alert time" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_iotdevicecommandid" displayName="IoT Device Command" parentSchemaName="msdyn_iotdevicecommand" parentDisplayName="IoT Device Command" solution="IoTConnector (1.8.18.0)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" displayName="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_iotdevicecommand" parentDisplayName="IoT Device Command" solution="IoTConnector (1.8.18.0)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" displayName="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_amount" displayName="Amount" parentSchemaName="msdyn_orderinvoicingproduct" parentDisplayName="Order Invoicing Product" solution="FieldService (8.8.0.88)" />
@@ -6698,7 +6838,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
@@ -7038,6 +7178,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" solution="FieldService (8.8.0.88)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_workorderproduct_msdyn_customerasset_WorkOrderProduct" displayName="msdyn_msdyn_workorderproduct_msdyn_customerasset_WorkOrderProduct" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" solution="FieldService (8.8.0.88)" />
         <Dependent type="60" displayName="Work Order - Service" parentDisplayName="Work Order" id="{613513a1-322d-4ecc-81bd-bd65640d834c}" />
       </MissingDependency>
       <MissingDependency>
@@ -7091,6 +7235,10 @@
       <MissingDependency>
         <Required type="2" schemaName="msdyn_warehouse" displayName="Warehouse" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" solution="FieldService (8.8.0.88)" />
         <Dependent type="60" displayName="Work Order - Service" parentDisplayName="Work Order" id="{613513a1-322d-4ecc-81bd-bd65640d834c}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workorderproductid" displayName="Work Order Product" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" solution="FieldService (8.8.0.88)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_workorderproduct_msdyn_customerasset_WorkOrderProduct" displayName="msdyn_msdyn_workorderproduct_msdyn_customerasset_WorkOrderProduct" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workorderproductid" displayName="Work Order Product" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" solution="FieldService (8.8.0.88)" />
@@ -7929,6 +8077,14 @@
         <Dependent type="10" schemaName="msdyn_pricelevel_msdyn_workorder_PriceList" displayName="msdyn_pricelevel_msdyn_workorder_PriceList" parentSchemaName="pricelevel" parentDisplayName="Price List" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="2" schemaName="name" displayName="Name" parentSchemaName="product" parentDisplayName="Product" solution="msdynce_ProductManagement (9.0.4.0066)" />
+        <Dependent type="10" schemaName="msdyn_product_msdyn_customerasset_Product" displayName="msdyn_product_msdyn_customerasset_Product" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="productid" displayName="Product" parentSchemaName="product" parentDisplayName="Product" solution="msdynce_ProductManagement (9.0.4.0066)" />
+        <Dependent type="10" schemaName="msdyn_product_msdyn_customerasset_Product" displayName="msdyn_product_msdyn_customerasset_Product" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="2" schemaName="activityid" displayName="Service Activity" parentSchemaName="serviceappointment" parentDisplayName="Service Activity" solution="msdynce_Service (9.0.5.56)" />
         <Dependent type="10" schemaName="msdyn_serviceappointment_bookableresourcebooking_serviceappointment" displayName="msdyn_serviceappointment_bookableresourcebooking_serviceappointment" parentSchemaName="serviceappointment" parentDisplayName="Service Activity" />
       </MissingDependency>
@@ -7997,7 +8153,7 @@
         <Dependent type="2" schemaName="overriddencreatedon" displayName="Record Created On" parentSchemaName="territory" parentDisplayName="Region" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="parentterritoryid" displayName="Parent" parentSchemaName="territory" parentDisplayName="Region" solution="msdynce_AppCommonPatch201904 (9.0.21053.10001)" />
+        <Required type="2" schemaName="parentterritoryid" displayName="Parent" parentSchemaName="territory" parentDisplayName="Region" solution="msdynce_AppCommonPatch201904 (9.0.21055.10001)" />
         <Dependent type="2" schemaName="parentterritoryid" displayName="Parent" parentSchemaName="territory" parentDisplayName="Region" />
       </MissingDependency>
       <MissingDependency>
@@ -8719,6 +8875,10 @@
       <MissingDependency>
         <Required type="26" schemaName="All Competitors (summary)" displayName="All Competitors (summary)" parentSchemaName="competitor" parentDisplayName="Competitor" solution="msdynce_Sales (9.0.4.0076)" id="{57bca9ac-87a0-4c28-adc8-2d0a4645f29e}" />
         <Dependent type="60" displayName="Field Service Information" parentDisplayName="Opportunity" id="{8335a04b-dc80-44b0-83ab-11ed80f93d3e}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Functional Location Lookup View" displayName="Functional Location Lookup View" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" id="{57f1ece8-04ac-4178-b2bd-cbd292d2ecc4}" />
+        <Dependent type="60" displayName="ROM Oversight Activity" parentDisplayName="Work Order" id="{704d8664-78ac-eb11-8236-000d3ae8b866}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Functional Location Lookup View" displayName="Functional Location Lookup View" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" id="{57f1ece8-04ac-4178-b2bd-cbd292d2ecc4}" />
@@ -9689,7 +9849,7 @@
         <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Live Persona Card Form" parentDisplayName="Contact" solution="msdynce_AppCommonPatch201904 (9.0.21053.10001)" id="{449faa0e-f471-48ec-87d0-4719909546d2}" />
+        <Required type="60" displayName="Live Persona Card Form" parentDisplayName="Contact" solution="msdynce_AppCommonPatch201904 (9.0.21055.10001)" id="{449faa0e-f471-48ec-87d0-4719909546d2}" />
         <Dependent type="60" displayName="Live Persona Card Form" parentDisplayName="Contact" id="{449faa0e-f471-48ec-87d0-4719909546d2}" />
       </MissingDependency>
       <MissingDependency>
