@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20210614.2</Version>
+    <Version>1.0.20210615.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -279,6 +279,7 @@
       <RootComponent type="61" schemaName="ovs_/resx/Incident.1036.resx" behavior="0" />
       <RootComponent type="61" schemaName="ovs_/resx/WorkOrder.1033.resx" behavior="0" />
       <RootComponent type="61" schemaName="ovs_/resx/WorkOrder.1036.resx" behavior="0" />
+      <RootComponent type="61" schemaName="ts_/css/WorkOrderExport.css" behavior="0" />
       <RootComponent type="61" schemaName="ts_/html/FindingProvisionText.html" behavior="0" />
       <RootComponent type="61" schemaName="ts_/html/ProvisionRender.html" behavior="0" />
       <RootComponent type="61" schemaName="ts_/html/SurveyRenderPrint.html" behavior="0" />
@@ -3142,10 +3143,6 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_FunctionalLocation_ParentFunctional" displayName="msdyn_FunctionalLocation_ParentFunctional" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" />
-        <Dependent type="60" displayName="ROM Oversight Activity" parentDisplayName="Work Order" id="{704d8664-78ac-eb11-8236-000d3ae8b866}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="10" schemaName="msdyn_FunctionalLocation_ParentFunctional" displayName="msdyn_FunctionalLocation_ParentFunctional" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="60" displayName="Functional Location Quick Create" parentDisplayName="Functional Location" id="{77fb5987-41c3-4839-82f1-80d07d33c8ed}" />
       </MissingDependency>
       <MissingDependency>
@@ -5890,6 +5887,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="26" schemaName="Related Operations" displayName="Related Operations" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{3d2af424-46cd-eb11-bacc-0022483c043b}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="26" schemaName="Customer Assets - PAX" displayName="Customer Assets - PAX" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{5175913c-4dbe-eb11-bacc-000d3a84b079}" />
       </MissingDependency>
       <MissingDependency>
@@ -5975,6 +5976,10 @@
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetcategoryid" displayName="Customer Asset Category" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="10" schemaName="ovs_msdyn_workorder_AssetCategory_msdyn_custo" displayName="ovs_msdyn_workorder_AssetCategory_msdyn_custo" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_customerassetcategoryid" displayName="Customer Asset Category" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="26" schemaName="Related Operations" displayName="Related Operations" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" id="{3d2af424-46cd-eb11-bacc-0022483c043b}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetcategoryid" displayName="Customer Asset Category" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.102)" />
@@ -8870,10 +8875,6 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Functional Location Lookup View" displayName="Functional Location Lookup View" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" id="{57f1ece8-04ac-4178-b2bd-cbd292d2ecc4}" />
-        <Dependent type="60" displayName="ROM Oversight Activity" parentDisplayName="Work Order" id="{704d8664-78ac-eb11-8236-000d3ae8b866}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="26" schemaName="Functional Location Lookup View" displayName="Functional Location Lookup View" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" id="{57f1ece8-04ac-4178-b2bd-cbd292d2ecc4}" />
         <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
       </MissingDependency>
       <MissingDependency>
@@ -8979,6 +8980,10 @@
       <MissingDependency>
         <Required type="26" schemaName="Active Devices" displayName="Active Devices" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_ConnectedCustomerService (9.0.20115.1014)" id="{64f8ed51-5066-449d-8bf9-73a39737ece7}" />
         <Dependent type="60" displayName="ROM Oversight Activity" parentDisplayName="Work Order" id="{704d8664-78ac-eb11-8236-000d3ae8b866}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Active Devices" displayName="Active Devices" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_ConnectedCustomerService (9.0.20115.1014)" id="{64f8ed51-5066-449d-8bf9-73a39737ece7}" />
+        <Dependent type="60" displayName="Customer Asset" parentDisplayName="Customer Asset" id="{8e32cdf1-c3c0-490f-8681-37ac1e223d1a}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Active Devices" displayName="Active Devices" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_ConnectedCustomerService (9.0.20115.1014)" id="{64f8ed51-5066-449d-8bf9-73a39737ece7}" />
@@ -9781,15 +9786,15 @@
         <Dependent type="60" displayName="Accounts Dashboard" parentDisplayName="Account" id="{15915835-b87c-49ec-9ffc-bfac3ac44ef1}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21053.1001)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}" />
+        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21055.1007)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}" />
         <Dependent type="60" displayName="ROM Case" parentDisplayName="Case" id="{45b022a4-928d-eb11-b1ac-000d3ae92dbf}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21053.1001)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}" />
+        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21055.1007)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}" />
         <Dependent type="60" displayName="Case" parentDisplayName="Case" id="{4a63c8d1-6c1e-48ec-9db4-3e6c7155334c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21053.1001)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}" />
+        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21055.1007)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}" />
         <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
@@ -10049,15 +10054,15 @@
         <Dependent type="60" displayName="Cases Dashboard" parentDisplayName="Case" id="{eb3748b8-5f90-4050-a039-8b7d279ad8fe}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21053.1001)" id="{ede9dac3-e143-4be4-acc8-237309e31210}" />
+        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21055.1007)" id="{ede9dac3-e143-4be4-acc8-237309e31210}" />
         <Dependent type="60" displayName="ROM Case" parentDisplayName="Case" id="{45b022a4-928d-eb11-b1ac-000d3ae92dbf}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21053.1001)" id="{ede9dac3-e143-4be4-acc8-237309e31210}" />
+        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21055.1007)" id="{ede9dac3-e143-4be4-acc8-237309e31210}" />
         <Dependent type="60" displayName="Case" parentDisplayName="Case" id="{4a63c8d1-6c1e-48ec-9db4-3e6c7155334c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21053.1001)" id="{ede9dac3-e143-4be4-acc8-237309e31210}" />
+        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.21055.1007)" id="{ede9dac3-e143-4be4-acc8-237309e31210}" />
         <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
