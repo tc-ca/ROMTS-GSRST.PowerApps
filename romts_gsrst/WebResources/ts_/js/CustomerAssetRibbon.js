@@ -3,7 +3,12 @@ function addExistingAssetsToEntity(primaryControl, selectedEntityTypeName, selec
     Xrm.Utility.getEntityMetadata(primaryControl._entityName).then(function (primaryEntityData) {
         const entitySetName = primaryEntityData.EntitySetName;
         const entityID = Xrm.Page.data.entity.getId().replace(/({|})/g,'');
+
+        const customerAssetAttribute = formContext.getAttribute("ovs_asset");
+        const customerAssetAttributeValue = customerAssetAttribute.getValue();
+
         var customerAssetsAlreadyAssociatedCondition = "";
+        var currentCustomerAssetCondition = (customerAssetAttributeValue != "" && customerAssetAttributeValue != null && customerAssetAttributeValue != undefined) ? `<condition attribute="msdyn_customerassetid" operator="neq" value="${customerAssetAttributeValue[0].id}" />` : "" ;
 
         var req = new XMLHttpRequest();
         req.open("GET", formContext.context.getClientUrl() + "/api/data/v9.0/" + entitySetName + "(" + entityID+ ")" + "/" + selectedControl.getRelationship().name, false);
@@ -32,16 +37,18 @@ function addExistingAssetsToEntity(primaryControl, selectedEntityTypeName, selec
             defaultEntityType: "msdyn_customerasset",
             entityTypes: ["msdyn_customerasset"],
             allowMultiSelect: true,
-            defaultViewId:(Xrm.Page.ui.tabs.get("assets_tab").getDisplayState() == "expanded" ? "bf49a9fc-82a7-eb11-9442-000d3a8410dc" : "6d5b19df-82a7-eb11-9442-000d3a8419e6"), //show corresponding view (physical asset/operations)
+            defaultViewId: Xrm.Page.ui.tabs.get("assets_tab").getDisplayState() == "expanded" ? "bf49a9fc-82a7-eb11-9442-000d3a8410dc" : "3d2af424-46cd-eb11-bacc-0022483c043b", //show corresponding view (physical asset/operations)
             disableMru: true,
             filters: [
                 {
                     filterXml: `<filter type="and">` + 
                         `${customerAssetsAlreadyAssociatedCondition}` +
+                        `${currentCustomerAssetCondition}` +
                         `</filter> `,
                     entityLogicalName: "msdyn_customerasset"
                 }
-            ]
+            ],
+            viewIds : [(Xrm.Page.ui.tabs.get("assets_tab").getDisplayState() == "expanded" ? "bf49a9fc-82a7-eb11-9442-000d3a8410dc" : "3d2af424-46cd-eb11-bacc-0022483c043b", "6d5b19df-82a7-eb11-9442-000d3a8419e6")]
         };
 
         console.log(customerAssetsAlreadyAssociatedCondition)

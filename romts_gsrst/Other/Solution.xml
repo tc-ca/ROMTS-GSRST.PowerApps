@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20210615.1</Version>
+    <Version>1.0.20210616.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -162,6 +162,7 @@
       <RootComponent type="1" schemaName="tc_tcfiscalyear" behavior="0" />
       <RootComponent type="1" schemaName="tc_tcmonth" behavior="0" />
       <RootComponent type="1" schemaName="territory" behavior="0" />
+      <RootComponent type="1" schemaName="ts_workordercreationwizard" behavior="0" />
       <RootComponent type="9" schemaName="ovs_facilitytype" behavior="0" />
       <RootComponent type="9" schemaName="tc_gender" behavior="0" />
       <RootComponent type="9" schemaName="ts_assetcategorytype" behavior="0" />
@@ -2535,7 +2536,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)" />
@@ -5883,6 +5884,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="10" schemaName="ts_msdyn_customerasset_ts_workordercreationw" displayName="ts_msdyn_customerasset_ts_workordercreationw" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="2" schemaName="msdyn_alert" displayName="Active or in-progress alerts" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
@@ -6088,6 +6093,10 @@
       <MissingDependency>
         <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" />
         <Dependent type="10" schemaName="msdyn_msdyn_functionallocation_msdyn_workorder_FunctionalLocation" displayName="msdyn_msdyn_functionallocation_msdyn_workorder_FunctionalLocation" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" />
+        <Dependent type="10" schemaName="ts_msdyn_functionallocation_ts_workordercrea" displayName="ts_msdyn_functionallocation_ts_workordercrea" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.102)" />
@@ -7675,6 +7684,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workordertype" parentDisplayName="Work Order Type" solution="FieldService (8.8.0.88)" />
+        <Dependent type="10" schemaName="ts_msdyn_workordertype_ts_workordercreationw" displayName="ts_msdyn_workordertype_ts_workordercreationw" parentSchemaName="msdyn_workordertype" parentDisplayName="Work Order Type" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workordertype" parentDisplayName="Work Order Type" solution="FieldService (8.8.0.88)" />
         <Dependent type="26" schemaName="Work Order Type Lookup View" displayName="Work Order Type Lookup View" parentSchemaName="msdyn_workordertype" parentDisplayName="Work Order Type" id="{8f0514ca-d271-46cc-b531-41791c56949a}" />
       </MissingDependency>
       <MissingDependency>
@@ -7696,6 +7709,10 @@
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workordertypeid" displayName="Work Order Type" parentSchemaName="msdyn_workordertype" parentDisplayName="Work Order Type" solution="FieldService (8.8.0.88)" />
         <Dependent type="10" schemaName="msdyn_msdyn_workordertype_msdyn_workorder_WorkOrderType" displayName="msdyn_msdyn_workordertype_msdyn_workorder_WorkOrderType" parentSchemaName="msdyn_workordertype" parentDisplayName="Work Order Type" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workordertypeid" displayName="Work Order Type" parentSchemaName="msdyn_workordertype" parentDisplayName="Work Order Type" solution="FieldService (8.8.0.88)" />
+        <Dependent type="10" schemaName="ts_msdyn_workordertype_ts_workordercreationw" displayName="ts_msdyn_workordertype_ts_workordercreationw" parentSchemaName="msdyn_workordertype" parentDisplayName="Work Order Type" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workordertypeid" displayName="Work Order Type" parentSchemaName="msdyn_workordertype" parentDisplayName="Work Order Type" solution="FieldService (8.8.0.88)" />
@@ -9651,6 +9668,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Customer Asset Lookup View" displayName="Customer Asset Lookup View" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" id="{fd2fda4c-4b7f-4a68-a2cb-c1e1c6a31c8f}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Creation Wizard" id="{b2c2cd67-fae7-4544-8ec3-d4dc57148c7b}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Customer Asset Lookup View" displayName="Customer Asset Lookup View" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.102)" id="{fd2fda4c-4b7f-4a68-a2cb-c1e1c6a31c8f}" />
         <Dependent type="60" displayName="TSIS Oversight Activity" parentDisplayName="Work Order" id="{d8dc9595-c451-eb11-a812-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -10107,6 +10128,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)" />
+        <Dependent type="60" displayName="Contact - Mobile" parentDisplayName="Contact" id="{28b5b9b6-dfa2-45d6-8a81-3f6ba02a098a}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)" />
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
@@ -10116,10 +10141,6 @@
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)" />
         <Dependent type="60" displayName="Contacts - TC" parentDisplayName="Contact" id="{49fe6fbb-fa3b-4e22-92e3-c33aea674e12}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Contact" id="{894cc46a-b0cb-4ab0-8bf6-200544e46a2d}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)" />
