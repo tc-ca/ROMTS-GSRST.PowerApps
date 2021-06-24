@@ -31,11 +31,11 @@
               <condition attribute="ts_assetcategorytype" operator="eq" value="717750000" />
             </filter>
           </link-entity>
-          <attribute name="msdyn_account" />
-          <attribute name="msdyn_functionallocation" />
-          <attribute name="msdyn_customerassetcategory" />
           <order attribute="msdyn_name" descending="false" />
-          <link-entity name="ts_msdyn_customerasset_msdyn_customerasset" from="msdyn_customerassetidone" to="msdyn_customerassetid" link-type="inner" intersect="true" />
+          <link-entity name="ts_msdyn_customerasset_msdyn_customerasset" from="msdyn_customerassetidone" to="msdyn_customerassetid" link-type="inner" intersect="true">
+            <link-entity name="msdyn_customerasset" from="msdyn_customerassetid" to="msdyn_customerassetidone" link-type="inner" />
+            <attribute name="msdyn_customerassetidtwo" />
+          </link-entity>
         </entity>
       </fetch>
     </fetchxml>

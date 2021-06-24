@@ -6,6 +6,16 @@
         <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="Mscrm.AddExistingRecordFromSubGridAssociated" Id="Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Sequence="40" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipDescription" ModernImage="AddExisting" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.Mscrm.SubGrid.msdyn_customerasset.Remove.CustomAction" Location="Mscrm.SubGrid.msdyn_customerasset.MainTab.Management.Controls._children" Sequence="0">
+      <CommandUIDefinition>
+        <Button Alt="$Resources:MenuItem_Label_Remove" Command="Mscrm.RemoveSelectedRecord" Id="Mscrm.SubGrid.msdyn_customerasset.Remove" Image32by32="/_imgs/Workplace/Remove_32.png" Image16by16="/_imgs/ribbon/Delete_16.png" LabelText="$Resources:MenuItem_Label_Remove" Sequence="0" TemplateAlias="o2" ToolTipTitle="$Resources:Mscrm_SubGrid_Other_MainTab_Management_Remove_ToolTipTitle" ToolTipDescription="$Resources:Mscrm_SubGrid_Other_MainTab_Management_Remove_ToolTipDescription" ModernImage="Remove" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_customerasset.Button.Button.Mscrm.SubGrid.msdyn_customerasset.Remove.CustomAction" Location="Mscrm.SubGrid.msdyn_customerasset.MainTab.Management.Controls._children" Sequence="90">
+      <CommandUIDefinition>
+        <Button Alt="$Resources:MenuItem_Label_Remove" Command="ovs.RemoveSelectedRecord" Id="ts.msdyn_customerasset.Button.Button.Mscrm.SubGrid.msdyn_customerasset.Remove" Image32by32="/_imgs/Workplace/Remove_32.png" Image16by16="/_imgs/ribbon/Delete_16.png" LabelText="$LocLabels:ts.msdyn_customerasset.Button.Button.Mscrm.SubGrid.msdyn_customerasset.Remove.LabelText" Sequence="90" TemplateAlias="o2" ToolTipTitle="$Resources:Mscrm_SubGrid_Other_MainTab_Management_Remove_ToolTipTitle" ToolTipDescription="$Resources:Mscrm_SubGrid_Other_MainTab_Management_Remove_ToolTipDescription" ModernImage="Remove" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.CustomAction" Location="Mscrm.SubGrid.msdyn_customerasset.MainTab.Management.Controls._children" Sequence="45">
       <CommandUIDefinition>
         <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="ovs.msdyn_customerasset.SubGrid.msdyn_workorder.AddExistingAssoc" Id="ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Sequence="45" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipDescription" ModernImage="AddExisting" />
@@ -58,6 +68,24 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="Mscrm.RemoveSelectedRecord">
+      <EnableRules>
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.ShowForManyToManyGrids" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Disassociate.gridDisassociate" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+          <CrmParameter Value="FirstSelectedItemId" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="ovs.msdyn_customerasset.SubGrid.msdyn_workorder.AddExistingAssoc">
       <EnableRules>
         <EnableRule Id="Mscrm.AppendToPrimary" />
@@ -98,6 +126,24 @@
           <CrmParameter Value="PrimaryControl" />
           <CrmParameter Value="SelectedEntityTypeName" />
           <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ovs.RemoveSelectedRecord">
+      <EnableRules>
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.ShowForManyToManyGrids" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="removeAsset" Library="$webresource:ts_/js/CustomerAssetRibbon.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+          <CrmParameter Value="FirstSelectedItemId" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -147,7 +193,28 @@
           <CrmParameter Value="SelectedControl" />
         </CustomRule>
       </EnableRule>
+      <EnableRule Id="Mscrm.SelectionCountAtLeastOne">
+        <SelectionCountRule AppliesTo="SelectedEntity" Minimum="1" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.VisualizationPaneNotMaximized">
+        <OrRule>
+          <Or>
+            <CommandClientTypeRule Type="Modern" />
+          </Or>
+          <Or>
+            <CustomRule FunctionName="Mscrm.GridCommandActions.disableButtonsWhenChartMaximized" Library="/_static/_common/scripts/CommandBarActions.js">
+              <CrmParameter Value="SelectedControl" />
+            </CustomRule>
+          </Or>
+        </OrRule>
+      </EnableRule>
     </EnableRules>
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="ts.msdyn_customerasset.Button.Button.Mscrm.SubGrid.msdyn_customerasset.Remove.LabelText">
+      <Titles>
+        <Title description="Remove Custom" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>
