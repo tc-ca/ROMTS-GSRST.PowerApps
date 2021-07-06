@@ -23,7 +23,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{0b5c2634-74d0-3d30-e83a-8b41e130e79b}" showlabel="true" locklevel="0" ordinalvalue="10001">
+                      <cell id="{0b5c2634-74d0-3d30-e83a-8b41e130e79b}" showlabel="true" locklevel="0" ordinalvalue="10004" solutionaction="Modified">
                         <labels>
                           <label description="Category" languagecode="1033" solutionaction="Added" />
                           <label description="Catégorie" languagecode="1036" solutionaction="Added" />
@@ -31,7 +31,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{c0734e0d-3615-2a9b-2727-1d07b58ecb2c}" showlabel="true" locklevel="0" ordinalvalue="10002">
+                      <cell id="{c0734e0d-3615-2a9b-2727-1d07b58ecb2c}" showlabel="true" locklevel="0" ordinalvalue="10003" solutionaction="Modified">
                         <labels>
                           <label description="Account" languagecode="1033" solutionaction="Added" />
                           <label description="Compte" languagecode="1036" solutionaction="Added" />
@@ -50,11 +50,27 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{db7ee40e-b292-b328-8719-786697d192ca}" showlabel="true" locklevel="0" ordinalvalue="10003">
+                      <cell id="{db7ee40e-b292-b328-8719-786697d192ca}" showlabel="true" locklevel="0" ordinalvalue="10005" solutionaction="Modified">
                         <labels>
                           <label description="Product" languagecode="1033" solutionaction="Added" />
                           <label description="Produit" languagecode="1036" solutionaction="Added" />
                         </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f89ebdfa-85a9-4fce-a820-1b6d66f4d705}" locklevel="0" visible="false" ordinalvalue="10001" solutionaction="Added">
+                        <labels>
+                          <label description="Customer Asset Name (English)" languagecode="1033" />
+                        </labels>
+                        <control id="ts_customerassetenglish" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_customerassetenglish" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{79d15d7c-086c-48f0-a2b2-e742f832bf15}" locklevel="0" visible="false" ordinalvalue="10002" solutionaction="Added">
+                        <labels>
+                          <label description="Customer Asset Name (French)" languagecode="1033" />
+                        </labels>
+                        <control id="ts_customerassetfrench" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_customerassetfrench" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -64,20 +80,61 @@
             <column width="33%" id="1">
               <sections>
                 <section id="{e57d3062-448a-46cd-90f6-d5ab28a4268a}" name="tab_1_column_2_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0" ordinalvalue="0">
-                  <rows />
+                  <rows>
+                    <row>
+                      <cell id="{7dd61e1d-40c6-4fd1-83e8-e0976d241410}" ordinalvalue="10000" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
                 </section>
               </sections>
             </column>
             <column width="33%" id="2">
               <sections>
                 <section id="{25e7d3a0-1378-4d97-b5b3-c2c7c4ee6794}" name="tab_1_column_3_section_1" columns="1" showlabel="false" showbar="false" IsUserDefined="0" ordinalvalue="0">
-                  <rows />
+                  <rows>
+                    <row>
+                      <cell id="{d5bdd40f-bfe7-4ef1-9e23-acf70087ef4d}" ordinalvalue="10000" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
                 </section>
               </sections>
             </column>
           </columns>
         </tab>
       </tabs>
+      <formLibraries>
+        <Library name="ts_/js/CustomerAssetQuickCreate.js" libraryUniqueId="{4bebaeb2-aacd-5d27-a400-963a305785ec}" solutionaction="Added" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.CustomerAssetQuickCreate.onLoad" libraryName="ts_/js/CustomerAssetQuickCreate.js" handlerUniqueId="{6a004685-b87c-42c5-9488-cac8f982ca82}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="2" solutionaction="Added" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_customerassetcategory" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.CustomerAssetQuickCreate.categoryOnChange" libraryName="ts_/js/CustomerAssetQuickCreate.js" handlerUniqueId="{1f051175-c2a4-4dd9-8663-1cb0be14cfbf}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_account" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.CustomerAssetQuickCreate.accountOnChange" libraryName="ts_/js/CustomerAssetQuickCreate.js" handlerUniqueId="{4c9290a5-ab49-4805-8e36-49a7ced10b31}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="true" active="true" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.CustomerAssetQuickCreate.onSave" libraryName="ts_/js/CustomerAssetQuickCreate.js" handlerUniqueId="{82ac61a7-a468-4542-b7ce-3b0e5bb64a3f}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+      </events>
       <controlDescriptions solutionaction="Added" />
     </form>
     <LocalizedNames>
