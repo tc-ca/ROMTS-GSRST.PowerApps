@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20210707.1</Version>
+    <Version>1.0.20210707.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -81,7 +81,7 @@
       </Addresses>
     </Publisher>
     <RootComponents>
-      <RootComponent type="1" schemaName="account" behavior="1" />
+      <RootComponent type="1" schemaName="account" behavior="0" />
       <RootComponent type="1" schemaName="activitypointer" behavior="1" />
       <RootComponent type="1" schemaName="appointment" behavior="1" />
       <RootComponent type="1" schemaName="bookableresource" behavior="0" />
@@ -1409,6 +1409,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_actual" displayName="Actual" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
+        <Dependent type="1" schemaName="account" displayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_actual" displayName="Actual" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
         <Dependent type="1" schemaName="bookableresource" displayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
@@ -1577,11 +1581,19 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_entitlementapplication" displayName="Entitlement Application" solution="FieldService (8.8.0.88)" />
+        <Dependent type="1" schemaName="account" displayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_entitlementapplication" displayName="Entitlement Application" solution="FieldService (8.8.0.88)" />
         <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_functionallocation" displayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.109)" />
         <Dependent type="1" schemaName="msdyn_functionallocation" displayName="Functional Location" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_geofence" displayName="Geofence" solution="msdyn_Geofencing (1.1.0.100)" />
+        <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_geofence" displayName="Geofence" solution="msdyn_Geofencing (1.1.0.100)" />
@@ -1680,6 +1692,10 @@
         <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="1" schemaName="msdyn_iotdevice" displayName="IoT Device" solution="IoTConnector (1.8.19.0)" />
+        <Dependent type="1" schemaName="account" displayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="1" schemaName="msdyn_iotdevicecommand" displayName="IoT Device Command" solution="IoTConnector (1.8.19.0)" />
         <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
       </MissingDependency>
@@ -1702,6 +1718,10 @@
       <MissingDependency>
         <Required type="1" schemaName="msdyn_organizationalunit" displayName="Organizational Unit" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
         <Dependent type="10" schemaName="msdyn_msdyn_organizationalunit_bookableresource_organizationalunit" displayName="msdyn_msdyn_organizationalunit_bookableresource_organizationalunit" parentSchemaName="msdyn_organizationalunit" parentDisplayName="Organizational Unit" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_payment" displayName="Payment" solution="FieldService (8.8.0.88)" />
+        <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_payment" displayName="Payment" solution="FieldService (8.8.0.88)" />
@@ -1813,6 +1833,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_requirementresourcepreference" displayName="Requirement Resource Preference" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
+        <Dependent type="1" schemaName="account" displayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_requirementresourcepreference" displayName="Requirement Resource Preference" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
         <Dependent type="1" schemaName="bookableresource" displayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
@@ -1853,7 +1877,15 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_rmaproduct" displayName="RMA Product" solution="FieldService (8.8.0.88)" />
+        <Dependent type="1" schemaName="account" displayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_rmaproduct" displayName="RMA Product" solution="FieldService (8.8.0.88)" />
         <Dependent type="1" schemaName="msdyn_customerasset" displayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_rtv" displayName="RTV" solution="FieldService (8.8.0.88)" />
+        <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_rtv" displayName="RTV" solution="FieldService (8.8.0.88)" />
@@ -1874,6 +1906,10 @@
       <MissingDependency>
         <Required type="1" schemaName="msdyn_servicetasktype" displayName="Service Task Type" solution="FieldService (8.8.0.88)" />
         <Dependent type="1" schemaName="msdyn_servicetasktype" displayName="Service Task Type" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_taxcode" displayName="Tax Code" solution="FieldServiceCommon (1.0.0.134)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_taxcode_account_SalesTaxCode" displayName="msdyn_msdyn_taxcode_account_SalesTaxCode" parentSchemaName="msdyn_taxcode" parentDisplayName="Tax Code" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_taxcode" displayName="Tax Code" solution="FieldServiceCommon (1.0.0.134)" />
@@ -1929,6 +1965,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_workhourtemplate" displayName="Work Template" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_workhourtemplate_account_workhourtemplate" displayName="msdyn_msdyn_workhourtemplate_account_workhourtemplate" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_workhourtemplate" displayName="Work Template" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
         <Dependent type="10" schemaName="msdyn_msdyn_workhourtemplate_msdyn_workorder_workhourtemplate" displayName="msdyn_msdyn_workhourtemplate_msdyn_workorder_workhourtemplate" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" />
       </MissingDependency>
       <MissingDependency>
@@ -1962,6 +2002,10 @@
       <MissingDependency>
         <Required type="1" schemaName="msdyn_workorderresolution" displayName="Work Order Resolution" solution="msdyn_FieldService_patch_update (8.8.44.45)" />
         <Dependent type="60" displayName="Work Order - Service" parentDisplayName="Work Order" id="{613513a1-322d-4ecc-81bd-bd65640d834c}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_workorderresourcerestriction" displayName="Resource Restriction (Deprecated)" solution="FieldService (8.8.0.88)" />
+        <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_workorderresourcerestriction" displayName="Resource Restriction (Deprecated)" solution="FieldService (8.8.0.88)" />
@@ -2029,6 +2073,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="opportunityproduct" displayName="Opportunity Line" solution="msdynce_Sales (9.0.4.0076)" />
+        <Dependent type="1" schemaName="account" displayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="opportunityproduct" displayName="Opportunity Line" solution="msdynce_Sales (9.0.4.0076)" />
         <Dependent type="60" displayName="Field Service Information" parentDisplayName="Opportunity" id="{8335a04b-dc80-44b0-83ab-11ed80f93d3e}" />
       </MissingDependency>
       <MissingDependency>
@@ -2089,6 +2137,10 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="quotedetail" displayName="Quote Line" solution="msdynce_Sales (9.0.4.0076)" />
+        <Dependent type="1" schemaName="account" displayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="quotedetail" displayName="Quote Line" solution="msdynce_Sales (9.0.4.0076)" />
         <Dependent type="1" schemaName="territory" displayName="Region" />
       </MissingDependency>
       <MissingDependency>
@@ -2134,6 +2186,14 @@
       <MissingDependency>
         <Required type="1" schemaName="territory" displayName="Region" solution="msdynce_AppCommon (9.0.4.0066)" />
         <Dependent type="1" schemaName="territory" displayName="Region" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_account_account_BillingAccount" displayName="msdyn_account_account_BillingAccount" parentSchemaName="account" parentDisplayName="Account" solution="FieldServiceCommon (1.0.0.134)" />
+        <Dependent type="2" schemaName="msdyn_billingaccountname" parentSchemaName="account" parentDisplayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_account_account_BillingAccount" displayName="msdyn_account_account_BillingAccount" parentSchemaName="account" parentDisplayName="Account" solution="FieldServiceCommon (1.0.0.134)" />
+        <Dependent type="2" schemaName="msdyn_billingaccountyominame" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_account_account_BillingAccount" displayName="msdyn_account_account_BillingAccount" parentSchemaName="account" parentDisplayName="Account" solution="FieldServiceCommon (1.0.0.134)" />
@@ -2418,6 +2478,14 @@
       <MissingDependency>
         <Required type="10" schemaName="msdyn_appointment_bookableresourcebooking" displayName="msdyn_appointment_bookableresourcebooking" parentSchemaName="appointment" parentDisplayName="Appointment" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
         <Dependent type="2" schemaName="msdyn_appointmentbookingidname" parentSchemaName="bookableresourcebooking" parentDisplayName="Bookable Resource Booking" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_bookableresource_account_PreferredResource" displayName="msdyn_bookableresource_account_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_account_PreferredResource" displayName="msdyn_bookableresource_account_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_bookableresource_account_PreferredResource" displayName="msdyn_bookableresource_account_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)" />
+        <Dependent type="2" schemaName="msdyn_preferredresourcename" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.44.45)" />
@@ -3125,7 +3193,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_FunctionalLocation_ParentFunctional" displayName="msdyn_FunctionalLocation_ParentFunctional" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.109)" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Creation Wizard" id="{b2c2cd67-fae7-4544-8ec3-d4dc57148c7b}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Wizard" id="{b2c2cd67-fae7-4544-8ec3-d4dc57148c7b}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_functionallocation_incident_FunctionalLocation" displayName="msdyn_msdyn_functionallocation_incident_FunctionalLocation" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_FieldService_patch_update (8.8.44.45)" />
@@ -3517,6 +3585,14 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_taxcode_account_SalesTaxCode" displayName="msdyn_msdyn_taxcode_account_SalesTaxCode" parentSchemaName="msdyn_taxcode" parentDisplayName="Tax Code" solution="FieldService (8.8.0.88)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_taxcode_account_SalesTaxCode" displayName="msdyn_msdyn_taxcode_account_SalesTaxCode" parentSchemaName="msdyn_taxcode" parentDisplayName="Tax Code" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_taxcode_account_SalesTaxCode" displayName="msdyn_msdyn_taxcode_account_SalesTaxCode" parentSchemaName="msdyn_taxcode" parentDisplayName="Tax Code" solution="FieldService (8.8.0.88)" />
+        <Dependent type="2" schemaName="msdyn_salestaxcodename" parentSchemaName="account" parentDisplayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_taxcode_account_SalesTaxCode" displayName="msdyn_msdyn_taxcode_account_SalesTaxCode" parentSchemaName="msdyn_taxcode" parentDisplayName="Tax Code" solution="FieldService (8.8.0.88)" />
         <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
       </MissingDependency>
       <MissingDependency>
@@ -3610,6 +3686,14 @@
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_warehouse_bookableresource_Warehouse" displayName="msdyn_msdyn_warehouse_bookableresource_Warehouse" parentSchemaName="msdyn_warehouse" parentDisplayName="Warehouse" solution="FieldService (8.8.0.88)" />
         <Dependent type="60" displayName="Add/Edit Inspector Form" parentDisplayName="Bookable Resource" id="{eae25a08-d9fd-ea11-a813-000d3af3ac0d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workhourtemplate_account_workhourtemplate" displayName="msdyn_msdyn_workhourtemplate_account_workhourtemplate" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" solution="FieldService (8.8.0.88)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_workhourtemplate_account_workhourtemplate" displayName="msdyn_msdyn_workhourtemplate_account_workhourtemplate" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workhourtemplate_account_workhourtemplate" displayName="msdyn_msdyn_workhourtemplate_account_workhourtemplate" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" solution="FieldService (8.8.0.88)" />
+        <Dependent type="2" schemaName="msdyn_workhourtemplatename" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_workhourtemplate_account_workhourtemplate" displayName="msdyn_msdyn_workhourtemplate_account_workhourtemplate" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" solution="FieldService (8.8.0.88)" />
@@ -4209,7 +4293,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)" />
@@ -4217,7 +4301,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)" />
@@ -4270,6 +4354,10 @@
       <MissingDependency>
         <Required type="10" schemaName="msdyn_territory_account_ServiceTerritory" displayName="msdyn_territory_account_ServiceTerritory" parentSchemaName="territory" parentDisplayName="Region" solution="FieldService (8.8.0.88)" />
         <Dependent type="10" schemaName="msdyn_territory_account_ServiceTerritory" displayName="msdyn_territory_account_ServiceTerritory" parentSchemaName="territory" parentDisplayName="Region" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_territory_account_ServiceTerritory" displayName="msdyn_territory_account_ServiceTerritory" parentSchemaName="territory" parentDisplayName="Region" solution="FieldService (8.8.0.88)" />
+        <Dependent type="2" schemaName="msdyn_serviceterritoryname" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_territory_account_ServiceTerritory" displayName="msdyn_territory_account_ServiceTerritory" parentSchemaName="territory" parentDisplayName="Region" solution="FieldService (8.8.0.88)" />
@@ -4329,27 +4417,19 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="defaultpricelevelid" displayName="Price List" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_ProductManagement (9.0.4.0066)" />
-        <Dependent type="60" displayName="Account - Mobile" parentDisplayName="Account" id="{74da4947-5d1d-4400-9f99-c6ed578211bb}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="defaultpricelevelid" displayName="Price List" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_ProductManagement (9.0.4.0066)" />
-        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="defaultpricelevelid" displayName="Price List" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_ProductManagement (9.0.4.0066)" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Account" id="{b053a39a-041a-4356-acef-ddf00182762b}" />
+        <Dependent type="2" schemaName="defaultpricelevelid" displayName="Price List" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_billingaccount" displayName="Billing Account" parentSchemaName="account" parentDisplayName="Account" solution="FieldServiceCommon (1.0.0.134)" />
-        <Dependent type="60" displayName="Account - Mobile" parentDisplayName="Account" id="{74da4947-5d1d-4400-9f99-c6ed578211bb}" />
+        <Dependent type="2" schemaName="msdyn_billingaccount" displayName="Billing Account" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_billingaccount" displayName="Billing Account" parentSchemaName="account" parentDisplayName="Account" solution="FieldServiceCommon (1.0.0.134)" />
-        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
+        <Required type="2" schemaName="msdyn_preferredresource" displayName="Preferred Resource (Deprecated)" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)" />
+        <Dependent type="2" schemaName="msdyn_preferredresource" displayName="Preferred Resource (Deprecated)" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_salestaxcode" displayName="Sales Tax Code" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)" />
-        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
+        <Dependent type="2" schemaName="msdyn_salestaxcode" displayName="Sales Tax Code" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_serviceterritory" displayName="Service Territory" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)" />
@@ -4357,47 +4437,75 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_taxexempt" displayName="Tax Exempt" parentSchemaName="account" parentDisplayName="Account" solution="FieldServiceCommon (1.0.0.134)" />
-        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
+        <Dependent type="2" schemaName="msdyn_taxexempt" displayName="Tax Exempt" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_taxexemptnumber" displayName="Tax Exempt Number" parentSchemaName="account" parentDisplayName="Account" solution="FieldServiceCommon (1.0.0.134)" />
-        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
+        <Dependent type="2" schemaName="msdyn_taxexemptnumber" displayName="Tax Exempt Number" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_travelcharge" displayName="Travel Charge" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)" />
-        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
+        <Dependent type="2" schemaName="msdyn_travelcharge" displayName="Travel Charge" parentSchemaName="account" parentDisplayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_travelcharge_base" displayName="Travel Charge (Base)" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)" />
+        <Dependent type="2" schemaName="msdyn_travelcharge_base" displayName="Travel Charge (Base)" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_travelchargetype" displayName="Travel Charge Type" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)" />
-        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
+        <Dependent type="2" schemaName="msdyn_travelchargetype" displayName="Travel Charge Type" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workhourtemplate" displayName="Work Hour Template" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)" />
-        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
+        <Dependent type="2" schemaName="msdyn_workhourtemplate" displayName="Work Hour Template" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workorderinstructions" displayName="Work Order Instructions" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)" />
-        <Dependent type="60" displayName="Account - Mobile" parentDisplayName="Account" id="{74da4947-5d1d-4400-9f99-c6ed578211bb}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_workorderinstructions" displayName="Work Order Instructions" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)" />
-        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
+        <Dependent type="2" schemaName="msdyn_workorderinstructions" displayName="Work Order Instructions" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="opendeals" displayName="Open Deals" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_Sales (9.0.4.0076)" />
         <Dependent type="2" schemaName="opendeals" displayName="Open Deals" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="2" schemaName="opendeals_date" displayName="Open Deals (Last Updated On)" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_Sales (9.0.4.0076)" />
+        <Dependent type="2" schemaName="opendeals_date" displayName="Open Deals (Last Updated On)" parentSchemaName="account" parentDisplayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="opendeals_state" displayName="Open Deals (State)" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_Sales (9.0.4.0076)" />
+        <Dependent type="2" schemaName="opendeals_state" displayName="Open Deals (State)" parentSchemaName="account" parentDisplayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="2" schemaName="openrevenue" displayName="Open Revenue" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_Sales (9.0.4.0076)" />
         <Dependent type="2" schemaName="openrevenue" displayName="Open Revenue" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="originatingleadid" displayName="Originating Lead" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_LeadManagement (9.0.4.0066)" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Account" id="{b053a39a-041a-4356-acef-ddf00182762b}" />
+        <Required type="2" schemaName="openrevenue_base" displayName="Open Revenue (Base)" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_Sales (9.0.4.0076)" />
+        <Dependent type="2" schemaName="openrevenue_base" displayName="Open Revenue (Base)" parentSchemaName="account" parentDisplayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="openrevenue_date" displayName="Open Revenue (Last Updated On)" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_Sales (9.0.4.0076)" />
+        <Dependent type="2" schemaName="openrevenue_date" displayName="Open Revenue (Last Updated On)" parentSchemaName="account" parentDisplayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="openrevenue_state" displayName="Open Revenue (State)" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_Sales (9.0.4.0076)" />
+        <Dependent type="2" schemaName="openrevenue_state" displayName="Open Revenue (State)" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="originatingleadid" displayName="Originating Lead" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_LeadManagement (9.0.4.0066)" />
-        <Dependent type="60" displayName="Sales Insights" parentDisplayName="Account" id="{cb430327-bcc1-416d-959d-db7592e685af}" />
+        <Dependent type="2" schemaName="originatingleadid" displayName="Originating Lead" parentSchemaName="account" parentDisplayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="preferredequipmentid" displayName="Preferred Facility/Equipment" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_Service (9.0.5.56)" />
+        <Dependent type="2" schemaName="preferredequipmentid" displayName="Preferred Facility/Equipment" parentSchemaName="account" parentDisplayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="preferredserviceid" displayName="Preferred Service" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_Service (9.0.5.56)" />
+        <Dependent type="2" schemaName="preferredserviceid" displayName="Preferred Service" parentSchemaName="account" parentDisplayName="Account" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="teamsfollowed" displayName="TeamsFollowed" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_SalesPatch (9.0.1904.3002)" />
+        <Dependent type="2" schemaName="teamsfollowed" displayName="TeamsFollowed" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="territoryid" displayName="Territory" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_Sales (9.0.4.0076)" />
@@ -6565,7 +6673,15 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_taxcode" parentDisplayName="Tax Code" solution="FieldServiceCommon (1.0.0.134)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_taxcode_account_SalesTaxCode" displayName="msdyn_msdyn_taxcode_account_SalesTaxCode" parentSchemaName="msdyn_taxcode" parentDisplayName="Tax Code" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_taxcode" parentDisplayName="Tax Code" solution="FieldServiceCommon (1.0.0.134)" />
         <Dependent type="10" schemaName="msdyn_msdyn_taxcode_msdyn_workorder_TaxCode" displayName="msdyn_msdyn_taxcode_msdyn_workorder_TaxCode" parentSchemaName="msdyn_taxcode" parentDisplayName="Tax Code" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_taxcodeid" displayName="Tax Code" parentSchemaName="msdyn_taxcode" parentDisplayName="Tax Code" solution="FieldServiceCommon (1.0.0.134)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_taxcode_account_SalesTaxCode" displayName="msdyn_msdyn_taxcode_account_SalesTaxCode" parentSchemaName="msdyn_taxcode" parentDisplayName="Tax Code" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_taxcodeid" displayName="Tax Code" parentSchemaName="msdyn_taxcode" parentDisplayName="Tax Code" solution="FieldServiceCommon (1.0.0.134)" />
@@ -6609,7 +6725,15 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_workhourtemplate_account_workhourtemplate" displayName="msdyn_msdyn_workhourtemplate_account_workhourtemplate" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
         <Dependent type="10" schemaName="msdyn_msdyn_workhourtemplate_msdyn_workorder_workhourtemplate" displayName="msdyn_msdyn_workhourtemplate_msdyn_workorder_workhourtemplate" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workhourtemplateid" displayName="Work Template" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
+        <Dependent type="10" schemaName="msdyn_msdyn_workhourtemplate_account_workhourtemplate" displayName="msdyn_msdyn_workhourtemplate_account_workhourtemplate" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workhourtemplateid" displayName="Work Template" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
@@ -6958,6 +7082,10 @@
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
         <Dependent type="10" schemaName="msdyn_msdyn_workorder_msdyn_workorder_ParentWorkOrder" displayName="msdyn_msdyn_workorder_msdyn_workorder_ParentWorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
+        <Dependent type="10" schemaName="ts_msdyn_workorder_msdyn_workorder_Account" displayName="ts_msdyn_workorder_msdyn_workorder_Account" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
@@ -8216,6 +8344,10 @@
         <Dependent type="60" displayName="Contact for Multisession experience" parentDisplayName="Contact" id="{e06af4d1-2812-45c7-a9c2-9fb73fee7bec}" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="20" displayName="Customer service app access" solution="msdynce_Customerservicehub (9.0.5.0056)" id="{3dac4d9e-568c-e611-80d4-00155d42a122}" />
+        <Dependent type="60" displayName="Account for Multisession experience" parentDisplayName="Account" id="{ff49442f-8c60-4877-bdae-8fe51e6f4636}" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="20" displayName="Customer Service Representative" solution="msdynce_Service (9.0.5.56)" id="{50cb5773-2966-4bd1-999f-45dd6be8c9e5}" parentId="{ecfd0b44-5720-45e3-ae68-417ddb0fb654}" />
         <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
       </MissingDependency>
@@ -8224,12 +8356,20 @@
         <Dependent type="60" displayName="Contact for Multisession experience" parentDisplayName="Contact" id="{e06af4d1-2812-45c7-a9c2-9fb73fee7bec}" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="20" displayName="Customer Service Representative" solution="msdynce_Service (9.0.5.56)" id="{50cb5773-2966-4bd1-999f-45dd6be8c9e5}" parentId="{ecfd0b44-5720-45e3-ae68-417ddb0fb654}" />
+        <Dependent type="60" displayName="Account for Multisession experience" parentDisplayName="Account" id="{ff49442f-8c60-4877-bdae-8fe51e6f4636}" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="20" displayName="CSR Manager" solution="msdynce_Service (9.0.5.56)" id="{a0c28c41-5e86-4d45-a0d1-70a9cde49e33}" parentId="{1808b939-dd07-4ca7-aa99-ddd2734378f1}" />
         <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="20" displayName="CSR Manager" solution="msdynce_Service (9.0.5.56)" id="{a0c28c41-5e86-4d45-a0d1-70a9cde49e33}" parentId="{1808b939-dd07-4ca7-aa99-ddd2734378f1}" />
         <Dependent type="60" displayName="Contact for Multisession experience" parentDisplayName="Contact" id="{e06af4d1-2812-45c7-a9c2-9fb73fee7bec}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="20" displayName="CSR Manager" solution="msdynce_Service (9.0.5.56)" id="{a0c28c41-5e86-4d45-a0d1-70a9cde49e33}" parentId="{1808b939-dd07-4ca7-aa99-ddd2734378f1}" />
+        <Dependent type="60" displayName="Account for Multisession experience" parentDisplayName="Account" id="{ff49442f-8c60-4877-bdae-8fe51e6f4636}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="20" displayName="Field Service - Inventory Purchase" solution="FieldService (8.8.0.88)" id="{c4b99aff-89b6-e311-9b7e-00155da8fa1b}" />
@@ -8358,6 +8498,10 @@
       <MissingDependency>
         <Required type="26" schemaName="Active Cases" displayName="Active Cases" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)" id="{00000000-0000-0000-00aa-000010001032}" />
         <Dependent type="60" displayName="Cases Dashboard" parentDisplayName="Case" id="{eb3748b8-5f90-4050-a039-8b7d279ad8fe}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Active Cases" displayName="Active Cases" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)" id="{00000000-0000-0000-00aa-000010001032}" />
+        <Dependent type="60" displayName="Account for Multisession experience" parentDisplayName="Account" id="{ff49442f-8c60-4877-bdae-8fe51e6f4636}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Active Cases" displayName="Active Cases" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)" id="{00000000-0000-0000-00aa-000010001032}" />
@@ -8565,7 +8709,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Customer Asset Category Lookup View" displayName="Customer Asset Category Lookup View" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.109)" id="{1794a477-40f3-4ac9-8ea6-24dc63f40221}" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Creation Wizard" id="{b2c2cd67-fae7-4544-8ec3-d4dc57148c7b}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Wizard" id="{b2c2cd67-fae7-4544-8ec3-d4dc57148c7b}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Customer Asset Category Lookup View" displayName="Customer Asset Category Lookup View" parentSchemaName="msdyn_customerassetcategory" parentDisplayName="Customer Asset Category" solution="msdyn_AssetCommon (1.0.7.109)" id="{1794a477-40f3-4ac9-8ea6-24dc63f40221}" />
@@ -8909,7 +9053,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Functional Location Lookup View" displayName="Functional Location Lookup View" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.109)" id="{57f1ece8-04ac-4178-b2bd-cbd292d2ecc4}" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Creation Wizard" id="{b2c2cd67-fae7-4544-8ec3-d4dc57148c7b}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Wizard" id="{b2c2cd67-fae7-4544-8ec3-d4dc57148c7b}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Functional Location Lookup View" displayName="Functional Location Lookup View" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.7.109)" id="{57f1ece8-04ac-4178-b2bd-cbd292d2ecc4}" />
@@ -9301,7 +9445,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Case Lookup View" displayName="Case Lookup View" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)" id="{9ac51863-58c7-49a0-adcc-afd9a4c3ee59}" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Creation Wizard" id="{b2c2cd67-fae7-4544-8ec3-d4dc57148c7b}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Wizard" id="{b2c2cd67-fae7-4544-8ec3-d4dc57148c7b}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Case Lookup View" displayName="Case Lookup View" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)" id="{9ac51863-58c7-49a0-adcc-afd9a4c3ee59}" />
@@ -9681,7 +9825,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Customer Asset Lookup View" displayName="Customer Asset Lookup View" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.109)" id="{fd2fda4c-4b7f-4a68-a2cb-c1e1c6a31c8f}" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Creation Wizard" id="{b2c2cd67-fae7-4544-8ec3-d4dc57148c7b}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Wizard" id="{b2c2cd67-fae7-4544-8ec3-d4dc57148c7b}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Customer Asset Lookup View" displayName="Customer Asset Lookup View" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.109)" id="{fd2fda4c-4b7f-4a68-a2cb-c1e1c6a31c8f}" />
@@ -9722,6 +9866,10 @@
       <MissingDependency>
         <Required type="59" schemaName="Active Cases by Agent" displayName="Active Cases by Agent" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)" id="{4143b74e-4a07-4d01-9ffe-2cdcaa4208fd}" />
         <Dependent type="60" displayName="Contact for Multisession experience" parentDisplayName="Contact" id="{e06af4d1-2812-45c7-a9c2-9fb73fee7bec}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="59" schemaName="Active Cases by Agent" displayName="Active Cases by Agent" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)" id="{4143b74e-4a07-4d01-9ffe-2cdcaa4208fd}" />
+        <Dependent type="60" displayName="Account for Multisession experience" parentDisplayName="Account" id="{ff49442f-8c60-4877-bdae-8fe51e6f4636}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="59" schemaName="Top 10 Billing Accounts" displayName="Top 10 Billing Accounts" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" id="{52af8b9c-1f4e-e111-93b3-000c2959f9b8}" />
@@ -10116,6 +10264,10 @@
         <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="60" displayName="Account for Multisession experience" parentDisplayName="Account" solution="msdynce_ServicePatch201911 (9.0.21053.1007)" id="{ff49442f-8c60-4877-bdae-8fe51e6f4636}" />
+        <Dependent type="60" displayName="Account for Multisession experience" parentDisplayName="Account" id="{ff49442f-8c60-4877-bdae-8fe51e6f4636}" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)" />
         <Dependent type="60" displayName="Account - Mobile" parentDisplayName="Account" id="{74da4947-5d1d-4400-9f99-c6ed578211bb}" />
       </MissingDependency>
@@ -10136,6 +10288,10 @@
         <Dependent type="60" displayName="ROM Information" parentDisplayName="Account" id="{f3f3935c-b7dd-4dd4-a86b-2b0735f57d13}" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)" />
+        <Dependent type="60" displayName="Account for Multisession experience" parentDisplayName="Account" id="{ff49442f-8c60-4877-bdae-8fe51e6f4636}" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)" />
         <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       </MissingDependency>
@@ -10145,15 +10301,15 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)" />
-        <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)" />
         <Dependent type="60" displayName="Contact Main Form" parentDisplayName="Contact" id="{2c961780-b9f9-ea11-a815-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)" />
         <Dependent type="60" displayName="Contacts - TC" parentDisplayName="Contact" id="{49fe6fbb-fa3b-4e22-92e3-c33aea674e12}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Contact" id="{894cc46a-b0cb-4ab0-8bf6-200544e46a2d}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)" />
@@ -10210,6 +10366,10 @@
       <MissingDependency>
         <Required type="61" schemaName="msdyn_/ActivityFeeds.Form.js" displayName="msdyn_/ActivityFeeds.Form.js" solution="ActivityFeedsCore (9.0.0.0005)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/ActivityFeeds.Form.js" displayName="msdyn_/ActivityFeeds.Form.js" solution="ActivityFeedsCore (9.0.0.0005)" />
+        <Dependent type="60" displayName="Account for Multisession experience" parentDisplayName="Account" id="{ff49442f-8c60-4877-bdae-8fe51e6f4636}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="msdyn_/BookableResource/FS.BookableResource.Library.js" displayName="msdyn_/BookableResource/FS.BookableResource.Library.js" solution="FieldService (8.8.0.88)" />
@@ -10672,6 +10832,10 @@
         <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="61" schemaName="msdyn_/RecordWall.htm" displayName="msdyn_/RecordWall.htm" solution="ActivityFeedsCore (9.0.0.0005)" />
+        <Dependent type="60" displayName="Account for Multisession experience" parentDisplayName="Account" id="{ff49442f-8c60-4877-bdae-8fe51e6f4636}" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="61" schemaName="msdyn_/ServiceTaskType/ServiceTaskType.js" displayName="msdyn_/ServiceTaskType/ServiceTaskType.js" solution="msdyn_FieldService_patch_update (8.8.44.45)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Service Task Type" id="{1f40eda5-fe03-435b-bd01-e18eb5e246eb}" />
       </MissingDependency>
@@ -10913,19 +11077,15 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)" />
+        <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)" />
         <Dependent type="60" displayName="App for Outlook Case Quick Create" parentDisplayName="Case" id="{ac33e173-6502-4816-ab48-c3eefd7be580}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)" />
-        <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="65" schemaName="Account Hierarchy" displayName="Account Hierarchy" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_AppCommon (9.0.4.0066)" id="{4ef9fbbf-dcca-e311-b3e2-0024e84720c0}" />
-        <Dependent type="65" schemaName="Account Hierarchy" displayName="Account Hierarchy" parentSchemaName="account" parentDisplayName="Account" id="{4ef9fbbf-dcca-e311-b3e2-0024e84720c0}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2106.2010)" />
@@ -11089,7 +11249,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.Grid.GridControl" displayName="MscrmControls.Grid.GridControl" solution="BaseCustomControlsCore (9.0.2106.2010)" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Creation Wizard" id="{b2c2cd67-fae7-4544-8ec3-d4dc57148c7b}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Work Order Wizard" id="{b2c2cd67-fae7-4544-8ec3-d4dc57148c7b}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.Grid.GridControl" displayName="MscrmControls.Grid.GridControl" solution="BaseCustomControlsCore (9.0.2106.2010)" />
@@ -11422,6 +11582,10 @@
       <MissingDependency>
         <Required type="9" schemaName="msdyn_servicetasktype_statuscode" displayName="Status Reason" solution="FieldService (8.8.0.88)" />
         <Dependent type="9" schemaName="msdyn_servicetasktype_statuscode" displayName="Status Reason" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="9" schemaName="msdyn_travelchargetype" displayName="Travel Charge Type" solution="FieldService (8.8.0.88)" />
+        <Dependent type="2" schemaName="msdyn_travelchargetype" displayName="Travel Charge Type" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="9" schemaName="msdyn_worklocation" displayName="Work Location" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
