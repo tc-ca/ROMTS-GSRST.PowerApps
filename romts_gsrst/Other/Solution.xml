@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20210706.1</Version>
+    <Version>1.0.20210707.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -103,7 +103,7 @@
       <RootComponent type="1" schemaName="msdyn_agreementbookingproduct" behavior="2" />
       <RootComponent type="1" schemaName="msdyn_agreementbookingservice" behavior="2" />
       <RootComponent type="1" schemaName="msdyn_agreementinvoiceproduct" behavior="2" />
-      <RootComponent type="1" schemaName="msdyn_bookingalert" behavior="0" />
+      <RootComponent type="1" schemaName="msdyn_bookingalert" behavior="1" />
       <RootComponent type="1" schemaName="msdyn_bookingjournal" behavior="2" />
       <RootComponent type="1" schemaName="msdyn_customerasset" behavior="0" />
       <RootComponent type="1" schemaName="msdyn_customerassetcategory" behavior="1" />
@@ -128,7 +128,7 @@
       <RootComponent type="1" schemaName="msdyn_workorderservicetask" behavior="1" />
       <RootComponent type="1" schemaName="msdyn_workordersubstatus" behavior="0" />
       <RootComponent type="1" schemaName="msdyn_workordertype" behavior="1" />
-      <RootComponent type="1" schemaName="msfp_alert" behavior="0" />
+      <RootComponent type="1" schemaName="msfp_alert" behavior="1" />
       <RootComponent type="1" schemaName="opportunity" behavior="1" />
       <RootComponent type="1" schemaName="ovs_aircarrier" behavior="1" />
       <RootComponent type="1" schemaName="ovs_finding" behavior="0" />
@@ -1520,10 +1520,6 @@
         <Dependent type="1" schemaName="msdyn_bookingalert" displayName="Booking Alert" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_bookingalertstatus" displayName="Booking Alert Status" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="1" schemaName="msdyn_bookingalert" displayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="1" schemaName="msdyn_bookingjournal" displayName="Booking Journal" solution="FieldService (8.8.0.88)" />
         <Dependent type="1" schemaName="msdyn_bookingjournal" displayName="Booking Journal" />
       </MissingDependency>
@@ -1996,26 +1992,6 @@
         <Dependent type="1" schemaName="msfp_alert" displayName="Customer Voice alert" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msfp_alertrule" displayName="Customer Voice alert rule" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_alertrule_msfp_alert_alertrule" displayName="msfp_msfp_alertrule_msfp_alert_alertrule" parentSchemaName="msfp_alertrule" parentDisplayName="Customer Voice alert rule" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="msfp_project" displayName="Customer Voice project" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_project_msfp_alert_project" displayName="msfp_msfp_project_msfp_alert_project" parentSchemaName="msfp_project" parentDisplayName="Customer Voice project" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="msfp_satisfactionmetric" displayName="Customer Voice satisfaction metric" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_satisfactionmetric_msfp_alert" displayName="msfp_msfp_satisfactionmetric_msfp_alert" parentSchemaName="msfp_satisfactionmetric" parentDisplayName="Customer Voice satisfaction metric" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="msfp_survey" displayName="Customer Voice survey" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_survey_msfp_alert_survey" displayName="msfp_msfp_survey_msfp_alert_survey" parentSchemaName="msfp_survey" parentDisplayName="Customer Voice survey" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="msfp_surveyresponse" displayName="Customer Voice survey response" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_surveyresponse_msfp_alert_surveyresponse" displayName="msfp_msfp_surveyresponse_msfp_alert_surveyresponse" parentSchemaName="msfp_surveyresponse" parentDisplayName="Customer Voice survey response" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="1" schemaName="opportunity" displayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)" />
         <Dependent type="1" schemaName="opportunity" displayName="Opportunity" />
       </MissingDependency>
@@ -2445,7 +2421,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.44.45)" />
-        <Dependent type="10" schemaName="bookableresource_bookableresourcebooking_Resource" displayName="bookableresource_bookableresourcebooking_Resource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.44.45)" />
@@ -2533,7 +2509,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)" />
@@ -2834,10 +2810,6 @@
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_agreementbookingservicetask_msdyn_workorderservicetask_AgreementBookingServiceTask" displayName="msdyn_msdyn_agreementbookingservicetask_msdyn_workorderservicetask_AgreementBookingServiceTask" parentSchemaName="msdyn_agreementbookingservicetask" parentDisplayName="Agreement Booking Service Task" solution="FieldService (8.8.0.88)" />
         <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="10" schemaName="msdyn_msdyn_bookingalert_msdyn_bookingalertstatus_BookingAlert" displayName="msdyn_msdyn_bookingalert_msdyn_bookingalertstatus_BookingAlert" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Booking Alert" id="{f520d4fe-96c8-4e4c-a30d-cde757e1f53b}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_bookingsetupmetadata_bookableresourcebooking" displayName="msdyn_msdyn_bookingsetupmetadata_bookableresourcebooking" parentSchemaName="msdyn_bookingsetupmetadata" parentDisplayName="Booking Setup Metadata" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
@@ -4158,46 +4130,6 @@
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_workordertype_opportunity_WorkOrderType" displayName="msdyn_msdyn_workordertype_opportunity_WorkOrderType" parentSchemaName="msdyn_workordertype" parentDisplayName="Work Order Type" solution="FieldService (8.8.0.88)" />
         <Dependent type="60" displayName="Field Service Information" parentDisplayName="Opportunity" id="{8335a04b-dc80-44b0-83ab-11ed80f93d3e}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="10" schemaName="msfp_msfp_alertrule_msfp_alert_alertrule" displayName="msfp_msfp_alertrule_msfp_alert_alertrule" parentSchemaName="msfp_alertrule" parentDisplayName="Customer Voice alert rule" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_alertrule_msfp_alert_alertrule" displayName="msfp_msfp_alertrule_msfp_alert_alertrule" parentSchemaName="msfp_alertrule" parentDisplayName="Customer Voice alert rule" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="10" schemaName="msfp_msfp_alertrule_msfp_alert_alertrule" displayName="msfp_msfp_alertrule_msfp_alert_alertrule" parentSchemaName="msfp_alertrule" parentDisplayName="Customer Voice alert rule" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="2" schemaName="msfp_alertrulename" parentSchemaName="msfp_alert" parentDisplayName="Customer Voice alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="10" schemaName="msfp_msfp_project_msfp_alert_project" displayName="msfp_msfp_project_msfp_alert_project" parentSchemaName="msfp_project" parentDisplayName="Customer Voice project" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_project_msfp_alert_project" displayName="msfp_msfp_project_msfp_alert_project" parentSchemaName="msfp_project" parentDisplayName="Customer Voice project" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="10" schemaName="msfp_msfp_project_msfp_alert_project" displayName="msfp_msfp_project_msfp_alert_project" parentSchemaName="msfp_project" parentDisplayName="Customer Voice project" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="2" schemaName="msfp_projectname" parentSchemaName="msfp_alert" parentDisplayName="Customer Voice alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="10" schemaName="msfp_msfp_satisfactionmetric_msfp_alert" displayName="msfp_msfp_satisfactionmetric_msfp_alert" parentSchemaName="msfp_satisfactionmetric" parentDisplayName="Customer Voice satisfaction metric" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_satisfactionmetric_msfp_alert" displayName="msfp_msfp_satisfactionmetric_msfp_alert" parentSchemaName="msfp_satisfactionmetric" parentDisplayName="Customer Voice satisfaction metric" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="10" schemaName="msfp_msfp_satisfactionmetric_msfp_alert" displayName="msfp_msfp_satisfactionmetric_msfp_alert" parentSchemaName="msfp_satisfactionmetric" parentDisplayName="Customer Voice satisfaction metric" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="2" schemaName="msfp_satisfactionmetricname" parentSchemaName="msfp_alert" parentDisplayName="Customer Voice alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="10" schemaName="msfp_msfp_survey_msfp_alert_survey" displayName="msfp_msfp_survey_msfp_alert_survey" parentSchemaName="msfp_survey" parentDisplayName="Customer Voice survey" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_survey_msfp_alert_survey" displayName="msfp_msfp_survey_msfp_alert_survey" parentSchemaName="msfp_survey" parentDisplayName="Customer Voice survey" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="10" schemaName="msfp_msfp_survey_msfp_alert_survey" displayName="msfp_msfp_survey_msfp_alert_survey" parentSchemaName="msfp_survey" parentDisplayName="Customer Voice survey" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="2" schemaName="msfp_surveyname" parentSchemaName="msfp_alert" parentDisplayName="Customer Voice alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="10" schemaName="msfp_msfp_surveyresponse_msfp_alert_surveyresponse" displayName="msfp_msfp_surveyresponse_msfp_alert_surveyresponse" parentSchemaName="msfp_surveyresponse" parentDisplayName="Customer Voice survey response" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_surveyresponse_msfp_alert_surveyresponse" displayName="msfp_msfp_surveyresponse_msfp_alert_surveyresponse" parentSchemaName="msfp_surveyresponse" parentDisplayName="Customer Voice survey response" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="10" schemaName="msfp_msfp_surveyresponse_msfp_alert_surveyresponse" displayName="msfp_msfp_surveyresponse_msfp_alert_surveyresponse" parentSchemaName="msfp_surveyresponse" parentDisplayName="Customer Voice survey response" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="2" schemaName="msfp_surveyresponsename" parentSchemaName="msfp_alert" parentDisplayName="Customer Voice alert" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_opportunity_msdyn_workorder" displayName="msdyn_opportunity_msdyn_workorder" parentSchemaName="opportunity" parentDisplayName="Opportunity" solution="FieldService (8.8.0.88)" />
@@ -5884,118 +5816,6 @@
         <Dependent type="2" schemaName="msdyn_unitamount" displayName="Unit Amount" parentSchemaName="msdyn_agreementinvoiceproduct" parentDisplayName="Agreement Invoice Product" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="activityadditionalparams" displayName="Activity Additional Parameters" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="activityadditionalparams" displayName="Activity Additional Parameters" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="actualdurationminutes" displayName="Actual Duration" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="actualdurationminutes" displayName="Actual Duration" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="actualend" displayName="Actual End" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="actualend" displayName="Actual End" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="actualstart" displayName="Actual Start" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="actualstart" displayName="Actual Start" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="community" displayName="Social Channel" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="community" displayName="Social Channel" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="createdon" displayName="Date Created" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="createdon" displayName="Date Created" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="deliverylastattemptedon" displayName="Date Delivery Last Attempted" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="deliverylastattemptedon" displayName="Date Delivery Last Attempted" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="deliveryprioritycode" displayName="Delivery Priority" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="deliveryprioritycode" displayName="Delivery Priority" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="description" displayName="Description" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="description" displayName="Description" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="exchangeitemid" displayName="Exchange Item ID" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="exchangeitemid" displayName="Exchange Item ID" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="exchangeweblink" displayName="Exchange WebLink" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="exchangeweblink" displayName="Exchange WebLink" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="importsequencenumber" displayName="Import Sequence Number" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="importsequencenumber" displayName="Import Sequence Number" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="instancetypecode" displayName="Recurring Instance Type" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="instancetypecode" displayName="Recurring Instance Type" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="isbilled" displayName="Is Billed" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="isbilled" displayName="Is Billed" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="isregularactivity" displayName="Is Regular Activity" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="isregularactivity" displayName="Is Regular Activity" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="isworkflowcreated" displayName="Is Workflow Created" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="isworkflowcreated" displayName="Is Workflow Created" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="leftvoicemail" displayName="Left Voice Mail" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="leftvoicemail" displayName="Left Voice Mail" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="modifiedon" displayName="Last Updated" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="modifiedon" displayName="Last Updated" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="overriddencreatedon" displayName="Record Created On" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="overriddencreatedon" displayName="Record Created On" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="prioritycode" displayName="Priority" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="prioritycode" displayName="Priority" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="scheduleddurationminutes" displayName="Estimated Duration" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="scheduleddurationminutes" displayName="Estimated Duration" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="scheduledend" displayName="Due Date" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="scheduledend" displayName="Due Date" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="scheduledstart" displayName="Start Date" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="scheduledstart" displayName="Start Date" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="senton" displayName="Date Sent" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="senton" displayName="Date Sent" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="sortdate" displayName="Sort Date" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="sortdate" displayName="Sort Date" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="statecode" displayName="Activity Status" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="statecode" displayName="Activity Status" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="subject" displayName="Subject" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" />
-        <Dependent type="2" schemaName="subject" displayName="Subject" parentSchemaName="msdyn_bookingalert" parentDisplayName="Booking Alert" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="2" schemaName="msdyn_additionalcost" displayName="Additional Cost" parentSchemaName="msdyn_bookingjournal" parentDisplayName="Booking Journal" solution="FieldService (8.8.0.88)" />
         <Dependent type="2" schemaName="msdyn_additionalcost" displayName="Additional Cost" parentSchemaName="msdyn_bookingjournal" parentDisplayName="Booking Journal" />
       </MissingDependency>
@@ -6045,7 +5865,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.109)" />
-        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.7.109)" />
@@ -7029,7 +6849,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)" />
@@ -7914,66 +7734,6 @@
       <MissingDependency>
         <Required type="2" schemaName="statecode" displayName="Status" parentSchemaName="msdyn_workordertype" parentDisplayName="Work Order Type" solution="FieldService (8.8.0.88)" />
         <Dependent type="60" displayName="Information" parentDisplayName="Work Order Type" id="{65d7528f-b2ff-450a-9b5d-a2e46464ce04}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msfp_alertrule" displayName="Alert rule" parentSchemaName="msfp_alert" parentDisplayName="Customer Voice alert" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_alertrule_msfp_alert_alertrule" displayName="msfp_msfp_alertrule_msfp_alert_alertrule" parentSchemaName="msfp_alertrule" parentDisplayName="Customer Voice alert rule" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msfp_project" displayName="Project" parentSchemaName="msfp_alert" parentDisplayName="Customer Voice alert" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_project_msfp_alert_project" displayName="msfp_msfp_project_msfp_alert_project" parentSchemaName="msfp_project" parentDisplayName="Customer Voice project" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msfp_satisfactionmetric" displayName="Satisfaction metric" parentSchemaName="msfp_alert" parentDisplayName="Customer Voice alert" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_satisfactionmetric_msfp_alert" displayName="msfp_msfp_satisfactionmetric_msfp_alert" parentSchemaName="msfp_satisfactionmetric" parentDisplayName="Customer Voice satisfaction metric" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msfp_survey" displayName="Survey" parentSchemaName="msfp_alert" parentDisplayName="Customer Voice alert" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_survey_msfp_alert_survey" displayName="msfp_msfp_survey_msfp_alert_survey" parentSchemaName="msfp_survey" parentDisplayName="Customer Voice survey" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msfp_surveyresponse" displayName="Survey Response" parentSchemaName="msfp_alert" parentDisplayName="Customer Voice alert" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_surveyresponse_msfp_alert_surveyresponse" displayName="msfp_msfp_surveyresponse_msfp_alert_surveyresponse" parentSchemaName="msfp_surveyresponse" parentDisplayName="Customer Voice survey response" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msfp_alertruleid" displayName="Customer Voice alert rule" parentSchemaName="msfp_alertrule" parentDisplayName="Customer Voice alert rule" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_alertrule_msfp_alert_alertrule" displayName="msfp_msfp_alertrule_msfp_alert_alertrule" parentSchemaName="msfp_alertrule" parentDisplayName="Customer Voice alert rule" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msfp_name" displayName="Name" parentSchemaName="msfp_alertrule" parentDisplayName="Customer Voice alert rule" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_alertrule_msfp_alert_alertrule" displayName="msfp_msfp_alertrule_msfp_alert_alertrule" parentSchemaName="msfp_alertrule" parentDisplayName="Customer Voice alert rule" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msfp_name" displayName="Name" parentSchemaName="msfp_project" parentDisplayName="Customer Voice project" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_project_msfp_alert_project" displayName="msfp_msfp_project_msfp_alert_project" parentSchemaName="msfp_project" parentDisplayName="Customer Voice project" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msfp_projectid" displayName="Customer Voice project" parentSchemaName="msfp_project" parentDisplayName="Customer Voice project" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_project_msfp_alert_project" displayName="msfp_msfp_project_msfp_alert_project" parentSchemaName="msfp_project" parentDisplayName="Customer Voice project" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msfp_name" displayName="Name" parentSchemaName="msfp_satisfactionmetric" parentDisplayName="Customer Voice satisfaction metric" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_satisfactionmetric_msfp_alert" displayName="msfp_msfp_satisfactionmetric_msfp_alert" parentSchemaName="msfp_satisfactionmetric" parentDisplayName="Customer Voice satisfaction metric" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msfp_satisfactionmetricid" displayName="Customer Voice satisfaction metric" parentSchemaName="msfp_satisfactionmetric" parentDisplayName="Customer Voice satisfaction metric" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_satisfactionmetric_msfp_alert" displayName="msfp_msfp_satisfactionmetric_msfp_alert" parentSchemaName="msfp_satisfactionmetric" parentDisplayName="Customer Voice satisfaction metric" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msfp_name" displayName="Name" parentSchemaName="msfp_survey" parentDisplayName="Customer Voice survey" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_survey_msfp_alert_survey" displayName="msfp_msfp_survey_msfp_alert_survey" parentSchemaName="msfp_survey" parentDisplayName="Customer Voice survey" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msfp_surveyid" displayName="Survey" parentSchemaName="msfp_survey" parentDisplayName="Customer Voice survey" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_survey_msfp_alert_survey" displayName="msfp_msfp_survey_msfp_alert_survey" parentSchemaName="msfp_survey" parentDisplayName="Customer Voice survey" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="activityid" displayName="Activity" parentSchemaName="msfp_surveyresponse" parentDisplayName="Customer Voice survey response" solution="Active" />
-        <Dependent type="10" schemaName="msfp_msfp_surveyresponse_msfp_alert_surveyresponse" displayName="msfp_msfp_surveyresponse_msfp_alert_surveyresponse" parentSchemaName="msfp_surveyresponse" parentDisplayName="Customer Voice survey response" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="subject" displayName="Subject" parentSchemaName="msfp_surveyresponse" parentDisplayName="Customer Voice survey response" solution="MicrosoftFormsPro (2.0.0.22)" />
-        <Dependent type="10" schemaName="msfp_msfp_surveyresponse_msfp_alert_surveyresponse" displayName="msfp_msfp_surveyresponse_msfp_alert_surveyresponse" parentSchemaName="msfp_surveyresponse" parentDisplayName="Customer Voice survey response" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="actualclosedate" displayName="Actual Close Date" parentSchemaName="opportunity" parentDisplayName="Opportunity" solution="msdynce_Sales (9.0.4.0076)" />
@@ -10352,10 +10112,6 @@
         <Dependent type="60" displayName="Case Quick Create for Multisession" parentDisplayName="Case" id="{f43b46e9-17a4-4443-afc4-141d40a46f22}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Information" parentDisplayName="Booking Alert" solution="MicrosoftDynamicsScheduling (3.12.0.448)" id="{f520d4fe-96c8-4e4c-a30d-cde757e1f53b}" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Booking Alert" id="{f520d4fe-96c8-4e4c-a30d-cde757e1f53b}" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="60" displayName="Information" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)" id="{f658c846-f74c-459b-b591-b97558958106}" />
         <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
       </MissingDependency>
@@ -11157,11 +10913,11 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)" />
-        <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
+        <Dependent type="60" displayName="App for Outlook Case Quick Create" parentDisplayName="Case" id="{ac33e173-6502-4816-ab48-c3eefd7be580}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)" />
-        <Dependent type="60" displayName="App for Outlook Case Quick Create" parentDisplayName="Case" id="{ac33e173-6502-4816-ab48-c3eefd7be580}" />
+        <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)" />

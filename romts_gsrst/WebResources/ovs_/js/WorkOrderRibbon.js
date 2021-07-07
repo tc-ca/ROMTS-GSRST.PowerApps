@@ -16,17 +16,17 @@ var inspectorCommentLocalized = "Inspector Comment";
 
 if (lang == 1036) {
     workOrderLocalized = "Ordre de travail";
-    workOrderDetailsLocalized = "DÈtails de l'ordre de travail";
-    WorkOrderServiceTaskDetailsLocalized = "DÈtails de la t‚che du service d'ordre de travail";
-    serviceTaskLocalized = "T‚che du service";
-    taskTypeLocalized = "Type de t‚che";
+    workOrderDetailsLocalized = "D√©tails de l'ordre de travail";
+    WorkOrderServiceTaskDetailsLocalized = "D√©tails de la t√¢che du service d'ordre de travail";
+    serviceTaskLocalized = "T√¢che du service";
+    taskTypeLocalized = "Type de t√¢che";
     statusReasonLocalized = "Raison du statut";
     totalFindingsLocalized = "Nombre de constatations";
-    overallInspectionCommentLocalized = "Commentaires gÈnÈraux sur l'inspection";
+    overallInspectionCommentLocalized = "Commentaires g√©n√©raux sur l'inspection";
     findingsLocalized = "Constatations"; 
-    provisionReferenceLocalized = "RÈfÈrence de la disposition";
+    provisionReferenceLocalized = "R√©f√©rence de la disposition";
     stakeholderLocalized = "Intervenant";
-    operationLocalized = "OpÈration";
+    operationLocalized = "Op√©ration";
     inspectorCommentLocalized = "Commentaires de l'inspecteur";
 }
 
@@ -278,7 +278,19 @@ function exportWorkOrder(primaryControl) {
                     WOSTContainer.appendChild(WOSTDetailsDiv);
 
                     //If no Questionnaire Response is in the current Service Task, nothing else needs to be done so return
-                    if (WOSTResponse == null) return;
+                    if (WOSTResponse == null) {
+                        //Set a blank overall inspection comment
+                        WOSTDetailsList.innerHTML += "<strong>" + overallInspectionCommentLocalized + ":</strong> ";
+                        //Show 0 Total Findings
+                        totalFindings.innerHTML = "<strong>" + totalFindingsLocalized + ":</strong> 0";
+                        //Append Total Findings to Service Task Value List
+                        WOSTDetailsList.appendChild(totalFindings);
+                        WOSTContainerList.push({
+                            WOSTNumber: WOSTName.split('-').pop(),
+                            container: WOSTContainer
+                        });
+                        return;
+                    } 
                     var responseKeys = Object.keys(WOSTResponse);
                     var inspectionCommentText = "";
 

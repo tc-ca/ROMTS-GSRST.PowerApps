@@ -14,7 +14,7 @@ var ROM;
             //@ts-ignore
             var functionalLocationAttributeValue = Xrm.Utility.getPageContext().input.data.msdyn_functionallocation;
             globalThis.generatedName = [];
-            globalThis.generatedName['functionalLocation'] = functionalLocationAttributeValue != null ? functionalLocationAttributeValue.name : "";
+            globalThis.generatedName['functionalLocation'] = functionalLocationAttributeValue != null ? functionalLocationAttributeValue : "";
             if (accountAttribute != null && customerAssetCategoryAttribute != null) {
                 if (accountAttributeValue != null && customerAssetCategoryAttributeValue != null) {
                     globalThis.generatedName['category'] = customerAssetCategoryAttributeValue != null ? customerAssetCategoryAttributeValue[0].name : "";
@@ -115,6 +115,7 @@ var ROM;
                                 (globalThis.generatedName["functionalLocation"] != undefined && globalThis.generatedName["functionalLocation"] != null ? globalThis.generatedName["functionalLocation"].name : ""));
                         }
                         else { //Physical Asset}
+                            nameAttribute.setValue("");
                             if (Xrm.Utility.getGlobalContext().userSettings.languageId == 1033) {
                                 form.getControl("ts_customerassetfrench").setVisible(true);
                             }
