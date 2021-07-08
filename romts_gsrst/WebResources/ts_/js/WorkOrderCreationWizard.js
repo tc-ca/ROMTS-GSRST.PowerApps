@@ -51,6 +51,10 @@ var ROM;
                 form.getControl("ts_stakeholderid").setDisabled(true);
                 form.getControl("ts_siteid").setDisabled(true);
             }
+            ;
+            if (form.getControl("ts_caseid") != null && form.getAttribute("ts_caseid").getValue() == null) {
+                form.getControl("ts_caseid").setVisible(false);
+            }
         }
         WorkOrderCreationWizard.onLoad = onLoad;
         function workOrderTypeOnChange(eContext) {
