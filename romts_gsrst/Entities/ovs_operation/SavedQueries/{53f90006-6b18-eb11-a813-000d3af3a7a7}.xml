@@ -10,7 +10,6 @@
     <layoutxml>
       <grid name="resultset" jump="ovs_name" select="1" preview="1" icon="1">
         <row name="result" id="ovs_operationid">
-          <cell name="ovs_siteid" width="100" />
           <cell name="ovs_operationtypeid" width="100" />
           <cell name="statecode" width="100" />
         </row>
@@ -20,9 +19,7 @@
     <fetchxml>
       <fetch version="1.0" output-format="xml-platform" mapping="logical">
         <entity name="ovs_operation">
-          <order attribute="ovs_siteid" descending="false" />
           <attribute name="statecode" />
-          <attribute name="ovs_siteid" />
           <attribute name="ovs_operationtypeid" />
           <attribute name="ovs_operationid" />
         </entity>

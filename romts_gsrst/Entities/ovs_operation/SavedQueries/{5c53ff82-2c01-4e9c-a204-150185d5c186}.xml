@@ -10,10 +10,12 @@
     <layoutxml>
       <grid name="ovs_operations" jump="ovs_name" select="1" icon="1" preview="1">
         <row name="ovs_operation" id="ovs_operationid">
-          <cell name="ovs_regulatedentityid" width="100" />
-          <cell name="ovs_siteid" width="100" />
+          <cell name="ovs_name" width="100" />
+          <cell name="ts_stakeholder" width="100" />
+          <cell name="ovs_operationtypeid" width="100" />
+          <cell name="ts_site" width="100" />
+          <cell name="ts_subsite" width="100" />
           <cell name="statecode" width="100" />
-          <cell name="createdon" width="125" />
         </row>
       </grid>
     </layoutxml>
@@ -21,15 +23,16 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ovs_operation">
-          <attribute name="createdon" />
-          <order attribute="createdon" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <attribute name="statecode" />
-          <attribute name="ovs_siteid" />
-          <attribute name="ovs_regulatedentityid" />
           <attribute name="ovs_operationid" />
+          <attribute name="ts_stakeholder" />
+          <attribute name="ovs_operationtypeid" />
+          <attribute name="ts_site" />
+          <attribute name="ts_subsite" />
+          <attribute name="ovs_name" />
         </entity>
       </fetch>
     </fetchxml>
