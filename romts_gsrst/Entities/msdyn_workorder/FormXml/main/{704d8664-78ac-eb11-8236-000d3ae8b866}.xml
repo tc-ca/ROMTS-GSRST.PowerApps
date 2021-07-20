@@ -88,15 +88,17 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{132c6f76-32e2-4765-98e5-f66bfe7486a3}" locklevel="0" visible="true" labelid="{f12f5d17-5db5-414d-b1e3-418bd4069ffa}">
+                      <cell id="{ea05743f-9ac1-4c4a-9618-9d8a29dd9e70}" locklevel="0">
                         <labels>
                           <label description="Operation Type" languagecode="1033" />
                           <label description="Type d'opération" languagecode="1036" />
                         </labels>
-                        <control id="ovs_assetcategory" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_assetcategory" disabled="false">
+                        <control id="ovs_operationtypeid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_operationtypeid" disabled="false">
                           <parameters>
-                            <DisableViewPicker>true</DisableViewPicker>
                             <DisableMru>true</DisableMru>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{197A1F2C-DE05-4771-A10E-12478A08C99E}</DefaultViewId>
+                            <AvailableViewIds>{197A1F2C-DE05-4771-A10E-12478A08C99E},{104FF0E8-279D-463C-8362-38A635E766C9},{1284A7EE-3693-435E-8C57-8F94B3D5DEAE}</AvailableViewIds>
                           </parameters>
                         </control>
                       </cell>
@@ -143,14 +145,15 @@
                         <control id="msdyn_functionallocation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_functionallocation" disabled="false" uniqueid="{704b7257-358e-08e4-8c63-4e84ea6030a8}">
                           <parameters>
                             <AutoResolve>true</AutoResolve>
-                            <DisableMru>false</DisableMru>
+                            <DisableMru>true</DisableMru>
                             <DisableQuickFind>false</DisableQuickFind>
-                            <DisableViewPicker>false</DisableViewPicker>
+                            <DisableViewPicker>true</DisableViewPicker>
                             <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
                             <FilterRelationshipName>msdyn_FunctionalLocation_ParentFunctional</FilterRelationshipName>
                             <DependentAttributeName>msdyn_workorder.ts_site</DependentAttributeName>
                             <DependentAttributeType>msdyn_functionallocation</DependentAttributeType>
                             <AllowFilterOff>true</AllowFilterOff>
+                            <AvailableViewIds>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</AvailableViewIds>
                           </parameters>
                         </control>
                       </cell>
@@ -191,7 +194,7 @@
                         <control disabled="false" id="msdyn_workhourtemplate" datafieldname="msdyn_workhourtemplate" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" />
                       </cell>
                     </row>
-                    <row height="auto">
+                    <row>
                       <cell id="{a8119cab-a939-4805-39ac-e2ab0a638d33}" labelid="{a34affaa-aabc-4d0c-96b8-62f149d36eef}" showlabel="true" locklevel="0" auto="true" rowspan="1" colspan="1">
                         <labels>
                           <label description="Work Order Summary" languagecode="1033" />
@@ -201,17 +204,15 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{5b2af071-b056-4955-a597-35dfe6e4d289}" locklevel="0" visible="true" labelid="{20bcc6a5-a464-4d21-9a1c-60c2f1cbeda3}">
+                      <cell id="{f5cc6ead-2ce2-414b-81e9-c0e02e727ea0}" locklevel="0">
                         <labels>
                           <label description="Operation" languagecode="1033" />
                           <label description="Opération" languagecode="1036" />
                         </labels>
-                        <control id="ovs_asset" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_asset" disabled="true">
+                        <control id="ovs_operationid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_operationid" disabled="true">
                           <parameters>
-                            <DisableViewPicker>true</DisableViewPicker>
                             <DisableMru>true</DisableMru>
-                            <DefaultViewId>{6D5B19DF-82A7-EB11-9442-000D3A8419E6}</DefaultViewId>
-                            <AvailableViewIds>{6ECB03A4-ACDA-44AE-83E3-C60BA8338DBB},{64F8ED51-5066-449D-8BF9-73A39737ECE7},{D70BCFF2-816A-E611-8106-00155DB8820B},{6DA9A965-1899-471C-9478-915527225A92},{FD2FDA4C-4B7F-4A68-A2CB-C1E1C6A31C8F},{38CC036F-FBFE-E911-A81C-000D3AC2C6CB},{718410E5-6A96-4D6E-9A7C-781265EEDFB9},{EFFE12A3-5558-47F5-9932-6B56B52EC8E7},{6D5B19DF-82A7-EB11-9442-000D3A8419E6},{BF49A9FC-82A7-EB11-9442-000D3A8410DC},{4F2F6A85-816A-E611-8106-00155DB8820B}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
                           </parameters>
                         </control>
                       </cell>
@@ -225,22 +226,17 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{26385440-8c36-dde5-354a-963d5875cec4}" labelid="{4df505c0-560c-48b6-bc73-c73603f788ad}" showlabel="true" locklevel="0">
+                      <cell id="{bcb57d7b-b791-4c93-bfba-e8af121b388f}" locklevel="0">
                         <labels>
                           <label description="Activity Type" languagecode="1033" />
                           <label description="Type d'activité" languagecode="1036" />
                         </labels>
-                        <control disabled="false" id="msdyn_primaryincidenttype" datafieldname="msdyn_primaryincidenttype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" uniqueid="{6d280ae1-3530-5e2c-80cd-d5b306b86bce}">
+                        <control id="msdyn_primaryincidenttype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_primaryincidenttype" disabled="false">
                           <parameters>
-                            <AutoResolve>true</AutoResolve>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{467A8F92-753B-485E-8BA9-13DE8B7CB3A7}</DefaultViewId>
+                            <AvailableViewIds>{467A8F92-753B-485E-8BA9-13DE8B7CB3A7},{82E357FE-4361-E111-AC14-000C2959F9B8},{D55234C3-D2DF-45D1-AB39-2274047D84C9},{6779156F-7D9B-4FF2-85B0-83E91CC95299}</AvailableViewIds>
                             <DisableMru>true</DisableMru>
-                            <DisableQuickFind>false</DisableQuickFind>
-                            <DisableViewPicker>false</DisableViewPicker>
-                            <DefaultViewId>{82E357FE-4361-E111-AC14-000C2959F9B8}</DefaultViewId>
-                            <AllowFilterOff>false</AllowFilterOff>
-                            <FilterRelationshipName>msdyn_msdyn_workordertype_msdyn_incidenttype_DefaultWorkOrderType</FilterRelationshipName>
-                            <DependentAttributeName>msdyn_workorder.msdyn_workordertype</DependentAttributeName>
-                            <DependentAttributeType>msdyn_workordertype</DependentAttributeType>
                           </parameters>
                         </control>
                       </cell>
@@ -544,19 +540,18 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell locklevel="0" id="{311532f4-b60c-403c-bd43-bf056f2cd24d}" rowspan="1" colspan="1" auto="false" showlabel="true">
+                      <cell locklevel="0" id="{77a3d097-88f9-4130-acc3-22d4543105d2}" rowspan="1" colspan="1">
                         <labels>
-                          <label description="Operations" languagecode="1033" />
+                          <label description="Related Operations" languagecode="1033" />
                           <label description="Tâches de service de l'ordre de travail" languagecode="1036" />
                         </labels>
-                        <control id="Operations" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="Subgrid_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
-                            <TargetEntityType>msdyn_customerasset</TargetEntityType>
-                            <ViewId>{6D5B19DF-82A7-EB11-9442-000D3A8419E6}</ViewId>
-                            <ViewIds>{64F8ED51-5066-449D-8BF9-73A39737ECE7},{6D5B19DF-82A7-EB11-9442-000D3A8419E6}</ViewIds>
+                            <TargetEntityType>ovs_operation</TargetEntityType>
+                            <ViewId>{CCA2CAE4-216E-46B5-934E-D9112870F36F}</ViewId>
+                            <ViewIds>{CCA2CAE4-216E-46B5-934E-D9112870F36F}</ViewIds>
                             <EnableViewPicker>false</EnableViewPicker>
-                            <AutoExpand>Fixed</AutoExpand>
-                            <RelationshipName>ts_msdyn_customerasset_msdyn_workorder_msdyn</RelationshipName>
+                            <RelationshipName>ts_msdyn_workorder_ovs_operation_ovs_operati</RelationshipName>
                           </parameters>
                         </control>
                       </cell>
