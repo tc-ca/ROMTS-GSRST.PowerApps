@@ -99,20 +99,11 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{8d996c11-e860-8128-caae-e3be917e9a7d}" showlabel="true" locklevel="0">
+                      <cell id="{7c124add-edea-49c9-b572-7849ee3c3b9d}" locklevel="0">
                         <labels>
                           <label description="Operation Type" languagecode="1033" />
                         </labels>
-                        <control id="ts_operationtypeid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operationtypeid" disabled="true" uniqueid="{d0a24648-b5ad-7055-4b57-9915bbb24971}">
-                          <parameters>
-                            <AutoResolve>true</AutoResolve>
-                            <DisableMru>false</DisableMru>
-                            <DisableQuickFind>false</DisableQuickFind>
-                            <DisableViewPicker>false</DisableViewPicker>
-                            <DefaultViewId>{1284A7EE-3693-435E-8C57-8F94B3D5DEAE}</DefaultViewId>
-                            <AllowFilterOff>false</AllowFilterOff>
-                          </parameters>
-                        </control>
+                        <control id="ts_ovs_operationtype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_ovs_operationtype" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -224,7 +215,7 @@
                     <row />
                     <row />
                     <row />
-                    <row height="auto" />
+                    <row />
                   </rows>
                 </section>
               </sections>
@@ -233,7 +224,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -369,6 +360,11 @@
         <event name="onchange" application="false" active="false" attribute="ts_operationtypeid">
           <Handlers>
             <Handler functionName="ROM.WorkOrderCreationWizard.operationTypeOnChange" libraryName="ts_/js/WorkOrderCreationWizard.js" handlerUniqueId="{913d8da2-1ddd-5314-1d32-5a7cca358575}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_ovs_operationtype">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderCreationWizard.operationTypeOnChange" libraryName="ts_/js/WorkOrderCreationWizard.js" handlerUniqueId="{6742bfc0-cd22-46c1-adca-35a43f87a7ae}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
