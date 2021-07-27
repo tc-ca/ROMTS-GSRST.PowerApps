@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0.0.11</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form headerdensity="HighWithControls">
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab verticallayout="true" id="{bb4b118e-a1c9-4e04-ae4d-8c6a177ee56c}" IsUserDefined="1">
           <labels>
@@ -22,12 +22,28 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{cbc9c5ea-bb9a-4364-b5be-8fb2d0b8b70e}" visible="false">
+                      <cell id="{7e9c4ba2-e25b-47a5-ab7c-e07e069697e7}" locklevel="0" visible="false">
                         <labels>
                           <label description="Name" languagecode="1033" />
                           <label description="Nom" languagecode="1036" />
                         </labels>
-                        <control id="ovs_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ovs_name" />
+                        <control id="ovs_name" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ovs_name" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{96c69583-0af4-41c5-b9f3-a7f4c80af9c3}" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Operation Name (English)" languagecode="1033" />
+                        </labels>
+                        <control id="ts_operationnameenglish" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_operationnameenglish" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4246d4de-158e-40d3-a38b-b96b86293a06}" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Operation Name (French)" languagecode="1033" />
+                        </labels>
+                        <control id="ts_operationnamefrench" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_operationnamefrench" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -69,7 +85,7 @@
                         <labels>
                           <label description="Subsite" languagecode="1033" />
                         </labels>
-                        <control id="ts_subsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subsite" disabled="false" />
+                        <control id="ts_subsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subsite" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -205,9 +221,39 @@
           </row>
         </rows>
       </footer>
+      <formLibraries>
+        <Library name="ts_/js/Operation.js" libraryUniqueId="{07b1987c-8bbd-bd36-c671-15b1d2c226c3}" />
+      </formLibraries>
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>
+      <events>
+        <event name="onload" application="true" active="true">
+          <Handlers>
+            <Handler functionName="ROM.Operation.onLoad" libraryName="ts_/js/Operation.js" handlerUniqueId="{bb600dbd-34a3-4056-a31e-3c7d1cb600ab}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="true" active="true">
+          <Handlers>
+            <Handler functionName="ROM.Operation.onSave" libraryName="ts_/js/Operation.js" handlerUniqueId="{3c385a69-2182-4fb7-88fb-9133d991c653}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_stakeholder">
+          <Handlers>
+            <Handler functionName="ROM.Operation.stakeholderOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{a1e840c1-a691-47ff-b71a-073f52faf7c4}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ovs_operationtypeid">
+          <Handlers>
+            <Handler functionName="ROM.Operation.operationTypeOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{0df1988a-aa6c-4a4f-b487-d45dc6fc1412}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_site">
+          <Handlers>
+            <Handler functionName="ROM.Operation.siteOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{ca66537d-f085-475f-aab2-728b5b342792}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
