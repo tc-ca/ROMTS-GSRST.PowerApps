@@ -1,4 +1,4 @@
-//Set to 1033 by default. Update with parent.Xrm if it can, else use locale if it's been set in time.
+﻿//Set to 1033 by default. Update with parent.Xrm if it can, else use locale if it's been set in time.
 var lang = '1033';
 if (parent.Xrm != null) {
     lang = parent.Xrm.Utility.getGlobalContext().userSettings.languageId;
@@ -234,9 +234,6 @@ var widget = {
         //Assign nameID if it was not assigned in surveyCreator
         if (question.nameID == null) {
             question.nameID = question.id;
-        } else {
-            //Check for uniqueness
-
         }
         question.name = `finding-${question.nameID}`;
         //set initial value
