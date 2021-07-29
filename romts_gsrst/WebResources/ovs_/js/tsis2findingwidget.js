@@ -1,4 +1,4 @@
-﻿//Set to 1033 by default. Update with parent.Xrm if it can, else use locale if it's been set in time.
+//Set to 1033 by default. Update with parent.Xrm if it can, else use locale if it's been set in time.
 var lang = '1033';
 if (parent.Xrm != null) {
     lang = parent.Xrm.Utility.getGlobalContext().userSettings.languageId;
@@ -116,50 +116,6 @@ var widget = {
                 findingType: question.findingType
             };
         }
-
-        var findingTypeDropdown = document.createElement("select");
-        findingTypeDropdown.style.webkitAppearance = "auto";
-        findingTypeDropdown.style.marginTop = "5px";
-        findingTypeDropdown.style.paddingLeft = "5px";
-
-        var undecidedOption = document.createElement("option");
-        undecidedOption.value = 717750000;
-        undecidedOption.innerHTML = findingTypeUndecidedLocalized;
-
-        var observationOption = document.createElement("option");
-        observationOption.value = 717750001;
-        observationOption.innerHTML = findingTypeObservationLocalized;
-
-        var noncomplianceOption = document.createElement("option");
-        noncomplianceOption.value = 717750002;
-        noncomplianceOption.innerHTML = findingTypeNoncomplianceLocalized;
-
-        findingTypeDropdown.appendChild(undecidedOption);
-        findingTypeDropdown.appendChild(observationOption);
-        findingTypeDropdown.appendChild(noncomplianceOption);
-        typeContainer.appendChild(findingTypeDropdown);
-        typeContainer.style.paddingBottom = "10px";
-        typeContainer.style.paddingTop = "10px";
-        typeContainer.style.width = "20%";
-
-        if (question.findingType != null) {
-            findingTypeDropdown.value = question.findingType;
-            question.value.findingType = question.findingType;
-            findingTypeDropdown.disabled = true;
-            findingTypeDropdown.style.webkitAppearance = "none";
-        }
-
-        if (question.value != null) {
-            if (question.value.findingType != null) {
-                findingTypeDropdown.value = question.value.findingType;
-            }
-        }
-
-        findingTypeDropdown.onchange = function () {
-            updateQuestionValue(question, findingTypeDropdown.value)
-        }
-
-        operationsContainer.style.paddingBottom = "20px";
         
         //If there's just one operation, add it to the operations array, skip rendering checkboxes, hide the accountable operations label
         if (operationList.length <= 1) {
@@ -167,7 +123,7 @@ var widget = {
             //Operations is required so there should always be one, but handle an empty array just in case
             if (operationList.length == 1) {
                 question.accountableOperations = [operationList[0].id];
-                updateQuestionValue(question, findingTypeDropdown.value);
+                updateQuestionValue(question);
             }
         } else {
             //Create a checkbox for each operation in the operationList array
@@ -185,19 +141,73 @@ var widget = {
                 operationLabel.innerText = operation.name;
                 lineBreak = document.createElement("br");
 
+                var findingTypeDropdown = document.createElement("select");
+                findingTypeDropdown.style.webkitAppearance = "auto";
+                findingTypeDropdown.style.marginTop = "5px";
+                findingTypeDropdown.style.paddingLeft = "5px";
+
+                var undecidedOption = document.createElement("option");
+                undecidedOption.value = 717750000;
+                undecidedOption.innerHTML = findingTypeUndecidedLocalized;
+
+                var observationOption = document.createElement("option");
+                observationOption.value = 717750001;
+                observationOption.innerHTML = findingTypeObservationLocalized;
+
+                var noncomplianceOption = document.createElement("option");
+                noncomplianceOption.value = 717750002;
+                noncomplianceOption.innerHTML = findingTypeNoncomplianceLocalized;
+
+                findingTypeDropdown.appendChild(undecidedOption);
+                findingTypeDropdown.appendChild(observationOption);
+                findingTypeDropdown.appendChild(noncomplianceOption);
+
+                if (question.findingType != null) {
+                    findingTypeDropdown.value = question.findingType;
+                    findingTypeDropdown.disabled = true;
+                    findingTypeDropdown.style.webkitAppearance = "none";
+                }
+
+                if (question.value != null) {
+                    if (question.value.findingType != null) {
+                        findingTypeDropdown.value = question.value.findingType;
+                    }
+                }
+
+                findingTypeDropdown.onchange = function () {
+                    operationCheckboxArray = operationsContainer.getElementsByClassName("operationCheckbox");
+                    question.accountableOperations = [];
+                    Array.from(operationCheckboxArray).forEach(function (currentOperationCheckbox) {
+                        if (currentOperationCheckbox.checked) {
+                            question.accountableOperations.push({
+                                operation: currentOperationCheckbox.value,
+                                findingType: findingTypeDropdown.value
+                            });
+                        }
+                    });
+                    updateQuestionValue(question);
+                }
+
+                operationsContainer.style.paddingBottom = "20px";
+
                 //When a checkbox is changed, update the accountOperations question's value object to match the current state of the checkboxes
                 operationCheckbox.onchange = function () {
                     operationCheckboxArray = operationsContainer.getElementsByClassName("operationCheckbox");
                     question.accountableOperations = [];
                     Array.from(operationCheckboxArray).forEach(function (currentOperationCheckbox) {
                         if (currentOperationCheckbox.checked) {
-                            question.accountableOperations.push(currentOperationCheckbox.value);
+                            question.accountableOperations.push({
+                                operation: currentOperationCheckbox.value,
+                                findingType: findingTypeDropdown.value
+                            });
                         }
                     });
                     updateQuestionValue(question, findingTypeDropdown.value);
+                    console.log(question.value);
                 }
                 operationsContainer.appendChild(operationCheckbox);
                 operationsContainer.appendChild(operationLabel);
+                operationsContainer.appendChild(findingTypeDropdown);
                 operationsContainer.appendChild(lineBreak);
             });
         }
@@ -255,14 +265,13 @@ var widget = {
 //Register our widget in singleton custom widget collection
 Survey.CustomWidgetCollection.Instance.addCustomWidget(widget, "customtype");
 
-function updateQuestionValue(question, findingTypeValue) {
+function updateQuestionValue(question) {
     question.value = {
         provisionReference: question.reference,
         provisionTextEn: question.locDescription.values.default,
         provisionTextFr: question.locDescription.values.fr,
         comments: question.inspectorComments,
         operations: question.accountableOperations,
-        findingType: findingTypeValue
     }
 }
 
