@@ -93,12 +93,29 @@
                           <label description="Operation Type" languagecode="1033" />
                           <label description="Type d'opération" languagecode="1036" />
                         </labels>
-                        <control id="ovs_operationtypeid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_operationtypeid" disabled="false">
+                        <control id="ovs_operationtypeid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_operationtypeid" disabled="false" uniqueid="{6d5402e7-5da5-5e25-2d73-c5c3b295053b}">
                           <parameters>
                             <DisableMru>true</DisableMru>
                             <DisableViewPicker>true</DisableViewPicker>
                             <DefaultViewId>{197A1F2C-DE05-4771-A10E-12478A08C99E}</DefaultViewId>
                             <AvailableViewIds>{197A1F2C-DE05-4771-A10E-12478A08C99E},{104FF0E8-279D-463C-8362-38A635E766C9},{1284A7EE-3693-435E-8C57-8F94B3D5DEAE}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8ed9861f-5ded-4e18-af38-8c3f681e39e3}" locklevel="0" showlabel="true">
+                        <labels>
+                          <label description="Trade Name" languagecode="1033" />
+                        </labels>
+                        <control id="ts_tradenameid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_tradenameid" disabled="true" uniqueid="{c67a37d0-05ea-d07d-9d56-62717836be5b}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{63CD2765-531B-49B1-9C3D-7207CA73B9FA}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
                           </parameters>
                         </control>
                       </cell>
@@ -194,7 +211,7 @@
                         <control disabled="false" id="msdyn_workhourtemplate" datafieldname="msdyn_workhourtemplate" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" />
                       </cell>
                     </row>
-                    <row>
+                    <row height="auto">
                       <cell id="{a8119cab-a939-4805-39ac-e2ab0a638d33}" labelid="{a34affaa-aabc-4d0c-96b8-62f149d36eef}" showlabel="true" locklevel="0" auto="true" rowspan="1" colspan="1">
                         <labels>
                           <label description="Work Order Summary" languagecode="1033" />
@@ -2933,6 +2950,11 @@
         <event name="onchange" application="true" active="true" attribute="msdyn_workordertype">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.workOrderTypeOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{e9f434e6-94c6-4b35-b7c4-7c812f659fa9}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_tradenameid">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.tradenameOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{72277c9c-cedb-d5ed-751a-906177b90490}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

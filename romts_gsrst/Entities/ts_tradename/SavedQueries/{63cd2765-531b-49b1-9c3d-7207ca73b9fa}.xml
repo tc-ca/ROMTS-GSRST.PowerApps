@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{63cd2765-531b-49b1-9c3d-7207ca73b9fa}</savedqueryid>
+    <layoutxml>
+      <grid name="ts_tradenames" jump="ts_name" select="1" icon="1" preview="0">
+        <row name="ts_tradename" id="ts_tradenameid">
+          <cell name="ts_name" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_tradename">
+          <attribute name="ts_tradenameid" />
+          <attribute name="ts_name" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20210729.2</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Trade Name Lookup View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
