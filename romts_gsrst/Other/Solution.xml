@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20210810.1</Version>
+    <Version>1.0.20210810.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -3234,6 +3234,18 @@
         <Dependent type="1" schemaName="territory" displayName="Region" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="1" schemaName="ts_questionnaireversion" displayName="Questionnaire Version" solution="Active" />
+        <Dependent type="1" schemaName="ovs_questionnaire" displayName="Questionnaire" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ts_questionnaireversion" displayName="Questionnaire Version" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Questionnaire" id="{b4ef9165-c226-4e2b-a22d-c36cf99d6c91}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ts_questionnaireversion" displayName="Questionnaire Version" solution="Active" />
+        <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="10" schemaName="msdyn_account_account_BillingAccount" displayName="msdyn_account_account_BillingAccount" parentSchemaName="account" parentDisplayName="Account" solution="FieldServiceCommon (1.0.0.134)">
           <package>FieldService_Anchor (8.8.41.28)</package>
         </Required>
@@ -3697,7 +3709,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.47.21)">
           <package>FieldService_Anchor (8.8.41.28)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" displayName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="bookableresource_bookableresourcebooking_Resource" displayName="bookableresource_bookableresourcebooking_Resource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.47.21)">
@@ -3829,7 +3841,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.41.28)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)">
@@ -4402,7 +4414,7 @@
           <package>FieldService_Anchor (8.8.41.28)</package>
           <package>msdynce_ServiceAnchor (9.0.21041.1020)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.8.1)">
@@ -4430,7 +4442,7 @@
           <package>FieldService_Anchor (8.8.41.28)</package>
           <package>msdynce_ServiceAnchor (9.0.21041.1020)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.8.1)">
@@ -6408,6 +6420,10 @@
           <package>FieldService_Anchor (8.8.41.28)</package>
         </Required>
         <Dependent type="60" displayName="Main form" parentDisplayName="Work Order" id="{f10dda58-3203-eb11-a813-000d3af3ac0d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="ts_ovs_questionnaire_ovs_questionnaire" displayName="ts_ovs_questionnaire_ovs_questionnaire" parentSchemaName="ovs_questionnaire" parentDisplayName="Questionnaire" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Questionnaire" id="{b4ef9165-c226-4e2b-a22d-c36cf99d6c91}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_pricelevel_msdyn_workorder_PriceList" displayName="msdyn_pricelevel_msdyn_workorder_PriceList" parentSchemaName="pricelevel" parentDisplayName="Price List" solution="FieldService (8.8.0.88)">
@@ -9099,7 +9115,7 @@
           <package>FieldService_Anchor (8.8.41.28)</package>
           <package>msdynce_ServiceAnchor (9.0.21041.1020)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.8.1)">
@@ -10738,7 +10754,7 @@
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.41.28)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
@@ -14031,6 +14047,10 @@
           <package>FieldService_Anchor (8.8.41.28)</package>
         </Required>
         <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Active Questionnaire Versions" displayName="Active Questionnaire Versions" parentSchemaName="ts_questionnaireversion" parentDisplayName="Questionnaire Version" solution="Active" id="{2fe45f0d-2cd9-45c1-ad8c-923498e032fc}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Questionnaire" id="{b4ef9165-c226-4e2b-a22d-c36cf99d6c91}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Bookable Resource Associated View" displayName="Bookable Resource Associated View" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdynce_Scheduling (9.0.0.0)" id="{32219bb2-72d1-4879-a864-b05f7ba21d3d}" />
