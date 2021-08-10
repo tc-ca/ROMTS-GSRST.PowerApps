@@ -11,11 +11,12 @@
       <grid name="resultset" jump="ovs_finding" select="1" icon="1" preview="1">
         <row name="result" id="ovs_findingid">
           <cell name="ovs_finding" width="145" />
-          <cell name="ovs_findingprovisionreference" width="100" />
-          <cell name="ovs_workorderservicetaskid" width="100" />
+          <cell name="ovs_findingprovisionreference" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="ts_findingtype" width="100" />
-          <cell name="ts_operationid" width="125" />
-          <cell name="ts_accountid" width="123" />
+          <cell name="a_b02ed25ab1adeb118236000d3ae8b866.msdyn_serviceaccount" width="100" disableSorting="1" />
+          <cell name="a_b02ed25ab1adeb118236000d3ae8b866.ovs_operationtypeid" width="125" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_b02ed25ab1adeb118236000d3ae8b866.ts_site" width="100" disableSorting="1" />
+          <cell name="ts_enforcementaction" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -24,17 +25,20 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ovs_finding">
-          <attribute name="ovs_findingid" />
           <attribute name="createdon" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <attribute name="ovs_findingprovisionreference" />
-          <attribute name="ovs_workorderservicetaskid" />
           <attribute name="ovs_finding" />
-          <attribute name="ts_operationid" />
-          <attribute name="ts_accountid" />
           <attribute name="ts_findingtype" />
+          <link-entity alias="a_b02ed25ab1adeb118236000d3ae8b866" name="msdyn_workorder" from="msdyn_workorderid" to="ts_workorder" link-type="outer" visible="false">
+            <attribute name="msdyn_serviceaccount" />
+            <attribute name="ts_site" />
+            <attribute name="ovs_operationtypeid" />
+          </link-entity>
+          <attribute name="ts_enforcementaction" />
+          <attribute name="ovs_findingid" />
         </entity>
       </fetch>
     </fetchxml>

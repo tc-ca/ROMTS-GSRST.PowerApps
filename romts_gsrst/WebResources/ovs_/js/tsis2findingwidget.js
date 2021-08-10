@@ -1,4 +1,4 @@
-//Set to 1033 by default. Update with parent.Xrm if it can, else use locale if it's been set in time.
+﻿//Set to 1033 by default. Update with parent.Xrm if it can, else use locale if it's been set in time.
 var lang = '1033';
 if (parent.Xrm != null) {
     lang = parent.Xrm.Utility.getGlobalContext().userSettings.languageId;
@@ -127,6 +127,7 @@ var widget = {
         findingTypeHeader.style.textAlign = "left";
         operationNameHeader.style.textAlign = "left";
 
+        //Add table headers if there are operations
         if (operationList.length > 0) {
             operationsTableHeaderRow.appendChild(accountableOperationHeader);
             operationsTableHeaderRow.appendChild(findingTypeHeader);
