@@ -213,6 +213,7 @@
         <tab name="assets_and_locations_tab" id="e2056253-6731-430f-82aa-eb1ad6190fa0" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="1" solutionaction="Added">
           <labels>
             <label description="Assets and Locations" languagecode="1033" />
+            <label description="Actifs et emplacements" languagecode="1036" />
           </labels>
           <columns>
             <column width="100%" id="0">
@@ -220,6 +221,7 @@
                 <section name="tab_5_section_1" id="352a1c17-fe89-4f6a-aa4b-da510b4e7f08" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
                   <labels>
                     <label description="ASSETS AND LOCATIONS TREE" languagecode="1033" />
+                    <label description="ACTIFS ET EMPLACEMENTS" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
@@ -240,6 +242,7 @@
         <tab name="properties_tab" id="359c1140-75c5-4094-8f8c-d917a71962a9" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="2" solutionaction="Added">
           <labels>
             <label description="Properties" languagecode="1033" />
+            <label description="Propriétés" languagecode="1036" />
           </labels>
           <columns>
             <column width="100%" id="0">
@@ -247,6 +250,7 @@
                 <section name="tab_6_section_1" id="c4b07bd7-4834-45d2-a7d8-9a5c2cc27aee" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" height="auto" ordinalvalue="0">
                   <labels>
                     <label description="PROPERTY LOGS" languagecode="1033" />
+                    <label description="JOURNAUX DE PROPRIÉTÉ" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
@@ -336,24 +340,29 @@
             <Handler functionName="ROM.CustomerAsset.onLoad" libraryName="ts_/js/CustomerAsset.js" handlerUniqueId="{937669c0-3566-3858-b163-609e23beec49}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="3" solutionaction="Added" />
           </Handlers>
         </event>
-        <event name="onsave" application="true" active="true" solutionaction="Added">
-          <Handlers>
-            <Handler functionName="ROM.CustomerAsset.onSave" libraryName="ts_/js/CustomerAsset.js" handlerUniqueId="{9cc3286e-918a-458d-9900-d841e4410c58}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
-          </Handlers>
-        </event>
         <event name="onchange" application="true" active="true" attribute="msdyn_customerassetcategory" solutionaction="Added">
           <Handlers>
-            <Handler functionName="ROM.CustomerAsset.categoryOnChange" libraryName="ts_/js/CustomerAsset.js" handlerUniqueId="{df05b85c-7737-4718-9f50-8910cc4a8a3c}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
-          </Handlers>
-        </event>
-        <event name="onchange" application="true" active="true" attribute="msdyn_account" solutionaction="Added">
-          <Handlers>
-            <Handler functionName="ROM.CustomerAsset.accountOnChange" libraryName="ts_/js/CustomerAsset.js" handlerUniqueId="{00630efa-c509-4458-ad26-64b3c38d82ee}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+            <Handler functionName="ROM.CustomerAsset.categoryOnChange" libraryName="ts_/js/CustomerAsset.js" handlerUniqueId="{2d1e2187-f9a5-4b6b-93e7-2c9c86e660c9}" enabled="false" parameters="" passExecutionContext="true" ordinalvalue="0" />
           </Handlers>
         </event>
         <event name="onchange" application="true" active="true" attribute="msdyn_functionallocation" solutionaction="Added">
           <Handlers>
-            <Handler functionName="ROM.CustomerAsset.functionalLocationOnChange" libraryName="ts_/js/CustomerAsset.js" handlerUniqueId="{b2db6706-3984-43e0-b087-95a508ae0f2c}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+            <Handler functionName="ROM.CustomerAsset.functionalLocationOnChange" libraryName="ts_/js/CustomerAsset.js" handlerUniqueId="{8ff3fab5-7954-42d5-8efc-b348a8bbce84}" enabled="false" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="true" active="true" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.CustomerAsset.onSave" libraryName="ts_/js/CustomerAsset.js" handlerUniqueId="{b48d893e-9bda-421a-ad45-95a13c757c75}" enabled="false" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_account" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.CustomerAsset.accountOnChange" libraryName="ts_/js/CustomerAsset.js" handlerUniqueId="{33fc8f0e-33e0-4ea6-ab22-f9b77813d067}" enabled="false" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_name" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.CustomerAsset.nameOnChange" libraryName="ts_/js/CustomerAsset.js" handlerUniqueId="{0fe702ae-783e-43bc-8bb8-47dbeabc5334}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
           </Handlers>
         </event>
       </events>

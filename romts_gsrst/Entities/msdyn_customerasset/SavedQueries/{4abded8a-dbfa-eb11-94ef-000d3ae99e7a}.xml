@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{4abded8a-dbfa-eb11-94ef-000d3ae99e7a}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_customerassetid">
+          <cell name="msdyn_name" width="200" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="msdyn_customerasset">
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_customerassetid" />
+          <filter type="and">
+            <condition attribute="msdyn_customerassetcategory" operator="eq" value="{48153310-c2a9-eb11-9442-000d3a8410dc}" uiname="Security Plan" uitype="msdyn_customerassetcategory" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Assets - Security Plan" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
