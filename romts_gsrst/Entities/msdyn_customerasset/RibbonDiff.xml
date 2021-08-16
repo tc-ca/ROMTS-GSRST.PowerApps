@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
-    <CustomAction Id="ts.Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.CustomAction" Location="Mscrm.SubGrid.msdyn_customerasset.MainTab.Management.Controls._children" Sequence="40">
+    <CustomAction Id="ts.Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.CustomAction" Location="Mscrm.SubGrid.msdyn_customerasset.MainTab.Management.Controls._children" Sequence="0">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.Alt" Command="Mscrm.AddExistingRecordFromSubGridAssociated" Id="Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.LabelText" Sequence="40" TemplateAlias="o1" ToolTipTitle="$LocLabels:Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.ToolTipTitle" ToolTipDescription="$LocLabels:Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.ToolTipDescription" ModernImage="AddExisting" />
+        <Button Alt="$LocLabels:Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.Alt" Command="Mscrm.AddExistingRecordFromSubGridAssociated" Id="Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.ToolTipTitle" ToolTipDescription="$LocLabels:Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.ToolTipDescription" ModernImage="AddExisting" />
       </CommandUIDefinition>
     </CustomAction>
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.msdyn_customerasset.AddExistingStandard.Hide" Location="Mscrm.SubGrid.msdyn_customerasset.AddExistingStandard" />
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.msdyn_customerasset.Remove.Hide" Location="Mscrm.SubGrid.msdyn_customerasset.Remove" />
     <CustomAction Id="ts.msdyn_customerasset.Button.Button.Mscrm.SubGrid.msdyn_customerasset.Remove.CustomAction" Location="Mscrm.SubGrid.msdyn_customerasset.MainTab.Management.Controls._children" Sequence="90">
       <CommandUIDefinition>
@@ -15,6 +16,11 @@
     <CustomAction Id="ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.CustomAction" Location="Mscrm.SubGrid.msdyn_customerasset.MainTab.Management.Controls._children" Sequence="45">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.Alt" Command="ovs.msdyn_customerasset.SubGrid.msdyn_workorder.AddExistingAssoc" Id="ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.LabelText" Sequence="45" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.ToolTipDescription" ModernImage="AddExisting" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingStandatd.CustomAction" Location="Mscrm.SubGrid.msdyn_customerasset.MainTab.Management.Controls._children" Sequence="40">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingStandatd.Alt" Command="ovs.msdyn_customerasset.SubGrid.msdyn_workorder.AddExistingStandard" Id="ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingStandatd" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingStandatd.LabelText" Sequence="40" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingStandatd.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingStandatd.ToolTipDescription" ModernImage="AddExisting" />
       </CommandUIDefinition>
     </CustomAction>
   </CustomActions>
@@ -36,8 +42,7 @@
         <DisplayRule Id="Mscrm.AppendToSelected" />
       </DisplayRules>
       <Actions>
-        <JavaScriptFunction FunctionName="addExistingAssetsToEntity" Library="$webresource:ts_/js/CustomerAssetRibbon.js">
-          <CrmParameter Value="PrimaryControl" />
+        <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridAssociated" Library="$webresource:Main_system_library.js">
           <CrmParameter Value="SelectedEntityTypeName" />
           <CrmParameter Value="SelectedControl" />
         </JavaScriptFunction>
@@ -89,14 +94,14 @@
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="Mscrm.AddExisting" />
-        <DisplayRule Id="Mscrm.ShowForOneToManyGrids" />
+        <DisplayRule Id="Mscrm.ShowForManyToManyGrids" />
         <DisplayRule Id="Mscrm.AppendToPrimary" />
         <DisplayRule Id="Mscrm.AppendPrimary" />
         <DisplayRule Id="Mscrm.AppendSelected" />
         <DisplayRule Id="Mscrm.AppendToSelected" />
       </DisplayRules>
       <Actions>
-        <JavaScriptFunction FunctionName="addExistingAssetsToWorkOrder" Library="$webresource:ts_/js/CustomerAssetRibbon.js">
+        <JavaScriptFunction FunctionName="addExistingAssetsToEntity" Library="$webresource:ts_/js/CustomerAssetRibbon.js">
           <CrmParameter Value="PrimaryControl" />
           <CrmParameter Value="SelectedEntityTypeName" />
           <CrmParameter Value="SelectedControl" />
@@ -209,22 +214,22 @@
   <LocLabels>
     <LocLabel Id="Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.Alt">
       <Titles>
-        <Title description="Add Existing Asset" languagecode="1033" />
+        <Title description="Add Existing {0}" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.LabelText">
       <Titles>
-        <Title description="Add Existing Asset" languagecode="1033" />
+        <Title description="Add Existing {0}" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.ToolTipDescription">
       <Titles>
-        <Title description="Add an Asset that already exists to the record you are working with." languagecode="1033" />
+        <Title description="Add a {0} that already exists to the record you are working with." languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.ToolTipTitle">
       <Titles>
-        <Title description="Add Existing​​ Asset" languagecode="1033" />
+        <Title description="Add Existing​​ {0}" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.Alt">
@@ -234,7 +239,7 @@
     </LocLabel>
     <LocLabel Id="ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.LabelText">
       <Titles>
-        <Title description="Add Existing Asset" languagecode="1033" />
+        <Title description="Add Existing Asset Assoc" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.ToolTipDescription">
@@ -243,6 +248,26 @@
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingAssoc.ToolTipTitle">
+      <Titles>
+        <Title description="Add Existing​​ Asset" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingStandatd.Alt">
+      <Titles>
+        <Title description="Add Existing Asset" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingStandatd.LabelText">
+      <Titles>
+        <Title description="Add Existing Asset Standard" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingStandatd.ToolTipDescription">
+      <Titles>
+        <Title description="Add an Asset that already exists to the record you are working with." languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_customerasset.Button.Mscrm.SubGrid.msdyn_customerasset.AddExistingStandatd.ToolTipTitle">
       <Titles>
         <Title description="Add Existing​​ Asset" languagecode="1033" />
       </Titles>
