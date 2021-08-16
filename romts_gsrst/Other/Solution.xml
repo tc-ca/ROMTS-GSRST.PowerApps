@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20210816.1</Version>
+    <Version>1.0.20210816.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -247,6 +247,7 @@
       <RootComponent type="61" schemaName="ts_/js/IncidentQuickCreate.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/Operation.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/OperationRibbon.js" behavior="0" />
+      <RootComponent type="61" schemaName="ts_/js/QuestionnaireVersion.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/SurveyRenderPrint.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/WorkOrderCreationWizard.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/WorkOrderQuickCreate.js" behavior="0" />
@@ -306,6 +307,7 @@
       <RootComponent type="92" id="{9fa434cd-3cb3-eb11-8236-000d3af3d03c}" behavior="0" />
       <RootComponent type="92" id="{a105df56-b4a2-eb11-b1ac-000d3ae8b8ae}" behavior="0" />
       <RootComponent type="92" id="{a50511f5-c722-eb11-a813-000d3af3a7a7}" behavior="0" />
+      <RootComponent type="92" id="{a84d7c1e-a5fe-eb11-94f0-0022483c19af}" behavior="0" />
       <RootComponent type="92" id="{ad1e4bb3-9817-eb11-a813-000d3af3a7a7}" behavior="0" />
       <RootComponent type="92" id="{af699e6f-3d15-eb11-a813-000d3af3a7a7}" behavior="0" />
       <RootComponent type="92" id="{b7610fb5-b87a-eb11-a812-000d3af31ad8}" behavior="0" />
@@ -3831,7 +3833,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.41.28)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)">
@@ -6501,7 +6503,7 @@
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.41.28)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
@@ -6513,7 +6515,7 @@
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.41.28)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
@@ -17460,10 +17462,6 @@
           <package>msdynce_ServiceAnchor (9.0.21041.1020)</package>
         </Required>
         <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_/js/QuestionnaireVersion.js" displayName="ts_/js/QuestionnaireVersion.js" solution="Active" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Questionnaire Version" id="{e8b6ded8-95a2-4cf3-b189-130abcbe6e82}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2107.5010)" />
