@@ -33,8 +33,9 @@ const findingTypeChoices = {
     fr: [{ value: 717750000, text: "Undecided FR" }, { value: 717750001, text: "Observation FR" }, { value: 717750002, text: "Non-compliance FR" }]
 }
 
-//operationList is set in WOST onLoad. If it doesn't exist, set it to an empty list to avoid null reference exception.
+//operationList and activityTypeOperationTypeIdsList is set in WOST onLoad. If they don't exist, set it to an empty list to avoid null reference exception.
 var operationList = operationList || [];
+var activityTypeOperationTypeIdsList = activityTypeOperationTypeIdsList || [];
 
 
 var widget = {
@@ -84,7 +85,8 @@ var widget = {
                     return !!res ? res : [];
                 }
             },
-            { name: "inspectorComments"},
+            { name: "inspectorComments" },
+            { name: "provisionData" },
         ], null, "text");
 
     },
@@ -173,13 +175,28 @@ var widget = {
             findingTypeDropdown.appendChild(observationOption);
             findingTypeDropdown.appendChild(noncomplianceOption);
 
+            //Load old input values if they exist
+            //For each operation saved in the question's value, if its operation ID matches the current operation's ID, load its values
+            question.value.operations.forEach(function (operation) {
+                if (operation.operationID == operationCheckbox.value) {
+                    operationCheckbox.checked = true;
+                    findingTypeDropdown.value = operation.findingType;
+                }
+            });
+
+            //if the operationType is not regulated, or the operationType is not one of the parent Work Order's Activity Type's operationTypes
+            //Set to Observation and Lock the dropdown
+            if (!operation.isRegulated || !activityTypeOperationTypeIdsList.includes(operation.operationTypeId)) {
+                findingTypeDropdown.value = 717750001;
+                findingTypeDropdown.disabled = true;
+                findingTypeDropdown.style.webkitAppearance = "none";
             //If the findingType was decided in the questionnaire, use its value and lock the dropdown
-            if (question.findingType != null) {
+            } else if (question.findingType != null) {
                 findingTypeDropdown.value = question.findingType;
                 findingTypeDropdown.disabled = true;
                 findingTypeDropdown.style.webkitAppearance = "none";
             }
-
+            updateQuestionValue(question);
             findingTypeData.appendChild(findingTypeDropdown);
 
             operationNameData.innerHTML = operation.name
@@ -193,15 +210,6 @@ var widget = {
             operationInputs.push({
                 checkbox: operationCheckbox,
                 dropdown: findingTypeDropdown
-            });
-
-            //Load old input values if they exist
-            //For each operation saved in the question's value, if its operation ID matches the current operation's ID, load its values
-            question.value.operations.forEach(function (operation) {
-                if (operation.operationID == operationCheckbox.value) {
-                    operationCheckbox.checked = true;
-                    findingTypeDropdown.value = operation.findingType;
-                }
             });
 
             //If there's only one operation, it must be accountable, so check the checkbox and lock it, then update the question value
@@ -309,6 +317,7 @@ function updateQuestionValue(question) {
         provisionTextFr: question.locDescription.values.fr,
         comments: question.inspectorComments || "",
         operations: question.accountableOperations || [],
+        provisionData: question.provisionData
     }
 }
 
@@ -318,15 +327,20 @@ function updateQuestionProvisionData(question, provisionName) {
     if (question.nameID == null) {
         question.nameID = question.id;
     }
-    parent.Xrm.WebApi.retrieveMultipleRecords("qm_rclegislation", `?$select=qm_name,qm_legislationlbl,qm_legislationetxt,qm_legislationftxt,_qm_tylegislationtypeid_value,_qm_rcparentlegislationid_value&$filter=qm_name eq '${provisionName}'`).then(
+    parent.Xrm.WebApi.retrieveMultipleRecords("qm_rclegislation", `?$filter=qm_name eq '${provisionName}'`).then(
         async function success(result) {
             if (result.entities.length > 0) {
-                question.title = result.entities[0].qm_name;
+                let provision = result.entities[0];
+                question.title = provision.qm_name;
                 question.name = `finding-${question.nameID}`;
-                question.reference = result.entities[0].qm_name;
-                question.description = "<html>" + await buildProvisionText(result.entities[0], lang) + "</html>";
-                question.locDescription.values.default = "<html>" + await buildProvisionText(result.entities[0], 1033) + "</html>";
-                question.locDescription.values.fr = "<html>" + await buildProvisionText(result.entities[0], 1036) + "</html>";
+                question.reference = provision.qm_name;
+                question.description = "<html>" + await buildProvisionText(provision, lang) + "</html>";
+                question.locDescription.values.default = "<html>" + await buildProvisionText(provision, 1033) + "</html>";
+                question.locDescription.values.fr = "<html>" + await buildProvisionText(provision, 1036) + "</html>";
+                question.provisionData = {
+                    legislationid: provision._qm_tylegislationsourceid_value,
+                    provisioncategoryid: provision._ts_provisioncategory_value
+                };
             }
         },
         function (error) {

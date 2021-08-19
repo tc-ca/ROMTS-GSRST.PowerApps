@@ -25,6 +25,7 @@
                       <cell id="{233e8223-5ea2-44a3-b735-88f3c92d40f5}">
                         <labels>
                           <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
                         </labels>
                         <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
                       </cell>
@@ -41,7 +42,8 @@
                     <row>
                       <cell id="{fd1f76ab-862c-404c-ae32-8953e6b920dc}" locklevel="0">
                         <labels>
-                          <label description="Start Date" languagecode="1033" />
+                          <label description="Effective Start Date" languagecode="1033" />
+                          <label description="Date de début effective" languagecode="1036" />
                         </labels>
                         <control id="ts_effectivestartdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_effectivestartdate" disabled="false" />
                       </cell>
@@ -49,24 +51,33 @@
                     <row>
                       <cell id="{302ef50b-9402-4094-b2e9-a777eaf856b4}" locklevel="0">
                         <labels>
-                          <label description="End Date" languagecode="1033" />
+                          <label description="Effective End Date" languagecode="1033" />
+                          <label description="Date de fin effective" languagecode="1036" />
                         </labels>
                         <control id="ts_effectiveenddate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_effectiveenddate" disabled="false" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{8998de51-d5dc-76ec-523d-885268168eb2}" showlabel="false" colspan="1" auto="false" rowspan="40">
+                      <cell id="{73a11549-4608-dee9-c3c2-b1c3e1ca61ed}" showlabel="true" locklevel="0" visible="false">
                         <labels>
-                          <label description="Survey Creator" languagecode="1033" />
+                          <label description="Questionnaire Definition" languagecode="1033" />
                         </labels>
-                        <control id="WebResource_surveycreator" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                        <control id="ts_questionnairedefinition" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_questionnairedefinition" disabled="false" uniqueid="{a4e210b7-e821-07b2-4929-6ba636745a4d}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3a2b3106-2e5e-8c4a-4201-9e588d249c33}" showlabel="false" colspan="1" auto="false" rowspan="40">
+                        <labels>
+                          <label description="QuestionnaireCreator" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_QuestionnaireCreator" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
                           <parameters>
                             <Url>ovs_/html/SurveyCreator.html</Url>
                             <PassParameters>false</PassParameters>
-                            <ShowOnMobileClient>false</ShowOnMobileClient>
                             <Security>false</Security>
                             <Scrolling>auto</Scrolling>
                             <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
                             <WebResourceId>{A30918EF-5966-EB11-A812-000D3AFF0DDA}</WebResourceId>
                           </parameters>
                         </control>
@@ -117,11 +128,17 @@
                     <row />
                     <row />
                     <row>
-                      <cell id="{73a11549-4608-dee9-c3c2-b1c3e1ca61ed}" showlabel="true" locklevel="0" visible="false">
+                      <cell id="{cd143218-167b-4b50-93cb-74941c86b8cf}" locklevel="0" visible="false" showlabel="false">
                         <labels>
-                          <label description="Questionnaire Definition" languagecode="1033" />
+                          <label description="Questionnaire" languagecode="1033" />
                         </labels>
-                        <control id="ts_questionnairedefinition" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_questionnairedefinition" disabled="false" uniqueid="{a4e210b7-e821-07b2-4929-6ba636745a4d}" />
+                        <control id="ts_ovs_questionnaire" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_ovs_questionnaire" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{ED13D4EA-A45D-4758-A738-903FD18BA0D6}</DefaultViewId>
+                            <AvailableViewIds>{ED13D4EA-A45D-4758-A738-903FD18BA0D6},{4E1639CF-E94E-48BF-BAC5-209BBE0186B6},{E1E57948-F56F-4224-A854-B2C6DBBAB47D}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                   </rows>
@@ -190,6 +207,11 @@
         <event name="onchange" application="true" active="true" attribute="ts_effectiveenddate">
           <Handlers>
             <Handler functionName="ROM.QuestionnaireVersion.dateOnChange" libraryName="ts_/js/QuestionnaireVersion.js" handlerUniqueId="{fb31b795-f570-4656-a1ed-cc78ddff2180}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="true" active="true">
+          <Handlers>
+            <Handler functionName="ROM.QuestionnaireVersion.onSave" libraryName="ts_/js/QuestionnaireVersion.js" handlerUniqueId="{2ccd9685-7fd2-49e4-81a8-3e812382b746}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

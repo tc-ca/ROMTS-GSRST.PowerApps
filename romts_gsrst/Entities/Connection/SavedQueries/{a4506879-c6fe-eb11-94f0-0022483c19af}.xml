@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{a4506879-c6fe-eb11-94f0-0022483c19af}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" icon="1" preview="1">
+        <row name="result" id="connectionid">
+          <cell name="record2id" width="155" />
+          <cell name="record2roleid" width="100" />
+          <cell name="description" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="connection">
+          <attribute name="connectionid" />
+          <attribute name="record2roleid" />
+          <attribute name="description" />
+          <filter type="and">
+            <condition attribute="record2objecttypecode" operator="eq" value="2" />
+          </filter>
+          <attribute name="record2id" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20210816.2</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Operation Contacts" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
