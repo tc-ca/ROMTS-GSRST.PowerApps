@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20210819.4</Version>
+    <Version>1.0.20210820.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -2656,6 +2656,12 @@
           <package>FieldService_Anchor (8.8.41.28)</package>
         </Required>
         <Dependent type="1" schemaName="msdyn_workorder" displayName="Work Order" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="msdyn_requirementcharacteristic" displayName="Requirement Characteristic" solution="MicrosoftDynamicsScheduling (3.12.0.448)">
+          <package>FieldService_Anchor (8.8.41.28)</package>
+        </Required>
+        <Dependent type="10" schemaName="ts_msdyn_requirementcharacteristic_msdyn_req" displayName="ts_msdyn_requirementcharacteristic_msdyn_req" parentSchemaName="msdyn_requirementcharacteristic" parentDisplayName="Requirement Characteristic" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_requirementgroup" displayName="Requirement Group" solution="MicrosoftDynamicsScheduling (3.12.0.448)">
@@ -9105,7 +9111,7 @@
           <package>FieldService_Anchor (8.8.41.28)</package>
           <package>msdynce_ServiceAnchor (9.0.21041.1020)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.8.1)">
@@ -10123,6 +10129,18 @@
         <Dependent type="2" schemaName="msdyn_unitprice" displayName="Unit Price" parentSchemaName="msdyn_quoteinvoicingproduct" parentDisplayName="Quote Invoicing Product" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_requirementcharacteristic" parentDisplayName="Requirement Characteristic" solution="MicrosoftDynamicsScheduling (3.12.0.448)">
+          <package>FieldService_Anchor (8.8.41.28)</package>
+        </Required>
+        <Dependent type="10" schemaName="ts_msdyn_requirementcharacteristic_msdyn_req" displayName="ts_msdyn_requirementcharacteristic_msdyn_req" parentSchemaName="msdyn_requirementcharacteristic" parentDisplayName="Requirement Characteristic" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_requirementcharacteristicid" displayName="Requirement Characteristic" parentSchemaName="msdyn_requirementcharacteristic" parentDisplayName="Requirement Characteristic" solution="MicrosoftDynamicsScheduling (3.12.0.448)">
+          <package>FieldService_Anchor (8.8.41.28)</package>
+        </Required>
+        <Dependent type="10" schemaName="ts_msdyn_requirementcharacteristic_msdyn_req" displayName="ts_msdyn_requirementcharacteristic_msdyn_req" parentSchemaName="msdyn_requirementcharacteristic" parentDisplayName="Requirement Characteristic" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_requirementgroup" parentDisplayName="Requirement Group" solution="MicrosoftDynamicsScheduling (3.12.0.448)">
           <package>FieldService_Anchor (8.8.41.28)</package>
         </Required>
@@ -10744,7 +10762,7 @@
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.41.28)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
