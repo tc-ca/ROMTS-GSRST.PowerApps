@@ -123,7 +123,7 @@
                         </labels>
                         <control id="statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" uniqueid="{e30a833c-8a59-01be-9ae3-538e67eeb4c6}" />
                       </cell>
-                      <cell locklevel="0" id="{3f350182-e8f5-4a5f-b433-8ce6fad46bc7}">
+                      <cell locklevel="0" id="{3f350182-e8f5-4a5f-b433-8ce6fad46bc7}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -450,7 +450,73 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_9" id="58b92403-d7d3-4b1e-be2a-06bff5c4bcff" IsUserDefined="0" locklevel="0" showlabel="true">
+        <tab name="tab_10" id="50dbc7af-c409-46df-a6e0-8bdb9de7c572" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Findings" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_10_section_1" id="31d42dd1-8d55-42e4-bf96-67baf436b188" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Findings" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{a7387095-0064-46e8-bc6a-c63dc793c315}" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Findings" languagecode="1033" />
+                          <label description="Dispositions du tâche de service de l'ordre de travail" languagecode="1036" />
+                        </labels>
+                        <control id="Subgrid_Findings" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <TargetEntityType>ovs_finding</TargetEntityType>
+                            <ViewId>{9711D0C3-7FCC-46DA-A259-A722BA88AF4D}</ViewId>
+                            <EnableViewPicker>true</EnableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_11" id="d2a74cfc-42c8-4b8b-811b-bc2d77108a99" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Documents" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_11_section_1" id="238e76ef-2c9e-4ccb-96a6-8cbc4b0252d2" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Documents" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{4c252635-a278-49c8-8e2b-6c2f66cc19f6}" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Documents" languagecode="1033" />
+                          <label description="Dispositions du tâche de service de l'ordre de travail" languagecode="1036" />
+                        </labels>
+                        <control id="Subgrid_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <TargetEntityType>sharepointdocument</TargetEntityType>
+                            <ViewId>{A5B008AC-07D9-4554-8509-2C05767BFF51}</ViewId>
+                            <EnableViewPicker>true</EnableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_9" id="58b92403-d7d3-4b1e-be2a-06bff5c4bcff" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false">
           <labels>
             <label description="Work Order Details" languagecode="1033" />
           </labels>
@@ -778,6 +844,11 @@
               <Title LCID="2052" Text="实时流程" />
               <Title LCID="3076" Text="即時程序" />
               <Title LCID="1028" Text="即時程序" />
+            </Titles>
+          </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="ts_msdyn_workorderservicetask_msdyn_workorde" Sequence="10000" Area="Info" Id="nav_ts_msdyn_workorderservicetask_msdyn_workorde" Show="false">
+            <Titles>
+              <Title LCID="1033" Text="Work Order Incidents" />
             </Titles>
           </NavBarByRelationshipItem>
         </NavBar>
