@@ -10,16 +10,16 @@ var inspectorCommentsLocalizedText;
 var charactersRemainingLocalizedText;
 
 if (lang == 1036){
-    inspectorCommentsLocalizedText = "Commentaires de l'inspecteur";
+    inspectorCommentsLocalizedText = "Fournir des détails";
     charactersRemainingLocalizedText = "caractères restants";
     accountableOperationsLocalized = "Opération responsable";
-    findingTypeLocalized = "Finding Type (FR)"
-    findingTypeUndecidedLocalized = "Undecided (FR)"
-    findingTypeObservationLocalized = "Observation (FR)"
-    findingTypeNoncomplianceLocalized = "Non-compliance (FR)"
+    findingTypeLocalized = "Type de finding"
+    findingTypeUndecidedLocalized = "Indécis"
+    findingTypeObservationLocalized = "Observation "
+    findingTypeNoncomplianceLocalized = "Non-conformité"
 }
 else{
-    inspectorCommentsLocalizedText = "Inspector Comments";
+    inspectorCommentsLocalizedText = "Provide details:";
     charactersRemainingLocalizedText = "characters remaining";
     accountableOperationsLocalized = "Accountable Operations";
     findingTypeLocalized = "Finding Type"
@@ -30,7 +30,7 @@ else{
 
 const findingTypeChoices = {
     en: [{ value: 717750000, text: "Undecided" }, { value: 717750001, text: "Observation" }, { value: 717750002, text: "Non-compliance" }],
-    fr: [{ value: 717750000, text: "Undecided FR" }, { value: 717750001, text: "Observation FR" }, { value: 717750002, text: "Non-compliance FR" }]
+    fr: [{ value: 717750000, text: "Indécis" }, { value: 717750001, text: "Observation" }, { value: 717750002, text: "Non-conformité" }]
 }
 
 //operationList and activityTypeOperationTypeIdsList is set in WOST onLoad. If they don't exist, set it to an empty list to avoid null reference exception.
@@ -277,6 +277,11 @@ var widget = {
         comments.onchange = function () {
             question.inspectorComments = comments.value;
             updateQuestionValue(question);
+        }
+
+        //SurveyJS calling focus on Finding queston will focus the comment box.
+        question.focus = function () {
+            comments.focus();
         }
 
         //set the changed value into question value

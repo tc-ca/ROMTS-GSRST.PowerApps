@@ -11,6 +11,9 @@
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_questionnaireversionid">
           <cell name="ts_name" width="300" />
+          <cell name="ts_effectivestartdate" width="100" />
+          <cell name="ts_effectiveenddate" width="100" />
+          <cell name="statecode" width="100" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -26,6 +29,9 @@
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="ts_effectivestartdate" />
+          <attribute name="ts_effectiveenddate" />
+          <attribute name="statecode" />
         </entity>
       </fetch>
     </fetchxml>
