@@ -1,14 +1,96 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
+  <CustomActions>
+    <HideCustomAction HideActionId="ts.Mscrm.Form.ts_questionnaireversion.NewRecord.Hide" Location="Mscrm.Form.ts_questionnaireversion.NewRecord" />
+    <HideCustomAction HideActionId="ts.Mscrm.Form.ts_questionnaireversion.NewRecordForBPFEntity.Hide" Location="Mscrm.Form.ts_questionnaireversion.NewRecordForBPFEntity" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_questionnaireversion.AddExistingAssoc.Hide" Location="Mscrm.SubGrid.ts_questionnaireversion.AddExistingAssoc" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_questionnaireversion.AddExistingStandard.Hide" Location="Mscrm.SubGrid.ts_questionnaireversion.AddExistingStandard" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_questionnaireversion.AddNewStandard.Hide" Location="Mscrm.SubGrid.ts_questionnaireversion.AddNewStandard" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_questionnaireversion.NewRecord.Hide" Location="Mscrm.SubGrid.ts_questionnaireversion.NewRecord" />
+    <CustomAction Id="ts.ts_questionnaireversion.Button3.Button.dev1.EntityDisplayName.RunWebHookForm.Button.CustomAction" Location="Mscrm.Form.ts_questionnaireversion.MainTab.Save.Controls._children" Sequence="0">
+      <CommandUIDefinition>
+        <Button Command="ts.ts_questionnaireversion.Button3.Button.dev1.EntityDisplayName.RunWebHookForm.Button" Description="{&quot;smartbuttonid&quot;:&quot;smartbutton.runwebhook&quot;,&quot;Title&quot;:&quot;Copy Version&quot;,&quot;webhookurl&quot;:&quot;https://prod-19.canadacentral.logic.azure.com:443/workflows/7c869e93c1024ca695c9b35b2fadaa23/triggers/manual/paths/invoke?api-version=2016-06-01&amp;sp=%2Ftriggers%2Fmanual%2Frun&amp;sv=1.0&amp;sig=ZO6EBxIky6BpOTvDZ65vQMcNH-Ir3BxU7ux3bu31KHA&quot;,&quot;confirm&quot;:&quot;Copy this version to a new version?&quot;,&quot;callback&quot;:&quot;Xrm.Navigation.openAlertDialog({ text: \&quot;New Version Created\&quot;});&quot;,&quot;errorCallback&quot;:&quot;Xrm.Navigation.openAlertDialog({ text: \&quot;There was an error creating a New Version. Please try again.\&quot;});&quot;}" Id="ts.ts_questionnaireversion.Button3.Button.dev1.EntityDisplayName.RunWebHookForm.Button" Image32by32="$webresource:dev1_/images/webhook.png" Image16by16="$webresource:dev1_/images/webhook.png" LabelText="$LocLabels:ts.ts_questionnaireversion.Button3.Button.dev1.EntityDisplayName.RunWebHookForm.Button.LabelText" Sequence="0" TemplateAlias="o1" ModernImage="$webresource:dev1_/images/webhook.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ts_questionnaireversion.Button4.Button.dev1.EntityDisplayName.RunWebHookForm.Button.CustomAction" Location="Mscrm.Form.ts_questionnaireversion.MainTab.Save.Controls._children" Sequence="1">
+      <CommandUIDefinition>
+        <Button Command="ts.ts_questionnaireversion.Button4.Button.dev1.EntityDisplayName.RunWebHookForm.Button" Description="{&quot;smartbuttonid&quot;:&quot;smartbutton.runwebhook&quot;,&quot;Title&quot;:&quot;Copy to New Questionnaire&quot;,&quot;webhookurl&quot;:&quot;https://prod-29.canadacentral.logic.azure.com:443/workflows/429bf3c23eac4860a0f1042f3649932f/triggers/manual/paths/invoke?api-version=2016-06-01&amp;sp=%2Ftriggers%2Fmanual%2Frun&amp;sv=1.0&amp;sig=TrClUm_Hzef-lFBGIDlqAiaeAb7cAlrSnyqsGAp-Jjk&quot;,&quot;confirm&quot;:&quot;Copy this version to a new Questionnaire?&quot;,&quot;callback&quot;:&quot;Xrm.Navigation.openAlertDialog({ text: \&quot;New Questionnaire Created\&quot;});&quot;,&quot;errorCallback&quot;:&quot;Xrm.Navigation.openAlertDialog({ text: \&quot;Error when creating New Questionnaire. Please try again.\&quot;});&quot;}" Id="ts.ts_questionnaireversion.Button4.Button.dev1.EntityDisplayName.RunWebHookForm.Button" Image32by32="$webresource:dev1_/images/webhook.png" Image16by16="$webresource:dev1_/images/webhook.png" LabelText="$LocLabels:ts.ts_questionnaireversion.Button4.Button.dev1.EntityDisplayName.RunWebHookForm.Button.LabelText" Sequence="1" TemplateAlias="o2" ModernImage="$webresource:dev1_/images/webhook.svg" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="ts.ts_questionnaireversion.Button2.Button.dev1.EntityDisplayName.RunWebHookGrid.Button">
+      <EnableRules>
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="SmartButtons.ClientHooks.SmartButtons.RunWebHookMultiple" Library="$webresource:dev1_/js/SmartButtons.ClientHooks.js">
+          <StringParameter Value="" />
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+          <StringParameter Value="" />
+          <StringParameter Value="" />
+          <StringParameter Value="" />
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ts_questionnaireversion.Button3.Button.dev1.EntityDisplayName.RunWebHookForm.Button">
+      <EnableRules>
+        <EnableRule Id="Mscrm.FormStateNotNew" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="SmartButtons.ClientHooks.SmartButtons.RunWebHookSingle" Library="$webresource:dev1_/js/SmartButtons.ClientHooks.js">
+          <StringParameter Value="https://prod-19.canadacentral.logic.azure.com:443/workflows/7c869e93c1024ca695c9b35b2fadaa23/triggers/manual/paths/invoke?api-version=2016-06-01&amp;sp=%2Ftriggers%2Fmanual%2Frun&amp;sv=1.0&amp;sig=ZO6EBxIky6BpOTvDZ65vQMcNH-Ir3BxU7ux3bu31KHA" />
+          <CrmParameter Value="PrimaryItemIds" />
+          <StringParameter Value="Copy this version to a new version?" />
+          <StringParameter Value="Xrm.Navigation.openAlertDialog({ text: &quot;New Version Created&quot;});" />
+          <StringParameter Value="Xrm.Navigation.openAlertDialog({ text: &quot;There was an error creating a New Version. Please try again.&quot;});" />
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ts_questionnaireversion.Button4.Button.dev1.EntityDisplayName.RunWebHookForm.Button">
+      <EnableRules>
+        <EnableRule Id="Mscrm.FormStateNotNew" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="SmartButtons.ClientHooks.SmartButtons.RunWebHookSingle" Library="$webresource:dev1_/js/SmartButtons.ClientHooks.js">
+          <StringParameter Value="https://prod-29.canadacentral.logic.azure.com:443/workflows/429bf3c23eac4860a0f1042f3649932f/triggers/manual/paths/invoke?api-version=2016-06-01&amp;sp=%2Ftriggers%2Fmanual%2Frun&amp;sv=1.0&amp;sig=TrClUm_Hzef-lFBGIDlqAiaeAb7cAlrSnyqsGAp-Jjk" />
+          <CrmParameter Value="PrimaryItemIds" />
+          <StringParameter Value="Copy this version to a new Questionnaire?" />
+          <StringParameter Value="Xrm.Navigation.openAlertDialog({ text: &quot;New Questionnaire Created&quot;});" />
+          <StringParameter Value="Xrm.Navigation.openAlertDialog({ text: &quot;Error when creating New Questionnaire. Please try again.&quot;});" />
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
     <EnableRules />
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="ts.ts_questionnaireversion.Button3.Button.dev1.EntityDisplayName.RunWebHookForm.Button.LabelText">
+      <Titles>
+        <Title description="Copy Version" languagecode="1033" />
+        <Title description="Copy Version (FR)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_questionnaireversion.Button4.Button.dev1.EntityDisplayName.RunWebHookForm.Button.LabelText">
+      <Titles>
+        <Title description="Copy to New Questionnaire" languagecode="1033" />
+        <Title description="Copy to New Questionnaire (FR)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>
