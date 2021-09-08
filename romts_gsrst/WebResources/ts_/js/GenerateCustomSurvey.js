@@ -1,14 +1,53 @@
-﻿
+﻿var findingTypes = {
+    "No Finding": 717750000,
+    "Observation": 717750001,
+    "Non-compliance": 717750002,
+};
 
 async function generateSurvey() {
     var provisionPromise = await retrieveProvisions();
     var provisions = provisionPromise.entities;
     if (provisions == null) return;
-    var customSurveyDefinition = await generateCustomSurveyDefinitionJSON(provisions);
+    var customSurveyDefinition = await generateCustomSurveyDefinition(provisions);
 
-    parentFormContext.getAttribute("ovs_questionnairedefinition").setValue(customSurveyDefinition);
-    var oldResponse = parentFormContext.getAttribute("ovs_questionnaireresponse").getValue();
-    parentFormContext.getAttribute("ovs_questionnaireresponse").setValue("");
+    var oldDefinition = JSON.parse(parentFormContext.getAttribute("ovs_questionnairedefinition").getValue());
+    var oldResponse = JSON.parse(parentFormContext.getAttribute("ovs_questionnaireresponse").getValue());
+    var newResponse = {};
+
+    if (oldResponse != null) {
+        //Iterate through provisions, check if a radiogroup question key exists for it in the old response
+        for (provision of provisions) {
+            let provisionName = provision.qm_name;
+            //If the same radiogroup question existed in the old response, keep the old values
+            if ((provisionName + "-radiogroup") in oldResponse) {
+                let findingTypeValue = oldResponse[provisionName + "-radiogroup"];
+                newResponse[provisionName + "-radiogroup"] = findingTypeValue;
+
+                //Check if any finding questions in the custom survey definition can use old values
+                for (oldQuestion of oldDefinition.pages[0].elements) {
+                    //If a finding question used the same provision and has the same findingType
+                    if (oldQuestion.type == "finding" && oldQuestion.provision == provisionName && oldQuestion.findingType == findingTypes[findingTypeValue]) {
+                        //Retrieve the value in the old response
+                        let oldFindingQuestionValue = oldResponse[oldQuestion.name];
+                        //Determine the question name used in the new definition, make it use the same name as before then set its value in the new response
+                        for (newQuestion of customSurveyDefinition.pages[0].elements) {
+                            if (newQuestion.provision == provisionName && newQuestion.findingType == findingTypes[findingTypeValue]) {
+                                newQuestion.name = oldQuestion.name;
+                                newQuestion.nameID = oldQuestion.nameID;
+                                newResponse[oldQuestion.name] = oldFindingQuestionValue;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+
+        //Check if any finding questions were filled out for the provision
+            //Use old value
+    parentFormContext.getAttribute("ovs_questionnairedefinition").setValue(JSON.stringify(customSurveyDefinition));
+    parentFormContext.getAttribute("ovs_questionnaireresponse").setValue(JSON.stringify(newResponse));
     Xrm = parent.Xrm;
     ROM.WorkOrderServiceTask.ToggleQuestionnaire(parentExecutionContext);
 }
@@ -60,7 +99,7 @@ async function retrieveProvisions() {
     return parent.Xrm.WebApi.retrieveMultipleRecords("qm_rclegislation", fetchXml);
 }
 
-async function generateCustomSurveyDefinitionJSON(provisions) {
+async function generateCustomSurveyDefinition(provisions) {
     var survey = {
         pages: [
             {
@@ -100,10 +139,11 @@ async function generateCustomSurveyDefinitionJSON(provisions) {
         };
         questionArray.push(radioQuestion);
         questionCount++;
+        let uniqueNum = Date.now();
         //Create Observation Finding
         var observationFinding = {
             type: "finding",
-            name: "finding-id" + questionCount,
+            name: "finding-sq_" + uniqueNum,
             visibleIf: `{${radioQuestionName}} = 'Observation'`,
             title: provisionName,
             description: {
@@ -112,19 +152,20 @@ async function generateCustomSurveyDefinitionJSON(provisions) {
             },
             provision: provisionName,
             reference: provisionName,
-            nameID: "id" + questionCount,
+            nameID: "sq_" + uniqueNum,
             findingType: 717750001,
             provisionData: {
                 legislationid: provision.qm_rclegislationid,
-                provisioncategoryid: provision._qm_tylegislationtypeid_value
+                provisioncategoryid: provision._ts_provisioncategory_value
             },
         }
         questionArray.push(observationFinding);
         questionCount++;
+        uniqueNum = Date.now() + questionCount;
         //Create Non-Compliance Finding
         var nonComplianceFinding = {
             type: "finding",
-            name: "finding-id" + questionCount,
+            name: "finding-sq_" + uniqueNum,
             visibleIf: `{${radioQuestionName}} = 'Non-compliance'`,
             title: provisionName,
             description: {
@@ -134,15 +175,15 @@ async function generateCustomSurveyDefinitionJSON(provisions) {
             isRequired: true,
             provision: provisionName,
             reference: provisionName,
-            nameID: "id" + questionCount,
+            nameID: "sq_" + uniqueNum,
             findingType: 717750002,
             provisionData: {
                 legislationid: provision.qm_rclegislationid,
-                provisioncategoryid: provision._qm_tylegislationtypeid_value
+                provisioncategoryid: provision._ts_provisioncategory_value
             },
         }
         questionArray.push(nonComplianceFinding);
     };
     survey.pages[0].elements = questionArray;
-    return JSON.stringify(survey);
+    return survey;
 }
