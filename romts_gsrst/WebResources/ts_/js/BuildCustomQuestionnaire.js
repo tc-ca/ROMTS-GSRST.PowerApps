@@ -117,7 +117,7 @@ async function generateCustomSurveyDefinition(provisions) {
         var provisionTextFr = await buildProvisionText(provision, "1036");
         questionCount++;
         var radioQuestionName = provisionName + "-radiogroup";
-        //Create Radial question
+        //Create radiogroup question
         var radioQuestion = {
             type: "radiogroup",
             name: radioQuestionName,
