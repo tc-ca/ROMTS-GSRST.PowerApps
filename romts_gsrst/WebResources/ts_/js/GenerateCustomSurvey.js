@@ -30,6 +30,7 @@ async function generateSurvey() {
                         //Retrieve the value in the old response
                         let oldFindingQuestionValue = oldResponse[oldQuestion.name];
                         //Determine the question name used in the new definition, make it use the same name as before then set its value in the new response
+                        //The name for the finding widgets must remain the same and unique to maintain the connection with any finding records created
                         for (newQuestion of customSurveyDefinition.pages[0].elements) {
                             if (newQuestion.provision == provisionName && newQuestion.findingType == findingTypes[findingTypeValue]) {
                                 newQuestion.name = oldQuestion.name;
@@ -121,6 +122,10 @@ async function generateCustomSurveyDefinition(provisions) {
             type: "radiogroup",
             name: radioQuestionName,
             title: provisionName,
+            description: {
+                default: provisionTextEn,
+                fr: provisionTextFr
+            },
             isRequired: true,
             choices: [
                 {
