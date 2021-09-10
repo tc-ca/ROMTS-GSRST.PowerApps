@@ -76,6 +76,11 @@ var ROM;
         //If Status Reason is New, replace ovs_questionnairedefinition with definition from the Service Task Type Lookup field
         function UpdateQuestionnaireDefinition(eContext) {
             var Form = eContext.getFormContext();
+            var workOrderStartDateAttribute = Form.getAttribute("ts_workorderstartdate");
+            if (workOrderStartDateAttribute != null) {
+                var workOrderStartDateValue = workOrderStartDateAttribute.getValue();
+            }
+            //.getValue();
             var statusReason = Form.getAttribute("statuscode").getValue();
             //If Status Reason is New
             if (statusReason == 918640005) {
