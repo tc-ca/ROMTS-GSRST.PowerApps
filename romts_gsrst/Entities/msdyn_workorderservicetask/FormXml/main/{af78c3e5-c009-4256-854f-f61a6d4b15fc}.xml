@@ -7,7 +7,7 @@
     <FormActivationState>1</FormActivationState>
     <form shownavigationbar="true" showImage="false" maxWidth="1920" headerdensity="HighWithControls">
       <tabs>
-        <tab verticallayout="true" id="{1932b377-2e7e-4880-9b0e-477cc529b5fe}" IsUserDefined="1" labelid="{153c8609-4dd6-4ff4-a7d0-c5ccc7ddaf66}">
+        <tab verticallayout="true" id="{1932b377-2e7e-4880-9b0e-477cc529b5fe}" IsUserDefined="1" labelid="{153c8609-4dd6-4ff4-a7d0-c5ccc7ddaf66}" name="tab_summary" locklevel="0" expanded="true" showlabel="true">
           <labels>
             <label description="Summary" languagecode="1033" />
             <label description="Général" languagecode="1036" />
@@ -243,6 +243,70 @@
                     </row>
                   </rows>
                 </section>
+                <section name="section_custom_questionnaire" showlabel="false" showbar="false" locklevel="0" id="{314bdd88-22dc-201c-71c3-085c8835da54}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" visible="false">
+                  <labels>
+                    <label description="Custom Inspection Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{398940a5-4b57-d9a9-6573-0c928da37268}" showlabel="true" colspan="1" auto="false" rowspan="7">
+                        <labels>
+                          <label description="Custom Questionnaire Provisions" languagecode="1033" />
+                          <label description="Législations" languagecode="1036" />
+                        </labels>
+                        <control id="CustomQuestionnaireProvisions" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{0b6382e2-7cc5-563d-5130-b32031aa341e}">
+                          <parameters>
+                            <ViewId>{4797655A-2612-4C5D-81BE-A514900A38EA}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_workorderservicetask_qm_rclegislation</RelationshipName>
+                            <TargetEntityType>qm_rclegislation</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{4797655A-2612-4C5D-81BE-A514900A38EA}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <RelationshipRoleOrdinal>2</RelationshipRoleOrdinal>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{13966d87-dc56-99a8-223d-2703712a43b2}" showlabel="false" colspan="1" auto="false" rowspan="1">
+                        <labels>
+                          <label description="BuildCustomQuestionnaire" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_BuildCustomQuestionnaire" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/BuildCustomQuestionnaire.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <WebResourceId>{FA370D5B-7111-EC11-B6E7-000D3AE84C7C}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
                 <section name="QuestionnaireFormSection" showlabel="false" showbar="false" locklevel="0" id="{a33d8bc1-4a59-ac47-d993-82d9280a0eb1}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" height="auto" labelid="{81bd8a4f-a309-4bb0-860f-c83c461722df}" visible="true">
                   <labels>
                     <label description="Questionnaire" languagecode="1033" />
@@ -328,70 +392,6 @@
                           <label description="Réponse au questionnaire" languagecode="1036" />
                         </labels>
                         <control id="ovs_questionnaireresponse" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ovs_questionnaireresponse" disabled="false" uniqueid="{b1636a54-c108-6abb-d94e-5120acde7757}" />
-                      </cell>
-                    </row>
-                  </rows>
-                </section>
-                <section name="custom_questionnaire_section" showlabel="false" showbar="false" locklevel="0" id="{314bdd88-22dc-201c-71c3-085c8835da54}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" visible="false">
-                  <labels>
-                    <label description="Custom Inspection Section" languagecode="1033" />
-                  </labels>
-                  <rows>
-                    <row>
-                      <cell id="{398940a5-4b57-d9a9-6573-0c928da37268}" showlabel="true" colspan="1" auto="false" rowspan="7">
-                        <labels>
-                          <label description="Custom Questionnaire Provisions" languagecode="1033" />
-                          <label description="Législations" languagecode="1036" />
-                        </labels>
-                        <control id="CustomQuestionnaireProvisions" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{0b6382e2-7cc5-563d-5130-b32031aa341e}">
-                          <parameters>
-                            <ViewId>{4797655A-2612-4C5D-81BE-A514900A38EA}</ViewId>
-                            <IsUserView>false</IsUserView>
-                            <RelationshipName>ts_workorderservicetask_qm_rclegislation</RelationshipName>
-                            <TargetEntityType>qm_rclegislation</TargetEntityType>
-                            <AutoExpand>Fixed</AutoExpand>
-                            <EnableQuickFind>false</EnableQuickFind>
-                            <EnableViewPicker>false</EnableViewPicker>
-                            <ViewIds>{4797655A-2612-4C5D-81BE-A514900A38EA}</ViewIds>
-                            <EnableJumpBar>false</EnableJumpBar>
-                            <ChartGridMode>All</ChartGridMode>
-                            <VisualizationId />
-                            <IsUserChart>false</IsUserChart>
-                            <EnableChartPicker>true</EnableChartPicker>
-                            <RecordsPerPage>4</RecordsPerPage>
-                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
-                            <RelationshipRoleOrdinal>2</RelationshipRoleOrdinal>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row>
-                      <cell id="{13966d87-dc56-99a8-223d-2703712a43b2}" showlabel="false" colspan="1" auto="false" rowspan="1">
-                        <labels>
-                          <label description="BuildCustomQuestionnaire" languagecode="1033" />
-                        </labels>
-                        <control id="WebResource_BuildCustomQuestionnaire" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
-                          <parameters>
-                            <Url>ts_/html/BuildCustomQuestionnaire.html</Url>
-                            <PassParameters>false</PassParameters>
-                            <ShowOnMobileClient>false</ShowOnMobileClient>
-                            <Security>false</Security>
-                            <Scrolling>auto</Scrolling>
-                            <Border>false</Border>
-                            <WebResourceId>{FA370D5B-7111-EC11-B6E7-000D3AE84C7C}</WebResourceId>
-                          </parameters>
-                        </control>
-                        <events>
-                          <event name="onload" application="false">
-                            <dependencies />
-                          </event>
-                        </events>
                       </cell>
                     </row>
                   </rows>
