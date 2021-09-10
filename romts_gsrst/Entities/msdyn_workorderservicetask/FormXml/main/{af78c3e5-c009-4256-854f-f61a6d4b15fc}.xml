@@ -95,10 +95,11 @@
                         </labels>
                         <control id="msdyn_percentcomplete" classid="{0D2C745A-E5A8-4c8f-BA63-C6D3BB604660}" datafieldname="msdyn_percentcomplete" disabled="false" uniqueid="{c36e2c65-c414-d5b9-a3ac-e544ae782634}" />
                       </cell>
-                      <cell id="{8162617e-cdeb-b021-8c6b-19bd6274cc2e}" showlabel="false">
+                      <cell id="{4d5b666c-9ac0-432d-8b8e-1f1f01190550}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Work Order Start Date" languagecode="1033" />
                         </labels>
+                        <control id="ts_workorderstartdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_workorderstartdate" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -1184,6 +1185,11 @@
         <event name="onsave" application="false" active="false">
           <Handlers>
             <Handler functionName="ROM.WorkOrderServiceTask.onSave" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{914bacc4-b50e-3c29-079b-50addc8e457c}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_workorderstartdate">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTask.workOrderStartDateOnChange" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{563798de-9e6d-4979-bd59-712310fc3819}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

@@ -66,21 +66,13 @@ var ROM;
             if (Form.getAttribute('statecode').getValue() == 1) {
                 mode = "display";
             }
-            UpdateQuestionnaireDefinition(eContext);
-            var wrGenerateSurveyControl = Form.getControl("WebResource_BuildCustomQuestionnaire");
-            setControlInitialContext(eContext, wrGenerateSurveyControl);
+            // UpdateQuestionnaireDefinition(eContext);
         }
         WorkOrderServiceTask.onLoad = onLoad;
-        function setControlInitialContext(eContext, wrControl) {
-            wrControl.getContentWindow().then(function (win) {
-                return __awaiter(this, void 0, void 0, function () {
-                    return __generator(this, function (_a) {
-                        win.InitialContext(eContext);
-                        return [2 /*return*/];
-                    });
-                });
-            });
+        function workOrderStartDateOnChange(eContext) {
+            UpdateQuestionnaireDefinition(eContext);
         }
+        WorkOrderServiceTask.workOrderStartDateOnChange = workOrderStartDateOnChange;
         //If Status Reason is New, replace ovs_questionnairedefinition with definition from the Service Task Type Lookup field
         function UpdateQuestionnaireDefinition(eContext) {
             var Form = eContext.getFormContext();
