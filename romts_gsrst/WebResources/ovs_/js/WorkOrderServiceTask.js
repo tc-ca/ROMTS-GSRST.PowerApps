@@ -59,36 +59,16 @@ var ROM;
         WorkOrderServiceTask.ToggleQuestionnaire = ToggleQuestionnaire;
         function onLoad(eContext) {
             var Form = eContext.getFormContext();
-            var taskType = Form.getAttribute("msdyn_tasktype").getValue();
             //Lock Task Type field if it has a value.
-            if (taskType != null) {
+            if (Form.getAttribute("msdyn_tasktype").getValue() != null) {
                 Form.getControl("msdyn_tasktype").setDisabled(true);
-                //Retrieve Task Type record
-                Xrm.WebApi.retrieveRecord("msdyn_servicetasktype", taskType[0].id).then(function success(result) {
-                    //If it's for a custom questionnaire, show the custom questionnaire section
-                    if (result.ts_hascustomquestionnaire) {
-                        Form.ui.tabs.get("tab_summary").sections.get("section_custom_questionnaire").setVisible(true);
-                    }
-                });
             }
             if (Form.getAttribute('statecode').getValue() == 1) {
                 mode = "display";
             }
             UpdateQuestionnaireDefinition(eContext);
-            var wrGenerateSurveyControl = Form.getControl("WebResource_BuildCustomQuestionnaire");
-            setControlInitialContext(eContext, wrGenerateSurveyControl);
         }
         WorkOrderServiceTask.onLoad = onLoad;
-        function setControlInitialContext(eContext, wrControl) {
-            wrControl.getContentWindow().then(function (win) {
-                return __awaiter(this, void 0, void 0, function () {
-                    return __generator(this, function (_a) {
-                        win.InitialContext(eContext);
-                        return [2 /*return*/];
-                    });
-                });
-            });
-        }
         //If Status Reason is New, replace ovs_questionnairedefinition with definition from the Service Task Type Lookup field
         function UpdateQuestionnaireDefinition(eContext) {
             var Form = eContext.getFormContext();

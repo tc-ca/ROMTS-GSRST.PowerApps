@@ -17,6 +17,16 @@
         <Button Alt="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.Alt" Command="Mscrm.SaveAndClosePrimary" Id="Mscrm.Form.msdyn_workorderservicetask.SaveAndClose" Image32by32="/_imgs/ribbon/SaveAndClose_32.png" Image16by16="/_imgs/FormEditorRibbon/SaveAndClose_16.png" LabelText="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.LabelText" Sequence="11" TemplateAlias="o1" ToolTipTitle="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.ToolTipTitle" ToolTipDescription="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.ToolTipDescription" ModernImage="SaveAndClose" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="8">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.Alt" Command="ts.msdyn_workorderservicetask.BuildCustomQuestionnaire" Id="ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire" LabelText="$LocLabels:ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.LabelText" Sequence="8" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorderservicetask.Button.PreviewProvisionText.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="9">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.Button.PreviewProvisionText.Alt" Command="ts.msdyn_workorderservicetask.PreviewProvisionText" Id="ts.msdyn_workorderservicetask.Button.PreviewProvisionText" LabelText="$LocLabels:ts.msdyn_workorderservicetask.Button.PreviewProvisionText.LabelText" Sequence="9" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.Button.PreviewProvisionText.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.Button.PreviewProvisionText.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="63">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.Alt" Command="ts.msdyn_workorderservicetask.TSIS.PrintQuestionnaire" CommandValueId="" Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form" LabelText="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.LabelText" Sequence="63" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.ToolTipDescription" />
@@ -406,6 +416,28 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorderservicetask.BuildCustomQuestionnaire">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorderservicetask.isTaskTypeCustomQuestionnaire" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="buildCustomQuestionnaire" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorderservicetask.PreviewProvisionText">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorderservicetask.isTaskTypeCustomQuestionnaire" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="previewProvisionText" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorderservicetask.TSIS.PrintQuestionnaire">
       <EnableRules>
         <EnableRule Id="ts.msdyn_workorderservicetask.TSIS.hasQuestionnaireDefinition" />
@@ -582,6 +614,11 @@
           <CrmParameter Value="PrimaryControl" />
         </CustomRule>
       </EnableRule>
+      <EnableRule Id="ts.msdyn_workorderservicetask.isTaskTypeCustomQuestionnaire">
+        <CustomRule FunctionName="isTaskTypeCustomQuestionnaire" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
       <EnableRule Id="ts.msdyn_workorderservicetask.TSIS.hasQuestionnaireDefinition">
         <CustomRule FunctionName="hasQuestionnaireDefinition" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false">
           <CrmParameter Value="PrimaryControl" />
@@ -683,6 +720,46 @@
       <Titles>
         <Title description="Mark Complete" languagecode="1033" />
         <Title description="Marquer comme terminé SIST" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.Alt">
+      <Titles>
+        <Title description="Build Questionnaire" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.LabelText">
+      <Titles>
+        <Title description="Build Questionnaire" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.ToolTipDescription">
+      <Titles>
+        <Title description="Build Custom Questionnaire using the Custom Questionnaire Provisions" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.ToolTipTitle">
+      <Titles>
+        <Title description="Build Custom Questionnaire using the Custom Questionnaire Provisions" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.Button.PreviewProvisionText.Alt">
+      <Titles>
+        <Title description="Preview Provision Text" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.Button.PreviewProvisionText.LabelText">
+      <Titles>
+        <Title description="Preview Provision Text" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.Button.PreviewProvisionText.ToolTipDescription">
+      <Titles>
+        <Title description="Preview Provision Text of the associated Custom Questionnaire Provisions" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.Button.PreviewProvisionText.ToolTipTitle">
+      <Titles>
+        <Title description="Preview Provision Text" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.Alt">
