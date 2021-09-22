@@ -79,7 +79,7 @@
                           <label description="Stakeholder" languagecode="1033" />
                           <label description="Client" languagecode="1036" />
                         </labels>
-                        <control id="customerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="customerid" disabled="false">
+                        <control id="customerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="customerid" disabled="true">
                           <parameters>
                             <DisableMru>true</DisableMru>
                           </parameters>
@@ -1853,6 +1853,11 @@
         <event name="onchange" application="true" active="true" attribute="customerid">
           <Handlers>
             <Handler functionName="ROM.Incident.stakeholderOnChange" libraryName="ovs_/js/Incident.js" handlerUniqueId="{31ad64bd-2466-463e-8b23-60de37a9e43e}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_tradenameid">
+          <Handlers>
+            <Handler functionName="ROM.Incident.tradenameOnChange" libraryName="ovs_/js/Incident.js" handlerUniqueId="{fda767dc-bf44-454a-8184-8c9d060169fb}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

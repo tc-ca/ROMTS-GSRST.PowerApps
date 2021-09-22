@@ -244,14 +244,68 @@
                     </row>
                   </rows>
                 </section>
-                <section name="section_custom_questionnaire" showlabel="false" showbar="false" locklevel="0" id="{314bdd88-22dc-201c-71c3-085c8835da54}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" visible="false">
+                <section name="section_custom_questionnaire" showlabel="false" showbar="false" locklevel="0" id="{314bdd88-22dc-201c-71c3-085c8835da54}" IsUserDefined="0" layout="varwidth" columns="1111" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" visible="false">
                   <labels>
                     <label description="Custom Inspection Section" languagecode="1033" />
                     <label description="Section d'inspection personnalisée" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{398940a5-4b57-d9a9-6573-0c928da37268}" showlabel="true" colspan="1" auto="false" rowspan="7">
+                      <cell id="{b1b1d862-a535-4de1-1e10-002240b2b625}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{0b5e21dc-4a57-d856-2510-92400138cada}" showlabel="true" locklevel="0" colspan="2">
+                        <labels>
+                          <label description="Legislation Type Filter" languagecode="1033" />
+                        </labels>
+                        <control id="ts_legislationtypefilter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_legislationtypefilter" disabled="false" uniqueid="{2aa7066c-5d0b-4a24-e5db-3a877c694018}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{3FB7F3CD-1E90-482A-A1AC-4E73FB85623D}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{6489a789-8880-d24d-6a60-333eb8b39710}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{32368da2-60c4-298e-8d76-8c21e6ed14a6}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{d588c889-56a0-1d02-e0c7-a4a80e64c003}" showlabel="true" locklevel="0" colspan="2">
+                        <labels>
+                          <label description="Legislation Source Filter" languagecode="1033" />
+                        </labels>
+                        <control id="ts_legislationsourcefilter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_legislationsourcefilter" disabled="false" uniqueid="{5192c5d9-6d14-260d-eee5-a58243636131}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{316E0211-BA57-48AC-8050-24095FDD070D}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                      <cell id="{8aa0b0ad-5342-a5e4-1390-3b317520b7e6}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{398940a5-4b57-d9a9-6573-0c928da37268}" showlabel="true" colspan="4" auto="false" rowspan="7">
                         <labels>
                           <label description="Custom Questionnaire Provisions" languagecode="1033" />
                           <label description="Législations" languagecode="1036" />
@@ -1161,7 +1215,6 @@
           <Handlers>
             <Handler handlerUniqueId="{5c802397-be80-172c-de32-13cb84402074}" functionName="WorkOrderServiceTask.Library.Load" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" enabled="true" passExecutionContext="true" parameters="" />
             <Handler functionName="ROM.WorkOrderServiceTask.onLoad" libraryName="ovs_/js/WorkOrderServiceTask.js" handlerUniqueId="{fcea2e78-3ca3-4f42-95c4-3245fcdf8f6f}" enabled="true" parameters="" passExecutionContext="true" />
-            <Handler functionName="ROM.WorkOrderServiceTask.ToggleQuestionnaire" libraryName="ovs_/js/WorkOrderServiceTask.js" handlerUniqueId="{2d2cee03-9715-d0eb-647d-c88e1b9730e7}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onsave" application="false" active="false">
