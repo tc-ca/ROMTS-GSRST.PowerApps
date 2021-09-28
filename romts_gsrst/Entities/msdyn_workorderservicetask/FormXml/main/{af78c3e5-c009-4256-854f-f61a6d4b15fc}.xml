@@ -95,12 +95,12 @@
                         </labels>
                         <control id="msdyn_percentcomplete" classid="{0D2C745A-E5A8-4c8f-BA63-C6D3BB604660}" datafieldname="msdyn_percentcomplete" disabled="false" uniqueid="{c36e2c65-c414-d5b9-a3ac-e544ae782634}" />
                       </cell>
-                      <cell id="{4d5b666c-9ac0-432d-8b8e-1f1f01190550}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{1436325c-0bf3-4c75-9583-83013c19c6f7}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
-                          <label description="Work Order Start Date" languagecode="1033" />
-                          <label description="Date de début de l'ordre de travail" languagecode="1036" />
+                          <label description="Service Task Start Date" languagecode="1033" />
+                          <label description="Date de début de tâche de service" languagecode="1036" />
                         </labels>
-                        <control id="ts_workorderstartdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_workorderstartdate" disabled="true" />
+                        <control id="ts_servicetaskstartdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_servicetaskstartdate" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -111,10 +111,12 @@
                         </labels>
                         <control id="statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="true" uniqueid="{96158409-8d72-329b-a68a-7796ecd4a041}" />
                       </cell>
-                      <cell locklevel="0" id="{40d4ddeb-e09d-47d0-985d-493f5920d76a}" showlabel="false">
+                      <cell id="{43cfdde9-34f9-4fea-9593-4cd97802e093}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Service Task End Date" languagecode="1033" />
+                          <label description="Date de fin de tâche de service" languagecode="1036" />
                         </labels>
+                        <control id="ts_servicetaskenddate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_servicetaskenddate" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -125,7 +127,7 @@
                         </labels>
                         <control id="statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" uniqueid="{e30a833c-8a59-01be-9ae3-538e67eeb4c6}" />
                       </cell>
-                      <cell locklevel="0" id="{3f350182-e8f5-4a5f-b433-8ce6fad46bc7}" showlabel="false">
+                      <cell locklevel="0" id="{c6929126-c73c-4fd1-9fd2-d9b3e8c38387}">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -259,6 +261,7 @@
                       <cell id="{0b5e21dc-4a57-d856-2510-92400138cada}" showlabel="true" locklevel="0" colspan="2">
                         <labels>
                           <label description="Legislation Type Filter" languagecode="1033" />
+                          <label description="Legislation Type Filter" languagecode="1036" />
                         </labels>
                         <control id="ts_legislationtypefilter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_legislationtypefilter" disabled="false" uniqueid="{2aa7066c-5d0b-4a24-e5db-3a877c694018}">
                           <parameters>
@@ -286,6 +289,7 @@
                       <cell id="{d588c889-56a0-1d02-e0c7-a4a80e64c003}" showlabel="true" locklevel="0" colspan="2">
                         <labels>
                           <label description="Legislation Source Filter" languagecode="1033" />
+                          <label description="Legislation Source Filter" languagecode="1036" />
                         </labels>
                         <control id="ts_legislationsourcefilter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_legislationsourcefilter" disabled="false" uniqueid="{5192c5d9-6d14-260d-eee5-a58243636131}">
                           <parameters>
@@ -1225,6 +1229,11 @@
         <event name="onchange" application="true" active="true" attribute="ts_workorderstartdate">
           <Handlers>
             <Handler functionName="ROM.WorkOrderServiceTask.workOrderStartDateOnChange" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{3a02cd24-6a25-498d-a943-bacd15108bcd}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_servicetaskstartdate">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTask.serviceTaskStartDateOnChange" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{f7617c84-ebb2-4622-aaa1-bf8eb25f4b56}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

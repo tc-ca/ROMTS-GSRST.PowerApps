@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
-    <CustomAction Id="ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom.CustomAction" Location="Mscrm.SubGrid.qm_rclegislation.MainTab.Management.Controls._children" Sequence="99">
+    <CustomAction Id="ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom.CustomAction" Location="Mscrm.SubGrid.qm_rclegislation.MainTab.Management.Controls._children" Sequence="40">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom.Alt" Command="ts.qm_rclegislation.Subgrid.AddExistingAssoc.Custom" Id="ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom.LabelText" Sequence="99" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom.ToolTipTitle" ToolTipDescription="$LocLabels:ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom.ToolTipDescription" ModernImage="AddExisting" />
+        <Button Alt="$LocLabels:ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom.Alt" Command="ts.qm_rclegislation.Subgrid.AddExistingAssoc.Custom" Id="ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom.LabelText" Sequence="40" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom.ToolTipTitle" ToolTipDescription="$LocLabels:ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom.ToolTipDescription" ModernImage="AddExisting" />
       </CommandUIDefinition>
     </CustomAction>
   </CustomActions>
@@ -11,8 +11,53 @@
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
   <CommandDefinitions>
+    <CommandDefinition Id="Mscrm.AddExistingRecordFromSubGridAssociated">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.EntityFormIsEnabled" />
+        <EnableRule Id="ts.qm_rclegislation.EnableRule3.isCurrentFormNotSurveyJSForm" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AddExisting" />
+        <DisplayRule Id="Mscrm.ShowForManyToManyGrids" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.AppendPrimary" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="Mscrm.AppendToSelected" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridAssociated" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.AddExistingRecordFromSubGridStandard">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.EntityFormIsEnabled" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+        <EnableRule Id="Mscrm.IsRelationshipEnabledInMocaOffline" />
+        <EnableRule Id="ts.qm_rclegislation.EnableRule3.isCurrentFormNotSurveyJSForm" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AddExisting" />
+        <DisplayRule Id="Mscrm.ShowForOneToManyGrids" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="Mscrm.CanWriteSelected" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridStandard" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="ts.qm_rclegislation.Subgrid.AddExistingAssoc.Custom">
-      <EnableRules />
+      <EnableRules>
+        <EnableRule Id="ts.qm_rclegislation.EnableRule0.isCurrentFormSurveyJSForm" />
+      </EnableRules>
       <DisplayRules />
       <Actions>
         <JavaScriptFunction FunctionName="addExistingLegislationsToEntity" Library="$webresource:ts_/js/LegislationRibbon.js">
@@ -24,28 +69,84 @@
   </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
-    <DisplayRules />
-    <EnableRules />
+    <DisplayRules>
+      <DisplayRule Id="Mscrm.AddExisting">
+        <ReferencingAttributeRequiredRule Default="false" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendPrimary">
+        <EntityPrivilegeRule PrivilegeType="Append" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendSelected">
+        <EntityPrivilegeRule PrivilegeType="Append" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendToPrimary">
+        <EntityPrivilegeRule PrivilegeType="AppendTo" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendToSelected">
+        <EntityPrivilegeRule PrivilegeType="AppendTo" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.CanWriteSelected">
+        <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.ShowForManyToManyGrids">
+        <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="ManyToMany" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.ShowForOneToManyGrids">
+        <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="OneToMany" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules>
+      <EnableRule Id="Mscrm.AppendToPrimary">
+        <RecordPrivilegeRule PrivilegeType="AppendTo" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.EntityFormIsEnabled">
+        <FormStateRule State="Disabled" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline">
+        <CustomRule FunctionName="XrmCore.Rules.Online.IsEntityAvailableForUserInMocaOffline" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsRelationshipEnabledInMocaOffline">
+        <CustomRule FunctionName="XrmCore.Rules.Online.IsRelationshipEnabledInMocaOffline" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.qm_rclegislation.EnableRule0.isCurrentFormSurveyJSForm">
+        <CustomRule FunctionName="isCurrentFormSurveyJSForm" Library="$webresource:ts_/js/LegislationRibbon.js" Default="false">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.qm_rclegislation.EnableRule3.isCurrentFormNotSurveyJSForm">
+        <CustomRule FunctionName="isCurrentFormSurveyJSForm" Library="$webresource:ts_/js/LegislationRibbon.js" Default="false" InvertResult="true">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
   <LocLabels>
     <LocLabel Id="ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom.Alt">
       <Titles>
         <Title description="Add Existing Provision" languagecode="1033" />
+        <Title description="Nouveau Disposition" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom.LabelText">
       <Titles>
         <Title description="Add Existing Provision" languagecode="1033" />
+        <Title description="Nouveau Disposition" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom.ToolTipDescription">
       <Titles>
         <Title description="Add a Provision that already exists to the record you are working with." languagecode="1033" />
+        <Title description="Ajouter une entité Disposition associée à cet enregistrement" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.qm_rclegislation.Mscrm.SubGrid.qm_rclegislation.AddExistingAssoc.Custom.ToolTipTitle">
       <Titles>
         <Title description="Add Existing Provision" languagecode="1033" />
+        <Title description="Créer Disposition" languagecode="1036" />
       </Titles>
     </LocLabel>
   </LocLabels>

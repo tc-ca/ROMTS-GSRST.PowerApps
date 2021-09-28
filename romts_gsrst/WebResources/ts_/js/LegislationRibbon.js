@@ -212,3 +212,10 @@ function setWorkOrderServiceTaskLookupControl(formContext, selectedControl, enti
             showErrorMessageAlert(error);
         });
 }
+
+//Returns true if the current form is the Work Order Service Task SurveyJS Form
+function isCurrentFormSurveyJSForm(primaryControl) {
+    const surveyJSFormId = "af78c3e5-c009-4256-854f-f61a6d4b15fc";
+    const currentFormId = primaryControl.ui.formSelector.getCurrentItem().getId();
+    return (currentFormId === surveyJSFormId);
+}
