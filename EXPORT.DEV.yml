@@ -34,11 +34,11 @@ steps:
     nugetFeed: 'official'
     psFeed: 'official'
 - task: MSCRMExportSolution@12
-  displayName: 'Export Managed and Unmanaged Solutions'
+  displayName: 'Export Unmanaged Solutions'
   inputs:
     crmConnectionString: '$(ConnectionStringDev)'
     solutionName: '$(SolutionName)'
-    exportManaged: true
+    exportManaged: false
     exportUnmanaged: true
     outputPath: '$(Build.ArtifactStagingDirectory)'
     crmConnectionTimeout: '1960'
