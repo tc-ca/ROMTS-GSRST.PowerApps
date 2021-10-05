@@ -127,7 +127,7 @@
                         </labels>
                         <control id="statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" uniqueid="{e30a833c-8a59-01be-9ae3-538e67eeb4c6}" />
                       </cell>
-                      <cell locklevel="0" id="{c6929126-c73c-4fd1-9fd2-d9b3e8c38387}">
+                      <cell locklevel="0" id="{c6929126-c73c-4fd1-9fd2-d9b3e8c38387}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -258,40 +258,17 @@
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                      <cell id="{0b5e21dc-4a57-d856-2510-92400138cada}" showlabel="true" locklevel="0" colspan="2">
-                        <labels>
-                          <label description="Legislation Type Filter" languagecode="1033" />
-                          <label description="Legislation Type Filter" languagecode="1036" />
-                        </labels>
-                        <control id="ts_legislationtypefilter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_legislationtypefilter" disabled="false" uniqueid="{2aa7066c-5d0b-4a24-e5db-3a877c694018}">
-                          <parameters>
-                            <AutoResolve>true</AutoResolve>
-                            <DisableMru>false</DisableMru>
-                            <DisableQuickFind>false</DisableQuickFind>
-                            <DisableViewPicker>false</DisableViewPicker>
-                            <DefaultViewId>{3FB7F3CD-1E90-482A-A1AC-4E73FB85623D}</DefaultViewId>
-                            <AllowFilterOff>false</AllowFilterOff>
-                          </parameters>
-                        </control>
-                      </cell>
-                      <cell id="{6489a789-8880-d24d-6a60-333eb8b39710}" showlabel="false">
+                      <cell id="{b32207db-1a6d-ae71-402d-ba18b07085e0}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                    </row>
-                    <row>
-                      <cell id="{32368da2-60c4-298e-8d76-8c21e6ed14a6}" showlabel="false">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                      <cell id="{d588c889-56a0-1d02-e0c7-a4a80e64c003}" showlabel="true" locklevel="0" colspan="2">
+                      <cell id="{47c2b679-aa7d-00a6-c27d-ded592d47a06}" showlabel="true" locklevel="0" colspan="2">
                         <labels>
                           <label description="Legislation Source Filter" languagecode="1033" />
-                          <label description="Legislation Source Filter" languagecode="1036" />
+                          <label description="Émmeteur du règlement Filtrage" languagecode="1036" />
                         </labels>
-                        <control id="ts_legislationsourcefilter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_legislationsourcefilter" disabled="false" uniqueid="{5192c5d9-6d14-260d-eee5-a58243636131}">
+                        <control id="ts_legislationsourcefilter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_legislationsourcefilter" disabled="false" uniqueid="{b47c2b8c-c856-7136-6898-038257a5514c}">
                           <parameters>
                             <AutoResolve>true</AutoResolve>
                             <DisableMru>false</DisableMru>
@@ -302,10 +279,33 @@
                           </parameters>
                         </control>
                       </cell>
-                      <cell id="{8aa0b0ad-5342-a5e4-1390-3b317520b7e6}" showlabel="false">
+                    </row>
+                    <row>
+                      <cell id="{53506b1e-61e1-63c1-cb32-3b26c5017b36}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
+                      </cell>
+                      <cell id="{a45dd856-68a8-b325-e87c-2e7a9d6c5bd2}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{b45d3cb9-3c52-7303-0cd4-494d031bc6b3}" showlabel="true" locklevel="0" colspan="2">
+                        <labels>
+                          <label description="Legislation Type Filter" languagecode="1033" />
+                          <label description="Type de règlement Filtrage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_legislationtypefilter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_legislationtypefilter" disabled="false" uniqueid="{0bc407d9-4482-e3d1-8407-acd407ca894b}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{3FB7F3CD-1E90-482A-A1AC-4E73FB85623D}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -1236,6 +1236,11 @@
             <Handler functionName="ROM.WorkOrderServiceTask.serviceTaskStartDateOnChange" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{f7617c84-ebb2-4622-aaa1-bf8eb25f4b56}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_tasktype">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTask.taskTypeOnChange" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{cc232d73-2a36-499e-aa90-39ddd50c849e}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
       </events>
       <controlDescriptions>
         <controlDescription forControl="{e4961363-e92c-e781-6760-1b2d258e5912}">
@@ -1299,11 +1304,11 @@
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
     <LocalizedNames>
-      <LocalizedName description="SurveyJS" languagecode="1033" />
+      <LocalizedName description="SondageJS" languagecode="1033" />
       <LocalizedName description="SondageJS" languagecode="1036" />
     </LocalizedNames>
     <Descriptions>
-      <Description description="A form for this entity." languagecode="1033" />
+      <Description description="Formulaire pour cette entité." languagecode="1033" />
       <Description description="Formulaire pour cette entité." languagecode="1036" />
     </Descriptions>
   </systemform>
