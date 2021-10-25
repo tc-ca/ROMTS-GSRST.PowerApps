@@ -567,20 +567,38 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell locklevel="0" id="{a7387095-0064-46e8-bc6a-c63dc793c315}" rowspan="1" colspan="1">
+                      <cell locklevel="0" id="{a7387095-0064-46e8-bc6a-c63dc793c315}" rowspan="7" colspan="1" auto="false" showlabel="true">
                         <labels>
                           <label description="Findings" languagecode="1033" />
                           <label description="Dispositions du tâche de service de l'ordre de travail" languagecode="1036" />
                         </labels>
-                        <control id="Subgrid_Findings" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="Subgrid_Findings" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{3b1e43d2-0ea9-4aec-274d-8b59c92535d5}">
                           <parameters>
                             <TargetEntityType>ovs_finding</TargetEntityType>
                             <ViewId>{9711D0C3-7FCC-46DA-A259-A722BA88AF4D}</ViewId>
                             <EnableViewPicker>true</EnableViewPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <IsUserView>false</IsUserView>
+                            <ViewIds>{9711D0C3-7FCC-46DA-A259-A722BA88AF4D}</ViewIds>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RelationshipName>ovs_msdyn_workorderservicetask_ovs_finding</RelationshipName>
                           </parameters>
                         </control>
                       </cell>
                     </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>
@@ -1209,39 +1227,6 @@
           </NavBarArea>
         </NavBarAreas>
       </Navigation>
-      <formLibraries>
-        <Library name="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" libraryUniqueId="{506d0839-7130-9366-88a2-3d05766edd36}" />
-        <Library name="ovs_/js/WorkOrderServiceTask.js" libraryUniqueId="{2d4e68d3-8ed8-49c9-8877-45a4c8a3499a}" />
-        <Library name="ts_/js/buildprovisiontext.js" libraryUniqueId="{c62733e8-a2c1-65b3-3048-eb9a716e859c}" />
-      </formLibraries>
-      <events>
-        <event name="onload" application="false" active="false">
-          <Handlers>
-            <Handler handlerUniqueId="{5c802397-be80-172c-de32-13cb84402074}" functionName="WorkOrderServiceTask.Library.Load" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" enabled="true" passExecutionContext="true" parameters="" />
-            <Handler functionName="ROM.WorkOrderServiceTask.onLoad" libraryName="ovs_/js/WorkOrderServiceTask.js" handlerUniqueId="{fcea2e78-3ca3-4f42-95c4-3245fcdf8f6f}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
-        <event name="onsave" application="false" active="false">
-          <Handlers>
-            <Handler functionName="ROM.WorkOrderServiceTask.onSave" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{914bacc4-b50e-3c29-079b-50addc8e457c}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
-        <event name="onchange" application="true" active="true" attribute="ts_workorderstartdate">
-          <Handlers>
-            <Handler functionName="ROM.WorkOrderServiceTask.workOrderStartDateOnChange" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{3a02cd24-6a25-498d-a943-bacd15108bcd}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
-        <event name="onchange" application="true" active="true" attribute="ts_servicetaskstartdate">
-          <Handlers>
-            <Handler functionName="ROM.WorkOrderServiceTask.serviceTaskStartDateOnChange" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{f7617c84-ebb2-4622-aaa1-bf8eb25f4b56}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
-        <event name="onchange" application="true" active="true" attribute="msdyn_tasktype">
-          <Handlers>
-            <Handler functionName="ROM.WorkOrderServiceTask.taskTypeOnChange" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{cc232d73-2a36-499e-aa90-39ddd50c849e}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
-      </events>
       <controlDescriptions>
         <controlDescription forControl="{e4961363-e92c-e781-6760-1b2d258e5912}">
           <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}">
@@ -1296,6 +1281,34 @@
           </row>
         </rows>
       </header>
+      <formLibraries>
+        <Library name="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" libraryUniqueId="{506d0839-7130-9366-88a2-3d05766edd36}" />
+        <Library name="ovs_/js/WorkOrderServiceTask.js" libraryUniqueId="{2d4e68d3-8ed8-49c9-8877-45a4c8a3499a}" />
+        <Library name="ts_/js/buildprovisiontext.js" libraryUniqueId="{c62733e8-a2c1-65b3-3048-eb9a716e859c}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler handlerUniqueId="{5c802397-be80-172c-de32-13cb84402074}" functionName="WorkOrderServiceTask.Library.Load" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" enabled="true" passExecutionContext="true" parameters="" />
+            <Handler functionName="ROM.WorkOrderServiceTask.onLoad" libraryName="ovs_/js/WorkOrderServiceTask.js" handlerUniqueId="{fcea2e78-3ca3-4f42-95c4-3245fcdf8f6f}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTask.onSave" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{914bacc4-b50e-3c29-079b-50addc8e457c}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_servicetaskstartdate">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTask.serviceTaskStartDateOnChange" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{f7617c84-ebb2-4622-aaa1-bf8eb25f4b56}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="msdyn_tasktype">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTask.taskTypeOnChange" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{cc232d73-2a36-499e-aa90-39ddd50c849e}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
       <DisplayConditions FallbackForm="true" Order="4">
         <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
         <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />

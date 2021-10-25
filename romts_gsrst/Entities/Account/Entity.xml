@@ -2674,8 +2674,8 @@
             <options>
               <option value="5">
                 <labels>
-                  <label description="Partenaire" languagecode="1036" />
                   <label description="Security Partner" languagecode="1033" />
+                  <label description="Partenaire" languagecode="1036" />
                 </labels>
               </option>
               <option value="12">
@@ -3476,7 +3476,7 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format></Format>
+          <Format>none</Format>
           <MinValue>-2147483648</MinValue>
           <MaxValue>2147483647</MaxValue>
           <displaynames>
@@ -3733,6 +3733,47 @@
             <Description description="Sélectionnez le secteur principal du compte à utiliser dans la segmentation marketing et l'analyse démographique." languagecode="1036" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="IsPrivate">
+          <Type>bit</Type>
+          <Name>isprivate</Name>
+          <LogicalName>isprivate</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="account_isprivate">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+        </attribute>
         <attribute PhysicalName="LastOnHoldTime">
           <Type>datetime</Type>
           <Name>lastonholdtime</Name>
@@ -3931,6 +3972,64 @@
             <Description description="Indique si uniquement pour marketing" languagecode="1036" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="Merged">
+          <Type>bit</Type>
+          <Name>merged</Name>
+          <LogicalName>merged</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="account_merged">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Merged" languagecode="1033" />
+              <displayname description="Fusionné(e)" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Information regarding whether the account has been merged with a master account." languagecode="1033" />
+              <Description description="Information indiquant si le compte a été fusionné avec un compte principal." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Merged" languagecode="1033" />
+            <displayname description="Fusionné(e)" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows whether the account has been merged with another account." languagecode="1033" />
+            <Description description="Indique si le compte a été fusionné avec un autre compte." languagecode="1036" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="ModifiedBy">
           <Type>lookup</Type>
           <Name>modifiedby</Name>
@@ -4099,11 +4198,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Billing Account" languagecode="1033" />
-            <displayname description="Billing Account" languagecode="1036" />
+            <displayname description="Compte de facturation" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Reference to an other account to be used for billing (only to be used if billing account differs)" languagecode="1033" />
-            <Description description="" languagecode="1036" />
+            <Description description="Référence à un autre compte à utiliser pour la facturation (uniquement si le compte de facturation est différent)" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="msdyn_PreferredResource">
@@ -4237,32 +4336,34 @@
             <IntroducedVersion>3.1.0.3</IntroducedVersion>
             <displaynames>
               <displayname description="Tax Exempt" languagecode="1033" />
+              <displayname description="Exonération de taxes" languagecode="1036" />
             </displaynames>
             <Descriptions>
               <Description description="Select whether the account is tax exempt." languagecode="1033" />
+              <Description description="Indiquez si le compte est exonéré de taxes." languagecode="1036" />
             </Descriptions>
             <options>
               <option value="0">
                 <labels>
-                  <label description="No" languagecode="1033" />
                   <label description="Non" languagecode="1036" />
+                  <label description="No" languagecode="1033" />
                 </labels>
               </option>
               <option value="1">
                 <labels>
-                  <label description="Yes" languagecode="1033" />
                   <label description="Oui" languagecode="1036" />
+                  <label description="Yes" languagecode="1033" />
                 </labels>
               </option>
             </options>
           </optionset>
           <displaynames>
             <displayname description="Tax Exempt" languagecode="1033" />
-            <displayname description="Tax Exempt" languagecode="1036" />
+            <displayname description="Exonération de taxes" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Select whether the account is tax exempt." languagecode="1033" />
-            <Description description="" languagecode="1036" />
+            <Description description="Indiquez si le compte est exonéré de taxes." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="msdyn_TaxExemptNumber">
@@ -4293,11 +4394,11 @@
           <Length>40</Length>
           <displaynames>
             <displayname description="Tax Exempt Number" languagecode="1033" />
-            <displayname description="Tax Exempt Number" languagecode="1036" />
+            <displayname description="Numéro d'exonération de TVA" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Shows the government tax exempt number." languagecode="1033" />
-            <Description description="" languagecode="1036" />
+            <Description description="Affiche le numéro d'exemption de taxes gouvernementales." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="msdyn_TravelCharge">
@@ -4464,7 +4565,7 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format></Format>
+          <Format>text</Format>
           <MaxLength>4000</MaxLength>
           <displaynames>
             <displayname description="Work Order Instructions" languagecode="1033" />
@@ -4533,7 +4634,7 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format></Format>
+          <Format>none</Format>
           <MinValue>0</MinValue>
           <MaxValue>1000000000</MaxValue>
           <displaynames>
@@ -4568,7 +4669,7 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format></Format>
+          <Format>none</Format>
           <MinValue>-2147483648</MinValue>
           <MaxValue>2147483647</MaxValue>
           <displaynames>
@@ -4603,7 +4704,7 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format></Format>
+          <Format>none</Format>
           <MinValue>-2147483648</MinValue>
           <MaxValue>2147483647</MaxValue>
           <displaynames>
@@ -5194,6 +5295,64 @@
           <Descriptions>
             <Description description="Choose the parent account associated with this account to show parent and child businesses in reporting and analytics." languagecode="1033" />
             <Description description="Choisissez le compte parent associé à ce compte pour afficher les entreprises mères et enfants dans la génération de rapports et d'analyses." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ParticipatesInWorkflow">
+          <Type>bit</Type>
+          <Name>participatesinworkflow</Name>
+          <LogicalName>participatesinworkflow</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="account_participatesinworkflow">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Participates in Workflow" languagecode="1033" />
+              <displayname description="Participe au workflow" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Information that specifies whether the account participates in workflow rules." languagecode="1033" />
+              <Description description="Information indiquant si le compte participe aux règles de workflow." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Participates in Workflow" languagecode="1033" />
+            <displayname description="Participe au workflow" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="For system use only. Legacy Microsoft Dynamics CRM 3.0 workflow data." languagecode="1033" />
+            <Description description="Utilisation par le système uniquement. Données de workflow héritées de Microsoft Dynamics CRM 3.0." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="PaymentTermsCode">
@@ -5808,7 +5967,7 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format></Format>
+          <Format>none</Format>
           <MinValue>0</MinValue>
           <MaxValue>1000000000</MaxValue>
           <displaynames>
@@ -6401,6 +6560,7 @@
           <LogicalName>ts_country</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
@@ -6441,6 +6601,7 @@
           <LogicalName>ts_msdyn_workorder</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
@@ -6468,9 +6629,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Work Order" languagecode="1033" />
+            <displayname description="Work Order" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="WebSiteURL">
@@ -6594,6 +6757,7 @@
   </EntityInfo>
   <FormXml />
   <SavedQueries />
+  <Visualizations />
   <RibbonDiffXml />
   <Strings>
     <Strings ResourceKey="Customer_Service_Description">

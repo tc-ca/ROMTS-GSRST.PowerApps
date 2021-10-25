@@ -9,7 +9,7 @@
       </LocalizedNames>
       <LocalizedCollectionNames>
         <LocalizedCollectionName description="Contacts" languagecode="1033" />
-        <LocalizedCollectionName description="Contacts" languagecode="1036" />
+        <LocalizedCollectionName description="Coordonnées" languagecode="1036" />
       </LocalizedCollectionNames>
       <Descriptions>
         <Description description="Person with whom a business unit has a relationship, such as customer, supplier, and colleague." languagecode="1033" />
@@ -5092,7 +5092,7 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format></Format>
+          <Format>none</Format>
           <MinValue>-2147483648</MinValue>
           <MaxValue>2147483647</MaxValue>
           <displaynames>
@@ -5102,6 +5102,55 @@
           <Descriptions>
             <Description description="Unique identifier of the data import or data migration that created this record." languagecode="1033" />
             <Description description="Identificateur unique de l'importation ou de la migration de données ayant généré cet enregistrement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="IsAutoCreate">
+          <Type>bit</Type>
+          <Name>isautocreate</Name>
+          <LogicalName>isautocreate</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="contact_isautocreate">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Auto-created" languagecode="1033" />
+            <displayname description="Créé automatiquement" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Information about whether the contact was auto-created when promoting an email or an appointment." languagecode="1033" />
+            <Description description="Information indiquant si le contact a été créé automatiquement lors de la promotion d’un courrier électronique ou d’un rendez-vous." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="IsBackofficeCustomer">
@@ -5170,6 +5219,47 @@
             <Description description="Select whether the contact exists in a separate accounting or other system, such as Microsoft Dynamics GP or another ERP database, for use in integration processes." languagecode="1033" />
             <Description description="Indiquez si le contact existe dans une comptabilité distincte ou un autre système, tel que Microsoft Dynamics GP ou une autre base de données ERP, à utiliser dans les processus d'intégration." languagecode="1036" />
           </Descriptions>
+        </attribute>
+        <attribute PhysicalName="IsPrivate">
+          <Type>bit</Type>
+          <Name>isprivate</Name>
+          <LogicalName>isprivate</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="contact_isprivate">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
         </attribute>
         <attribute PhysicalName="JobTitle">
           <Type>nvarchar</Type>
@@ -5495,6 +5585,64 @@
           <Descriptions>
             <Description description="Whether is only for marketing" languagecode="1033" />
             <Description description="Indique si uniquement pour marketing" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="Merged">
+          <Type>bit</Type>
+          <Name>merged</Name>
+          <LogicalName>merged</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="contact_merged">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Merged" languagecode="1033" />
+              <displayname description="Fusionné(e)" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Information regarding whether the account has been merged with a master contact." languagecode="1033" />
+              <Description description="Information indiquant si le compte a été fusionné avec un contact principal." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Merged" languagecode="1033" />
+            <displayname description="Fusionné(e)" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows whether the account has been merged with a master contact." languagecode="1033" />
+            <Description description="Indique si le compte a été fusionné avec un contact principal." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="MiddleName">
@@ -5898,7 +6046,7 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format></Format>
+          <Format>none</Format>
           <MinValue>0</MinValue>
           <MaxValue>1000000000</MaxValue>
           <displaynames>
@@ -5933,7 +6081,7 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format></Format>
+          <Format>none</Format>
           <MinValue>-2147483648</MinValue>
           <MaxValue>2147483647</MaxValue>
           <displaynames>
@@ -6116,6 +6264,64 @@
           <Descriptions>
             <Description description="Select the parent account or parent contact for the contact to provide a quick link to additional details, such as financial information, activities, and opportunities." languagecode="1033" />
             <Description description="Sélectionnez le compte parent ou le contact parent du contact pour fournir un lien rapide vers les détails supplémentaires, comme les informations financières, les activités et les opportunités." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ParticipatesInWorkflow">
+          <Type>bit</Type>
+          <Name>participatesinworkflow</Name>
+          <LogicalName>participatesinworkflow</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="contact_participatesinworkflow">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Participates in Workflow" languagecode="1033" />
+              <displayname description="Participe au workflow" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Information about whether the contact participates in workflow rules." languagecode="1033" />
+              <Description description="Information indiquant si le contact participe aux règles de workflow." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Participates in Workflow" languagecode="1033" />
+            <displayname description="Participe au workflow" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows whether the contact participates in workflow rules." languagecode="1033" />
+            <Description description="Indique si le contact participe aux règles de workflow." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="PaymentTermsCode">
@@ -7305,6 +7511,9 @@
     </Strings>
     <Strings ResourceKey="OptionalFeatures.aspx_Text_51">
       <String languagecode="1036" Comment="">Supprimez les paramètres de formulaire utilisés le plus récemment pour les entités de compte, de cas, de contact, de prospect et d'opportunité pour chaque utilisateur de votre organisation.</String>
+    </Strings>
+    <Strings ResourceKey="Web.Tools.personalsettings.dialogs.personalsettings.htm_188">
+      <String languagecode="1036" Comment="">Coordonnées</String>
     </Strings>
   </Strings>
 </Entity>

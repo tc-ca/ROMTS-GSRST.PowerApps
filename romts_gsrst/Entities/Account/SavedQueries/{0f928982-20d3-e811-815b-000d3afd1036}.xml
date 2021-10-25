@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{0f928982-20d3-e811-815b-000d3afd1036}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="name" select="1" preview="1" icon="1">
+        <row name="result" id="accountid">
+          <cell name="name" width="300" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="emailaddress1" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="telephone1" width="100" />
+          <cell name="accountnumber" width="100" />
+          <cell name="primarycontactid" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="address1_city" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="account">
+          <attribute name="name" />
+          <attribute name="primarycontactid" />
+          <attribute name="telephone1" />
+          <attribute name="emailaddress1" />
+          <attribute name="address1_city" />
+          <attribute name="accountnumber" />
+          <order attribute="name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="msdyn_billingaccount" operator="not-null" />
+          </filter>
+          <attribute name="accountid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>8.2.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Service Account" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Service Account" languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>
