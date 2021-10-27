@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20211027.1</Version>
+    <Version>1.0.20211027.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -13132,6 +13132,12 @@
         <Required type="2" schemaName="msdyn_inspectiontaskresult" displayName="Result" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="msdyn_FieldService_patch_update (8.8.53.27)">
           <package>FieldService_Anchor (8.8.53.27)</package>
         </Required>
+        <Dependent type="26" schemaName="All Inspection - Work Order Service Task View" displayName="All Inspection - Work Order Service Task View" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{f67cb013-8c36-ec11-8c64-000d3a84e33b}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_inspectiontaskresult" displayName="Result" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="msdyn_FieldService_patch_update (8.8.53.27)">
+          <package>FieldService_Anchor (8.8.53.27)</package>
+        </Required>
         <Dependent type="60" displayName="Work Order Service Task - Mobile" parentDisplayName="Work Order Service Task" id="{06a480e2-69e6-4283-8aa5-9fa17c86671f}" />
       </MissingDependency>
       <MissingDependency>
@@ -13253,6 +13259,12 @@
           <package>FieldService_Anchor (8.8.53.27)</package>
         </Required>
         <Dependent type="26" schemaName="Active Work Order Service Tasks" displayName="Active Work Order Service Tasks" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{c9fd8f4d-8184-4ddb-a31a-89e66e8e710e}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workorderservicetaskid" displayName="Work Order Service Task" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.53.27)</package>
+        </Required>
+        <Dependent type="26" schemaName="All Inspection - Work Order Service Task View" displayName="All Inspection - Work Order Service Task View" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" id="{f67cb013-8c36-ec11-8c64-000d3a84e33b}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workorderservicetaskid" displayName="Work Order Service Task" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
@@ -16809,10 +16821,6 @@
           <package>FieldService_Anchor (8.8.53.27)</package>
         </Required>
         <Dependent type="26" schemaName="Schedule Board Core Details Pane Field Layout" displayName="Schedule Board Core Details Pane Field Layout" parentSchemaName="bookableresourcebooking" parentDisplayName="Bookable Resource Booking" id="{f314986c-c5db-e511-80f2-000d3a10dc9c}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="26" schemaName="All Inspection - Work Order Service Task View" displayName="All Inspection - Work Order Service Task View" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="Active" id="{f67cb013-8c36-ec11-8c64-000d3a84e33b}" />
-        <Dependent type="60" displayName="ROM Case" parentDisplayName="Case" id="{45b022a4-928d-eb11-b1ac-000d3ae92dbf}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Quote Product Inline Edit View: Bundle Products" displayName="Quote Product Inline Edit View: Bundle Products" parentSchemaName="quotedetail" parentDisplayName="Quote Line" solution="msdynce_SalesPatch (9.0.1904.3002)" id="{f6b7bacd-ca87-4cce-b4d3-0ff5dc0d43ef}">
