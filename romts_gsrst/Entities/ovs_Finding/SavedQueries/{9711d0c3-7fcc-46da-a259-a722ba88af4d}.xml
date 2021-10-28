@@ -13,9 +13,7 @@
           <cell name="ovs_finding" width="145" />
           <cell name="ovs_findingprovisionreference" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="ts_findingtype" width="100" />
-          <cell name="ts_accountid" width="100" />
-          <cell name="ts_ovs_operationtype" width="139" />
-          <cell name="ts_site" width="100" />
+          <cell name="ts_accountid" width="134" />
           <cell name="ts_enforcementaction" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="createdon" width="125" />
         </row>
@@ -23,20 +21,19 @@
     </layoutxml>
     <querytype>0</querytype>
     <fetchxml>
-      <fetch version="1.0" mapping="logical">
+      <fetch version="1.0" mapping="logical" distinct="true">
         <entity name="ovs_finding">
           <attribute name="createdon" />
-          <filter type="and">
-            <condition attribute="statecode" operator="eq" value="0" />
-          </filter>
           <attribute name="ovs_findingprovisionreference" />
           <attribute name="ovs_finding" />
           <attribute name="ts_findingtype" />
           <attribute name="ts_enforcementaction" />
           <attribute name="ovs_findingid" />
-          <attribute name="ts_ovs_operationtype" />
           <attribute name="ts_accountid" />
-          <attribute name="ts_site" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="ts_operationid" operator="not-null" />
+          </filter>
         </entity>
       </fetch>
     </fetchxml>

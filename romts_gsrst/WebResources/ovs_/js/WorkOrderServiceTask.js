@@ -48,10 +48,10 @@ var ROM;
         var noQuestionnaireText = "There is no questionnaire available for this date.";
         var confirmDisconnectedText = "You cannot retrieve the Inspection valid/active on the date selected";
         if (lang == 1036) {
-            enterStartDateToProceedText = "Entrez une date de d�but pour continue";
-            enterTaskTypeToProccedText = "Entrez un type de t�che pour continuer";
+            enterStartDateToProceedText = "Entrez une date de début pour continue";
+            enterTaskTypeToProccedText = "Entrez un type de tâche pour continuer";
             confirmTitle = "Message";
-            confirmDisconnectedText = "Vous ne pouvez pas r�cup�rer l'inspection valide/active � la date s�lectionn�e";
+            confirmDisconnectedText = "Vous ne pouvez pas récupérer l'inspection valide/active à la date sélectionnée";
             noQuestionnaireText = "Il n'y a pas de questionnaire disponible pour cette date.";
         }
         function onLoad(eContext) {
@@ -267,7 +267,7 @@ var ROM;
             Xrm.WebApi.retrieveRecord("msdyn_workorder", workOrderId, "?$select=_msdyn_workordertype_value,_ovs_operationtypeid_value").then(function success(result) {
                 var viewId = '{ae0d8547-6871-4854-91ba-03b0c619dbe1}';
                 var entityName = "msdyn_servicetasktype";
-                var viewDisplayName = (lang == 1036) ? "Type de t�che relative au service" : "Service Task Types";
+                var viewDisplayName = (lang == 1036) ? "Type de tâche relative au service" : "Service Task Types";
                 var fetchXml = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\"> <entity name=\"msdyn_servicetasktype\"> <attribute name=\"msdyn_name\" /> <attribute name=\"createdon\" /> <attribute name=\"msdyn_estimatedduration\" /> <attribute name=\"msdyn_description\" /> <attribute name=\"msdyn_servicetasktypeid\" /> <order attribute=\"msdyn_name\" descending=\"false\" /> <link-entity name=\"msdyn_incidenttypeservicetask\" from=\"msdyn_tasktype\" to=\"msdyn_servicetasktypeid\" link-type=\"inner\" alias=\"ae\"> <link-entity name=\"msdyn_incidenttype\" from=\"msdyn_incidenttypeid\" to=\"msdyn_incidenttype\" link-type=\"inner\" alias=\"af\"> <filter type=\"and\"> <condition attribute=\"msdyn_defaultworkordertype\" operator=\"eq\" value=\"" + result._msdyn_workordertype_value + "\" /> </filter> <link-entity name=\"ts_ovs_operationtypes_msdyn_incidenttypes\" from=\"msdyn_incidenttypeid\" to=\"msdyn_incidenttypeid\" visible=\"false\" intersect=\"true\"> <link-entity name=\"ovs_operationtype\" from=\"ovs_operationtypeid\" to=\"ovs_operationtypeid\" alias=\"ag\"> <filter type=\"and\"> <condition attribute=\"ovs_operationtypeid\" operator=\"eq\" value=\"" + result._ovs_operationtypeid_value + "\" /> </filter> </link-entity> </link-entity> </link-entity> </link-entity> </entity> </fetch>";
                 var layoutXml = '<grid name="resultset" object="10010" jump="name" select="1" icon="1" preview="1"><row name="result" id="msdyn_servicetasktype"><cell name="msdyn_name" width="200" /></row></grid>';
                 form.getControl("msdyn_tasktype").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
@@ -334,6 +334,12 @@ var ROM;
                                 "      <link-entity name='ovs_operationtype' from='ovs_operationtypeid' to='ovs_operationtypeid'>",
                                 "        <attribute name='ts_regulated' />",
                                 "        <attribute name='ovs_operationtypeid' /> ",
+                                "        <attribute name='ovs_operationtypenameenglish' />",
+                                "        <attribute name='ovs_operationtypenamefrench' />",
+                                "      </link-entity>",
+                                "      <link-entity name = 'msdyn_functionallocation' from = 'msdyn_functionallocationid' to = 'ts_site' > ",
+                                "        <attribute name='ts_functionallocationnamefrench' />",
+                                "        <attribute name='ts_functionallocationnameenglish' />",
                                 "      </link-entity>",
                                 "    </link-entity>",
                                 "    <link-entity name='account' from='accountid' to='msdyn_serviceaccount'>",
@@ -361,6 +367,12 @@ var ROM;
                                 "    <link-entity name='ovs_operationtype' from='ovs_operationtypeid' to='ovs_operationtypeid'>",
                                 "      <attribute name='ts_regulated' />",
                                 "      <attribute name='ovs_operationtypeid' /> ",
+                                "      <attribute name='ovs_operationtypenameenglish' />",
+                                "      <attribute name='ovs_operationtypenamefrench' />",
+                                "    </link-entity>",
+                                "    <link-entity name='msdyn_functionallocation' from='msdyn_functionallocationid' to='ts_site'>",
+                                "      <attribute name='ts_functionallocationnamefrench' />",
+                                "      <attribute name='ts_functionallocationnameenglish' />",
                                 "    </link-entity>",
                                 "  </entity>",
                                 "</fetch>",
@@ -388,20 +400,26 @@ var ROM;
                             return [4 /*yield*/, Promise.all([operationPromise1, operationPromise2, activityTypeOperationTypesPromise]).then(function (operationRetrievalPromises) {
                                     //Add the work order operation operationid, name, operationTypeId, and regulated boolean to the operations array
                                     var workOrderOperation = operationRetrievalPromises[0].entities[0];
-                                    if (workOrderOperation["ovs_operation1.ovs_operationid"] != null && workOrderOperation["account3.name"] != null && workOrderOperation["ovs_operationtype2.ts_regulated"] != null) {
+                                    var stakeholderName = workOrderOperation["account4.name"];
+                                    var operationTypeName = (lang == 1036) ? workOrderOperation["ovs_operationtype2.ovs_operationtypenamefrench"] : workOrderOperation["ovs_operationtype2.ovs_operationtypenameenglish"];
+                                    var siteName = (lang == 1036) ? workOrderOperation["msdyn_functionallocation3.ts_functionallocationnamefrench"] : workOrderOperation["msdyn_functionallocation3.ts_functionallocationnameenglish"];
+                                    if (workOrderOperation["ovs_operation1.ovs_operationid"] != null && workOrderOperation["account4.name"] != null && workOrderOperation["ovs_operationtype2.ts_regulated"] != null) {
                                         operations.push({
                                             id: workOrderOperation["ovs_operation1.ovs_operationid"],
-                                            name: workOrderOperation["account3.name"] + " : " + workOrderOperation["ovs_operation1.ovs_name"],
+                                            name: stakeholderName + " | " + operationTypeName + " | " + siteName,
                                             operationTypeId: workOrderOperation["ovs_operation1.ovs_operationtypeid"],
                                             isRegulated: workOrderOperation["ovs_operationtype2.ts_regulated"]
                                         });
                                     }
                                     //Add the operationid, name, operationTypeId, and regulated boolean of the work order's N:N operations to the operations array
                                     operationRetrievalPromises[1].entities.forEach(function (operation) {
+                                        var stakeholderName = operation["account2.name"];
+                                        var operationTypeName = (lang == 1036) ? operation["ovs_operationtype3.ovs_operationtypenamefrench"] : operation["ovs_operationtype3.ovs_operationtypenameenglish"];
+                                        var siteName = (lang == 1036) ? operation["msdyn_functionallocation4.ts_functionallocationnamefrench"] : operation["msdyn_functionallocation4.ts_functionallocationnameenglish"];
                                         if (operation.ovs_operationid != null && operation["account2.name"] != null && operation["ovs_operationtype3.ts_regulated"] != null) {
                                             operations.push({
                                                 id: operation["ovs_operationid"],
-                                                name: operation["account2.name"] + " : " + operation["ovs_name"],
+                                                name: stakeholderName + " | " + operationTypeName + " | " + siteName,
                                                 operationTypeId: operation["ovs_operationtype3.ovs_operationtypeid"],
                                                 isRegulated: operation["ovs_operationtype3.ts_regulated"]
                                             });
