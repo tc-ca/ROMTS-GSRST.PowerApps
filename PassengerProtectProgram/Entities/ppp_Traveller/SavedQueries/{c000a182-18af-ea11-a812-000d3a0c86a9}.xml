@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{c000a182-18af-ea11-a812-000d3a0c86a9}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ppp_name" select="1" icon="1" preview="1">
+        <row name="result" id="ppp_travellerid">
+          <cell name="ppp_name" width="100" />
+          <cell name="ppp_flightorigin" width="100" />
+          <cell name="ppp_aircarrier" width="100" />
+          <cell name="ppp_flightnumber" width="100" />
+          <cell name="ppp_recordstatus" width="100" />
+          <cell name="ownerid" width="100" />
+          <cell name="createdon" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="ppp_traveller">
+          <attribute name="ppp_flightnumber" />
+          <attribute name="ppp_recordstatus" />
+          <attribute name="createdon" />
+          <attribute name="ownerid" />
+          <attribute name="ppp_name" />
+          <attribute name="ppp_aircarrier" />
+          <attribute name="ppp_travellerid" />
+          <attribute name="ppp_flightorigin" />
+          <order attribute="ppp_flightorigin" descending="false" />
+          <order attribute="ppp_aircarrier" descending="false" />
+          <filter type="and">
+            <condition attribute="ppp_recordstatus" operator="eq" value="927820001" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.2</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Draft Traveller Validation Records" languagecode="1033" />
+      <LocalizedName description="Ébauche des dossiers de validation des voyageurs" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

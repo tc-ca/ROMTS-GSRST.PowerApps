@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{58a84206-5c04-44f4-a1fc-7cb7107b8f08}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ovs_name" select="1" icon="1" preview="1">
+        <row name="result" id="ovs_facilityid">
+          <cell name="ovs_icaocode" width="100" />
+          <cell name="ovs_class" width="100" />
+          <cell name="ovs_facilitynameenglish" width="100" />
+          <cell name="ovs_facilitynamefrench" width="100" />
+          <cell name="ovs_address1city" width="100" />
+          <cell name="ovs_address1stateprovince" width="100" />
+          <cell name="ovs_countryid" width="100" />
+          <cell name="ovs_elevation" width="100" />
+          <cell name="ovs_address1latitude" width="100" />
+          <cell name="ovs_address1longitude" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ovs_facility">
+          <attribute name="ovs_facilityid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ovs_icaocode" />
+          <attribute name="ovs_class" />
+          <attribute name="ovs_facilitynameenglish" />
+          <attribute name="ovs_facilitynamefrench" />
+          <attribute name="ovs_address1city" />
+          <attribute name="ovs_address1stateprovince" />
+          <attribute name="ovs_countryid" />
+          <attribute name="ovs_elevation" />
+          <attribute name="ovs_address1latitude" />
+          <attribute name="ovs_address1longitude" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Facilities" languagecode="1033" />
+      <LocalizedName description="Installations actives" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

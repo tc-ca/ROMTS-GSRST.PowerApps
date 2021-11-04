@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report>
+  <name>PPP - TVR - Call Log Report</name>
+  <defaultfilter>
+    <ReportFilter>
+      <ReportEntity paramname="CRM_Filteredppp_Traveller" donotconvert="1">
+        <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+          <entity name="ppp_traveller">
+            <all-attributes />
+            <filter type="and">
+              <filter type="or">
+                <condition attribute="ppp_recordstatus" operator="eq" value="927820001" />
+                <condition attribute="ppp_recordstatus" operator="eq" value="927820003" />
+              </filter>
+            </filter>
+          </entity>
+        </fetch>
+      </ReportEntity>
+    </ReportFilter>
+  </defaultfilter>
+  <iscustomreport>1</iscustomreport>
+  <description>Breakdown of call types received.</description>
+  <filename>PPP - TVR - Call Log Report.rdl</filename>
+  <languagecode>1033</languagecode>
+  <reportid>{18f0fbb5-def2-ea11-a815-000d3af3a7a7}</reportid>
+  <reporttypecode>1</reporttypecode>
+  <IntroducedVersion>1.0.0.30</IntroducedVersion>
+  <createdinmajorversion>9</createdinmajorversion>
+  <iscustomizable>1</iscustomizable>
+  <ExportedFileName>/Reports/PPP-TVR-CallLogReportrdl18f0fbb5-def2-ea11-a815-000d3af3a7a7.wdl</ExportedFileName>
+  <ReportCategories />
+  <ReportVisibilities>
+    <ReportVisbility>2</ReportVisbility>
+    <ReportVisbility>3</ReportVisbility>
+    <ReportVisbility>1</ReportVisbility>
+  </ReportVisibilities>
+  <ReportEntities>
+    <ReportEntity>ppp_traveller</ReportEntity>
+  </ReportEntities>
+</Report>

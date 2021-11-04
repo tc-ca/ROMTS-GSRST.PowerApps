@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{6fcd8ada-f9f1-4602-af22-db0178139987}</savedqueryid>
+    <layoutxml>
+      <grid name="ppp_travellers" jump="ppp_name" select="1" icon="1" preview="0">
+        <row name="ppp_traveller" id="ppp_travellerid">
+          <cell name="ppp_name" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ppp_traveller">
+          <attribute name="ppp_travellerid" />
+          <attribute name="ppp_name" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Traveller Lookup View" languagecode="1033" />
+      <LocalizedName description="Voyageur – Affichage de la recherche " languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

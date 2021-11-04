@@ -1,0 +1,25 @@
+<html><head>
+        <title>Feedback Link</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="ClientGlobalContext.js.aspx" type="text/javascript"></script>
+    <meta><meta></head>
+<body style="overflow-wrap: break-word;" onfocusout="parent.setEmailRange();">
+    <div id="div1">
+
+    </div>
+    <script language="javascript">
+        var globalContext = parent.Xrm.Utility.getGlobalContext();
+            var link = document.createElement("a");
+            link.href = "https://portal.prodpad.com/a3d10a16-c1e9-11ea-bd6e-06df22ffaf6f";
+            link.style = "font-family: Tahoma";
+            link.target = "_blank";
+            if (globalContext.userSettings.languageId == 1033) {                 
+                link.innerHTML = 'Provide Feedback';
+            } else {
+                link.innerHTML = 'Fournir des commentaires';
+            }
+        document.getElementById("div1").appendChild(link);
+    </script>
+
+</body></html>

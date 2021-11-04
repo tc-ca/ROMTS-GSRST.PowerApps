@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{655ff8e3-0b80-ea11-a811-000d3a0c8127}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ovs_name" select="1" icon="1" preview="1">
+        <row name="result" id="ovs_facilityid">
+          <cell name="ovs_name" width="200" />
+          <cell name="ovs_address1city" width="100" />
+          <cell name="ovs_countryid" width="100" />
+          <cell name="ovs_icaocode" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="ovs_facility">
+          <attribute name="ovs_name" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ovs_address1city" />
+          <attribute name="ovs_countryid" />
+          <attribute name="ovs_icaocode" />
+          <attribute name="ovs_facilityid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Airports" languagecode="1033" />
+      <LocalizedName description="Airports(fr)" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{5db3f11e-790d-43e0-945b-ab6e60ea48f9}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="tc_provincename" select="1" icon="1" preview="1">
+        <row name="result" id="tc_provinceid">
+          <cell name="tc_provincename" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="tc_province">
+          <attribute name="tc_provinceid" />
+          <attribute name="tc_provincename" />
+          <attribute name="createdon" />
+          <order attribute="tc_provincename" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="1" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Inactive Provinces" languagecode="1033" />
+      <LocalizedName description="Inactive Provinces(fr)" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

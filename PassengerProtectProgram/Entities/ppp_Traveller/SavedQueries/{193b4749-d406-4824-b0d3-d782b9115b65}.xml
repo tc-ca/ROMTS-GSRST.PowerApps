@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{193b4749-d406-4824-b0d3-d782b9115b65}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ppp_name" select="1" icon="1" preview="1">
+        <row name="result" id="ppp_travellerid">
+          <cell name="ppp_name" width="300" />
+          <cell name="ppp_aircarrier" width="100" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ppp_traveller">
+          <attribute name="ppp_name" />
+          <attribute name="createdon" />
+          <order attribute="ppp_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="1" />
+          </filter>
+          <attribute name="ppp_aircarrier" />
+          <attribute name="ppp_travellerid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Inactive Travellers" languagecode="1033" />
+      <LocalizedName description="Voyageurs inactifs" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

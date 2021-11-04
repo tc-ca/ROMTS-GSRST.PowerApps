@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{d9703d4d-7dae-434a-89c8-68884b9417f9}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ppp_name" select="1" icon="1" preview="1">
+        <row name="result" id="ppp_travellerid">
+          <cell name="ppp_name" width="202" />
+          <cell name="ppp_flightorigin" width="100" />
+          <cell name="ppp_aircarrier" width="100" />
+          <cell name="ppp_recordstatus" width="100" />
+          <cell name="ownerid" width="100" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ppp_traveller">
+          <attribute name="ppp_name" />
+          <attribute name="createdon" />
+          <attribute name="ppp_recordstatus" />
+          <attribute name="ownerid" />
+          <attribute name="ppp_aircarrier" />
+          <attribute name="ppp_travellerid" />
+          <order attribute="ppp_name" descending="true" />
+          <attribute name="ppp_flightorigin" />
+          <filter type="and">
+            <filter type="or">
+              <condition attribute="ppp_recordstatus" operator="eq" value="927820001" />
+              <condition attribute="ppp_recordstatus" operator="eq" value="927820003" />
+              <condition attribute="ppp_recordstatus" operator="eq" value="927820002" />
+            </filter>
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="All Traveller Validation Records" languagecode="1033" />
+      <LocalizedName description="Tous les dossiers de validation du voyageur" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

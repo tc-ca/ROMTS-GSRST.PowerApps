@@ -1,0 +1,21 @@
+<html><head>
+        <script src="ClientGlobalContext.js.aspx" type="text/javascript"></script>
+    <meta></head>
+    <body style="overflow-wrap: break-word;" onfocusout="parent.setEmailRange();">
+        
+        <div id="div1">
+
+        </div>
+        <script language="javascript">
+            var globalContext = parent.Xrm.Utility.getGlobalContext();
+            var bold = document.createElement("B");
+            if (globalContext.userSettings.languageId == 1033) {                 
+                bold.innerHTML = '<font size="2" face="Tahoma">All fields denoted by <font color="#0033ff">+</font> must be completed to unlock the "Match Confirmed" field.</font>'    
+            } else {
+                bold.innerHTML = '<font size="2" face="Tahoma">Tous les champs indiqués par <font color="#0033ff">+</font> doivent être remplis pour déverrouiller le champ "Correspondance positive".</font>'
+            }
+            document.getElementById("div1").appendChild(bold);
+        </script>
+        <br>
+    
+</body></html>
