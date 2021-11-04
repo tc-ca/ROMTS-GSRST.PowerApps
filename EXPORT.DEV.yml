@@ -29,7 +29,8 @@ steps:
     authenticationType: 'PowerPlatformSPN'
     PowerPlatformSPN: 'ROMTS-GSRST DEV'
 - task: MSCRMToolInstaller@12
-  # Use Wael Hamze's Power DevOps Tools to do export of both solution types in the same task
+  # We previously used Wael Hamze's Power DevOps Tools to do export of both solution types in the same task
+  # Now we only export unmanaged so we can look into switching this back to the MS Power Platform Tools
   inputs:
     nugetFeed: 'official'
     psFeed: 'official'
