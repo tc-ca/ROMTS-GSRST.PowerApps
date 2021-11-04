@@ -1,0 +1,71 @@
+trigger:
+- none
+
+pool:
+  vmImage: windows-latest
+
+# Set the BuildNumber = Format 1.0.yyyyMMdd.r
+name: '1.0.$(Date:yyyyMMdd).$(rev:r)'
+
+steps:
+- checkout: self
+  persistCredentials: true
+  clean: true
+- task: PowerPlatformToolInstaller@0
+  displayName: 'Install Power Platform Build Tools'
+  inputs:
+    DefaultVersion: true
+- task: PowerPlatformSetSolutionVersion@0
+  # Update the PowerApps solution using this build number
+  displayName: 'Update Solution Version'
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    SolutionName: '$(SolutionName)'
+    SolutionVersionNumber: '$(Build.BuildNumber)'
+- task: PowerPlatformPublishCustomizations@0
+  displayName: 'Publish All Customizations'
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+- task: MSCRMToolInstaller@12
+  # Use Wael Hamze's Power DevOps Tools to do export of both solution types in the same task
+  inputs:
+    nugetFeed: 'official'
+    psFeed: 'official'
+- task: MSCRMExportSolution@12
+  displayName: 'Export Unmanaged and Managed Solutions'
+  inputs:
+    crmConnectionString: '$(ConnectionStringDev)'
+    solutionName: '$(SolutionName)'
+    exportManaged: true
+    exportUnmanaged: true
+    outputPath: '$(Build.ArtifactStagingDirectory)'
+    crmConnectionTimeout: '1960'
+    useAsyncMode: true
+    asyncWaitTimeout: '1900'
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Artifacts'
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    artifact: 'drop'
+    publishLocation: 'pipeline'
+- task: PowerPlatformUnpackSolution@0
+  displayName: 'Unpack Unmanaged Solution'
+  inputs:
+    SolutionInputFile: '$(Build.ArtifactStagingDirectory)\$(SolutionName).zip'
+    SolutionTargetFolder: '$(Build.SourcesDirectory)\$(SolutionName)'
+- task: PowerShell@2
+  displayName: 'Commit Unpacked Solution to Source Control'
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "Committing all solution changes"
+      git config user.email "nepasrepondre-noreply@tc.gc.ca"
+      git config user.name "tc-buildbot"
+      git checkout main
+      git add --all
+      git commit -m "Update Solution - $env:SOLUTIONNAME $env:BUILD_BUILDNUMBER"
+      
+      echo "Push solution changes to the remote repository"
+      git -c http.extraheader="AUTHORIZATION: basuc $(System.AccessToken)" push origin main
