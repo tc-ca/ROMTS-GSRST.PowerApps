@@ -39,6 +39,37 @@
                   </labels>
                   <rows>
                     <row>
+                      <cell id="{5abd1879-1b43-8431-8c49-897349710eed}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                        <labels>
+                          <label description="Callers (Traveller Validation)" languagecode="1033" />
+                        </labels>
+                        <control id="Callers" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <ViewId>{C7A0D303-9748-4F40-B1F5-30432FB724E1}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ppp_Caller_ppp_Traveller</RelationshipName>
+                            <TargetEntityType>ppp_caller</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{C7A0D303-9748-4F40-B1F5-30432FB724E1}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
                       <cell id="{69b118a3-da07-37bd-9545-07aa9ccd159a}" showlabel="true" locklevel="0" labelid="{d2366031-c277-489d-b64d-3afae25dc317}">
                         <labels>
                           <label description="Air Carrier" languagecode="1033" />
@@ -1612,7 +1643,7 @@
                     <row>
                       <cell id="{45ab76b7-92c7-c2e2-5ec5-93621741528d}" showlabel="true" locklevel="0" colspan="2" rowspan="4" labelid="{8f1c6ca5-f19a-4ace-9d77-90496166e88f}">
                         <labels>
-                          <label description="Law Enforcement Notification Details" languagecode="1033" />
+                          <label description="Airport Security Contacted. Request for Local Police to Attend Details" languagecode="1033" />
                           <label description="Détails – Notification du service de police" languagecode="1036" />
                         </labels>
                         <control id="ppp_lawenforcementnotifieddetails" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ppp_lawenforcementnotifieddetails" disabled="false" uniqueid="{0d6c4891-0565-6ec2-cc64-485dd1792291}" />
@@ -2045,6 +2076,7 @@
       </Navigation>
       <formLibraries>
         <Library name="ppp_scripts/travellerTS.js" libraryUniqueId="{d18b8287-6e7a-6a02-b6d4-6ad12e3c47b9}" />
+        <Library name="ppp_scripts/callerTS.js" libraryUniqueId="{d6ac96a3-7921-d019-aacc-5e46d54b372b}" />
       </formLibraries>
       <events>
         <event name="onload" application="false" active="false">
@@ -2056,6 +2088,7 @@
             <Handler functionName="TSIS.PPP.showHideFlightConnections" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{5829d70c-d9c3-2b29-1641-788b8b245111}" enabled="true" parameters="10" passExecutionContext="true" />
             <Handler functionName="TSIS.PPP.ReadOnlyOnClosed" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{ac7b9146-4597-671e-ca1a-e7e8e40915c9}" enabled="true" parameters="[&quot;ppp_name&quot;, &quot;ppp_aircarrier1&quot;, &quot;ppp_flightnumber1&quot;, &quot;ppp_flightorigin1&quot;, &quot;ppp_flightorigindate1&quot;, &quot;ppp_flightoriginhour1&quot;, &quot;ppp_flightdestination1&quot;, &quot;ppp_flightconnection11&quot;, &quot;ppp_flightconnection21&quot;, &quot;ppp_flightconnection31&quot;, &quot;ppp_flightconnection41&quot;, &quot;ppp_flightconnection51&quot;, &quot;ppp_flightconnection61&quot;, &quot;ppp_flightconnection71&quot;, &quot;ppp_flightconnection81&quot;, &quot;ppp_flightconnection91&quot;, &quot;ppp_flightconnection101&quot;, &quot;ppp_newrecordtime&quot;, &quot;ppp_ispresenttime&quot;, &quot;ppp_matchfoundtime&quot;, &quot;ppp_directiontime1&quot;, &quot;ppp_finalstatustime&quot;, &quot;ppp_recordstatus&quot;], [&quot;header_ppp_recordstatus&quot;]" passExecutionContext="true" />
             <Handler functionName="TSIS.PPP.showHideMatchConfirmed" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{72707a89-3c60-b858-c062-9787d92a39aa}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="TSIS.PPP.updateCurrentRecordStatus" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{0457e27d-22e6-2393-4da1-0075d1c24e5a}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="false" active="false" attribute="ppp_directionoptions">

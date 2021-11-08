@@ -4,6 +4,7 @@ var TSIS;
     var PPP;
     (function (PPP) {
         var Form;
+        var currentRecordStatus;
         function SaveOnLoad(eContext) {
             Form = eContext.getFormContext();
             if (Form.getAttribute('ppp_name').getValue() == null)
@@ -59,11 +60,9 @@ var TSIS;
             var confirmOptions = { height: 200, width: 450 };
             Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(function (success) {
                 if (success.confirmed) {
-                    console.log('Dialog closed using OK button.');
                     proceed(eContext);
                 }
                 else {
-                    console.log('Dialog closed using Cancel button or X.');
                     //If user cancels, reset the value.
                     field.setValue(null);
                 }
@@ -84,16 +83,6 @@ var TSIS;
             Form.ui.tabs.get('tab_Decision').setVisible(matchfound);
         }
         PPP.ShowHideTabs = ShowHideTabs;
-        //Toggles display of the BPF. Takes the Form and the the name of the twoOption field that was changed as a string.
-        function showHideBusinessProcessFlow(eContext) {
-            Form = eContext.getFormContext();
-            var field = Form.getAttribute('ppp_showbpf');
-            var twoOptionFieldValue = field.getValue();
-            if (twoOptionFieldValue == null)
-                return;
-            Form.ui.process.setVisible(twoOptionFieldValue); //Shows BPF if twoOptionFieldValue is true, hides if false
-        }
-        PPP.showHideBusinessProcessFlow = showHideBusinessProcessFlow;
         //Sets the record status to the given status value
         function setRecordStatus(eContext, statusValue) {
             Form = eContext.getFormContext();
@@ -160,24 +149,13 @@ var TSIS;
         PPP.setDateTime = setDateTime;
         function showHideMatchConfirmed(eContext) {
             Form = eContext.getFormContext();
-debugger;
-            var callType = Form.getAttribute('ppp_calltype').getValue();
-            var airCarrier = Form.getAttribute('ppp_aircarrier').getValue();
-            var flightOriginDate = Form.getAttribute('ppp_flightorigindate').getValue();
-            var flightOrigin = Form.getAttribute('ppp_flightorigin').getValue();
-            var flightDestination = Form.getAttribute('ppp_flightdestination').getValue();
             var firstName = Form.getAttribute('ppp_firstname').getValue();
             var lastName = Form.getAttribute('ppp_lastname').getValue();
             var gender = Form.getAttribute('ppp_gender').getValue();
             var dateOfBirth = Form.getAttribute('ppp_dateofbirth').getValue();
             var isPresent = Form.getAttribute('ppp_ispresent').getValue();
             var haveProceeded = Form.getAttribute('ppp_matchfound').getValue() == 927820000 /* Yes */;
-            if (callType &&
-                airCarrier &&
-                flightOriginDate &&
-                flightOrigin &&
-                flightDestination &&
-                firstName &&
+            if (firstName &&
                 lastName &&
                 gender &&
                 dateOfBirth &&
@@ -212,17 +190,67 @@ debugger;
         PPP.ReadOnlyOnClosed = ReadOnlyOnClosed;
         function statusOnChange(eContext, keepLockedList, keepUnlockedList) {
             Form = eContext.getFormContext();
+            var travellerId = Form.data.entity.getId();
             var recordStatus = Form.getAttribute('ppp_recordstatus').getValue();
             var recordClosed = recordStatus == 927820002 /* Closed */ ||
                 recordStatus == 927820005 /* Unresolved */;
             if (recordClosed) {
-                Form.data.save();
+                var fetchXml = [
+                    "<fetch top='50'>",
+                    "  <entity name='annotation'>",
+                    "    <link-entity name='ppp_traveller' from='ppp_travellerid' to='objectid'>",
+                    "      <filter>",
+                    "        <condition attribute='ppp_travellerid' operator='eq' value='", travellerId, "'/>",
+                    "      </filter>",
+                    "    </link-entity>",
+                    "  </entity>",
+                    "</fetch>",
+                ].join("");
+                fetchXml = "?fetchXml=" + encodeURIComponent(fetchXml);
+                // Retrieve associated notes
+                Xrm.WebApi.retrieveMultipleRecords("annotation", fetchXml).then(function (result) {
+                    // If no notes found, show alert message reminding Analyst to add a note
+                    if (result.entities.length == 0) {
+                        Form.getAttribute("ppp_recordstatus").setValue(currentRecordStatus);
+                        var globalContext = Xrm.Utility.getGlobalContext();
+                        var alertStrings = {
+                            text: 'Please add a note to the record before setting the record status to closed or unresolved',
+                            title: 'No Note Attached to Record',
+                        };
+                        if (globalContext.userSettings.languageId == 1036) {
+                            alertStrings.text = '(FR) Please add a note before setting the record status to closed or unresolved';
+                            alertStrings.title = '(FR) No Note Attached to Record';
+                        }
+                        var alertOptions = { height: 200, width: 450 };
+                        Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
+                    }
+                    else {
+                        // Record has at least one note, so proceed with status change
+                        updateCurrentRecordStatus(eContext);
+                        Form.data.save();
+                        if (Form.data.isValid()) {
+                            toggleDisabledAllControls(eContext, recordClosed, keepLockedList, keepUnlockedList);
+                        }
+                    }
+                });
+                // Record status is not being set to Closed or Unresolved, proceed with status change
             }
-            if (Form.data.isValid()) {
-                toggleDisabledAllControls(eContext, recordClosed, keepLockedList, keepUnlockedList);
+            else {
+                updateCurrentRecordStatus(eContext);
+                if (Form.data.isValid()) {
+                    toggleDisabledAllControls(eContext, recordClosed, keepLockedList, keepUnlockedList);
+                }
             }
         }
         PPP.statusOnChange = statusOnChange;
+        function updateCurrentRecordStatus(eContext) {
+            var formContext = eContext.getFormContext();
+            var recordStatusValue = formContext.getAttribute("ppp_recordstatus").getValue();
+            if (recordStatusValue != null) {
+                currentRecordStatus = recordStatusValue;
+            }
+        }
+        PPP.updateCurrentRecordStatus = updateCurrentRecordStatus;
         function toggleDisabledAllControls(eContext, disable, keepLockedList, keepUnlockedList) {
             Form = eContext.getFormContext();
             //Toggle everything to match record closed status
