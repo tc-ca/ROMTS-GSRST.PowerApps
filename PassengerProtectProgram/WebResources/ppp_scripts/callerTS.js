@@ -19,12 +19,12 @@ var TSIS;
         }
         PPP.closeFormWhenParentTravellerStatusIsClosed = closeFormWhenParentTravellerStatusIsClosed;
         //Populates the name field for a new Caller record
-        //Is called onChange of ppp_callername and ppp_calltime instead of onload of the form so that the form does not become dirty
+        //Is called onChange of ppp_callername and ppp_calltime instead of onload of the form so that the form does not become dirty onLoad
         //Prevents the Unsaved Changes confirmation popup from appearing when no manual changes have been made yet
         function buildNameText(eContext) {
             var formContext = eContext.getFormContext();
             //If the name has already been made, return
-            if (formContext.getAttribute("ppp_name") != null) {
+            if (formContext.getAttribute("ppp_name").getValue() != null) {
                 return;
             }
             var travellerValue = formContext.getAttribute("ppp_traveller").getValue();

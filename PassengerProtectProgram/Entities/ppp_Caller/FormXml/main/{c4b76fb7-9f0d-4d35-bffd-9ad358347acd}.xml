@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form headerdensity="HighWithControls">
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab verticallayout="true" id="{35a89cc6-4dec-43c2-b635-fe8ccb42ddee}" IsUserDefined="1">
           <labels>
@@ -22,11 +22,11 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{c0accfba-0a10-4d34-b91d-fc713a05fca6}">
+                      <cell id="{c0accfba-0a10-4d34-b91d-fc713a05fca6}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Name" languagecode="1033" />
                         </labels>
-                        <control id="ppp_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ppp_name" />
+                        <control id="ppp_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ppp_name" uniqueid="{31436637-3c30-27d0-b09d-6d93d69a28c5}" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -38,11 +38,52 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{50564c4a-7e7e-4a82-9cf9-2ba0cdce01b4}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{293a1224-d604-0e9a-6be0-0020d1ec8ed0}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Date of Call" languagecode="1033" />
+                        </labels>
+                        <control id="ppp_calldate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ppp_calldate" disabled="false" uniqueid="{09a5009a-d092-9200-2adb-7a7eeb5d6455}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5e09283a-a0ca-a40e-51e2-78947c956239}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Time of Call" languagecode="1033" />
+                        </labels>
+                        <control id="ppp_calltimehour" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ppp_calltimehour" disabled="false" uniqueid="{4a443a0c-0888-758e-9ea3-8ea1e7e7a6a3}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{024ce499-112e-172e-c262-157855281577}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Call Time Minute" languagecode="1033" />
+                        </labels>
+                        <control id="ppp_calltimeminute" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="ppp_calltimeminute" disabled="false" uniqueid="{a9d01428-0da5-ed9c-aa67-d30dd1ebd4c8}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ce1ec733-5824-66ec-d673-3820baa3c04a}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Time of Call" languagecode="1033" />
+                        </labels>
+                        <control id="ppp_calldatetime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ppp_calldatetime" disabled="false" uniqueid="{e724613a-eeb8-c93b-c258-2a595798cc09}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{50564c4a-7e7e-4a82-9cf9-2ba0cdce01b4}" locklevel="0" colspan="1" rowspan="1" showlabel="true" visible="false">
                         <labels>
                           <label description="Traveller Validation" languagecode="1033" />
                         </labels>
-                        <control id="ppp_traveller" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ppp_traveller" disabled="false" />
+                        <control id="ppp_traveller" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ppp_traveller" disabled="false" uniqueid="{e6278310-78b4-dd03-c2d2-b70cb7b29e38}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{6FCD8ADA-F9F1-4602-AF22-DB0178139987}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -103,6 +144,84 @@
           </row>
         </rows>
       </footer>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions>
+        <controlDescription forControl="{4a443a0c-0888-758e-9ea3-8ea1e7e7a6a3}">
+          <customControl id="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}">
+            <parameters>
+              <datafieldname>ppp_calltimehour</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="driv_DR.TimePicker">
+            <parameters>
+              <hourvalue>ppp_calltimehour</hourvalue>
+              <minutevalue>ppp_calltimeminute</minutevalue>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="driv_DR.TimePicker">
+            <parameters>
+              <hourvalue>ppp_calltimehour</hourvalue>
+              <minutevalue>ppp_calltimeminute</minutevalue>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="driv_DR.TimePicker">
+            <parameters>
+              <hourvalue>ppp_calltimehour</hourvalue>
+              <minutevalue>ppp_calltimeminute</minutevalue>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <formLibraries>
+        <Library name="ppp_scripts/callerTS.js" libraryUniqueId="{9d8a4b32-b8d1-2845-bead-81586440c9b7}" />
+        <Library name="ppp_scripts/travellerTS.js" libraryUniqueId="{4c27a842-de77-180a-0393-bcc052dd3b5d}" />
+      </formLibraries>
+      <events>
+        <event name="onchange" application="false" active="false" attribute="ppp_calldate">
+          <Handlers>
+            <Handler functionName="TSIS.PPP.setDateTime" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{d858a405-08ee-cb23-41b6-10702c304a7e}" enabled="true" parameters="&quot;ppp_calldate&quot;, &quot;ppp_calltimehour&quot;, &quot;ppp_calltimeminute&quot;, &quot;ppp_calldatetime&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ppp_calltimehour">
+          <Handlers>
+            <Handler functionName="TSIS.PPP.setDateTime" libraryName="ppp_scripts/callerTS.js" handlerUniqueId="{a02ae2ac-139a-0163-0b9e-b02488a60e55}" enabled="true" parameters="&quot;ppp_calldate&quot;, &quot;ppp_calltimehour&quot;, &quot;ppp_calltimeminute&quot;, &quot;ppp_calldatetime&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ppp_calltimeminute">
+          <Handlers>
+            <Handler functionName="TSIS.PPP.setDateTime" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{adae82db-de49-c30a-256e-9080c8089e8a}" enabled="true" parameters="&quot;ppp_calldate&quot;, &quot;ppp_calltimehour&quot;, &quot;ppp_calltimeminute&quot;, &quot;ppp_calldatetime&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>

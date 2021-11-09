@@ -139,7 +139,7 @@ var TSIS;
             dateValue = dateAttr.getValue();
             hour = hourAttr.getValue();
             minute = minuteAttr.getValue();
-            if (dateValue && hour && minute) {
+            if (dateValue !== null && hour !== null && minute !== null) {
                 var dateTime = dateValue;
                 dateTime.setHours(hour);
                 dateTime.setMinutes(minute);
@@ -214,11 +214,11 @@ var TSIS;
                         Form.getAttribute("ppp_recordstatus").setValue(currentRecordStatus);
                         var globalContext = Xrm.Utility.getGlobalContext();
                         var alertStrings = {
-                            text: 'Please add a note to the record before setting the record status to closed or unresolved',
+                            text: 'Please add a Note to the Record before setting the Record Status to Closed or Unresolved',
                             title: 'No Note Attached to Record',
                         };
                         if (globalContext.userSettings.languageId == 1036) {
-                            alertStrings.text = '(FR) Please add a note before setting the record status to closed or unresolved';
+                            alertStrings.text = '(FR) Please add a Note to the Record before setting the Record Status to Closed or Unresolved';
                             alertStrings.title = '(FR) No Note Attached to Record';
                         }
                         var alertOptions = { height: 200, width: 450 };
