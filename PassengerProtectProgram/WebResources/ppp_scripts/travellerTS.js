@@ -218,8 +218,8 @@ var TSIS;
                             title: 'No Note Attached to Record',
                         };
                         if (globalContext.userSettings.languageId == 1036) {
-                            alertStrings.text = '(FR) Please add a Note to the Record before setting the Record Status to Closed or Unresolved';
-                            alertStrings.title = '(FR) No Note Attached to Record';
+                            alertStrings.text = "Veuillez ajouter une note au dossier avant de d\u00E9finir le statut du dossier sur Ferm\u00E9 ou Non r\u00E9solu";
+                            alertStrings.title = 'Aucune note jointe au dossier';
                         }
                         var alertOptions = { height: 200, width: 450 };
                         Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);

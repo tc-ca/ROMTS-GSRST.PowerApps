@@ -19,8 +19,6 @@ var TSIS;
         }
         PPP.closeFormWhenParentTravellerStatusIsClosed = closeFormWhenParentTravellerStatusIsClosed;
         //Populates the name field for a new Caller record
-        //Is called onChange of ppp_callername and ppp_calltime instead of onload of the form so that the form does not become dirty onLoad
-        //Prevents the Unsaved Changes confirmation popup from appearing when no manual changes have been made yet
         function buildNameText(eContext) {
             var formContext = eContext.getFormContext();
             //If the name has already been made, return
@@ -40,5 +38,30 @@ var TSIS;
             });
         }
         PPP.buildNameText = buildNameText;
+        function setDateTimeFieldsToNow(eContext) {
+            var formContext = eContext.getFormContext();
+            var name = formContext.getAttribute("ppp_name");
+            //If a name has already been set, the caller record is not new, so the time fields should not be set.
+            if (name.getValue() != null) {
+                return;
+            }
+            var callDateTime = formContext.getAttribute("ppp_calldatetime");
+            var callDate = formContext.getAttribute("ppp_calldate");
+            var callTimeHour = formContext.getAttribute("ppp_calltimehour");
+            var callTimeMinute = formContext.getAttribute("ppp_calltimeminute");
+            var today = new Date();
+            callDateTime === null || callDateTime === void 0 ? void 0 : callDateTime.setValue(today);
+            callDate === null || callDate === void 0 ? void 0 : callDate.setValue(today);
+            callTimeHour === null || callTimeHour === void 0 ? void 0 : callTimeHour.setValue(today.getHours());
+            callTimeMinute === null || callTimeMinute === void 0 ? void 0 : callTimeMinute.setValue(today.getMinutes());
+            /* Leaving this here if they want to swap to UTC converstions.
+             *
+            callDateTime.setValue(new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate(), today.getUTCHours(), today.getUTCMinutes()));
+            callDate.setValue(new Date(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
+            callTimeHour.setValue(today.getUTCHours())
+            callTimeMinute.setValue(today.getUTCMinutes())
+            */
+        }
+        PPP.setDateTimeFieldsToNow = setDateTimeFieldsToNow;
     })(PPP = TSIS.PPP || (TSIS.PPP = {}));
 })(TSIS || (TSIS = {}));

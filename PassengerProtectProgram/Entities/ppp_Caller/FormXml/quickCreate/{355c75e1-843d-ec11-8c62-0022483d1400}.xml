@@ -16,7 +16,8 @@
               <sections>
                 <section id="0C655D4E-C6E3-424E-9AF5-71E72D30D12E" name="tab_1_column_1_section_1" columns="1" showlabel="true" showbar="false" IsUserDefined="0" labelwidth="130" labelid="{d9dfd737-e7b2-4369-a5d1-65a71c49afa0}">
                   <labels>
-                    <label description="New Section" languagecode="1033" />
+                    <label description="Caller Information" languagecode="1033" />
+                    <label description="Informations sur l'appelant" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
@@ -31,14 +32,16 @@
                       <cell id="{4967e2e1-9def-4c32-85e0-85cc9869a7e4}" locklevel="0" colspan="1" rowspan="1" labelid="{4cec1657-9e92-471e-9f2a-b12a82f8fa99}">
                         <labels>
                           <label description="Caller Name" languagecode="1033" />
+                          <label description="Nom de l'appelant" languagecode="1036" />
                         </labels>
-                        <control id="ppp_callername" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ppp_callername" disabled="false" />
+                        <control id="ppp_callername" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ppp_callername" disabled="false" uniqueid="{00c885c3-7cdb-c001-417e-d45bab58e5ce}" />
                       </cell>
                     </row>
                     <row>
                       <cell id="{836d406e-ab56-44de-90b3-66f650e210e8}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
                         <labels>
                           <label description="Date of Call" languagecode="1033" />
+                          <label description="Date de l'appel" languagecode="1036" />
                         </labels>
                         <control id="ppp_calldate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ppp_calldate" disabled="false" uniqueid="{7d022b1b-8c72-9068-6695-1a928202a395}" />
                       </cell>
@@ -47,6 +50,7 @@
                       <cell id="{d613722e-7cb7-4d14-9ca5-99fd30cde253}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
                         <labels>
                           <label description="Time of Call" languagecode="1033" />
+                          <label description="Heure de l'appel" languagecode="1036" />
                         </labels>
                         <control id="ppp_calltimehour" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ppp_calltimehour" disabled="false" uniqueid="{d6150d49-2ca3-7ee4-e3b3-db92026bc2ca}" />
                       </cell>
@@ -63,6 +67,7 @@
                       <cell id="{58bf213b-7f87-4435-be9e-e959fba51f4b}" locklevel="0" colspan="1" rowspan="1" showlabel="true" visible="false">
                         <labels>
                           <label description="Time of Call" languagecode="1033" />
+                          <label description="Heure de l'appel" languagecode="1036" />
                         </labels>
                         <control id="ppp_calldatetime" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ppp_calldatetime" disabled="false" uniqueid="{0175e5d5-3e36-0ac6-9cc4-45da7bc98698}" />
                       </cell>
@@ -71,6 +76,7 @@
                       <cell id="{b7a5a0b5-1174-3063-3d74-a438300847d0}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Traveller Validation" languagecode="1033" />
+                          <label description="Validation du voyageur" languagecode="1036" />
                         </labels>
                         <control id="ppp_traveller" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ppp_traveller" disabled="false" uniqueid="{1768a3ea-83a7-aa45-4c7a-a1005d3450e5}">
                           <parameters>
@@ -162,6 +168,8 @@
         <event name="onload" application="true" active="true">
           <Handlers>
             <Handler functionName="TSIS.PPP.closeFormWhenParentTravellerStatusIsClosed" libraryName="ppp_scripts/callerTS.js" handlerUniqueId="{57973bfa-e319-4a12-95b0-76bf46cacd44}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="TSIS.PPP.setDateTimeFieldsToNow" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{9638cc87-95d0-e955-0c5c-6858562a61bd}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="TSIS.PPP.buildNameText" libraryName="ppp_scripts/callerTS.js" handlerUniqueId="{00a55a11-1cbe-7129-ee63-c71d94832da5}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="true" active="true" attribute="ppp_callername">

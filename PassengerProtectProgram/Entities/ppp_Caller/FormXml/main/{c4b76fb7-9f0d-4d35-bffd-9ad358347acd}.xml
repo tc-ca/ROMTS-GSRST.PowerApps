@@ -30,17 +30,19 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{5762a595-1ed9-4960-bf7f-8f4da1d8484c}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{5762a595-1ed9-4960-bf7f-8f4da1d8484c}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
                         <labels>
                           <label description="Caller Name" languagecode="1033" />
+                          <label description="Nom de l'appelant" languagecode="1036" />
                         </labels>
-                        <control id="ppp_callername" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ppp_callername" disabled="false" />
+                        <control id="ppp_callername" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ppp_callername" disabled="false" uniqueid="{be4b1e34-5904-6336-e018-a8b09bb89346}" />
                       </cell>
                     </row>
                     <row>
                       <cell id="{293a1224-d604-0e9a-6be0-0020d1ec8ed0}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Date of Call" languagecode="1033" />
+                          <label description="Date de l'appel" languagecode="1036" />
                         </labels>
                         <control id="ppp_calldate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ppp_calldate" disabled="false" uniqueid="{09a5009a-d092-9200-2adb-7a7eeb5d6455}" />
                       </cell>
@@ -49,6 +51,7 @@
                       <cell id="{5e09283a-a0ca-a40e-51e2-78947c956239}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Time of Call" languagecode="1033" />
+                          <label description="Heure de l'appel" languagecode="1036" />
                         </labels>
                         <control id="ppp_calltimehour" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ppp_calltimehour" disabled="false" uniqueid="{4a443a0c-0888-758e-9ea3-8ea1e7e7a6a3}" />
                       </cell>
@@ -62,9 +65,10 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{ce1ec733-5824-66ec-d673-3820baa3c04a}" showlabel="true" locklevel="0">
+                      <cell id="{ce1ec733-5824-66ec-d673-3820baa3c04a}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Time of Call" languagecode="1033" />
+                          <label description="Heure de l'appel" languagecode="1036" />
                         </labels>
                         <control id="ppp_calldatetime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ppp_calldatetime" disabled="false" uniqueid="{e724613a-eeb8-c93b-c258-2a595798cc09}" />
                       </cell>
@@ -73,6 +77,7 @@
                       <cell id="{50564c4a-7e7e-4a82-9cf9-2ba0cdce01b4}" locklevel="0" colspan="1" rowspan="1" showlabel="true" visible="false">
                         <labels>
                           <label description="Traveller Validation" languagecode="1033" />
+                          <label description="Validation du voyageur" languagecode="1036" />
                         </labels>
                         <control id="ppp_traveller" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ppp_traveller" disabled="false" uniqueid="{e6278310-78b4-dd03-c2d2-b70cb7b29e38}">
                           <parameters>
@@ -219,6 +224,12 @@
         <event name="onchange" application="false" active="false" attribute="ppp_calltimeminute">
           <Handlers>
             <Handler functionName="TSIS.PPP.setDateTime" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{adae82db-de49-c30a-256e-9080c8089e8a}" enabled="true" parameters="&quot;ppp_calldate&quot;, &quot;ppp_calltimehour&quot;, &quot;ppp_calltimeminute&quot;, &quot;ppp_calldatetime&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="true" active="true">
+          <Handlers>
+            <Handler functionName="TSIS.PPP.buildNameText" libraryName="ppp_scripts/callerTS.js" handlerUniqueId="{4d958ebd-6bc2-d1ba-4255-8cb0c9409793}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="TSIS.PPP.setDateTimeFieldsToNow" libraryName="ppp_scripts/callerTS.js" handlerUniqueId="{446761fe-010a-4750-83db-56d9c31d87de}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
