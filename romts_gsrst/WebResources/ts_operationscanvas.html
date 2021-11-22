@@ -1,0 +1,57 @@
+<html><head><style>
+    body {
+        margin: 0;
+        overflow-wrap: break-word;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        z-index: 999999;
+    }
+
+    iframe {
+        display: block;
+        background: #000;
+        border: none;
+        height: 100vh;
+        width: 100vw;
+    }
+</style>
+<script type="application/javascript">
+    if (typeof Xrm === "undefined") {
+        var Xrm = parent.Xrm;
+    }
+    let appName = "ts_stakeholdermanagement_0a04b";
+
+    //Get Canvas App ID by name
+    Xrm.WebApi.retrieveMultipleRecords("canvasapp", "?$select=canvasappid,tags,appversion&$filter=name eq '" + appName + "'", null).then(
+        function (entities, nextLink) {
+            //If Canvas App found
+            if (entities.entities.length) {
+                let canvasAppId = entities.entities[0].canvasappid;
+                let appUrl = `https://apps.powerapps.com/play/${canvasAppId}?source=modelDrivenApp&screenColor=rgba(239,243,246,1)&CID=3`
+                //Update iFrame source
+                document.getElementById('embeddedCanvasApp').src = appUrl;
+            }
+        }, function (error) {
+            console.log(error);
+        })
+</script>
+
+
+    <title>Canvas App</title>
+<meta></head>
+
+<body onfocusout="parent.setEmailRange();" style="overflow-wrap: break-word;">
+  <iframe id="embeddedCanvasApp" style="background: #FFFFFF;" src="" allow="geolocation; microphone; camera">
+    </iframe>
+
+
+</body></html>
