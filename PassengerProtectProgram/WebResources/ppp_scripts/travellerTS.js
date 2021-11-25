@@ -87,6 +87,7 @@ var TSIS;
         function setRecordStatus(eContext, statusValue) {
             Form = eContext.getFormContext();
             Form.getAttribute('ppp_recordstatus').setValue(statusValue);
+            currentRecordStatus = statusValue;
         }
         PPP.setRecordStatus = setRecordStatus;
         //Changes status to In-Progress only if passenger is present and current status is Draft
