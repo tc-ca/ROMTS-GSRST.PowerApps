@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<MobileOfflineProfile MobileOfflineProfileId="8ce77666-a132-ec11-b6e6-0022483ccc0c" Name="ROMTS-GSRST - Offline Profile-202110211902141678" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<MobileOfflineProfile MobileOfflineProfileId="8ce77666-a132-ec11-b6e6-0022483ccc0c" Name="ROMTS-GSRST - Offline Profile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <MobileOfflineProfileItems>
     <MobileOfflineProfileItem MobileOfflineProfileItemId="0907e572-aa35-ec11-8c64-000d3a841b6e" Name="Case">
       <MobileOfflineProfileItemAssociations />
@@ -16,6 +16,11 @@
         &lt;all-attributes/&gt;
         &lt;filter type="and"&gt;
             &lt;condition attribute="statecode" operator="eq" value="0"/&gt;
+            &lt;link-entity name="businessunit" link-type="any" from="businessunitid" to="owningbusinessunit"&gt;
+                &lt;filter type="and"&gt;
+                    &lt;condition attribute="businessunitid" operator="eq-businessid"/&gt;
+                &lt;/filter&gt;
+            &lt;/link-entity&gt;
         &lt;/filter&gt;
     &lt;/entity&gt;
 &lt;/fetch&gt;</ProfileItemEntityFilter>
@@ -255,6 +260,7 @@
       <RecordsOwnedByMe>0</RecordsOwnedByMe>
       <RecordsOwnedByMyTeam>0</RecordsOwnedByMyTeam>
       <RecordsOwnedByMyBusinessUnit>0</RecordsOwnedByMyBusinessUnit>
+      <SyncIntervalInMinutes>5</SyncIntervalInMinutes>
       <ProfileItemEntityFilter>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
     &lt;entity name="msdyn_workorder"&gt;
         &lt;all-attributes/&gt;
@@ -266,6 +272,14 @@
                 &lt;value&gt;690970002&lt;/value&gt;
                 &lt;value&gt;690970003&lt;/value&gt;
             &lt;/condition&gt;
+            &lt;filter type="and"&gt;
+                &lt;condition attribute="owningbusinessunit" operator="eq-businessid"/&gt;
+                &lt;condition attribute="msdyn_systemstatus" operator="in"&gt;
+                    &lt;value&gt;690970001&lt;/value&gt;
+                    &lt;value&gt;690970002&lt;/value&gt;
+                    &lt;value&gt;690970000&lt;/value&gt;
+                &lt;/condition&gt;
+            &lt;/filter&gt;
             &lt;link-entity name="bookableresourcebooking" link-type="any" from="msdyn_workorder" to="msdyn_workorderid"&gt;
                 &lt;filter type="and"&gt;
                     &lt;condition attribute="statecode" operator="eq" value="0"/&gt;
@@ -864,7 +878,16 @@
       <RecordsOwnedByMe>0</RecordsOwnedByMe>
       <RecordsOwnedByMyTeam>0</RecordsOwnedByMyTeam>
       <RecordsOwnedByMyBusinessUnit>0</RecordsOwnedByMyBusinessUnit>
-      <ProfileItemEntityFilter>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;&lt;entity name="account"&gt;&lt;all-attributes/&gt;&lt;filter type="and"&gt;&lt;condition attribute="statecode" operator="eq" value="0"/&gt;&lt;/filter&gt;&lt;/entity&gt;&lt;/fetch&gt;</ProfileItemEntityFilter>
+      <SyncIntervalInMinutes>5</SyncIntervalInMinutes>
+      <ProfileItemEntityFilter>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+    &lt;entity name="account"&gt;
+        &lt;all-attributes/&gt;
+        &lt;filter type="and"&gt;
+            &lt;condition attribute="statecode" operator="eq" value="0"/&gt;
+            &lt;condition attribute="ts_stakeholderstatus" operator="eq" value="717750000"/&gt;
+        &lt;/filter&gt;
+    &lt;/entity&gt;
+&lt;/fetch&gt;</ProfileItemEntityFilter>
       <EntitySchemaName>Account</EntitySchemaName>
     </MobileOfflineProfileItem>
     <MobileOfflineProfileItem MobileOfflineProfileItemId="b4e77666-a132-ec11-b6e6-0022483ccc0c" Name="Note">
@@ -1691,6 +1714,7 @@
         &lt;all-attributes/&gt;
         &lt;filter type="and"&gt;
             &lt;condition attribute="statecode" operator="eq" value="0"/&gt;
+            &lt;condition attribute="ts_sitestatus" operator="eq" value="717750000"/&gt;
         &lt;/filter&gt;
     &lt;/entity&gt;
 &lt;/fetch&gt;</ProfileItemEntityFilter>
@@ -2517,6 +2541,7 @@
         &lt;all-attributes/&gt;
         &lt;filter type="and"&gt;
             &lt;condition attribute="statecode" operator="eq" value="0"/&gt;
+            &lt;condition attribute="ts_operationstatus" operator="eq" value="717750000"/&gt;
         &lt;/filter&gt;
     &lt;/entity&gt;
 &lt;/fetch&gt;</ProfileItemEntityFilter>
@@ -2650,5 +2675,5 @@
     </MobileOfflineProfileItem>
   </MobileOfflineProfileItems>
   <MobileOfflineProfileId>{8ce77666-a132-ec11-b6e6-0022483ccc0c}</MobileOfflineProfileId>
-  <Name>ROMTS-GSRST - Offline Profile-202110211902141678</Name>
+  <Name>ROMTS-GSRST - Offline Profile</Name>
 </MobileOfflineProfile>

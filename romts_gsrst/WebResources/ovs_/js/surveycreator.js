@@ -500,9 +500,7 @@ creator.onPropertyValueChanging.add(function (sender, options) {
   
 function InitializeSurveyCreator(surveyDefinition, surveyLocale) {
   if (surveyDefinition !== null && surveyDefinition !== undefined) {
-    var json = JSON.parse(surveyDefinition);
-    json.locale = surveyLocale;
-    creator.JSON = json;
+    creator.JSON = JSON.parse(surveyDefinition);
   }
   SurveyCreator.localization.currentLocale = surveyLocale;
 }

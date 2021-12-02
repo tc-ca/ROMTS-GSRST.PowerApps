@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20211122.3</Version>
+    <Version>1.0.20211202.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -218,6 +218,7 @@
       <RootComponent type="9" schemaName="ts_assetcategorytype" behavior="0" />
       <RootComponent type="9" schemaName="ts_findingtype" behavior="0" />
       <RootComponent type="9" schemaName="ts_operationstatus" behavior="0" />
+      <RootComponent type="9" schemaName="ts_operationstatustest" behavior="0" />
       <RootComponent type="9" schemaName="ts_requesttype" behavior="0" />
       <RootComponent type="9" schemaName="ts_sitestatus" behavior="0" />
       <RootComponent type="9" schemaName="ts_stakeholderstatus" behavior="0" />
@@ -228,6 +229,7 @@
       <RootComponent type="20" id="{e4c394e4-a048-ec11-8c62-000d3ae89a77}" behavior="0" />
       <RootComponent type="20" id="{ed37675e-f72c-eb11-a813-000d3af3a7a7}" behavior="0" />
       <RootComponent type="29" id="{168249b4-0934-eb11-a813-000d3af3fc19}" behavior="0" />
+      <RootComponent type="29" id="{31c5f0e1-7b53-ec11-8f8e-000d3ae9a941}" behavior="0" />
       <RootComponent type="29" id="{33a33eb1-1c33-eb11-a813-000d3af3fc19}" behavior="0" />
       <RootComponent type="29" id="{50709486-bb81-eb11-a812-000d3a84b97d}" behavior="0" />
       <RootComponent type="29" id="{586105f8-6657-eb11-a812-000d3aff12c2}" behavior="0" />
@@ -4347,7 +4349,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.55.10)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" displayName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.55.10)">
@@ -4648,7 +4650,7 @@
         <Required type="10" schemaName="msdyn_bookableresourcebooking_msdyn_workorderservicetask_Booking" displayName="msdyn_bookableresourcebooking_msdyn_workorderservicetask_Booking" parentSchemaName="bookableresourcebooking" parentDisplayName="Bookable Resource Booking" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresourcebooking_msdyn_workorderservicetask_Booking" displayName="msdyn_bookableresourcebooking_msdyn_workorderservicetask_Booking" parentSchemaName="bookableresourcebooking" parentDisplayName="Bookable Resource Booking" solution="FieldService (8.8.0.88)">
@@ -4972,7 +4974,7 @@
         <Required type="10" schemaName="msdyn_msdyn_agreementbookingservicetask_msdyn_workorderservicetask_AgreementBookingServiceTask" displayName="msdyn_msdyn_agreementbookingservicetask_msdyn_workorderservicetask_AgreementBookingServiceTask" parentSchemaName="msdyn_agreementbookingservicetask" parentDisplayName="Agreement Booking Service Task" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_bookingsetupmetadata_bookableresourcebooking" displayName="msdyn_msdyn_bookingsetupmetadata_bookableresourcebooking" parentSchemaName="msdyn_bookingsetupmetadata" parentDisplayName="Booking Setup Metadata" solution="MicrosoftDynamicsScheduling (3.12.0.448)">
@@ -5326,7 +5328,7 @@
         <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_workorderservicetask_CustomerAsset" displayName="msdyn_msdyn_customerasset_msdyn_workorderservicetask_CustomerAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_customerassetcategory_msdyn_customerasset_CustomerAssetCategory" displayName="msdyn_msdyn_customerassetcategory_msdyn_customerasset_CustomerAssetCategory" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.25.1)">
@@ -5807,7 +5809,7 @@
         <Required type="10" schemaName="msdyn_msdyn_inspection_msdyn_workorderservicetask_Inspection" displayName="msdyn_msdyn_inspection_msdyn_workorderservicetask_Inspection" parentSchemaName="msdyn_inspection" parentDisplayName="Inspection Template" solution="msdyn_FieldService_patch_update (8.8.55.10)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_inspectiondefinition_msdyn_workorderservicetask_inspectiondefinitionid" displayName="msdyn_msdyn_inspectiondefinition_msdyn_workorderservicetask_inspectiondefinitionid" parentSchemaName="msdyn_inspectiondefinition" parentDisplayName="Inspection Template Version" solution="msdyn_FieldService_patch_update (8.8.55.10)">
@@ -5825,7 +5827,7 @@
         <Required type="10" schemaName="msdyn_msdyn_inspectiondefinition_msdyn_workorderservicetask_inspectiondefinitionid" displayName="msdyn_msdyn_inspectiondefinition_msdyn_workorderservicetask_inspectiondefinitionid" parentSchemaName="msdyn_inspectiondefinition" parentDisplayName="Inspection Template Version" solution="msdyn_FieldService_patch_update (8.8.55.10)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_iotalert_msdyn_workorder_IoTAlert" displayName="msdyn_msdyn_iotalert_msdyn_workorder_IoTAlert" parentSchemaName="msdyn_iotalert" parentDisplayName="IoT Alert" solution="ConnectedFieldService (1.8.32.0)">
@@ -6147,7 +6149,7 @@
         <Required type="10" schemaName="msdyn_msdyn_servicetasktype_msdyn_workorderservicetask_TaskType" displayName="msdyn_msdyn_servicetasktype_msdyn_workorderservicetask_TaskType" parentSchemaName="msdyn_servicetasktype" parentDisplayName="Service Task Type" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_shipvia_msdyn_rma_ShipVia" displayName="msdyn_msdyn_shipvia_msdyn_rma_ShipVia" parentSchemaName="msdyn_shipvia" parentDisplayName="Ship Via" solution="FieldService (8.8.0.88)">
@@ -6447,7 +6449,7 @@
         <Required type="10" schemaName="msdyn_msdyn_workorder_bookableresourcebooking_WorkOrder" displayName="msdyn_msdyn_workorder_bookableresourcebooking_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_workorder_bookableresourcebooking_WorkOrder" displayName="msdyn_msdyn_workorder_bookableresourcebooking_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
@@ -6681,7 +6683,7 @@
         <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_workorderincident_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_workorderincident_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_workorderincident_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_workorderincident_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
@@ -6885,7 +6887,7 @@
         <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_workorderservicetask_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_workorderservicetask_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_workorderservicetask_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_workorderservicetask_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
@@ -6975,7 +6977,7 @@
         <Required type="10" schemaName="msdyn_msdyn_workorderincident_msdyn_workorderservicetask_WorkOrderIncident" displayName="msdyn_msdyn_workorderincident_msdyn_workorderservicetask_WorkOrderIncident" parentSchemaName="msdyn_workorderincident" parentDisplayName="Work Order Incident" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_workorderincident_msdyn_workorderservicetask_WorkOrderIncident" displayName="msdyn_msdyn_workorderincident_msdyn_workorderservicetask_WorkOrderIncident" parentSchemaName="msdyn_workorderincident" parentDisplayName="Work Order Incident" solution="FieldService (8.8.0.88)">
@@ -7365,7 +7367,7 @@
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
@@ -7377,7 +7379,7 @@
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
@@ -11863,7 +11865,7 @@
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
@@ -12091,6 +12093,12 @@
         <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
+        <Dependent type="26" schemaName="Work Order Welcome Card View" displayName="Work Order Welcome Card View" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" id="{45feda5a-40fc-eb11-94f0-000d3a1f6a54}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.55.10)</package>
+        </Required>
         <Dependent type="26" schemaName="Resource Booking View - Mobile" displayName="Resource Booking View - Mobile" parentSchemaName="bookableresourcebooking" parentDisplayName="Bookable Resource Booking" id="{54398353-d05f-e611-8109-000d3a146973}" />
       </MissingDependency>
       <MissingDependency>
@@ -12218,6 +12226,12 @@
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
         <Dependent type="29" displayName="Set current fiscal quarter" id="{168249b4-0934-eb11-a813-000d3af3fc19}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.55.10)</package>
+        </Required>
+        <Dependent type="29" displayName="If Case has Data Case is Required" id="{31c5f0e1-7b53-ec11-8f8e-000d3ae9a941}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
@@ -13023,7 +13037,7 @@
         <Required type="2" schemaName="msdyn_agreementbookingservicetask" displayName="Agreement Booking Service Task" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_booking" displayName="Booking" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
@@ -13041,7 +13055,7 @@
         <Required type="2" schemaName="msdyn_booking" displayName="Booking" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerasset" displayName="Customer Asset" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
@@ -13071,7 +13085,7 @@
         <Required type="2" schemaName="msdyn_customerasset" displayName="Customer Asset" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerasset" displayName="Customer Asset" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
@@ -13095,7 +13109,7 @@
         <Required type="2" schemaName="msdyn_description" displayName="Description" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_estimatedduration" displayName="Estimated Duration" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
@@ -13137,7 +13151,7 @@
         <Required type="2" schemaName="msdyn_inspection" displayName="Inspection Template" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="msdyn_FieldService_patch_update (8.8.55.10)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_inspection" displayName="Inspection Template" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="msdyn_FieldService_patch_update (8.8.55.10)">
@@ -13161,7 +13175,7 @@
         <Required type="2" schemaName="msdyn_inspectiondefinitionid" displayName="Inspection Template Version Id" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="msdyn_FieldService_patch_update (8.8.55.10)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_inspectionenabled" displayName="Has Inspection" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="msdyn_FieldService_patch_update (8.8.55.10)">
@@ -13179,7 +13193,7 @@
         <Required type="2" schemaName="msdyn_inspectionenabled" displayName="Has Inspection" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="msdyn_FieldService_patch_update (8.8.55.10)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_inspectiontaskresult" displayName="Result" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="msdyn_FieldService_patch_update (8.8.55.10)">
@@ -13227,7 +13241,7 @@
         <Required type="2" schemaName="msdyn_inspectiontaskresult" displayName="Result" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="msdyn_FieldService_patch_update (8.8.55.10)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_lineorder" displayName="Line Order" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
@@ -13239,7 +13253,7 @@
         <Required type="2" schemaName="msdyn_lineorder" displayName="Line Order" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
@@ -13269,7 +13283,7 @@
         <Required type="2" schemaName="msdyn_surveyboundedoutput" displayName="SurveyControl" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="msdyn_FieldService_patch_update (8.8.55.10)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_tasktype" displayName="Task Type" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
@@ -13299,7 +13313,7 @@
         <Required type="2" schemaName="msdyn_workorderincident" displayName="Work Order Incident" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workorderservicetaskid" displayName="Work Order Service Task" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
@@ -13371,7 +13385,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="ownerid" displayName="Owner" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="Active" />
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="statecode" displayName="Status" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
@@ -15164,7 +15178,7 @@
         <Required type="26" schemaName="Inspection Template Version Lookup View" displayName="Inspection Template Version Lookup View" parentSchemaName="msdyn_inspectiondefinition" parentDisplayName="Inspection Template Version" solution="msdyn_Inspections (1.0.20.0)" id="{08f1bd08-87f3-45cb-876a-add793cf5cb4}">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Inspection Template Version Lookup View" displayName="Inspection Template Version Lookup View" parentSchemaName="msdyn_inspectiondefinition" parentDisplayName="Inspection Template Version" solution="msdyn_Inspections (1.0.20.0)" id="{08f1bd08-87f3-45cb-876a-add793cf5cb4}">
@@ -15489,7 +15503,7 @@
         <Required type="26" schemaName="Agreement Booking Service Task Lookup View" displayName="Agreement Booking Service Task Lookup View" parentSchemaName="msdyn_agreementbookingservicetask" parentDisplayName="Agreement Booking Service Task" solution="FieldService (8.8.0.88)" id="{27c7984f-6236-4da9-8976-002e48453624}">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Agreement Booking Service Task Lookup View" displayName="Agreement Booking Service Task Lookup View" parentSchemaName="msdyn_agreementbookingservicetask" parentDisplayName="Agreement Booking Service Task" solution="FieldService (8.8.0.88)" id="{27c7984f-6236-4da9-8976-002e48453624}">
@@ -15685,7 +15699,7 @@
         <Required type="26" schemaName="Inspection Template Lookup View" displayName="Inspection Template Lookup View" parentSchemaName="msdyn_inspection" parentDisplayName="Inspection Template" solution="msdyn_Inspections (1.0.20.0)" id="{42f38d8e-6416-4497-bd7b-26c41f6a78b0}">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Inspection Template Lookup View" displayName="Inspection Template Lookup View" parentSchemaName="msdyn_inspection" parentDisplayName="Inspection Template" solution="msdyn_Inspections (1.0.20.0)" id="{42f38d8e-6416-4497-bd7b-26c41f6a78b0}">
@@ -15712,6 +15726,12 @@
         <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="26" schemaName="Work Order Welcome Card View" displayName="Work Order Welcome Card View" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="msdyn_FieldServiceCollabSolution (1.0.0.1)" id="{45feda5a-40fc-eb11-94f0-000d3a1f6a54}">
+          <package>FieldService_Anchor (8.8.55.10)</package>
+        </Required>
+        <Dependent type="26" schemaName="Work Order Welcome Card View" displayName="Work Order Welcome Card View" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" id="{45feda5a-40fc-eb11-94f0-000d3a1f6a54}" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="26" schemaName="Active Incident Types" displayName="Active Incident Types" parentSchemaName="msdyn_incidenttype" parentDisplayName="Incident Type" solution="FieldService (8.8.0.88)" id="{467a8f92-753b-485e-8ba9-13de8b7cb3a7}">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
@@ -15733,7 +15753,7 @@
         <Required type="26" schemaName="Work Order Incident Lookup View" displayName="Work Order Incident Lookup View" parentSchemaName="msdyn_workorderincident" parentDisplayName="Work Order Incident" solution="FieldService (8.8.0.88)" id="{47f96161-081e-4885-b167-5267b44358e6}">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Work Order Incident Lookup View" displayName="Work Order Incident Lookup View" parentSchemaName="msdyn_workorderincident" parentDisplayName="Work Order Incident" solution="FieldService (8.8.0.88)" id="{47f96161-081e-4885-b167-5267b44358e6}">
@@ -18958,7 +18978,7 @@
         <Required type="61" schemaName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" displayName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" displayName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" solution="FieldService (8.8.0.88)">
@@ -19573,7 +19593,7 @@
         <Required type="66" schemaName="msdyn_MscrmControls.InspectionControls.SurveyControl" displayName="msdyn_MscrmControls.InspectionControls.SurveyControl" solution="msdyn_Inspections (1.0.20.0)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="60" displayName="SondageJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
+        <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="msdyn_MscrmControls.ProductView.ProductView" displayName="msdyn_MscrmControls.ProductView.ProductView" solution="msdyn_FieldService_patch_update (8.8.55.10)">
