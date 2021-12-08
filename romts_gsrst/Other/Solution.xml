@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20211208.1</Version>
+    <Version>1.0.20211208.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -213,6 +213,7 @@
       <RootComponent type="1" schemaName="uom" behavior="1" />
       <RootComponent type="1" schemaName="uomschedule" behavior="1" />
       <RootComponent type="9" schemaName="connectionrole_category" behavior="0" />
+      <RootComponent type="9" schemaName="msdyn_inspectionresult" behavior="0" />
       <RootComponent type="9" schemaName="ovs_facilitytype" behavior="0" />
       <RootComponent type="9" schemaName="tc_gender" behavior="0" />
       <RootComponent type="9" schemaName="ts_assetcategorytype" behavior="0" />
@@ -4349,7 +4350,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.55.10)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" displayName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.55.10)">
@@ -4494,7 +4495,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)">
@@ -19909,6 +19910,12 @@
           <package>FieldService_Anchor (8.8.55.10)</package>
         </Required>
         <Dependent type="9" schemaName="msdyn_incidenttypeservicetask_statuscode" displayName="Status Reason" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="9" schemaName="msdyn_inspectionresult" displayName="Inspection Result" solution="msdyn_FieldService_patch_update (8.8.55.10)">
+          <package>FieldService_Anchor (8.8.55.10)</package>
+        </Required>
+        <Dependent type="9" schemaName="msdyn_inspectionresult" displayName="Inspection Result" />
       </MissingDependency>
       <MissingDependency>
         <Required type="9" schemaName="msdyn_pooltype" displayName="Pool Type" solution="MicrosoftDynamicsScheduling (3.12.0.448)">
