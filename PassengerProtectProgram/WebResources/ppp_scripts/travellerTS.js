@@ -191,56 +191,14 @@ var TSIS;
         PPP.ReadOnlyOnClosed = ReadOnlyOnClosed;
         function statusOnChange(eContext, keepLockedList, keepUnlockedList) {
             Form = eContext.getFormContext();
-            var travellerId = Form.data.entity.getId();
             var recordStatus = Form.getAttribute('ppp_recordstatus').getValue();
             var recordClosed = recordStatus == 927820002 /* Closed */ ||
                 recordStatus == 927820005 /* Unresolved */;
             if (recordClosed) {
-                var fetchXml = [
-                    "<fetch top='50'>",
-                    "  <entity name='annotation'>",
-                    "    <link-entity name='ppp_traveller' from='ppp_travellerid' to='objectid'>",
-                    "      <filter>",
-                    "        <condition attribute='ppp_travellerid' operator='eq' value='", travellerId, "'/>",
-                    "      </filter>",
-                    "    </link-entity>",
-                    "  </entity>",
-                    "</fetch>",
-                ].join("");
-                fetchXml = "?fetchXml=" + encodeURIComponent(fetchXml);
-                // Retrieve associated notes
-                Xrm.WebApi.retrieveMultipleRecords("annotation", fetchXml).then(function (result) {
-                    // If no notes found, show alert message reminding Analyst to add a note
-                    if (result.entities.length == 0) {
-                        Form.getAttribute("ppp_recordstatus").setValue(currentRecordStatus);
-                        var globalContext = Xrm.Utility.getGlobalContext();
-                        var alertStrings = {
-                            text: 'Please add a Note to the Record before setting the Record Status to Closed or Unresolved',
-                            title: 'No Note Attached to Record',
-                        };
-                        if (globalContext.userSettings.languageId == 1036) {
-                            alertStrings.text = "Veuillez ajouter une note au dossier avant de d\u00E9finir le statut du dossier sur Ferm\u00E9 ou Non r\u00E9solu";
-                            alertStrings.title = 'Aucune note jointe au dossier';
-                        }
-                        var alertOptions = { height: 200, width: 450 };
-                        Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
-                    }
-                    else {
-                        // Record has at least one note, so proceed with status change
-                        updateCurrentRecordStatus(eContext);
-                        Form.data.save();
-                        if (Form.data.isValid()) {
-                            toggleDisabledAllControls(eContext, recordClosed, keepLockedList, keepUnlockedList);
-                        }
-                    }
-                });
-                // Record status is not being set to Closed or Unresolved, proceed with status change
+                Form.data.save();
             }
-            else {
-                updateCurrentRecordStatus(eContext);
-                if (Form.data.isValid()) {
-                    toggleDisabledAllControls(eContext, recordClosed, keepLockedList, keepUnlockedList);
-                }
+            if (Form.data.isValid()) {
+                toggleDisabledAllControls(eContext, recordClosed, keepLockedList, keepUnlockedList);
             }
         }
         PPP.statusOnChange = statusOnChange;
