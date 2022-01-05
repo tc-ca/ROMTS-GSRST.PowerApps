@@ -680,7 +680,13 @@
                     <label description="APPAREILS" languagecode="1036" />
                   </labels>
                   <rows>
-                    <row height="auto" />
+                    <row>
+                      <cell id="{5aa2ca45-5c4c-4cf0-bcc8-59020ed993aa}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                     <row>
                       <cell locklevel="0" id="{e34de675-d787-4551-b98b-360bb9cfc8c9}" rowspan="1" colspan="1" auto="true">
                         <labels>
@@ -699,6 +705,7 @@
                         </control>
                       </cell>
                     </row>
+                    <row height="auto" />
                   </rows>
                 </section>
               </sections>
@@ -810,13 +817,20 @@
                         <control disabled="false" id="msdyn_supportcontact" datafieldname="msdyn_supportcontact" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" />
                       </cell>
                     </row>
+                  </rows>
+                </section>
+                <section name="WorkOrderAccessTeams" showlabel="false" showbar="false" locklevel="0" id="{edd93c70-33c2-235c-0396-b992cebcdc6a}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Access Teams" languagecode="1033" />
+                  </labels>
+                  <rows>
                     <row>
-                      <cell id="{c8770ee3-8a6c-b249-9d63-6dedbe74777b}" showlabel="true" colspan="1" auto="false" rowspan="7">
+                      <cell id="{454d23bc-3557-5d14-363b-36b024201950}" showlabel="true" colspan="1" auto="false" rowspan="7">
                         <labels>
-                          <label description="Inspectors" languagecode="1033" />
+                          <label description="Work Order Access Team" languagecode="1033" />
                           <label description="Tâches de service de l'ordre de travail" languagecode="1036" />
                         </labels>
-                        <control id="Inspectors" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{986694e1-ed46-934d-a3c8-d474e45c007a}">
+                        <control id="WorkOrderAccessTeam" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
                             <ViewId>{F79AD170-AE03-4F4C-8132-D4AA08520A0C}</ViewId>
                             <IsUserView>false</IsUserView>
@@ -824,8 +838,8 @@
                             <TargetEntityType>systemuser</TargetEntityType>
                             <AutoExpand>Fixed</AutoExpand>
                             <EnableQuickFind>false</EnableQuickFind>
-                            <EnableViewPicker>true</EnableViewPicker>
-                            <ViewIds>{F79AD170-AE03-4F4C-8132-D4AA08520A0C}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{F79AD170-AE03-4F4C-8132-D4AA08520A0C},{00000000-0000-0000-00AA-000010001019}</ViewIds>
                             <EnableJumpBar>false</EnableJumpBar>
                             <ChartGridMode>All</ChartGridMode>
                             <VisualizationId />
@@ -833,6 +847,7 @@
                             <EnableChartPicker>true</EnableChartPicker>
                             <RecordsPerPage>4</RecordsPerPage>
                             <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <TeamTemplateId>{bddf1d45-706d-ec11-8f8e-0022483da5aa}</TeamTemplateId>
                           </parameters>
                         </control>
                       </cell>
@@ -1345,7 +1360,7 @@
                           <label description="Closed By" languagecode="1033" />
                           <label description="Fermé par" languagecode="1036" />
                         </labels>
-                        <control disabled="false" id="msdyn_closedby" datafieldname="msdyn_closedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" />
+                        <control disabled="false" id="msdyn_closedby" datafieldname="msdyn_closedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" uniqueid="{6e8bc242-b762-b7e5-2e75-b8831695e901}" />
                       </cell>
                       <cell id="{937629b9-bae1-ea13-63ee-62be193a6e00}" labelid="{32009aaa-5132-47ca-8a23-e8ac2b63f8b9}" showlabel="true" locklevel="0">
                         <labels>
@@ -1355,16 +1370,53 @@
                         <control disabled="false" id="msdyn_timeclosed" datafieldname="msdyn_timeclosed" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" />
                       </cell>
                     </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_14" id="44e149d3-e447-4ed9-a785-59d04813238c" IsUserDefined="0" locklevel="0" showlabel="true" contenttype="cardSections" expanded="true">
+          <labels>
+            <label description="Documents" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_14_section_3" id="1081862f-fb5c-4fa8-b72f-2377fa9d3bb1" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Document Centre" languagecode="1033" />
+                  </labels>
+                  <rows>
                     <row>
-                      <cell locklevel="0" id="{0ddec5d2-b93c-4f01-bdbe-3a95dbb8c720}" showlabel="false" labelid="{803e71aa-119d-4c45-9286-e93e53b40697}">
+                      <cell id="{254d5e77-2b3b-dc41-97c0-9ac8cb62b7ad}" showlabel="false" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="canvasappnumber" languagecode="1033" />
                         </labels>
+                        <control id="ts_canvasappnumber" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_canvasappnumber" disabled="false" uniqueid="{02d23ced-897c-34dd-9278-9dcd02be6368}" />
                       </cell>
-                      <cell id="{d0809058-9a77-5601-1ec0-1e5d698b9a9b}" labelid="{48c0e384-809a-4283-8c35-d8d34214aa0a}" showlabel="false">
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_14_section_3" id="7aedc612-2834-4943-9185-5504ab1721cb" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Documents" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{a8a65421-2423-47c4-95e6-a44f27febaeb}" rowspan="1" colspan="1">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Documents" languagecode="1033" />
+                          <label description="Tâches de service de l'ordre de travail" languagecode="1036" />
                         </labels>
+                        <control id="Subgrid_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <TargetEntityType>ts_file</TargetEntityType>
+                            <ViewId>{780DB46F-53CE-4143-A1A1-86AB9464261C}</ViewId>
+                            <ViewIds>{780DB46F-53CE-4143-A1A1-86AB9464261C}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                   </rows>
@@ -1451,6 +1503,11 @@
       </footer>
       <Navigation>
         <NavBar>
+          <NavBarByRelationshipItem RelationshipName="msdyn_workorder_SharePointDocuments" Sequence="60" Area="Info" Id="navSPDocuments" Show="false">
+            <Titles>
+              <Title LCID="1033" Text="Documents" />
+            </Titles>
+          </NavBarByRelationshipItem>
           <NavBarByRelationshipItem Id="nav_msdyn_msdyn_workorder_bookableresourcebooking_WorkOrder" Area="Service" Sequence="1000" RelationshipName="msdyn_msdyn_workorder_bookableresourcebooking_WorkOrder">
             <Titles>
               <Title Text="Resource Bookings" LCID="1033" />
@@ -2882,6 +2939,42 @@
           <customControl formFactor="2" name="MscrmControls.DeviceInsights.DeviceInsightsControl">
             <parameters>
               <Value>msdyn_iotalert</Value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{2cc7db0b-9e3d-493f-9ca6-c0e31e7a1b7c}">
+          <customControl formFactor="0" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <appId type="SingleLine.Text" static="true">20ef2713-554d-4e26-a257-d14199216f75</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <appId type="SingleLine.Text" static="true">20ef2713-554d-4e26-a257-d14199216f75</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <appId type="SingleLine.Text" static="true">20ef2713-554d-4e26-a257-d14199216f75</appId>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{02d23ced-897c-34dd-9278-9dcd02be6368}">
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="0">
+            <parameters>
+              <datafieldname>ts_canvasappnumber</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="1">
+            <parameters>
+              <datafieldname>ts_canvasappnumber</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>ts_canvasappnumber</record>
+              <entityName static="true" type="SingleLine.Text">Work Order</entityName>
+              <appId static="true" type="SingleLine.Text">20ef2713-554d-4e26-a257-d14199216f75</appId>
             </parameters>
           </customControl>
         </controlDescription>

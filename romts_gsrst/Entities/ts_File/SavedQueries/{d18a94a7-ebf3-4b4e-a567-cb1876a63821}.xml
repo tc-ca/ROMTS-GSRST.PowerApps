@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>1</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{d18a94a7-ebf3-4b4e-a567-cb1876a63821}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_file" select="1" icon="1" preview="1">
+        <row name="result" id="ts_fileid">
+          <cell name="ts_file" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>4</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_file">
+          <attribute name="ts_fileid" />
+          <attribute name="ts_file" />
+          <attribute name="createdon" />
+          <order attribute="ts_file" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="ts_file" operator="like" value="{0}" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Quick Find Active Files" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

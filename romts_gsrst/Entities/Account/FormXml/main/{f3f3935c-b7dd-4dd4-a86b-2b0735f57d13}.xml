@@ -96,15 +96,6 @@
                         <control disabled="false" id="customertypecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="customertypecode" />
                       </cell>
                     </row>
-                    <row>
-                      <cell id="{f8167c33-25b3-408d-9074-4abf90cb7edc}" locklevel="0" colspan="1" rowspan="1">
-                        <labels>
-                          <label description="Stakeholder Status" languagecode="1033" />
-                          <label description="Statut d'intervenant" languagecode="1036" />
-                        </labels>
-                        <control id="ts_stakeholderstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_stakeholderstatus" disabled="false" />
-                      </cell>
-                    </row>
                   </rows>
                 </section>
                 <section id="{cc0fe06e-4b5f-4648-A62d-84d1514e1fc5}" name="ADDRESS" labelid="{5023e03c-142d-41e8-af50-806ddab0fb9d}" locklevel="0" showlabel="true" IsUserDefined="0" celllabelposition="Left" labelwidth="115" columns="1" layout="varwidth" showbar="false">
@@ -216,7 +207,11 @@
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
-                        <control disabled="false" id="notescontrol" classid="{06375649-c143-495e-a496-c962e5b4488e}" />
+                        <control disabled="false" id="notescontrol" classid="{06375649-c143-495e-a496-c962e5b4488e}">
+                          <parameters>
+                            <UClientRecordPerPage>5</UClientRecordPerPage>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row />
@@ -241,6 +236,48 @@
                     <row />
                     <row />
                     <row />
+                  </rows>
+                </section>
+                <section name="SUMMARY_TAB_section_8" id="5355d919-6b0f-44ea-aa22-13c88297313b" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Stakeholder Status" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{b4d6e530-07f4-4b6b-b7f9-4536c0451425}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Stakeholder Status" languagecode="1033" />
+                          <label description="Statut d'intervenant" languagecode="1036" />
+                        </labels>
+                        <control id="ts_stakeholderstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_stakeholderstatus" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{385c283f-6549-4bb4-8ce5-7a4aa6c00d04}" locklevel="0" colspan="1" rowspan="1" visible="true">
+                        <labels>
+                          <label description="Non-Operational Start Date" languagecode="1033" />
+                          <label description="Date de début non opérationnelle" languagecode="1036" />
+                        </labels>
+                        <control id="ts_statusstartdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_statusstartdate" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c4014779-cb87-46e5-a3f2-f27e060f63bb}" locklevel="0" colspan="1" rowspan="1" visible="true">
+                        <labels>
+                          <label description="Non-Operational End Date (inclusive)" languagecode="1033" />
+                          <label description="Date de fin non opérationnelle (inclusive)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_statusenddate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_statusenddate" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fa6b6e25-70c7-4646-8944-b036a3f7d215}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Description" languagecode="1033" />
+                        </labels>
+                        <control id="ts_statusdescription" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_statusdescription" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -383,7 +420,7 @@
             </column>
           </columns>
         </tab>
-        <tab id="{11a42c72-9ded-ea04-253d-2143e731b795}" name="DETAILS_TAB" labelid="{6804c565-15ba-41c7-96b0-06e3aeafe0a4}" expanded="false" showlabel="true" IsUserDefined="0">
+        <tab id="{11a42c72-9ded-ea04-253d-2143e731b795}" name="DETAILS_TAB" labelid="{6804c565-15ba-41c7-96b0-06e3aeafe0a4}" expanded="true" showlabel="true" IsUserDefined="0">
           <labels>
             <label description="Details" languagecode="1033" />
             <label description="Détails" languagecode="1036" />
@@ -571,9 +608,9 @@
             <label description="Opérations" languagecode="1036" />
           </labels>
           <columns>
-            <column width="100%">
+            <column width="70%">
               <sections>
-                <section name="tab_5_section_1" showlabel="false" showbar="false" locklevel="0" id="{8b48b456-c5e3-9246-5572-eae7d17575c6}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" height="auto">
+                <section name="Operations_section_2" showlabel="false" showbar="false" locklevel="0" id="{5b99b329-062a-6d02-401d-c0aeb9635348}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" height="auto">
                   <labels>
                     <label description="Section" languagecode="1033" />
                   </labels>
@@ -599,7 +636,7 @@
                             <VisualizationId />
                             <IsUserChart>false</IsUserChart>
                             <EnableChartPicker>true</EnableChartPicker>
-                            <RecordsPerPage>30</RecordsPerPage>
+                            <RecordsPerPage>100</RecordsPerPage>
                             <HeaderColorCode>#F3F3F3</HeaderColorCode>
                           </parameters>
                         </control>
@@ -608,6 +645,26 @@
                     <row />
                     <row />
                     <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="30%">
+              <sections>
+                <section name="tab_5_section_1" showlabel="false" showbar="false" locklevel="0" id="{8b48b456-c5e3-9246-5572-eae7d17575c6}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" height="auto" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{c655a2dc-3161-3b3c-d5ed-55e8ddacd968}" showlabel="false" locklevel="0">
+                        <labels>
+                          <label description="Account Number" languagecode="1033" />
+                          <label description="Numéro de compte" languagecode="1036" />
+                        </labels>
+                        <control id="accountnumber" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="accountnumber" disabled="false" uniqueid="{c27e9487-64ba-5a70-bd5c-765a54a95a05}" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -783,6 +840,33 @@
             </column>
           </columns>
         </tab>
+        <tab name="tab_8" id="c4bb527f-12b3-4cfa-b6ba-464a3132a210" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Document Test" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_8_section_1" id="46e905cb-9d53-427f-bdb5-8053ca9b5bf5" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{4e32a798-864e-b0eb-81d2-131303146b66}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Account Name" languagecode="1033" />
+                          <label description="Nom du compte" languagecode="1036" />
+                        </labels>
+                        <control id="name" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="name" disabled="false" uniqueid="{82827686-074a-7a1b-5535-6d752751bcd6}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
       </tabs>
       <events>
         <event name="onload" active="false" application="false">
@@ -805,6 +889,16 @@
         <event name="onchange" application="true" active="true" attribute="msdyn_serviceterritory">
           <Handlers>
             <Handler functionName="ROM.Account.regionOnChange" libraryName="ovs_/js/Account.js" handlerUniqueId="{727449ab-8002-4e07-9251-6229b1d4af4f}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_stakeholderstatus">
+          <Handlers>
+            <Handler functionName="ROM.Account.stakeholderStatusOnChange" libraryName="msdyn_/Account/AssetCommon.Account.Library.js" handlerUniqueId="{44e9aae8-1fbf-4759-ab61-46ffadba63d0}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_statusstartdate">
+          <Handlers>
+            <Handler functionName="ROM.Account.statusStartDateOnChange" libraryName="msdyn_/Account/AssetCommon.Account.Library.js" handlerUniqueId="{7f2f33e9-fe1e-4653-a7f0-26039b7fd8a1}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
@@ -2365,6 +2459,62 @@
           <customControl formFactor="2" name="msdyn_MscrmControls.TreeView.TreeViewControl">
             <parameters>
               <value>name</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{c27e9487-64ba-5a70-bd5c-765a54a95a05}">
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}">
+            <parameters>
+              <datafieldname>accountnumber</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>accountnumber</record>
+              <schema static="true" type="SingleLine.Text">{}</schema>
+              <entityName static="true" type="SingleLine.Text">Account</entityName>
+              <appName static="true" type="SingleLine.Text">ts_Operations_Creator</appName>
+              <appId static="true" type="SingleLine.Text">0b20808d-41ab-478c-98c5-e3667606b11f</appId>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>accountnumber</record>
+              <schema static="true" type="SingleLine.Text">{}</schema>
+              <entityName static="true" type="SingleLine.Text">Account</entityName>
+              <appName static="true" type="SingleLine.Text">ts_Operations_Creator</appName>
+              <appId static="true" type="SingleLine.Text">0b20808d-41ab-478c-98c5-e3667606b11f</appId>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>accountnumber</record>
+              <schema static="true" type="SingleLine.Text">{}</schema>
+              <entityName static="true" type="SingleLine.Text">Account</entityName>
+              <appName static="true" type="SingleLine.Text">ts_Operations_Creator</appName>
+              <appId static="true" type="SingleLine.Text">0b20808d-41ab-478c-98c5-e3667606b11f</appId>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{82827686-074a-7a1b-5535-6d752751bcd6}">
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="0">
+            <parameters>
+              <datafieldname>name</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="1">
+            <parameters>
+              <datafieldname>name</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>name</record>
+              <entityName static="true" type="SingleLine.Text">Account</entityName>
+              <appId static="true" type="SingleLine.Text">20ef2713-554d-4e26-a257-d14199216f75</appId>
             </parameters>
           </customControl>
         </controlDescription>
