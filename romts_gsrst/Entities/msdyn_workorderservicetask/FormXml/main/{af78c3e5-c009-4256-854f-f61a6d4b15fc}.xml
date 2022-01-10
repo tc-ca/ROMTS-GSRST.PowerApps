@@ -692,23 +692,62 @@
         </tab>
         <tab name="tab_files" id="15ff65d6-9ce4-4f82-b95e-88542566be7f" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
           <labels>
-            <label description="Files" languagecode="1033" />
+            <label description="Finding Files" languagecode="1033" />
           </labels>
           <columns>
-            <column width="100%">
+            <column width="70%">
               <sections>
-                <section name="tab_12_section_1" id="fb87e8cc-37c9-4b5f-b9bd-ffc46acece91" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                <section name="tab_12_section_1" id="fb87e8cc-37c9-4b5f-b9bd-ffc46acece91" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="true">
                   <labels>
-                    <label description="New Section" languagecode="1033" />
+                    <label description="Uploaded Files" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{1999d87e-b989-0d09-d1c4-d0e323309012}" showlabel="false" locklevel="0">
+                      <cell locklevel="0" id="{1f7be45c-73ad-407c-856f-7e5eddbff4ad}" rowspan="1" colspan="1" auto="true">
+                        <labels>
+                          <label description="Files" languagecode="1033" />
+                          <label description="Législations" languagecode="1036" />
+                        </labels>
+                        <control id="Subgrid_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{b852dcd9-93eb-b761-5099-6b157e758426}">
+                          <parameters>
+                            <TargetEntityType>ts_file</TargetEntityType>
+                            <ViewId>{DB39C793-3972-EC11-8942-000D3A0BF0A3}</ViewId>
+                            <ViewIds>{780DB46F-53CE-4143-A1A1-86AB9464261C},{DB39C793-3972-EC11-8942-000D3A0BF0A3}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>ts_File_msdyn_workorderservicetask_msdyn_</RelationshipName>
+                            <RecordsPerPage>10</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <HeaderColorCode />
+                            <IsUserView>false</IsUserView>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row height="auto" />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="30%">
+              <sections>
+                <section name="tab_files_section_2" showlabel="false" showbar="false" locklevel="0" id="{026e135b-d37a-e97c-4537-e1c3090a1e55}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{1999d87e-b989-0d09-d1c4-d0e323309012}" showlabel="false" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Name" languagecode="1033" />
                           <label description="Nom" languagecode="1036" />
                         </labels>
-                        <control id="msdyn_name" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="msdyn_name" disabled="false" uniqueid="{fd37f060-6b51-4438-b3ed-8e14e2d6bccb}" />
+                        <control id="msdyn_name" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="msdyn_name" disabled="false" uniqueid="{7831b4d2-0779-4562-8c56-63628e5c3539}" />
                       </cell>
                     </row>
                   </rows>
@@ -1286,26 +1325,10 @@
             </parameters>
           </customControl>
         </controlDescription>
-        <controlDescription forControl="{fd37f060-6b51-4438-b3ed-8e14e2d6bccb}">
+        <controlDescription forControl="{7831b4d2-0779-4562-8c56-63628e5c3539}">
           <customControl id="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}">
             <parameters>
               <datafieldname>msdyn_name</datafieldname>
-            </parameters>
-          </customControl>
-          <customControl formFactor="0" name="MscrmControls.Canvas.CanvasControl">
-            <parameters>
-              <record>msdyn_name</record>
-              <entityName type="SingleLine.Text">msdyn_name</entityName>
-              <appName type="SingleLine.Text">msdyn_name</appName>
-              <appId type="SingleLine.Text" static="true">20ef2713-554d-4e26-a257-d14199216f75</appId>
-            </parameters>
-          </customControl>
-          <customControl formFactor="1" name="MscrmControls.Canvas.CanvasControl">
-            <parameters>
-              <record>msdyn_name</record>
-              <entityName type="SingleLine.Text">msdyn_name</entityName>
-              <appName type="SingleLine.Text">msdyn_name</appName>
-              <appId type="SingleLine.Text" static="true">20ef2713-554d-4e26-a257-d14199216f75</appId>
             </parameters>
           </customControl>
           <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
@@ -1313,7 +1336,23 @@
               <record>msdyn_name</record>
               <entityName type="SingleLine.Text">msdyn_name</entityName>
               <appName type="SingleLine.Text">msdyn_name</appName>
-              <appId type="SingleLine.Text" static="true">20ef2713-554d-4e26-a257-d14199216f75</appId>
+              <appId type="SingleLine.Text" static="true">aacd84ec-93c7-49bd-8ac2-d5255d14f0ff</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>msdyn_name</record>
+              <entityName type="SingleLine.Text">msdyn_name</entityName>
+              <appName type="SingleLine.Text">msdyn_name</appName>
+              <appId type="SingleLine.Text" static="true">aacd84ec-93c7-49bd-8ac2-d5255d14f0ff</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>msdyn_name</record>
+              <entityName type="SingleLine.Text">msdyn_name</entityName>
+              <appName type="SingleLine.Text">msdyn_name</appName>
+              <appId type="SingleLine.Text" static="true">aacd84ec-93c7-49bd-8ac2-d5255d14f0ff</appId>
             </parameters>
           </customControl>
         </controlDescription>
