@@ -409,6 +409,60 @@
             </column>
           </columns>
         </tab>
+        <tab name="tab_6" id="01b5166e-228e-4191-8563-2539474c6a60" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="5" solutionaction="Added">
+          <labels>
+            <label description="Documents" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="70%" id="0">
+              <sections>
+                <section name="tab_6_section_1" id="c310bdd4-cc48-4aac-b2df-863825e8dfef" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{0fa526e3-a4a5-4c08-99eb-4e91c71cf7fe}" rowspan="1" colspan="1" ordinalvalue="10000">
+                        <labels>
+                          <label description="Files" languagecode="1033" />
+                          <label description="Opérations" languagecode="1036" />
+                        </labels>
+                        <control id="Subgrid_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <TargetEntityType>ts_file</TargetEntityType>
+                            <ViewId>{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewId>
+                            <ViewIds>{780DB46F-53CE-4143-A1A1-86AB9464261C},{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>ts_File_Site_msdyn_FunctionalLocation</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="30%" id="1">
+              <sections>
+                <section name="tab_6_section_2" id="cc1b84e7-d870-4deb-8bac-ebefa377e479" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{de2e6e78-baac-ed17-2d14-236927a833dc}" showlabel="false" locklevel="0" ordinalvalue="10000">
+                        <labels>
+                          <label description="CanvasApp Number" languagecode="1033" />
+                        </labels>
+                        <control id="ts_canvasappnumber" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_canvasappnumber" disabled="false" uniqueid="{640331c8-65ec-9441-a8a3-81c2e4c6d676}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
       </tabs>
       <formLibraries>
         <Library name="ts_/js/FunctionalLocation.js" libraryUniqueId="{99831703-bc89-4c59-b222-7bfd3b436688}" solutionaction="Added" />
@@ -456,6 +510,25 @@
               <record>ts_functionallocationnameenglish</record>
               <entityName static="true" type="SingleLine.Text">Functional Location</entityName>
               <appId static="true" type="SingleLine.Text">0ca230d8-6f9b-4a32-a196-23e5c0fd080a</appId>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{640331c8-65ec-9441-a8a3-81c2e4c6d676}" solutionaction="Added">
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="0">
+            <parameters>
+              <datafieldname>ts_canvasappnumber</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="1">
+            <parameters>
+              <datafieldname>ts_canvasappnumber</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>ts_canvasappnumber</record>
+              <entityName static="true" type="SingleLine.Text">Functional Location</entityName>
+              <appId static="true" type="SingleLine.Text">c2fb8e34-4437-49b9-81af-12335e276a7c</appId>
             </parameters>
           </customControl>
         </controlDescription>

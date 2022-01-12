@@ -352,6 +352,60 @@
             </column>
           </columns>
         </tab>
+        <tab name="tab_5" id="bf3f1ff9-af5e-4c7b-a963-74d66c48e52a" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Documents" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="70%">
+              <sections>
+                <section name="tab_5_section_1" id="4d80d856-9801-4189-80c5-cf55d5329b41" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{41360fa1-9677-49b6-b4b9-8cf8beec278c}" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Files" languagecode="1033" />
+                          <label description="Connexions" languagecode="1036" />
+                        </labels>
+                        <control id="Subgrid_3" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <TargetEntityType>ts_file</TargetEntityType>
+                            <ViewId>{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewId>
+                            <ViewIds>{780DB46F-53CE-4143-A1A1-86AB9464261C},{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>ts_File_ovs_operation_ovs_operation</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="30%">
+              <sections>
+                <section name="tab_5_section_2" id="33ccdc9e-7244-419d-ac35-800f378138dd" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{1194de2a-0093-e2c1-1d07-c66225406705}" showlabel="false" locklevel="0">
+                        <labels>
+                          <label description="CanvasApp Number" languagecode="1033" />
+                        </labels>
+                        <control id="ts_canvasappnumber" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_canvasappnumber" disabled="false" uniqueid="{d8360960-34d2-6a8c-1b90-9258e6b67de8}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
       </tabs>
       <Navigation>
         <NavBar />
@@ -383,7 +437,27 @@
           </NavBarArea>
         </NavBarAreas>
       </Navigation>
-      <controlDescriptions />
+      <controlDescriptions>
+        <controlDescription forControl="{d8360960-34d2-6a8c-1b90-9258e6b67de8}">
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="0">
+            <parameters>
+              <datafieldname>ts_canvasappnumber</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="1">
+            <parameters>
+              <datafieldname>ts_canvasappnumber</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>ts_canvasappnumber</record>
+              <entityName static="true" type="SingleLine.Text">Operation</entityName>
+              <appId static="true" type="SingleLine.Text">634786c5-cae5-4d08-a304-2b26d4af8798</appId>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
       <header id="{a24764d0-170e-4da7-bf83-6936f3889c51}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
         <rows>
           <row>
@@ -429,9 +503,6 @@
       <formLibraries>
         <Library name="ts_/js/Operation.js" libraryUniqueId="{07b1987c-8bbd-bd36-c671-15b1d2c226c3}" />
       </formLibraries>
-      <DisplayConditions Order="0" FallbackForm="true">
-        <Everyone />
-      </DisplayConditions>
       <events>
         <event name="onchange" application="true" active="true" attribute="ts_site">
           <Handlers>
@@ -454,6 +525,9 @@
           </Handlers>
         </event>
       </events>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

@@ -177,7 +177,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{a2f1ae0b-4e24-4851-8749-37abfd3f460f}" locklevel="0">
+                      <cell id="{a2f1ae0b-4e24-4851-8749-37abfd3f460f}" locklevel="0" visible="false">
                         <labels>
                           <label description="Work Order Start Date" languagecode="1033" />
                           <label description="Date de début de l'ordre de travail" languagecode="1036" />
@@ -186,7 +186,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{07135285-b3ce-403b-a28d-731c1b71a662}" locklevel="0">
+                      <cell id="{07135285-b3ce-403b-a28d-731c1b71a662}" locklevel="0" visible="false">
                         <labels>
                           <label description="Work Order End Date" languagecode="1033" />
                           <label description="Date de fin de l'ordre de travail" languagecode="1036" />
@@ -195,7 +195,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{c09287b5-5c65-2856-e831-b25d1d75443b}" labelid="{8f0fc6b5-4bde-473c-b141-c050e9e0065c}" showlabel="true" locklevel="0">
+                      <cell id="{c09287b5-5c65-2856-e831-b25d1d75443b}" labelid="{8f0fc6b5-4bde-473c-b141-c050e9e0065c}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Substatus" languagecode="1033" />
                           <label description="Sous-statut" languagecode="1036" />
@@ -213,7 +213,7 @@
                       </cell>
                     </row>
                     <row height="auto">
-                      <cell id="{a8119cab-a939-4805-39ac-e2ab0a638d33}" labelid="{a34affaa-aabc-4d0c-96b8-62f149d36eef}" showlabel="true" locklevel="0" auto="true" rowspan="1" colspan="1">
+                      <cell id="{a8119cab-a939-4805-39ac-e2ab0a638d33}" labelid="{a34affaa-aabc-4d0c-96b8-62f149d36eef}" showlabel="true" locklevel="0" auto="true" rowspan="1" colspan="1" visible="false">
                         <labels>
                           <label description="Work Order Summary" languagecode="1033" />
                           <label description="Résumé de l'ordre de travail" languagecode="1036" />
@@ -235,89 +235,53 @@
                         </control>
                       </cell>
                     </row>
+                  </rows>
+                </section>
+                <section name="{b8e326ee-5c21-4a18-ba55-e3b56966c249}_section_9" id="9c360ccd-7561-4d4d-a0ad-1b447a6a1c21" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="OWNER" languagecode="1033" />
+                  </labels>
+                  <rows>
                     <row>
-                      <cell id="{f227c143-f4cc-48fe-b29f-1b42a1977599}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{a3809ed1-901d-418f-8885-30aad2e873aa}" locklevel="0" colspan="1" rowspan="1" showlabel="false">
                         <labels>
-                          <label description="Number of Findings" languagecode="1033" />
-                          <label description="Nombre de constatations" languagecode="1036" />
+                          <label description="Owner" languagecode="1033" />
+                          <label description="Propriétaire" languagecode="1036" />
                         </labels>
-                        <control id="ts_numberoffindings" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_numberoffindings" disabled="false" />
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
                       </cell>
                     </row>
                   </rows>
                 </section>
-                <section id="{6c515330-89dd-096d-58b4-04c65bebed43}" name="activity_details_section" height="auto" labelid="{1bbf60dd-72b6-4d79-8e41-9b935b12ec69}" showlabel="true" locklevel="0" IsUserDefined="0" celllabelposition="Left" celllabelalignment="Left" labelwidth="220" columns="1" showbar="false" layout="varwidth">
+                <section name="{b8e326ee-5c21-4a18-ba55-e3b56966c249}_section_8" id="65c0a7b0-6bc9-4716-9c8d-fcb76481309a" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
                   <labels>
-                    <label description="ACTIVITY DETAILS" languagecode="1033" />
-                    <label description="DÉTAILS DE L'ACTIVITÉ" languagecode="1036" />
+                    <label description="WORK ORDER ACCESS TEAM" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{bcb57d7b-b791-4c93-bfba-e8af121b388f}" locklevel="0">
+                      <cell id="{454d23bc-3557-5d14-363b-36b024201950}" showlabel="false" colspan="1" auto="false" rowspan="1">
                         <labels>
-                          <label description="Activity Type" languagecode="1033" />
-                          <label description="Type d'activité" languagecode="1036" />
+                          <label description="Work Order Access Team" languagecode="1033" />
+                          <label description="Tâches de service de l'ordre de travail" languagecode="1036" />
                         </labels>
-                        <control id="msdyn_primaryincidenttype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_primaryincidenttype" disabled="false">
+                        <control id="WorkOrderAccessTeam" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
-                            <DisableViewPicker>true</DisableViewPicker>
-                            <DefaultViewId>{467A8F92-753B-485E-8BA9-13DE8B7CB3A7}</DefaultViewId>
-                            <AvailableViewIds>{467A8F92-753B-485E-8BA9-13DE8B7CB3A7},{82E357FE-4361-E111-AC14-000C2959F9B8},{D55234C3-D2DF-45D1-AB39-2274047D84C9},{6779156F-7D9B-4FF2-85B0-83E91CC95299}</AvailableViewIds>
-                            <DisableMru>true</DisableMru>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{0c2a4ee1-1931-722d-9894-855500223a20}" labelid="{fcc2b3dc-8ffe-4537-9c01-ea2a720677d4}" showlabel="true" locklevel="0" auto="false" rowspan="1" colspan="1">
-                        <labels>
-                          <label description="Activity Description" languagecode="1033" />
-                          <label description="Description de l'activité" languagecode="1036" />
-                        </labels>
-                        <control disabled="true" id="msdyn_primaryincidentdescription" datafieldname="msdyn_primaryincidentdescription" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" uniqueid="{0bdaa66b-56cb-23ca-e76b-6cc87a1c6761}" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{5a273570-da0d-718d-2379-2d695a1592d2}" labelid="{719bb8a7-f754-4424-91cc-be055a4b0c3a}" showlabel="true" locklevel="0">
-                        <labels>
-                          <label description="Estimated Duration" languagecode="1033" />
-                          <label description="Durée estimée" languagecode="1036" />
-                        </labels>
-                        <control disabled="true" id="msdyn_primaryincidentestimatedduration" datafieldname="msdyn_primaryincidentestimatedduration" classid="{AA987274-CE4E-4271-A803-66164311A958}" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{4c9d4dd2-1665-c4b5-800c-7564435e00cb}" labelid="{74042a79-f705-4843-8d1e-0e4f4f5f7b2d}" showlabel="true" locklevel="0" visible="false">
-                        <labels>
-                          <label description="Primary Incident Customer Asset" languagecode="1033" />
-                          <label description="Actif client principal de l'incident" languagecode="1036" />
-                        </labels>
-                        <control disabled="false" id="msdyn_customerasset" datafieldname="msdyn_customerasset" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" uniqueid="{3e63d73e-1d69-bb35-9327-3804484290c9}">
-                          <parameters>
-                            <DisableMru>true</DisableMru>
-                            <AutoResolve>true</AutoResolve>
-                            <DisableQuickFind>false</DisableQuickFind>
-                            <DisableViewPicker>false</DisableViewPicker>
-                            <DefaultViewId>{FD2FDA4C-4B7F-4A68-A2CB-C1E1C6A31C8F}</DefaultViewId>
-                            <AllowFilterOff>false</AllowFilterOff>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{67dd0bed-7cc4-48c8-2eda-3826ad15997d}" labelid="{35f81dd7-ddfe-423f-9843-2b8d86cf7ad0}" showlabel="true" locklevel="0" visible="false">
-                        <labels>
-                          <label description="IoT Alert" languagecode="1033" />
-                          <label description="Alerte IoT" languagecode="1036" />
-                        </labels>
-                        <control disabled="false" id="msdyn_iotalert" datafieldname="msdyn_iotalert" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" uniqueid="{20501940-c826-25c7-6e66-1bc83490aabc}">
-                          <parameters>
-                            <AutoResolve>true</AutoResolve>
-                            <DisableMru>false</DisableMru>
-                            <DisableQuickFind>false</DisableQuickFind>
-                            <DisableViewPicker>false</DisableViewPicker>
-                            <DefaultViewId>{B96D141D-A429-E611-8107-00155DB9CD0A}</DefaultViewId>
-                            <AllowFilterOff>false</AllowFilterOff>
+                            <ViewId>{F79AD170-AE03-4F4C-8132-D4AA08520A0C}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName />
+                            <TargetEntityType>systemuser</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{F79AD170-AE03-4F4C-8132-D4AA08520A0C},{00000000-0000-0000-00AA-000010001019}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <TeamTemplateId>{bddf1d45-706d-ec11-8f8e-0022483da5aa}</TeamTemplateId>
                           </parameters>
                         </control>
                       </cell>
@@ -398,6 +362,84 @@
             </column>
             <column width="50%">
               <sections>
+                <section id="{6c515330-89dd-096d-58b4-04c65bebed43}" name="activity_details_section" height="auto" labelid="{1bbf60dd-72b6-4d79-8e41-9b935b12ec69}" showlabel="true" locklevel="0" IsUserDefined="0" celllabelposition="Left" celllabelalignment="Left" labelwidth="220" columns="1" showbar="false" layout="varwidth">
+                  <labels>
+                    <label description="ACTIVITY DETAILS" languagecode="1033" />
+                    <label description="DÉTAILS DE L'ACTIVITÉ" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{bcb57d7b-b791-4c93-bfba-e8af121b388f}" locklevel="0">
+                        <labels>
+                          <label description="Activity Type" languagecode="1033" />
+                          <label description="Type d'activité" languagecode="1036" />
+                        </labels>
+                        <control id="msdyn_primaryincidenttype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_primaryincidenttype" disabled="false">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{467A8F92-753B-485E-8BA9-13DE8B7CB3A7}</DefaultViewId>
+                            <AvailableViewIds>{467A8F92-753B-485E-8BA9-13DE8B7CB3A7},{82E357FE-4361-E111-AC14-000C2959F9B8},{D55234C3-D2DF-45D1-AB39-2274047D84C9},{6779156F-7D9B-4FF2-85B0-83E91CC95299}</AvailableViewIds>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0c2a4ee1-1931-722d-9894-855500223a20}" labelid="{fcc2b3dc-8ffe-4537-9c01-ea2a720677d4}" showlabel="true" locklevel="0" auto="false" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Activity Description" languagecode="1033" />
+                          <label description="Description de l'activité" languagecode="1036" />
+                        </labels>
+                        <control disabled="true" id="msdyn_primaryincidentdescription" datafieldname="msdyn_primaryincidentdescription" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" uniqueid="{0bdaa66b-56cb-23ca-e76b-6cc87a1c6761}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5a273570-da0d-718d-2379-2d695a1592d2}" labelid="{719bb8a7-f754-4424-91cc-be055a4b0c3a}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Estimated Duration" languagecode="1033" />
+                          <label description="Durée estimée" languagecode="1036" />
+                        </labels>
+                        <control disabled="true" id="msdyn_primaryincidentestimatedduration" datafieldname="msdyn_primaryincidentestimatedduration" classid="{AA987274-CE4E-4271-A803-66164311A958}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4c9d4dd2-1665-c4b5-800c-7564435e00cb}" labelid="{74042a79-f705-4843-8d1e-0e4f4f5f7b2d}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Primary Incident Customer Asset" languagecode="1033" />
+                          <label description="Actif client principal de l'incident" languagecode="1036" />
+                        </labels>
+                        <control disabled="false" id="msdyn_customerasset" datafieldname="msdyn_customerasset" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" uniqueid="{3e63d73e-1d69-bb35-9327-3804484290c9}">
+                          <parameters>
+                            <DisableMru>true</DisableMru>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{FD2FDA4C-4B7F-4A68-A2CB-C1E1C6A31C8F}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{67dd0bed-7cc4-48c8-2eda-3826ad15997d}" labelid="{35f81dd7-ddfe-423f-9843-2b8d86cf7ad0}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="IoT Alert" languagecode="1033" />
+                          <label description="Alerte IoT" languagecode="1036" />
+                        </labels>
+                        <control disabled="false" id="msdyn_iotalert" datafieldname="msdyn_iotalert" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" uniqueid="{20501940-c826-25c7-6e66-1bc83490aabc}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{B96D141D-A429-E611-8107-00155DB9CD0A}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
                 <section name="service_tasks_section" id="e119ee9a-2471-46cf-883c-52cd9c1f7235" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" height="auto" labelid="{464136c1-b14a-4c46-ba76-c6a1a739226c}">
                   <labels>
                     <label description="SERVICE TASKS" languagecode="1033" />
@@ -429,6 +471,15 @@
                             <HeaderColorCode>#F3F3F3</HeaderColorCode>
                           </parameters>
                         </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f227c143-f4cc-48fe-b29f-1b42a1977599}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Number of Findings" languagecode="1033" />
+                          <label description="Nombre de constatations" languagecode="1036" />
+                        </labels>
+                        <control id="ts_numberoffindings" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_numberoffindings" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -825,39 +876,12 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{454d23bc-3557-5d14-363b-36b024201950}" showlabel="true" colspan="1" auto="false" rowspan="7">
+                      <cell showlabel="false" locklevel="0" id="{5d04f2cc-5df1-4386-a7bf-00160b56e66e}">
                         <labels>
-                          <label description="Work Order Access Team" languagecode="1033" />
-                          <label description="Tâches de service de l'ordre de travail" languagecode="1036" />
+                          <label description="" languagecode="1033" />
                         </labels>
-                        <control id="WorkOrderAccessTeam" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
-                          <parameters>
-                            <ViewId>{F79AD170-AE03-4F4C-8132-D4AA08520A0C}</ViewId>
-                            <IsUserView>false</IsUserView>
-                            <RelationshipName />
-                            <TargetEntityType>systemuser</TargetEntityType>
-                            <AutoExpand>Fixed</AutoExpand>
-                            <EnableQuickFind>false</EnableQuickFind>
-                            <EnableViewPicker>false</EnableViewPicker>
-                            <ViewIds>{F79AD170-AE03-4F4C-8132-D4AA08520A0C},{00000000-0000-0000-00AA-000010001019}</ViewIds>
-                            <EnableJumpBar>false</EnableJumpBar>
-                            <ChartGridMode>All</ChartGridMode>
-                            <VisualizationId />
-                            <IsUserChart>false</IsUserChart>
-                            <EnableChartPicker>true</EnableChartPicker>
-                            <RecordsPerPage>4</RecordsPerPage>
-                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
-                            <TeamTemplateId>{bddf1d45-706d-ec11-8f8e-0022483da5aa}</TeamTemplateId>
-                          </parameters>
-                        </control>
                       </cell>
                     </row>
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
                   </rows>
                 </section>
               </sections>
@@ -1391,7 +1415,7 @@
                     <row>
                       <cell locklevel="0" id="{a8a65421-2423-47c4-95e6-a44f27febaeb}" rowspan="1" colspan="1">
                         <labels>
-                          <label description="Documents" languagecode="1033" />
+                          <label description="Files" languagecode="1033" />
                           <label description="Tâches de service de l'ordre de travail" languagecode="1036" />
                         </labels>
                         <control id="Subgrid_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
