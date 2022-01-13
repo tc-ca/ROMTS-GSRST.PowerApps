@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20220113.1</Version>
+    <Version>1.0.20220113.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -239,6 +239,7 @@
       <RootComponent type="29" id="{168249b4-0934-eb11-a813-000d3af3fc19}" behavior="0" />
       <RootComponent type="29" id="{31c5f0e1-7b53-ec11-8f8e-000d3ae9a941}" behavior="0" />
       <RootComponent type="29" id="{33a33eb1-1c33-eb11-a813-000d3af3fc19}" behavior="0" />
+      <RootComponent type="29" id="{4dd484ed-f872-ec11-8942-000d3a0bf0a3}" behavior="0" />
       <RootComponent type="29" id="{50709486-bb81-eb11-a812-000d3a84b97d}" behavior="0" />
       <RootComponent type="29" id="{586105f8-6657-eb11-a812-000d3aff12c2}" behavior="0" />
       <RootComponent type="29" id="{5c9834c1-6e6d-eb11-a812-000d3a84129e}" behavior="0" />
@@ -9022,6 +9023,12 @@
         <Required type="2" schemaName="incidentid" displayName="Case" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.21121.1025)</package>
         </Required>
+        <Dependent type="29" displayName="Set CanvasApp Number" id="{4dd484ed-f872-ec11-8942-000d3a0bf0a3}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="incidentid" displayName="Case" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.21121.1025)</package>
+        </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
@@ -11919,7 +11926,7 @@
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.57.19)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
