@@ -605,39 +605,6 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_11" id="d2a74cfc-42c8-4b8b-811b-bc2d77108a99" IsUserDefined="0" locklevel="0" showlabel="true">
-          <labels>
-            <label description="Documents" languagecode="1033" />
-          </labels>
-          <columns>
-            <column width="100%">
-              <sections>
-                <section name="tab_11_section_1" id="238e76ef-2c9e-4ccb-96a6-8cbc4b0252d2" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
-                  <labels>
-                    <label description="Documents" languagecode="1033" />
-                  </labels>
-                  <rows>
-                    <row>
-                      <cell locklevel="0" id="{4c252635-a278-49c8-8e2b-6c2f66cc19f6}" rowspan="1" colspan="1">
-                        <labels>
-                          <label description="Documents" languagecode="1033" />
-                          <label description="Dispositions du tâche de service de l'ordre de travail" languagecode="1036" />
-                        </labels>
-                        <control id="Subgrid_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
-                          <parameters>
-                            <TargetEntityType>sharepointdocument</TargetEntityType>
-                            <ViewId>{A5B008AC-07D9-4554-8509-2C05767BFF51}</ViewId>
-                            <EnableViewPicker>true</EnableViewPicker>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                  </rows>
-                </section>
-              </sections>
-            </column>
-          </columns>
-        </tab>
         <tab name="tab_9" id="58b92403-d7d3-4b1e-be2a-06bff5c4bcff" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false">
           <labels>
             <label description="Work Order Details" languagecode="1033" />
@@ -692,7 +659,7 @@
         </tab>
         <tab name="tab_files" id="15ff65d6-9ce4-4f82-b95e-88542566be7f" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
           <labels>
-            <label description="Finding Files" languagecode="1033" />
+            <label description="Documents" languagecode="1033" />
           </labels>
           <columns>
             <column width="70%">
@@ -703,33 +670,38 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell locklevel="0" id="{1f7be45c-73ad-407c-856f-7e5eddbff4ad}" rowspan="1" colspan="1" auto="true">
+                      <cell id="{957ac66a-457a-373e-7cb5-de106b75a2ed}" showlabel="true" colspan="1" auto="false" rowspan="6">
                         <labels>
                           <label description="Files" languagecode="1033" />
                           <label description="Législations" languagecode="1036" />
                         </labels>
-                        <control id="Subgrid_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{b852dcd9-93eb-b761-5099-6b157e758426}">
+                        <control id="Files" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{12068797-04c7-2284-b60a-cc832eb84bb0}">
                           <parameters>
-                            <TargetEntityType>ts_file</TargetEntityType>
-                            <ViewId>{DB39C793-3972-EC11-8942-000D3A0BF0A3}</ViewId>
-                            <ViewIds>{780DB46F-53CE-4143-A1A1-86AB9464261C},{DB39C793-3972-EC11-8942-000D3A0BF0A3}</ViewIds>
-                            <EnableViewPicker>false</EnableViewPicker>
-                            <RelationshipName>ts_File_msdyn_workorderservicetask_msdyn_</RelationshipName>
-                            <RecordsPerPage>10</RecordsPerPage>
-                            <AutoExpand>Auto</AutoExpand>
-                            <HeaderColorCode />
+                            <ViewId>{780DB46F-53CE-4143-A1A1-86AB9464261C}</ViewId>
                             <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_Files_msdyn_workorderservicetasks</RelationshipName>
+                            <TargetEntityType>ts_file</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
                             <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{780DB46F-53CE-4143-A1A1-86AB9464261C}</ViewIds>
                             <EnableJumpBar>false</EnableJumpBar>
                             <ChartGridMode>All</ChartGridMode>
                             <VisualizationId />
                             <IsUserChart>false</IsUserChart>
                             <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <RelationshipRoleOrdinal>1</RelationshipRoleOrdinal>
                           </parameters>
                         </control>
                       </cell>
                     </row>
-                    <row height="auto" />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>

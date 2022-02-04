@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
+    <CustomAction Id="ts.Mscrm.OpenRecordItem.CustomAction" Location="Mscrm.SubGrid.ovs_finding.MainTab.Management.Controls._children" Sequence="28">
+      <CommandUIDefinition>
+        <Button Command="Mscrm.OpenRecordItem" Id="Mscrm.OpenRecordItem" Sequence="28" TemplateAlias="o1" />
+      </CommandUIDefinition>
+    </CustomAction>
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_finding.AddNewStandard.Hide" Location="Mscrm.SubGrid.ovs_finding.AddNewStandard" />
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_finding.NewRecord.Hide" Location="Mscrm.SubGrid.ovs_finding.NewRecord" />
   </CustomActions>
@@ -98,6 +103,17 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="Mscrm.OpenRecordItem">
+      <EnableRules>
+        <EnableRule Id="ts.ovs_finding.alwaysFalse" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="openRecord" Library="$webresource:ovs_/js/FindingRibbon.js">
+          <CrmParameter Value="FirstSelectedItemId" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
   </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
@@ -184,8 +200,16 @@
           <CrmParameter Value="SelectedControl" />
         </CustomRule>
       </EnableRule>
+      <EnableRule Id="ts.ovs_finding.alwaysFalse">
+        <CustomRule FunctionName="isNaN" Library="$webresource:ovs_/js/FindingRibbon.js" Default="false" InvertResult="true" />
+      </EnableRule>
       <EnableRule Id="ts.ovs_finding.isAdmin">
         <CustomRule FunctionName="isSystemAdministrator" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false" InvertResult="false" />
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.NCATFactorsHaveValues">
+        <CustomRule FunctionName="NCATFactorsHaveValues" Library="$webresource:ts_/js/FindingRibbon" Default="false">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
       </EnableRule>
     </EnableRules>
   </RuleDefinitions>

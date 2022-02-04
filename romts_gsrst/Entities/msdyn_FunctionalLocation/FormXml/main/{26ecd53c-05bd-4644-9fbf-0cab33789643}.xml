@@ -45,7 +45,25 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{84396fdc-faec-4e8f-acf2-fa7d7743ad88}" locklevel="0" ordinalvalue="10004" solutionaction="Added">
+                      <cell id="{b1660606-10b3-446e-8a35-c923adc3cb4f}" locklevel="0" colspan="1" rowspan="1" visible="false" ordinalvalue="10004" solutionaction="Added">
+                        <labels>
+                          <label description="ICAO Code" languagecode="1033" />
+                          <label description="Code OACI" languagecode="1036" />
+                        </labels>
+                        <control id="ts_icaocode" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_icaocode" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f6d73efb-162c-41a7-b54f-f5a885dfe866}" locklevel="0" colspan="1" rowspan="1" visible="false" ordinalvalue="10005" solutionaction="Added">
+                        <labels>
+                          <label description="IATA Code" languagecode="1033" />
+                          <label description="Code ATAI" languagecode="1036" />
+                        </labels>
+                        <control id="ts_iatacode" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_iatacode" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{84396fdc-faec-4e8f-acf2-fa7d7743ad88}" locklevel="0" ordinalvalue="10006" solutionaction="Added">
                         <labels>
                           <label description="Business Unit" languagecode="1033" />
                           <label description="Unité opérationnelle" languagecode="1036" />
@@ -282,7 +300,7 @@
                             <VisualizationId />
                             <IsUserChart>false</IsUserChart>
                             <EnableChartPicker>true</EnableChartPicker>
-                            <RecordsPerPage>4</RecordsPerPage>
+                            <RecordsPerPage>10</RecordsPerPage>
                             <HeaderColorCode>#F3F3F3</HeaderColorCode>
                           </parameters>
                         </control>
@@ -422,22 +440,45 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell locklevel="0" id="{0fa526e3-a4a5-4c08-99eb-4e91c71cf7fe}" rowspan="1" colspan="1" ordinalvalue="10000">
+                      <cell id="{936d6d37-36e7-8475-646e-7406b7352c74}" showlabel="true" colspan="1" auto="false" rowspan="13" ordinalvalue="10000">
                         <labels>
                           <label description="Files" languagecode="1033" />
-                          <label description="Opérations" languagecode="1036" />
+                          <label description="Fichiers  " languagecode="1036" />
                         </labels>
-                        <control id="Subgrid_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="Files" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{42118476-3024-58a9-909d-b745e91da9aa}">
                           <parameters>
+                            <ViewId>{780DB46F-53CE-4143-A1A1-86AB9464261C}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_Files_msdyn_FunctionalLocations</RelationshipName>
                             <TargetEntityType>ts_file</TargetEntityType>
-                            <ViewId>{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewId>
-                            <ViewIds>{780DB46F-53CE-4143-A1A1-86AB9464261C},{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewIds>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
                             <EnableViewPicker>false</EnableViewPicker>
-                            <RelationshipName>ts_File_Site_msdyn_FunctionalLocation</RelationshipName>
+                            <ViewIds>{780DB46F-53CE-4143-A1A1-86AB9464261C}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>10</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <RelationshipRoleOrdinal>1</RelationshipRoleOrdinal>
                           </parameters>
                         </control>
                       </cell>
                     </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>
@@ -482,6 +523,11 @@
         <event name="onchange" application="true" active="true" attribute="ts_statusstartdate" solutionaction="Added">
           <Handlers>
             <Handler functionName="ROM.FunctionalLocation.statusStartDateOnChange" libraryName="msdyn_/FunctionalLocation/FunctionalLocation.Library.js" handlerUniqueId="{79878bff-6468-4631-b48e-e1bc87a79ee4}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_sitetype" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.siteTypeOnChange" libraryName="msdyn_/FunctionalLocation/FunctionalLocation.Library.js" handlerUniqueId="{57142891-edf4-4668-a4f6-c9c3d93dd9f9}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
           </Handlers>
         </event>
       </events>
@@ -594,7 +640,7 @@
         </rows>
       </footer>
       <Navigation solutionaction="Added">
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>

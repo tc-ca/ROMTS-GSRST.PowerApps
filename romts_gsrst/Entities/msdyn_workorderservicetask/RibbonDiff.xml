@@ -17,6 +17,16 @@
         <Button Alt="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.Alt" Command="Mscrm.SaveAndClosePrimary" Id="Mscrm.Form.msdyn_workorderservicetask.SaveAndClose" Image32by32="/_imgs/ribbon/SaveAndClose_32.png" Image16by16="/_imgs/FormEditorRibbon/SaveAndClose_16.png" LabelText="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.LabelText" Sequence="11" TemplateAlias="o1" ToolTipTitle="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.ToolTipTitle" ToolTipDescription="$LocLabels:Mscrm.Form.msdyn_workorderservicetask.SaveAndClose.ToolTipDescription" ModernImage="SaveAndClose" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.Mscrm.SubGrid.msdyn_workorderservicetask.AddNewStandard.CustomAction" Location="Mscrm.SubGrid.msdyn_workorderservicetask.MainTab.Management.Controls._children" Sequence="20">
+      <CommandUIDefinition>
+        <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddNew" Command="Mscrm.AddNewRecordFromSubGridStandard" Id="Mscrm.SubGrid.msdyn_workorderservicetask.AddNewStandard" Image32by32="/_imgs/ribbon/newrecord32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddNew" Sequence="20" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddNewStandard_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddNewStandard_ToolTipDescription" ModernImage="New" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.Mscrm.SubGrid.msdyn_workorderservicetask.NewRecord.CustomAction" Location="Mscrm.SubGrid.msdyn_workorderservicetask.MainTab.Management.Controls._children" Sequence="10">
+      <CommandUIDefinition>
+        <Button Command="Mscrm.NewRecordFromGrid" Id="Mscrm.SubGrid.msdyn_workorderservicetask.NewRecord" Image32by32="/_imgs/ribbon/newrecord32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.MainTab.New" Sequence="10" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Ribbon.SubGrid.MainTab.New" ToolTipDescription="$Resources(EntityDisplayName):Ribbon.Tooltip.New" ModernImage="New" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="8">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.Alt" Command="ts.msdyn_workorderservicetask.BuildCustomQuestionnaire" Id="ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire" LabelText="$LocLabels:ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.LabelText" Sequence="8" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.ToolTipDescription" />
@@ -83,6 +93,7 @@
         <EnableRule Id="Mscrm.EntityFormIsEnabled" />
         <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
         <EnableRule Id="ts.msdyn_workorderservicetask.isEntityWorkOrder" />
+        <EnableRule Id="ts.msdyn_workorderservicetask.EnableRule.isAdmin" />
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="Mscrm.ShowForOneToManyGrids" />
@@ -245,6 +256,7 @@
         <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
         <EnableRule Id="Mscrm.PrimaryIsNotActivityHomePageGrid" />
         <EnableRule Id="ts.msdyn_workorderservicetask.isEntityWorkOrder" />
+        <EnableRule Id="ts.msdyn_workorderservicetask.EnableRule.isAdmin" />
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="Mscrm.CreateSelectedEntityPermission" />
@@ -709,6 +721,9 @@
         <CustomRule FunctionName="ServiceTaskRibbon.isQuestionnaireForm" Library="$webresource:qm_ServiceTask_Ribbons.js">
           <CrmParameter Value="PrimaryControl" />
         </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorderservicetask.EnableRule.isAdmin">
+        <CustomRule FunctionName="isSystemAdministrator" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false" InvertResult="false" />
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorderservicetask.isEntityWorkOrder">
         <EntityRule EntityName="msdyn_workorder" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="false" />

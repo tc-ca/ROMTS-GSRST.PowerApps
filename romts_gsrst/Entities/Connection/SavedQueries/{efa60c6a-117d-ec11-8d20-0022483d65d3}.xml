@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{efa60c6a-117d-ec11-8d20-0022483d65d3}</savedqueryid>
+    <layoutxml>
+      <grid name="connections" jump="record2id" select="1" icon="0" preview="1">
+        <row name="connection" id="connectionid">
+          <cell name="record2id" width="228" />
+          <cell name="operation.ts_stakeholder" width="150" />
+          <cell name="operation.ovs_operationtypeid" width="100" />
+          <cell name="operation.ts_site" width="100" />
+          <cell name="record2roleid" width="150" />
+          <cell name="record1roleid" width="100" />
+          <cell name="description" width="118" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch distinct="false" mapping="logical" count="50">
+        <entity name="connection">
+          <attribute name="record2id" />
+          <attribute name="record2roleid" />
+          <attribute name="description" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <order attribute="record2id" descending="false" />
+          <attribute name="record1roleid" />
+          <link-entity name="ovs_operation" from="ovs_operationid" to="record2id" link-type="inner" alias="operation">
+            <attribute name="ts_stakeholder" />
+            <attribute name="ts_site" />
+            <link-entity name="ovs_operationtype" from="ovs_operationtypeid" to="ovs_operationtypeid" alias="op_type">
+              <attribute name="ovs_operationtypenameenglish" />
+            </link-entity>
+            <attribute name="ovs_operationtypeid" />
+          </link-entity>
+          <attribute name="connectionid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Connection Associated View - Operation" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Display all active connections of the object. " languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

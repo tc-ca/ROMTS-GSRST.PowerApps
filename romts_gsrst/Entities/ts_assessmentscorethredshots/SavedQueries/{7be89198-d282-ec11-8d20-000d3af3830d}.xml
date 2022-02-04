@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{7be89198-d282-ec11-8d20-000d3af3830d}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_assessmentscorethredshotsid">
+          <cell name="ts_name" width="100" />
+          <cell name="ts_minimum" width="100" />
+          <cell name="ts_maximum" width="100" />
+          <cell name="ts_ncatenforcementaction" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="ts_assessmentscorethredshots">
+          <attribute name="ts_assessmentscorethredshotsid" />
+          <attribute name="ts_minimum" />
+          <attribute name="ts_maximum" />
+          <order attribute="ts_minimum" descending="false" />
+          <attribute name="ts_name" />
+          <filter type="and">
+            <condition attribute="ts_assessmenttool" operator="eq" value="717750000" />
+          </filter>
+          <attribute name="ts_ncatenforcementaction" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="NCAT Score Thresholds" languagecode="1033" />
+      <LocalizedName description="Seuil de résultat de l'OENC" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

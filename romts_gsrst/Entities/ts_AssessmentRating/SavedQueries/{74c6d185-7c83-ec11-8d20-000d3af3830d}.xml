@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{74c6d185-7c83-ec11-8d20-000d3af3830d}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_text" select="1" icon="1" preview="1">
+        <row name="result" id="ts_assessmentratingid">
+          <cell name="ts_text" width="200" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="ts_assessmentrating">
+          <attribute name="ts_text" />
+          <attribute name="ts_assessmentratingid" />
+          <filter type="and">
+            <condition attribute="ts_assessmenttool" operator="eq" value="717750001" />
+            <condition attribute="ts_factor" operator="eq" value="717750000" />
+          </filter>
+          <attribute name="ts_weight" />
+          <order attribute="ts_weight" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20220114.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="RATE Actual or Potential Harm" languagecode="1033" />
+      <LocalizedName description="RATE Actual or Potential Harm (fr)" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
