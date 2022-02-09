@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20220209.1</Version>
+    <Version>1.0.20220209.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -179,7 +179,6 @@
       <RootComponent type="1" schemaName="phonecall" behavior="1" />
       <RootComponent type="1" schemaName="ppp_traveller" behavior="2" />
       <RootComponent type="1" schemaName="pricelevel" behavior="1" />
-      <RootComponent type="1" schemaName="processsession" behavior="2" />
       <RootComponent type="1" schemaName="product" behavior="1" />
       <RootComponent type="1" schemaName="productpricelevel" behavior="1" />
       <RootComponent type="1" schemaName="qm_rclegislation" behavior="0" />
@@ -9535,7 +9534,7 @@
           <package>FieldService_Anchor (8.8.59.26)</package>
           <package>msdynce_ServiceAnchor (9.0.22013.1009)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.26.5)">
@@ -18520,13 +18519,7 @@
         <Required type="61" schemaName="Sales/_static/sfa/invoice/InvoiceRibbonActions.js" displayName="Sales/_static/sfa/invoice/InvoiceRibbonActions.js" solution="msdynce_Sales (9.0.4.0076)">
           <package>msdynce_SalesAnchor (9.0.22013.10002)</package>
         </Required>
-        <Dependent type="60" displayName="Field Service Information" parentDisplayName="Invoice" id="{e42e464f-c249-4005-896e-cdee472d7e1e}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
-          <package>msdynce_SalesAnchor (9.0.22013.10002)</package>
-        </Required>
-        <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
+        <Dependent type="60" displayName="Field Service Information" parentDisplayName="Order" id="{578e22c0-2084-490d-8019-4b55dbbfadc9}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
@@ -18545,6 +18538,12 @@
           <package>msdynce_SalesAnchor (9.0.22013.10002)</package>
         </Required>
         <Dependent type="60" displayName="Organisations" parentDisplayName="Account" id="{b6466851-a1fd-ea11-a813-000d3af3ac0d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
+          <package>msdynce_SalesAnchor (9.0.22013.10002)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM Information" parentDisplayName="Account" id="{f3f3935c-b7dd-4dd4-a86b-2b0735f57d13}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Sales/Contact/Contact_main_system_library.js" displayName="Sales/Contact/Contact_main_system_library.js" solution="msdynce_SalesPatch201904 (9.0.1912.1007)">
@@ -18604,13 +18603,13 @@
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.22013.1009)</package>
         </Required>
-        <Dependent type="60" displayName="Field Service Information" parentDisplayName="Quote" id="{b3fa6477-581b-411f-a725-0ab32d8edb8f}" />
+        <Dependent type="60" displayName="App for Outlook Case Quick Create" parentDisplayName="Case" id="{ac33e173-6502-4816-ab48-c3eefd7be580}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.22013.1009)</package>
         </Required>
-        <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
+        <Dependent type="60" displayName="Field Service Information" parentDisplayName="Quote" id="{b3fa6477-581b-411f-a725-0ab32d8edb8f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2201.4008)" />
