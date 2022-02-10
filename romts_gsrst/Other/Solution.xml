@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20220210.2</Version>
+    <Version>1.0.20220210.3</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -137,6 +137,7 @@
       <RootComponent type="1" schemaName="msdyn_iotprovider" behavior="1" />
       <RootComponent type="1" schemaName="msdyn_iotproviderinstance" behavior="1" />
       <RootComponent type="1" schemaName="msdyn_iotsettings" behavior="1" />
+      <RootComponent type="1" schemaName="msdyn_knowledgemanagementsetting" behavior="2" />
       <RootComponent type="1" schemaName="msdyn_orderinvoicingproduct" behavior="2" />
       <RootComponent type="1" schemaName="msdyn_priority" behavior="1" />
       <RootComponent type="1" schemaName="msdyn_productinventory" behavior="1" />
@@ -2907,6 +2908,12 @@
         <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="1" schemaName="msdyn_knowledgemanagementsetting" displayName="Knowledge Management Setting" solution="msdynce_KnowledgeManagementFeatures (9.0.22021.5010)">
+          <package>msdynce_KnowledgeManagementAnchor (9.0.22021.5010)</package>
+        </Required>
+        <Dependent type="1" schemaName="msdyn_knowledgemanagementsetting" displayName="Knowledge Management Setting" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="1" schemaName="msdyn_orderinvoicingproduct" displayName="Order Invoicing Product" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.59.26)</package>
         </Required>
@@ -4457,7 +4464,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.59.26)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)">
@@ -10474,6 +10481,12 @@
           <package>msdynce_ServiceAnchor (9.0.22013.1009)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" displayName="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_knowledgemanagementsettingid" displayName="KnowledgeManagementSetting" parentSchemaName="msdyn_knowledgemanagementsetting" parentDisplayName="Knowledge Management Setting" solution="msdynce_KnowledgeManagementFeatures (9.0.22021.5010)">
+          <package>msdynce_KnowledgeManagementAnchor (9.0.22021.5010)</package>
+        </Required>
+        <Dependent type="2" schemaName="msdyn_knowledgemanagementsettingid" displayName="KnowledgeManagementSetting" parentSchemaName="msdyn_knowledgemanagementsetting" parentDisplayName="Knowledge Management Setting" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="exchangerate" displayName="Exchange Rate" parentSchemaName="msdyn_orderinvoicingproduct" parentDisplayName="Order Invoicing Product" solution="Active" />
