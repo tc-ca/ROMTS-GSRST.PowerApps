@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20220214.1</Version>
+    <Version>1.0.20220215.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -289,6 +289,7 @@
       <RootComponent type="61" schemaName="ovs_/js/jquery.js" behavior="0" />
       <RootComponent type="61" schemaName="ovs_/js/knockout-min.js" behavior="0" />
       <RootComponent type="61" schemaName="ovs_/js/Questionnaire.js" behavior="0" />
+      <RootComponent type="61" schemaName="ovs_/js/ScoreThresholds.js" behavior="0" />
       <RootComponent type="61" schemaName="ovs_/js/ServiceTaskType.js" behavior="0" />
       <RootComponent type="61" schemaName="ovs_/js/showdown.min.js" behavior="0" />
       <RootComponent type="61" schemaName="ovs_/js/survey-creator.min.js" behavior="0" />
@@ -324,7 +325,6 @@
       <RootComponent type="61" schemaName="ts_/js/Operation.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/OperationRibbon.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/QuestionnaireVersion.js" behavior="0" />
-      <RootComponent type="61" schemaName="ts_/js/ScoreThresholds.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/SurveyRenderPrint.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/WorkOrderCreationWizard.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/WorkOrderQuickCreate.js" behavior="0" />
@@ -2010,19 +2010,19 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="lead" displayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="1" schemaName="lead" displayName="Lead" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="lead" displayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="22" id="{bf7ad3a6-d96e-45e7-92c3-0aab2250aa6e}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="lead" displayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="22" id="{f4f994f0-a537-41a4-b0aa-ce5a904921c3}" />
       </MissingDependency>
@@ -3904,6 +3904,18 @@
         <Dependent type="1" schemaName="territory" displayName="Region" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="1" schemaName="ts_filecategory" displayName="File Category" solution="Active" />
+        <Dependent type="300" schemaName="ts_romdocumentcentreworkorderservicetask_2dd30" displayName="ROM Document Centre - Work Order Service Task" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ts_filesubcategory" displayName="File Sub-Category" solution="Active" />
+        <Dependent type="10" schemaName="ts_File_filesubcategory_ts_filesubcategor" displayName="ts_File_filesubcategory_ts_filesubcategor" parentSchemaName="ts_filesubcategory" parentDisplayName="File Sub-Category" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="ts_filesubcategory" displayName="File Sub-Category" solution="Active" />
+        <Dependent type="300" schemaName="ts_romdocumentcentreworkorderservicetask_2dd30" displayName="ROM Document Centre - Work Order Service Task" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="1" schemaName="uom" displayName="Unit" solution="msdynce_ProductManagement (9.0.4.0066)">
           <package>msdynce_ProductManagementAnchor (9.0.22015.10001)</package>
         </Required>
@@ -4350,7 +4362,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.59.26)">
           <package>FieldService_Anchor (8.8.59.26)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" displayName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.59.26)">
@@ -4476,7 +4488,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.59.26)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)">
@@ -7292,7 +7304,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="originatingleadid" displayName="Originating Lead" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="2" schemaName="originatingleadid" displayName="Originating Lead" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
@@ -8224,7 +8236,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="originatingleadid" displayName="Originating Lead" parentSchemaName="contact" parentDisplayName="Contact" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="2" schemaName="originatingleadid" displayName="Originating Lead" parentSchemaName="contact" parentDisplayName="Contact" />
       </MissingDependency>
@@ -9280,85 +9292,85 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="budgetamount" displayName="Budget Amount" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="companyname" displayName="Company Name" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="createdon" displayName="Created On" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="decisionmaker" displayName="Decision Maker?" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="description" displayName="Description" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="emailaddress1" displayName="Email" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="firstname" displayName="First Name" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="jobtitle" displayName="Job Title" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="lastname" displayName="Last Name" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="leadid" displayName="Lead" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="mobilephone" displayName="Mobile Phone" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="purchaseprocess" displayName="Purchase Process" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="purchasetimeframe" displayName="Purchase Timeframe" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="subject" displayName="Topic" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
@@ -14233,6 +14245,14 @@
         <Dependent type="2" schemaName="territoryid" displayName="Territory" parentSchemaName="territory" parentDisplayName="Region" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="2" schemaName="ts_filesubcategoryid" displayName="File Sub-Category" parentSchemaName="ts_filesubcategory" parentDisplayName="File Sub-Category" solution="Active" />
+        <Dependent type="10" schemaName="ts_File_filesubcategory_ts_filesubcategor" displayName="ts_File_filesubcategory_ts_filesubcategor" parentSchemaName="ts_filesubcategory" parentDisplayName="File Sub-Category" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="ts_name" displayName="Name" parentSchemaName="ts_filesubcategory" parentDisplayName="File Sub-Category" solution="Active" />
+        <Dependent type="10" schemaName="ts_File_filesubcategory_ts_filesubcategor" displayName="ts_File_filesubcategory_ts_filesubcategor" parentSchemaName="ts_filesubcategory" parentDisplayName="File Sub-Category" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="20" displayName="Field Service - Administrator" solution="FieldService (8.8.0.88)" id="{00bb53d6-da92-e111-9d8c-000c2959f9b8}">
           <package>FieldService_Anchor (8.8.59.26)</package>
         </Required>
@@ -14562,7 +14582,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="My Open Leads" displayName="My Open Leads" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)" id="{00000000-0000-0000-00aa-000010001005}">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
@@ -16738,7 +16758,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="59" schemaName="Leads by Rating" displayName="Leads by Rating" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_LeadManagement (9.0.4.0066)" id="{f5976c58-5693-de11-97d4-00155da3b01e}">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
@@ -17147,7 +17167,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="60" displayName="Contact for Interactive experience" parentDisplayName="Contact" solution="msdynce_LeadManagement (9.0.4.0066)" id="{cc760212-3eab-4009-b5c3-ea9cf6f3e141}">
-          <package>msdynce_LeadManagementAnchor (9.0.22013.10001)</package>
+          <package>msdynce_LeadManagementAnchor (9.0.22015.10001)</package>
         </Required>
         <Dependent type="60" displayName="Contact for Interactive experience" parentDisplayName="Contact" id="{cc760212-3eab-4009-b5c3-ea9cf6f3e141}" />
       </MissingDependency>
@@ -18636,6 +18656,10 @@
           <package>msdynce_ServiceAnchor (9.0.22015.1006)</package>
         </Required>
         <Dependent type="60" displayName="Field Service Information" parentDisplayName="Quote" id="{b3fa6477-581b-411f-a725-0ab32d8edb8f}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="ts_/js/ScoreThresholds.js" displayName="ts_/js/ScoreThresholds.js" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Assessment Score Thresholds" id="{0681c683-e4d1-4e7f-bc16-46a8373ff8f5}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2201.5007)" />

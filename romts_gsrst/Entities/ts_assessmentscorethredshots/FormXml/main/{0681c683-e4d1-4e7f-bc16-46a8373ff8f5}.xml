@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form headerdensity="HighWithControls">
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab verticallayout="true" id="{4ec0959a-fd9b-45db-9f33-024776b8df9b}" IsUserDefined="1">
           <labels>
@@ -31,12 +31,12 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{33a0aa00-50ee-4f29-a308-11d31d55e8f0}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{33a0aa00-50ee-4f29-a308-11d31d55e8f0}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
                         <labels>
                           <label description="Assessment Tool" languagecode="1033" />
                           <label description="Outil d’évaluation " languagecode="1036" />
                         </labels>
-                        <control id="ts_assessmenttool" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_assessmenttool" disabled="false" />
+                        <control id="ts_assessmenttool" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_assessmenttool" disabled="false" uniqueid="{becb7ede-0ed1-ce72-1c65-bd37b0d03bd4}" />
                       </cell>
                     </row>
                     <row>
@@ -66,21 +66,21 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{ade8aef7-9fc8-4ee3-9ab4-4a3e5e722306}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{ade8aef7-9fc8-4ee3-9ab4-4a3e5e722306}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
                         <labels>
                           <label description="Minimum" languagecode="1033" />
                           <label description="Minimum" languagecode="1036" />
                         </labels>
-                        <control id="ts_minimum" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_minimum" disabled="false" />
+                        <control id="ts_minimum" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_minimum" disabled="false" uniqueid="{c944dbe0-c21d-701d-b9a4-ba053d5adce3}" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{0975a3ca-dc76-42d5-989e-6669a1e7b56c}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{0975a3ca-dc76-42d5-989e-6669a1e7b56c}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
                         <labels>
                           <label description="Maximum" languagecode="1033" />
                           <label description="Maximum" languagecode="1036" />
                         </labels>
-                        <control id="ts_maximum" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_maximum" disabled="false" />
+                        <control id="ts_maximum" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_maximum" disabled="false" uniqueid="{333c59ce-8ac6-1568-9d84-611d01aa33e4}" />
                       </cell>
                     </row>
                     <row>
@@ -174,26 +174,27 @@
       <controlDescriptions />
       <formLibraries>
         <Library name="ts_/js/ScoreThresholds.js" libraryUniqueId="{f09c07fa-8673-4e8a-a158-8a53477f5bf3}" />
+        <Library name="ovs_/js/ScoreThresholds.js" libraryUniqueId="{55e57db8-b882-3ec3-61d0-9a68a23eee7a}" />
       </formLibraries>
       <events>
         <event name="onchange" application="true" active="true" attribute="ts_assessmenttool">
           <Handlers>
-            <Handler functionName="ROM.ScoreThresholds.assessmentToolOnChange" libraryName="ts_/js/ScoreThresholds.js" handlerUniqueId="{9df8a3ae-adf0-4bb6-9629-1c4fe09174a4}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.ScoreThresholds.assessmentToolOnChange" libraryName="ovs_/js/ScoreThresholds.js" handlerUniqueId="{9df8a3ae-adf0-4bb6-9629-1c4fe09174a4}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onload" application="true" active="true">
           <Handlers>
-            <Handler functionName="ROM.ScoreThresholds.OnLoad" libraryName="ts_/js/ScoreThresholds.js" handlerUniqueId="{f390bc1d-d454-45cc-b1b9-3f3d5bb13423}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.ScoreThresholds.OnLoad" libraryName="ovs_/js/ScoreThresholds.js" handlerUniqueId="{f390bc1d-d454-45cc-b1b9-3f3d5bb13423}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="true" active="true" attribute="ts_minimum">
           <Handlers>
-            <Handler functionName="ROM.ScoreThresholds.minimumOnChange" libraryName="ts_/js/ScoreThresholds.js" handlerUniqueId="{33f9f7b3-b306-47d4-9733-c3d770248d95}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.ScoreThresholds.minimumOnChange" libraryName="ovs_/js/ScoreThresholds.js" handlerUniqueId="{33f9f7b3-b306-47d4-9733-c3d770248d95}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="true" active="true" attribute="ts_maximum">
           <Handlers>
-            <Handler functionName="ROM.ScoreThresholds.maximumOnChange" libraryName="ts_/js/ScoreThresholds.js" handlerUniqueId="{cec6214c-4845-4aea-8db2-8b8eac3111a6}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.ScoreThresholds.maximumOnChange" libraryName="ovs_/js/ScoreThresholds.js" handlerUniqueId="{cec6214c-4845-4aea-8db2-8b8eac3111a6}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
