@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20220215.1</Version>
+    <Version>1.0.20220215.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -209,6 +209,8 @@
       <RootComponent type="1" schemaName="ts_blockedfileextensionsforcanvasapps" behavior="0" />
       <RootComponent type="1" schemaName="ts_evidence" behavior="0" />
       <RootComponent type="1" schemaName="ts_file" behavior="0" />
+      <RootComponent type="1" schemaName="ts_filecategory" behavior="2" />
+      <RootComponent type="1" schemaName="ts_filesubcategory" behavior="2" />
       <RootComponent type="1" schemaName="ts_provisioncategory" behavior="0" />
       <RootComponent type="1" schemaName="ts_questionnaireversion" behavior="0" />
       <RootComponent type="1" schemaName="ts_request" behavior="0" />
@@ -3905,15 +3907,11 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="ts_filecategory" displayName="File Category" solution="Active" />
-        <Dependent type="300" schemaName="ts_romdocumentcentreworkorderservicetask_2dd30" displayName="ROM Document Centre - Work Order Service Task" />
+        <Dependent type="1" schemaName="ts_filecategory" displayName="File Category" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="ts_filesubcategory" displayName="File Sub-Category" solution="Active" />
-        <Dependent type="10" schemaName="ts_File_filesubcategory_ts_filesubcategor" displayName="ts_File_filesubcategory_ts_filesubcategor" parentSchemaName="ts_filesubcategory" parentDisplayName="File Sub-Category" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="ts_filesubcategory" displayName="File Sub-Category" solution="Active" />
-        <Dependent type="300" schemaName="ts_romdocumentcentreworkorderservicetask_2dd30" displayName="ROM Document Centre - Work Order Service Task" />
+        <Dependent type="1" schemaName="ts_filesubcategory" displayName="File Sub-Category" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="uom" displayName="Unit" solution="msdynce_ProductManagement (9.0.4.0066)">
@@ -4362,7 +4360,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.59.26)">
           <package>FieldService_Anchor (8.8.59.26)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" displayName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.59.26)">
@@ -4488,7 +4486,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.59.26)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)">
@@ -9566,7 +9564,7 @@
           <package>FieldService_Anchor (8.8.59.26)</package>
           <package>msdynce_ServiceAnchor (9.0.22015.1006)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
+        <Dependent type="10" schemaName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" displayName="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_customerassetid" displayName="Customer Asset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.26.5)">
@@ -11512,7 +11510,7 @@
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.59.26)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_PreferredResource" displayName="msdyn_bookableresource_msdyn_workorder_PreferredResource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_supportcontact" displayName="Support Contact" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
@@ -14246,10 +14244,6 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="ts_filesubcategoryid" displayName="File Sub-Category" parentSchemaName="ts_filesubcategory" parentDisplayName="File Sub-Category" solution="Active" />
-        <Dependent type="10" schemaName="ts_File_filesubcategory_ts_filesubcategor" displayName="ts_File_filesubcategory_ts_filesubcategor" parentSchemaName="ts_filesubcategory" parentDisplayName="File Sub-Category" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="ts_name" displayName="Name" parentSchemaName="ts_filesubcategory" parentDisplayName="File Sub-Category" solution="Active" />
         <Dependent type="10" schemaName="ts_File_filesubcategory_ts_filesubcategor" displayName="ts_File_filesubcategory_ts_filesubcategor" parentSchemaName="ts_filesubcategory" parentDisplayName="File Sub-Category" />
       </MissingDependency>
       <MissingDependency>
