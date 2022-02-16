@@ -17,9 +17,9 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 - script: |
-    npm ci
+    npm ci \
     npm run test
-  displayName: 'npm install and test'
+  displayName: 'Run UI Tests'
   workingDirectory: './romts_gsrst.uitests/'
   env:
     D365_UI_TEST_URL: $(UITESTS_XRM_URL)
@@ -29,7 +29,7 @@ steps:
     D365_UI_TEST_HEADLESS: true
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: './romts_gsrst.uitests/reports/'
     ArtifactName: 'Reports'
     publishLocation: 'Container'
   condition: always()
@@ -37,7 +37,7 @@ steps:
   inputs:
     testResultsFormat: 'JUnit'
     testResultsFiles: '**/junit_*.xml'
-    failTaskOnFailedTests: false
+    searchFolder: './romts_gsrst.uitests/reports/'
   condition: always()
 - task: PowerPlatformToolInstaller@0
   displayName: 'Install Power Platform Build Tools'
