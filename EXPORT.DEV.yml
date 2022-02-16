@@ -16,9 +16,7 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
-- script: |
-    npm ci \
-    npm run test
+- script: npm ci; npm run test
   displayName: 'Run UI Tests'
   workingDirectory: './romts_gsrst.uitests/'
   env:
