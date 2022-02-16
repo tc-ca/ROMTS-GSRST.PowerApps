@@ -41,7 +41,7 @@ describe("Basic operations UCI", () => {
     });
 
     test("Open ROM App", async () => {
-        await xrmTest.Navigation.openAppById("e3f3e3a8-9014-47dc-b0db-bd49b2bc815c");
+        await xrmTest.Navigation.openAppById("69f5a3be-42c9-4d6a-a5ab-236a3b6b60eb");
     });
 
     afterAll(() => {
