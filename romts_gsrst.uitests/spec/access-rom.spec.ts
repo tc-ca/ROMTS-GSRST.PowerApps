@@ -44,21 +44,6 @@ describe("Basic operations UCI", () => {
         await xrmTest.Navigation.openAppById("e3f3e3a8-9014-47dc-b0db-bd49b2bc815c");
     });
 
-    test("Create Work Order", TestUtils.takeScreenShotOnFailure(() => page, path.join("reports", "CreateWorkOrder.png"), async () => {
-        await xrmTest.Navigation.openCreateForm("msdyn_workorder");
-        await xrmTest.Attribute.setValue("msdyn_workordertype", [{"entityType":"msdyn_workordertype","id":"{B1EE680A-7CF7-EA11-A815-000D3AF3A7A7}","name":"Inspection"}]);
-        await xrmTest.Attribute.setValue("ts_region", [{"entityType":"territory","id":"{50B21A84-DB04-EB11-A813-000D3AF3AC0D}","name":"Ontario Region"}]);
-        await xrmTest.Attribute.setValue("ovs_operationtypeid", [{"entityType":"ovs_operationtype","id":"{8B614EF0-C651-EB11-A812-000D3AF3AC0D}","name":"Air Carrier (Passenger)"}]);
-        await xrmTest.Attribute.setValue("ts_tradenameid", [{"entityType":"ts_tradename","id":"{D3042A28-73F4-EB11-94EF-000D3A09C1C3}","name":"Air Canada"}]);
-
-        const stakeholder = await xrmTest.Attribute.getValue("msdyn_serviceaccount");
-        expect(stakeholder).toStrictEqual([{"entityType": "account", "id": "{9685DA6C-B6BD-EA11-A812-000D3A0C8C6D}", "name": "AIR CANADA"}]);
-        
-        await xrmTest.Attribute.setValue("ts_site", [{"entityType":"msdyn_functionallocation","id":"{D09AD58F-4DE3-EB11-BACB-0022486D8278}","name":"TORONTO/LESTER B. PEARSON INTERNATIONAL AIRPORT"}]);
-        await xrmTest.Attribute.setValue("msdyn_primaryincidenttype", [{"entityType":"msdyn_incidenttype","id":"{1B66022E-4975-EB11-A812-0022486D69CB}","name":"SATR Boarding Gate"}]);
-        await xrmTest.Entity.save(true);
-    }));
-
     afterAll(() => {
         return xrmTest.close();
     });
