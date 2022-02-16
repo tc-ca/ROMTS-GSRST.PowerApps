@@ -8,7 +8,7 @@ let browser: playwright.Browser = null;
 let context: playwright.BrowserContext = null;
 let page: playwright.Page = null;
 
-describe("Basic operations UCI", () => {
+describe("Work Order Operations", () => {
     beforeAll(async() => {
         jest.setTimeout(600000);
 
@@ -43,6 +43,26 @@ describe("Basic operations UCI", () => {
     test("Open ROM App", async () => {
         await xrmTest.Navigation.openAppById("69f5a3be-42c9-4d6a-a5ab-236a3b6b60eb");
     });
+
+    test("Create SATR Boarding Gate", TestUtils.takeScreenShotOnFailure(() => page, path.join("reports", "CreateSATRBoardingGate.png"), async () => {
+        await xrmTest.Navigation.openCreateForm("msdyn_workorder");
+        await xrmTest.Attribute.setValue("msdyn_workordertype", [{"entityType":"msdyn_workordertype","id":"{B1EE680A-7CF7-EA11-A815-000D3AF3A7A7}","name":"Inspection"}]);
+        await xrmTest.Attribute.setValue("ts_region", [{"entityType":"territory","id":"{50B21A84-DB04-EB11-A813-000D3AF3AC0D}","name":"Ontario Region"}]);
+        await xrmTest.Attribute.setValue("ovs_operationtypeid", [{"entityType":"ovs_operationtype","id":"{8B614EF0-C651-EB11-A812-000D3AF3AC0D}","name":"Air Carrier (Passenger)"}]);
+        await xrmTest.Attribute.setValue("ts_tradenameid", [{"entityType":"ts_tradename","id":"{D3042A28-73F4-EB11-94EF-000D3A09C1C3}","name":"Air Canada"}]);
+        await xrmTest.Attribute.setValue("ts_site", [{"entityType":"msdyn_functionallocation","id":"{D09AD58F-4DE3-EB11-BACB-0022486D8278}","name":"TORONTO/LESTER B. PEARSON INTERNATIONAL AIRPORT"}]);
+        await xrmTest.Attribute.setValue("msdyn_primaryincidenttype", [{"entityType":"msdyn_incidenttype","id":"{1B66022E-4975-EB11-A812-0022486D69CB}","name":"SATR Boarding Gate"}]);
+        await xrmTest.Entity.save(true);
+
+        // Wait 30 seconds before refreshing service tasks subgrid
+        await page.waitForTimeout(30000);
+        await xrmTest.SubGrid.refresh("workorderservicetasksgrid");
+        await page.waitForTimeout(3000); // Wait 3 seconds for the UI to catch up and show the refreshed service tasks
+
+        // Only expect one service task
+        const serviceTasksCount = await xrmTest.SubGrid.getRecordCount("workorderservicetasksgrid");
+        expect(serviceTasksCount).toEqual(1);
+    }));
 
     afterAll(() => {
         return xrmTest.close();
