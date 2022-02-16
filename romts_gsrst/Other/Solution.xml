@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20220215.2</Version>
+    <Version>1.0.20220216.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -209,8 +209,8 @@
       <RootComponent type="1" schemaName="ts_blockedfileextensionsforcanvasapps" behavior="0" />
       <RootComponent type="1" schemaName="ts_evidence" behavior="0" />
       <RootComponent type="1" schemaName="ts_file" behavior="0" />
-      <RootComponent type="1" schemaName="ts_filecategory" behavior="2" />
-      <RootComponent type="1" schemaName="ts_filesubcategory" behavior="2" />
+      <RootComponent type="1" schemaName="ts_filecategory" behavior="0" />
+      <RootComponent type="1" schemaName="ts_filesubcategory" behavior="0" />
       <RootComponent type="1" schemaName="ts_provisioncategory" behavior="0" />
       <RootComponent type="1" schemaName="ts_questionnaireversion" behavior="0" />
       <RootComponent type="1" schemaName="ts_request" behavior="0" />
@@ -3904,14 +3904,6 @@
           <package>msdynce_AppCommonAnchor (9.0.22013.10001)</package>
         </Required>
         <Dependent type="1" schemaName="territory" displayName="Region" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="ts_filecategory" displayName="File Category" solution="Active" />
-        <Dependent type="1" schemaName="ts_filecategory" displayName="File Category" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="ts_filesubcategory" displayName="File Sub-Category" solution="Active" />
-        <Dependent type="1" schemaName="ts_filesubcategory" displayName="File Sub-Category" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="uom" displayName="Unit" solution="msdynce_ProductManagement (9.0.4.0066)">
@@ -14243,10 +14235,6 @@
         <Dependent type="2" schemaName="territoryid" displayName="Territory" parentSchemaName="territory" parentDisplayName="Region" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="ts_filesubcategoryid" displayName="File Sub-Category" parentSchemaName="ts_filesubcategory" parentDisplayName="File Sub-Category" solution="Active" />
-        <Dependent type="10" schemaName="ts_File_filesubcategory_ts_filesubcategor" displayName="ts_File_filesubcategory_ts_filesubcategor" parentSchemaName="ts_filesubcategory" parentDisplayName="File Sub-Category" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="20" displayName="Field Service - Administrator" solution="FieldService (8.8.0.88)" id="{00bb53d6-da92-e111-9d8c-000c2959f9b8}">
           <package>FieldService_Anchor (8.8.59.26)</package>
         </Required>
@@ -18643,13 +18631,13 @@
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.22015.1006)</package>
         </Required>
-        <Dependent type="60" displayName="App for Outlook Case Quick Create" parentDisplayName="Case" id="{ac33e173-6502-4816-ab48-c3eefd7be580}" />
+        <Dependent type="60" displayName="Field Service Information" parentDisplayName="Quote" id="{b3fa6477-581b-411f-a725-0ab32d8edb8f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.22015.1006)</package>
         </Required>
-        <Dependent type="60" displayName="Field Service Information" parentDisplayName="Quote" id="{b3fa6477-581b-411f-a725-0ab32d8edb8f}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="ts_/js/ScoreThresholds.js" displayName="ts_/js/ScoreThresholds.js" solution="Active" />
