@@ -29,7 +29,7 @@ steps:
     D365_UI_TEST_HEADLESS: true
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: './romts_gsrst.uitests/reports/'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'Reports'
     publishLocation: 'Container'
   condition: always()
