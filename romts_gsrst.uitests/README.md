@@ -6,6 +6,9 @@
 ## Getting Started
 1. Clone this repo and run `npm ci`.
 2. Create a `settings.txt` file in the root with the CRM credentials in the following format:
+```
+https://<environment>.crm3.dynamics.com,<username>,<password>,<optional mfa code>
+```
 3. Run `npm run test` to start the tests defined in the `spec` folder
 
 ## Defining UI Tests
