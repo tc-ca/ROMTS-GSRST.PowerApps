@@ -45,6 +45,8 @@ describe("Work Order Operations", () => {
     });
 
     test("Create SATR Boarding Gate", TestUtils.takeScreenShotOnFailure(() => page, path.join("reports", "CreateSATRBoardingGate.png"), async () => {
+
+        // Open a new work order form and fill it out
         await xrmTest.Navigation.openCreateForm("msdyn_workorder");
         await xrmTest.Attribute.setValue("msdyn_workordertype", [{"entityType":"msdyn_workordertype","id":"{B1EE680A-7CF7-EA11-A815-000D3AF3A7A7}","name":"Inspection"}]);
         await xrmTest.Attribute.setValue("ts_region", [{"entityType":"territory","id":"{50B21A84-DB04-EB11-A813-000D3AF3AC0D}","name":"Ontario Region"}]);
@@ -62,6 +64,7 @@ describe("Work Order Operations", () => {
         // Only expect one service task
         const serviceTasksCount = await xrmTest.SubGrid.getRecordCount("workorderservicetasksgrid");
         expect(serviceTasksCount).toEqual(1);
+
     }));
 
     afterAll(() => {
