@@ -256,17 +256,17 @@
                 </section>
                 <section name="{b8e326ee-5c21-4a18-ba55-e3b56966c249}_section_8" id="65c0a7b0-6bc9-4716-9c8d-fcb76481309a" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
                   <labels>
-                    <label description="WORK ORDER ACCESS TEAM" languagecode="1033" />
+                    <label description="ADDITIONAL INSPECTORS" languagecode="1033" />
                     <label description="ÉQUIPE D'ACCÈS DE L'ORDRE DE TRAVAIL" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
                       <cell id="{454d23bc-3557-5d14-363b-36b024201950}" showlabel="false" colspan="1" auto="false" rowspan="1">
                         <labels>
-                          <label description="Work Order Access Team" languagecode="1033" />
+                          <label description="ADDITIONAL INSPECTORS" languagecode="1033" />
                           <label description="Tâches de service de l'ordre de travail" languagecode="1036" />
                         </labels>
-                        <control id="WorkOrderAccessTeam" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="AdditionalInspectors" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
                             <ViewId>{F79AD170-AE03-4F4C-8132-D4AA08520A0C}</ViewId>
                             <IsUserView>false</IsUserView>
@@ -371,17 +371,20 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{bcb57d7b-b791-4c93-bfba-e8af121b388f}" locklevel="0">
+                      <cell id="{bcb57d7b-b791-4c93-bfba-e8af121b388f}" locklevel="0" showlabel="true">
                         <labels>
                           <label description="Activity Type" languagecode="1033" />
                           <label description="Type d'activité" languagecode="1036" />
                         </labels>
-                        <control id="msdyn_primaryincidenttype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_primaryincidenttype" disabled="false">
+                        <control id="msdyn_primaryincidenttype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_primaryincidenttype" disabled="false" uniqueid="{7325773a-a873-2cde-cbd2-4e98e86e4d01}">
                           <parameters>
                             <DisableViewPicker>true</DisableViewPicker>
                             <DefaultViewId>{467A8F92-753B-485E-8BA9-13DE8B7CB3A7}</DefaultViewId>
-                            <AvailableViewIds>{467A8F92-753B-485E-8BA9-13DE8B7CB3A7},{82E357FE-4361-E111-AC14-000C2959F9B8},{D55234C3-D2DF-45D1-AB39-2274047D84C9},{6779156F-7D9B-4FF2-85B0-83E91CC95299}</AvailableViewIds>
+                            <AvailableViewIds>{6779156F-7D9B-4FF2-85B0-83E91CC95299}</AvailableViewIds>
                             <DisableMru>true</DisableMru>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <AllowFilterOff>false</AllowFilterOff>
                           </parameters>
                         </control>
                       </cell>
@@ -1416,16 +1419,16 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell locklevel="0" id="{80a1c1f0-1f3a-4f28-b29a-432c211fa59c}" rowspan="12" colspan="1" auto="false" showlabel="false">
+                      <cell locklevel="0" id="{80a1c1f0-1f3a-4f28-b29a-432c211fa59c}" rowspan="12" colspan="1" auto="false" showlabel="true">
                         <labels>
-                          <label description="Files" languagecode="1033" />
+                          <label description="Work Order Documents" languagecode="1033" />
                           <label description="Utilisateurs" languagecode="1036" />
                         </labels>
                         <control id="Subgrid_3" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{941db174-be7e-b939-69cc-05a05182d3ac}">
                           <parameters>
                             <TargetEntityType>ts_file</TargetEntityType>
                             <ViewId>{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewId>
-                            <ViewIds>{780DB46F-53CE-4143-A1A1-86AB9464261C},{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewIds>
+                            <ViewIds>{3407E68C-3F63-EC11-8F8E-000D3A847292},{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewIds>
                             <EnableViewPicker>false</EnableViewPicker>
                             <RelationshipName>ts_Files_msdyn_workorders</RelationshipName>
                             <RecordsPerPage>10</RecordsPerPage>
@@ -1458,7 +1461,7 @@
                       <cell locklevel="0" id="{44c38231-44d1-48f3-af39-7bd2fcdc7077}" rowspan="1" colspan="1" showlabel="true">
                         <labels>
                           <label description="Inspection Documents" languagecode="1033" />
-                          <label description="Fichiers  " languagecode="1036" />
+                          <label description="Utilisateurs" languagecode="1036" />
                         </labels>
                         <control id="Subgrid_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
@@ -3145,6 +3148,11 @@
         <event name="onchange" application="true" active="true" attribute="msdyn_datewindowend">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.dateWindowEndOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{dc020c6e-936f-4614-923d-3e9cbb305d0d}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="msdyn_primaryincidenttype">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.activityTypeOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{cb5a3540-5876-2d37-0901-87984a3a8032}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

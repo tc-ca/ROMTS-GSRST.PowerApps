@@ -1,14 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
+  <CustomActions>
+    <CustomAction Id="ts.Mscrm.SubGrid.systemuser.AddUserAccess.UCI.CustomAction" Location="Mscrm.SubGrid.systemuser.MainTab.Management.Controls._children" Sequence="60">
+      <CommandUIDefinition>
+        <Button Alt="$Resources:Ribbon.SubGrid.systemuser.Actions.AddUserAccess" Command="ts.AddUserAccess.UCI" Id="Mscrm.SubGrid.systemuser.AddUserAccess.UCI" Image32by32="" Image16by16="" LabelText="$Resources:Ribbon.SubGrid.systemuser.Actions.AddUserAccess" Sequence="60" TemplateAlias="o1" ToolTipTitle="$Resources:Ribbon.SubGrid.systemuser.Actions.AddUserAccess" ToolTipDescription="$Resources:Mscrm_SubGrid_Ribbon_Systemuser_AddUserAccess_ToolTipDescription" ModernImage="New" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="Mscrm.AddUserAccess.UCI">
+      <EnableRules>
+        <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
+        <EnableRule Id="Mscrm.SystemUser.IsGridEnabledForAccessTeams" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.ShowOnlyOnModern" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridAssociated" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.AddUserAccess.UCI">
+      <EnableRules>
+        <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
+        <EnableRule Id="Mscrm.SystemUser.IsGridEnabledForAccessTeams" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.ShowOnlyOnModern" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="addExistingUsersToWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
-    <DisplayRules />
-    <EnableRules />
+    <DisplayRules>
+      <DisplayRule Id="Mscrm.AppendSelected">
+        <EntityPrivilegeRule PrivilegeType="Append" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendToPrimary">
+        <EntityPrivilegeRule PrivilegeType="AppendTo" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.ShowOnlyOnModern">
+        <CommandClientTypeRule Type="Modern" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules>
+      <EnableRule Id="Mscrm.SystemUser.IsGridEnabledForAccessTeams">
+        <CustomRule FunctionName="Mscrm.AppCommon.SystemUser.AccessTeams.checkSystemUserGridAccessTeams" Library="$webresource:AppCommon/ControlWS/SystemUser/SystemUser.js" Default="false">
+          <CrmParameter Value="SelectedControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.VisualizationPaneNotMaximized">
+        <OrRule>
+          <Or>
+            <CommandClientTypeRule Type="Modern" />
+          </Or>
+          <Or>
+            <CustomRule FunctionName="Mscrm.GridCommandActions.disableButtonsWhenChartMaximized" Library="/_static/_common/scripts/CommandBarActions.js">
+              <CrmParameter Value="SelectedControl" />
+            </CustomRule>
+          </Or>
+        </OrRule>
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
   <LocLabels />
 </RibbonDiffXml>

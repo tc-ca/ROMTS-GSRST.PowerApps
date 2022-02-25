@@ -486,7 +486,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_11" id="688e3ef5-cd2b-497d-bb86-9dacaf424770" IsUserDefined="0" locklevel="0" showlabel="true" visible="true" labelid="{62a3026f-87e3-461d-9de6-00699dd50ca6}">
+        <tab name="tab_findings" id="688e3ef5-cd2b-497d-bb86-9dacaf424770" IsUserDefined="0" locklevel="0" showlabel="true" visible="true" labelid="{62a3026f-87e3-461d-9de6-00699dd50ca6}">
           <labels>
             <label description="Findings" languagecode="1033" />
             <label description="Constatations" languagecode="1036" />
@@ -506,7 +506,7 @@
                           <label description="FINDINGS" languagecode="1033" />
                           <label description="CONSTATATIONS" languagecode="1036" />
                         </labels>
-                        <control id="Subgrid_2" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="subgrid_findings" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
                             <TargetEntityType>ovs_finding</TargetEntityType>
                             <ViewId>{9711D0C3-7FCC-46DA-A259-A722BA88AF4D}</ViewId>
@@ -1267,19 +1267,19 @@
                     <row>
                       <cell id="{c3b2bd0d-7508-d6ca-921a-a332c0c1b92b}" showlabel="true" colspan="1" auto="false" rowspan="13">
                         <labels>
-                          <label description="Files" languagecode="1033" />
+                          <label description="Case Documents" languagecode="1033" />
                           <label description="Appareils" languagecode="1036" />
                         </labels>
                         <control id="Files" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{406854ce-8375-5009-8785-3e8a1365e5a2}">
                           <parameters>
-                            <ViewId>{780DB46F-53CE-4143-A1A1-86AB9464261C}</ViewId>
+                            <ViewId>{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewId>
                             <IsUserView>false</IsUserView>
                             <RelationshipName>ts_Files_Incidents</RelationshipName>
                             <TargetEntityType>ts_file</TargetEntityType>
                             <AutoExpand>Fixed</AutoExpand>
                             <EnableQuickFind>false</EnableQuickFind>
                             <EnableViewPicker>false</EnableViewPicker>
-                            <ViewIds>{780DB46F-53CE-4143-A1A1-86AB9464261C}</ViewIds>
+                            <ViewIds>{780DB46F-53CE-4143-A1A1-86AB9464261C},{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewIds>
                             <EnableJumpBar>false</EnableJumpBar>
                             <ChartGridMode>All</ChartGridMode>
                             <VisualizationId />
@@ -1307,13 +1307,13 @@
                       <cell locklevel="0" id="{4899e98a-611a-4c93-85e3-2b9679f418a3}" rowspan="1" colspan="1">
                         <labels>
                           <label description="Inspection Documents" languagecode="1033" />
-                          <label description="Fichiers  " languagecode="1036" />
+                          <label description="Appareils" languagecode="1036" />
                         </labels>
                         <control id="Subgrid_3" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
                             <TargetEntityType>ts_file</TargetEntityType>
-                            <ViewId>{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewId>
-                            <ViewIds>{3407E68C-3F63-EC11-8F8E-000D3A847292},{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewIds>
+                            <ViewId>{05C50EFD-8595-EC11-B3FE-0022483E878B}</ViewId>
+                            <ViewIds>{3407E68C-3F63-EC11-8F8E-000D3A847292},{8BAC3298-4E72-EC11-8942-000D3A8497E6},{05C50EFD-8595-EC11-B3FE-0022483E878B}</ViewIds>
                             <EnableViewPicker>false</EnableViewPicker>
                             <RelationshipName>ts_File_Incident_Incident</RelationshipName>
                           </parameters>
@@ -1337,7 +1337,7 @@
                           <label description="Case Title" languagecode="1033" />
                           <label description="Titre du cas" languagecode="1036" />
                         </labels>
-                        <control id="title" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="title" disabled="false" uniqueid="{187e8bc1-82d0-e929-60db-38548a52763d}" />
+                        <control id="title" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="title" disabled="false" uniqueid="{73c5185c-426b-4151-98ce-be0dea65c7fb}" />
                       </cell>
                     </row>
                   </rows>
@@ -1915,26 +1915,6 @@
             </parameters>
           </customControl>
         </controlDescription>
-        <controlDescription forControl="{187e8bc1-82d0-e929-60db-38548a52763d}">
-          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="0">
-            <parameters>
-              <datafieldname>title</datafieldname>
-            </parameters>
-          </customControl>
-          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="1">
-            <parameters>
-              <datafieldname>title</datafieldname>
-            </parameters>
-          </customControl>
-          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
-            <parameters>
-              <record>title</record>
-              <entityName static="true" type="SingleLine.Text">Case</entityName>
-              <appName static="true" type="SingleLine.Text">ts_romdocumentcentrecase_eacfd</appName>
-              <appId static="true" type="SingleLine.Text">f689c3be-68dd-4bc7-b406-c92d4e19bcb7</appId>
-            </parameters>
-          </customControl>
-        </controlDescription>
         <controlDescription forControl="{0c50b180-26ac-631a-b6d7-bec9d2c84cb4}">
           <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" formFactor="0">
             <parameters>
@@ -2112,6 +2092,26 @@
               <entityName type="SingleLine.Text" static="true">Case</entityName>
               <appName type="SingleLine.Text" static="true">ts_association_87784</appName>
               <appId type="SingleLine.Text" static="true">8a133cba-9e3b-4834-9e0a-dcf8930abaee</appId>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{73c5185c-426b-4151-98ce-be0dea65c7fb}">
+          <customControl id="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" formFactor="0">
+            <parameters>
+              <datafieldname>title</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl id="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" formFactor="1">
+            <parameters>
+              <datafieldname>title</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>title</record>
+              <entityName type="SingleLine.Text" static="true">Case</entityName>
+              <appName type="SingleLine.Text" static="true">ts_romdocumentcentrecase_eacfd</appName>
+              <appId type="SingleLine.Text" static="true">f689c3be-68dd-4bc7-b406-c92d4e19bcb7</appId>
             </parameters>
           </customControl>
         </controlDescription>
