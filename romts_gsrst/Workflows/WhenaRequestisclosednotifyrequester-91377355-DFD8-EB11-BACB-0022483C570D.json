@@ -1,1 +1,166 @@
-{"properties":{"connectionReferences":{"shared_commondataserviceforapps":{"runtimeSource":"embedded","connection":{"connectionReferenceLogicalName":"ts_sharedcommondataserviceforapps_6867e"},"api":{"name":"shared_commondataserviceforapps"}},"shared_teams":{"runtimeSource":"embedded","connection":{"connectionReferenceLogicalName":"ts_sharedteams_eb0d1"},"api":{"name":"shared_teams"}}},"definition":{"$schema":"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#","contentVersion":"1.0.0.0","parameters":{"$connections":{"defaultValue":{},"type":"Object"},"$authentication":{"defaultValue":{},"type":"SecureObject"}},"triggers":{"When_a_Request_is_updated":{"type":"OpenApiConnectionWebhook","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"SubscribeWebhookTrigger","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"subscriptionRequest/message":3,"subscriptionRequest/entityname":"ts_request","subscriptionRequest/scope":4},"authentication":"@parameters('$authentication')"}}},"actions":{"Get_Request_by_ID":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"GetItem","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"ts_requests","recordId":"@triggerOutputs()?['body/ts_requestid']"},"authentication":"@parameters('$authentication')"}},"Condition":{"actions":{"Get_Modified_By_User":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"GetItem","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"systemusers","recordId":"@outputs('Get_Created_By_User')?['body/_modifiedby_value']"},"authentication":"@parameters('$authentication')"}},"Post_a_message_as_the_Flow_bot_to_a_user":{"runAfter":{"Get_Modified_By_User":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_teams","operationId":"PostUserNotification","apiId":"/providers/Microsoft.PowerApps/apis/shared_teams"},"parameters":{"PostNotificationRequest/recipient/to":"@{outputs('Get_Created_By_User')?['body/internalemailaddress']};","PostNotificationRequest/messageBody":"You request was closed by @{outputs('Get_Modified_By_User')?['body/internalemailaddress']}. See details [here](@{variables('URL')}).","PostNotificationRequest/messageTitle":"Request @{outputs('Get_Request_by_ID')?['body/ts_name']} was Closed"},"authentication":"@parameters('$authentication')"}}},"runAfter":{"Get_Created_By_User":["Succeeded"]},"expression":{"equals":["@triggerOutputs()?['body/statuscode']",2]},"type":"If"},"Get_Created_By_User":{"runAfter":{"Initialize_variable":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"GetItem","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"systemusers","recordId":"@outputs('Get_Request_by_ID')?['body/_createdby_value']"},"authentication":"@parameters('$authentication')"}},"Initialize_variable":{"runAfter":{"Get_Request_by_ID":["Succeeded"]},"type":"InitializeVariable","inputs":{"variables":[{"name":"URL","type":"string","value":"https://@{uriHost(outputs('Get_Request_by_ID')?['body']['@odata.id'])}/main.aspx?cmdbar=true&navbar=on&newWindow=true&pagetype=entityrecord&etn=ts_request&id=@{outputs('Get_Request_by_ID')?['body/ts_requestid']}"}]}}},"outputs":{}}},"schemaVersion":"1.0.0.0"}
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_6867e"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_teams": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedteams_eb0d1"
+        },
+        "api": {
+          "name": "shared_teams"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_Request_is_updated": {
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "ts_request",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_Request_by_ID": {
+          "runAfter": {},
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_requests",
+              "recordId": "@triggerOutputs()?['body/ts_requestid']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Condition": {
+          "actions": {
+            "Get_Modified_By_User": {
+              "runAfter": {},
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "systemusers",
+                  "recordId": "@outputs('Get_Created_By_User')?['body/_modifiedby_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Post_a_message_as_the_Flow_bot_to_a_user": {
+              "runAfter": {
+                "Get_Modified_By_User": [
+                  "Succeeded"
+                ]
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_teams",
+                  "operationId": "PostUserNotification",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+                },
+                "parameters": {
+                  "PostNotificationRequest/recipient/to": "@{outputs('Get_Created_By_User')?['body/internalemailaddress']};",
+                  "PostNotificationRequest/messageBody": "You request was closed by @{outputs('Get_Modified_By_User')?['body/internalemailaddress']}. See details [here](@{variables('URL')}).",
+                  "PostNotificationRequest/messageTitle": "Request @{outputs('Get_Request_by_ID')?['body/ts_name']} was Closed"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Get_Created_By_User": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/statuscode']",
+              2
+            ]
+          },
+          "type": "If"
+        },
+        "Get_Created_By_User": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "@outputs('Get_Request_by_ID')?['body/_createdby_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Get_Request_by_ID": [
+              "Succeeded"
+            ]
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "URL",
+                "type": "string",
+                "value": "https://@{uriHost(outputs('Get_Request_by_ID')?['body']['@odata.id'])}/main.aspx?cmdbar=true&navbar=on&newWindow=true&pagetype=entityrecord&etn=ts_request&id=@{outputs('Get_Request_by_ID')?['body/ts_requestid']}"
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}
