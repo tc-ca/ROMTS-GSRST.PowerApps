@@ -77,7 +77,7 @@
                           <label description="Current Site Status" languagecode="1033" />
                           <label description="Statut actuel du site" languagecode="1036" />
                         </labels>
-                        <control id="ts_sitestatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_sitestatus" disabled="false" />
+                        <control id="ts_sitestatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_sitestatus" disabled="true" />
                       </cell>
                     </row>
                   </rows>
@@ -176,7 +176,7 @@
                     <row>
                       <cell id="{0ded0341-c1cf-4429-b802-5672329d0b22}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10001">
                         <labels>
-                          <label description="Non-Operational End Date (inclusive)" languagecode="1033" />
+                          <label description="Non-Operational End Date" languagecode="1033" />
                           <label description="Date de fin non opérationnelle" languagecode="1036" />
                         </labels>
                         <control id="ts_statusenddate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_statusenddate" disabled="false" />
@@ -512,11 +512,6 @@
             <Handler functionName="ROM.FunctionalLocation.onLoad" libraryName="ts_/js/FunctionalLocation.js" handlerUniqueId="{2f99d731-9f81-40c5-bc44-1881260e43eb}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="1" solutionaction="Added" />
           </Handlers>
         </event>
-        <event name="onchange" application="true" active="true" attribute="ts_sitestatus" solutionaction="Added">
-          <Handlers>
-            <Handler functionName="ROM.FunctionalLocation.siteStatusOnChange" libraryName="msdyn_/FunctionalLocation/FunctionalLocation.Library.js" handlerUniqueId="{539d5767-c033-4a09-9b9e-8fd54f634400}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
-          </Handlers>
-        </event>
         <event name="onchange" application="true" active="true" attribute="ts_statusstartdate" solutionaction="Added">
           <Handlers>
             <Handler functionName="ROM.FunctionalLocation.statusStartDateOnChange" libraryName="msdyn_/FunctionalLocation/FunctionalLocation.Library.js" handlerUniqueId="{79878bff-6468-4631-b48e-e1bc87a79ee4}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
@@ -525,6 +520,11 @@
         <event name="onchange" application="true" active="true" attribute="ts_sitetype" solutionaction="Added">
           <Handlers>
             <Handler functionName="ROM.FunctionalLocation.siteTypeOnChange" libraryName="msdyn_/FunctionalLocation/FunctionalLocation.Library.js" handlerUniqueId="{57142891-edf4-4668-a4f6-c9c3d93dd9f9}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="true" active="true" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.onSave" libraryName="msdyn_/FunctionalLocation/FunctionalLocation.Library.js" handlerUniqueId="{e46bc05c-b8c9-4c19-b05e-cb029ea3a700}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
           </Handlers>
         </event>
       </events>

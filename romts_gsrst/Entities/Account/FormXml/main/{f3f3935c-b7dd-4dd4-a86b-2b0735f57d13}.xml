@@ -102,7 +102,7 @@
                           <label description="Current Stakeholder Status" languagecode="1033" />
                           <label description="Statut actuel des intervenants" languagecode="1036" />
                         </labels>
-                        <control id="ts_stakeholderstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_stakeholderstatus" disabled="false" />
+                        <control id="ts_stakeholderstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_stakeholderstatus" disabled="true" />
                       </cell>
                     </row>
                   </rows>
@@ -250,7 +250,7 @@
                     <row>
                       <cell id="{b0437f0a-3dd0-4a18-85fa-9d9ead2f470f}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
-                          <label description="Non-Operational End Date (inclusive)" languagecode="1033" />
+                          <label description="Non-Operational End Date" languagecode="1033" />
                           <label description="Date de fin non opérationnelle" languagecode="1036" />
                         </labels>
                         <control id="ts_statusenddate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_statusenddate" disabled="false" />
@@ -876,14 +876,14 @@
             <Handler functionName="ROM.Account.regionOnChange" libraryName="ovs_/js/Account.js" handlerUniqueId="{727449ab-8002-4e07-9251-6229b1d4af4f}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
-        <event name="onchange" application="true" active="true" attribute="ts_stakeholderstatus">
-          <Handlers>
-            <Handler functionName="ROM.Account.stakeholderStatusOnChange" libraryName="msdyn_/Account/AssetCommon.Account.Library.js" handlerUniqueId="{44e9aae8-1fbf-4759-ab61-46ffadba63d0}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
         <event name="onchange" application="true" active="true" attribute="ts_statusstartdate">
           <Handlers>
             <Handler functionName="ROM.Account.statusStartDateOnChange" libraryName="msdyn_/Account/AssetCommon.Account.Library.js" handlerUniqueId="{7f2f33e9-fe1e-4653-a7f0-26039b7fd8a1}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="true" active="true">
+          <Handlers>
+            <Handler functionName="ROM.Account.onSave" libraryName="msdyn_/Account/AssetCommon.Account.Library.js" handlerUniqueId="{2aab8a59-181a-4d5d-a0c0-61a3c32d2b4c}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

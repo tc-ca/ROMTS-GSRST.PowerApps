@@ -90,7 +90,7 @@
                           <label description="Current Operational Status" languagecode="1033" />
                           <label description="Statut opérationnel actuel" languagecode="1036" />
                         </labels>
-                        <control id="ts_operationalstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_operationalstatus" disabled="false" />
+                        <control id="ts_operationalstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_operationalstatus" disabled="true" />
                       </cell>
                     </row>
                   </rows>
@@ -156,7 +156,7 @@
                     <row>
                       <cell id="{1dbed185-85ab-438e-818d-bd492d85a93b}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
-                          <label description="Non-Operational End Date (inclusive)" languagecode="1033" />
+                          <label description="Non-Operational End Date" languagecode="1033" />
                           <label description="Date de fin non opérationnelle" languagecode="1036" />
                         </labels>
                         <control id="ts_statusenddate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_statusenddate" disabled="false" />
@@ -556,14 +556,14 @@
             <Handler functionName="ROM.Operation.onLoad" libraryName="ts_/js/Operation.js" handlerUniqueId="{0152adec-3673-4a18-9738-762d648cb0b3}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
-        <event name="onchange" application="true" active="true" attribute="ts_operationalstatus">
-          <Handlers>
-            <Handler functionName="ROM.Operation.operationStatusOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{282b6d66-6df6-4052-85f4-392b2c382a4d}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
         <event name="onchange" application="true" active="true" attribute="ts_statusstartdate">
           <Handlers>
             <Handler functionName="ROM.Operation.statusStartDateOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{870ae36b-5eff-4e0a-8bd9-e4f49fd6c731}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="true" active="true">
+          <Handlers>
+            <Handler functionName="ROM.Operation.onSave" libraryName="ts_/js/Operation.js" handlerUniqueId="{a77dd23f-1c59-445a-a16c-e1f34248726e}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
