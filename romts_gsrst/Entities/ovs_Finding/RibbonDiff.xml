@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
+    <CustomAction Id="ts.Mscrm.Form.ovs_finding.SaveAsComplete.CustomAction" Location="Mscrm.Form.ovs_finding.MainTab.Save.Controls._children" Sequence="20">
+      <CommandUIDefinition>
+        <Button Alt="$Resources:Ribbon.Form.MainTab.Save.SaveAsComplete" Command="Mscrm.SavePrimaryActivityAsComplete" Id="Mscrm.Form.ovs_finding.SaveAsComplete" Image32by32="/_imgs/ribbon/SaveAsCompleted_32.png" Image16by16="/_imgs/ribbon/MarkAsComplete_16.png" LabelText="$Resources:Ribbon.Form.MainTab.Save.SaveAsComplete" Sequence="20" TemplateAlias="o1" ToolTipTitle="$Resources:Ribbon.Form.MainTab.Save.SaveAsComplete" ToolTipDescription="$Resources(EntityDisplayName):Ribbon.Tooltip.SaveAsComplete" ModernImage="SaveAsComplete" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.Mscrm.OpenRecordItem.CustomAction" Location="Mscrm.SubGrid.ovs_finding.MainTab.Management.Controls._children" Sequence="28">
       <CommandUIDefinition>
         <Button Command="Mscrm.OpenRecordItem" Id="Mscrm.OpenRecordItem" Sequence="28" TemplateAlias="o1" />
@@ -8,6 +13,11 @@
     </CustomAction>
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_finding.AddNewStandard.Hide" Location="Mscrm.SubGrid.ovs_finding.AddNewStandard" />
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_finding.NewRecord.Hide" Location="Mscrm.SubGrid.ovs_finding.NewRecord" />
+    <CustomAction Id="ts.ovs_finding.TSISMarkComplete.Form.CustomAction" Location="Mscrm.Form.ovs_finding.MainTab.Save.Controls._children" Sequence="4">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.Alt" Command="ts.ovs_finding.TSISMarkComplete.Form.Command" Id="ts.ovs_finding.TSISMarkComplete.Form" Image32by32="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_32.png" Image16by16="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_16.png" LabelText="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.LabelText" Sequence="4" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.ToolTipDescription" ModernImage="SaveAsComplete" />
+      </CommandUIDefinition>
+    </CustomAction>
   </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
@@ -114,6 +124,32 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="Mscrm.SavePrimaryActivityAsComplete">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AvailableOnForm" />
+        <EnableRule Id="Mscrm.CanSavePrimary" />
+        <EnableRule Id="Mscrm.ReadPrimaryPermission" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.PrimaryIsActivity" />
+        <DisplayRule Id="Mscrm.CanSavePrimaryEntityType" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="SaveAsComplete" Library="$webresource:ovs_/js/FindingRibbon.js" />
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ovs_finding.TSISMarkComplete.Form.Command">
+      <EnableRules />
+      <DisplayRules>
+        <DisplayRule Id="ts.ovs_finding.ShowMarkComplete" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="markComplete" Library="$webresource:ovs_/js/FindingRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
   </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
@@ -132,6 +168,17 @@
       </DisplayRule>
       <DisplayRule Id="Mscrm.AppendToSelected">
         <EntityPrivilegeRule PrivilegeType="AppendTo" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.CanSavePrimaryEntityType">
+        <OrRule>
+          <Or>
+            <EntityPrivilegeRule PrivilegeType="Create" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+          </Or>
+          <Or>
+            <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+          </Or>
+        </OrRule>
+        <EntityPrivilegeRule PrivilegeType="Read" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
       </DisplayRule>
       <DisplayRule Id="Mscrm.CanWriteSelected">
         <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
@@ -158,6 +205,9 @@
       <DisplayRule Id="Mscrm.IsNotActivityPointer">
         <EntityRule EntityName="activitypointer" AppliesTo="SelectedEntity" InvertResult="true" />
       </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsActivity">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="true" />
+      </DisplayRule>
       <DisplayRule Id="Mscrm.SelectedEntityIsNotBPFEntity">
         <EntityPropertyRule AppliesTo="SelectedEntity" PropertyName="IsBPFEntity" PropertyValue="false" />
       </DisplayRule>
@@ -170,10 +220,35 @@
       <DisplayRule Id="Mscrm.ShowForOneToManyGrids">
         <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="OneToMany" />
       </DisplayRule>
+      <DisplayRule Id="ts.ovs_finding.ShowMarkComplete">
+        <OrRule>
+          <Or>
+            <ValueRule Field="ts_findingtype" Value="717750002" />
+          </Or>
+          <Or>
+            <ValueRule Field="ts_findingtype" Value="717750001" />
+          </Or>
+        </OrRule>
+      </DisplayRule>
     </DisplayRules>
     <EnableRules>
       <EnableRule Id="Mscrm.AppendToPrimary">
         <RecordPrivilegeRule PrivilegeType="AppendTo" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.AvailableOnForm">
+        <EntityRule AppliesTo="PrimaryEntity" Context="Form" Default="false" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.CanSavePrimary">
+        <OrRule>
+          <Or>
+            <RecordPrivilegeRule PrivilegeType="Create" AppliesTo="PrimaryEntity" />
+            <FormStateRule State="Create" />
+          </Or>
+          <Or>
+            <RecordPrivilegeRule PrivilegeType="Write" AppliesTo="PrimaryEntity" />
+            <FormStateRule State="Existing" />
+          </Or>
+        </OrRule>
       </EnableRule>
       <EnableRule Id="Mscrm.EntityFormIsEnabled">
         <FormStateRule State="Disabled" InvertResult="true" />
@@ -200,6 +275,9 @@
           <CrmParameter Value="SelectedControl" />
         </CustomRule>
       </EnableRule>
+      <EnableRule Id="Mscrm.ReadPrimaryPermission">
+        <RecordPrivilegeRule PrivilegeType="Read" AppliesTo="PrimaryEntity" />
+      </EnableRule>
       <EnableRule Id="ts.ovs_finding.alwaysFalse">
         <CustomRule FunctionName="isNaN" Library="$webresource:ovs_/js/FindingRibbon.js" Default="false" InvertResult="true" />
       </EnableRule>
@@ -213,5 +291,30 @@
       </EnableRule>
     </EnableRules>
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="ts.ovs_finding.TSISMarkComplete.Form.Alt">
+      <Titles>
+        <Title description="Mark Complete" languagecode="1033" />
+        <Title description="Marquer comme terminé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.TSISMarkComplete.Form.LabelText">
+      <Titles>
+        <Title description="Mark Complete" languagecode="1033" />
+        <Title description="Marquer comme terminé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.TSISMarkComplete.Form.ToolTipDescription">
+      <Titles>
+        <Title description="Mark Complete" languagecode="1033" />
+        <Title description="Marquer comme terminé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.TSISMarkComplete.Form.ToolTipTitle">
+      <Titles>
+        <Title description="Mark Complete" languagecode="1033" />
+        <Title description="Marquer comme terminé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>

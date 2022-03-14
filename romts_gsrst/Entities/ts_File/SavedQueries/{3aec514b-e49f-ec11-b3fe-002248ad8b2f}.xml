@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{3aec514b-e49f-ec11-b3fe-002248ad8b2f}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_file" select="1" icon="1" preview="1">
+        <row name="result" id="ts_fileid">
+          <cell name="ts_file" width="200" />
+          <cell name="ts_filecategory" width="100" />
+          <cell name="ts_filesubcategory" width="100" />
+          <cell name="ts_description" width="100" />
+          <cell name="createdon" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="ts_file">
+          <attribute name="ts_file" />
+          <attribute name="ts_fileid" />
+          <attribute name="ts_filecategory" />
+          <attribute name="ts_filesubcategory" />
+          <attribute name="ts_description" />
+          <attribute name="createdon" />
+          <order attribute="ts_file" descending="false" />
+          <filter type="and">
+            <condition attribute="ts_documenttype" operator="eq" value="717750002" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20220303.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Case - Case Documents" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Used in a sub grid of the documents tab in Case" languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

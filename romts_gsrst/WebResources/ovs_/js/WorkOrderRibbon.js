@@ -406,8 +406,8 @@ function addExistingUsersToWorkOrder(primaryControl, selectedEntityTypeName, sel
                 {
                     filterXml: `<filter type="and">` + 
                         `<condition attribute="businessunitid" operator="eq" value="${userBusinessUnitId}" />` +
-                        `<condition attribute="systemuserid" operator="neq" value="${currentWorkOrderRecordOwnerId}" />`+
-                        `</filter> `,
+                        `<condition attribute="systemuserid" operator="neq" value="${currentWorkOrderRecordOwnerId}" />` +
+                        `</filter>`,
                     entityLogicalName: "systemuser"
                 }
             ]
@@ -446,7 +446,7 @@ function addExistingUsersToWorkOrder(primaryControl, selectedEntityTypeName, sel
                             if (this.status === 200) {
                                 selectedControl.refresh();
                             } else {
-                                showErrorMessageAlert(this.statusText);
+                                showErrorMessageAlert(req.status);
                             }
                         }
                     };
