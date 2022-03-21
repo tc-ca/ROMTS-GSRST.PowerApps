@@ -99,6 +99,7 @@ var ROM;
                 //Show RATE Sections and fields when the user is in Transport Canada or Aviation Security business unit
                 if (userBusinessUnitName.startsWith("Transport") || userBusinessUnitName.startsWith("Aviation")) {
                     formContext.ui.tabs.get("tab_RATE").setVisible(true);
+                    formContext.getControl("header_ts_rateenforcementrecommendation").setVisible(true);
                     //If there's a recommended enforcement action and the finding is not complete yet, then the accept rate recommendation field should be unlocked
                     var enforcementRecommendation = formContext.getAttribute("ts_rateenforcementrecommendation").getValue();
                     var recordStatus = formContext.getAttribute("statuscode").getValue();
@@ -747,21 +748,26 @@ var ROM;
             var acceptNCATRecommendation = formContext.getAttribute("ts_acceptncatrecommendation").getValue();
             if (acceptNCATRecommendation == 717750001 /* No */ || acceptNCATRecommendation == 717750000 /* Yes */) {
                 lockNCATFactors(eContext);
+                formContext.getControl("ts_acceptncatrecommendation").setDisabled(true);
             }
             //If they did not accept the NCAT recommendation
             if (acceptNCATRecommendation == 717750001 /* No */) {
                 //Show NCAT Approving Team
                 formContext.getControl("ts_ncatapprovingteam").setVisible(true);
+                formContext.getControl("ts_ncatapprovingteam").setDisabled(false);
                 formContext.getAttribute("ts_ncatapprovingteam").setRequiredLevel("required");
                 //Show NCAT Approving Manager
                 formContext.getControl("ts_ncatmanager").setVisible(true);
+                formContext.getControl("ts_ncatmanager").setDisabled(false);
                 formContext.getAttribute("ts_ncatmanager").setRequiredLevel("required");
                 //Show Inspector Recommendation
                 formContext.getControl("ts_ncatinspectorrecommendation").setVisible(true);
+                formContext.getControl("ts_ncatinspectorrecommendation").setDisabled(false);
                 //Require Inspector Recommendation
                 formContext.getAttribute("ts_ncatinspectorrecommendation").setRequiredLevel("required");
                 //Show Enforcement Justification
                 formContext.getControl("ts_ncatenforcementjustification").setVisible(true);
+                formContext.getControl("ts_ncatenforcementjustification").setDisabled(false);
                 //Require Enforcement Justification
                 formContext.getAttribute("ts_ncatenforcementjustification").setRequiredLevel("required");
                 //Lock the NCAT Proposed Alternative Enforcement Action and NCAT Justification for Proposed Alternative Enforcement Action fields if they have a value
@@ -806,21 +812,26 @@ var ROM;
             var acceptRATERecommendation = formContext.getAttribute("ts_acceptraterecommendation").getValue();
             if (acceptRATERecommendation == 717750001 /* No */ || acceptRATERecommendation == 717750000 /* Yes */) {
                 lockRATEFactors(eContext);
+                formContext.getControl("ts_acceptraterecommendation").setDisabled(true);
             }
             //If they did not accept the RATE recommendation
             if (acceptRATERecommendation == 717750001 /* No */) {
                 //Show RATE Approving Team
                 formContext.getControl("ts_rateapprovingteam").setVisible(true);
+                formContext.getControl("ts_rateapprovingteam").setDisabled(false);
                 formContext.getAttribute("ts_rateapprovingteam").setRequiredLevel("required");
                 //Show RATE Approving Manager
                 formContext.getControl("ts_ratemanager").setVisible(true);
+                formContext.getControl("ts_ratemanager").setDisabled(false);
                 formContext.getAttribute("ts_ratemanager").setRequiredLevel("required");
                 //Show Inspector Recommendation
                 formContext.getControl("ts_rateinspectorrecommendation").setVisible(true);
+                formContext.getControl("ts_rateinspectorrecommendation").setDisabled(false);
                 //Require Inspector Recommendation
                 formContext.getAttribute("ts_rateinspectorrecommendation").setRequiredLevel("required");
                 //Show Enforcement Justification
                 formContext.getControl("ts_rateenforcementjustification").setVisible(true);
+                formContext.getControl("ts_rateenforcementjustification").setDisabled(false);
                 //Require Enforcement Justification
                 formContext.getAttribute("ts_rateenforcementjustification").setRequiredLevel("required");
                 //Lock the RATE Proposed Alternative Enforcement Action and RATE Justification for Proposed Alternative Enforcement Action fields if they have a value

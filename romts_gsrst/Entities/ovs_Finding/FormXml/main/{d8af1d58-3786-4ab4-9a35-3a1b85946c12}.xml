@@ -851,58 +851,18 @@
             </column>
             <column width="60%">
               <sections>
-                <section name="tab_RATE_section_8" showlabel="false" showbar="false" locklevel="0" id="{855a223a-8439-d8b2-c514-ad9e08814719}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" height="auto">
+                <section name="tab_RATE_section_10" id="6335599a-6211-4b66-93ec-5fbfaa04f224" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
                   <labels>
-                    <label description="Section" languagecode="1033" />
+                    <label description="New Section" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{d345a84d-e58c-08c3-24d5-141ee6a34bd7}" showlabel="false" colspan="1" auto="true" rowspan="25">
+                      <cell showlabel="false" locklevel="0" id="{32d4906e-70e9-45f0-ab1b-aeea520a8629}">
                         <labels>
-                          <label description="factorguidetest" languagecode="1033" />
+                          <label description="" languagecode="1033" />
                         </labels>
-                        <control id="WebResource_factorguidetest" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
-                          <parameters>
-                            <Url>ts_/html/NCATFactorGuide.html</Url>
-                            <PassParameters>false</PassParameters>
-                            <ShowOnMobileClient>false</ShowOnMobileClient>
-                            <Security>false</Security>
-                            <Scrolling>auto</Scrolling>
-                            <Border>false</Border>
-                            <WebResourceId>{D6D16B3A-4180-EC11-8D20-0022483CBF0E}</WebResourceId>
-                          </parameters>
-                        </control>
-                        <events>
-                          <event name="onload" application="false">
-                            <dependencies />
-                          </event>
-                        </events>
                       </cell>
                     </row>
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row />
-                    <row height="auto" />
                   </rows>
                 </section>
               </sections>
@@ -1016,13 +976,20 @@
           </columns>
         </tab>
       </tabs>
-      <header id="{115435a2-ba34-4015-995e-ee2713804549}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+      <header id="{115435a2-ba34-4015-995e-ee2713804549}" celllabelposition="Top" columns="1111" labelwidth="115" celllabelalignment="Left">
         <rows>
           <row>
-            <cell id="{781fafe4-8512-4f61-a74b-77d398847388}" showlabel="false">
+            <cell id="{2100bc10-28d9-86b2-3152-83aec2d0b1a3}" showlabel="false">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
+            </cell>
+            <cell id="{3766be66-d972-0737-730e-8a8608b71536}" showlabel="true" locklevel="0" visible="false">
+              <labels>
+                <label description="Enforcement Recommendation" languagecode="1033" />
+                <label description="RATE Enforcement Recommendation (fr)" languagecode="1036" />
+              </labels>
+              <control id="header_ts_rateenforcementrecommendation" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_rateenforcementrecommendation" disabled="true" uniqueid="{5713700b-e322-add4-5e80-7a0c2ab31cbe}" />
             </cell>
             <cell id="{69573314-a463-9b07-93ba-b550b3ae8d53}" showlabel="true" locklevel="0">
               <labels>
@@ -1125,11 +1092,6 @@
         <Library name="ovs_/js/Finding.js" libraryUniqueId="{de682870-cc56-9578-1c48-dbb528d5ae81}" />
       </formLibraries>
       <events>
-        <event name="onchange" application="false" active="false" attribute="ts_acceptncatrecommendation">
-          <Handlers>
-            <Handler functionName="ROM.Finding.AcceptNCATRecommendationOnChange" libraryName="ovs_/js/Finding.js" handlerUniqueId="{0d3be8a1-368e-0070-4c2c-6bcaae972193}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
         <event name="onchange" application="false" active="false" attribute="ts_acceptraterecommendation">
           <Handlers>
             <Handler functionName="ROM.Finding.AcceptRATERecommendationOnChange" libraryName="ovs_/js/Finding.js" handlerUniqueId="{003e97d2-c5b3-12d3-1407-68aa6c18300b}" enabled="true" parameters="" passExecutionContext="true" />
@@ -1279,6 +1241,11 @@
         <event name="onchange" application="true" active="true" attribute="ts_issueaddressedonsite">
           <Handlers>
             <Handler functionName="ROM.Finding.issueAddressedOnSiteOnChange" libraryName="ovs_/js/Finding.js" handlerUniqueId="{1cbd35f4-af87-4233-a1f9-f6671e7aa9e0}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_acceptncatrecommendation">
+          <Handlers>
+            <Handler functionName="ROM.Finding.AcceptNCATRecommendationOnChange" libraryName="ovs_/js/Finding.js" handlerUniqueId="{ff247be7-14f0-478b-8ca6-580a44e2a40e}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

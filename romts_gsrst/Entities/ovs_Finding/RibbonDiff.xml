@@ -13,9 +13,19 @@
     </CustomAction>
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_finding.AddNewStandard.Hide" Location="Mscrm.SubGrid.ovs_finding.AddNewStandard" />
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_finding.NewRecord.Hide" Location="Mscrm.SubGrid.ovs_finding.NewRecord" />
-    <CustomAction Id="ts.ovs_finding.TSISMarkComplete.Form.CustomAction" Location="Mscrm.Form.ovs_finding.MainTab.Save.Controls._children" Sequence="4">
+    <CustomAction Id="ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.CustomAction" Location="Mscrm.Form.ovs_finding.MainTab.Save.Controls._children" Sequence="7">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.Alt" Command="ts.ovs_finding.TSISMarkComplete.Form.Command" Id="ts.ovs_finding.TSISMarkComplete.Form" Image32by32="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_32.png" Image16by16="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_16.png" LabelText="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.LabelText" Sequence="4" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.ToolTipDescription" ModernImage="SaveAsComplete" />
+        <Button Alt="$LocLabels:ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.Alt" Command="ts.ovs_finding.unlockNCAT" CommandValueId="ts.ovs.finding.resetAssessmentTool" Id="ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool" LabelText="$LocLabels:ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.LabelText" Sequence="7" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ovs_finding.ResetAssessmentTool.CustomAction" Location="Mscrm.Form.ovs_finding.MainTab.Save.Controls._children" Sequence="4">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ovs_finding.ResetAssessmentTool.Alt" Command="ts.ovs_finding.unlockRATE" CommandValueId="ts.ovs.finding.resetAssessmentTool" Id="ts.ovs_finding.ResetAssessmentTool" LabelText="$LocLabels:ts.ovs_finding.ResetAssessmentTool.LabelText" Sequence="4" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.ResetAssessmentTool.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.ResetAssessmentTool.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ovs_finding.TSISMarkComplete.Form.CustomAction" Location="Mscrm.Form.ovs_finding.MainTab.Save.Controls._children" Sequence="0">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.Alt" Command="ts.ovs_finding.TSISMarkComplete.Form.Command" Id="ts.ovs_finding.TSISMarkComplete.Form" Image32by32="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_32.png" Image16by16="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_16.png" LabelText="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.TSISMarkComplete.Form.ToolTipDescription" ModernImage="SaveAsComplete" />
       </CommandUIDefinition>
     </CustomAction>
   </CustomActions>
@@ -150,6 +160,30 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="ts.ovs_finding.unlockNCAT">
+      <EnableRules>
+        <EnableRule Id="ts.ovs_finding.isSystemAdmin" />
+        <EnableRule Id="ts.ovs_finding.acceptNCATRecommendationIsNotNull" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="unlockNCAT" Library="$webresource:ovs_/js/FindingRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ovs_finding.unlockRATE">
+      <EnableRules>
+        <EnableRule Id="ts.ovs_finding.isSystemAdmin" />
+        <EnableRule Id="ts.ovs_finding.acceptRATERecommendationIsNotNull" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="unlockRATE" Library="$webresource:ovs_/js/FindingRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
   </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
@@ -278,11 +312,32 @@
       <EnableRule Id="Mscrm.ReadPrimaryPermission">
         <RecordPrivilegeRule PrivilegeType="Read" AppliesTo="PrimaryEntity" />
       </EnableRule>
+      <EnableRule Id="ts.ovs_finding.acceptNCATRecommendationIsNotNull">
+        <CustomRule FunctionName="acceptNCATRecommendationIsNotNull" Library="$webresource:ovs_/js/FindingRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.acceptRATERecommendationIsNotNull">
+        <CustomRule FunctionName="acceptRATERecommendationIsNotNull" Library="$webresource:ovs_/js/FindingRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
       <EnableRule Id="ts.ovs_finding.alwaysFalse">
         <CustomRule FunctionName="isNaN" Library="$webresource:ovs_/js/FindingRibbon.js" Default="false" InvertResult="true" />
       </EnableRule>
       <EnableRule Id="ts.ovs_finding.isAdmin">
         <CustomRule FunctionName="isSystemAdministrator" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false" InvertResult="false" />
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.isSystemAdmin">
+        <CustomRule FunctionName="isSystemAdministrator" Library="$webresource:ovs_/js/FindingRibbon.js" />
+        <OrRule>
+          <Or>
+            <CustomRule FunctionName="isAvSecBusinessUnit" Library="$webresource:ovs_/js/FindingRibbon.js" />
+          </Or>
+          <Or>
+            <CustomRule FunctionName="isTCBusinessUnit" Library="$webresource:ovs_/js/FindingRibbon.js" />
+          </Or>
+        </OrRule>
       </EnableRule>
       <EnableRule Id="ts.ovs_finding.NCATFactorsHaveValues">
         <CustomRule FunctionName="NCATFactorsHaveValues" Library="$webresource:ts_/js/FindingRibbon" Default="false">
@@ -292,6 +347,54 @@
     </EnableRules>
   </RuleDefinitions>
   <LocLabels>
+    <LocLabel Id="ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.Alt">
+      <Titles>
+        <Title description="Unlock NCAT" languagecode="1033" />
+        <Title description="Unlock NCAT (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.LabelText">
+      <Titles>
+        <Title description="Unlock NCAT" languagecode="1033" />
+        <Title description="Unlock NCAT (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.ToolTipDescription">
+      <Titles>
+        <Title description="Unlock NCAT" languagecode="1033" />
+        <Title description="Unlock NCAT (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.ToolTipTitle">
+      <Titles>
+        <Title description="Unlock NCAT" languagecode="1033" />
+        <Title description="Unlock NCAT (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.ResetAssessmentTool.Alt">
+      <Titles>
+        <Title description="Unlock RATE" languagecode="1033" />
+        <Title description="Unlock RATE (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.ResetAssessmentTool.LabelText">
+      <Titles>
+        <Title description="Unlock RATE" languagecode="1033" />
+        <Title description="Unlock RATE (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.ResetAssessmentTool.ToolTipDescription">
+      <Titles>
+        <Title description="Unlock RATE" languagecode="1033" />
+        <Title description="Unlock RATE (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.ResetAssessmentTool.ToolTipTitle">
+      <Titles>
+        <Title description="Unlock RATE" languagecode="1033" />
+        <Title description="Unlock RATE (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
     <LocLabel Id="ts.ovs_finding.TSISMarkComplete.Form.Alt">
       <Titles>
         <Title description="Mark Complete" languagecode="1033" />
