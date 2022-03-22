@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{bd15c679-df0b-e611-80d2-00155db1076f}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="1">
+        <row name="result" id="incidentid">
+          <cell name="title" width="150" />
+          <cell name="modifiedon" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="incident">
+          <attribute name="title" />
+          <attribute name="modifiedon" />
+          <filter>
+            <condition attribute="statecode" operator="eq" value="1" />
+          </filter>
+          <order attribute="modifiedon" descending="true" />
+          <attribute name="incidentid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>8.1.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Similar Resolved Cases for Interaction Centric" languagecode="1033" />
+      <LocalizedName description="Incidents résolus associés pour la solution centrée sur les interactions" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

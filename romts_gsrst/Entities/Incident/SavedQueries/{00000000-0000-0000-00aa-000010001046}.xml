@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{00000000-0000-0000-00aa-000010001046}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="1">
+        <row name="result" id="incidentid">
+          <cell name="title" />
+          <cell name="caseorigincode" width="100" ishidden="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2048</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="incident">
+          <attribute name="title" />
+          <filter>
+            <condition attribute="statecode" operator="eq" value="1" />
+          </filter>
+          <order attribute="modifiedon" descending="true" />
+          <attribute name="incidentid" />
+          <attribute name="caseorigincode" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>6.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Similar Resolved Cases" languagecode="1033" />
+      <LocalizedName description="Incidents résolus identiques" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

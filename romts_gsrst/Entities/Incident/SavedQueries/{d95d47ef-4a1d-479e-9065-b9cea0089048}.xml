@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>1</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{d95d47ef-4a1d-479e-9065-b9cea0089048}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="1">
+        <row name="result" id="incidentid">
+          <cell name="title" width="300" />
+          <cell name="ticketnumber" width="150" />
+          <cell name="prioritycode" width="150" />
+          <cell name="createdon" width="150" />
+          <cell name="caseorigincode" width="100" />
+          <cell name="statecode" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>4</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="incident">
+          <attribute name="incidentid" />
+          <attribute name="prioritycode" />
+          <attribute name="ticketnumber" />
+          <attribute name="title" />
+          <attribute name="createdon" />
+          <attribute name="caseorigincode" />
+          <attribute name="statecode" />
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="title" operator="like" value="{0}" />
+            <condition attribute="ticketnumber" operator="like" value="{0}" />
+          </filter>
+          <order attribute="title" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Quick Find Cases" languagecode="1033" />
+      <LocalizedName description="Recherche rapide Incidents" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

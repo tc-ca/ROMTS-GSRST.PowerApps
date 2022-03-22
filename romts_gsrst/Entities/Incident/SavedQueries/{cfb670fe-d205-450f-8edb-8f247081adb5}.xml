@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{cfb670fe-d205-450f-8edb-8f247081adb5}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" preview="0" icon="1">
+        <row name="result" id="incidentid">
+          <cell name="title" width="100" />
+          <cell name="customerid" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="incident">
+          <attribute name="title" />
+          <attribute name="customerid" />
+          <attribute name="incidentid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="ne" value="2" />
+            <condition attribute="parentcaseid" operator="null" />
+            <condition attribute="numberofchildincidents" operator="null" />
+          </filter>
+          <order attribute="title" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>6.1.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Child Cases Grid Lookup View" languagecode="1033" />
+      <LocalizedName description="Vue Recherche Grille des incidents enfants" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

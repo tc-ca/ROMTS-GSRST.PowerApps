@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{e1d7d576-da76-4f22-8a65-cc57e23c41bb}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="1">
+        <row name="result" id="incidentid">
+          <cell name="title" width="150" />
+          <cell name="customerid" width="200" />
+          <cell name="prioritycode" width="150" />
+          <cell name="createdon" width="150" />
+          <cell name="caseorigincode" width="100" ishidden="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>1</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="incident">
+          <attribute name="incidentid" />
+          <attribute name="title" />
+          <attribute name="ticketnumber" />
+          <attribute name="customerid" />
+          <attribute name="prioritycode" />
+          <attribute name="createdon" />
+          <attribute name="caseorigincode" />
+          <order attribute="customerid" descending="false" />
+          <order attribute="createdon" descending="true" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>6.1.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Merge Incident View" languagecode="1033" />
+      <LocalizedName description="Vue Fusionner l’incident" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

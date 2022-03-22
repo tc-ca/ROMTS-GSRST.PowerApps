@@ -16,6 +16,662 @@
         <Description description="Cas de requête de service associé à un contrat." languagecode="1036" />
       </Descriptions>
       <attributes>
+        <attribute PhysicalName="ActivitiesComplete">
+          <Type>bit</Type>
+          <Name>activitiescomplete</Name>
+          <LogicalName>activitiescomplete</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="incident_activities_complete">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>6.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Activities status related to case" languagecode="1033" />
+              <displayname description="Statut des activités associées à l'incident" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Indicates whether the activities completed or not." languagecode="1033" />
+              <Description description="Indique si les activités sont terminées ou non." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Activities Complete" languagecode="1033" />
+            <displayname description="Activités terminées" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="This attribute is used for Sample Service Business Processes." languagecode="1033" />
+            <Description description="Cet attribut est utilisé pour les exemples de processus d'entreprise de service." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ActualServiceUnits">
+          <Type>int</Type>
+          <Name>actualserviceunits</Name>
+          <LogicalName>actualserviceunits</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>none</Format>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <displaynames>
+            <displayname description="Actual Service Units" languagecode="1033" />
+            <displayname description="Unités de service réelles" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Type the number of service units that were actually required to resolve the case." languagecode="1033" />
+            <Description description="Tapez le nombre d'unités de services réellement nécessaires pour résoudre l'incident." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="BilledServiceUnits">
+          <Type>int</Type>
+          <Name>billedserviceunits</Name>
+          <LogicalName>billedserviceunits</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>none</Format>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <displaynames>
+            <displayname description="Billed Service Units" languagecode="1033" />
+            <displayname description="Unités de service facturées" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Type the number of service units that were billed to the customer for the case." languagecode="1033" />
+            <Description description="Tapez le nombre d'unités de services facturées au client pour l'incident." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="BlockedProfile">
+          <Type>bit</Type>
+          <Name>blockedprofile</Name>
+          <LogicalName>blockedprofile</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <OptionSetName>socialprofile_isblocked</OptionSetName>
+          <displaynames>
+            <displayname description="Blocked Profile" languagecode="1033" />
+            <displayname description="Profil bloqué" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Details whether the profile is blocked or not." languagecode="1033" />
+            <Description description="Information indiquant si le profil est bloqué ou non." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="CaseOriginCode">
+          <Type>picklist</Type>
+          <Name>caseorigincode</Name>
+          <LogicalName>caseorigincode</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>1</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>1</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <OptionSetName>incident_caseorigincode</OptionSetName>
+          <displaynames>
+            <displayname description="Origin" languagecode="1033" />
+            <displayname description="Origine" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Select how contact about the case was originated, such as email, phone, or web, for use in reporting and analysis." languagecode="1033" />
+            <Description description="Sélectionnez l'origine du contact à propos de l'incident, par exemple courrier électronique, téléphone ou web, en vue d'une utilisation dans la génération de rapports et d'analyses." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="CaseTypeCode">
+          <Type>picklist</Type>
+          <Name>casetypecode</Name>
+          <LogicalName>casetypecode</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>1</IsGlobalFilterEnabled>
+          <IsSortableEnabled>1</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <optionset Name="incident_casetypecode">
+            <OptionSetType>picklist</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Case Type" languagecode="1033" />
+              <displayname description="Type d'incident" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Information that specifies the type of case." languagecode="1033" />
+              <Description description="Information indiquant le type d'incident." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="1" Color="#FF8C00">
+                <labels>
+                  <label description="Question" languagecode="1033" />
+                  <label description="Question" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="2" Color="#E71022">
+                <labels>
+                  <label description="Problem" languagecode="1033" />
+                  <label description="Problème" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="3" Color="#0072C6">
+                <labels>
+                  <label description="Request" languagecode="1033" />
+                  <label description="Demande" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Case Type" languagecode="1033" />
+            <displayname description="Type d'incident" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Select the type of case to identify the incident for use in case routing and analysis." languagecode="1033" />
+            <Description description="Sélectionnez le type d'incident pour identifier l'incident à utiliser dans la génération de rapports et d'analyses d'incident." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="CheckEmail">
+          <Type>bit</Type>
+          <Name>checkemail</Name>
+          <LogicalName>checkemail</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="incident_check_email">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>6.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Check email activity" languagecode="1033" />
+              <displayname description="Vérifier l'activité de courrier électronique" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Indicates whether the check email is set to default or not." languagecode="1033" />
+              <Description description="Indique si la vérification du courrier électronique est définie sur les options par défaut ou non." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Check Email" languagecode="1033" />
+            <displayname description="Vérifier le courrier électronique" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="This attribute is used for Sample Service Business Processes." languagecode="1033" />
+            <Description description="Cet attribut est utilisé pour les exemples de processus d'entreprise de service." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ContractDetailId">
+          <Type>lookup</Type>
+          <Name>contractdetailid</Name>
+          <LogicalName>contractdetailid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">1011</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="Contract Line" languagecode="1033" />
+            <displayname description="Ligne de contrat" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Choose the contract line that the case should be logged under to make sure the customer is charged correctly." languagecode="1033" />
+            <Description description="Choisissez la ligne de contrat sous laquelle l'incident doit être enregistré pour assurer la facturation correcte du client." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ContractId">
+          <Type>lookup</Type>
+          <Name>contractid</Name>
+          <LogicalName>contractid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">1010</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="Contract" languagecode="1033" />
+            <displayname description="Contrat" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Choose the service contract that the case should be logged under to make sure the customer is eligible for support services." languagecode="1033" />
+            <Description description="Choisissez le contrat de service sous lequel l'incident doit être enregistré pour vous assurer que le client peut bénéficier de services de support." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ContractServiceLevelCode">
+          <Type>picklist</Type>
+          <Name>contractservicelevelcode</Name>
+          <LogicalName>contractservicelevelcode</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <optionset Name="incident_contractservicelevelcode">
+            <OptionSetType>picklist</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Service Level" languagecode="1033" />
+              <displayname description="Niveau de service" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Response level for the case. The response level corresponds to the level of service specified in the contract." languagecode="1033" />
+              <Description description="Niveau d'intervention pour l'incident. Le niveau d'intervention correspond au niveau de service spécifié dans le contrat." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="1">
+                <labels>
+                  <label description="Gold" languagecode="1033" />
+                  <label description="Or" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="2">
+                <labels>
+                  <label description="Silver" languagecode="1033" />
+                  <label description="Argent" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="3">
+                <labels>
+                  <label description="Bronze" languagecode="1033" />
+                  <label description="Bronze" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Service Level" languagecode="1033" />
+            <displayname description="Niveau de service" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Select the service level for the case to make sure the case is handled correctly." languagecode="1033" />
+            <Description description="Sélectionnez le niveau de service pour l'incident pour assurer une gestion correcte de l'incident." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="CreatedBy">
+          <Type>lookup</Type>
+          <Name>createdby</Name>
+          <LogicalName>createdby</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">8</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="Created By" languagecode="1033" />
+            <displayname description="Créé par" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows who created the record." languagecode="1033" />
+            <Description description="Identificateur unique de l'utilisateur ayant créé l'enregistrement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="CreatedByExternalParty">
+          <Type>lookup</Type>
+          <Name>createdbyexternalparty</Name>
+          <LogicalName>createdbyexternalparty</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="Created By (External Party)" languagecode="1033" />
+            <displayname description="Créé par (partie externe)" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the external party who created the record." languagecode="1033" />
+            <Description description="Affiche la partie externe qui a créé l'enregistrement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="CreatedOn">
+          <Type>datetime</Type>
+          <Name>createdon</Name>
+          <LogicalName>createdon</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>inactive</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>1</IsFilterable>
+          <IsRetrievable>1</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>datetime</Format>
+          <Behavior>1</Behavior>
+          <displaynames>
+            <displayname description="Created On" languagecode="1033" />
+            <displayname description="Créé le" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Date and time when the record was created." languagecode="1033" />
+            <Description description="Date et heure de création de l'enregistrement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="CreatedOnBehalfBy">
+          <Type>lookup</Type>
+          <Name>createdonbehalfby</Name>
+          <LogicalName>createdonbehalfby</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">8</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="Created By (Delegate)" languagecode="1033" />
+            <displayname description="Créé par (délégué)" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows who created the record on behalf of another user." languagecode="1033" />
+            <Description description="Identificateur unique de l'utilisateur délégué ayant créé l'enregistrement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="CustomerContacted">
+          <Type>bit</Type>
+          <Name>customercontacted</Name>
+          <LogicalName>customercontacted</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="incident_customercontacted">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>6.1.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Customer Contacted" languagecode="1033" />
+              <displayname description="Client contacté" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Information about whether customer has contacted." languagecode="1033" />
+              <Description description="Informations indiquant si le client a été contacté." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Customer Contacted" languagecode="1033" />
+            <displayname description="Client contacté" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Tells whether customer service representative has contacted the customer or not." languagecode="1033" />
+            <Description description="Indique si un conseiller du service clientèle a contacté ou non le client." languagecode="1036" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="CustomerId">
           <Type>customer</Type>
           <Name>customerid</Name>
@@ -46,6 +702,1296 @@
           <Descriptions>
             <Description description="Select the customer account or contact to provide a quick link to additional customer details, such as account information, activities, and opportunities." languagecode="1033" />
             <Description description="Sélectionnez le compte client ou le contact pour fournir un lien rapide vers les détails supplémentaires du client, comme les informations de compte, les activités et les opportunités." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="CustomerSatisfactionCode">
+          <Type>picklist</Type>
+          <Name>customersatisfactioncode</Name>
+          <LogicalName>customersatisfactioncode</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <optionset Name="incident_customersatisfactioncode">
+            <OptionSetType>picklist</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Satisfaction" languagecode="1033" />
+              <displayname description="Satisfaction" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Customer's level of satisfaction with the resolution of the case." languagecode="1033" />
+              <Description description="Niveau de satisfaction du client à l'égard de la résolution de l'incident." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="5">
+                <labels>
+                  <label description="Very Satisfied" languagecode="1033" />
+                  <label description="Très satisfait(e)" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="4">
+                <labels>
+                  <label description="Satisfied" languagecode="1033" />
+                  <label description="Satisfait(e)" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="3">
+                <labels>
+                  <label description="Neutral" languagecode="1033" />
+                  <label description="Neutre" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="2">
+                <labels>
+                  <label description="Dissatisfied" languagecode="1033" />
+                  <label description="Insatisfait(e)" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Very Dissatisfied" languagecode="1033" />
+                  <label description="Très insatisfait(e)" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Satisfaction" languagecode="1033" />
+            <displayname description="Satisfaction" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Select the customer's level of satisfaction with the handling and resolution of the case." languagecode="1033" />
+            <Description description="Sélectionnez le niveau de satisfaction du client concernant la gestion et la résolution de l'incident." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="DecrementEntitlementTerm">
+          <Type>bit</Type>
+          <Name>decremententitlementterm</Name>
+          <LogicalName>decremententitlementterm</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>7.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>1</AppDefaultValue>
+          <optionset Name="incident_decremententitlementterm">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>7.1.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Decrement Entitlement Terms" languagecode="1033" />
+              <displayname description="Réduire les conditions d'octroi du droit" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Shows whether terms of the associated entitlement should be decremented or not." languagecode="1033" />
+              <Description description="Indique si les conditions du droit associé doivent être réduites ou non." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Decrement Entitlement Terms" languagecode="1033" />
+            <displayname description="Réduire les conditions d'octroi du droit" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows whether terms of the associated entitlement should be decremented or not." languagecode="1033" />
+            <Description description="Indique si les conditions du droit associé doivent être réduites ou non." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="Description">
+          <Type>ntext</Type>
+          <Name>description</Name>
+          <LogicalName>description</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>textarea</Format>
+          <MaxLength>2000</MaxLength>
+          <displaynames>
+            <displayname description="Description" languagecode="1033" />
+            <displayname description="Description" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Type additional information to describe the case to assist the service team in reaching a resolution." languagecode="1033" />
+            <Description description="Description de l'activité." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="EmailAddress">
+          <Type>nvarchar</Type>
+          <Name>emailaddress</Name>
+          <LogicalName>emailaddress</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>email</Format>
+          <MaxLength>100</MaxLength>
+          <displaynames>
+            <displayname description="Email Address" languagecode="1033" />
+            <displayname description="Adresse de messagerie" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="The primary email address for the entity." languagecode="1033" />
+            <Description description="Adresse de messagerie principale pour l'entité." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="EntitlementId">
+          <Type>lookup</Type>
+          <Name>entitlementid</Name>
+          <LogicalName>entitlementid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>1</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">9700</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="Entitlement" languagecode="1033" />
+            <displayname description="Droit" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Choose the entitlement that is applicable for the case." languagecode="1033" />
+            <Description description="Choisissez le droit applicable à l'incident." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="EntityImage">
+          <Type>image</Type>
+          <Name>entityimage</Name>
+          <LogicalName>entityimage</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>DenormalizedChild</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsLogical>1</IsLogical>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.0.0.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>0</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>0</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>0</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>jpeg</Format>
+          <MaxLength>9437328</MaxLength>
+          <displaynames>
+            <displayname description="Entity Image" languagecode="1033" />
+            <displayname description="Image de l'entité" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="The default image for the entity." languagecode="1033" />
+            <Description description="Image par défaut de l'entité." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="EscalatedOn">
+          <Type>datetime</Type>
+          <Name>escalatedon</Name>
+          <LogicalName>escalatedon</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>inactive</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>datetime</Format>
+          <Behavior>1</Behavior>
+          <displaynames>
+            <displayname description="Escalated On" languagecode="1033" />
+            <displayname description="Réaffecté le" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Indicates the date and time when the case was escalated." languagecode="1033" />
+            <Description description="Indique la date et l'heure de réaffectation de l'incident." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="FirstResponseByKPIId">
+          <Type>lookup</Type>
+          <Name>firstresponsebykpiid</Name>
+          <LogicalName>firstresponsebykpiid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>7.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">9752</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="First Response By KPI" languagecode="1033" />
+            <displayname description="Première réponse par indicateur de performance clé" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="For internal use only." languagecode="1033" />
+            <Description description="Utilisation interne uniquement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="FirstResponseSent">
+          <Type>bit</Type>
+          <Name>firstresponsesent</Name>
+          <LogicalName>firstresponsesent</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>1</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="incident_firstresponsesent">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>6.1.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="First Response Sent" languagecode="1033" />
+              <displayname description="Première réponse envoyée" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Indicates if the first response has been sent." languagecode="1033" />
+              <Description description="Indique si la première réponse a été envoyée." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="First Response Sent" languagecode="1033" />
+            <displayname description="Première réponse envoyée" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Indicates if the first response has been sent." languagecode="1033" />
+            <Description description="Indique si la première réponse a été envoyée." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="FirstResponseSLAStatus">
+          <Type>picklist</Type>
+          <Name>firstresponseslastatus</Name>
+          <LogicalName>firstresponseslastatus</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>1</AppDefaultValue>
+          <optionset Name="incident_firstresponseslastatus">
+            <OptionSetType>picklist</OptionSetType>
+            <IntroducedVersion>6.1.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="First Response SLA Status" languagecode="1033" />
+              <displayname description="Première réponse - Statut du contrat SLA" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="First Response SLA Status" languagecode="1033" />
+              <Description description="Première réponse - Statut du contrat SLA" languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="1">
+                <labels>
+                  <label description="In Progress" languagecode="1033" />
+                  <label description="En cours" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="2">
+                <labels>
+                  <label description="Nearing Noncompliance" languagecode="1033" />
+                  <label description="Conformité précaire" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="3">
+                <labels>
+                  <label description="Succeeded" languagecode="1033" />
+                  <label description="Terminé(e)" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="4">
+                <labels>
+                  <label description="Noncompliant" languagecode="1033" />
+                  <label description="Non conforme" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="First Response SLA Status" languagecode="1033" />
+            <displayname description="Première réponse - Statut du contrat SLA" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the status of the initial response time for the case according to the terms of the SLA." languagecode="1033" />
+            <Description description="Indique le statut du temps de réponse initial de l'incident suivant les conditions du contrat SLA." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="FollowupBy">
+          <Type>datetime</Type>
+          <Name>followupby</Name>
+          <LogicalName>followupby</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>inactive</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>date</Format>
+          <Behavior>1</Behavior>
+          <displaynames>
+            <displayname description="Follow Up By" languagecode="1033" />
+            <displayname description="Suivi par" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Enter the date by which a customer service representative has to follow up with the customer on this case." languagecode="1033" />
+            <Description description="Entrez la date d'ici laquelle un conseiller du service clientèle doit assurer le suivi du client sur cet incident." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="FollowUpTaskCreated">
+          <Type>bit</Type>
+          <Name>followuptaskcreated</Name>
+          <LogicalName>followuptaskcreated</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="incident_followup_task_created">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>6.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Is there any follow up task with case" languagecode="1033" />
+              <displayname description="L'incident fait-il l'objet d'une tâche de suivi ?" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Indicates whether the follow up task is created or not." languagecode="1033" />
+              <Description description="Indique si la tâche de suivi est créée ou non." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Follow up Task Created" languagecode="1033" />
+            <displayname description="Tâche de suivi créée" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="This attribute is used for Sample Service Business Processes." languagecode="1033" />
+            <Description description="Cet attribut est utilisé pour les exemples de processus d'entreprise de service." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ImportSequenceNumber">
+          <Type>int</Type>
+          <Name>importsequencenumber</Name>
+          <LogicalName>importsequencenumber</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>none</Format>
+          <MinValue>-2147483648</MinValue>
+          <MaxValue>2147483647</MaxValue>
+          <displaynames>
+            <displayname description="Import Sequence Number" languagecode="1033" />
+            <displayname description="Numéro séquentiel d’importation" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Sequence number of the import that created this record." languagecode="1033" />
+            <Description description="Numéro séquentiel de l'importation ayant créé cet enregistrement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="IncidentStageCode">
+          <Type>picklist</Type>
+          <Name>incidentstagecode</Name>
+          <LogicalName>incidentstagecode</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>1</AppDefaultValue>
+          <optionset Name="incident_incidentstagecode">
+            <OptionSetType>picklist</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Case Stage" languagecode="1033" />
+              <displayname description="Étape de l'incident" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Stage of the resolution process for the case." languagecode="1033" />
+              <Description description="Étape du processus de résolution de l'incident." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="1">
+                <labels>
+                  <label description="Default Value" languagecode="1033" />
+                  <label description="Valeur par défaut" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Case Stage" languagecode="1033" />
+            <displayname description="Étape de l'incident" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Select the current stage of the service process for the case to assist service team members when they review or transfer a case." languagecode="1033" />
+            <Description description="Sélectionnez la phase actuelle du processus de service pour l'incident pour aider les membres de l'équipe lorsqu'ils analysent ou transfèrent un incident." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="InfluenceScore">
+          <Type>float</Type>
+          <Name>influencescore</Name>
+          <LogicalName>influencescore</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>0</MinValue>
+          <MaxValue>1000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <displaynames>
+            <displayname description="Influence Score" languagecode="1033" />
+            <displayname description="Score d'influence" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Will contain the Influencer score coming from NetBreeze." languagecode="1033" />
+            <Description description="Contient le score d'influenceur provenant de NetBreeze." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="IsDecrementing">
+          <Type>bit</Type>
+          <Name>isdecrementing</Name>
+          <LogicalName>isdecrementing</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="incident_isdecrementing">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Decrementing" languagecode="1033" />
+              <displayname description="En baisse" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Information that specifies whether the case is decrementing." languagecode="1033" />
+              <Description description="Information indiquant si l'incident est en baisse." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Decrementing" languagecode="1033" />
+            <displayname description="En baisse" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="For system use only." languagecode="1033" />
+            <Description description="Utilisation par le système uniquement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="IsEscalated">
+          <Type>bit</Type>
+          <Name>isescalated</Name>
+          <LogicalName>isescalated</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>1</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="incident_isescalated">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>6.1.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Is Escalated" languagecode="1033" />
+              <displayname description="Est réaffecté" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Indicates if the case has been escalated." languagecode="1033" />
+              <Description description="Indique si l'incident a été réaffecté." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Is Escalated" languagecode="1033" />
+            <displayname description="Est réaffecté" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Indicates if the case has been escalated." languagecode="1033" />
+            <Description description="Indique si l'incident a été réaffecté." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="KbArticleId">
+          <Type>lookup</Type>
+          <Name>kbarticleid</Name>
+          <LogicalName>kbarticleid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForForm</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">127</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="Knowledge Base Article" languagecode="1033" />
+            <displayname description="Article de la Base de connaissances" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Choose the article that contains additional information or a resolution for the case, for reference during research or follow up with the customer." languagecode="1033" />
+            <Description description="Choisissez l'article qui contient des informations supplémentaires ou une résolution de l'incident, en vue de servir de référence au cours de la recherche ou de suivi du client." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="LastOnHoldTime">
+          <Type>datetime</Type>
+          <Name>lastonholdtime</Name>
+          <LogicalName>lastonholdtime</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>inactive</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>7.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>datetime</Format>
+          <Behavior>1</Behavior>
+          <displaynames>
+            <displayname description="Last On Hold Time" languagecode="1033" />
+            <displayname description="Dernière durée de suspension" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Contains the date time stamp of the last on hold time." languagecode="1033" />
+            <Description description="Contient l'horodatage de la dernière durée de suspension" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="Merged">
+          <Type>bit</Type>
+          <Name>merged</Name>
+          <LogicalName>merged</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="incident_merged">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>6.1.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Merged" languagecode="1033" />
+              <displayname description="Fusionné(e)" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Information regarding whether the incident has been merged with a master incident." languagecode="1033" />
+              <Description description="Informations indiquant si l'incident a été fusionné avec un incident principal." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Internal Use Only" languagecode="1033" />
+            <displayname description="Utilisation interne uniquement" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Tells whether the incident has been merged with another incident." languagecode="1033" />
+            <Description description="Indique si l'incident a été fusionné avec un autre incident." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="MessageTypeCode">
+          <Type>picklist</Type>
+          <Name>messagetypecode</Name>
+          <LogicalName>messagetypecode</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <OptionSetName>socialactivity_postmessagetype</OptionSetName>
+          <displaynames>
+            <displayname description="Received As" languagecode="1033" />
+            <displayname description="Reçu en tant que" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows whether the post originated as a public or private message." languagecode="1033" />
+            <Description description="Indique si la publication est émise sous forme de message public ou privé." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ModifiedBy">
+          <Type>lookup</Type>
+          <Name>modifiedby</Name>
+          <LogicalName>modifiedby</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">8</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="Modified By" languagecode="1033" />
+            <displayname description="Modifié par" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows who last updated the record." languagecode="1033" />
+            <Description description="Identificateur unique de l'utilisateur ayant modifié l'enregistrement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ModifiedByExternalParty">
+          <Type>lookup</Type>
+          <Name>modifiedbyexternalparty</Name>
+          <LogicalName>modifiedbyexternalparty</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="Modified By (External Party)" languagecode="1033" />
+            <displayname description="Modifié par (partie externe)" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the external party who modified the record." languagecode="1033" />
+            <Description description="Affiche la partie externe qui a modifié l'enregistrement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ModifiedOn">
+          <Type>datetime</Type>
+          <Name>modifiedon</Name>
+          <LogicalName>modifiedon</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>inactive</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>1</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>1</IsFilterable>
+          <IsRetrievable>1</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>datetime</Format>
+          <Behavior>1</Behavior>
+          <displaynames>
+            <displayname description="Modified On" languagecode="1033" />
+            <displayname description="Modifié le" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Date and time when the record was modified." languagecode="1033" />
+            <Description description="Date et heure de modification de l'enregistrement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ModifiedOnBehalfBy">
+          <Type>lookup</Type>
+          <Name>modifiedonbehalfby</Name>
+          <LogicalName>modifiedonbehalfby</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">8</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="Modified By (Delegate)" languagecode="1033" />
+            <displayname description="Modifié par (délégué)" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows who last updated the record on behalf of another user." languagecode="1033" />
+            <Description description="Identificateur unique de l'utilisateur délégué ayant modifié l'enregistrement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_FunctionalLocation">
+          <Type>lookup</Type>
+          <Name>msdyn_functionallocation</Name>
+          <LogicalName>msdyn_functionallocation</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>8.8.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="Functional Location" languagecode="1033" />
+            <displayname description="Poste technique" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Case's functional location" languagecode="1033" />
+            <Description description="Poste technique de l’incident" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_IncidentType">
+          <Type>lookup</Type>
+          <Name>msdyn_incidenttype</Name>
+          <LogicalName>msdyn_incidenttype</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>3.1.0.3</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="Incident Type" languagecode="1033" />
+            <displayname description="Type d'incident" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Unique identifier for Incident Type associated with Case." languagecode="1033" />
+            <Description description="Identifiant unique pour le type d'incident associé au cas." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_iotalert">
+          <Type>lookup</Type>
+          <Name>msdyn_iotalert</Name>
+          <LogicalName>msdyn_iotalert</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="IoT Alert" languagecode="1033" />
+            <displayname description="Alerte IoT" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="The iot alert that initiated this case" languagecode="1033" />
+            <Description description="Alerte IoT ayant initié cet incident" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="OnHoldTime">
+          <Type>int</Type>
+          <Name>onholdtime</Name>
+          <LogicalName>onholdtime</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>7.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>none</Format>
+          <MinValue>-2147483648</MinValue>
+          <MaxValue>2147483647</MaxValue>
+          <displaynames>
+            <displayname description="On Hold Time (Minutes)" languagecode="1033" />
+            <displayname description="Durée de la suspension (minutes)" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the duration in minutes for which the case was on hold." languagecode="1033" />
+            <Description description="Affiche la durée, en minutes, de la suspension de l'enregistrement" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="OverriddenCreatedOn">
+          <Type>datetime</Type>
+          <Name>overriddencreatedon</Name>
+          <LogicalName>overriddencreatedon</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForGrid</DisplayMask>
+          <ImeMode>inactive</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>date</Format>
+          <Behavior>1</Behavior>
+          <displaynames>
+            <displayname description="Record Created On" languagecode="1033" />
+            <displayname description="Enregistrement créé le" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Date and time that the record was migrated." languagecode="1033" />
+            <Description description="Date et heure de migration de l'enregistrement." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ovs_Region">
@@ -87,6 +2033,837 @@
           <Descriptions>
             <Description description="" languagecode="1033" />
             <Description description="" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="OwnerId">
+          <Type>owner</Type>
+          <Name>ownerid</Name>
+          <LogicalName>ownerid</LogicalName>
+          <RequiredLevel>systemrequired</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid|RequiredForForm</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>1</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>1</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">8</LookupType>
+            <LookupType id="00000000-0000-0000-0000-000000000000">9</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="Owner" languagecode="1033" />
+            <displayname description="Propriétaire" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Owner Id" languagecode="1033" />
+            <Description description="ID du propriétaire" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="PrimaryContactId">
+          <Type>lookup</Type>
+          <Name>primarycontactid</Name>
+          <LogicalName>primarycontactid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>1</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">2</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="Contact" languagecode="1033" />
+            <displayname description="Contact" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Select a primary contact for this case." languagecode="1033" />
+            <Description description="Sélectionnez un contact principal pour cet incident." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="PriorityCode">
+          <Type>picklist</Type>
+          <Name>prioritycode</Name>
+          <LogicalName>prioritycode</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>1</IsGlobalFilterEnabled>
+          <IsSortableEnabled>1</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>1</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>2</AppDefaultValue>
+          <optionset Name="incident_prioritycode">
+            <OptionSetType>picklist</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Priority" languagecode="1033" />
+              <displayname description="Priorité" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Priority of the case." languagecode="1033" />
+              <Description description="Priorité de l'incident." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="1">
+                <labels>
+                  <label description="High" languagecode="1033" />
+                  <label description="Élevé(e)" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="2">
+                <labels>
+                  <label description="Normal" languagecode="1033" />
+                  <label description="Normal(e)" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="3">
+                <labels>
+                  <label description="Low" languagecode="1033" />
+                  <label description="Faible" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Priority" languagecode="1033" />
+            <displayname description="Priorité" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Select the priority so that preferred customers or critical issues are handled quickly." languagecode="1033" />
+            <Description description="Priorité de l'activité." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ProductId">
+          <Type>lookup</Type>
+          <Name>productid</Name>
+          <LogicalName>productid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>1</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">1024</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="Product" languagecode="1033" />
+            <displayname description="Produit" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Choose the product associated with the case to identify warranty, service, or other product issues and be able to report the number of incidents for each product." languagecode="1033" />
+            <Description description="Choisissez le produit associé à l'incident pour identifier la garantie, le service ou tout autre problème lié au produit et être en mesure d'indiquer le nombre d'incidents pour chaque produit." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ProductSerialNumber">
+          <Type>nvarchar</Type>
+          <Name>productserialnumber</Name>
+          <LogicalName>productserialnumber</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>100</MaxLength>
+          <Length>200</Length>
+          <displaynames>
+            <displayname description="Serial Number" languagecode="1033" />
+            <displayname description="Numéro de série" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Type the serial number of the product that is associated with this case, so that the number of cases per product can be reported." languagecode="1033" />
+            <Description description="Tapez le numéro de série du produit associé à cet incident, pour pouvoir indiquer le nombre d'incidents par produit." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ResolveBy">
+          <Type>datetime</Type>
+          <Name>resolveby</Name>
+          <LogicalName>resolveby</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid|RequiredForForm</DisplayMask>
+          <ImeMode>inactive</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>1</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>datetime</Format>
+          <Behavior>1</Behavior>
+          <displaynames>
+            <displayname description="Resolve By" languagecode="1033" />
+            <displayname description="Résoudre d'ici" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Enter the date by when the case must be resolved." languagecode="1033" />
+            <Description description="Entrez la date maximale à laquelle l'incident doit être résolu." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ResolveByKPIId">
+          <Type>lookup</Type>
+          <Name>resolvebykpiid</Name>
+          <LogicalName>resolvebykpiid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>7.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">9752</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="Resolve By KPI" languagecode="1033" />
+            <displayname description="Résoudre par indicateur de performance clé" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="For internal use only." languagecode="1033" />
+            <Description description="Utilisation interne uniquement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ResolveBySLAStatus">
+          <Type>picklist</Type>
+          <Name>resolvebyslastatus</Name>
+          <LogicalName>resolvebyslastatus</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>1</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>1</AppDefaultValue>
+          <optionset Name="incident_resolvebyslastatus">
+            <OptionSetType>picklist</OptionSetType>
+            <IntroducedVersion>6.1.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="ResolveBy SLA Status" languagecode="1033" />
+              <displayname description="Résoudre par statut de contrat SLA" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="ResolveBy SLA Status" languagecode="1033" />
+              <Description description="Résoudre par statut de contrat SLA" languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="1">
+                <labels>
+                  <label description="In Progress" languagecode="1033" />
+                  <label description="En cours" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="2">
+                <labels>
+                  <label description="Nearing Noncompliance" languagecode="1033" />
+                  <label description="Conformité précaire" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="3">
+                <labels>
+                  <label description="Succeeded" languagecode="1033" />
+                  <label description="Terminé(e)" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="4">
+                <labels>
+                  <label description="Noncompliant" languagecode="1033" />
+                  <label description="Non conforme" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Resolve By SLA Status" languagecode="1033" />
+            <displayname description="Résoudre par statut de contrat SLA" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the status of the resolution time for the case according to the terms of the SLA." languagecode="1033" />
+            <Description description="Indique le statut du délai de résolution de l'incident suivant les conditions du contrat SLA." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ResponseBy">
+          <Type>datetime</Type>
+          <Name>responseby</Name>
+          <LogicalName>responseby</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid|RequiredForForm</DisplayMask>
+          <ImeMode>inactive</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>datetime</Format>
+          <Behavior>1</Behavior>
+          <displaynames>
+            <displayname description="First Response By" languagecode="1033" />
+            <displayname description="Première réponse d'ici" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="For internal use only." languagecode="1033" />
+            <Description description="Utilisation interne uniquement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ResponsibleContactId">
+          <Type>lookup</Type>
+          <Name>responsiblecontactid</Name>
+          <LogicalName>responsiblecontactid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">2</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="Responsible Contact" languagecode="1033" />
+            <displayname description="Contact responsable" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Choose an additional customer contact who can also help resolve the case." languagecode="1033" />
+            <Description description="Choisissez un autre contact client pouvant également vous aider à résoudre l'incident." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="RouteCase">
+          <Type>bit</Type>
+          <Name>routecase</Name>
+          <LogicalName>routecase</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForForm</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>1</AppDefaultValue>
+          <optionset Name="incident_routecase">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>6.1.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Route Case" languagecode="1033" />
+              <displayname description="Acheminer l'incident" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Information regarding whether the incident has been routed." languagecode="1033" />
+              <Description description="Informations concernant l'acheminement ou non de l'incident." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Route Case" languagecode="1033" />
+            <displayname description="Acheminer l'incident" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Tells whether the incident has been routed to queue or not." languagecode="1033" />
+            <Description description="Indique si l'incident a été acheminé ou non vers la file d'attente." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="SentimentValue">
+          <Type>float</Type>
+          <Name>sentimentvalue</Name>
+          <LogicalName>sentimentvalue</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>6.1.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>-100000000000</MinValue>
+          <MaxValue>100000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <displaynames>
+            <displayname description="Sentiment Value" languagecode="1033" />
+            <displayname description="Valeur de sentiment" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Value derived after assessing words commonly associated with a negative, neutral, or positive sentiment that occurs in a social post. Sentiment information can also be reported as numeric values." languagecode="1033" />
+            <Description description="Valeur faisant suite à l'évaluation des mots habituellement associés à un sentiment négatif, neutre ou positif insérés dans une publication sociale. Il est également possible d'entrer les informations sur les sentiments en tant que valeurs numériques." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ServiceStage">
+          <Type>picklist</Type>
+          <Name>servicestage</Name>
+          <LogicalName>servicestage</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <OptionSetName>servicestage</OptionSetName>
+          <displaynames>
+            <displayname description="Service Stage" languagecode="1033" />
+            <displayname description="Phase de service" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Select the stage, in the case resolution process, that the case is in." languagecode="1033" />
+            <Description description="Sélectionnez la phase de l'incident dans le processus de résolution de l'incident." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="SeverityCode">
+          <Type>picklist</Type>
+          <Name>severitycode</Name>
+          <LogicalName>severitycode</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>1</AppDefaultValue>
+          <optionset Name="incident_severitycode">
+            <OptionSetType>picklist</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Severity" languagecode="1033" />
+              <displayname description="Gravité" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Severity of the case." languagecode="1033" />
+              <Description description="Gravité de l'incident." languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="1">
+                <labels>
+                  <label description="Default Value" languagecode="1033" />
+                  <label description="Valeur par défaut" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Severity" languagecode="1033" />
+            <displayname description="Gravité" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Select the severity of this case to indicate the incident's impact on the customer's business." languagecode="1033" />
+            <Description description="Sélectionnez la gravité de cet incident pour indiquer son impact sur l'activité du client." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="SLAId">
+          <Type>lookup</Type>
+          <Name>slaid</Name>
+          <LogicalName>slaid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>8.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">9750</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="SLA" languagecode="1033" />
+            <displayname description="Contrat SLA" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Choose the service level agreement (SLA) that you want to apply to the case record." languagecode="1033" />
+            <Description description="Choisissez le contrat de niveau de service (contrat SLA) que vous voulez appliquer à l'enregistrement." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="StateCode">
+          <Type>state</Type>
+          <Name>statecode</Name>
+          <LogicalName>statecode</LogicalName>
+          <RequiredLevel>systemrequired</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>1</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <optionset Name="incident_statecode">
+            <OptionSetType>state</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Status" languagecode="1033" />
+              <displayname description="Statut " languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Status of the case." languagecode="1033" />
+              <Description description="Statut de l'incident." languagecode="1036" />
+            </Descriptions>
+            <states>
+              <state value="0" defaultstatus="1" invariantname="Active">
+                <labels>
+                  <label description="Active" languagecode="1033" />
+                  <label description="Actif" languagecode="1036" />
+                </labels>
+              </state>
+              <state value="1" defaultstatus="5" invariantname="Resolved">
+                <labels>
+                  <label description="Resolved" languagecode="1033" />
+                  <label description="Résolu" languagecode="1036" />
+                </labels>
+              </state>
+              <state value="2" defaultstatus="6" invariantname="Cancelled">
+                <labels>
+                  <label description="Cancelled" languagecode="1033" />
+                  <label description="Annulé(e)" languagecode="1036" />
+                </labels>
+              </state>
+            </states>
+          </optionset>
+          <displaynames>
+            <displayname description="Status" languagecode="1033" />
+            <displayname description="Statut " languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows whether the case is active, resolved, or canceled. Resolved and canceled cases are read-only and can't be edited unless they are reactivated." languagecode="1033" />
+            <Description description="Statut de l'élément {0}" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="StatusCode">
+          <Type>status</Type>
+          <Name>statuscode</Name>
+          <LogicalName>statuscode</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <optionset Name="incident_statuscode">
+            <OptionSetType>status</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Status Reason" languagecode="1033" />
+              <displayname description="Raison du statut" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Reason for the status of the case." languagecode="1033" />
+              <Description description="Raison du statut de l'incident." languagecode="1036" />
+            </Descriptions>
+            <statuses>
+              <status value="5" state="1" Color="#358717">
+                <labels>
+                  <label description="Problem Solved" languagecode="1033" />
+                  <label description="Problème résolu" languagecode="1036" />
+                </labels>
+              </status>
+              <status value="1000" state="1" Color="#358717">
+                <labels>
+                  <label description="Information Provided" languagecode="1033" />
+                  <label description="Informations fournies" languagecode="1036" />
+                </labels>
+              </status>
+              <status value="6" state="2" Color="#666666">
+                <labels>
+                  <label description="Cancelled" languagecode="1033" />
+                  <label description="Annulé" languagecode="1036" />
+                </labels>
+              </status>
+              <status value="2000" state="2" Color="#806c00">
+                <labels>
+                  <label description="Merged" languagecode="1033" />
+                  <label description="Fusionné(e)" languagecode="1036" />
+                </labels>
+              </status>
+              <status value="1" state="0" Color="#3B79B7">
+                <labels>
+                  <label description="In Progress" languagecode="1033" />
+                  <label description="En cours" languagecode="1036" />
+                </labels>
+              </status>
+              <status value="2" state="0" Color="#D43900">
+                <labels>
+                  <label description="On Hold" languagecode="1033" />
+                  <label description="Suspendu(e)" languagecode="1036" />
+                </labels>
+              </status>
+              <status value="3" state="0" Color="#8C24B5">
+                <labels>
+                  <label description="Waiting for Details" languagecode="1033" />
+                  <label description="En attente de détails" languagecode="1036" />
+                </labels>
+              </status>
+              <status value="4" state="0" Color="#007A7C">
+                <labels>
+                  <label description="Researching" languagecode="1033" />
+                  <label description="Recherche en cours" languagecode="1036" />
+                </labels>
+              </status>
+            </statuses>
+          </optionset>
+          <displaynames>
+            <displayname description="Status Reason" languagecode="1033" />
+            <displayname description="Raison du statut" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Select the case's status." languagecode="1033" />
+            <Description description="Raison du statut de l'élément {0}" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="SubjectId">
+          <Type>lookup</Type>
+          <Name>subjectid</Name>
+          <LogicalName>subjectid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid|RequiredForForm</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>subject</LookupStyle>
+          <LookupTypes>
+            <LookupType id="00000000-0000-0000-0000-000000000000">129</LookupType>
+          </LookupTypes>
+          <displaynames>
+            <displayname description="Subject" languagecode="1033" />
+            <displayname description="Sujet" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Choose the subject for the case, such as catalog request or product complaint, so customer service managers can identify frequent requests or problem areas. Administrators can configure subjects under Business Management in the Settings area." languagecode="1033" />
+            <Description description="Choisissez le sujet de l'incident, comme une demande de catalogue ou une plainte concernant un produit, pour que les responsables du service clientèle puissent identifier les demandes fréquentes ou les sujets problématiques. Les administrateurs peuvent configurer des sujets sous Gestion d'entreprise dans la zone Paramètres." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="TicketNumber">
@@ -382,6 +3159,7 @@
   </EntityInfo>
   <FormXml />
   <SavedQueries />
+  <Visualizations />
   <RibbonDiffXml />
   <Strings>
     <Strings ResourceKey="Area_Label_Cases">
@@ -434,6 +3212,9 @@
     </Strings>
     <Strings ResourceKey="ConvertActivity_Action_OpenNewCase">
       <String languagecode="1036" Comment="">Ouvrir le nouvel cas</String>
+    </Strings>
+    <Strings ResourceKey="Customer_Service_Description">
+      <String languagecode="1036" Comment="">Fournir un service clientèle par le biais des cas, gérer les contrats et créer des articles dans la Base de connaissances. Utiliser les comptes, contacts et produits.</String>
     </Strings>
     <Strings ResourceKey="Dlg_RouteCase_AddRequiredConfirm_Title">
       <String languagecode="1036" Comment="">Acheminer le cas</String>
@@ -764,6 +3545,9 @@
     </Strings>
     <Strings ResourceKey="No_TransitionPath_From_Active_Resolve_Case">
       <String languagecode="1036" Comment="">Vous n'avez pas défini la manière dont un cas passera de l'état actif à l'état résolu ou annulé.</String>
+    </Strings>
+    <Strings ResourceKey="OptionalFeatures.aspx_Text_51">
+      <String languagecode="1036" Comment="">Supprimez les paramètres de formulaire utilisés le plus récemment pour les entités de compte, de cas, de contact, de prospect et d'opportunité pour chaque utilisateur de votre organisation.</String>
     </Strings>
     <Strings ResourceKey="ParentChild_Cases_Associate_Success">
       <String languagecode="1036" Comment="">La relation parent-enfant a été établie entre les {0} cas sélectionnés.</String>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<visualization xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedqueryvisualizationid>{99782DA3-A382-DE11-9FF3-00155DA3B012}</savedqueryvisualizationid>
+  <datadescription>
+    <datadefinition>
+      <fetchcollection>
+        <fetch mapping="logical" aggregate="true">
+          <entity name="incident">
+            <attribute groupby="true" alias="groupby_column" name="caseorigincode" />
+            <attribute alias="aggregate_column" name="title" aggregate="count" />
+          </entity>
+        </fetch>
+      </fetchcollection>
+      <categorycollection>
+        <category>
+          <measurecollection>
+            <measure alias="aggregate_column" />
+          </measurecollection>
+        </category>
+      </categorycollection>
+    </datadefinition>
+  </datadescription>
+  <presentationdescription>
+    <Chart Palette="None" PaletteCustomColors="91,151,213; 213,112,44; 160,116,166; 178,134,0; 68,114,196; 90,139,56; 37,94,145; 158,72,14; 117,55,125; 153,115,0; 38,68,120; 67,104,43; 86,122,154; 192,120,72; 167,129,172; 178,143,35; 105,142,208; 112,154,83; 50,125,194; 210,96,18; 150,83,159; 183,138,0; 51,90,161; 90,138,57;">
+      <Series>
+        <Series ShadowOffset="0" IsValueShownAsLabel="true" Font="{0}, 9.5px" LabelForeColor="59, 59, 59" CustomProperties="PieLabelStyle=Inside, PieDrawingStyle=Default" ChartType="pie">
+          <SmartLabelStyle Enabled="True" />
+        </Series>
+      </Series>
+      <ChartAreas>
+        <ChartArea>
+          <Area3DStyle Enable3D="false" />
+        </ChartArea>
+      </ChartAreas>
+      <Legends>
+        <Legend Alignment="Center" LegendStyle="Table" Docking="right" Font="{0}, 11px" ShadowColor="0, 0, 0, 0" ForeColor="59, 59, 59" />
+      </Legends>
+      <Titles>
+        <Title Alignment="TopLeft" DockingOffset="-3" Font="{0}, 13px" ForeColor="0, 0, 0" />
+      </Titles>
+    </Chart>
+  </presentationdescription>
+  <isdefault>0</isdefault>
+  <LocalizedNames>
+    <LocalizedName description="Case Mix (By Origin)" languagecode="1033" />
+    <LocalizedName description="Combinaison d’incidents (par origine)" languagecode="1036" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description description="Shows the total number of cases by origin." languagecode="1033" />
+    <Description description="Affiche le nombre total d’incidents par origine." languagecode="1036" />
+  </Descriptions>
+  <IntroducedVersion>5.0.0.0</IntroducedVersion>
+</visualization>

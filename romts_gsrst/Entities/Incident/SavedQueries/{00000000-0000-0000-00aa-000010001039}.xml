@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{00000000-0000-0000-00aa-000010001039}</savedqueryid>
+    <queryapi>CRMIncident.RollupRelatedByObject</queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="statecode" select="1" icon="1" preview="1">
+        <row name="result" id="incidentid">
+          <cell name="statecode" width="70" />
+          <cell name="title" width="105" />
+          <cell name="caseorigincode" width="100" ishidden="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2048</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="incident">
+          <attribute name="statecode" />
+          <attribute name="title" />
+          <attribute name="caseorigincode" />
+          <order attribute="modifiedon" descending="true" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>6.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="All Cases for Customer" languagecode="1033" />
+      <LocalizedName description="Tous les incidents du client" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Shows all activities for the customer, sorted by most recent activity." languagecode="1033" />
+      <Description description="Affiche toutes les activités du client (triées par activité la plus récente)." languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

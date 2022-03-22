@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{11352b6f-0761-4799-9f47-e5de0b7b34b3}</savedqueryid>
+    <queryapi></queryapi>
+    <querytype>8192</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="incident">
+          <attribute name="incidentid" />
+          <filter type="and">
+            <condition attribute="ownerid" operator="eq-userid" />
+            <condition attribute="modifiedon" operator="last-x-days" value="365" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="My Recent Cases" languagecode="1033" />
+      <LocalizedName description="Mes incidents récents" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Recently changed cases owned by me" languagecode="1033" />
+      <Description description="Incidents modifiés récemment dont je suis propriétaire" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

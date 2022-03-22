@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{c4c27fad-faa7-e911-8199-000d3af92e18}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" preview="1" icon="1">
+        <row name="result" id="incidentid">
+          <cell name="ticketnumber" width="100" />
+          <cell name="title" width="150" />
+          <cell name="msdyn_iotalert" width="100" />
+          <cell name="createdon" width="100" />
+          <cell name="statecode" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="incident">
+          <attribute name="title" />
+          <order attribute="title" descending="false" />
+          <filter type="and">
+            <condition attribute="msdyn_iotalert" operator="not-null" />
+          </filter>
+          <attribute name="ticketnumber" />
+          <attribute name="msdyn_iotalert" />
+          <attribute name="statecode" />
+          <attribute name="createdon" />
+          <attribute name="incidentid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.3.2</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="All Cases from IoT Alerts" languagecode="1033" />
+      <LocalizedName description="Tous les incidents déclenchés à partir des alertes IoT" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="All cases triggered from IoT Alerts" languagecode="1033" />
+      <Description description="Tous les incidents déclenchés à partir des alertes IoT" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

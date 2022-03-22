@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{00000000-0000-0000-00aa-000010001030}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="1">
+        <row name="result" id="incidentid">
+          <cell name="title" width="300" />
+          <cell name="ticketnumber" width="150" />
+          <cell name="prioritycode" width="150" />
+          <cell name="caseorigincode" width="100" />
+          <cell name="customerid" width="150" />
+          <cell name="ownerid" width="150" />
+          <cell name="statecode" width="150" />
+          <cell name="createdon" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="incident">
+          <attribute name="ticketnumber" />
+          <attribute name="prioritycode" />
+          <attribute name="title" />
+          <attribute name="createdon" />
+          <attribute name="customerid" />
+          <attribute name="ownerid" />
+          <attribute name="statecode" />
+          <order attribute="title" descending="false" />
+          <attribute name="incidentid" />
+          <attribute name="caseorigincode" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="All Cases" languagecode="1033" />
+      <LocalizedName description="Tous les incidents" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

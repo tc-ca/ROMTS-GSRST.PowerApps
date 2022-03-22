@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{00000000-0000-0000-00aa-000010003501}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="incidents" jump="title" select="1" icon="1" preview="1">
+        <row name="incident" id="incidentid">
+          <cell name="title" width="300" />
+          <cell name="statecode" width="100" />
+          <cell name="ticketnumber" width="150" />
+          <cell name="createdon" width="150" />
+          <cell name="caseorigincode" width="100" ishidden="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch distinct="false" mapping="logical">
+        <entity name="incident">
+          <attribute name="title" />
+          <attribute name="statecode" />
+          <attribute name="ticketnumber" />
+          <attribute name="createdon" />
+          <attribute name="incidentid" />
+          <attribute name="caseorigincode" />
+          <order attribute="title" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Case Associated View" languagecode="1033" />
+      <LocalizedName description="Vue associée Incident" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Displays information about cases in the detail form of any associated account, contact, product, or contract record. This view is in the Service side tab." languagecode="1033" />
+      <Description description="Informations d'incidents dans le formulaire détaillé d'un compte, contact, produit ou contrat associé. La vue se trouve sur l'onglet Service." languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

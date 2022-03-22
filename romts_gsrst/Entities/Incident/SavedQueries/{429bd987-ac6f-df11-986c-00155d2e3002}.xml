@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{429bd987-ac6f-df11-986c-00155d2e3002}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="1">
+        <row name="result" id="incidentid">
+          <cell name="title" width="300" />
+          <cell name="ticketnumber" width="150" />
+          <cell name="prioritycode" width="150" />
+          <cell name="caseorigincode" width="100" />
+          <cell name="customerid" width="150" />
+          <cell name="ownerid" width="150" />
+          <cell name="statuscode" width="150" />
+          <cell name="createdon" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="incident">
+          <attribute name="prioritycode" />
+          <attribute name="title" />
+          <attribute name="ticketnumber" />
+          <attribute name="customerid" />
+          <attribute name="statuscode" />
+          <attribute name="createdon" />
+          <attribute name="caseorigincode" />
+          <order attribute="title" descending="false" />
+          <filter type="and">
+            <condition attribute="createdon" operator="last-seven-days" />
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ownerid" />
+          <attribute name="incidentid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Cases Opened in the Last 7 days" languagecode="1033" />
+      <LocalizedName description="Incidents actifs ouverts au cours des 7 derniers jours" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Shows the cases that were created in the last 7 days and are still active." languagecode="1033" />
+      <Description description="Affiche les incidents créés au cours des 7 derniers jours et toujours actifs." languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

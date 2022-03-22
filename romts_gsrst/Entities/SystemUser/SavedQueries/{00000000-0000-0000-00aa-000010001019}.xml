@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{00000000-0000-0000-00aa-000010001019}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="systemuserid">
+          <cell name="fullname" width="300" />
+          <cell name="businessunitid" width="150" />
+          <cell name="territoryid" width="100" />
+          <cell name="siteid" width="150" />
+          <cell name="title" width="100" />
+          <cell name="positionid" width="100" />
+          <cell name="address1_telephone1" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="systemuser">
+          <attribute name="fullname" />
+          <order attribute="fullname" descending="false" />
+          <attribute name="title" />
+          <attribute name="address1_telephone1" />
+          <attribute name="businessunitid" />
+          <attribute name="siteid" />
+          <attribute name="positionid" />
+          <filter type="and">
+            <condition attribute="isdisabled" operator="eq" value="0" />
+            <condition attribute="accessmode" operator="ne" value="3" />
+            <condition attribute="accessmode" operator="ne" value="5" />
+          </filter>
+          <attribute name="systemuserid" />
+          <attribute name="territoryid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Enabled Users" languagecode="1033" />
+      <LocalizedName description="Utilisateurs activés" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

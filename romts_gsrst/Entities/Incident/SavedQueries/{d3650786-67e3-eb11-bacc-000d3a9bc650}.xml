@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{d3650786-67e3-eb11-bacc-000d3a9bc650}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="1">
+        <row name="result" id="incidentid">
+          <cell name="title" width="200" />
+          <cell name="ticketnumber" width="100" />
+          <cell name="customerid" width="100" />
+          <cell name="prioritycode" width="100" />
+          <cell name="statecode" width="100" />
+          <cell name="modifiedon" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="incident">
+          <attribute name="title" />
+          <attribute name="incidentid" />
+          <attribute name="ticketnumber" />
+          <attribute name="customerid" />
+          <attribute name="prioritycode" />
+          <attribute name="modifiedon" />
+          <attribute name="statecode" />
+          <order attribute="modifiedon" descending="true" />
+          <filter type="and">
+            <condition attribute="ownerid" operator="eq-userid" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="My Cases" languagecode="1033" />
+      <LocalizedName description="Mes cas" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Cases assigned to the current user shown within the inbox." languagecode="1033" />
+      <Description description="Les cas affectés à l’utilisateur actuel sont affichés dans la boîte de réception." languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

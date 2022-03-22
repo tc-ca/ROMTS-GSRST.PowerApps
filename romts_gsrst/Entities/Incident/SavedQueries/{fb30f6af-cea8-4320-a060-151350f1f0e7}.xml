@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{fb30f6af-cea8-4320-a060-151350f1f0e7}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="1">
+        <row name="result" id="incidentid">
+          <cell name="title" width="300" />
+          <cell name="ticketnumber" width="150" />
+          <cell name="customerid" width="150" />
+          <cell name="prioritycode" width="150" />
+          <cell name="createdon" width="150" />
+          <cell name="incidentowningusersystemusersystemuserid.businessunitid" width="100" disableSorting="1" />
+          <cell name="caseorigincode" width="100" ishidden="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="incident">
+          <attribute name="incidentid" />
+          <attribute name="prioritycode" />
+          <attribute name="customerid" />
+          <attribute name="ticketnumber" />
+          <attribute name="title" />
+          <attribute name="createdon" />
+          <attribute name="caseorigincode" />
+          <filter>
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <link-entity alias="incidentowningusersystemusersystemuserid" name="systemuser" from="systemuserid" to="owninguser" link-type="outer" visible="false">
+            <attribute name="businessunitid" />
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>6.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Customer Cases" languagecode="1033" />
+      <LocalizedName description="Incidents actifs du client" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A list that shows the active cases for the selected customer in the Customer Support process." languagecode="1033" />
+      <Description description="Liste répertoriant les incidents actifs du client sélectionné dans le processus de support technique." languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

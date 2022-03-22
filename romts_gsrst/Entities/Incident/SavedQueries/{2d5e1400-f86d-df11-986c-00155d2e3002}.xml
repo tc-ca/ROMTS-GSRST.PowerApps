@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{2d5e1400-f86d-df11-986c-00155d2e3002}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="1">
+        <row name="result" id="incidentid">
+          <cell name="title" width="300" />
+          <cell name="ticketnumber" width="150" />
+          <cell name="prioritycode" width="150" />
+          <cell name="caseorigincode" width="100" />
+          <cell name="customerid" width="150" />
+          <cell name="ownerid" width="150" />
+          <cell name="createdon" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="incident">
+          <attribute name="prioritycode" />
+          <attribute name="title" />
+          <attribute name="ticketnumber" />
+          <attribute name="customerid" />
+          <attribute name="ownerid" />
+          <attribute name="createdon" />
+          <order attribute="title" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="1" />
+          </filter>
+          <link-entity name="incidentresolution" from="incidentid" to="incidentid" alias="aa">
+            <filter type="and">
+              <condition attribute="statecode" operator="eq" value="1" />
+              <condition attribute="createdon" operator="today" />
+            </filter>
+            <link-entity name="systemuser" from="systemuserid" to="owninguser" alias="ab">
+              <link-entity name="teammembership" from="systemuserid" to="systemuserid" visible="false" intersect="true">
+                <link-entity name="team" from="teamid" to="teamid" alias="ac">
+                  <filter type="and">
+                    <condition attribute="administratorid" operator="eq-userid" />
+                  </filter>
+                </link-entity>
+              </link-entity>
+            </link-entity>
+          </link-entity>
+          <attribute name="incidentid" />
+          <attribute name="caseorigincode" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="My Team Members' Resolved Cases" languagecode="1033" />
+      <LocalizedName description="Incidents résolus des membres de mon équipe" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Shows all the cases that were resolved today by users belonging to teams administered by the current user." languagecode="1033" />
+      <Description description="Affiche tous les incidents résolus aujourd'hui par les utilisateurs appartenant aux équipes administrées par l’utilisateur actuel." languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

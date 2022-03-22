@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{8572d789-fca7-e911-8199-000d3af92e18}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" preview="1" icon="1">
+        <row name="result" id="incidentid">
+          <cell name="ticketnumber" width="100" />
+          <cell name="title" width="150" />
+          <cell name="msdyn_iotalert" width="100" />
+          <cell name="createdon" width="100" />
+          <cell name="statecode" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="incident">
+          <attribute name="title" />
+          <attribute name="ticketnumber" />
+          <attribute name="createdon" />
+          <attribute name="statecode" />
+          <attribute name="msdyn_iotalert" />
+          <order attribute="title" descending="false" />
+          <filter type="and">
+            <condition attribute="ownerid" operator="eq-userid" />
+            <condition attribute="msdyn_iotalert" operator="not-null" />
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="incidentid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.3.2</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="My Active Cases from IoT Alert" languagecode="1033" />
+      <LocalizedName description="Mes incidents actifs déclenchés à partir de l'alerte IoT" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="All my active cased triggered from IoT Alert" languagecode="1033" />
+      <Description description="Tous mes incidents actifs déclenchés à partir de l'alerte IoT" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

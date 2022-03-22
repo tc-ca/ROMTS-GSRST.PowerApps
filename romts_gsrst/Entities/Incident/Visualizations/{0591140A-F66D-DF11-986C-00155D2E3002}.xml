@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<visualization xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedqueryvisualizationid>{0591140A-F66D-DF11-986C-00155D2E3002}</savedqueryvisualizationid>
+  <datadescription>
+    <datadefinition>
+      <fetchcollection>
+        <fetch mapping="logical" aggregate="true">
+          <entity name="incident">
+            <link-entity name="incidentresolution" from="incidentid" to="incidentid" link-type="inner">
+              <attribute alias="aggregate_column" name="timespent" aggregate="avg" />
+              <filter>
+                <condition attribute="statecode" operator="eq" value="1" />
+              </filter>
+            </link-entity>
+            <attribute groupby="true" alias="groupby_column" dategrouping="day" name="modifiedon" />
+            <attribute alias="casecount" name="incidentid" aggregate="count" />
+          </entity>
+        </fetch>
+      </fetchcollection>
+      <categorycollection>
+        <category>
+          <measurecollection>
+            <measure alias="casecount" />
+          </measurecollection>
+          <measurecollection>
+            <measure alias="aggregate_column" />
+          </measurecollection>
+        </category>
+      </categorycollection>
+    </datadefinition>
+  </datadescription>
+  <presentationdescription>
+    <Chart>
+      <Series>
+        <Series Color="91, 151, 213" IsValueShownAsLabel="False" BackSecondaryColor="112, 142, 50" Font="{0}, 9.5px" LabelForeColor="59, 59, 59" CustomProperties="PointWidth=0.75, MaxPixelPointWidth=40">
+          <SmartLabelStyle Enabled="True" />
+        </Series>
+        <Series BorderWidth="3" IsValueShownAsLabel="True" ChartType="Line" Color="213, 112, 44" MarkerStyle="Square" MarkerSize="9" MarkerColor="37, 128, 153">
+          <SmartLabelStyle Enabled="True" />
+        </Series>
+      </Series>
+      <ChartAreas>
+        <ChartArea BorderColor="White">
+          <AxisY LabelAutoFitMinFontSize="8" TitleForeColor="59, 59, 59" TitleFont="{0}, 10.5px" LineColor="165, 172, 181" IntervalAutoMode="VariableCount">
+            <MajorGrid LineColor="239, 242, 230" />
+            <MajorTickMark LineColor="165, 172, 181" />
+            <LabelStyle Font="{0}, 10.5px" ForeColor="59, 59, 59" />
+          </AxisY>
+          <AxisX LabelAutoFitMinFontSize="8" TitleForeColor="59, 59, 59" TitleFont="{0}, 10.5px" LineColor="165, 172, 181" IntervalAutoMode="VariableCount">
+            <MajorGrid Enabled="False" />
+            <MajorTickMark Enabled="False" />
+            <LabelStyle Font="{0}, 10.5px" ForeColor="59, 59, 59" />
+          </AxisX>
+          <AxisY2 LabelAutoFitMinFontSize="8" TitleForeColor="59, 59, 59" TitleFont="{0}, 10.5px" LineColor="165, 172, 181" IntervalAutoMode="VariableCount">
+            <MajorGrid Enabled="False" />
+            <MajorTickMark LineColor="165, 172, 181" />
+            <LabelStyle Font="{0}, 10.5px" ForeColor="59, 59, 59" />
+          </AxisY2>
+        </ChartArea>
+      </ChartAreas>
+      <Legends>
+        <Legend Alignment="Center" LegendStyle="Table" Docking="Bottom" Font="{0}, 11px" ForeColor="59, 59, 59" />
+      </Legends>
+      <Titles>
+        <Title Alignment="TopLeft" DockingOffset="-3" Font="{0}, 13px" ForeColor="59, 59, 59" />
+      </Titles>
+    </Chart>
+  </presentationdescription>
+  <isdefault>0</isdefault>
+  <LocalizedNames>
+    <LocalizedName description="Case Resolution Trend (By Day)" languagecode="1033" />
+    <LocalizedName description="Tendance de résolution d’incident (par jour)" languagecode="1036" />
+  </LocalizedNames>
+  <Descriptions>
+    <Description description="Shows the average resolution time in minutes (Trend Line) along with the number of cases resolved (Column Chart) per day." languagecode="1033" />
+    <Description description="Affiche le délai de résolution moyen en minutes (courbe de tendance) avec le nombre d’incidents résolus (histogramme) par jour." languagecode="1036" />
+  </Descriptions>
+  <IntroducedVersion>5.0.0.0</IntroducedVersion>
+</visualization>
