@@ -5,6 +5,39 @@ var ROM;
     (function (Operation) {
         function onLoad(eContext) {
             var form = eContext.getFormContext();
+            var userId = Xrm.Utility.getGlobalContext().userSettings.userId;
+            var currentUserBusinessUnitFetchXML = [
+                "<fetch top='50'>",
+                "  <entity name='businessunit'>",
+                "    <attribute name='name' />",
+                "    <attribute name='businessunitid' />",
+                "    <link-entity name='systemuser' from='businessunitid' to='businessunitid'>",
+                "      <filter>",
+                "        <condition attribute='systemuserid' operator='eq' value='", userId, "'/>",
+                "      </filter>",
+                "    </link-entity>",
+                "  </entity>",
+                "</fetch>",
+            ].join("");
+            currentUserBusinessUnitFetchXML = "?fetchXml=" + encodeURIComponent(currentUserBusinessUnitFetchXML);
+            Xrm.WebApi.retrieveMultipleRecords("businessunit", currentUserBusinessUnitFetchXML).then(function (result) {
+                var userBusinessUnitName = result.entities[0].name;
+                //Show Properties Tab when the user is in Transport Canada or ISSO business unit
+                if (userBusinessUnitName.startsWith("Transport") || userBusinessUnitName.startsWith("Intermodal")) {
+                    form.ui.tabs.get("tab_properties").setVisible(true);
+                    //Show Visual Security Inspection question only for Railway Carrier and Railway Loader
+                    var operationType = form.getAttribute("ovs_operationtypeid").getValue();
+                    if (operationType != null) {
+                        if (operationType[0].id == "{D883B39A-C751-EB11-A812-000D3AF3AC0D}" || operationType[0].id == "{DA56FEA1-C751-EB11-A812-000D3AF3AC0D}") {
+                            form.getControl("ts_visualsecurityinspection").setVisible(true);
+                            //Set default value for existing operations
+                            if (form.getAttribute("ts_visualsecurityinspection").getValue() == null) {
+                                form.getAttribute("ts_visualsecurityinspection").setValue(717750000 /* Unconfirmed */);
+                            }
+                        }
+                    }
+                }
+            });
             if (form.getAttribute("ts_statusstartdate").getValue() != null) {
                 form.getControl("ts_statusenddate").setDisabled(false);
                 form.getControl("ts_description").setDisabled(false);
