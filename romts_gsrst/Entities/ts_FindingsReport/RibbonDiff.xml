@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <CustomAction Id="ts.ts_findingsreport.GeneratePDF.CustomAction" Location="Mscrm.Form.ts_findingsreport.MainTab.Save.Controls._children" Sequence="10">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_findingsreport.GeneratePDF.Alt" Command="ts.ts_findingsreport.GeneratePDF" Id="ts.ts_findingsreport.GeneratePDF" LabelText="$LocLabels:ts.ts_findingsreport.GeneratePDF.LabelText" Sequence="10" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_findingsreport.GeneratePDF.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_findingsreport.GeneratePDF.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="ts.ts_findingsreport.GeneratePDF">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="callFlow" Library="$webresource:ovs_/js/FindingsReportRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules />
+    <EnableRules />
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="ts.ts_findingsreport.GeneratePDF.Alt">
+      <Titles>
+        <Title description="Generate PDF" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_findingsreport.GeneratePDF.LabelText">
+      <Titles>
+        <Title description="Generate PDF" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_findingsreport.GeneratePDF.ToolTipDescription">
+      <Titles>
+        <Title description="Generate PDF" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_findingsreport.GeneratePDF.ToolTipTitle">
+      <Titles>
+        <Title description="Generate PDF" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>

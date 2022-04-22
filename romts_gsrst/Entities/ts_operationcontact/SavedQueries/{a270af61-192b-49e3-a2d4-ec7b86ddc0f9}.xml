@@ -10,8 +10,10 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_operationcontactid">
-          <cell name="ts_name" width="300" />
-          <cell name="createdon" width="125" />
+          <cell name="ts_contact" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_operation" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_connectionrole" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="createdon" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
         </row>
       </grid>
     </layoutxml>
@@ -19,13 +21,16 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ts_operationcontact">
-          <attribute name="ts_operationcontactid" />
-          <attribute name="ts_name" />
           <attribute name="createdon" />
-          <order attribute="ts_name" descending="false" />
+          <order attribute="ts_contact" descending="false" />
+          <order attribute="ts_operation" descending="true" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="1" />
           </filter>
+          <attribute name="ts_operation" />
+          <attribute name="ts_contact" />
+          <attribute name="ts_connectionrole" />
+          <attribute name="ts_operationcontactid" />
         </entity>
       </fetch>
     </fetchxml>

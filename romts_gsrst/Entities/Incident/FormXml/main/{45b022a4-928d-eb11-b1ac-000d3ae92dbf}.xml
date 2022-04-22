@@ -335,7 +335,7 @@
             <label description="Interactions" languagecode="1033" />
           </labels>
           <columns>
-            <column width="100%">
+            <column width="50%">
               <sections>
                 <section name="tab_13_section_1" id="f4e3d1ff-5538-446a-a5e8-aa0c1ccf92e2" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
                   <labels>
@@ -363,6 +363,42 @@
                             <UClientDisplayActivityUsing>defaultfields</UClientDisplayActivityUsing>
                             <UClientActivityCardMap>appointment:4201:,campaignactivity:4402:,campaignresponse:4401:,email:4202:,fax:4204:,incidentresolution:4206:,letter:4207:,opportunityclose:4208:,orderclose:4209:,phonecall:4210:,quoteclose:4211:,recurringappointmentmaster:4251:,serviceappointment:4214:,socialactivity:4216:,task:4212:,chat:10769:,msdyn_bookingalert:10256:,msfp_alert:10235:,msfp_surveyinvite:10245:,msfp_surveyresponse:10247:,</UClientActivityCardMap>
                             <UClientActivitiesConfigurationJSON>{"letter":{"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"}}</UClientActivitiesConfigurationJSON>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="_section_349" id="8da23ad5-57e8-4388-9496-fa6181cef9a7" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Operational Contacts" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{7610b754-2345-4e92-b3e6-5daec07f1716}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{3204ef5d-a579-407f-91a6-50a6ba735cb1}" rowspan="1" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="Operational Contacts" languagecode="1033" />
+                        </labels>
+                        <control id="Subgrid_4" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <TargetEntityType>ts_operationcontact</TargetEntityType>
+                            <ViewId>{ED2E1B6B-2CB1-EC11-983E-002248ADEF38}</ViewId>
+                            <ViewIds>{7C7857F2-E9F0-40EA-84CE-D6D7F5467DCE},{ED2E1B6B-2CB1-EC11-983E-002248ADEF38}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>ts_Incident_ts_operationcontact_ts_operation</RelationshipName>
                           </parameters>
                         </control>
                       </cell>
@@ -533,12 +569,12 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{3eb58433-9515-a939-94a7-987eedb4c139}" showlabel="false" locklevel="0">
+                      <cell id="{25933617-c673-8a79-1a63-2da20c2db68e}" showlabel="false" locklevel="0">
                         <labels>
                           <label description="Case Title" languagecode="1033" />
                           <label description="Titre du cas" languagecode="1036" />
                         </labels>
-                        <control id="title" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="title" disabled="false" uniqueid="{ea9b3471-f7ab-4a5c-b405-4c2da94b5f08}" />
+                        <control id="title" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="title" disabled="false" uniqueid="{f82e6c89-b4c4-459d-96b2-610c2b9fb560}" />
                       </cell>
                     </row>
                   </rows>
@@ -2068,37 +2104,6 @@
             </parameters>
           </customControl>
         </controlDescription>
-        <controlDescription forControl="{ea9b3471-f7ab-4a5c-b405-4c2da94b5f08}">
-          <customControl id="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}">
-            <parameters>
-              <datafieldname>title</datafieldname>
-            </parameters>
-          </customControl>
-          <customControl formFactor="1" name="MscrmControls.Canvas.CanvasControl">
-            <parameters>
-              <record>title</record>
-              <entityName type="SingleLine.Text" static="true">Case</entityName>
-              <appName type="SingleLine.Text" static="true">ts_association_87784</appName>
-              <appId type="SingleLine.Text" static="true">8a133cba-9e3b-4834-9e0a-dcf8930abaee</appId>
-            </parameters>
-          </customControl>
-          <customControl formFactor="0" name="MscrmControls.Canvas.CanvasControl">
-            <parameters>
-              <record>title</record>
-              <entityName type="SingleLine.Text" static="true">Case</entityName>
-              <appName type="SingleLine.Text" static="true">ts_association_87784</appName>
-              <appId type="SingleLine.Text" static="true">8a133cba-9e3b-4834-9e0a-dcf8930abaee</appId>
-            </parameters>
-          </customControl>
-          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
-            <parameters>
-              <record>title</record>
-              <entityName type="SingleLine.Text" static="true">Case</entityName>
-              <appName type="SingleLine.Text" static="true">ts_association_87784</appName>
-              <appId type="SingleLine.Text" static="true">8a133cba-9e3b-4834-9e0a-dcf8930abaee</appId>
-            </parameters>
-          </customControl>
-        </controlDescription>
         <controlDescription forControl="{3d4508b3-0218-44e0-8b94-c84906685aa4}">
           <customControl id="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}">
             <parameters>
@@ -2127,6 +2132,37 @@
               <entityName type="SingleLine.Text" static="true">Case</entityName>
               <appName type="SingleLine.Text" static="true">ts_romdocumentcentrecase_eacfd</appName>
               <appId type="SingleLine.Text" static="true">f689c3be-68dd-4bc7-b406-c92d4e19bcb7</appId>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{f82e6c89-b4c4-459d-96b2-610c2b9fb560}">
+          <customControl id="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}">
+            <parameters>
+              <datafieldname>title</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>title</record>
+              <entityName type="SingleLine.Text" static="true">Case</entityName>
+              <appName type="SingleLine.Text" static="true">ts_association_87784</appName>
+              <appId type="SingleLine.Text" static="true">8a133cba-9e3b-4834-9e0a-dcf8930abaee</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>title</record>
+              <entityName type="SingleLine.Text" static="true">Case</entityName>
+              <appName type="SingleLine.Text" static="true">ts_association_87784</appName>
+              <appId type="SingleLine.Text" static="true">8a133cba-9e3b-4834-9e0a-dcf8930abaee</appId>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
+            <parameters>
+              <record>title</record>
+              <entityName type="SingleLine.Text" static="true">Case</entityName>
+              <appName type="SingleLine.Text" static="true">ts_association_87784</appName>
+              <appId type="SingleLine.Text" static="true">8a133cba-9e3b-4834-9e0a-dcf8930abaee</appId>
             </parameters>
           </customControl>
         </controlDescription>

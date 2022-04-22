@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery unmodified="1">
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{1d145a26-fdb7-45ae-b55a-7befa66e184f}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="subject" select="1" preview="1" icon="1">
+        <row name="result" id="activityid" multiobjectidfield="activitytypecode">
+          <cell name="subject" width="150" />
+          <cell name="activitytypecode" width="150" />
+          <cell name="scheduledstart" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" no-lock="true">
+        <entity name="activitypointer">
+          <attribute name="subject" />
+          <attribute name="activitytypecode" />
+          <attribute name="prioritycode" />
+          <attribute name="regardingobjectid" />
+          <attribute name="statecode" />
+          <attribute name="instancetypecode" />
+          <attribute name="community" />
+          <attribute name="scheduledend" />
+          <attribute name="activityid" />
+          <attribute name="scheduledstart" />
+          <order attribute="scheduledstart" descending="false" />
+          <filter type="and">
+            <condition attribute="isregularactivity" operator="eq" value="1" />
+            <filter type="or">
+              <condition attribute="statecode" operator="eq" value="0" />
+              <condition attribute="statecode" operator="eq" value="3" />
+            </filter>
+          </filter>
+          <filter type="and">
+            <condition attribute="scheduledstart" operator="next-x-years" value="100" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Next Activity" languagecode="1033" />
+      <LocalizedName description="Activité suivante" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

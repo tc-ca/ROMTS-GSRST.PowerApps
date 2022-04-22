@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{ed2e1b6b-2cb1-ec11-983e-002248adef38}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_operationcontactid">
+          <cell name="a_35cc382f941145a2aaa6f4255c82c128.fullname" width="176" />
+          <cell name="ts_connectionrole" width="131" />
+          <cell name="a_35cc382f941145a2aaa6f4255c82c128.parentcustomerid" width="184" />
+          <cell name="a_e84ef14220194c079b0fbd70fb357a83.ts_stakeholder" width="190" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="ts_operationcontact">
+          <attribute name="ts_operationcontactid" />
+          <attribute name="ts_connectionrole" />
+          <link-entity alias="a_e84ef14220194c079b0fbd70fb357a83" name="ovs_operation" to="ts_operation" from="ovs_operationid" link-type="outer" visible="false">
+            <attribute name="ts_stakeholder" />
+          </link-entity>
+          <link-entity alias="a_35cc382f941145a2aaa6f4255c82c128" name="contact" to="ts_contact" from="contactid" link-type="outer" visible="false">
+            <attribute name="parentcustomerid" />
+            <attribute name="fullname" />
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20220328.2</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Operational Contacts" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

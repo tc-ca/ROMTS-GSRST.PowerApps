@@ -11,11 +11,11 @@
       <grid name="resultset" jump="ts_name" select="1" preview="1" icon="1">
         <row name="result" id="ts_operationcontactid">
           <cell name="ts_operation" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="ts_role" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="a_6a54a3376f064bb5a5acab0522b0cc44.ovs_name" width="100" />
-          <cell name="a_6a54a3376f064bb5a5acab0522b0cc44.ts_stakeholder" width="100" />
-          <cell name="a_6a54a3376f064bb5a5acab0522b0cc44.ovs_operationtypeid" width="100" />
-          <cell name="a_6a54a3376f064bb5a5acab0522b0cc44.ts_site" width="100" />
+          <cell name="ts_connectionrole" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_6a54a3376f064bb5a5acab0522b0cc44.ovs_name" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_6a54a3376f064bb5a5acab0522b0cc44.ts_stakeholder" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_6a54a3376f064bb5a5acab0522b0cc44.ovs_operationtypeid" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_6a54a3376f064bb5a5acab0522b0cc44.ts_site" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
         </row>
       </grid>
     </layoutxml>
@@ -24,15 +24,15 @@
       <fetch version="1.0" output-format="xml-platform" mapping="logical">
         <entity name="ts_operationcontact">
           <order attribute="ts_operation" descending="false" />
-          <attribute name="ts_role" />
           <attribute name="ts_operation" />
-          <attribute name="ts_operationcontactid" />
           <link-entity alias="a_6a54a3376f064bb5a5acab0522b0cc44" name="ovs_operation" to="ts_operation" from="ovs_operationid" link-type="outer" visible="false">
             <attribute name="ovs_name" />
             <attribute name="ts_stakeholder" />
             <attribute name="ovs_operationtypeid" />
             <attribute name="ts_site" />
           </link-entity>
+          <attribute name="ts_connectionrole" />
+          <attribute name="ts_operationcontactid" />
         </entity>
       </fetch>
     </fetchxml>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{00000000-0000-0000-00aa-000010001902}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="subject" select="1" preview="1" icon="1">
+        <row name="result" id="activityid" multiobjectidfield="activitytypecode">
+          <cell name="subject" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="statecode" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="scheduledend" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="activitytypecode" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="description" width="150" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="regardingobjectid" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ownerid" width="120" />
+          <cell name="createdon" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="instancetypecode" width="100" ishidden="1" />
+          <cell name="community" width="100" ishidden="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="activitypointer">
+          <attribute name="subject" />
+          <order attribute="scheduledend" descending="false" />
+          <attribute name="ownerid" />
+          <attribute name="regardingobjectid" />
+          <attribute name="activitytypecode" />
+          <attribute name="statecode" />
+          <attribute name="scheduledend" />
+          <attribute name="instancetypecode" />
+          <attribute name="community" />
+          <filter type="and">
+            <condition attribute="isregularactivity" operator="eq" value="1" />
+          </filter>
+          <link-entity name="email" from="activityid" to="activityid" alias="email_engagement" link-type="outer" visible="false">
+            <attribute name="isemailfollowed" />
+            <attribute name="lastopenedtime" />
+            <attribute name="delayedemailsendtime" />
+          </link-entity>
+          <attribute name="description" />
+          <attribute name="createdon" />
+          <attribute name="activityid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="All Activities" languagecode="1033" />
+      <LocalizedName description="Toutes les activités" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -15,6 +15,43 @@
           <columns>
             <column width="100%">
               <sections>
+                <section name="summary_section_3" id="c955674d-d59c-493d-b233-e6e9c5797dec" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1111" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{61d6a74c-8674-4949-b072-1857b8c53ce6}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Operation" languagecode="1033" />
+                          <label description="Opération" languagecode="1036" />
+                        </labels>
+                        <control id="ts_operationid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operationid" disabled="false" />
+                      </cell>
+                      <cell id="{e341ba1f-5c4c-4db0-b66a-5d2ee86d43d5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Stakeholder" languagecode="1033" />
+                          <label description="Intervenant" languagecode="1036" />
+                        </labels>
+                        <control id="ts_accountid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_accountid" disabled="false" />
+                      </cell>
+                      <cell id="{d3f92bd4-bf99-49a8-b7bd-9139ea60881e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Operation Type" languagecode="1033" />
+                          <label description="Type d'opération" languagecode="1036" />
+                        </labels>
+                        <control id="ts_ovs_operationtype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_ovs_operationtype" disabled="false" />
+                      </cell>
+                      <cell id="{ee21f61a-ec71-4d62-a92e-0ae0cff586f9}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Site" languagecode="1033" />
+                          <label description="Site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
                 <section showlabel="false" showbar="false" IsUserDefined="0" id="{11f8492e-818a-454b-8f1a-bb33f878159b}" height="auto">
                   <labels>
                     <label description="General" languagecode="1033" />
@@ -407,8 +444,8 @@
                 </section>
                 <section name="NCAT_manager_review" id="89b837f0-0065-421e-9785-3eb00e5602cd" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
                   <labels>
-                    <label description="NCAT Manager Review" languagecode="1033" />
-                    <label description="NCAT Manager Review (fr)" languagecode="1036" />
+                    <label description="Regional Manager Review" languagecode="1033" />
+                    <label description="Examen du gestionnaire régional" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
@@ -521,15 +558,15 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_RATE" id="{e90ca981-60a1-c945-e40a-1b4e47a9eba7}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false" visible="false">
+        <tab name="tab_RATE" id="{e90ca981-60a1-c945-e40a-1b4e47a9eba7}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" visible="false">
           <labels>
             <label description="RATE" languagecode="1033" />
             <label description="RATE (fr)" languagecode="1036" />
           </labels>
           <columns>
-            <column width="40%">
+            <column width="90%">
               <sections>
-                <section name="tab_4_section_1" showlabel="true" showbar="false" locklevel="0" id="{80144101-7729-5217-30b8-487be43ce594}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Top">
+                <section name="tab_4_section_1" showlabel="true" showbar="false" locklevel="0" id="{80144101-7729-5217-30b8-487be43ce594}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Top">
                   <labels>
                     <label description="Compliance and Enforcement History" languagecode="1033" />
                     <label description="Compliance and Enforcement History (fr)" languagecode="1036" />
@@ -542,6 +579,27 @@
                           <label description="Specific Non-Compliance History (fr)" languagecode="1036" />
                         </labels>
                         <control id="ts_ratespecificcompliancehistory" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_ratespecificcompliancehistory" disabled="false" uniqueid="{a6221587-c358-2c24-56be-84203dbbd7a9}" />
+                      </cell>
+                      <cell id="{cede2cc2-b13d-976e-932c-6465086b76a3}" showlabel="false" colspan="1" auto="false" rowspan="1">
+                        <labels>
+                          <label description="RATEFactor1Guide" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RATEFactor1Guide" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactor1Guide.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <WebResourceId>{13DFA65B-1BB1-EC11-983E-002248ADEF38}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
                       </cell>
                     </row>
                     <row>
@@ -562,6 +620,11 @@
                           </parameters>
                         </control>
                       </cell>
+                      <cell id="{ab430765-37d6-9586-1d97-27a98068254e}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
                     </row>
                     <row>
                       <cell id="{3d0c9c50-7354-709e-c6d7-84d509110785}" showlabel="true" locklevel="0">
@@ -571,10 +634,15 @@
                         </labels>
                         <control id="ts_ratespecificenforcementhistory" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_ratespecificenforcementhistory" disabled="false" uniqueid="{6897e986-5732-988c-9c02-b53e4b54d3d3}" />
                       </cell>
+                      <cell id="{16285045-195b-abc0-3b8c-63274b17aa15}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
                     </row>
                   </rows>
                 </section>
-                <section name="tab_4_section_2" showlabel="true" showbar="false" locklevel="0" id="{92671bd0-caaa-0512-cba6-c2379a224530}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Top">
+                <section name="tab_4_section_2" showlabel="true" showbar="false" locklevel="0" id="{92671bd0-caaa-0512-cba6-c2379a224530}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Top">
                   <labels>
                     <label description="Harm" languagecode="1033" />
                     <label description="Harm (fr)" languagecode="1036" />
@@ -598,10 +666,31 @@
                           </parameters>
                         </control>
                       </cell>
+                      <cell id="{02180ec6-753c-ae5c-e84e-c44ca7345151}" showlabel="false" colspan="1" auto="false" rowspan="1">
+                        <labels>
+                          <label description="RATEFactor2Guide" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RATEFactor2Guide" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactor2Guide.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <WebResourceId>{DFC3B55C-2EB1-EC11-983E-002248ADEF38}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
                     </row>
                   </rows>
                 </section>
-                <section name="tab_RATE_section_3" showlabel="true" showbar="false" locklevel="0" id="{a3b35e3c-3818-60c5-c549-76046e35292e}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Top">
+                <section name="tab_RATE_section_3" showlabel="true" showbar="false" locklevel="0" id="{a3b35e3c-3818-60c5-c549-76046e35292e}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Top">
                   <labels>
                     <label description="Motivation" languagecode="1033" />
                     <label description="Motivation (fr)" languagecode="1036" />
@@ -625,6 +714,27 @@
                           </parameters>
                         </control>
                       </cell>
+                      <cell id="{32443652-b134-92c3-a93c-3077b750a73e}" showlabel="false" colspan="1" auto="false" rowspan="1">
+                        <labels>
+                          <label description="RATEFactor3Guide" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RATEFactor3Guide" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactor3Guide.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <WebResourceId>{FFC3B55C-2EB1-EC11-983E-002248ADEF38}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
                     </row>
                     <row>
                       <cell id="{4812e261-064d-4cb2-b596-75ddf00371de}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
@@ -644,10 +754,15 @@
                           </parameters>
                         </control>
                       </cell>
+                      <cell id="{465ae883-bce8-a63d-83c0-7a301d81289a}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
                     </row>
                   </rows>
                 </section>
-                <section name="tab_RATE_section_4" showlabel="true" showbar="false" locklevel="0" id="{c40615d5-4863-c295-6625-820271a78eb2}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Top">
+                <section name="tab_RATE_section_4" showlabel="true" showbar="false" locklevel="0" id="{c40615d5-4863-c295-6625-820271a78eb2}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Top">
                   <labels>
                     <label description="Accountability" languagecode="1033" />
                     <label description="Accountability (fr)" languagecode="1036" />
@@ -671,6 +786,27 @@
                           </parameters>
                         </control>
                       </cell>
+                      <cell id="{1ab7dde5-634a-d05e-d619-1118cba680ce}" showlabel="false" colspan="1" auto="false" rowspan="1">
+                        <labels>
+                          <label description="RATEFactor4Guide" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_RATEFactor4Guide" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactor4Guide.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <WebResourceId>{1AC4B55C-2EB1-EC11-983E-002248ADEF38}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
                     </row>
                     <row>
                       <cell id="{f56b6747-31c9-4e28-8808-71b70441d277}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
@@ -689,6 +825,11 @@
                             <AvailableViewIds>{5CBA633E-017D-4D7D-8369-F3C2034DB2DA}</AvailableViewIds>
                           </parameters>
                         </control>
+                      </cell>
+                      <cell id="{943429b0-4126-8165-7a1a-06e7e5e45ac5}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                     <row>
@@ -709,6 +850,11 @@
                           </parameters>
                         </control>
                       </cell>
+                      <cell id="{461e8067-44a5-b677-ad03-090840ae9737}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
                     </row>
                     <row>
                       <cell id="{1d24414e-24f2-4934-9f15-c064f8fdd6c2}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
@@ -727,6 +873,11 @@
                             <AvailableViewIds>{5CBA633E-017D-4D7D-8369-F3C2034DB2DA},{2EC6E3DE-848B-EC11-8D20-0022483C8E25}</AvailableViewIds>
                           </parameters>
                         </control>
+                      </cell>
+                      <cell id="{8a872ee6-9c0e-e0a8-c4c4-de4697cd3429}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                   </rows>
@@ -858,15 +1009,20 @@
                 </section>
               </sections>
             </column>
-            <column width="60%">
+            <column width="10%">
               <sections>
-                <section name="tab_RATE_section_10" id="6335599a-6211-4b66-93ec-5fbfaa04f224" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                <section id="{a09ae24c-b8fd-4b2d-a63f-fdc7cff1ba48}" name="tab_RATE_column_5_section_1" columns="11" showlabel="false" showbar="false" IsUserDefined="0">
                   <labels>
-                    <label description="New Section" languagecode="1033" />
+                    <label description="section" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell showlabel="false" locklevel="0" id="{32d4906e-70e9-45f0-ab1b-aeea520a8629}">
+                      <cell id="{9b3c9a3f-33be-459b-8ff4-c5e22d757887}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{926a902c-84d1-49f4-b179-030994592cb9}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>

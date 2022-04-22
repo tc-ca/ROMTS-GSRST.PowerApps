@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery unmodified="1">
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{00000000-0000-0000-00aa-000000666100}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="subject" select="1" icon="1" preview="1">
+        <row name="result" id="activityid" multiobjectidfield="activitytypecode">
+          <cell name="subject" width="300" />
+          <cell name="activitytypecode" width="110" />
+          <cell name="statecode" width="100" />
+          <cell name="prioritycode" width="100" />
+          <cell name="modifiedon" width="125" />
+          <cell name="instancetypecode" width="100" ishidden="1" />
+          <cell name="community" width="100" ishidden="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>1</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="activitypointer">
+          <attribute name="activitytypecode" />
+          <attribute name="subject" />
+          <attribute name="statecode" />
+          <attribute name="prioritycode" />
+          <attribute name="modifiedon" />
+          <attribute name="activityid" />
+          <attribute name="instancetypecode" />
+          <attribute name="community" />
+          <order attribute="modifiedon" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Activity Advanced Find View" languagecode="1033" />
+      <LocalizedName description="Vue Recherche avancée Activités" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

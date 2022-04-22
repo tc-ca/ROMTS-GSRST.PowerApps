@@ -464,6 +464,7 @@
                       <cell id="{c01b4a36-4f60-442e-95ef-859ef4e6f460}" locklevel="0" colspan="1" rowspan="1" showlabel="true" visible="false">
                         <labels>
                           <label description="Is this a site where Visual Security Inspections (VSIs) are conducted?" languagecode="1033" />
+                          <label description="Est-ce que ce site est un site d'inspection visuelle de sûreté (IVS)?" languagecode="1036" />
                         </labels>
                         <control id="ts_visualsecurityinspection" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_visualsecurityinspection" disabled="false" uniqueid="{7a6cc695-bd01-e3c9-8b7e-2572977d009a}" />
                       </cell>
@@ -481,6 +482,22 @@
                           <label description="Type of Dangerous Goods" languagecode="1033" />
                         </labels>
                         <control id="ts_typeofdangerousgoods" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_typeofdangerousgoods" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="is_security_inspection_site_section" showlabel="false" showbar="false" locklevel="0" id="{845a18db-c73a-0640-9425-e42b7ca1ce4a}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Top" visible="false">
+                  <labels>
+                    <label description="Is Security Inspection Site" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{7712e5b2-6433-905c-e74a-b1925b48eeac}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Is this a site where Security Inspections (SIs) are conducted?" languagecode="1033" />
+                          <label description="Est-ce que ce site est un site d'inspections de sûreté (IS)?" languagecode="1036" />
+                        </labels>
+                        <control id="ts_issecurityinspectionsite" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_issecurityinspectionsite" disabled="false" uniqueid="{8971219e-da46-7b04-7bbb-83cc9a5577ad}" />
                       </cell>
                     </row>
                   </rows>
@@ -513,7 +530,7 @@
                     <row>
                       <cell id="{32fbdb7d-69ec-4ecf-b4cc-9da9e3cee5a0}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
-                          <label description=" Specialized PPE Required" languagecode="1033" />
+                          <label description=" Is any specialized PPE required at this site?" languagecode="1033" />
                         </labels>
                         <control id="ts_specializedpperequired" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="ts_specializedpperequired" disabled="false" />
                       </cell>
@@ -526,6 +543,67 @@
                         <control id="ts_typesofspecializedppe" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="ts_typesofspecializedppe" disabled="false" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{f3403d93-6ec0-4043-ba46-da9b819f9874}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
+                        <labels>
+                          <label description="PPE Guidance" languagecode="1033" />
+                        </labels>
+                        <control id="ts_ppeguide" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_ppeguide" disabled="false" uniqueid="{b5e37728-3575-e018-a1d2-b0ceb4536e2c}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_properties_ppeguide" id="4df3edf1-0a1d-4024-a8e9-fdcf8476c9d4" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" height="auto">
+                  <labels>
+                    <label description="PPE Guide" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{06b500b9-a698-078b-0421-3490099e3abe}" showlabel="false" colspan="1" visible="false" auto="true" rowspan="24">
+                        <labels>
+                          <label description="PPEGuide" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_PPEGuide" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/PPEGuide.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <ShowOnMobileClient>true</ShowOnMobileClient>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <WebResourceId>{69DB6CAC-32B0-EC11-983E-002248ADEF38}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
                   </rows>
                 </section>
               </sections>
@@ -595,6 +673,31 @@
             </parameters>
           </customControl>
         </controlDescription>
+        <controlDescription forControl="{b5e37728-3575-e018-a1d2-b0ceb4536e2c}">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_ppeguide</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_ppeguide</value>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_ppeguide</value>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_ppeguide</value>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+        </controlDescription>
       </controlDescriptions>
       <header id="{a24764d0-170e-4da7-bf83-6936f3889c51}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
         <rows>
@@ -613,6 +716,27 @@
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
+            </cell>
+            <cell id="{43ccac9b-dc92-4f45-b93c-fa58571492b3}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Stakeholder" languagecode="1033" />
+                <label description="Intervenant" languagecode="1036" />
+              </labels>
+              <control id="header_ts_stakeholder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_stakeholder" disabled="false" />
+            </cell>
+            <cell id="{d41055a6-b587-488d-a745-c25027493c83}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Operation Type" languagecode="1033" />
+                <label description="Type d'opération" languagecode="1036" />
+              </labels>
+              <control id="header_ovs_operationtypeid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_operationtypeid" disabled="false" />
+            </cell>
+            <cell id="{613fd3f9-96e0-44be-a065-df48206609a9}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Site" languagecode="1033" />
+                <label description="Site" languagecode="1036" />
+              </labels>
+              <control id="header_ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="false" />
             </cell>
           </row>
         </rows>
@@ -660,6 +784,21 @@
         <event name="onsave" application="true" active="true">
           <Handlers>
             <Handler functionName="ROM.Operation.onSave" libraryName="ts_/js/Operation.js" handlerUniqueId="{a77dd23f-1c59-445a-a16c-e1f34248726e}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_pperequired">
+          <Handlers>
+            <Handler functionName="ROM.Operation.ppeRequiredOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{daa07aeb-038f-41ac-a64a-9d0e30b6866b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_specializedpperequired">
+          <Handlers>
+            <Handler functionName="ROM.Operation.specializedPPERequiredOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{ee676658-98dd-4512-8b71-aed4f0eb1440}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_ppeguide">
+          <Handlers>
+            <Handler functionName="ROM.Operation.ppeGuideOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{3731abfc-57f4-4173-b6a7-14f408e6cbf2}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

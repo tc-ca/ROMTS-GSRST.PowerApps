@@ -22,17 +22,37 @@ var ROM;
             currentUserBusinessUnitFetchXML = "?fetchXml=" + encodeURIComponent(currentUserBusinessUnitFetchXML);
             Xrm.WebApi.retrieveMultipleRecords("businessunit", currentUserBusinessUnitFetchXML).then(function (result) {
                 var userBusinessUnitName = result.entities[0].name;
+                form.getAttribute("ts_ppeguide").setValue(false);
                 //Show Properties Tab when the user is in Transport Canada or ISSO business unit
                 if (userBusinessUnitName.startsWith("Transport") || userBusinessUnitName.startsWith("Intermodal")) {
                     form.ui.tabs.get("tab_properties").setVisible(true);
+                    //Show PPE questions
+                    var ppeRequired = form.getAttribute("ts_pperequired").getValue();
+                    var specializedPPERequired = form.getAttribute("ts_specializedpperequired").getValue();
+                    if (ppeRequired) {
+                        form.getControl("ts_ppecategories").setVisible(true);
+                        form.getControl("ts_specializedpperequired").setVisible(true);
+                    }
+                    if (specializedPPERequired) {
+                        form.getControl("ts_typesofspecializedppe").setVisible(true);
+                    }
                     //Show Visual Security Inspection question only for Railway Carrier and Railway Loader
                     var operationType = form.getAttribute("ovs_operationtypeid").getValue();
                     if (operationType != null) {
                         if (operationType[0].id == "{D883B39A-C751-EB11-A812-000D3AF3AC0D}" || operationType[0].id == "{DA56FEA1-C751-EB11-A812-000D3AF3AC0D}") {
                             form.getControl("ts_visualsecurityinspection").setVisible(true);
+                            form.getControl("ts_typeofdangerousgoods").setVisible(true);
                             //Set default value for existing operations
                             if (form.getAttribute("ts_visualsecurityinspection").getValue() == null) {
                                 form.getAttribute("ts_visualsecurityinspection").setValue(717750000 /* Unconfirmed */);
+                            }
+                        }
+                        //if Operation Type is Small Passenger Company, Passenger Company, or Host Company
+                        if (operationType[0].id == "{199E31AE-C751-EB11-A812-000D3AF3AC0D}" || operationType[0].id == "{3B261029-C751-EB11-A812-000D3AF3AC0D}" || operationType[0].id == "{B27E5003-C751-EB11-A812-000D3AF3AC0D}") {
+                            form.getControl("ts_issecurityinspectionsite").setVisible(true);
+                            //Set default value for existing operations
+                            if (form.getAttribute("ts_issecurityinspectionsite").getValue() == null) {
+                                form.getAttribute("ts_issecurityinspectionsite").setValue(717750000 /* Unconfirmed */);
                             }
                         }
                     }
@@ -98,5 +118,44 @@ var ROM;
             }
         }
         Operation.statusStartDateOnChange = statusStartDateOnChange;
+        function ppeRequiredOnChange(eContext) {
+            var form = eContext.getFormContext();
+            var ppeRequired = form.getAttribute("ts_pperequired").getValue();
+            if (ppeRequired) {
+                form.getControl("ts_ppecategories").setVisible(true);
+                form.getControl("ts_specializedpperequired").setVisible(true);
+            }
+            else {
+                form.getControl("ts_ppecategories").setVisible(false);
+                form.getControl("ts_specializedpperequired").setVisible(false);
+                form.getControl("ts_typesofspecializedppe").setVisible(false);
+                form.getAttribute("ts_ppecategories").setValue(null);
+                form.getAttribute("ts_specializedpperequired").setValue(null);
+                form.getAttribute("ts_typesofspecializedppe").setValue(null);
+            }
+        }
+        Operation.ppeRequiredOnChange = ppeRequiredOnChange;
+        function specializedPPERequiredOnChange(eContext) {
+            var form = eContext.getFormContext();
+            var specializedPPERequired = form.getAttribute("ts_specializedpperequired").getValue();
+            if (specializedPPERequired) {
+                form.getControl("ts_typesofspecializedppe").setVisible(true);
+            }
+            else {
+                form.getControl("ts_typesofspecializedppe").setVisible(false);
+                form.getAttribute("ts_typesofspecializedppe").setValue(null);
+            }
+        }
+        Operation.specializedPPERequiredOnChange = specializedPPERequiredOnChange;
+        function ppeGuideOnChange(eContext) {
+            var form = eContext.getFormContext();
+            var NCATFactorGuide = form.getAttribute("ts_ppeguide").getValue();
+            var webResourcePPEGuide = form.getControl("WebResource_PPEGuide");
+            if (NCATFactorGuide)
+                webResourcePPEGuide.setVisible(true);
+            else
+                webResourcePPEGuide.setVisible(false);
+        }
+        Operation.ppeGuideOnChange = ppeGuideOnChange;
     })(Operation = ROM.Operation || (ROM.Operation = {}));
 })(ROM || (ROM = {}));

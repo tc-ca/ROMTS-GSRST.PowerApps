@@ -10,8 +10,10 @@
     <layoutxml>
       <grid name="ts_operationcontacts" jump="ts_name" select="1" icon="1" preview="0">
         <row name="ts_operationcontact" id="ts_operationcontactid">
-          <cell name="ts_name" width="300" />
-          <cell name="createdon" width="125" />
+          <cell name="a_117d01c19b474e70b5a955a4dce8c284.fullname" width="188" />
+          <cell name="ts_connectionrole" width="115" />
+          <cell name="a_117d01c19b474e70b5a955a4dce8c284.parentcustomerid" width="219" />
+          <cell name="a_62b204c790bd499e8d4c849282c226a7.ts_stakeholder" width="234" />
         </row>
       </grid>
     </layoutxml>
@@ -20,11 +22,17 @@
       <fetch version="1.0" mapping="logical">
         <entity name="ts_operationcontact">
           <attribute name="ts_operationcontactid" />
-          <attribute name="ts_name" />
-          <attribute name="createdon" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <link-entity alias="a_117d01c19b474e70b5a955a4dce8c284" name="contact" to="ts_contact" from="contactid" link-type="outer" visible="false">
+            <attribute name="fullname" />
+            <attribute name="parentcustomerid" />
+          </link-entity>
+          <attribute name="ts_connectionrole" />
+          <link-entity alias="a_62b204c790bd499e8d4c849282c226a7" name="ovs_operation" to="ts_operation" from="ovs_operationid" link-type="outer" visible="false">
+            <attribute name="ts_stakeholder" />
+          </link-entity>
         </entity>
       </fetch>
     </fetchxml>

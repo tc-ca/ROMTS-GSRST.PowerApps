@@ -10,13 +10,13 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" preview="1" icon="1">
         <row name="result" id="ts_operationcontactid">
-          <cell name="ts_operation" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="ts_role" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="a_30cd0c34cae34b47afbb7233fb3f2c72.parentcustomerid" width="100" />
-          <cell name="a_30cd0c34cae34b47afbb7233fb3f2c72.firstname" width="100" />
-          <cell name="a_30cd0c34cae34b47afbb7233fb3f2c72.lastname" width="100" />
-          <cell name="a_30cd0c34cae34b47afbb7233fb3f2c72.emailaddress1" width="100" />
-          <cell name="a_30cd0c34cae34b47afbb7233fb3f2c72.telephone1" width="100" />
+          <cell name="ts_operation" width="100" />
+          <cell name="a_30cd0c34cae34b47afbb7233fb3f2c72.fullname" width="100" />
+          <cell name="a_30cd0c34cae34b47afbb7233fb3f2c72.parentcustomerid" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_30cd0c34cae34b47afbb7233fb3f2c72.emailaddress1" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_30cd0c34cae34b47afbb7233fb3f2c72.telephone1" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_connectionrole" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_0606eca372afec11983e002248ade910.statecode" width="150" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
         </row>
       </grid>
     </layoutxml>
@@ -24,17 +24,19 @@
     <fetchxml>
       <fetch version="1.0" output-format="xml-platform" mapping="logical">
         <entity name="ts_operationcontact">
-          <order attribute="ts_operation" descending="false" />
-          <attribute name="ts_role" />
-          <attribute name="ts_operation" />
-          <attribute name="ts_operationcontactid" />
+          <order attribute="ts_connectionrole" descending="false" />
           <link-entity alias="a_30cd0c34cae34b47afbb7233fb3f2c72" name="contact" to="ts_contact" from="contactid" link-type="outer" visible="false">
             <attribute name="parentcustomerid" />
-            <attribute name="firstname" />
-            <attribute name="lastname" />
             <attribute name="emailaddress1" />
             <attribute name="telephone1" />
+            <attribute name="fullname" />
           </link-entity>
+          <attribute name="ts_connectionrole" />
+          <link-entity alias="a_0606eca372afec11983e002248ade910" name="ts_role" from="ts_roleid" to="ts_connectionrole" link-type="outer" visible="false">
+            <attribute name="statecode" />
+          </link-entity>
+          <attribute name="ts_operationcontactid" />
+          <attribute name="ts_operation" />
         </entity>
       </fetch>
     </fetchxml>

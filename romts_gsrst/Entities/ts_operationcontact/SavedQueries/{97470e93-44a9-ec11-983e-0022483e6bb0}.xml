@@ -11,7 +11,7 @@
       <grid name="resultset" jump="ts_name" select="1" preview="1" icon="1">
         <row name="result" id="ts_operationcontactid">
           <cell name="ts_operation" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="ts_role" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_connectionrole" width="100" />
           <cell name="a_30cd0c34cae34b47afbb7233fb3f2c72.parentcustomerid" width="100" />
           <cell name="a_30cd0c34cae34b47afbb7233fb3f2c72.firstname" width="100" />
           <cell name="a_30cd0c34cae34b47afbb7233fb3f2c72.lastname" width="100" />
@@ -25,9 +25,7 @@
       <fetch version="1.0" output-format="xml-platform" mapping="logical">
         <entity name="ts_operationcontact">
           <order attribute="ts_operation" descending="false" />
-          <attribute name="ts_role" />
           <attribute name="ts_operation" />
-          <attribute name="ts_operationcontactid" />
           <link-entity alias="a_30cd0c34cae34b47afbb7233fb3f2c72" name="contact" to="ts_contact" from="contactid" link-type="outer" visible="false">
             <attribute name="parentcustomerid" />
             <attribute name="firstname" />
@@ -35,6 +33,8 @@
             <attribute name="emailaddress1" />
             <attribute name="telephone1" />
           </link-entity>
+          <attribute name="ts_connectionrole" />
+          <attribute name="ts_operationcontactid" />
         </entity>
       </fetch>
     </fetchxml>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{d185371f-30b0-ec11-983e-002248ade910}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" preview="1" icon="1">
+        <row name="result" id="ts_operationcontactid">
+          <cell name="ts_operation" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_e6e15b7d26a9ec11983e0022483e67d3.parentcustomerid" width="150" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_e6e15b7d26a9ec11983e0022483e67d3.emailaddress1" width="150" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_e6e15b7d26a9ec11983e0022483e67d3.firstname" width="100" disableSorting="1" />
+          <cell name="a_e6e15b7d26a9ec11983e0022483e67d3.lastname" width="100" disableSorting="1" />
+          <cell name="ts_connectionrole" width="100" />
+          <cell name="a_0606eca372afec11983e002248ade910.statecode" width="100" disableSorting="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="ts_operationcontact">
+          <order attribute="ts_operation" descending="false" />
+          <attribute name="ts_operation" />
+          <attribute name="ts_connectionrole" />
+          <link-entity alias="a_0606eca372afec11983e002248ade910" name="ts_role" from="ts_roleid" to="ts_connectionrole" link-type="outer" visible="false">
+            <attribute name="statecode" />
+          </link-entity>
+          <link-entity alias="a_e6e15b7d26a9ec11983e0022483e67d3" name="contact" from="contactid" to="ts_contact" link-type="outer" visible="false">
+            <attribute name="lastname" />
+            <attribute name="firstname" />
+            <attribute name="emailaddress1" />
+            <attribute name="parentcustomerid" />
+          </link-entity>
+          <attribute name="ts_operationcontactid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20220328.2</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Contact Operation - Contact Detail" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form headerdensity="HighWithControls">
       <tabs>
         <tab verticallayout="true" id="{0e111c6a-92d1-438f-ae08-44bffac9673f}" IsUserDefined="1" name="{0e111c6a-92d1-438f-ae08-44bffac9673f}" locklevel="0" expanded="true" showlabel="true">
           <labels>
@@ -34,7 +34,12 @@
                         <labels>
                           <label description="Operation" languagecode="1033" />
                         </labels>
-                        <control id="ts_operation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operation" disabled="false" />
+                        <control id="ts_operation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operation" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{CCA2CAE4-216E-46B5-934E-D9112870F36F}</DefaultViewId>
+                            <AvailableViewIds>{CCA2CAE4-216E-46B5-934E-D9112870F36F},{4361BDCE-D4AE-EC11-983E-002248ADE910},{9C95075E-BAD6-41DF-909D-8718A84E9B62},{DFCAC278-14E6-45D1-8E67-289F2C7082A1},{D52627C9-3B04-4F5C-996E-2B2EB113C88D},{D49BB97C-B4F2-4703-A0F9-341427D9D092},{6441A14D-7E50-4496-AD85-7E6DB24F9AA3},{1F56B336-2831-4BBA-92BE-0B5D47E97DF4},{3E66EB14-1A43-4DD2-A7C4-9D4FC1C4DAE8},{5A514837-50BF-40D5-B1CF-EDB747DDDF58},{B29C07A0-71FB-EB11-94EF-000D3AE99A90}</AvailableViewIds>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -46,11 +51,34 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{7add55b6-56a2-8238-2d89-796d592a423e}" showlabel="true" locklevel="0">
+                      <cell id="{00920ee7-8a45-d452-6265-6955c6245699}" showlabel="false" colspan="1" auto="false">
+                        <labels>
+                          <label description="Contact" languagecode="1033" />
+                        </labels>
+                        <control id="Contact" classid="{5C5600E0-1D6E-4205-A272-BE80DA87FD42}" datafieldname="ts_contact" disabled="false">
+                          <parameters>
+                            <QuickForms>&lt;QuickFormIds&gt;&lt;QuickFormId entityname="contact"&gt;bdb0ae1c-32fa-4374-b637-8dafe107bc44&lt;/QuickFormId&gt;&lt;/QuickFormIds&gt;</QuickForms>
+                            <ControlMode>Edit</ControlMode>
+                            <DisplayAsCustomer360Tile>false</DisplayAsCustomer360Tile>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9b4a9097-ad28-2ab7-7981-c5427d72b5bb}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Role" languagecode="1033" />
                         </labels>
-                        <control id="ts_role" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_role" disabled="false" />
+                        <control id="ts_connectionrole" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_connectionrole" disabled="false" uniqueid="{5857c44c-1ea7-28a5-127c-42bda48dc911}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{7CF60EAA-3B6C-4B7B-B144-A3A273CE91AA}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -123,6 +151,61 @@
         </NavBarAreas>
       </Navigation>
       <controlDescriptions />
+      <header id="{8a7002b2-dbc8-4d20-ab0b-679fa4cd43ff}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{c95fcbea-d25b-499c-9de6-67eb912976b3}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{31823bfc-708d-490f-a824-5711cf3eecea}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{432733c6-a71a-4bf7-8fe6-bc9413b51d1c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{13d635b9-eaf4-4d88-b9e2-a0861d27eba6}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{7be5ac78-535c-4e92-a36b-335859c7e2fb}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{022708a3-8b42-4ec3-859c-c613f43d1cde}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{4bac6212-9669-4111-9b89-cac0c3fc26a2}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <formLibraries>
+        <Library name="ts_/js/OperationContact.js" libraryUniqueId="{83c9c89f-33ad-4602-a4cb-a9a7bc8ac7f8}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="true" active="true">
+          <Handlers>
+            <Handler functionName="ROM.OperationContact.onLoad" libraryName="ts_/js/OperationContact.js" handlerUniqueId="{fdbae178-6895-4a34-9c5f-66d8655e55ce}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

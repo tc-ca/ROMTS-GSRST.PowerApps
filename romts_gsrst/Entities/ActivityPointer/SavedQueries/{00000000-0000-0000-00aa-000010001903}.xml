@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery unmodified="1">
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{00000000-0000-0000-00aa-000010001903}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="activitypointers" jump="subject" select="1" icon="1" preview="1">
+        <row name="activitypointer" id="activityid" multiobjectidfield="activitytypecode">
+          <cell name="subject" width="250" />
+          <cell name="activitytypecode" width="110" />
+          <cell name="statecode" width="100" />
+          <cell name="prioritycode" width="100" />
+          <cell name="scheduledend" width="140" />
+          <cell name="createdby" width="100" />
+          <cell name="regardingobjectid" width="100" />
+          <cell name="instancetypecode" width="100" ishidden="1" />
+          <cell name="community" width="100" ishidden="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch distinct="false" mapping="logical">
+        <entity name="activitypointer">
+          <attribute name="activitytypecode" />
+          <attribute name="subject" />
+          <attribute name="statecode" />
+          <attribute name="createdby" />
+          <attribute name="regardingobjectid" />
+          <attribute name="activityid" />
+          <attribute name="prioritycode" />
+          <attribute name="scheduledend" />
+          <attribute name="instancetypecode" />
+          <attribute name="community" />
+          <order attribute="subject" descending="false" />
+          <filter type="and">
+            <filter type="and">
+              <filter type="or">
+                <condition attribute="statecode" operator="eq" value="0" />
+                <condition attribute="statecode" operator="eq" value="3" />
+              </filter>
+              <condition attribute="isregularactivity" operator="eq" value="1" />
+            </filter>
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Open Activity Associated View" languagecode="1033" />
+      <LocalizedName description="Vue associée Activité ouverte" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
