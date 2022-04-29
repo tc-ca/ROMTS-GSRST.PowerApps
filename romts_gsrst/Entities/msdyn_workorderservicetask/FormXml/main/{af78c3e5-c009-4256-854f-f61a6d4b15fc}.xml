@@ -1011,6 +1011,11 @@
               <Title LCID="1028" Text="即時程序" />
             </Titles>
           </NavBarByRelationshipItem>
+          <NavBarByRelationshipItem RelationshipName="ts_msdyn_workorderservicetask_msdyn_workorde" Sequence="10000" Area="Info" Id="nav_ts_msdyn_workorderservicetask_msdyn_workorde" Show="false">
+            <Titles>
+              <Title LCID="1033" Text="Work Order Incidents" />
+            </Titles>
+          </NavBarByRelationshipItem>
           <NavBarByRelationshipItem RelationshipName="ts_Evidence_WorkOrderServiceTask" Sequence="10000" Area="Info" Id="nav_ts_Evidence_WorkOrderServiceTask" Show="false">
             <Titles>
               <Title LCID="1033" Text="Evidence" />
@@ -1024,11 +1029,6 @@
           <NavBarByRelationshipItem RelationshipName="ts_Files_msdyn_workorderservicetasks" Sequence="10000" Area="Info" Id="nav_ts_Files_msdyn_workorderservicetasks" Show="false">
             <Titles>
               <Title LCID="1033" Text="Files" />
-            </Titles>
-          </NavBarByRelationshipItem>
-          <NavBarByRelationshipItem RelationshipName="ts_msdyn_workorderservicetask_msdyn_workorde" Sequence="10000" Area="Info" Id="nav_ts_msdyn_workorderservicetask_msdyn_workorde" Show="false">
-            <Titles>
-              <Title LCID="1033" Text="Work Order Incidents" />
             </Titles>
           </NavBarByRelationshipItem>
         </NavBar>
@@ -1390,6 +1390,11 @@
         <event name="onchange" application="true" active="true" attribute="msdyn_tasktype">
           <Handlers>
             <Handler functionName="ROM.WorkOrderServiceTask.taskTypeOnChange" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{cc232d73-2a36-499e-aa90-39ddd50c849e}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ovs_questionnaireresponse">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTask.surveyResponseOnChange" libraryName="ovs_/js/WorkOrderServiceTask.js" handlerUniqueId="{0c25ac96-2b6b-6a0b-0477-5a02040dcb50}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

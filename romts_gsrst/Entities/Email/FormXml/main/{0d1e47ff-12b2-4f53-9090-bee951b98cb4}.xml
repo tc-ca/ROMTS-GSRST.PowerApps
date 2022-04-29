@@ -27,6 +27,12 @@
                           <label description="To" languagecode="1033" solutionaction="Added" />
                           <label description="À" languagecode="1036" solutionaction="Added" />
                         </labels>
+                        <control id="to" classid="{CBFB742C-14E7-4a17-96BB-1A13F7F64AA2}" datafieldname="to" disabled="false" uniqueid="{d7b65b23-0242-c916-0e7c-0eae612336d8}" solutionaction="Modified">
+                          <parameters>
+                            <AutoResolve solutionaction="Added">true</AutoResolve>
+                            <DisableMru solutionaction="Added">true</DisableMru>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -35,6 +41,12 @@
                           <label description="Cc" languagecode="1033" solutionaction="Added" />
                           <label description="Cc" languagecode="1036" solutionaction="Added" />
                         </labels>
+                        <control id="cc" classid="{CBFB742C-14E7-4a17-96BB-1A13F7F64AA2}" datafieldname="cc" disabled="false" uniqueid="{0ed35596-868e-d8d1-48b8-c3de2991e810}" solutionaction="Modified">
+                          <parameters>
+                            <AutoResolve solutionaction="Added">true</AutoResolve>
+                            <DisableMru solutionaction="Added">true</DisableMru>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -43,6 +55,12 @@
                           <label description="Bcc" languagecode="1033" solutionaction="Added" />
                           <label description="Cci" languagecode="1036" solutionaction="Added" />
                         </labels>
+                        <control id="bcc" classid="{CBFB742C-14E7-4a17-96BB-1A13F7F64AA2}" datafieldname="bcc" disabled="false" uniqueid="{ab078c77-a631-b5bd-73bd-9bb6234c7e5a}" solutionaction="Modified">
+                          <parameters>
+                            <AutoResolve solutionaction="Added">true</AutoResolve>
+                            <DisableMru solutionaction="Added">true</DisableMru>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -50,6 +68,34 @@
                         <labels>
                           <label description="Subject" languagecode="1033" solutionaction="Added" />
                           <label description="Objet" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{95e415d4-4554-eb49-79ba-39b53ee1b892}" showlabel="false" colspan="1" auto="false" rowspan="1" ordinalvalue="10005" solutionaction="Added">
+                        <labels>
+                          <label description="EmailAttachFile" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_EmailAttachFile" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/EmailAttachFile.html</Url>
+                            <PassParameters>true</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{8B09BEE8-6BC5-EC11-A7B5-0022483DCACC}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                      <cell id="{2a5348ba-3312-2253-a27a-964a6d0a7da9}" showlabel="false" ordinalvalue="20006" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
                         </labels>
                       </cell>
                     </row>
@@ -92,31 +138,7 @@
             <column width="33%" id="1">
               <sections>
                 <section name="attachments" showlabel="false" showbar="false" locklevel="0" id="{C10BBD11-D5C0-4DE8-B524-54D00F143055}" height="auto" IsUserDefined="0" layout="varheight" columns="11" labelid="{21cace50-4e0b-48ea-b2f8-0e61791a0f42}" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
-                  <rows>
-                    <row>
-                      <cell id="{9215811b-53c0-2917-c784-84e12ea7842d}" showlabel="false" colspan="2" auto="false" rowspan="6" ordinalvalue="10001" solutionaction="Added">
-                        <labels>
-                          <label description="AddEmailAttachmentTest" languagecode="1033" />
-                        </labels>
-                        <control id="WebResource_AddEmailAttachmentTest" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
-                          <parameters>
-                            <Url>ts_AddEmailAttachmentTest</Url>
-                            <PassParameters>false</PassParameters>
-                            <Security>false</Security>
-                            <Scrolling>auto</Scrolling>
-                            <Border>true</Border>
-                            <ShowOnMobileClient>false</ShowOnMobileClient>
-                            <WebResourceId>{087A4E30-72C2-EC11-983E-0022483D7D11}</WebResourceId>
-                          </parameters>
-                        </control>
-                        <events>
-                          <event name="onload" application="false">
-                            <dependencies />
-                          </event>
-                        </events>
-                      </cell>
-                    </row>
-                  </rows>
+                  <rows />
                 </section>
                 <section name="tab_4_section_2" showlabel="false" showbar="false" locklevel="0" id="{64d62970-6981-1123-d95e-a7c785918c56}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" ordinalvalue="3">
                   <rows>
@@ -190,6 +212,9 @@
           </Handlers>
         </event>
       </events>
+      <Navigation>
+        <NavBar />
+      </Navigation>
       <formLibraries>
         <Library name="ts_/js/Email.js" libraryUniqueId="{dbf1154f-bd65-429b-82b6-6bebdf79db56}" solutionaction="Added" />
       </formLibraries>

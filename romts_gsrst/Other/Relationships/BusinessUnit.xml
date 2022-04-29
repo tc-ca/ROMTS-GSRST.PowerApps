@@ -16,7 +16,7 @@
     <RelationshipDescription>
       <Descriptions>
         <Description description="Unique identifier for the business unit that owns the record" languagecode="1033" />
-        <Description description="Identificateur unique de la division propriétaire de l'enregistrement" languagecode="1036" />
+        <Description description="Identificateur unique de la division propriétaire de l’enregistrement" languagecode="1036" />
       </Descriptions>
     </RelationshipDescription>
   </EntityRelationship>
@@ -36,7 +36,7 @@
     <RelationshipDescription>
       <Descriptions>
         <Description description="Unique identifier for the business unit that owns the record" languagecode="1033" />
-        <Description description="Identificateur unique de la division propriétaire de l'enregistrement" languagecode="1036" />
+        <Description description="Identificateur unique de la division propriétaire de l’enregistrement" languagecode="1036" />
       </Descriptions>
     </RelationshipDescription>
   </EntityRelationship>
@@ -56,7 +56,7 @@
     <RelationshipDescription>
       <Descriptions>
         <Description description="Unique identifier for the business unit that owns the record" languagecode="1033" />
-        <Description description="Identificateur unique de l'unité commerciale propriétaire de l'enregistrement" languagecode="1036" />
+        <Description description="Identificateur unique de la division propriétaire de l’enregistrement" languagecode="1036" />
       </Descriptions>
     </RelationshipDescription>
   </EntityRelationship>
@@ -811,5 +811,26 @@
         <RelationshipRoleType>0</RelationshipRoleType>
       </EntityRelationshipRole>
     </EntityRelationshipRoles>
+  </EntityRelationship>
+  <EntityRelationship Name="ts_serviceofenforcementaction_businessunit_owningbusinessunit">
+    <EntityRelationshipType>OneToMany</EntityRelationshipType>
+    <IsCustomizable>1</IsCustomizable>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <IsHierarchical>0</IsHierarchical>
+    <ReferencingEntityName>ts_serviceofenforcementaction</ReferencingEntityName>
+    <ReferencedEntityName>BusinessUnit</ReferencedEntityName>
+    <CascadeAssign>NoCascade</CascadeAssign>
+    <CascadeDelete>NoCascade</CascadeDelete>
+    <CascadeReparent>NoCascade</CascadeReparent>
+    <CascadeShare>NoCascade</CascadeShare>
+    <CascadeUnshare>NoCascade</CascadeUnshare>
+    <CascadeRollupView>NoCascade</CascadeRollupView>
+    <ReferencingAttributeName>OwningBusinessUnit</ReferencingAttributeName>
+    <RelationshipDescription>
+      <Descriptions>
+        <Description description="Unique identifier of the business unit that owns the activity." languagecode="1033" />
+        <Description description="Identificateur unique de la division propriétaire de l'activité." languagecode="1036" />
+      </Descriptions>
+    </RelationshipDescription>
   </EntityRelationship>
 </EntityRelationships>

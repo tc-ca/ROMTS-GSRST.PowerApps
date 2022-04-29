@@ -41,7 +41,7 @@ var ROM;
     (function (Email) {
         function onLoad(eContext) {
             return __awaiter(this, void 0, void 0, function () {
-                var formContext, regarding, workOrderId, caseId, conditionWorkOrderCase_1, conditionProgramTeam_1, ownerFetchXML, userId, currentUserBusinessUnitFetchXML, caseFetchXML, workOrderContactsFetchXML, operationalContactsfetchXML, viewOperationalContactId, layoutXmlContact, viewDisplayName;
+                var formContext, regarding, workOrderId, caseId, conditionWorkOrderCase_1, conditionProgramTeam_1, ownerFetchXML, userId, currentUserBusinessUnitFetchXML, caseCon, caseFetchXML, workOrderContactsFetchXML, operationalContactsfetchXML, viewOperationalContactId, layoutXmlContact, viewDisplayName;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
@@ -120,34 +120,38 @@ var ROM;
                             ].join("");
                             caseFetchXML = "?fetchXml=" + encodeURIComponent(caseFetchXML);
                             return [4 /*yield*/, Xrm.WebApi.retrieveMultipleRecords("incident", caseFetchXML).then(function success(result) {
-                                    caseId = result.entities[0].incidentid;
-                                    //Retrieve Contacts related to Case
-                                    var caseContactsFetchXML = [
-                                        "<fetch distinct='true'>",
-                                        "<entity name ='contact'>",
-                                        "<attribute name='fullname'/>",
-                                        "<attribute name='contactid'/>",
-                                        "<link-entity name='ts_operationcontact' from='ts_contact' to='contactid' link-type='inner' alias='fj'>",
-                                        "<filter type='or'>",
-                                        conditionProgramTeam_1,
-                                        "</filter>",
-                                        "<link-entity name='ts_incident_ts_operationcontact' from='ts_operationcontactid' to='ts_operationcontactid' visible='false' intersect='true'>",
-                                        "<link-entity name='incident' from='incidentid' to='incidentid' alias='fs'>",
-                                        "<filter type='and'>",
-                                        "<condition attribute='incidentid' operator='eq' value='", caseId, "'/>",
-                                        "</filter>",
-                                        "</link-entity>",
-                                        "</link-entity>",
-                                        "</link-entity>",
-                                        "</entity>",
-                                        "</fetch>"
-                                    ].join("");
-                                    caseContactsFetchXML = "?fetchXml=" + encodeURIComponent(caseContactsFetchXML);
-                                    Xrm.WebApi.retrieveMultipleRecords("contact", caseContactsFetchXML).then(function (result) {
-                                        result.entities.forEach(function (contact) {
-                                            conditionWorkOrderCase_1 += "<condition attribute='contactid' operator='eq' value='" + contact.contactid + "'/>";
+                                    if (result.entities[0] != null) {
+                                        caseId = result.entities[0].incidentid;
+                                        //Retrieve Contacts related to Case
+                                        var caseContactsFetchXML = [
+                                            "<fetch distinct='true'>",
+                                            "<entity name ='contact'>",
+                                            "<attribute name='fullname'/>",
+                                            "<attribute name='contactid'/>",
+                                            "<link-entity name='ts_operationcontact' from='ts_contact' to='contactid' link-type='inner' alias='fj'>",
+                                            "<filter type='or'>",
+                                            conditionProgramTeam_1,
+                                            "</filter>",
+                                            "<link-entity name='ts_incident_ts_operationcontact' from='ts_operationcontactid' to='ts_operationcontactid' visible='false' intersect='true'>",
+                                            "<link-entity name='incident' from='incidentid' to='incidentid' alias='fs'>",
+                                            "<filter type='and'>",
+                                            "<condition attribute='incidentid' operator='eq' value='", caseId, "'/>",
+                                            "</filter>",
+                                            "</link-entity>",
+                                            "</link-entity>",
+                                            "</link-entity>",
+                                            "</entity>",
+                                            "</fetch>"
+                                        ].join("");
+                                        caseContactsFetchXML = "?fetchXml=" + encodeURIComponent(caseContactsFetchXML);
+                                        caseCon = Xrm.WebApi.retrieveMultipleRecords("contact", caseContactsFetchXML).then(function (result) {
+                                            if (result.entities[0] != null) {
+                                                result.entities.forEach(function (contact) {
+                                                    conditionWorkOrderCase_1 += "<condition attribute='contactid' operator='eq' value='" + contact.contactid + "'/>";
+                                                });
+                                            }
                                         });
-                                    });
+                                    }
                                 })];
                         case 1:
                             _a.sent();
@@ -173,13 +177,21 @@ var ROM;
                             ].join("");
                             workOrderContactsFetchXML = "?fetchXml=" + encodeURIComponent(workOrderContactsFetchXML);
                             return [4 /*yield*/, Xrm.WebApi.retrieveMultipleRecords("contact", workOrderContactsFetchXML).then(function (result) {
-                                    result.entities.forEach(function (contact) {
-                                        conditionWorkOrderCase_1 += "<condition attribute='contactid' operator='eq' value='" + contact.contactid + "'/>";
-                                    });
+                                    if (result.entities[0] != null) {
+                                        result.entities.forEach(function (contact) {
+                                            conditionWorkOrderCase_1 += "<condition attribute='contactid' operator='eq' value='" + contact.contactid + "'/>";
+                                        });
+                                    }
                                 })];
                         case 2:
                             _a.sent();
-                            operationalContactsfetchXML = "<fetch distinct='false'><entity name='contact'><attribute name='fullname'/><attribute name='contactid'/><order attribute='fullname' descending='false'/><filter type='and'><filter type='or'>" + conditionWorkOrderCase_1 + "</filter></filter></entity></fetch>";
+                            //Set custom view for To, CC, BCC fields
+                            if (conditionWorkOrderCase_1 != "") {
+                                operationalContactsfetchXML = "<fetch distinct='false'><entity name='contact'><attribute name='fullname'/><attribute name='contactid'/><order attribute='fullname' descending='false'/><filter type='and'><filter type='or'>" + conditionWorkOrderCase_1 + "</filter></filter></entity></fetch>";
+                            }
+                            else {
+                                operationalContactsfetchXML = "<fetch></fetch>";
+                            }
                             viewOperationalContactId = '{ed2e1b6b-2cb1-ec11-983e-002248adef00}';
                             layoutXmlContact = '<grid name="resultset" object="2" jump="lastname" select="1" icon="1" preview="1"><row name="result" id="contactid"><cell name="fullname" width="300"/></row></grid >';
                             viewDisplayName = "Contact";

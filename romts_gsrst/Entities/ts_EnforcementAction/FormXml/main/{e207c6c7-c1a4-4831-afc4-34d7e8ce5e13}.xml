@@ -39,7 +39,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{0e628da3-3617-4c84-b8b1-3559fd816223}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{0e628da3-3617-4c84-b8b1-3559fd816223}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
                           <label description="Authorized Representative" languagecode="1033" />
                         </labels>
@@ -108,35 +108,48 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{0d9ad6f0-e0a7-45d7-8e49-e273c54c2c39}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{5b3c4176-8184-49fd-b637-d32485380fe0}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
-                          <label description="Method of Service" languagecode="1033" />
+                          <label description="Case" languagecode="1033" />
                         </labels>
-                        <control id="ts_methodofservice" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_methodofservice" disabled="false" />
+                        <control id="ts_case" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_case" disabled="false" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{30af0442-e4c9-4fab-ac8b-54064953dca5}" locklevel="0" colspan="1" rowspan="1">
+                      <cell locklevel="0" id="{c7d21534-77ab-4f10-842b-a5216136c79d}" rowspan="1" colspan="1" auto="false" showlabel="true">
                         <labels>
-                          <label description="Comments" languagecode="1033" />
+                          <label description="Findings" languagecode="1033" />
+                          <label description="Constatations" languagecode="1036" />
                         </labels>
-                        <control id="ts_comments" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_comments" disabled="false" />
+                        <control id="Findings" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ovs_finding</TargetEntityType>
+                            <ViewId>{293497C0-BCAE-EC11-983E-002248ADE910}</ViewId>
+                            <ViewIds>{77179513-BCAE-EC11-983E-002248ADE910},{293497C0-BCAE-EC11-983E-002248ADE910}</ViewIds>
+                            <RelationshipName>ts_EnforcementAction_ts_EnforcementAction</RelationshipName>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
-                      <cell id="{f3602a6b-fdde-4e79-9f55-ce4849bc4e1e}" locklevel="0" colspan="1" rowspan="1">
+                      <cell locklevel="0" id="{5877bc1f-50f0-4556-94d8-8977d4eb5cc2}" rowspan="1" colspan="1">
                         <labels>
-                          <label description="Copy of Receipt" languagecode="1033" />
+                          <label description="Note Text" languagecode="1033" />
                         </labels>
-                        <control id="ts_copyofreceipt" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_copyofreceipt" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{46f40a34-7af6-4960-9593-f76c313b8141}" locklevel="0" colspan="1" rowspan="1">
-                        <labels>
-                          <label description="Time and Date of Service " languagecode="1033" />
-                        </labels>
-                        <control id="ts_timeanddateofservice" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_timeanddateofservice" disabled="false" />
+                        <control id="notescontrol" classid="{06375649-C143-495E-A496-C962E5B4488E}" disabled="false">
+                          <parameters>
+                            <UClientActivities>ts_serviceofenforcementaction</UClientActivities>
+                            <UClientDisplayActivityUsing>defaultfields</UClientDisplayActivityUsing>
+                            <UClientActivityCardMap>appointment:4201:,campaignactivity:4402:,campaignresponse:4401:,email:4202:,fax:4204:,incidentresolution:4206:,letter:4207:,opportunityclose:4208:,orderclose:4209:,phonecall:4210:,quoteclose:4211:,recurringappointmentmaster:4251:,serviceappointment:4214:,socialactivity:4216:,task:4212:,chat:10769:,msdyn_bookingalert:10256:,msfp_alert:10235:,msfp_surveyinvite:10245:,msfp_surveyresponse:10247:,ts_serviceofenforcementaction:10837:,</UClientActivityCardMap>
+                            <UClientActivitiesConfigurationJSON>{"appointment":{"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"},"campaignactivity":{"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"email":{"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"},"fax":{"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"incidentresolution":{"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_surveyresponse":{"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_surveyinvite":{"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"msfp_alert":{"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"},"msdyn_bookingalert":{"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"},"task":{"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"},"socialactivity":{"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"recurringappointmentmaster":{"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"phonecall":{"showStatus":true,"canCreate":true,"createUsing":"default","openUsing":"default"},"orderclose":{"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"opportunityclose":{"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"letter":{"showStatus":true,"canCreate":false,"createUsing":"default","openUsing":"default"},"quoteclose":{"showStatus":false,"canCreate":false,"createUsing":"default","openUsing":"default"},"ts_serviceofenforcementaction":{"showStatus":true,"canCreate":true,"createUsing":"quickcreateform","openUsing":"mainformdialog"}}</UClientActivitiesConfigurationJSON>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                   </rows>

@@ -5,12 +5,15 @@
     <entity Name="ts_operationcontact">
       <LocalizedNames>
         <LocalizedName description="Operation Contact" languagecode="1033" />
+        <LocalizedName description="Operation Contact" languagecode="1036" />
       </LocalizedNames>
       <LocalizedCollectionNames>
         <LocalizedCollectionName description="Operation Contacts" languagecode="1033" />
+        <LocalizedCollectionName description="Operation Contacts" languagecode="1036" />
       </LocalizedCollectionNames>
       <Descriptions>
         <Description description="The Intersect entity to relate Operation and Contact" languagecode="1033" />
+        <Description description="" languagecode="1036" />
       </Descriptions>
       <attributes>
         <attribute PhysicalName="CreatedBy">
@@ -167,7 +170,7 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format></Format>
+          <Format>none</Format>
           <MinValue>-2147483648</MinValue>
           <MaxValue>2147483647</MaxValue>
           <displaynames>
@@ -560,12 +563,20 @@
                   <label description="Active" languagecode="1033" />
                   <label description="Actif" languagecode="1036" />
                 </labels>
+                <Descriptions>
+                  <Description description="" languagecode="1033" />
+                  <Description description="" languagecode="1036" />
+                </Descriptions>
               </state>
               <state value="1" defaultstatus="2" invariantname="Inactive">
                 <labels>
                   <label description="Inactive" languagecode="1033" />
                   <label description="Inactif" languagecode="1036" />
                 </labels>
+                <Descriptions>
+                  <Description description="" languagecode="1033" />
+                  <Description description="" languagecode="1036" />
+                </Descriptions>
               </state>
             </states>
           </optionset>
@@ -626,12 +637,20 @@
                   <label description="Active" languagecode="1033" />
                   <label description="Actif" languagecode="1036" />
                 </labels>
+                <Descriptions>
+                  <Description description="" languagecode="1033" />
+                  <Description description="" languagecode="1036" />
+                </Descriptions>
               </status>
               <status value="2" state="1">
                 <labels>
                   <label description="Inactive" languagecode="1033" />
                   <label description="Inactif" languagecode="1036" />
                 </labels>
+                <Descriptions>
+                  <Description description="" languagecode="1033" />
+                  <Description description="" languagecode="1036" />
+                </Descriptions>
               </status>
             </statuses>
           </optionset>
@@ -719,9 +738,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Role" languagecode="1033" />
+            <displayname description="Role" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Connection Role" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_contact">
@@ -758,9 +779,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Contact" languagecode="1033" />
+            <displayname description="Contact" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Contact" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_Incident">
@@ -796,9 +819,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Case" languagecode="1033" />
+            <displayname description="Case" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_name">
@@ -836,9 +861,11 @@
           <Length>200</Length>
           <displaynames>
             <displayname description="Name" languagecode="1033" />
+            <displayname description="Name" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="The name of the custom entity." languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_operation">
@@ -875,9 +902,52 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Operation" languagecode="1033" />
+            <displayname description="Operation" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Operation" languagecode="1033" />
+            <Description description="" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ts_operationalstatus">
+          <Type>picklist</Type>
+          <Name>ts_operationalstatus</Name>
+          <LogicalName>ts_operationalstatus</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20220425.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>717750000</AppDefaultValue>
+          <OptionSetName>ts_operationalstatus</OptionSetName>
+          <displaynames>
+            <displayname description="Operational Status" languagecode="1033" />
+            <displayname description="Statut opérationnel" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_operationcontactId">
@@ -952,9 +1022,11 @@
           <OptionSetName>ts_role</OptionSetName>
           <displaynames>
             <displayname description="DELETE Role" languagecode="1033" />
+            <displayname description="DELETE Role" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Role" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_workorder">
@@ -990,9 +1062,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Work Order" languagecode="1033" />
+            <displayname description="Work Order" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="UTCConversionTimeZoneCode">

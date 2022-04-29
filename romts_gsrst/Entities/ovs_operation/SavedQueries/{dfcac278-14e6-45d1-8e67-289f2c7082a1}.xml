@@ -11,6 +11,8 @@
       <grid name="ovs_operations" jump="ovs_name" select="1" icon="1" preview="0">
         <row name="ovs_operation" id="ovs_operationid">
           <cell name="ovs_name" width="300" />
+          <cell name="ts_site" width="100" />
+          <cell name="ts_operationalstatus" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -24,6 +26,8 @@
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <order attribute="ovs_name" descending="false" />
+          <attribute name="ts_site" />
+          <attribute name="ts_operationalstatus" />
         </entity>
       </fetch>
     </fetchxml>

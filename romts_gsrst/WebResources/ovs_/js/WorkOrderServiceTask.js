@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -270,8 +270,22 @@ var ROM;
             }
             // Get the web resource inner content window
             CompleteQuestionnaire(wrCtrl);
+            showUnsavedNotification();
         }
         WorkOrderServiceTask.onSave = onSave;
+        function showUnsavedNotification() {
+            // define notification object
+            var notification = {
+                type: 1,
+                level: 1,
+                message: "Test error notification"
+            };
+            Xrm['App'].addGlobalNotification(notification).then(function success(result) {
+                // perform other operations as required on notification display
+            }, function (error) {
+                // handle error conditions
+            });
+        }
         function setTaskTypeFilteredView(form) {
             var workOrderValue = form.getAttribute("msdyn_workorder").getValue();
             var workOrderId = workOrderValue ? workOrderValue[0].id : "";
