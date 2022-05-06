@@ -10,19 +10,19 @@
     <layoutxml>
       <grid name="qm_rclegislations" jump="qm_name" select="1" icon="1" preview="0">
         <row name="qm_rclegislation" id="qm_rclegislationid">
-          <cell name="qm_name" width="100" />
+          <cell name="qm_name" width="300" />
         </row>
       </grid>
     </layoutxml>
     <querytype>64</querytype>
     <fetchxml>
-      <fetch version="1.0" mapping="logical">
+      <fetch version="1.0" mapping="logical" distinct="true">
         <entity name="qm_rclegislation">
           <attribute name="qm_rclegislationid" />
+          <attribute name="qm_name" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <attribute name="qm_name" />
         </entity>
       </fetch>
     </fetchxml>

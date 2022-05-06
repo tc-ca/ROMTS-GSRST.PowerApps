@@ -16,10 +16,15 @@
     </layoutxml>
     <querytype>0</querytype>
     <fetchxml>
-      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
         <entity name="qm_rclegislation">
           <attribute name="qm_name" />
           <attribute name="qm_rclegislationid" />
+          <link-entity name="qm_tylegislationtype" alias="aa" link-type="inner" from="qm_tylegislationtypeid" to="qm_tylegislationtypeid">
+            <filter type="and">
+              <condition attribute="ts_visibleinlookup" operator="eq" value="717750000" />
+            </filter>
+          </link-entity>
         </entity>
       </fetch>
     </fetchxml>
