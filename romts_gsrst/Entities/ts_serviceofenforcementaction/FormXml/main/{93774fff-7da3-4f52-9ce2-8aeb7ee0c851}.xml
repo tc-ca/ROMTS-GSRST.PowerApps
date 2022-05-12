@@ -7,7 +7,7 @@
     <FormActivationState>1</FormActivationState>
     <form headerdensity="HighWithControls">
       <tabs>
-        <tab verticallayout="true" id="{8dabf56c-0fb0-402c-b75a-aa43a25482b6}" IsUserDefined="1">
+        <tab verticallayout="true" id="{8dabf56c-0fb0-402c-b75a-aa43a25482b6}" IsUserDefined="1" name="general">
           <labels>
             <label description="General" languagecode="1033" />
             <label description="Général" languagecode="1036" />
@@ -22,7 +22,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{8123f519-c79a-4479-a3a4-05afe5b2193b}">
+                      <cell id="{8123f519-c79a-4479-a3a4-05afe5b2193b}" visible="false">
                         <labels>
                           <label description="Subject" languagecode="1033" />
                           <label description="Sujet" languagecode="1036" />
@@ -43,6 +43,7 @@
                       <cell id="{63864548-3346-4812-a64a-b608e4229a92}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Authorized Representative" languagecode="1033" />
+                          <label description="Authorized Representative" languagecode="1036" />
                         </labels>
                         <control id="ts_authorizedrepresentative" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_authorizedrepresentative" disabled="false" />
                       </cell>
@@ -51,6 +52,7 @@
                       <cell id="{b48f28e7-3954-4432-8924-5e05bd1d2cda}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Method of Service" languagecode="1033" />
+                          <label description="Method of Service" languagecode="1036" />
                         </labels>
                         <control id="ts_methodofservice" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="ts_methodofservice" disabled="false" />
                       </cell>
@@ -59,6 +61,7 @@
                       <cell id="{77a38c8a-989f-4b5c-b0fb-5084898d1196}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Time and Date of Service" languagecode="1033" />
+                          <label description="Time and Date of Service (FR)" languagecode="1036" />
                         </labels>
                         <control id="ts_timeanddateofservice" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_timeanddateofservice" disabled="false" />
                       </cell>
@@ -67,6 +70,7 @@
                       <cell id="{0765de6e-c449-4544-b45f-55c239b74571}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Comments" languagecode="1033" />
+                          <label description="Comments (FR)" languagecode="1036" />
                         </labels>
                         <control id="ts_comments" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_comments" disabled="false" />
                       </cell>
@@ -75,6 +79,7 @@
                       <cell id="{2f7eb3d8-8c61-48bd-902b-c5df9723a0f7}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Copy of Receipt (IF applicable)" languagecode="1033" />
+                          <label description="Copy of Receipt (IF applicable) (FR)" languagecode="1036" />
                         </labels>
                         <control id="ts_copyofreceiptifapplicable" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_copyofreceiptifapplicable" disabled="false" />
                       </cell>
@@ -85,19 +90,72 @@
             </column>
             <column width="66%">
               <sections>
-                <section showlabel="false" showbar="false" id="{1897137a-c449-4a0f-a2fe-47cacb7f7d5d}" IsUserDefined="0" height="auto">
+                <section name="additional_details" id="03ba84fc-389e-44b7-b4f7-69b5fede1be2" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
                   <labels>
-                    <label description="Notes" languagecode="1033" />
+                    <label description="Additional Details" languagecode="1033" />
+                    <label description="Additional Details (FR)" languagecode="1036" />
                   </labels>
                   <rows>
                     <row />
                     <row>
-                      <cell id="{87aa1ce9-2abc-4758-8ad5-32365c89a7c8}" colspan="1" rowspan="1">
+                      <cell id="{3d847f0f-0fa8-4f18-9480-a6053174f4bb}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
-                          <label description="Regarding" languagecode="1033" />
-                          <label description="Concernant" languagecode="1036" />
+                          <label description="Verbal Warning Given To" languagecode="1033" />
+                          <label description="Verbal Warning Given To (FR)" languagecode="1036" />
                         </labels>
-                        <control id="regardingobjectid" classid="{F3015350-44A2-4aa0-97B5-00166532B5E9}" datafieldname="regardingobjectid" />
+                        <control id="ts_verbalwarninggivento" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_verbalwarninggivento" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a2d96a4a-ed64-4366-8bb3-2a8e4e702597}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Individual Position" languagecode="1033" />
+                          <label description="Individual Position (FR)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_individualposition" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_individualposition" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{812388da-5636-4af6-bc88-591fd42b00ff}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Individual Company" languagecode="1033" />
+                          <label description="Individual Company (FR)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_individualcompany" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_individualcompany" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f2b083fb-ac2f-4fa1-ac6a-0f0112fdc8ca}" userspacer="true" showlabel="false" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{10435e45-7fd7-4693-b62e-aaaf17449329}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="When was the verbal warning given ?" languagecode="1033" />
+                          <label description="When was the verbal warning given ? (FR)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_verbalwarningdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_verbalwarningdate" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8c39084a-cce7-4e61-b367-446d1b75cf32}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Where was the verbal warning given ?" languagecode="1033" />
+                          <label description="Where was the verbal warning given ? (FR)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_verbalwarningwhere" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_verbalwarningwhere" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4da122c1-26ad-41f2-832a-80d5ea42d215}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Details" languagecode="1033" />
+                          <label description="Détails" languagecode="1036" />
+                        </labels>
+                        <control id="ts_verbalwarningwhereother" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_verbalwarningwhereother" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -110,14 +168,12 @@
       <header id="{61107d52-6223-4298-8139-c025b18f30bf}" celllabelposition="Top" columns="1111" labelwidth="115">
         <rows>
           <row>
-            <cell id="{9182be88-da39-45bd-ae3c-3ed7353ddab1}">
+            <cell locklevel="0" id="{3d74139e-88ed-491c-ba3b-0e6afa656b3e}">
               <labels>
-                <label description="Priority" languagecode="1033" />
-                <label description="Priorité" languagecode="1036" />
+                <label description="" languagecode="1033" />
               </labels>
-              <control id="header_prioritycode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="prioritycode" disabled="false" />
             </cell>
-            <cell id="{645a8f94-3186-473a-8417-18f5f4821034}">
+            <cell id="{645a8f94-3186-473a-8417-18f5f4821034}" visible="false">
               <labels>
                 <label description="Due Date" languagecode="1033" />
                 <label description="Date d’échéance" languagecode="1036" />
@@ -137,6 +193,30 @@
                 <label description="Propriétaire" languagecode="1036" />
               </labels>
               <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+            </cell>
+          </row>
+          <row>
+            <cell id="{87aa1ce9-2abc-4758-8ad5-32365c89a7c8}" colspan="1" rowspan="1">
+              <labels>
+                <label description="Regarding" languagecode="1033" />
+                <label description="Concernant" languagecode="1036" />
+              </labels>
+              <control id="regardingobjectid" classid="{F3015350-44A2-4aa0-97B5-00166532B5E9}" datafieldname="regardingobjectid" />
+            </cell>
+            <cell locklevel="0" id="{cbdf7617-b1a8-476d-bff6-87a0ceb1358c}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell locklevel="0" id="{4fc3eb67-516b-45f6-a090-5e95a5a93e8f}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell locklevel="0" id="{1679812b-71c7-4c07-87c2-7dfcfb74ce99}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
             </cell>
           </row>
         </rows>
@@ -165,6 +245,26 @@
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>
+      <formLibraries>
+        <Library name="ts_/js/RecordOfAction.js" libraryUniqueId="{444a1b29-fa44-456d-88d0-4392979242f8}" />
+      </formLibraries>
+      <events>
+        <event name="onchange" application="true" active="true" attribute="ts_verbalwarningwhere">
+          <Handlers>
+            <Handler functionName="ROM.RecordOfAction.verbalWarningWhereOtherOnChange" libraryName="ts_/js/RecordOfAction.js" handlerUniqueId="{147faa44-3e75-4ec2-8712-a0178f59f26a}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="true" active="true">
+          <Handlers>
+            <Handler functionName="ROM.RecordOfAction.onLoad" libraryName="ts_/js/RecordOfAction.js" handlerUniqueId="{713ecea1-7449-4e44-9e45-1fff95176649}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_methodofservice">
+          <Handlers>
+            <Handler functionName="ROM.RecordOfAction.methodOfServiceOnChange" libraryName="ts_/js/RecordOfAction.js" handlerUniqueId="{23aac0d5-9692-41d5-9589-31983dd14c7c}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

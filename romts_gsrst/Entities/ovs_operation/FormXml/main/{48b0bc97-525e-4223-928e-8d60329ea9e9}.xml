@@ -458,7 +458,7 @@
           <columns>
             <column width="50%">
               <sections>
-                <section name="tab_properties_section_5" id="e484c8e7-5861-4c02-8bd4-3a4e2259b642" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="250">
+                <section name="tab_properties_section_5" id="e484c8e7-5861-4c02-8bd4-3a4e2259b642" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="250">
                   <labels>
                     <label description="VSI" languagecode="1033" />
                     <label description="IVS" languagecode="1036" />
@@ -484,7 +484,7 @@
                     </row>
                   </rows>
                 </section>
-                <section name="tab_dangerous_goods" id="5d763774-f1e9-4824-af0f-7bbc1ac2f3ce" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                <section name="tab_dangerous_goods" id="5d763774-f1e9-4824-af0f-7bbc1ac2f3ce" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
                   <labels>
                     <label description="Type Of Dangerous Goods" languagecode="1033" />
                     <label description="Type de marchandises dangereuses" languagecode="1036" />
@@ -510,10 +510,19 @@
                     <row>
                       <cell id="{7712e5b2-6433-905c-e74a-b1925b48eeac}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Is Security Inspection Site" languagecode="1033" />
+                          <label description="Is this a site where Security Inspections (SIs) are conducted?" languagecode="1033" />
                           <label description="Est-ce que ce site est un site d'inspections de sûreté (IS)?" languagecode="1036" />
                         </labels>
                         <control id="ts_issecurityinspectionsite" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_issecurityinspectionsite" disabled="false" uniqueid="{8971219e-da46-7b04-7bbb-83cc9a5577ad}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{2b03fdba-79af-422a-88a7-f27c6940f079}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="In the most recent Overview of the SI conducted, where was inspection overseen?" languagecode="1033" />
+                          <label description="Dans le dernier surveillance de l'IS réalisé, où l'inspection était-elle supervisée?" languagecode="1036" />
+                        </labels>
+                        <control id="ts_securityinspectiondetails" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_securityinspectiondetails" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -634,7 +643,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -821,6 +830,16 @@
         <event name="onchange" application="true" active="true" attribute="ts_ppeguide">
           <Handlers>
             <Handler functionName="ROM.Operation.ppeGuideOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{3731abfc-57f4-4173-b6a7-14f408e6cbf2}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_visualsecurityinspection">
+          <Handlers>
+            <Handler functionName="ROM.Operation.VSIConductedOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{a9ff290b-4b7a-4416-a048-6cb74749d79a}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_issecurityinspectionsite">
+          <Handlers>
+            <Handler functionName="ROM.Operation.SIConductedOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{b37281dc-6fef-481b-b8d8-dd58ad4369c3}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

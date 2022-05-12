@@ -32,6 +32,11 @@
         <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.Alt" Command="ts.msdyn_workorderservicetask.BuildCustomQuestionnaire" Id="ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire" LabelText="$LocLabels:ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.LabelText" Sequence="8" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.Button.BuildCustomQuestionnire.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorderservicetask.Button.ovs.msdyn_workorderservicetask.Unlock.Form.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="4">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.Button.ovs.msdyn_workorderservicetask.Unlock.Form.Alt" Command="ts.msdyn_workorderservicetask.ovs.msdyn_workorderservicetask.Unlock.Form" Id="ts.msdyn_workorderservicetask.Button.ovs.msdyn_workorderservicetask.Unlock.Form" Image32by32="" Image16by16="" LabelText="$LocLabels:ts.msdyn_workorderservicetask.Button.ovs.msdyn_workorderservicetask.Unlock.Form.LabelText" Sequence="4" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.Button.ovs.msdyn_workorderservicetask.Unlock.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.Button.ovs.msdyn_workorderservicetask.Unlock.Form.ToolTipDescription" ModernImage="" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorderservicetask.Button.PreviewProvisionText.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="9">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.Button.PreviewProvisionText.Alt" Command="ts.msdyn_workorderservicetask.PreviewProvisionText" Id="ts.msdyn_workorderservicetask.Button.PreviewProvisionText" LabelText="$LocLabels:ts.msdyn_workorderservicetask.Button.PreviewProvisionText.LabelText" Sequence="9" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.Button.PreviewProvisionText.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.Button.PreviewProvisionText.ToolTipDescription" />
@@ -42,9 +47,9 @@
         <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.Alt" Command="ts.msdyn_workorderservicetask.TSIS.PrintQuestionnaire" CommandValueId="" Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form" LabelText="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.LabelText" Sequence="63" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
-    <CustomAction Id="ts.ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="4">
+    <CustomAction Id="ts.ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="0">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.Alt" Command="ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.Command" Id="ovs.msdyn_workorderservicetask.TSISMarkComplete.Form" Image32by32="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_32.png" Image16by16="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_16.png" LabelText="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.LabelText" Sequence="4" TemplateAlias="o1" ToolTipTitle="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.ToolTipDescription" ModernImage="SaveAsComplete" />
+        <Button Alt="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.Alt" Command="ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.Command" Id="ovs.msdyn_workorderservicetask.TSISMarkComplete.Form" Image32by32="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_32.png" Image16by16="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_16.png" LabelText="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ovs.msdyn_workorderservicetask.TSISMarkComplete.Form.ToolTipDescription" ModernImage="SaveAsComplete" />
       </CommandUIDefinition>
     </CustomAction>
   </CustomActions>
@@ -486,6 +491,18 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorderservicetask.ovs.msdyn_workorderservicetask.Unlock.Form">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorderservicetask.isSystemOrBusinessAdmins" />
+        <EnableRule Id="ts.msdyn_workorderservicetask.IsCompleted" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="UnlockWorkOrderServiceTask" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorderservicetask.PreviewProvisionText">
       <EnableRules>
         <EnableRule Id="ts.msdyn_workorderservicetask.isTaskTypeCustomQuestionnaire" />
@@ -725,8 +742,16 @@
       <EnableRule Id="ts.msdyn_workorderservicetask.EnableRule.isAdmin">
         <CustomRule FunctionName="isSystemAdministrator" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false" InvertResult="false" />
       </EnableRule>
+      <EnableRule Id="ts.msdyn_workorderservicetask.IsCompleted">
+        <ValueRule Field="statuscode" Value="918640002" />
+      </EnableRule>
       <EnableRule Id="ts.msdyn_workorderservicetask.isEntityWorkOrder">
         <EntityRule EntityName="msdyn_workorder" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="false" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorderservicetask.isSystemOrBusinessAdmins">
+        <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+          <StringParameter Value="System Administrator|ROM - Business Admin|ROM - Manager" />
+        </CustomRule>
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorderservicetask.isTaskTypeCustomQuestionnaire">
         <CustomRule FunctionName="isTaskTypeCustomQuestionnaire" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false">
@@ -858,6 +883,30 @@
       <Titles>
         <Title description="Build Questionnaire" languagecode="1033" />
         <Title description="Créer un questionnaire" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.Button.ovs.msdyn_workorderservicetask.Unlock.Form.Alt">
+      <Titles>
+        <Title description="Unlock" languagecode="1033" />
+        <Title description="Déverrouiller" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.Button.ovs.msdyn_workorderservicetask.Unlock.Form.LabelText">
+      <Titles>
+        <Title description="Unlock" languagecode="1033" />
+        <Title description="Déverrouiller" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.Button.ovs.msdyn_workorderservicetask.Unlock.Form.ToolTipDescription">
+      <Titles>
+        <Title description="Unlock" languagecode="1033" />
+        <Title description="Déverrouiller" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.Button.ovs.msdyn_workorderservicetask.Unlock.Form.ToolTipTitle">
+      <Titles>
+        <Title description="Unlock " languagecode="1033" />
+        <Title description="Déverrouiller" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.Button.PreviewProvisionText.Alt">
