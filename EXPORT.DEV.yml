@@ -30,18 +30,18 @@ steps:
 #    D365_UI_TEST_USERNAME: $(UITESTS_USERNAME)
 #    D365_UI_TEST_PASSWORD: $(UITESTS_PASSWORD)
 #    D365_UI_TEST_HEADLESS: true
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: './romts_gsrst.uitests/reports/'
-    ArtifactName: 'Reports'
-    publishLocation: 'Container'
-  condition: always()
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: '**/junit_*.xml'
-    searchFolder: './romts_gsrst.uitests/reports/'
-  condition: always()
+#- task: PublishBuildArtifacts@1
+#  inputs:
+#    PathtoPublish: './romts_gsrst.uitests/reports/'
+#    ArtifactName: 'Reports'
+#    publishLocation: 'Container'
+#  condition: always()
+#- task: PublishTestResults@2
+#  inputs:
+#    testResultsFormat: 'JUnit'
+#    testResultsFiles: '**/junit_*.xml'
+#    searchFolder: './romts_gsrst.uitests/reports/'
+#  condition: always()
 - task: PowerPlatformToolInstaller@0
   displayName: 'Install Power Platform Build Tools'
   inputs:
