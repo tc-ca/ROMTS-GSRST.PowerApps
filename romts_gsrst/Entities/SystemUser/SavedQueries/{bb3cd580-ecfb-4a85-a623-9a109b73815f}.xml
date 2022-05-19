@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{bb3cd580-ecfb-4a85-a623-9a109b73815f}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="systemusers" jump="fullname" select="1" preview="0" icon="1">
+        <row name="systemuser" id="systemuserid">
+          <cell name="fullname" width="300" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="systemuser">
+          <attribute name="fullname" />
+          <attribute name="systemuserid" />
+          <filter type="and">
+            <condition attribute="isdisabled" value="0" operator="eq" />
+            <condition attribute="accessmode" operator="ne" value="3" />
+            <condition attribute="accessmode" operator="ne" value="5" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Salespeople Lookup View" languagecode="1033" />
+      <LocalizedName description="Vue Recherche de vendeurs" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

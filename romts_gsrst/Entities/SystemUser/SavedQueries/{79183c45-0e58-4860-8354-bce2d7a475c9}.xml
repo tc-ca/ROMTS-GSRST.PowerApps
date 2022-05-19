@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{79183c45-0e58-4860-8354-bce2d7a475c9}</savedqueryid>
+    <queryapi>CRMSalesPerson.RetrieveByOrganization</queryapi>
+    <layoutxml>
+      <grid name="systemusers" jump="fullname" select="1" icon="1" preview="1">
+        <row name="systemuser" id="systemuserid">
+          <cell name="fullname" width="300" />
+          <cell name="territoryid" width="100" />
+          <cell name="title" width="100" />
+          <cell name="positionid" width="100" />
+          <cell name="address1_telephone1" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <columnsetxml>
+      <columnset version="3.0">
+        <column>fullname</column>
+        <column>territoryid</column>
+        <column>title</column>
+        <column>address1_telephone1</column>
+        <column>systemuserid</column>
+        <ascend>firstname</ascend>
+        <column>positionid</column>
+        <filter type="and">
+          <condition column="isdisabled" value="0" operator="eq" />
+        </filter>
+      </columnset>
+    </columnsetxml>
+    <querytype>2</querytype>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="All Salespersons" languagecode="1033" />
+      <LocalizedName description="Tous les vendeurs" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="List of all salespeople in the organization" languagecode="1033" />
+      <Description description="Liste de tous les vendeurs de l’organisation" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

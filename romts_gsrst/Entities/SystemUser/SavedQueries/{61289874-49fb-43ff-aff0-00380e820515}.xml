@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{61289874-49fb-43ff-aff0-00380e820515}</savedqueryid>
+    <queryapi>BizUser.RetrieveUsersWithNoRoles</queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="systemuserid">
+          <cell name="fullname" width="300" />
+          <cell name="businessunitid" width="150" />
+          <cell name="internalemailaddress" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <columnsetxml>
+      <columnset version="3.0">
+        <column>fullname</column>
+        <column>businessunitid</column>
+        <column>internalemailaddress</column>
+        <column>systemuserid</column>
+        <filter type="and">
+          <condition column="isdisabled" operator="eq" value="0" />
+        </filter>
+        <ascend>fullname</ascend>
+      </columnset>
+    </columnsetxml>
+    <querytype>0</querytype>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Users with no assigned security roles" languagecode="1033" />
+      <LocalizedName description="Utilisateurs sans rôles de sécurité attribués" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

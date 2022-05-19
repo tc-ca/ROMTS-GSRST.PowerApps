@@ -108,6 +108,26 @@
       </EntityRelationshipRole>
     </EntityRelationshipRoles>
   </EntityRelationship>
+  <EntityRelationship Name="msdyn_taxcode_Annotations">
+    <EntityRelationshipType>OneToMany</EntityRelationshipType>
+    <IsCustomizable>1</IsCustomizable>
+    <IntroducedVersion>3.1.0.3</IntroducedVersion>
+    <IsHierarchical>0</IsHierarchical>
+    <ReferencingEntityName>Annotation</ReferencingEntityName>
+    <ReferencedEntityName>msdyn_taxcode</ReferencedEntityName>
+    <CascadeAssign>Cascade</CascadeAssign>
+    <CascadeDelete>Cascade</CascadeDelete>
+    <CascadeReparent>Cascade</CascadeReparent>
+    <CascadeShare>Cascade</CascadeShare>
+    <CascadeUnshare>Cascade</CascadeUnshare>
+    <ReferencingAttributeName>ObjectId</ReferencingAttributeName>
+    <RelationshipDescription>
+      <Descriptions>
+        <Description description="Unique identifier of the object with which the note is associated." languagecode="1033" />
+        <Description description="Identificateur unique de l'objet auquel la remarque est associée." languagecode="1036" />
+      </Descriptions>
+    </RelationshipDescription>
+  </EntityRelationship>
   <EntityRelationship Name="msdyn_taxcode_connections1">
     <EntityRelationshipType>OneToMany</EntityRelationshipType>
     <IsCustomizable>1</IsCustomizable>
@@ -124,7 +144,7 @@
     <RelationshipDescription>
       <Descriptions>
         <Description description="Unique identifier of the source record." languagecode="1033" />
-        <Description description="Choisissez le compte ou le contact principal, ou tout enregistrement impliqué dans les rapports." languagecode="1036" />
+        <Description description="Identificateur unique de l'enregistrement source." languagecode="1036" />
       </Descriptions>
     </RelationshipDescription>
     <EntityRelationshipRoles>
@@ -157,7 +177,7 @@
     <RelationshipDescription>
       <Descriptions>
         <Description description="Unique identifier of the target record." languagecode="1033" />
-        <Description description="Sélectionnez le compte ou le contact secondaire, ou tout enregistrement impliqué dans les rapports." languagecode="1036" />
+        <Description description="Identificateur unique de l'enregistrement cible." languagecode="1036" />
       </Descriptions>
     </RelationshipDescription>
   </EntityRelationship>

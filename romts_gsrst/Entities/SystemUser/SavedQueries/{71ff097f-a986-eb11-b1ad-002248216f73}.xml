@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{71ff097f-a986-eb11-b1ad-002248216f73}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" preview="1" icon="1">
+        <row name="result" id="systemuserid">
+          <cell name="fullname" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="systemuser">
+          <attribute name="fullname" />
+          <order attribute="fullname" descending="false" />
+          <filter type="and">
+            <condition attribute="accessmode" operator="in">
+              <value>2</value>
+              <value>0</value>
+              <value>5</value>
+            </condition>
+          </filter>
+          <attribute name="systemuserid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Access Mode Interactive Users" languagecode="1033" />
+      <LocalizedName description="Mode d’accès Utilisateurs interactifs" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

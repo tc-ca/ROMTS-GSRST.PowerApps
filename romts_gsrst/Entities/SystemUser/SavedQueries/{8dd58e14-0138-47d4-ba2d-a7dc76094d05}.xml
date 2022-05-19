@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{8dd58e14-0138-47d4-ba2d-a7dc76094d05}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="systemuserid">
+          <cell name="fullname" width="300" />
+          <cell name="siteid" width="150" />
+          <cell name="businessunitid" width="150" />
+          <cell name="title" width="100" />
+          <cell name="positionid" width="100" />
+          <cell name="address1_telephone1" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="systemuser">
+          <attribute name="fullname" />
+          <order attribute="fullname" descending="false" />
+          <attribute name="title" />
+          <attribute name="address1_telephone1" />
+          <attribute name="businessunitid" />
+          <attribute name="siteid" />
+          <attribute name="positionid" />
+          <filter type="and">
+            <condition attribute="isdisabled" operator="eq" value="0" />
+            <condition attribute="accessmode" operator="ne" value="3" />
+            <condition attribute="accessmode" operator="ne" value="5" />
+          </filter>
+          <link-entity name="connection" from="record2id" to="systemuserid" alias="MyConnections">
+            <filter type="and">
+              <condition attribute="record1id" operator="eq-userid" />
+              <condition attribute="statecode" operator="eq" value="0" />
+            </filter>
+          </link-entity>
+          <attribute name="systemuserid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="My Connections" languagecode="1033" />
+      <LocalizedName description="Mes connexions" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Shows all active instances of the user that the current user is connected to via an active connection" languagecode="1033" />
+      <Description description="Affiche toutes les instances actives de l'utilisateur auxquelles l'utilisateur actuel est connecté par le biais d'une connexion active" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

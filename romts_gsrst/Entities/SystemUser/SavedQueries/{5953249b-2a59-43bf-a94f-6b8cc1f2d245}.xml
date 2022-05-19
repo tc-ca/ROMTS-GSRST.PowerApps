@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{5953249b-2a59-43bf-a94f-6b8cc1f2d245}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="systemuserid">
+          <cell name="fullname" width="300" />
+          <cell name="businessunitid" width="150" />
+          <cell name="internalemailaddress" width="200" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="systemuser">
+          <order attribute="fullname" descending="false" />
+          <attribute name="fullname" />
+          <attribute name="systemuserid" />
+          <attribute name="businessunitid" />
+          <attribute name="internalemailaddress" />
+          <filter type="and">
+            <condition attribute="fullname" operator="ne" value="SYSTEM" />
+            <condition attribute="fullname" operator="ne" value="INTEGRATION" />
+            <condition attribute="isdisabled" operator="eq" value="1" />
+            <condition attribute="islicensed" operator="eq" value="1" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Disabled users consuming licenses" languagecode="1033" />
+      <LocalizedName description="Utilisateurs désactivés utilisant des licences" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{2cfcd309-d4d6-ec11-a7b5-000d3a8485f2}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ovs_name" select="1" preview="1" icon="1">
+        <row name="result" id="ovs_operationid">
+          <cell name="ovs_name" width="150" />
+          <cell name="ts_stakeholder" width="100" />
+          <cell name="ovs_operationtypeid" width="100" />
+          <cell name="ts_site" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="ovs_operation">
+          <attribute name="ovs_name" />
+          <attribute name="ts_stakeholder" />
+          <attribute name="ts_site" />
+          <attribute name="ovs_operationtypeid" />
+          <order attribute="ovs_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ovs_operationid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20220512.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Operation Detail View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

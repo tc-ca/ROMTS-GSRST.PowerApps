@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{a6933edf-1f59-ec11-8f8e-000d3a847c4d}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="subject" select="1" icon="1" preview="1">
+        <row name="result" id="annotationid">
+          <cell name="subject" width="217" />
+          <cell name="filename" width="235" />
+          <cell name="filesize" width="188" />
+          <cell name="createdon" width="188" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="annotation">
+          <attribute name="subject" />
+          <attribute name="annotationid" />
+          <attribute name="filename" />
+          <attribute name="filesize" />
+          <filter type="and">
+            <condition attribute="isdocument" operator="eq" value="1" />
+          </filter>
+          <attribute name="createdon" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Documents" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

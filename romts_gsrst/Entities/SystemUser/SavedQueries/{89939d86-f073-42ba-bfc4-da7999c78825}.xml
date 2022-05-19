@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{89939d86-f073-42ba-bfc4-da7999c78825}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="systemuserid">
+          <cell name="fullname" width="300" />
+          <cell name="internalemailaddress" width="200" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="systemuser">
+          <attribute name="fullname" />
+          <attribute name="internalemailaddress" />
+          <attribute name="systemuserid" />
+          <order attribute="fullname" descending="false" />
+          <filter type="and">
+            <condition attribute="emailrouteraccessapproval" operator="eq" value="2" />
+            <condition attribute="fullname" operator="ne" value="SYSTEM" />
+            <condition attribute="fullname" operator="ne" value="INTEGRATION" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Users: Primary Email (Pending Approval)" languagecode="1033" />
+      <LocalizedName description="Utilisateurs : adresse de messagerie principale (en attente d’approbation)" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

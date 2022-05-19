@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{e8ac8d63-47ba-e011-b85e-00155d8a2749}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" preview="1" icon="1">
+        <row name="result" id="systemuserid">
+          <cell name="fullname" width="300" />
+          <cell name="siteid" width="150" />
+          <cell name="businessunitid" width="150" />
+          <cell name="title" width="100" />
+          <cell name="address1_telephone1" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="systemuser">
+          <order attribute="fullname" descending="false" />
+          <link-entity name="postfollow" from="owninguser" to="systemuserid" alias="aa"></link-entity>
+          <attribute name="title" />
+          <attribute name="fullname" />
+          <attribute name="siteid" />
+          <attribute name="businessunitid" />
+          <attribute name="address1_telephone1" />
+          <attribute name="systemuserid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.5.418</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Users Following" languagecode="1033" />
+      <LocalizedName description="Utilisateurs qui suivent" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Users following." languagecode="1033" />
+      <Description description="Utilisateurs qui suivent." languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{e5d893d1-2b1f-46e5-8ea4-25562567ccce}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="systemuserid">
+          <cell name="fullname" width="200" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="systemuser">
+          <order attribute="fullname" descending="true" />
+          <attribute name="fullname" />
+          <attribute name="systemuserid" />
+          <filter type="and">
+            <condition attribute="mobileofflineprofileid" operator="not-null" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>8.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Users Assigned to Mobile Offline Profile" languagecode="1033" />
+      <LocalizedName description="Utilisateurs affectés au profil Mobile Offline" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Users who are assigned to a mobile offline profile." languagecode="1033" />
+      <Description description="Utilisateurs affectés à un profil Mobile Offline." languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

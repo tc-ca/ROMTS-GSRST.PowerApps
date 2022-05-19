@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{51af2f40-36bb-4198-9b0c-71a986c7c953}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="systemuserid">
+          <cell name="fullname" width="300" />
+          <cell name="applicationid" width="100" />
+          <cell name="azureactivedirectoryobjectid" width="100" />
+          <cell name="applicationiduri" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="systemuser">
+          <attribute name="fullname" />
+          <order attribute="fullname" descending="false" />
+          <filter type="and">
+            <condition attribute="applicationid" operator="not-null" />
+            <condition attribute="azureactivedirectoryobjectid" operator="not-null" />
+            <condition attribute="applicationid" operator="ne" value="00000000-0000-0000-0000-000000000000" />
+          </filter>
+          <attribute name="azureactivedirectoryobjectid" />
+          <attribute name="applicationiduri" />
+          <attribute name="systemuserid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>8.2.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Application Users" languagecode="1033" />
+      <LocalizedName description="Application Users" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

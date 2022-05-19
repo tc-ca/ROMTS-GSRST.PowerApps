@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{5aecef10-d691-4cee-a86f-7bd0fd161f79}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="systemuserid">
+          <cell name="fullname" width="200" />
+          <cell name="domainname" width="200" />
+          <cell name="title" width="100" />
+          <cell name="address1_telephone1" width="150" />
+          <cell name="isdisabled" width="100" />
+          <cell name="parentsystemuserid" width="200" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2048</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="systemuser">
+          <attribute name="fullname" />
+          <order attribute="fullname" descending="false" />
+          <attribute name="domainname" />
+          <attribute name="title" />
+          <attribute name="address1_telephone1" />
+          <attribute name="isdisabled" />
+          <attribute name="systemuserid" />
+          <attribute name="parentsystemuserid" />
+          <filter type="and">
+            <condition entityname="systemuser" attribute="fullname" operator="ne" value="SYSTEM" />
+            <condition entityname="systemuser" attribute="fullname" operator="ne" value="INTEGRATION" />
+            <condition attribute="accessmode" operator="ne" value="3" />
+            <condition attribute="accessmode" operator="ne" value="5" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>9.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="All Users" languagecode="1033" />
+      <LocalizedName description="Tous les utilisateurs" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="All Users view" languagecode="1033" />
+      <Description description="Vue Tous les utilisateurs" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

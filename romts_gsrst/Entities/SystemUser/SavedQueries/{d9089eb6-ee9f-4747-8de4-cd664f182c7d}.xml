@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{d9089eb6-ee9f-4747-8de4-cd664f182c7d}</savedqueryid>
+    <queryapi>BizUser.RetrieveUsersWithInvitationStatus</queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="systemuserid">
+          <cell name="fullname" width="300" />
+          <cell name="businessunitid" width="150" />
+          <cell name="internalemailaddress" width="100" />
+          <cell name="invitestatuscode" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <columnsetxml>
+      <columnset version="3.0">
+        <column>fullname</column>
+        <column>businessunitid</column>
+        <column>internalemailaddress</column>
+        <column>invitestatuscode</column>
+        <column>systemuserid</column>
+        <filter type="and">
+          <condition column="accessmode" operator="ne" value="3" />
+        </filter>
+        <ascend>invitestatuscode</ascend>
+      </columnset>
+    </columnsetxml>
+    <querytype>0</querytype>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="User Invitation Status" languagecode="1033" />
+      <LocalizedName description="Statut de l'invitation de l'utilisateur" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

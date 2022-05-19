@@ -77,6 +77,7 @@
         <DisplayRule Id="Mscrm.CreateSelectedEntityPermission" />
         <DisplayRule Id="Mscrm.AppendSelected" />
         <DisplayRule Id="Mscrm.HideAddNewForChildEntities" />
+        <DisplayRule Id="ts.msdyn_workorder.HideAddNewForFunctionalLocation" />
       </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="XrmCore.Commands.Open.addNewFromSubGridStandard" Library="$webresource:Main_system_library.js">
@@ -287,6 +288,9 @@
       </DisplayRule>
       <DisplayRule Id="Mscrm.ShowForOneToManyGrids">
         <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="OneToMany" />
+      </DisplayRule>
+      <DisplayRule Id="ts.msdyn_workorder.HideAddNewForFunctionalLocation">
+        <EntityRule EntityName="msdyn_functionallocation" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="true" />
       </DisplayRule>
     </DisplayRules>
     <EnableRules>

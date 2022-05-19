@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{00000000-0000-0000-00aa-000010001212}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="systemusers" jump="fullname" select="1" icon="1" preview="1">
+        <row name="systemuser" id="systemuserid">
+          <cell name="fullname" width="300" />
+          <cell name="businessunitid" width="100" />
+          <cell name="title" width="150" />
+          <cell name="isdisabled" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch distinct="false" mapping="logical">
+        <entity name="systemuser">
+          <attribute name="fullname" />
+          <attribute name="businessunitid" />
+          <attribute name="title" />
+          <attribute name="systemuserid" />
+          <attribute name="isdisabled" />
+          <filter type="and">
+            <condition attribute="fullname" operator="ne" value="SYSTEM" />
+            <condition attribute="fullname" operator="ne" value="INTEGRATION" />
+          </filter>
+          <order attribute="fullname" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="User Associated View" languagecode="1033" />
+      <LocalizedName description="Vue associée Utilisateur" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{8ae30948-ad61-ec11-8f8e-000d3aff0f9c}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="subject" select="1" icon="1" preview="1">
+        <row name="result" id="annotationid">
+          <cell name="subject" width="200" />
+          <cell name="modifiedon" width="100" />
+          <cell name="modifiedby" width="100" />
+          <cell name="a_40f93acafff246489027eed988a31c90.msdyn_name" width="205" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="annotation">
+          <attribute name="subject" />
+          <attribute name="annotationid" />
+          <attribute name="modifiedon" />
+          <attribute name="modifiedby" />
+          <filter type="and">
+            <condition attribute="isdocument" operator="eq" value="1" />
+          </filter>
+          <link-entity alias="a_40f93acafff246489027eed988a31c90" name="msdyn_workorder" to="objectid" from="msdyn_workorderid" link-type="outer" visible="false">
+            <attribute name="msdyn_name" />
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Custom Documents" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

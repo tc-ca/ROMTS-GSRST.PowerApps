@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{fcf02d37-524a-4332-8ac7-497ef6b739f9}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="systemuserid">
+          <cell name="fullname" width="300" />
+          <cell name="businessunitid" width="150" />
+          <cell name="title" width="100" />
+          <cell name="positionid" width="100" />
+          <cell name="address1_telephone1" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="systemuser">
+          <attribute name="fullname" />
+          <order attribute="fullname" descending="false" />
+          <attribute name="title" />
+          <attribute name="address1_telephone1" />
+          <attribute name="businessunitid" />
+          <attribute name="positionid" />
+          <link-entity name="connection" from="record2id" to="systemuserid" alias="MyConnections">
+            <filter type="and">
+              <condition attribute="record2roleid" operator="eq" value="A061872D-07CF-4de7-8ED0-EF79A55F1A94" />
+            </filter>
+            <link-entity name="opportunity" from="opportunityid" to="record1id" alias="DealInfluenced">
+              <filter type="and">
+                <condition attribute="statecode" operator="eq" value="1" />
+                <condition attribute="actualclosedate" operator="last-x-months" value="12" />
+              </filter>
+            </link-entity>
+          </link-entity>
+          <attribute name="systemuserid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Users: Influenced Deals That We Won" languagecode="1033" />
+      <LocalizedName description="Utilisateurs : transactions influencées que nous avons conclues" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Key users who influenced deals that have been won in the last 12 months." languagecode="1033" />
+      <Description description="Utilisateurs clés ayant influencé les transactions conclues au cours des 12 derniers mois." languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

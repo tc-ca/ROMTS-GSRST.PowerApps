@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{5fda842a-004b-42b4-a611-b93c2c69667e}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" icon="1" preview="1">
+        <row name="result" id="systemuserid">
+          <cell name="fullname" width="200" />
+          <cell name="deletedstate" width="200" />
+          <cell name="azurestate" width="150" />
+          <cell name="azuredeletedon" width="200" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="systemuser">
+          <attribute name="fullname" />
+          <order attribute="fullname" descending="false" />
+          <attribute name="deletedstate" />
+          <attribute name="azurestate" />
+          <attribute name="azuredeletedon" />
+          <attribute name="systemuserid" />
+          <filter type="and">
+            <condition attribute="deletedstate" operator="eq" value="1" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.74.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Soft deleted Users" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Soft deleted Users view" languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>
