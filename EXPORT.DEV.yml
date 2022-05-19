@@ -12,24 +12,24 @@ steps:
   persistCredentials: true
   clean: true
 
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
-- task: Npm@1
-  inputs:
-    command: 'ci'
-    workingDir: './romts_gsrst.uitests/'
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    workingDir: './romts_gsrst.uitests/'
-    customCommand: 'run test'
-  env:
-    D365_UI_TEST_URL: $(UITESTS_XRM_URL)
-    D365_UI_TEST_USERNAME: $(UITESTS_USERNAME)
-    D365_UI_TEST_PASSWORD: $(UITESTS_PASSWORD)
-    D365_UI_TEST_HEADLESS: true
+#- task: NodeTool@0
+#  inputs:
+#    versionSpec: '10.x'
+#  displayName: 'Install Node.js'
+#- task: Npm@1
+#  inputs:
+#    command: 'ci'
+#    workingDir: './romts_gsrst.uitests/'
+#- task: Npm@1
+#  inputs:
+#    command: 'custom'
+#    workingDir: './romts_gsrst.uitests/'
+#    customCommand: 'run test'
+#  env:
+#    D365_UI_TEST_URL: $(UITESTS_XRM_URL)
+#    D365_UI_TEST_USERNAME: $(UITESTS_USERNAME)
+#    D365_UI_TEST_PASSWORD: $(UITESTS_PASSWORD)
+#    D365_UI_TEST_HEADLESS: true
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: './romts_gsrst.uitests/reports/'
