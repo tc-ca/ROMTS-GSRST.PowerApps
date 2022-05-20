@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{da5cff75-43d8-ec11-a7b5-000d3ae86ada}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_workorderid">
+          <cell name="msdyn_name" width="122" />
+          <cell name="ovs_rational" width="96" />
+          <cell name="msdyn_primaryincidenttype" width="140" />
+          <cell name="msdyn_serviceaccount" width="150" />
+          <cell name="ts_site" width="155" />
+          <cell name="ts_region" width="100" />
+          <cell name="ownerid" width="100" />
+          <cell name="ts_numberoffindings" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="msdyn_workorder">
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_serviceaccount" />
+          <attribute name="ovs_rational" />
+          <attribute name="msdyn_workorderid" />
+          <attribute name="ts_site" />
+          <attribute name="msdyn_primaryincidenttype" />
+          <attribute name="ownerid" />
+          <attribute name="ts_region" />
+          <order attribute="msdyn_name" descending="true" />
+          <attribute name="ts_numberoffindings" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <filter type="and">
+              <condition attribute="ownerid" operator="eq-useroruserteams" />
+            </filter>
+          </filter>
+          <link-entity name="systemuser" alias="ab" link-type="inner" from="systemuserid" to="owninguser">
+            <link-entity name="teammembership" intersect="true" visible="false" from="systemuserid" to="systemuserid">
+              <link-entity name="team" alias="ac" from="teamid" to="teamid">
+                <filter type="and">
+                  <filter type="or">
+                    <condition attribute="teamid" operator="eq" value="{5d82668c-499e-ec11-b3fe-002248ad8103}" uiname="ISSO | ATL" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{f968f077-499e-ec11-b3fe-002248ad8103}" uiname="ISSO | ON" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{e5ba8158-499e-ec11-b3fe-002248ad8103}" uiname="ISSO | PAC" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{bf50ad6a-499e-ec11-b3fe-002248ad8103}" uiname="ISSO | PNR" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{542c1d86-499e-ec11-b3fe-002248ad8103}" uiname="ISSO | QC" uitype="team" />
+                  </filter>
+                </filter>
+              </link-entity>
+            </link-entity>
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Regional Team" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Active work orders in my regional team (ISSO)" languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

@@ -13,6 +13,11 @@
         <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="Mscrm.AddExistingRecordFromSubGridAssociated" Id="Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Sequence="40" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipDescription" ModernImage="AddExisting" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.Mscrm.SubGrid.msdyn_workorder.NewRecord.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="10">
+      <CommandUIDefinition>
+        <Button Command="Mscrm.NewRecordFromGrid" Id="Mscrm.SubGrid.msdyn_workorder.NewRecord" Image32by32="/_imgs/ribbon/newrecord32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.MainTab.New" Sequence="10" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Ribbon.SubGrid.MainTab.New" ToolTipDescription="$Resources(EntityDisplayName):Ribbon.Tooltip.New" ModernImage="New" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="65">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.Alt" Command="msdyn.ApplicationRibbon.Form.BookResource.Command" Description="Book" Id="msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button" LabelText="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.LabelText" Sequence="65" TemplateAlias="o2" ToolTipTitle="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.ToolTipTitle" ToolTipDescription="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.ToolTipDescription" ModernImage="$webresource:msdyn_/fps/Icons/CommandBar/CalendarButton.svg" />
@@ -70,6 +75,7 @@
         <EnableRule Id="Mscrm.EntityFormIsEnabled" />
         <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
         <EnableRule Id="ts.msdyn_workorder.HideInOperation.EnableRule" />
+        <EnableRule Id="ts.msdyn_workorder.HideInStakeholder.EnableRule" />
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="Mscrm.ShowForOneToManyGrids" />
@@ -168,6 +174,7 @@
         <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
         <EnableRule Id="Mscrm.IsRelationshipEnabledInMocaOffline" />
         <EnableRule Id="ts.msdyn_workorder.HideInOperation.EnableRule" />
+        <EnableRule Id="ts.msdyn_workorder.HideInStakeholder.EnableRule" />
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="Mscrm.AddExisting" />
@@ -342,6 +349,9 @@
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorder.HideInOperation.EnableRule">
         <EntityRule EntityName="ovs_operation" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.HideInStakeholder.EnableRule">
+        <EntityRule EntityName="account" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorder.TSIS.hasWorkOrderName">
         <CustomRule FunctionName="hasWorkOrderName" Library="$webresource:ovs_/js/WorkOrderRibbon.js" Default="false" InvertResult="false">

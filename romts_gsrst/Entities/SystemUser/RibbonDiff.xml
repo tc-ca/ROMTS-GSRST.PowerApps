@@ -89,6 +89,7 @@
         <DisplayRule Id="Mscrm.ShowOnlyOnModern" />
         <DisplayRule Id="Mscrm.AppendToPrimary" />
         <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="ts.systemuser.TSIS.DisplayRule.OnlyShowIfRecordExist" />
       </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="addExistingUsersToWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
@@ -134,6 +135,9 @@
       </DisplayRule>
       <DisplayRule Id="ts..CanWriteSelected">
         <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="ts.systemuser.TSIS.DisplayRule.OnlyShowIfRecordExist">
+        <FormStateRule State="Existing" />
       </DisplayRule>
     </DisplayRules>
     <EnableRules>

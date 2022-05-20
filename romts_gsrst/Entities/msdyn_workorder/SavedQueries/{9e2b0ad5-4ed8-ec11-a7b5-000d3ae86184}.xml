@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{9e2b0ad5-4ed8-ec11-a7b5-000d3ae86184}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_workorderid">
+          <cell name="msdyn_name" width="122" />
+          <cell name="ovs_rational" width="96" />
+          <cell name="msdyn_primaryincidenttype" width="140" />
+          <cell name="msdyn_serviceaccount" width="150" />
+          <cell name="ts_site" width="155" />
+          <cell name="ts_region" width="100" />
+          <cell name="ownerid" width="100" />
+          <cell name="ts_numberoffindings" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="msdyn_workorder">
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_serviceaccount" />
+          <attribute name="ovs_rational" />
+          <attribute name="msdyn_workorderid" />
+          <attribute name="ts_site" />
+          <attribute name="msdyn_primaryincidenttype" />
+          <attribute name="ownerid" />
+          <attribute name="ts_region" />
+          <order attribute="msdyn_name" descending="true" />
+          <attribute name="ts_numberoffindings" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <filter type="and">
+              <condition attribute="ownerid" operator="eq-useroruserteams" />
+            </filter>
+          </filter>
+          <link-entity name="systemuser" alias="ab" link-type="inner" from="systemuserid" to="owninguser">
+            <link-entity name="teammembership" intersect="true" visible="false" from="systemuserid" to="systemuserid">
+              <link-entity name="team" alias="ad" from="teamid" to="teamid">
+                <filter type="and">
+                  <filter type="or">
+                    <condition attribute="teamid" operator="eq" value="{b1883dca-4a9e-ec11-b3fe-002248ad8103}" uiname="AVSEC | ATL | ACS" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{f1f6b3ab-499e-ec11-b3fe-002248ad8103}" uiname="AVSEC | ATL | C2/3" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{1fede09e-499e-ec11-b3fe-002248ad8103}" uiname="AVSEC | ATL | YHZ" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{0ef07610-4b9e-ec11-b3fe-002248ad8103}" uiname="AVSEC | HQ | OPS" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{116e051d-4b9e-ec11-b3fe-002248ad8103}" uiname="AVSEC | IPB | OPS" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{4a139bea-499e-ec11-b3fe-002248ad8103}" uiname="AVSEC | NCR | YOW" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{4681fa10-4a9e-ec11-b3fe-002248ad8103}" uiname="AVSEC | ONT | ACS" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{9b460a0a-4a9e-ec11-b3fe-002248ad8103}" uiname="AVSEC | ONT | C2/3" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{28b8d9fc-499e-ec11-b3fe-002248ad8103}" uiname="AVSEC | ONT | YYZ" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{8edc7d64-4a9e-ec11-b3fe-002248ad8103}" uiname="AVSEC | PAC | ACS" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{47f4f403-4b9e-ec11-b3fe-002248ad8103}" uiname="AVSEC | PAC | C2/3" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{af6f7e5e-4a9e-ec11-b3fe-002248ad8103}" uiname="AVSEC | PAC | YVR" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{1eedd351-4a9e-ec11-b3fe-002248ad8103}" uiname="AVSEC | PNR | ACS" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{c9c3c645-4a9e-ec11-b3fe-002248ad8103}" uiname="AVSEC | PNR | C2/3" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{8162c82b-4a9e-ec11-b3fe-002248ad8103}" uiname="AVSEC | PNR | YEG" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{2bba831d-4a9e-ec11-b3fe-002248ad8103}" uiname="AVSEC | PNR | YWG" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{a86d69f7-4a9e-ec11-b3fe-002248ad8103}" uiname="AVSEC | PNR | YYC" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{b52e61d8-499e-ec11-b3fe-002248ad8103}" uiname="AVSEC | QUE | ACS" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{cde27cd1-499e-ec11-b3fe-002248ad8103}" uiname="AVSEC | QUE | C2/3" uitype="team" />
+                    <condition attribute="teamid" operator="eq" value="{5b682cb8-499e-ec11-b3fe-002248ad8103}" uiname="AVSEC | QUE | YUL" uitype="team" />
+                  </filter>
+                </filter>
+              </link-entity>
+            </link-entity>
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Security Operating Team" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Active work orders in my security operating Team (AvSec)" languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>
