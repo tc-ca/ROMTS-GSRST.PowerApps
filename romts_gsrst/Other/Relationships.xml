@@ -35,6 +35,7 @@
   <EntityRelationship Name="business_unit_msdyn_incidenttypeservicetask" />
   <EntityRelationship Name="business_unit_msdyn_servicetasktype" />
   <EntityRelationship Name="business_unit_msdyn_workorder" />
+  <EntityRelationship Name="business_unit_msdyn_workorderservicetask" />
   <EntityRelationship Name="business_unit_msdyn_workordersubstatus" />
   <EntityRelationship Name="business_unit_ovs_finding" />
   <EntityRelationship Name="business_unit_ovs_lob" />
@@ -213,6 +214,8 @@
   <EntityRelationship Name="lk_msdyn_servicetasktype_modifiedby" />
   <EntityRelationship Name="lk_msdyn_workorder_createdby" />
   <EntityRelationship Name="lk_msdyn_workorder_modifiedby" />
+  <EntityRelationship Name="lk_msdyn_workorderservicetask_createdby" />
+  <EntityRelationship Name="lk_msdyn_workorderservicetask_modifiedby" />
   <EntityRelationship Name="lk_msdyn_workordersubstatus_createdby" />
   <EntityRelationship Name="lk_msdyn_workordersubstatus_modifiedby" />
   <EntityRelationship Name="lk_ovs_finding_createdby" />
@@ -378,6 +381,7 @@
   <EntityRelationship Name="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" />
   <EntityRelationship Name="msdyn_bookableresource_msdyn_workorder_PreferredResource" />
   <EntityRelationship Name="msdyn_bookableresource_msdyn_workorder_SupportContact" />
+  <EntityRelationship Name="msdyn_bookableresourcebooking_msdyn_workorderservicetask_Booking" />
   <EntityRelationship Name="msdyn_bookingalert_Annotations" />
   <EntityRelationship Name="msdyn_bookingalert_connections1" />
   <EntityRelationship Name="msdyn_bookingalert_connections2" />
@@ -503,12 +507,14 @@
   <EntityRelationship Name="msdyn_iotdeviceregistrationhistory_connections2" />
   <EntityRelationship Name="msdyn_msdyn_agreement_msdyn_workorder_Agreement" />
   <EntityRelationship Name="msdyn_msdyn_agreementbookingdate_bookableresourcebooking_AgreementBookingDate" />
+  <EntityRelationship Name="msdyn_msdyn_agreementbookingservicetask_msdyn_workorderservicetask_AgreementBookingServiceTask" />
   <EntityRelationship Name="msdyn_msdyn_attributevalue_systemuser" />
   <EntityRelationship Name="msdyn_msdyn_bookingsetupmetadata_bookableresourcebooking" />
   <EntityRelationship Name="msdyn_msdyn_customerasset_msdyn_3dmodel" />
   <EntityRelationship Name="msdyn_msdyn_customerasset_msdyn_customerasset_MasterAsset" />
   <EntityRelationship Name="msdyn_msdyn_customerasset_msdyn_customerasset_ParentAsset" />
   <EntityRelationship Name="msdyn_msdyn_customerasset_msdyn_workorder_CustomerAsset" />
+  <EntityRelationship Name="msdyn_msdyn_customerasset_msdyn_workorderservicetask_CustomerAsset" />
   <EntityRelationship Name="msdyn_msdyn_customerassetcategory_msdyn_customerasset_CustomerAssetCategory" />
   <EntityRelationship Name="msdyn_msdyn_functionallocation_account" />
   <EntityRelationship Name="msdyn_msdyn_functionallocation_incident_FunctionalLocation" />
@@ -518,6 +524,9 @@
   <EntityRelationship Name="msdyn_msdyn_incidenttype_msdyn_workorder_PrimaryIncidentType" />
   <EntityRelationship Name="msdyn_msdyn_inspection_msdyn_incidenttypeservicetask_Inspection" />
   <EntityRelationship Name="msdyn_msdyn_inspection_msdyn_servicetasktype_Inspection" />
+  <EntityRelationship Name="msdyn_msdyn_inspection_msdyn_workorderservicetask_Inspection" />
+  <EntityRelationship Name="msdyn_msdyn_inspectiondefinition_msdyn_workorderservicetask_inspectiondefinitionid" />
+  <EntityRelationship Name="msdyn_msdyn_inspectionresponse_msdyn_workorderservicetask_inspectionresponseid" />
   <EntityRelationship Name="msdyn_msdyn_iotalert_incident_IoTAlert" />
   <EntityRelationship Name="msdyn_msdyn_iotalert_msdyn_workorder_IoTAlert" />
   <EntityRelationship Name="msdyn_msdyn_iotdevicecommand_msdyn_customerasset_LastCommandSent" />
@@ -542,6 +551,7 @@
   <EntityRelationship Name="msdyn_msdyn_workorder_bookableresourcebooking_WorkOrder" />
   <EntityRelationship Name="msdyn_msdyn_workorder_msdyn_workorder_ParentWorkOrder" />
   <EntityRelationship Name="msdyn_msdyn_workorder_msdyn_workorderservicetask_WorkOrder" />
+  <EntityRelationship Name="msdyn_msdyn_workorderincident_msdyn_workorderservicetask_WorkOrderIncident" />
   <EntityRelationship Name="msdyn_msdyn_workorderproduct_msdyn_customerasset_WorkOrderProduct" />
   <EntityRelationship Name="msdyn_msdyn_workordersubstatus_msdyn_workorder_Status" />
   <EntityRelationship Name="msdyn_msdyn_workordertype_msdyn_incidenttype_DefaultWorkOrderType" />
@@ -948,6 +958,7 @@
   <EntityRelationship Name="owner_msdyn_incidenttypeservicetask" />
   <EntityRelationship Name="owner_msdyn_servicetasktype" />
   <EntityRelationship Name="owner_msdyn_workorder" />
+  <EntityRelationship Name="owner_msdyn_workorderservicetask" />
   <EntityRelationship Name="owner_msdyn_workordersubstatus" />
   <EntityRelationship Name="owner_ovs_finding" />
   <EntityRelationship Name="owner_ovs_lob" />
@@ -1067,6 +1078,7 @@
   <EntityRelationship Name="team_msdyn_incidenttypeservicetask" />
   <EntityRelationship Name="team_msdyn_servicetasktype" />
   <EntityRelationship Name="team_msdyn_workorder" />
+  <EntityRelationship Name="team_msdyn_workorderservicetask" />
   <EntityRelationship Name="team_msdyn_workordersubstatus" />
   <EntityRelationship Name="team_ovs_finding" />
   <EntityRelationship Name="team_ovs_lob" />
@@ -1266,6 +1278,7 @@
   <EntityRelationship Name="user_msdyn_incidenttypeservicetask" />
   <EntityRelationship Name="user_msdyn_servicetasktype" />
   <EntityRelationship Name="user_msdyn_workorder" />
+  <EntityRelationship Name="user_msdyn_workorderservicetask" />
   <EntityRelationship Name="user_msdyn_workordersubstatus" />
   <EntityRelationship Name="user_ovs_finding" />
   <EntityRelationship Name="user_ovs_lob" />

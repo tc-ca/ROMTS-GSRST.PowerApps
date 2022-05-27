@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>1</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{a817e07b-7703-45e7-83a1-7c8e6afc079a}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_workorderservicetaskid">
+          <cell name="msdyn_name" width="150" />
+          <cell name="msdyn_description" width="300" disableSorting="1" />
+          <cell name="msdyn_percentcomplete" width="100" />
+          <cell name="msdyn_actualduration" width="100" />
+          <cell name="msdyn_lineorder" width="100" />
+          <cell name="a_102df8bb8047e11193b3000c2959f9b8.msdyn_incidenttype" width="300" disableSorting="1" />
+          <cell name="createdon" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>4</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="msdyn_workorderservicetask">
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="msdyn_name" operator="like" value="{0}" />
+          </filter>
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_lineorder" />
+          <attribute name="msdyn_description" />
+          <attribute name="msdyn_actualduration" />
+          <attribute name="msdyn_percentcomplete" />
+          <order attribute="msdyn_lineorder" descending="false" />
+          <link-entity alias="a_102df8bb8047e11193b3000c2959f9b8" name="msdyn_workorderincident" from="msdyn_workorderincidentid" to="msdyn_workorderincident" link-type="outer" visible="false">
+            <attribute name="msdyn_incidenttype" />
+          </link-entity>
+          <attribute name="msdyn_workorderservicetaskid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>3.1.0.3</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Quick Find Active Work Order Service Tasks" languagecode="1033" />
+      <LocalizedName description="Recherche rapide de tâches relatives au service d'ordre de travail actif" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

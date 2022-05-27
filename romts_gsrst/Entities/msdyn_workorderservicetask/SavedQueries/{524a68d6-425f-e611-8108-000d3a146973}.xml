@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{524a68d6-425f-e611-8108-000d3a146973}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" preview="1" icon="1">
+        <row name="result" id="msdyn_workorderservicetaskid">
+          <cell name="msdyn_name" width="125" />
+          <cell name="msdyn_estimatedduration" width="125" />
+          <cell name="msdyn_percentcomplete" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="msdyn_workorderservicetask">
+          <attribute name="msdyn_percentcomplete" />
+          <attribute name="msdyn_estimatedduration" />
+          <attribute name="msdyn_lineorder" />
+          <order attribute="msdyn_percentcomplete" descending="false" />
+          <order attribute="msdyn_lineorder" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="msdyn_name" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>6.1.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Work Order Service Task View - Mobile" languagecode="1033" />
+      <LocalizedName description="Vue Tâche du service d'ordre de travail - Mobile" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="This view is used for mobile technicians, with appropriate field layout." languagecode="1033" />
+      <Description description="Cette vue est destinée aux techniciens mobiles, avec une mise en page appropriée." languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

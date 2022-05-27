@@ -11,12 +11,13 @@
       <grid name="resultset" jump="ovs_name" select="1" icon="1" preview="1">
         <row name="result" id="ovs_operationid">
           <cell name="ovs_name" width="100" />
-          <cell name="ts_site" width="141" />
+          <cell name="ts_stakeholder" width="100" />
           <cell name="ovs_operationtypeid" width="125" />
           <cell name="ts_operationalstatus" width="143" />
           <cell name="ts_visualsecurityinspection" width="132" />
           <cell name="ts_issecurityinspectionsite" width="100" />
           <cell name="ts_typeofdangerousgoods" width="100" />
+          <cell name="ownerid" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -28,15 +29,15 @@
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <attribute name="ovs_operationtypeid" />
-          <attribute name="ts_site" />
           <attribute name="ts_operationalstatus" />
-          <order attribute="ts_site" descending="false" />
           <order attribute="ovs_operationtypeid" descending="false" />
           <attribute name="ovs_name" />
           <attribute name="ts_visualsecurityinspection" />
           <attribute name="ts_typeofdangerousgoods" />
           <attribute name="ovs_operationid" />
           <attribute name="ts_issecurityinspectionsite" />
+          <attribute name="ts_stakeholder" />
+          <attribute name="ownerid" />
         </entity>
       </fetch>
     </fetchxml>
@@ -45,5 +46,8 @@
       <LocalizedName description="Active Operations ISSO" languagecode="1033" />
       <LocalizedName description="Opérations actives (ISSO)" languagecode="1036" />
     </LocalizedNames>
+    <Descriptions>
+      <Description description="Replace the view in site (functional location) form when user is ISSO" languagecode="1033" />
+    </Descriptions>
   </savedquery>
 </savedqueries>

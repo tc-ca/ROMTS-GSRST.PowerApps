@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 var ROM;
 (function (ROM) {
     var QuestionnaireVersion;
@@ -22,6 +22,46 @@ var ROM;
             var wrCtrl = Form.getControl('WebResource_QuestionnaireCreator');
             // Get the web resource inner content window
             SaveQuestionnaireDefinition(Form, wrCtrl);
+            //Populate End Date
+            //const questionnaireIdAttribute = Form.getAttribute("ts_ovs_questionnaire");
+            //const questionnaireVersionId = Form.data.entity.getId().replace(/[{}]/g, "").toLowerCase();
+            //const message = Xrm.Utility.getResourceString("ts_/resx/QuestionnaireVersion", "OverlapDates");
+            //var questionnaireIdAttributeValue;
+            //var questionnaireId;
+            //if (questionnaireIdAttribute != null) {
+            //    questionnaireIdAttributeValue = questionnaireIdAttribute.getValue();
+            //    questionnaireId = questionnaireIdAttributeValue[0].id;
+            //}
+            //const dateStartAttribute = Form.getAttribute("ts_effectivestartdate");
+            //const dateEndAttribute = Form.getAttribute("ts_effectiveenddate");
+            //const dateStartAttributeValue = dateStartAttribute.getValue();
+            //const dateEndAttributeValue = dateEndAttribute.getValue();
+            //if (dateStartAttributeValue && dateEndAttributeValue) {
+            //    Xrm.WebApi.retrieveMultipleRecords("ts_questionnaireversion", "?$select=ts_name, ts_effectivestartdate, ts_effectiveenddate&$filter=_ts_ovs_questionnaire_value eq " + questionnaireId)
+            //        .then(function success(result) {
+            //            if (result.entities.length > 1) {
+            //                for (var i = 0; i < result.entities.length; i++) {
+            //                    if (result.entities[i].ts_questionnaireversionid == questionnaireVersionId) {
+            //                        if (i != result.entities.length - 1) {
+            //                            if (Date.parse(dateEndAttributeValue.toString()) >= Date.parse(result.entities[i + 1].ts_effectivestartdate))
+            //                                Form.getControl("ts_effectiveenddate").setNotification(message + result.entities[i + 1].ts_name, "errorEndDate");
+            //                            else
+            //                                Form.getControl("ts_effectiveenddate").clearNotification("errorEndDate");
+            //                        }
+            //                        if (i != 0) {
+            //                            if (Date.parse(dateStartAttributeValue.toString()) <= Date.parse(result.entities[i - 1].ts_effectiveenddate))
+            //                                Form.getControl("ts_effectivestartdate").setNotification(message + result.entities[i - 1].ts_name, "errorStartDate");
+            //                            else
+            //                                Form.getControl("ts_effectivestartdate").clearNotification("errorStartDate");
+            //                        }
+            //                    }
+            //                }
+            //            }
+            //        },
+            //            function (error) {
+            //            }
+            //    );
+            //}
         }
         QuestionnaireVersion.onSave = onSave;
         function InitiateSurvey(wrCtrl, surveyDefinition) {

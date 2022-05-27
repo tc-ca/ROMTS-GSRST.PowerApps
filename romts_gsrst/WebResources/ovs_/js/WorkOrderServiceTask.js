@@ -68,7 +68,7 @@ var ROM;
                 Xrm.WebApi.retrieveRecord("msdyn_servicetasktype", taskType[0].id).then(function success(result) {
                     //If it's for a custom questionnaire, show the custom questionnaire section
                     if (result.ts_hascustomquestionnaire) {
-                        Form.ui.tabs.get("tab_summary").sections.get("section_custom_questionnaire").setVisible(true);
+                        Form.ui.tabs.get("tab_questionnaire").sections.get("section_custom_questionnaire").setVisible(true);
                     }
                 });
             }
