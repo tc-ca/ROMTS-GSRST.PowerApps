@@ -1,10 +1,8 @@
-﻿async function callFlow(primaryControl) {
+async function callFlow(primaryControl) {
     await primaryControl.data.save();
     const findingsReportId = primaryControl.data.entity.getId().slice(1, -1); //Remove curly braces.
     const sensitivityLabelValue = primaryControl.getAttribute("ts_sensitivitylevel").getValue();
     const language = primaryControl.getAttribute("ts_language").getValue();
-    let sensitivityLabelEn = "";
-    let sensitivityLabelFr = "";
 
     if (sensitivityLabelValue == 717750000) {
         sensitivityLabelEn = "UNCLASSIFIED";
@@ -13,13 +11,15 @@
         sensitivityLabelEn = "PROTECTED B";
         sensitivityLabelFr = "PROTÉGÉ B";
     }
+    let sensitivityLevel = (language == 717750000) ? sensitivityLabelEn : sensitivityLabelFr;
 
+    let environmentName = await GetEnvironmentVariableValue("ts_EnvironmentName");
 
     var params = {
         "FindingsReportId": findingsReportId,
-        "SensitivityLevelEn": sensitivityLabelEn,
-        "SensitivityLevelFr": sensitivityLabelFr,
-        "language": language
+        "SensitivityLevel": sensitivityLevel,
+        "language": language,
+        "environmentName": environmentName
     }
 
     var url = await GetEnvironmentVariableValue("ts_FindingsReportFlowURL");
