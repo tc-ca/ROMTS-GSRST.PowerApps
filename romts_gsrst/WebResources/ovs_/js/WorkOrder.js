@@ -103,6 +103,12 @@ var ROM;
                         }
                     }
                     setActivityTypeDisabled(eContext);
+                    debugger;
+                    if (currentSystemStatus == 690970004 || currentSystemStatus == 690970005) {
+                        if (!userHasRole("System Administrator|ROM - Business Admin|ROM - Manager")) {
+                            form.getControl("header_msdyn_systemstatus").setDisabled(true);
+                        }
+                    }
                     break;
                 default:
                     // Enable all operation related fields
