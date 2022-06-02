@@ -1,4 +1,4 @@
-async function callFlow(primaryControl) {
+﻿async function callFlow(primaryControl) {
     await primaryControl.data.save();
     const findingsReportId = primaryControl.data.entity.getId().slice(1, -1); //Remove curly braces.
     const sensitivityLabelValue = primaryControl.getAttribute("ts_sensitivitylevel").getValue();
@@ -13,13 +13,12 @@ async function callFlow(primaryControl) {
     }
     let sensitivityLevel = (language == 717750000) ? sensitivityLabelEn : sensitivityLabelFr;
 
-    let environmentName = await GetEnvironmentVariableValue("ts_EnvironmentName");
+    let userLanguage = Xrm.Utility.getGlobalContext().userSettings.languageId;
 
     var params = {
         "FindingsReportId": findingsReportId,
         "SensitivityLevel": sensitivityLevel,
-        "language": language,
-        "environmentName": environmentName
+        "UserLanguage": userLanguage
     }
 
     var url = await GetEnvironmentVariableValue("ts_FindingsReportFlowURL");

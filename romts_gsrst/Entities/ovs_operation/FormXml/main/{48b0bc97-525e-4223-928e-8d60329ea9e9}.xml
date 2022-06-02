@@ -39,6 +39,7 @@
                         <control id="ts_stakeholder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_stakeholder" disabled="false">
                           <parameters>
                             <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
                           </parameters>
                         </control>
                       </cell>
@@ -49,9 +50,10 @@
                           <label description="Operation Type" languagecode="1033" />
                           <label description="Type d'opération" languagecode="1036" />
                         </labels>
-                        <control id="ovs_operationtypeid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_operationtypeid" disabled="false">
+                        <control id="ovs_operationtypeid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_operationtypeid" disabled="true">
                           <parameters>
                             <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
                           </parameters>
                         </control>
                       </cell>
@@ -62,9 +64,10 @@
                           <label description="Site" languagecode="1033" />
                           <label description="Site" languagecode="1036" />
                         </labels>
-                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="false">
+                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="true">
                           <parameters>
                             <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
                           </parameters>
                         </control>
                       </cell>
@@ -78,6 +81,7 @@
                         <control id="ts_subsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subsite" disabled="true">
                           <parameters>
                             <DisableViewPicker>true</DisableViewPicker>
+                            <DisableMru>true</DisableMru>
                           </parameters>
                         </control>
                       </cell>
@@ -88,7 +92,7 @@
                           <label description="Owner" languagecode="1033" />
                           <label description="Propriétaire" languagecode="1036" />
                         </labels>
-                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -805,6 +809,16 @@
         <event name="onchange" application="true" active="true" attribute="ts_issecurityinspectionsite">
           <Handlers>
             <Handler functionName="ROM.Operation.SIConductedOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{b37281dc-6fef-481b-b8d8-dd58ad4369c3}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_stakeholder">
+          <Handlers>
+            <Handler functionName="ROM.Operation.stakeholderOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{dfa95cbc-cbe8-4be9-8bcc-c12c2ca9bb5b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ovs_operationtypeid">
+          <Handlers>
+            <Handler functionName="ROM.Operation.operationTypeOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{50ebc0d8-5dff-4ee4-85fe-bdcf73a8cb16}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

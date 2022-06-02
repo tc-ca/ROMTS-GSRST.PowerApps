@@ -103,8 +103,7 @@ var ROM;
                         }
                     }
                     setActivityTypeDisabled(eContext);
-                    debugger;
-                    if (currentSystemStatus == 690970004 || currentSystemStatus == 690970005) {
+                    if (currentSystemStatus == 690970004) {
                         if (!userHasRole("System Administrator|ROM - Business Admin|ROM - Manager")) {
                             form.getControl("header_msdyn_systemstatus").setDisabled(true);
                         }
@@ -653,23 +652,38 @@ var ROM;
             var newSystemStatus = form.getAttribute("msdyn_systemstatus").getValue();
             //If system status is set to closed
             if (newSystemStatus == 690970004 || newSystemStatus == 690970005) {
-                var confirmStrings = {
-                    text: Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "CloseWorkOrderConfirmationText"),
-                    title: Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "CloseWorkOrderConfirmationTitle")
-                };
-                var confirmOptions = { height: 200, width: 450 };
-                Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(function (success) {
-                    if (success.confirmed) {
-                        //Set state to Inactive
-                        form.getAttribute("statecode").setValue(1);
-                        //Set Status Reason to Closed
-                        form.getAttribute("statuscode").setValue(918640000);
-                        currentSystemStatus = newSystemStatus;
-                    }
-                    else {
-                        //Undo the system status change
+                Xrm.WebApi.retrieveMultipleRecords("msdyn_workorderservicetask", "?$select=msdyn_workorder&$filter=msdyn_workorder/msdyn_workorderid eq " + form.data.entity.getId() + " and statuscode ne 918640002").then(function success(result) {
+                    if (result.entities.length > 0 && newSystemStatus == 690970004) {
+                        var alertStrings = {
+                            text: Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "CloseWOWithUnCompletedSTText"),
+                            title: Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "CloseWOWithUnCompletedSTTitle")
+                        };
+                        var alertOptions = { height: 160, width: 340 };
+                        Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(function () { });
                         form.getAttribute("msdyn_systemstatus").setValue(currentSystemStatus);
                     }
+                    else {
+                        var confirmStrings = {
+                            text: Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "CloseWorkOrderConfirmationText"),
+                            title: Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "CloseWorkOrderConfirmationTitle")
+                        };
+                        var confirmOptions = { height: 200, width: 450 };
+                        Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(function (success) {
+                            if (success.confirmed) {
+                                //Set state to Inactive
+                                form.getAttribute("statecode").setValue(1);
+                                //Set Status Reason to Closed
+                                form.getAttribute("statuscode").setValue(918640000);
+                                currentSystemStatus = newSystemStatus;
+                            }
+                            else {
+                                //Undo the system status change
+                                form.getAttribute("msdyn_systemstatus").setValue(currentSystemStatus);
+                            }
+                        });
+                    }
+                }, function (error) {
+                    showErrorMessageAlert(error);
                 });
             }
             else {
@@ -1057,5 +1071,18 @@ var ROM;
                 }
             });
         }
+        function userHasRole(rolesName) {
+            var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+            var hasRole = false;
+            var roles = rolesName.split("|");
+            roles.forEach(function (roleItem) {
+                userRoles.forEach(function (userRoleItem) {
+                    if (userRoleItem.name.toLowerCase() == roleItem.toLowerCase())
+                        hasRole = true;
+                });
+            });
+            return hasRole;
+        }
+        WorkOrder.userHasRole = userHasRole;
     })(WorkOrder = ROM.WorkOrder || (ROM.WorkOrder = {}));
 })(ROM || (ROM = {}));

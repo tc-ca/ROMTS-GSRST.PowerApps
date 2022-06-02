@@ -1,11 +1,11 @@
-"use strict";
+﻿"use strict";
 var ROM;
 (function (ROM) {
     var QuestionnaireVersion;
     (function (QuestionnaireVersion) {
         function onLoad(eContext) {
             setStatusNotification(eContext);
-            // setVersionsDatesNotification(eContext);
+            setVersionsDatesNotification(eContext);
             // Get formContext
             var Form = eContext.getFormContext();
             var surveyDefinition = Form.getAttribute("ts_questionnairedefinition").getValue();
@@ -107,79 +107,30 @@ var ROM;
             var dateEndAttribute = form.getAttribute("ts_effectiveenddate");
             var dateStartAttributeValue = dateStartAttribute.getValue();
             var dateEndAttributeValue = dateEndAttribute.getValue();
-            //   if (dateStartAttributeValue && dateEndAttributeValue) {
-            Xrm.WebApi.retrieveMultipleRecords("ts_questionnaireversion", "?$select=ts_name, ts_effectivestartdate, ts_effectiveenddate&$filter=_ts_ovs_questionnaire_value eq " + questionnaireId + "&$orderby=ts_effectivestartdate asc")
-                .then(function success(result) {
-                if (result.entities.length > 1) {
-                    for (var i = 0; i < result.entities.length; i++) {
-                        if (result.entities[i].ts_questionnaireversionid == questionnaireVersionId) {
-                            //if (i != result.entities.length - 1) {
-                            //    if (Date.parse(dateEndAttributeValue.toString()) >= Date.parse(result.entities[i + 1].ts_effectivestartdate))
-                            //        form.getControl("ts_effectiveenddate").setNotification(message + result.entities[i + 1].ts_name, "errorEndDate");
-                            //    else
-                            //        form.getControl("ts_effectiveenddate").clearNotification("errorEndDate");
-                            //}
-                            //if (i != 0) {
-                            //    if (Date.parse(dateStartAttributeValue.toString()) <= Date.parse(result.entities[i - 1].ts_effectiveenddate))
-                            //        form.getControl("ts_effectivestartdate").setNotification(message + result.entities[i - 1].ts_name, "errorStartDate");
-                            //    else
-                            //        form.getControl("ts_effectivestartdate").clearNotification("errorStartDate");
-                            //}
-                            if (dateEndAttributeValue) {
-                                //if not the last
+            if (dateStartAttributeValue && dateEndAttributeValue) {
+                Xrm.WebApi.retrieveMultipleRecords("ts_questionnaireversion", "?$select=ts_name, ts_effectivestartdate, ts_effectiveenddate&$filter=_ts_ovs_questionnaire_value eq " + questionnaireId)
+                    .then(function success(result) {
+                    if (result.entities.length > 1) {
+                        for (var i = 0; i < result.entities.length; i++) {
+                            if (result.entities[i].ts_questionnaireversionid == questionnaireVersionId) {
                                 if (i != result.entities.length - 1) {
-                                    if (dateEndAttributeValue >= new Date(result.entities[i + 1].ts_effectivestartdate))
-                                        form.getControl("ts_effectiveenddate").setNotification(message + result.entities[i + 1].ts_name, "errorNextEndDate");
+                                    if (Date.parse(dateEndAttributeValue.toString()) >= Date.parse(result.entities[i + 1].ts_effectivestartdate))
+                                        form.getControl("ts_effectiveenddate").setNotification(message + result.entities[i + 1].ts_name, "errorEndDate");
                                     else
-                                        form.getControl("ts_effectiveenddate").clearNotification("errorNextEndDate");
-                                    if (dateStartAttributeValue) {
-                                        if (dateStartAttributeValue <= new Date(result.entities[i - 1].ts_effectiveenddate))
-                                            form.getControl("ts_effectiveenddate").setNotification(message + result.entities[i - 1].ts_name, "errorPreviousEndDate");
-                                        else
-                                            form.getControl("ts_effectiveenddate").clearNotification("errorPreviousEndDate");
-                                    }
+                                        form.getControl("ts_effectiveenddate").clearNotification("errorEndDate");
                                 }
-                                //if the last
-                                else {
-                                    if (dateStartAttributeValue) {
-                                        if (dateStartAttributeValue <= new Date(result.entities[i - 1].ts_effectiveenddate))
-                                            form.getControl("ts_effectivestartdate").setNotification(message + result.entities[i - 1].ts_name, "errorStartDate");
-                                        else
-                                            form.getControl("ts_effectivestartdate").clearNotification("errorStartDate");
-                                    }
-                                    else {
-                                        if (dateEndAttributeValue <= new Date(result.entities[i - 1].ts_effectiveenddate))
-                                            form.getControl("ts_effectiveenddate").setNotification(message + result.entities[i - 1].ts_name, "errorEndDate");
-                                        else
-                                            form.getControl("ts_effectiveenddate").clearNotification("errorEndDate");
-                                    }
-                                }
-                            }
-                            //if not the first
-                            if (dateStartAttributeValue) {
                                 if (i != 0) {
-                                    if (dateStartAttributeValue <= new Date(result.entities[i - 1].ts_effectiveenddate))
+                                    if (Date.parse(dateStartAttributeValue.toString()) <= Date.parse(result.entities[i - 1].ts_effectiveenddate))
                                         form.getControl("ts_effectivestartdate").setNotification(message + result.entities[i - 1].ts_name, "errorStartDate");
-                                    else
-                                        form.getControl("ts_effectivestartdate").clearNotification("errorStartDate");
-                                    //if (new Date(result.entities[i].ts_effectiveenddate) <= new Date(result.entities[i - 1].ts_effectiveenddate))
-                                    //    form.getControl("ts_effectiveenddate").setNotification(message + result.entities[i - 1].ts_name, "errorEndDate");
-                                    //else
-                                    //    form.getControl("ts_effectiveenddate").clearNotification("errorEndDate");
-                                }
-                                //the first
-                                else {
-                                    if (dateStartAttributeValue <= new Date(result.entities[i + 1].ts_effectiveenddate))
-                                        form.getControl("ts_effectivestartdate").setNotification(message + result.entities[i + 1].ts_name, "errorStartDate");
                                     else
                                         form.getControl("ts_effectivestartdate").clearNotification("errorStartDate");
                                 }
                             }
                         }
                     }
-                }
-            });
-            //}
+                }, function (error) {
+                });
+            }
         }
     })(QuestionnaireVersion = ROM.QuestionnaireVersion || (ROM.QuestionnaireVersion = {}));
 })(ROM || (ROM = {}));
