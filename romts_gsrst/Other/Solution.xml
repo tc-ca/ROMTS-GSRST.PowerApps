@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20220609.1</Version>
+    <Version>1.0.20220609.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -285,6 +285,7 @@
       <RootComponent type="29" id="{33a33eb1-1c33-eb11-a813-000d3af3fc19}" behavior="0" />
       <RootComponent type="29" id="{50709486-bb81-eb11-a812-000d3a84b97d}" behavior="0" />
       <RootComponent type="29" id="{586105f8-6657-eb11-a812-000d3aff12c2}" behavior="0" />
+      <RootComponent type="29" id="{5b95508a-d4ea-453f-b63d-7555774196be}" behavior="0" />
       <RootComponent type="29" id="{5c9834c1-6e6d-eb11-a812-000d3a84129e}" behavior="0" />
       <RootComponent type="29" id="{91377355-dfd8-eb11-bacb-0022483c570d}" behavior="0" />
       <RootComponent type="29" id="{99e2006c-2517-ec11-b6e7-000d3a8408c3}" behavior="0" />
@@ -972,14 +973,6 @@
           <package>msdynce_MarketingAnchor (9.0.22054.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="mbs_pluginprofile" displayName="Plug-in Profile" solution="PluginProfiler (2.0.0.0)" />
-        <Dependent type="1" schemaName="businessunit" displayName="Business Unit" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="mbs_pluginprofile" displayName="Plug-in Profile" solution="PluginProfiler (2.0.0.0)" />
-        <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_actioncardrolesetting" displayName="Action Card Role Setting" solution="Relationshipassistant (9.0.1.701794)">
@@ -7920,6 +7913,12 @@
         <Required type="2" schemaName="incidentid" displayName="Case" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.22053.1008)</package>
         </Required>
+        <Dependent type="29" displayName="Case assign" id="{5b95508a-d4ea-453f-b63d-7555774196be}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="incidentid" displayName="Case" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.22053.1008)</package>
+        </Required>
         <Dependent type="60" displayName="After Meeting" parentDisplayName="Appointment" id="{7f58467b-ab43-447c-ab95-29deea3b1e35}" />
       </MissingDependency>
       <MissingDependency>
@@ -8041,6 +8040,12 @@
           <package>msdynce_ServiceAnchor (9.0.22053.1008)</package>
         </Required>
         <Dependent type="2" schemaName="ownerid" displayName="Owner" parentSchemaName="incident" parentDisplayName="Case" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="owninguser" displayName="Owning User" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.22053.1008)</package>
+        </Required>
+        <Dependent type="29" displayName="Case assign" id="{5b95508a-d4ea-453f-b63d-7555774196be}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="parentcaseid" displayName="Parent Case" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
