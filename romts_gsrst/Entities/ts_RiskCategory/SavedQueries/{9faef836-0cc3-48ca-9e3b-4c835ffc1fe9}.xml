@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{9faef836-0cc3-48ca-9e3b-4c835ffc1fe9}</savedqueryid>
+    <layoutxml>
+      <grid name="ts_riskcategories" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="ts_riskcategory" id="ts_riskcategoryid">
+          <cell name="ts_name" width="98" />
+          <cell name="ts_operationtype" width="124" />
+          <cell name="ts_interval" width="100" />
+          <cell name="ts_frequency" width="100" />
+          <cell name="ts_riskscoreminimum" width="161" />
+          <cell name="ts_riskscoremaximum" width="170" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_riskcategory">
+          <attribute name="ts_riskcategoryid" />
+          <attribute name="ts_name" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_operationtype" />
+          <attribute name="ts_interval" />
+          <attribute name="ts_frequency" />
+          <attribute name="ts_riskscoremaximum" />
+          <attribute name="ts_riskscoreminimum" />
+          <order attribute="ts_riskscoremaximum" descending="true" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Risk Category Associated View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

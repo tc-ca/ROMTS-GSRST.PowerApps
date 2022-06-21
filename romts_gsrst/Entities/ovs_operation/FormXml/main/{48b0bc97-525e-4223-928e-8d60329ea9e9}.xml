@@ -422,6 +422,15 @@
                   </labels>
                   <rows>
                     <row>
+                      <cell id="{cd3a486c-f232-45be-897c-e8d8d358514d}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="What type of dangerous goods (DGs) are handled at this site?" languagecode="1033" />
+                          <label description="Quel type de marchandises dangereuses (MDs) sont manipulées sur ce site ?" languagecode="1036" />
+                        </labels>
+                        <control id="ts_typeofdangerousgoods" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_typeofdangerousgoods" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{c01b4a36-4f60-442e-95ef-859ef4e6f460}" locklevel="0" colspan="1" rowspan="1" showlabel="true" visible="false">
                         <labels>
                           <label description="Is this a site where Visual Security Inspections (VSIs) are conducted?" languagecode="1033" />
@@ -437,23 +446,6 @@
                           <label description="Dans le dernier surveillance de l'IVS réalisé, comment l'inspection a-t-elle été supervisée ?" languagecode="1036" />
                         </labels>
                         <control id="ts_visualsecurityinspectiondetails" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_visualsecurityinspectiondetails" disabled="false" />
-                      </cell>
-                    </row>
-                  </rows>
-                </section>
-                <section name="tab_dangerous_goods" id="5d763774-f1e9-4824-af0f-7bbc1ac2f3ce" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="1" labelwidth="115">
-                  <labels>
-                    <label description="Type Of Dangerous Goods" languagecode="1033" />
-                    <label description="Type de marchandises dangereuses" languagecode="1036" />
-                  </labels>
-                  <rows>
-                    <row>
-                      <cell id="{cd3a486c-f232-45be-897c-e8d8d358514d}" locklevel="0" colspan="1" rowspan="1" visible="false">
-                        <labels>
-                          <label description="What type of dangerous goods (DGs) are handled at this site?" languagecode="1033" />
-                          <label description="Quel type de marchandises dangereuses (MDs) sont manipulées sur ce site ?" languagecode="1036" />
-                        </labels>
-                        <control id="ts_typeofdangerousgoods" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_typeofdangerousgoods" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -538,6 +530,16 @@
                         <control id="ts_ppeguide" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_ppeguide" disabled="false" uniqueid="{b5e37728-3575-e018-a1d2-b0ceb4536e2c}" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{996c770b-347a-8d31-c4c0-d9b91c7a89d6}" showlabel="true" locklevel="0" rowspan="2">
+                        <labels>
+                          <label description="Additional PPE Comments" languagecode="1033" />
+                          <label description="Commentaires supplémentaires sur les EPI" languagecode="1036" />
+                        </labels>
+                        <control id="ts_comments" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_comments" disabled="false" uniqueid="{7a544b26-546c-4da2-18e1-e01c48b2ae79}" />
+                      </cell>
+                    </row>
+                    <row />
                   </rows>
                 </section>
                 <section name="tab_properties_ppeguide" id="4df3edf1-0a1d-4024-a8e9-fdcf8476c9d4" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" height="auto">
@@ -600,7 +602,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -807,6 +809,11 @@
         <event name="onchange" application="true" active="true" attribute="ovs_operationtypeid">
           <Handlers>
             <Handler functionName="ROM.Operation.operationTypeOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{50ebc0d8-5dff-4ee4-85fe-bdcf73a8cb16}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="true" active="true" attribute="ts_typeofdangerousgoods">
+          <Handlers>
+            <Handler functionName="ROM.Operation.typeOfDangerousGoodsOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{3394b92d-1a33-4301-8918-81fd15805fdd}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
