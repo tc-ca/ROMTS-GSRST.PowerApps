@@ -10,8 +10,13 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_riskcategoryid">
-          <cell name="ts_name" width="300" />
-          <cell name="createdon" width="125" />
+          <cell name="ts_riskcategoryen" width="100" />
+          <cell name="ts_riskcategoryfr" width="100" />
+          <cell name="ts_operationtype" width="100" />
+          <cell name="ts_interval" width="100" />
+          <cell name="ts_frequency" width="100" />
+          <cell name="ts_riskscoreminimum" width="100" />
+          <cell name="ts_riskscoremaximum" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -19,19 +24,24 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ts_riskcategory">
-          <attribute name="ts_riskcategoryid" />
-          <attribute name="ts_name" />
-          <attribute name="createdon" />
-          <order attribute="ts_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="ts_riskcategoryen" />
+          <attribute name="ts_riskcategoryfr" />
+          <attribute name="ts_operationtype" />
+          <attribute name="ts_interval" />
+          <attribute name="ts_frequency" />
+          <attribute name="ts_riskscoreminimum" />
+          <attribute name="ts_riskscoremaximum" />
+          <attribute name="ts_riskcategoryid" />
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Active Risk Categories" languagecode="1033" />
+      <LocalizedName description="Active Risk Thresholds" languagecode="1033" />
+      <LocalizedName description="Seuil de risque actifs" languagecode="1036" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

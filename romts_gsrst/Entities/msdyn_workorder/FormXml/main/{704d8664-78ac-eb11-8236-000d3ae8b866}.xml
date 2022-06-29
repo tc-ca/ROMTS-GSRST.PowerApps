@@ -1038,6 +1038,14 @@
                         <control id="ts_completedquarter" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_completedquarter" disabled="false" />
                       </cell>
                     </row>
+                    <row>
+                      <cell locklevel="0" id="{e6e1e5e8-416f-479c-87b0-90fd4df85efd}" colspan="1" rowspan="1" showlabel="true">
+                        <labels>
+                          <label description="Can't Complete Inspection" languagecode="1033" />
+                        </labels>
+                        <control id="ts_cantcompleteinspection" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_cantcompleteinspection" disabled="false" uniqueid="{d717b9b5-7ecf-4962-805a-43b2b51c786e}" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -3077,6 +3085,28 @@
             </parameters>
           </customControl>
         </controlDescription>
+        <controlDescription forControl="{d717b9b5-7ecf-4962-805a-43b2b51c786e}">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_cantcompleteinspection</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_cantcompleteinspection</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_cantcompleteinspection</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_cantcompleteinspection</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
       </controlDescriptions>
       <formLibraries>
         <Library name="msdyn_/WorkOrder/WorkOrder.Library.js" libraryUniqueId="{17dd260c-4613-be64-6de8-3e20e7931c70}" />
@@ -3174,6 +3204,11 @@
         <event name="onchange" application="false" active="false" attribute="msdyn_primaryincidenttype">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.activityTypeOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{cb5a3540-5876-2d37-0901-87984a3a8032}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_cantcompleteinspection">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.cantCompleteInspectionOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{95cb2358-8c6d-e3e4-0823-4e33d2a977ee}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

@@ -6,11 +6,11 @@
     <isquickfindquery>0</isquickfindquery>
     <isprivate>0</isprivate>
     <isdefault>0</isdefault>
-    <savedqueryid>{3074df0e-a688-4ad0-ba2f-e7a5134cce9e}</savedqueryid>
+    <savedqueryid>{27a14e4b-dde9-4ed0-908a-d6ee4c01e68b}</savedqueryid>
     <layoutxml>
-      <grid name="resultset" jump="subject" select="1" icon="1" preview="1">
-        <row name="result" id="activityid">
-          <cell name="subject" width="300" />
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_incompleteworkorderreasonid">
+          <cell name="ts_name" width="300" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -18,20 +18,20 @@
     <querytype>0</querytype>
     <fetchxml>
       <fetch version="1.0" mapping="logical">
-        <entity name="ts_serviceofenforcementaction">
-          <attribute name="activityid" />
-          <attribute name="subject" />
+        <entity name="ts_incompleteworkorderreason">
+          <attribute name="ts_incompleteworkorderreasonid" />
+          <attribute name="ts_name" />
           <attribute name="createdon" />
-          <order attribute="subject" descending="false" />
+          <order attribute="ts_name" descending="false" />
           <filter type="and">
-            <condition attribute="statecode" operator="not-null" />
+            <condition attribute="statecode" operator="eq" value="1" />
           </filter>
         </entity>
       </fetch>
     </fetchxml>
-    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <IntroducedVersion>1.0</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="All Services Of Enforcement Action" languagecode="1033" />
+      <LocalizedName description="Inactive Incomplete Work Order Reasons" languagecode="1033" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

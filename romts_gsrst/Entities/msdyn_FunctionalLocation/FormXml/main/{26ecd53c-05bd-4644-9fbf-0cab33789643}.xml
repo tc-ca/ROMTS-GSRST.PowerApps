@@ -80,6 +80,15 @@
                         <control id="ts_sitestatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_sitestatus" disabled="true" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{66bdfd7f-12b2-48a7-b4c6-b115fc9d1213}" locklevel="0" colspan="1" rowspan="1" visible="false" ordinalvalue="10008" solutionaction="Added">
+                        <labels>
+                          <label description="Class" languagecode="1033" />
+                          <label description="Class" languagecode="1036" />
+                        </labels>
+                        <control id="ts_class" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_class" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
                 <section name="AddressSection" showlabel="true" showbar="false" locklevel="0" id="{a1392020-0c41-1345-2d93-2e8ecd00600c}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="2" solutionaction="Modified">
@@ -533,6 +542,11 @@
             <Handler functionName="ROM.FunctionalLocation.onSave" libraryName="msdyn_/FunctionalLocation/FunctionalLocation.Library.js" handlerUniqueId="{e46bc05c-b8c9-4c19-b05e-cb029ea3a700}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
           </Handlers>
         </event>
+        <event name="onchange" application="true" active="true" attribute="ts_region" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.FunctionalLocation.regionOnChange" libraryName="msdyn_/FunctionalLocation/FunctionalLocation.Library.js" handlerUniqueId="{b8d03d27-cf0f-4815-92f1-ff549a67fdb0}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
       </events>
       <controlDescriptions>
         <controlDescription forControl="{013B411F-CF89-4E09-AA9C-3F8AECB1819D}" solutionaction="Added">
@@ -643,7 +657,7 @@
         </rows>
       </footer>
       <Navigation solutionaction="Added">
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>

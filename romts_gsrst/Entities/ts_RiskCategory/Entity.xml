@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Entity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Name LocalizedName="Risk Category" OriginalName="Risk Category">ts_RiskCategory</Name>
+  <Name LocalizedName="Risk Threshold" OriginalName="Risk Category">ts_RiskCategory</Name>
   <EntityInfo>
     <entity Name="ts_RiskCategory">
       <LocalizedNames>
-        <LocalizedName description="Risk Category" languagecode="1033" />
+        <LocalizedName description="Risk Threshold" languagecode="1033" />
+        <LocalizedName description="Seuil de risque" languagecode="1036" />
       </LocalizedNames>
       <LocalizedCollectionNames>
-        <LocalizedCollectionName description="Risk Categories" languagecode="1033" />
+        <LocalizedCollectionName description="Risk Thresholds" languagecode="1033" />
+        <LocalizedCollectionName description="Seuils de risque" languagecode="1036" />
       </LocalizedCollectionNames>
       <Descriptions>
         <Description description="" languagecode="1033" />
@@ -719,7 +721,8 @@
           <MinValue>-2147483648</MinValue>
           <MaxValue>2147483647</MaxValue>
           <displaynames>
-            <displayname description="Frequency" languagecode="1033" />
+            <displayname description="Inspection Frequency" languagecode="1033" />
+            <displayname description="Fréquence des inspections" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
@@ -760,6 +763,7 @@
           <MaxValue>2147483647</MaxValue>
           <displaynames>
             <displayname description="Interval" languagecode="1033" />
+            <displayname description="Intervalle" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
@@ -838,6 +842,89 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Operation Type" languagecode="1033" />
+            <displayname description="Type d'opération" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ts_riskcategoryen">
+          <Type>nvarchar</Type>
+          <Name>ts_riskcategoryen</Name>
+          <LogicalName>ts_riskcategoryen</LogicalName>
+          <RequiredLevel>required</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20220621.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>100</MaxLength>
+          <Length>200</Length>
+          <displaynames>
+            <displayname description="Risk Threshold Name (English)" languagecode="1033" />
+            <displayname description="Nom du seuil de risque (Anglais)" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ts_riskcategoryfr">
+          <Type>nvarchar</Type>
+          <Name>ts_riskcategoryfr</Name>
+          <LogicalName>ts_riskcategoryfr</LogicalName>
+          <RequiredLevel>required</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20220621.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>100</MaxLength>
+          <Length>200</Length>
+          <displaynames>
+            <displayname description="Risk Threshold Name (French)" languagecode="1033" />
+            <displayname description="Nom du seuil de risque (Français)" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
@@ -916,6 +1003,7 @@
           <MaxValue>2147483647</MaxValue>
           <displaynames>
             <displayname description="Risk Score Maximum" languagecode="1033" />
+            <displayname description="Cote de risque maximum" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
@@ -956,6 +1044,7 @@
           <MaxValue>2147483647</MaxValue>
           <displaynames>
             <displayname description="Risk Score Minimum" languagecode="1033" />
+            <displayname description="Cote de risque minimum" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
@@ -1020,7 +1109,7 @@
       <IsDocumentRecommendationsEnabled>0</IsDocumentRecommendationsEnabled>
       <IsBPFEntity>0</IsBPFEntity>
       <OwnershipTypeMask>UserOwned</OwnershipTypeMask>
-      <IsAuditEnabled>0</IsAuditEnabled>
+      <IsAuditEnabled>1</IsAuditEnabled>
       <IsRetrieveAuditEnabled>0</IsRetrieveAuditEnabled>
       <IsRetrieveMultipleAuditEnabled>0</IsRetrieveMultipleAuditEnabled>
       <IsActivity>0</IsActivity>
@@ -1072,4 +1161,48 @@
   <FormXml />
   <SavedQueries />
   <RibbonDiffXml />
+  <CustomControlDefaultConfigs>
+    <CustomControlDefaultConfig>
+      <ControlDescriptionXML>
+        <controlDescriptions>
+          <controlDescription>
+            <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" formFactor="0">
+              <parameters />
+            </customControl>
+            <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+              <parameters>
+                <data-set name="Grid">
+                  <columnsDefaultView />
+                </data-set>
+                <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+                <EnableEditing static="true" type="Enum">yes</EnableEditing>
+                <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+                <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+                <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+                <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+                <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+                <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+              </parameters>
+            </customControl>
+            <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+              <parameters>
+                <data-set name="Grid">
+                  <columnsDefaultView />
+                </data-set>
+                <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+                <EnableEditing static="true" type="Enum">yes</EnableEditing>
+                <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+                <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+                <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+                <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+                <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+                <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+              </parameters>
+            </customControl>
+          </controlDescription>
+        </controlDescriptions>
+      </ControlDescriptionXML>
+      <IntroducedVersion>1.0</IntroducedVersion>
+    </CustomControlDefaultConfig>
+  </CustomControlDefaultConfigs>
 </Entity>

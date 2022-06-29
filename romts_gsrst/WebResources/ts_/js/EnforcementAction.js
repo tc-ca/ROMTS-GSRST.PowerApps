@@ -3,65 +3,82 @@ var ROM;
 (function (ROM) {
     var EnforcementAction;
     (function (EnforcementAction) {
-        //Toggle visibility of specific enforcement action (verbal warning)
         function onLoad(eContext) {
             var formContext = eContext.getFormContext();
+            verbalWarningAdditionalDetailsVisibility(formContext);
+            verbalWarningWhereDetailsVisiblity(formContext);
+            filterAuthorizedRepresentative(formContext);
         }
         EnforcementAction.onLoad = onLoad;
         function onSave(eContext) {
-            var formContext = eContext.getFormContext();
-            formContext.getControl("ts_VerbalWarningGivenTo");
         }
         EnforcementAction.onSave = onSave;
-        function typeOnChange(eContext) {
+        function filterAuthorizedRepresentative(formContext) {
+            // const viewId = '{145AC9F2-4F7E-43DF-BEBD-442CB4C1F770}';
+            // const entityName = "contact";
+            // const viewDisplayName = "Filtered Contacts";
+            // const fetchXml = '<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true" no-lock="false"><entity name="contact"><attribute name="contactid"/><attribute name="fullname"/><link-entity name="ts_operationcontact" from="ts_contact" to="contactid"><link-entity name="ovs_operation" from="ovs_operationid" to="ts_operation"><link-entity name="msdyn_workorder" from="ovs_operationid" to="ovs_operationid"><link-entity name="incident" from="incidentid" to="msdyn_servicerequest"><link-entity name="ts_enforcementaction" from="ts_case" to="incidentid"><link-entity name="ts_serviceofenforcementaction" from="regardingobjectid" to="ts_enforcementactionid"><filter><condition attribute="activityid" operator="eq" value="' + formContext.data.entity.getId() + '" uitype="ts_serviceofenforcementaction"/></filter></link-entity></link-entity></link-entity></link-entity></link-entity><link-entity name="ts_role" from="ts_roleid" to="ts_connectionrole" alias="role"><attribute name="ts_name"/></link-entity></link-entity></entity></fetch>';
+            // const layoutXml = '<grid name="resultset" object="2" jump="fullname" select="1" icon="1" preview="1"><row name="result" id="contactid"><cell name="fullname" width="200" /><cell name="role.ts_name" width="200" /></row></grid>';
+            // formContext.getControl("ts_authorizedrepresentative").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
+        }
+        function methodOfServiceOnChange(eContext) {
             var formContext = eContext.getFormContext();
-            var type = formContext.getAttribute("ts_type").getValue();
-            //Show additional fields if Enforcement Action is a Verbal Warning
-            if (type == 717750000 /* VerbalWarning */) {
+            verbalWarningAdditionalDetailsVisibility(formContext);
+        }
+        EnforcementAction.methodOfServiceOnChange = methodOfServiceOnChange;
+        function verbalWarningAdditionalDetailsVisibility(formContext) {
+            var methodOfServiceValue = formContext.getAttribute("ts_methodofservice").getValue();
+            //Show additional fields if method of service includes "Verbal"
+            if (methodOfServiceValue != null && methodOfServiceValue.indexOf(717750004 /* Verbal */) !== -1) {
+                formContext.ui.tabs.get("general").sections.get("additional_details").setVisible(true);
                 formContext.getControl("ts_verbalwarninggivento").setVisible(true);
                 formContext.getControl("ts_individualposition").setVisible(true);
-                formContext.getControl("ts_company").setVisible(true);
+                formContext.getControl("ts_individualcompany").setVisible(true);
                 formContext.getControl("ts_verbalwarningdate").setVisible(true);
-                formContext.getControl("ts_verbalwarninglocation").setVisible(true);
+                formContext.getControl("ts_verbalwarningwhere").setVisible(true);
                 formContext.getAttribute("ts_verbalwarninggivento").setRequiredLevel("required");
                 formContext.getAttribute("ts_individualposition").setRequiredLevel("required");
-                formContext.getAttribute("ts_company").setRequiredLevel("required");
+                formContext.getAttribute("ts_individualcompany").setRequiredLevel("required");
                 formContext.getAttribute("ts_verbalwarningdate").setRequiredLevel("required");
-                formContext.getAttribute("ts_verbalwarninglocation").setRequiredLevel("required");
+                formContext.getAttribute("ts_verbalwarningwhere").setRequiredLevel("required");
             }
             else {
+                formContext.ui.tabs.get("general").sections.get("additional_details").setVisible(false);
                 formContext.getAttribute("ts_verbalwarninggivento").setValue();
                 formContext.getAttribute("ts_individualposition").setValue();
-                formContext.getAttribute("ts_company").setValue();
+                formContext.getAttribute("ts_individualcompany").setValue();
                 formContext.getAttribute("ts_verbalwarningdate").setValue();
-                formContext.getAttribute("ts_verbalwarninglocation").setValue();
+                formContext.getAttribute("ts_verbalwarningwhere").setValue();
                 formContext.getControl("ts_verbalwarninggivento").setVisible(false);
                 formContext.getControl("ts_individualposition").setVisible(false);
-                formContext.getControl("ts_company").setVisible(false);
+                formContext.getControl("ts_individualcompany").setVisible(false);
                 formContext.getControl("ts_verbalwarningdate").setVisible(false);
-                formContext.getControl("ts_verbalwarninglocation").setVisible(false);
+                formContext.getControl("ts_verbalwarningwhere").setVisible(false);
                 formContext.getAttribute("ts_verbalwarninggivento").setRequiredLevel("none");
                 formContext.getAttribute("ts_individualposition").setRequiredLevel("none");
-                formContext.getAttribute("ts_company").setRequiredLevel("none");
+                formContext.getAttribute("ts_individualcompany").setRequiredLevel("none");
                 formContext.getAttribute("ts_verbalwarningdate").setRequiredLevel("none");
-                formContext.getAttribute("ts_verbalwarninglocation").setRequiredLevel("none");
+                formContext.getAttribute("ts_verbalwarningwhere").setRequiredLevel("none");
             }
         }
-        EnforcementAction.typeOnChange = typeOnChange;
-        function verbalWarningLocationOtherDetails(eContext) {
+        EnforcementAction.verbalWarningAdditionalDetailsVisibility = verbalWarningAdditionalDetailsVisibility;
+        function verbalWarningWhereOtherOnChange(eContext) {
             var formContext = eContext.getFormContext();
-            var verbalWarningLocation = formContext.getAttribute("ts_verbalwarninglocation").getValue();
-            //Show additional fields if Enforcement Action is a Verbal Warning
-            if (verbalWarningLocation == 717750002 /* Other */) {
-                formContext.getControl("ts_verbalwarninglocationother").setVisible(true);
-                formContext.getAttribute("ts_verbalwarninglocationother").setRequiredLevel("required");
+            verbalWarningWhereDetailsVisiblity(formContext);
+        }
+        EnforcementAction.verbalWarningWhereOtherOnChange = verbalWarningWhereOtherOnChange;
+        function verbalWarningWhereDetailsVisiblity(formContext) {
+            var verbalWarningWhereValue = formContext.getAttribute("ts_verbalwarningwhere").getValue();
+            if (verbalWarningWhereValue != null && verbalWarningWhereValue[0] == 717750002 /* Other */) {
+                formContext.getAttribute("ts_verbalwarningwheredetails").setValue();
+                formContext.getControl("ts_verbalwarningwheredetails").setVisible(false);
+                formContext.getAttribute("ts_verbalwarningwheredetails").setRequiredLevel("none");
             }
             else {
-                formContext.getAttribute("ts_verbalwarninglocationother").setValue();
-                formContext.getControl("ts_verbalwarninglocationother").setVisible(false);
-                formContext.getAttribute("ts_verbalwarninglocationother").setRequiredLevel("none");
+                formContext.getControl("ts_verbalwarningwheredetails").setVisible(true);
+                formContext.getAttribute("ts_verbalwarningwheredetails").setRequiredLevel("required");
             }
         }
-        EnforcementAction.verbalWarningLocationOtherDetails = verbalWarningLocationOtherDetails;
+        EnforcementAction.verbalWarningWhereDetailsVisiblity = verbalWarningWhereDetailsVisiblity;
     })(EnforcementAction = ROM.EnforcementAction || (ROM.EnforcementAction = {}));
 })(ROM || (ROM = {}));

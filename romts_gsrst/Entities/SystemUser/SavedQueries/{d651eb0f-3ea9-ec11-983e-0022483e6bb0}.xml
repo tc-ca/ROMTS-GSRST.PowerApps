@@ -12,12 +12,7 @@
         <row name="result" id="systemuserid">
           <cell name="fullname" width="300" />
           <cell name="businessunitid" width="150" />
-          <cell name="a_9156d7f5d3bd47ad9f84ac9b81fa0d54.name" width="100" />
-          <cell name="territoryid" width="100" />
-          <cell name="siteid" width="150" />
-          <cell name="title" width="100" />
-          <cell name="positionid" width="100" />
-          <cell name="address1_telephone1" width="100" />
+          <cell name="a_9156d7f5d3bd47ad9f84ac9b81fa0d54.name" width="250" />
         </row>
       </grid>
     </layoutxml>
@@ -27,20 +22,23 @@
         <entity name="systemuser">
           <attribute name="fullname" />
           <order attribute="fullname" descending="false" />
-          <attribute name="title" />
-          <attribute name="address1_telephone1" />
           <attribute name="businessunitid" />
-          <attribute name="siteid" />
-          <attribute name="positionid" />
           <filter type="and">
             <condition attribute="isdisabled" operator="eq" value="0" />
             <condition attribute="accessmode" operator="ne" value="3" />
             <condition attribute="accessmode" operator="ne" value="5" />
           </filter>
           <attribute name="systemuserid" />
-          <attribute name="territoryid" />
           <link-entity alias="a_9156d7f5d3bd47ad9f84ac9b81fa0d54" name="businessunit" to="businessunitid" from="businessunitid" link-type="outer" visible="false">
             <attribute name="name" />
+          </link-entity>
+          <link-entity name="systemuserroles" from="systemuserid" to="systemuserid">
+            <link-entity name="role" from="roleid" to="roleid">
+              <attribute name="name" />
+              <filter>
+                <condition attribute="name" operator="eq" value="ROM - Inspector" />
+              </filter>
+            </link-entity>
           </link-entity>
         </entity>
       </fetch>

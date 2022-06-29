@@ -919,6 +919,44 @@
             <Description description="Identificateur unique des instances d'entité" languagecode="1036" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="ts_IndividualCompany">
+          <Type>lookup</Type>
+          <Name>ts_individualcompany</Name>
+          <LogicalName>ts_individualcompany</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.0.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="Individual Company" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="ts_IndividualPosition">
           <Type>nvarchar</Type>
           <Name>ts_individualposition</Name>
@@ -960,12 +998,12 @@
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ts_MethodofService">
-          <Type>picklist</Type>
+        <attribute PhysicalName="ts_MethodOfService">
+          <Type>multiselectpicklist</Type>
           <Name>ts_methodofservice</Name>
           <LogicalName>ts_methodofservice</LogicalName>
           <RequiredLevel>none</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <DisplayMask>ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
@@ -990,11 +1028,9 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <AppDefaultValue>-1</AppDefaultValue>
           <OptionSetName>ts_methodofservice</OptionSetName>
           <displaynames>
-            <displayname description="Method of Service" languagecode="1033" />
-            <displayname description="Méthode de service" languagecode="1036" />
+            <displayname description="Method Of Service" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
@@ -1075,7 +1111,7 @@
           <CanChangeDateTimeBehavior>1</CanChangeDateTimeBehavior>
           <Behavior>1</Behavior>
           <displaynames>
-            <displayname description="Time and Date of Service (FR)" languagecode="1033" />
+            <displayname description="Time and Date of Service" languagecode="1033" />
             <displayname description="Time and Date of Service " languagecode="1036" />
           </displaynames>
           <Descriptions>
@@ -1194,17 +1230,17 @@
           <LookupStyle>single</LookupStyle>
           <LookupTypes />
           <displaynames>
-            <displayname description="Verbal Warning given to" languagecode="1033" />
+            <displayname description="Verbal Warning Given To" languagecode="1033" />
             <displayname description="Verbal Warning given to (FR)" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ts_VerbalWarningLocation">
-          <Type>picklist</Type>
-          <Name>ts_verbalwarninglocation</Name>
-          <LogicalName>ts_verbalwarninglocation</LogicalName>
+        <attribute PhysicalName="ts_VerbalWarningWhere">
+          <Type>multiselectpicklist</Type>
+          <Name>ts_verbalwarningwhere</Name>
+          <LogicalName>ts_verbalwarningwhere</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -1231,19 +1267,18 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <AppDefaultValue>-1</AppDefaultValue>
-          <OptionSetName>ts_verbalwarninglocation</OptionSetName>
+          <OptionSetName>ts_verbalwarningwhere</OptionSetName>
           <displaynames>
-            <displayname description="Verbal Warning Location" languagecode="1033" />
+            <displayname description="Verbal Warning Where" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ts_VerbalWarningLocationOther">
+        <attribute PhysicalName="ts_VerbalWarningWhereDetails">
           <Type>nvarchar</Type>
-          <Name>ts_verbalwarninglocationother</Name>
-          <LogicalName>ts_verbalwarninglocationother</LogicalName>
+          <Name>ts_verbalwarningwheredetails</Name>
+          <LogicalName>ts_verbalwarningwheredetails</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -1274,11 +1309,10 @@
           <MaxLength>100</MaxLength>
           <Length>200</Length>
           <displaynames>
-            <displayname description="Verbal Warning Location Other" languagecode="1033" />
-            <displayname description="Verbal Warning Location Other (FR)" languagecode="1036" />
+            <displayname description="Verbal Warning Where Details" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="" languagecode="1033" />
+            <Description description="Used when Other is selected as the value for &quot;Where was the verbal warning given&quot;" languagecode="1033" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="UTCConversionTimeZoneCode">

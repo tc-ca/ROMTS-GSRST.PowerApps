@@ -10,6 +10,7 @@
         <tab name="tab_summary" id="98769404-2a35-40bc-b053-d56f42a22fc9" IsUserDefined="0" locklevel="0" showlabel="true">
           <labels>
             <label description="Summary" languagecode="1033" />
+            <label description="Résumé" languagecode="1036" />
           </labels>
           <columns>
             <column width="100%">
@@ -17,6 +18,7 @@
                 <section name="tab_newsummary_section_1" id="86d4ad2e-b123-4387-b5c0-0d412d979737" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="11" labelwidth="115">
                   <labels>
                     <label description="Summary" languagecode="1033" />
+                    <label description="Résumé" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
@@ -125,10 +127,12 @@
                         </labels>
                         <control id="statecode" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" uniqueid="{e30a833c-8a59-01be-9ae3-538e67eeb4c6}" />
                       </cell>
-                      <cell locklevel="0" id="{e008ee49-61bc-4b06-8848-7a3840371e05}">
+                      <cell id="{3888304a-72ad-4bfc-8375-e6738a9e4a5c}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Mandatory" languagecode="1033" />
+                          <label description="Obligatoire" languagecode="1036" />
                         </labels>
+                        <control id="ts_mandatory" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_mandatory" disabled="false" uniqueid="{b8231871-6e05-3c88-c484-e3bbac4e3343}" />
                       </cell>
                     </row>
                   </rows>
@@ -140,7 +144,7 @@
         <tab verticallayout="true" id="{1932b377-2e7e-4880-9b0e-477cc529b5fe}" IsUserDefined="1" labelid="{153c8609-4dd6-4ff4-a7d0-c5ccc7ddaf66}" name="tab_questionnaire" locklevel="0" expanded="true" showlabel="true">
           <labels>
             <label description="Questionnaire" languagecode="1033" />
-            <label description="Résumé" languagecode="1036" />
+            <label description="Questionnaire" languagecode="1036" />
           </labels>
           <columns>
             <column width="100%">
@@ -1350,6 +1354,28 @@
               <entityName type="SingleLine.Text" static="true">Work Order Service Task</entityName>
               <appName type="SingleLine.Text" static="true">ts_romdocumentcentreworkorderservicetask_2dd30</appName>
               <appId type="SingleLine.Text" static="true">aacd84ec-93c7-49bd-8ac2-d5255d14f0ff</appId>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{b8231871-6e05-3c88-c484-e3bbac4e3343}">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_mandatory</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_mandatory</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_mandatory</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_mandatory</value>
             </parameters>
           </customControl>
         </controlDescription>
