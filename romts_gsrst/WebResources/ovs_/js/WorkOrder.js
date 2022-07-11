@@ -14,6 +14,7 @@ var ROM;
             var regionAttribute = form.getAttribute("ts_region");
             var regionAttributeValue = regionAttribute.getValue();
             var ownerControl = form.getControl("ownerid");
+            var headerOwnerControl = form.getControl("header_ownerid");
             //Keep track of the current system status, to be used when cancelling a status change.
             currentSystemStatus = form.getAttribute("msdyn_systemstatus").getValue();
             form.getControl("msdyn_worklocation").removeOption(690970001); //Remove Facility Work Location Option
@@ -36,8 +37,10 @@ var ROM;
             if (form.ui.getFormType() == 1 || form.ui.getFormType() == 2) {
                 if (ownerControl != null) {
                     ownerControl.setEntityTypes(["systemuser"]);
+                    headerOwnerControl.setEntityTypes(["systemuser"]);
                     var defaultViewId = "29bd662e-52e7-ec11-bb3c-0022483d86ce";
                     ownerControl.setDefaultView(defaultViewId);
+                    headerOwnerControl.setDefaultView(defaultViewId);
                 }
             }
             //Prevent enabling controls if record is Inactive and set the right views (active/inactive)
@@ -159,24 +162,9 @@ var ROM;
                 }
             }, function (error) {
             });
-            //Check if the Work Order is past the Planned Fiscal Quarter 
-            var plannedFiscalQuarter = form.getAttribute("ovs_fiscalquarter").getValue();
-            if (plannedFiscalQuarter != null) {
-                //fetch the end date of the Planned Fiscal Quarter
-                Xrm.WebApi.retrieveRecord("tc_tcfiscalquarter", plannedFiscalQuarter[0].id.replace(/({|})/g, ''), "?$select=tc_quarterend").then(function success(result) {
-                    var currentDateTime = new Date();
-                    var quarterendDate = new Date(result.tc_quarterend);
-                    //if we are past the end date of the quarter, make the Can't Complete Inspection visible, otherwise hide it
-                    if (quarterendDate < currentDateTime) {
-                        form.getControl("ts_cantcompleteinspection").setVisible(true);
-                    }
-                    else {
-                        form.getControl("ts_cantcompleteinspection").setVisible(false);
-                    }
-                }, function (error) {
-                    showErrorMessageAlert("Error fetching the end date of the Planned Fiscal Quarter: " + error);
-                });
-            }
+            //Check if the Work Order is past the Planned Fiscal Quarter
+            setCantCompleteinspectionVisibility(form);
+            setIncompleteWorkOrderReasonFilteredView(form);
         }
         WorkOrder.onLoad = onLoad;
         function onSave(eContext) {
@@ -194,6 +182,8 @@ var ROM;
                 //Set inactive views
                 setWorkOrderServiceTasksView(form, false);
             }
+            //Check if the Work Order is past the Planned Fiscal Quarter
+            setCantCompleteinspectionVisibility(form);
         }
         WorkOrder.onSave = onSave;
         function workOrderTypeOnChange(eContext) {
@@ -963,6 +953,29 @@ var ROM;
             var layoutXml = '<grid name="resultset" object="10010" jump="name" select="1" icon="1" preview="1"><row name="result" id="msdyn_functionallocationid"><cell name="msdyn_name" width="200" /></row></grid>';
             form.getControl("ts_site").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
         }
+        function setIncompleteWorkOrderReasonFilteredView(form) {
+            //Find out if the Work Order Type belongs to ISSO or AvSec
+            var selectedOperationTypeId = form.getAttribute("ovs_operationtypeid").getValue();
+            var ownerId;
+            if (selectedOperationTypeId != null && selectedOperationTypeId != undefined) {
+                Xrm.WebApi.retrieveRecord("ovs_operationtype", selectedOperationTypeId[0].id.replace(/({|})/g, ''), undefined).then(function success(result) {
+                    ownerId = result._ownerid_value;
+                    //Now filter the lookup
+                    if (ownerId != null) {
+                        form.getControl("ts_incompleteworkorderreason").setDisabled(false);
+                        var viewId = '{736A4E08-E24F-4961-ADB4-BBAAB4119EE0}';
+                        //Keep the option to select 'Other' available no matter who the Work Order Type belongs to
+                        var otherId = '8B3B6A28-C5FB-EC11-82E6-002248AE441F';
+                        var entityName = "ts_incompleteworkorderreason";
+                        var viewDisplayName = Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "FilteredIncompleteWorkOrderReasons");
+                        var fetchXml = '<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true" returntotalrecordcount="true" page="1" count="25" no-lock="false"><entity name="ts_incompleteworkorderreason"><attribute name="ts_incompleteworkorderreasonid" /><attribute name="ts_name" /><filter type="or"><condition attribute="ownerid" operator="eq" value="' + ownerId + '" /><condition attribute="ts_incompleteworkorderreasonid" operator="eq" value="' + otherId + '" /></filter><order attribute="ts_name" /></entity></fetch>';
+                        var layoutXml = '<grid name="resultset" object="10010" jump="ts_name" select="1" icon="1" preview="1"><row name="result" id="ts_incompleteworkorderreasonid"><cell name="ts_name" width="200" /></row></grid>';
+                        form.getControl("ts_incompleteworkorderreason").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
+                    }
+                }, function (error) {
+                });
+            }
+        }
         function getCountryFetchXmlCondition(form) {
             var regionAttribute = form.getAttribute("ts_region");
             var regionAttributeValue = regionAttribute.getValue();
@@ -1011,6 +1024,56 @@ var ROM;
             }
             if (form.getControl("workorderservicetasksgrid").getViewSelector().getCurrentView() != workOrderView) {
                 form.getControl("workorderservicetasksgrid").getViewSelector().setCurrentView(workOrderView);
+            }
+        }
+        function setCantCompleteinspectionVisibility(form) {
+            var plannedFiscalQuarter = form.getAttribute("ovs_fiscalquarter").getValue();
+            if (plannedFiscalQuarter != null) {
+                //fetch the end date of the Planned Fiscal Quarter
+                Xrm.WebApi.retrieveRecord("tc_tcfiscalquarter", plannedFiscalQuarter[0].id.replace(/({|})/g, ''), "?$select=tc_quarterend").then(function success(result) {
+                    var currentDateTime = new Date();
+                    var quarterendDate = new Date(result.tc_quarterend);
+                    //if we are past the end date of the quarter, make the Can't Complete Inspection visible, otherwise hide it
+                    if (quarterendDate < currentDateTime) {
+                        setCantCompleteInspectionControlsVisibility(form, true);
+                    }
+                    else {
+                        //Hide the Can't Complete Inspection if there is no Planned Fiscal Quarter set
+                        setCantCompleteInspectionControlsVisibility(form, false);
+                    }
+                }, function (error) {
+                    setCantCompleteInspectionControlsVisibility(form, false);
+                    showErrorMessageAlert("Error fetching the end date of the Planned Fiscal Quarter: " + error);
+                });
+            }
+            else {
+                //Hide the Can't Complete Inspection if there is no Planned Fiscal Quarter set
+                setCantCompleteInspectionControlsVisibility(form, false);
+            }
+        }
+        function setCantCompleteInspectionControlsVisibility(form, visibility) {
+            var cantCompleteInspectionSelection = form.getAttribute("ts_cantcompleteinspection").getValue();
+            if (visibility == true) {
+                form.getControl("ts_cantcompleteinspection").setVisible(visibility);
+                if (cantCompleteInspectionSelection == true) {
+                    form.getControl("ts_incompleteworkorderreason").setVisible(visibility);
+                    form.getControl("ts_incompleteworkorderreasonforother").setVisible(false);
+                }
+                else {
+                    form.getControl("ts_incompleteworkorderreason").setVisible(false);
+                    form.getControl("ts_incompleteworkorderreasonforother").setVisible(false);
+                    form.getAttribute("ts_cantcompleteinspection").setValue(false);
+                    form.getAttribute("ts_incompleteworkorderreason").setValue(null);
+                    form.getAttribute("ts_incompleteworkorderreasonforother").setValue(null);
+                }
+            }
+            else {
+                form.getControl("ts_cantcompleteinspection").setVisible(visibility);
+                form.getControl("ts_incompleteworkorderreason").setVisible(visibility);
+                form.getControl("ts_incompleteworkorderreasonforother").setVisible(visibility);
+                form.getAttribute("ts_cantcompleteinspection").setValue(false);
+                form.getAttribute("ts_incompleteworkorderreason").setValue(null);
+                form.getAttribute("ts_incompleteworkorderreasonforother").setValue(null);
             }
         }
         //Checks if the Activity Type should have been able to be changed
@@ -1127,10 +1190,42 @@ var ROM;
         }
         WorkOrder.userHasRole = userHasRole;
         function cantCompleteInspectionOnChange(eContext) {
-            //const form = <Form.msdyn_workorder.Main.ROMOversightActivity>eContext.getFormContext();
-            //    let Id = form.data.entity.getId();
-            // Code for modal pop-up
+            var form = eContext.getFormContext();
+            var cantCompleteInspection = form.getAttribute("ts_cantcompleteinspection").getValue();
+            if (cantCompleteInspection == true) {
+                setCantCompleteInspectionControlsVisibility(form, true);
+                form.getAttribute("ts_incompleteworkorderreason").setRequiredLevel("required");
+                form.getControl("ts_incompleteworkorderreason").setFocus();
+            }
+            else {
+                setCantCompleteInspectionControlsVisibility(form, false);
+                form.getControl("ts_cantcompleteinspection").setVisible(true);
+                form.getAttribute("ts_incompleteworkorderreason").setRequiredLevel("none");
+            }
         }
         WorkOrder.cantCompleteInspectionOnChange = cantCompleteInspectionOnChange;
+        function incompleteWorkOrderReasonOnChange(eContext) {
+            var form = eContext.getFormContext();
+            var selectedIncompleteWorkOrderReason = form.getAttribute("ts_incompleteworkorderreason").getValue();
+            var selectedOther = "{8B3B6A28-C5FB-EC11-82E6-002248AE441F}";
+            //If 'Other' is selected as a reason, make ts_incompleteworkorderreasonforother visible
+            if (selectedIncompleteWorkOrderReason != null && selectedIncompleteWorkOrderReason[0].id.toUpperCase() == selectedOther) {
+                form.getControl("ts_incompleteworkorderreasonforother").setVisible(true);
+                form.getControl("ts_incompleteworkorderreasonforother").setFocus();
+                form.getAttribute("ts_incompleteworkorderreasonforother").setRequiredLevel("required");
+            }
+            else {
+                form.getControl("ts_incompleteworkorderreasonforother").setVisible(false);
+                form.getAttribute("ts_incompleteworkorderreasonforother").setValue(null);
+                form.getAttribute("ts_incompleteworkorderreasonforother").setRequiredLevel("none");
+            }
+        }
+        WorkOrder.incompleteWorkOrderReasonOnChange = incompleteWorkOrderReasonOnChange;
+        function fiscalQuarterOnChange(eContext) {
+            var form = eContext.getFormContext();
+            //Check if the Work Order is past the Planned Fiscal Quarter
+            setCantCompleteinspectionVisibility(form);
+        }
+        WorkOrder.fiscalQuarterOnChange = fiscalQuarterOnChange;
     })(WorkOrder = ROM.WorkOrder || (ROM.WorkOrder = {}));
 })(ROM || (ROM = {}));

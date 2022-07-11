@@ -612,8 +612,8 @@
               <sections>
                 <section name="tab_10_section_2" id="676e533e-4633-4a8b-a4a1-a74644025c90" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{5f8dd708-c218-4091-8789-d86c9ca8c2fb}">
                   <labels>
-                    <label description="Operational Contacts" languagecode="1033" />
-                    <label description="Contacts opérationnels" languagecode="1036" />
+                    <label description="Contacts" languagecode="1033" />
+                    <label description="Contacts" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
@@ -626,18 +626,19 @@
                     <row>
                       <cell locklevel="0" id="{eb8b5512-672e-47e4-8c8e-5acf7f5f39c0}" rowspan="1" colspan="1" auto="false" showlabel="false">
                         <labels>
-                          <label description="Operational Contacts" languagecode="1033" />
-                          <label description="Contacts opérationnels" languagecode="1036" />
+                          <label description="Contacts" languagecode="1033" />
+                          <label description="Contacts" languagecode="1036" />
                         </labels>
                         <control id="Subgrid_operation_contacts" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
                             <RecordsPerPage>10</RecordsPerPage>
                             <AutoExpand>Fixed</AutoExpand>
-                            <TargetEntityType>ts_operationcontact</TargetEntityType>
-                            <ViewId>{ED2E1B6B-2CB1-EC11-983E-002248ADEF38}</ViewId>
-                            <ViewIds>{7C7857F2-E9F0-40EA-84CE-D6D7F5467DCE},{ED2E1B6B-2CB1-EC11-983E-002248ADEF38}</ViewIds>
+                            <TargetEntityType>contact</TargetEntityType>
+                            <ViewId>{00000000-0000-0000-00AA-000010001004}</ViewId>
+                            <ViewIds>{00000000-0000-0000-00AA-000010001004}</ViewIds>
                             <EnableViewPicker>false</EnableViewPicker>
-                            <RelationshipName>ts_msdyn_workorder_ts_operationcontact</RelationshipName>
+                            <RelationshipName>ts_Contact_msdyn_workorder_msdyn_workorder</RelationshipName>
+                            <VisualizationId>{E365462F-1DB9-46A8-928D-BEAB1A7A2375}</VisualizationId>
                           </parameters>
                         </control>
                       </cell>
@@ -1016,15 +1017,19 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{7e5042b2-73b1-47ee-8657-84dbc079f9c7}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{7e5042b2-73b1-47ee-8657-84dbc079f9c7}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
                         <labels>
                           <label description="Planned Fiscal Quarter" languagecode="1033" />
                           <label description="Trimestre fiscal visé" languagecode="1036" />
                         </labels>
-                        <control id="ovs_fiscalquarter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_fiscalquarter" disabled="false">
+                        <control id="ovs_fiscalquarter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ovs_fiscalquarter" disabled="false" uniqueid="{0929cd7b-0c78-3a0b-c242-96ea67c9c81c}">
                           <parameters>
                             <DefaultViewId>{829E958E-9938-EB11-A813-000D3AF3FC19}</DefaultViewId>
-                            <AvailableViewIds>{D036C837-0C99-4546-A03D-79C69B876CE4},{829E958E-9938-EB11-A813-000D3AF3FC19},{3E6CAA4E-67B1-4363-AAD7-09723F312C52},{72CCA668-4E5D-4AB1-AFEF-9B00703A5C41}</AvailableViewIds>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <AllowFilterOff>false</AllowFilterOff>
                           </parameters>
                         </control>
                       </cell>
@@ -1035,15 +1040,52 @@
                           <label description="Completed Quarter" languagecode="1033" />
                           <label description="Trimestre terminé" languagecode="1036" />
                         </labels>
-                        <control id="ts_completedquarter" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_completedquarter" disabled="false" />
+                        <control id="ts_completedquarter" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_completedquarter" disabled="false" uniqueid="{85c48d46-05dc-3bc5-0814-ea58a50cc2cb}" />
                       </cell>
                     </row>
                     <row>
                       <cell locklevel="0" id="{e6e1e5e8-416f-479c-87b0-90fd4df85efd}" colspan="1" rowspan="1" showlabel="true">
                         <labels>
-                          <label description="Can't Complete Inspection" languagecode="1033" />
+                          <label description="Inspection Incomplete at End of Quarter" languagecode="1033" />
+                          <label description="Inspection incomplète à la fin du trimestre" languagecode="1036" />
                         </labels>
                         <control id="ts_cantcompleteinspection" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_cantcompleteinspection" disabled="false" uniqueid="{d717b9b5-7ecf-4962-805a-43b2b51c786e}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{bfeff0f3-717a-462b-985c-0caa0e4806a5}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
+                        <labels>
+                          <label description="Incomplete Inspection Justification" languagecode="1033" />
+                          <label description="Justification de l'inspection incomplète" languagecode="1036" />
+                        </labels>
+                        <control id="ts_incompleteworkorderreason" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_incompleteworkorderreason" disabled="false" uniqueid="{1a65e556-1753-70dd-53a1-291c8cac0582}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{809397C7-472A-499E-9C04-CF2AF62D8B69}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7290cdda-462e-4399-9ed8-feea8841f7e9}" locklevel="0" colspan="1" rowspan="3">
+                        <labels>
+                          <label description="Other Justification" languagecode="1033" />
+                          <label description="Autre justification" languagecode="1036" />
+                        </labels>
+                        <control id="ts_incompleteworkorderreasonforother" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_incompleteworkorderreasonforother" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{210fbfae-acb0-4d35-aadb-7b44107cc255}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                   </rows>
@@ -3209,6 +3251,16 @@
         <event name="onchange" application="false" active="false" attribute="ts_cantcompleteinspection">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.cantCompleteInspectionOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{95cb2358-8c6d-e3e4-0823-4e33d2a977ee}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_incompleteworkorderreason">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.incompleteWorkOrderReasonOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{3ace3834-578e-d839-b4cc-cc9611cb75b4}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ovs_fiscalquarter">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.fiscalQuarterOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{85b41167-56e7-835c-1d0a-9ba484bb8150}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

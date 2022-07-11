@@ -23,7 +23,7 @@
     </layoutxml>
     <querytype>64</querytype>
     <fetchxml>
-      <fetch version="1.0" mapping="logical">
+      <fetch version="1.0" mapping="logical" distinct="true">
         <entity name="contact">
           <attribute name="fullname" />
           <attribute name="parentcustomerid" />
@@ -35,10 +35,15 @@
           <attribute name="fax" />
           <attribute name="address1_name" />
           <attribute name="address1_fax" />
+          <order attribute="fullname" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <order attribute="fullname" descending="false" />
+          <link-entity name="businessunit" alias="aa" link-type="inner" from="businessunitid" to="owningbusinessunit">
+            <filter type="and">
+              <condition attribute="businessunitid" operator="eq-businessid" />
+            </filter>
+          </link-entity>
         </entity>
       </fetch>
     </fetchxml>

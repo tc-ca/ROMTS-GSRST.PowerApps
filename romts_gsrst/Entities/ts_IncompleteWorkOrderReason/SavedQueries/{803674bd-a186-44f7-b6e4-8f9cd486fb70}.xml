@@ -10,8 +10,10 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_incompleteworkorderreasonid">
-          <cell name="ts_name" width="300" />
-          <cell name="createdon" width="125" />
+          <cell name="ts_name" width="100" />
+          <cell name="ts_reasonenglish" width="100" />
+          <cell name="ts_reasonfrench" width="100" />
+          <cell name="ownerid" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -20,18 +22,20 @@
       <fetch version="1.0" mapping="logical">
         <entity name="ts_incompleteworkorderreason">
           <attribute name="ts_incompleteworkorderreasonid" />
-          <attribute name="ts_name" />
-          <attribute name="createdon" />
-          <order attribute="ts_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="ownerid" />
+          <attribute name="ts_reasonenglish" />
+          <attribute name="ts_reasonfrench" />
+          <attribute name="ts_name" />
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Active Incomplete Work Order Reasons" languagecode="1033" />
+      <LocalizedName description="Active Incomplete Inspection Justification" languagecode="1033" />
+      <LocalizedName description="Actif justification de l'inspection incomplète" languagecode="1036" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>
