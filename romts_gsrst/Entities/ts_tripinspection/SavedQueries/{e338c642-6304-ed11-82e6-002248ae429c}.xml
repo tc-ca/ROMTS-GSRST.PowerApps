@@ -10,6 +10,7 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_tripinspectionid">
+          <cell name="a_87ea3205aa774e439057056c55b9a11d.ts_id" width="100" />
           <cell name="ts_trip" width="100" />
           <cell name="ts_inspection" width="100" />
           <cell name="ts_operationtype" width="100" />
@@ -39,6 +40,9 @@
             <attribute name="msdyn_primaryincidenttype" />
           </link-entity>
           <attribute name="ts_tripinspectionid" />
+          <link-entity alias="a_87ea3205aa774e439057056c55b9a11d" name="ts_trip" to="ts_trip" from="ts_tripid" link-type="outer" visible="false">
+            <attribute name="ts_id" />
+          </link-entity>
         </entity>
       </fetch>
     </fetchxml>
