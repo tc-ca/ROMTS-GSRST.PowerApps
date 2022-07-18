@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{27a63941-35cc-41f4-845b-42c05b0c492c}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_tripinspectionid">
+          <cell name="ts_inspection" width="100" />
+          <cell name="ts_operationtype" width="100" />
+          <cell name="a_b8f656b2b203ed1182e6002248ae429c.ts_site" width="100" disableSorting="1" />
+          <cell name="a_b8f656b2b203ed1182e6002248ae429c.msdyn_serviceaccount" width="100" disableSorting="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_tripinspection">
+          <order attribute="ts_inspection" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_inspection" />
+          <link-entity alias="a_b8f656b2b203ed1182e6002248ae429c" name="msdyn_workorder" from="msdyn_workorderid" to="ts_inspection" link-type="outer" visible="false">
+            <attribute name="msdyn_serviceaccount" />
+            <attribute name="ts_site" />
+          </link-entity>
+          <attribute name="ts_operationtype" />
+          <attribute name="ts_tripinspectionid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20220711.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active TripInspections" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

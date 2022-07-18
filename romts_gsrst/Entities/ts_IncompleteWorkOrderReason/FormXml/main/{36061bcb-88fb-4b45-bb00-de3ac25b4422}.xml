@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form headerdensity="HighWithControls">
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab verticallayout="true" id="{a82c9e94-4d36-4d2c-b8a5-b5f8fd3ef15d}" IsUserDefined="1">
           <labels>
@@ -49,12 +49,21 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{2eac261e-9198-4874-8d57-4400dc80297f}">
+                      <cell id="{2eac261e-9198-4874-8d57-4400dc80297f}" visible="true">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                           <label description="Propriétaire" languagecode="1036" />
                         </labels>
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7939e001-0644-4acd-9a53-545df8388380}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Status" languagecode="1033" />
+                          <label description="Statut" languagecode="1036" />
+                        </labels>
+                        <control id="statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -106,6 +115,52 @@
           </row>
         </rows>
       </footer>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <formLibraries>
+        <Library name="ovs_/js/IncompleteInspectionJustification.js" libraryUniqueId="{2340a4c6-2c08-0118-7396-33d4a2e4ab64}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.IncompleteInspectionJustification.onLoad" libraryName="ovs_/js/IncompleteInspectionJustification.js" handlerUniqueId="{a663e9c9-370d-3046-6846-37b3b772585c}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.IncompleteInspectionJustification.onSave" libraryName="ovs_/js/IncompleteInspectionJustification.js" handlerUniqueId="{e3a5aeb1-a63a-3632-8d53-6e5808946b69}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <controlDescriptions />
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>

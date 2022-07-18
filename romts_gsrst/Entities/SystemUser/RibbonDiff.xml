@@ -16,6 +16,7 @@
         <Button Alt="$Resources:Ribbon.SubGrid.systemuser.Actions.AddUserAccess" Command="ts.AddUserAccess.UCI" Id="Mscrm.SubGrid.systemuser.AddUserAccess.UCI" Image32by32="" Image16by16="" LabelText="$Resources:Ribbon.SubGrid.systemuser.Actions.AddUserAccess" Sequence="60" TemplateAlias="o1" ToolTipTitle="$Resources:Ribbon.SubGrid.systemuser.Actions.AddUserAccess" ToolTipDescription="$Resources:Mscrm_SubGrid_Ribbon_Systemuser_AddUserAccess_ToolTipDescription" ModernImage="New" />
       </CommandUIDefinition>
     </CustomAction>
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.systemuser.NewRecord.Hide" Location="Mscrm.SubGrid.systemuser.NewRecord" />
   </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
@@ -80,6 +81,24 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="Mscrm.NewRecordFromGrid">
+      <EnableRules>
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CreateSelectedEntityPermission" />
+        <DisplayRule Id="Mscrm.ShowForNonRelationshipBoundGrids" />
+        <DisplayRule Id="Mscrm.PrimaryIsNotActivity" />
+        <DisplayRule Id="Mscrm.HideNewForChildEntities" />
+        <DisplayRule Id="Mscrm.HideAddressEntities" />
+        <DisplayRule Id="Mscrm.NotOffline" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="openObj" Library="/_common/global.ashx">
+          <CrmParameter Value="SelectedEntityTypeCode" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="ts.AddUserAccess.UCI">
       <EnableRules>
         <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
@@ -121,11 +140,26 @@
       <DisplayRule Id="Mscrm.CreateSelectedEntityPermission">
         <EntityPrivilegeRule PrivilegeType="Create" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
       </DisplayRule>
+      <DisplayRule Id="Mscrm.HideAddressEntities">
+        <EntityRule EntityName="customeraddress" AppliesTo="SelectedEntity" Default="false" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.HideNewForChildEntities">
+        <EntityPropertyRule AppliesTo="SelectedEntity" PropertyName="IsChildEntity" PropertyValue="false" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.NotOffline">
+        <CrmOfflineAccessStateRule State="Offline" InvertResult="true" />
+      </DisplayRule>
       <DisplayRule Id="Mscrm.NotOnTerritoryForm">
         <FormEntityContextRule EntityName="territory" Default="true" InvertResult="true" />
       </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsNotActivity">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="false" />
+      </DisplayRule>
       <DisplayRule Id="Mscrm.ShowForManyToManyGrids">
         <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="ManyToMany" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.ShowForNonRelationshipBoundGrids">
+        <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="NoRelationship" />
       </DisplayRule>
       <DisplayRule Id="Mscrm.ShowForOneToManyGrids">
         <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="OneToMany" />
@@ -146,6 +180,11 @@
       </EnableRule>
       <EnableRule Id="Mscrm.EntityFormIsEnabled">
         <FormStateRule State="Disabled" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline">
+        <CustomRule FunctionName="XrmCore.Rules.Online.IsEntityAvailableForUserInMocaOffline" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </CustomRule>
       </EnableRule>
       <EnableRule Id="Mscrm.SystemUser.IsGridEnabledForAccessTeams">
         <CustomRule FunctionName="Mscrm.AppCommon.SystemUser.AccessTeams.checkSystemUserGridAccessTeams" Library="$webresource:AppCommon/ControlWS/SystemUser/SystemUser.js" Default="false">
