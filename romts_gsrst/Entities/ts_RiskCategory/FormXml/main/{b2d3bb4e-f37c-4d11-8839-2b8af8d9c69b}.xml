@@ -57,6 +57,23 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{dd9bee3a-c127-4e68-b707-169e205992c8}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
+                        <labels>
+                          <label description="Operation Frequency" languagecode="1033" />
+                        </labels>
+                        <control id="ts_operationfrequency" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operationfrequency" disabled="false" uniqueid="{15acc325-8d6e-d28d-dcc1-7e2ea1924ec5}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{55912D95-4AD0-4893-B258-579AEFDEAEF6}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{9b1dda1a-ff46-4ec7-922d-d10b8f63cd49}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Cycle length (Years)" languagecode="1033" />
@@ -148,6 +165,47 @@
           </row>
         </rows>
       </footer>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <formLibraries>
+        <Library name="ts_/js/RiskThreshold.js" libraryUniqueId="{bac43d43-4185-dcec-a113-c72c4b6c1a78}" />
+      </formLibraries>
+      <events>
+        <event name="onchange" application="false" active="false" attribute="ts_operationfrequency">
+          <Handlers>
+            <Handler functionName="ROM.RiskThreshold.operationFrequencyOnChange" libraryName="ts_/js/RiskThreshold.js" handlerUniqueId="{8b1a95c1-ea23-e52a-5d1a-ada3535ca7e3}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <controlDescriptions />
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>
