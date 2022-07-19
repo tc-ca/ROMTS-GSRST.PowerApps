@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20220718.2</Version>
+    <Version>1.0.20220719.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -272,6 +272,7 @@
       <RootComponent type="9" schemaName="ts_type" behavior="0" />
       <RootComponent type="9" schemaName="ts_typeofdangerousgoods" behavior="0" />
       <RootComponent type="9" schemaName="ts_typesofspecializedppe" behavior="0" />
+      <RootComponent type="9" schemaName="ts_verbalwarningdeliverylocation" behavior="0" />
       <RootComponent type="9" schemaName="ts_visualsecurityinspection" behavior="0" />
       <RootComponent type="9" schemaName="ts_visualsecurityinspectiondetails" behavior="0" />
       <RootComponent type="9" schemaName="ts_writtenwarningdeliverymethod" behavior="0" />
@@ -3457,6 +3458,12 @@
           <package>FieldService_Anchor (8.8.70.26)</package>
         </Required>
         <Dependent type="60" displayName="Work Order - Finding Quick View" parentDisplayName="Work Order" id="{06a29198-b6ad-eb11-8236-000d3ae8b70f}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_account_msdyn_workorder_ServiceAccount" displayName="msdyn_account_msdyn_workorder_ServiceAccount" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.70.26)</package>
+        </Required>
+        <Dependent type="60" displayName="Work Order - Trip Inspection View" parentDisplayName="Work Order" id="{19ae027e-a05b-4596-89f6-01f21ba808d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_account_msdyn_workorder_ServiceAccount" displayName="msdyn_account_msdyn_workorder_ServiceAccount" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)">
@@ -11167,6 +11174,12 @@
           <package>FieldService_Anchor (8.8.70.26)</package>
         </Required>
         <Dependent type="26" schemaName="Work Order Lookup View" displayName="Work Order Lookup View" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" id="{c0c4fd32-f265-497d-bfae-546c88d5bb3b}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.70.26)</package>
+        </Required>
+        <Dependent type="26" schemaName="Trip Inspection View" displayName="Trip Inspection View" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" id="{c34014a1-c706-ed11-82e6-002248ae429c}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
@@ -19457,10 +19470,6 @@
           <package>msdynce_ServiceAnchor (9.0.22064.1006)</package>
         </Required>
         <Dependent type="2" schemaName="servicestage" displayName="Service Stage" parentSchemaName="incident" parentDisplayName="Case" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="9" schemaName="ts_verbalwarningdeliverylocation" displayName="Verbal warning delivery location" solution="Active" />
-        <Dependent type="2" schemaName="ts_verbalwarningdeliverylocation" displayName="Verbal warning delivery location" parentSchemaName="ts_enforcementaction" parentDisplayName="Enforcement Action" />
       </MissingDependency>
       <MissingDependency>
         <Required type="SettingDefinition" displayName="AllowNotificationsEarlyAccess" solution="AppNotifications (10.0.0.9)" id.uniquename="AllowNotificationsEarlyAccess" />

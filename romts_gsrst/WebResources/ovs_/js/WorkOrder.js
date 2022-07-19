@@ -149,7 +149,7 @@ var ROM;
                     break;
             }
             // Lock some fields if there exist a Case that has this WO associated to it
-            var fetchXML = "<fetch><entity name=\"msdyn_workorder\"><attribute name=\"msdyn_workorderid\"/><filter><condition attribute=\"msdyn_workorderid\" operator=\"eq\" value=\"" + form.data.entity.getId() + "\"/></filter><link-entity name=\"incident\" from=\"incidentid\" to=\"msdyn_servicerequest\"/></entity></fetch>";
+            var fetchXML = "<fetch><entity name=\"msdyn_workorder\"><attribute name=\"msdyn_workorderid\"/><filter><condition attribute=\"msdyn_workorderid\" operator=\"eq\" value=\"".concat(form.data.entity.getId(), "\"/></filter><link-entity name=\"incident\" from=\"incidentid\" to=\"msdyn_servicerequest\"/></entity></fetch>");
             fetchXML = "?fetchXml=" + encodeURIComponent(fetchXML);
             Xrm.WebApi.retrieveMultipleRecords("msdyn_workorder", fetchXML).then(function success(result) {
                 if (result.entities.length > 0) {
@@ -992,7 +992,7 @@ var ROM;
             return "";
         }
         function closeWorkOrderServiceTasks(formContext, workOrderServiceTaskData) {
-            Xrm.WebApi.retrieveMultipleRecords("msdyn_workorderservicetask", "?$select=msdyn_workorder&$filter=msdyn_workorder/msdyn_workorderid eq " + formContext.data.entity.getId()).then(function success(result) {
+            Xrm.WebApi.retrieveMultipleRecords("msdyn_workorderservicetask", "?$select=msdyn_workorder&$filter=msdyn_workorder/msdyn_workorderid eq ".concat(formContext.data.entity.getId())).then(function success(result) {
                 for (var i = 0; i < result.entities.length; i++) {
                     Xrm.WebApi.updateRecord("msdyn_workorderservicetask", result.entities[i].msdyn_workorderservicetaskid, workOrderServiceTaskData).then(function success(result) {
                         //work order service task closed successfully
@@ -1057,8 +1057,8 @@ var ROM;
                 form.getControl("ts_cantcompleteinspection").setVisible(visibility);
                 if (cantCompleteInspectionSelection == true) {
                     var reason = form.getAttribute("ts_incompleteworkorderreason").getValue();
-                    form.getControl("ts_incompleteworkorderreason").setVisible(visibility);
                     if (reason != null) {
+                        form.getControl("ts_incompleteworkorderreason").setVisible(visibility);
                         //Determine if 'Other' is selected - if it is show the reason for other
                         if (reason[0].id == "{8B3B6A28-C5FB-EC11-82E6-002248AE441F}") {
                             form.getControl("ts_incompleteworkorderreasonforother").setVisible(true);
@@ -1066,9 +1066,6 @@ var ROM;
                         else {
                             form.getControl("ts_incompleteworkorderreasonforother").setVisible(false);
                         }
-                    }
-                    else {
-                        form.getControl("ts_incompleteworkorderreasonforother").setVisible(false);
                     }
                 }
                 else {

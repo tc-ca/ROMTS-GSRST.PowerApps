@@ -14,6 +14,7 @@
           <cell name="ts_operationtype" width="100" />
           <cell name="a_b8f656b2b203ed1182e6002248ae429c.ts_site" width="100" disableSorting="1" />
           <cell name="a_b8f656b2b203ed1182e6002248ae429c.msdyn_serviceaccount" width="100" disableSorting="1" />
+          <cell name="a_b8f656b2b203ed1182e6002248ae429c.msdyn_primaryincidentestimatedduration" width="100" disableSorting="1" />
         </row>
       </grid>
     </layoutxml>
@@ -26,11 +27,12 @@
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <attribute name="ts_inspection" />
+          <attribute name="ts_operationtype" />
           <link-entity alias="a_b8f656b2b203ed1182e6002248ae429c" name="msdyn_workorder" from="msdyn_workorderid" to="ts_inspection" link-type="outer" visible="false">
             <attribute name="msdyn_serviceaccount" />
             <attribute name="ts_site" />
+            <attribute name="msdyn_primaryincidentestimatedduration" />
           </link-entity>
-          <attribute name="ts_operationtype" />
           <attribute name="ts_tripinspectionid" />
         </entity>
       </fetch>
