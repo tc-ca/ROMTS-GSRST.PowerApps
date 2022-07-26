@@ -10,9 +10,9 @@
     <layoutxml>
       <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
         <row name="result" id="msdyn_workorderid">
-          <cell name="msdyn_name" width="200" />
-          <cell name="ovs_operationtypeid" width="100" />
-          <cell name="ovs_operationid" width="100" />
+          <cell name="msdyn_name" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ovs_operationtypeid" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ovs_operationid" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="ts_region" width="100" />
           <cell name="msdyn_primaryincidenttype" width="100" />
         </row>
@@ -26,17 +26,19 @@
           <attribute name="msdyn_primaryincidenttype" />
           <attribute name="ovs_operationid" />
           <attribute name="ts_region" />
+          <attribute name="ovs_operationtypeid" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="ovs_rational" operator="eq" uiname="Draft" uitype="ovs_tyrational" value="{DE3CD7E9-1801-ED11-82E6-002248AE429C}" />
           </filter>
-          <attribute name="ovs_operationtypeid" />
           <attribute name="msdyn_workorderid" />
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0.20220711.4</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Trip Inspection View" languagecode="1033" />
+      <LocalizedName description="Inspection Planning" languagecode="1033" />
+      <LocalizedName description="Planification des inspections" languagecode="1036" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

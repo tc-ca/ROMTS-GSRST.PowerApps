@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form headerdensity="HighWithControls">
       <tabs>
         <tab verticallayout="true" id="{90512117-a0e5-4cde-b966-08385b69a383}" IsUserDefined="1">
           <labels>
@@ -22,20 +22,57 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{8c3db337-b4c7-4737-a994-ee5d4fefa8fc}">
+                      <cell id="{8c3db337-b4c7-4737-a994-ee5d4fefa8fc}" visible="false">
                         <labels>
                           <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
                         </labels>
                         <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{237b62c3-9acf-47ad-8217-dc1452ccaaed}">
+                      <cell id="{237b62c3-9acf-47ad-8217-dc1452ccaaed}" visible="false">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                           <label description="Propriétaire" languagecode="1036" />
                         </labels>
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1531e350-a493-44dd-8cfe-d8c3b26c626d}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Frequency (English)" languagecode="1033" />
+                          <label description="Fréquence (Anglais)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_frequencyenglish" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_frequencyenglish" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e7dd7b0d-57c8-4720-919b-614f6d66f299}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Frequency (French)" languagecode="1033" />
+                          <label description="Fréquence (Français)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_frequencyfrench" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_frequencyfrench" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7e853505-2624-4aa7-845c-8de9a73d5acc}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Cycle length (Years)" languagecode="1033" />
+                          <label description="Durée du cycle (années)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_cyclelengthyears" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_cyclelengthyears" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{055c01a4-e6fb-47eb-86a1-25e6e1d28b60}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Inspections per cycle" languagecode="1033" />
+                          <label description="Inspections par cycle" languagecode="1036" />
+                        </labels>
+                        <control id="ts_inspectionspercycle" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_inspectionspercycle" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -45,6 +82,51 @@
           </columns>
         </tab>
       </tabs>
+      <header id="{4462a004-0725-4734-8947-7709c6328a92}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{87b49b25-3c63-4d2d-ba18-2b074b673465}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{95559083-a676-4b8b-a620-a2ca8464a7bf}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{105669ea-a38e-4c58-b40b-a2e4af1f7518}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{e0903569-3a18-4fe9-9214-72f527e87a8e}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{a2d2597b-591a-497a-a734-39b5948d6bf4}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{138df684-1663-43dd-81d5-26b5345aa57c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{1cb16b70-79eb-46f7-a27c-c65c1c05db1a}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

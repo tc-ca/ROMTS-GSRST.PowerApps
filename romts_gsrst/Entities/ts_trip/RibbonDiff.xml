@@ -1,14 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
+  <CustomActions>
+    <CustomAction Id="ts.ts_trip.Button2.Planning.CustomAction" Location="Mscrm.HomepageGrid.ts_trip.MainTab.Management.Controls._children" Sequence="23">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_trip.Button2.Planning.Alt" Command="ts.ts_trip..Command.Planning" Id="ts.ts_trip.Button2.Planning" LabelText="$LocLabels:ts.ts_trip.Button2.Planning.LabelText" Sequence="23" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_trip.Button2.Planning.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_trip.Button2.Planning.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="ts.ts_trip..Command.Planning">
+      <EnableRules>
+        <EnableRule Id="ts.ts_trip.EnableRule0.ItemSelected" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="planningTrip" Library="$webresource:ts_/js/TripRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
-    <EnableRules />
+    <EnableRules>
+      <EnableRule Id="ts.ts_trip.EnableRule0.ItemSelected">
+        <SelectionCountRule Minimum="1" />
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="ts.ts_trip.Button2.Planning.Alt">
+      <Titles>
+        <Title description="Planning" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_trip.Button2.Planning.LabelText">
+      <Titles>
+        <Title description="Planning" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_trip.Button2.Planning.ToolTipDescription">
+      <Titles>
+        <Title description="Planning" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_trip.Button2.Planning.ToolTipTitle">
+      <Titles>
+        <Title description="Planning" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>

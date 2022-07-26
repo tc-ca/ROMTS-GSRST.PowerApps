@@ -22,20 +22,44 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{eebffe85-995a-4914-a6bf-2b9e56908c89}">
+                      <cell id="{eebffe85-995a-4914-a6bf-2b9e56908c89}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Name" languagecode="1033" />
+                          <label description="Name" languagecode="1036" />
                         </labels>
-                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" uniqueid="{3496add7-30ad-109c-daa4-3153c721652e}" disabled="false" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{afb699bd-354b-4cdf-bc2a-dd8305f8fe88}">
+                      <cell id="{afb699bd-354b-4cdf-bc2a-dd8305f8fe88}" showlabel="true" locklevel="1" visible="false">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                           <label description="Propriétaire" languagecode="1036" />
                         </labels>
-                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" uniqueid="{be073840-35b0-cba5-8a62-410b2ea09c0e}" disabled="false">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e0699813-688b-288a-e2a3-b29028d26605}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Trip" languagecode="1033" />
+                          <label description="Voyage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_trip" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_trip" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{6c6c96dc-a062-13a9-6ca5-49b445392cd2}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Inspector" languagecode="1033" />
+                          <label description="Inspecteur" languagecode="1036" />
+                        </labels>
+                        <control id="ts_inspector" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_inspector" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -45,6 +69,37 @@
           </columns>
         </tab>
       </tabs>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

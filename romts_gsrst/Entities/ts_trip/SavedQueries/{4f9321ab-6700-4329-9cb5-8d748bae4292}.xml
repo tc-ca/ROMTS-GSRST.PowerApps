@@ -11,7 +11,9 @@
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_tripid">
           <cell name="ts_id" width="100" />
-          <cell name="ts_name" width="300" />
+          <cell name="ts_name" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_plannedfiscalquarter" width="100" />
+          <cell name="ts_estimatedduration" width="100" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -20,7 +22,6 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ts_trip">
-          <attribute name="ts_tripid" />
           <attribute name="ts_name" />
           <attribute name="createdon" />
           <order attribute="ts_name" descending="false" />
@@ -28,6 +29,9 @@
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <attribute name="ts_id" />
+          <attribute name="ts_plannedfiscalquarter" />
+          <attribute name="ts_estimatedduration" />
+          <attribute name="ts_tripid" />
         </entity>
       </fetch>
     </fetchxml>

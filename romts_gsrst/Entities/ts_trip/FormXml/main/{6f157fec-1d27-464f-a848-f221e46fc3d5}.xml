@@ -25,16 +25,18 @@
                       <cell id="{6d3b7c91-cf3f-49ee-9b32-097375ab3f0f}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="ID Number" languagecode="1033" />
+                          <label description="Numéro d'identification" languagecode="1036" />
                         </labels>
                         <control id="ts_id" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_id" disabled="true" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{3e78e95f-428e-4777-84f1-768df55a3ffa}">
+                      <cell id="{3e78e95f-428e-4777-84f1-768df55a3ffa}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Name" languagecode="1033" />
+                          <label description="Trip Name" languagecode="1033" />
+                          <label description="Nom du voyage" languagecode="1036" />
                         </labels>
-                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" uniqueid="{22c37012-6100-0c34-c0bc-2b8e7c0e6936}" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -43,24 +45,48 @@
                           <label description="Modified By" languagecode="1033" />
                           <label description="Modifié par" languagecode="1036" />
                         </labels>
-                        <control id="modifiedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="modifiedby" disabled="false" />
+                        <control id="modifiedby" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="modifiedby" disabled="false" uniqueid="{8ab90760-3364-7ba9-53d3-79e71b1274de}" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{ef50c4da-2459-4f77-8e44-56e24d983672}">
+                      <cell id="{ef50c4da-2459-4f77-8e44-56e24d983672}" showlabel="true" locklevel="1" visible="false">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                           <label description="Propriétaire" languagecode="1036" />
                         </labels>
-                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" uniqueid="{d4570c59-1758-a94b-720d-701b9670a4ec}" disabled="false">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
                       <cell id="{009a6097-3adb-542b-be70-ee176d9ed2e8}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Total Estimated Duration" languagecode="1033" />
+                          <label description="Durée totale estimée pour le voyage" languagecode="1036" />
                         </labels>
                         <control id="ts_estimatedduration" classid="{AA987274-CE4E-4271-A803-66164311A958}" datafieldname="ts_estimatedduration" disabled="true" uniqueid="{0aaba1d7-94b2-5433-b40e-01ad4c2bace3}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{54150742-b5e5-d362-edb9-ee86c3eab652}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Planned Fiscal Quarter" languagecode="1033" />
+                          <label description="Trimestre financier prévu" languagecode="1036" />
+                        </labels>
+                        <control id="ts_plannedfiscalquarter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_plannedfiscalquarter" disabled="false" uniqueid="{3521299c-5755-663d-a7cd-03a1800dc23a}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{829E958E-9938-EB11-A813-000D3AF3FC19}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -69,7 +95,7 @@
                           <label description="Inspections" languagecode="1033" />
                           <label description="Ordres de travail" languagecode="1036" />
                         </labels>
-                        <control id="Inspections" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="Inspections" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{d90a9e15-46a2-cd08-0b39-b36760dcc532}">
                           <parameters>
                             <ViewId>{27A63941-35CC-41F4-845B-42C05B0C492C}</ViewId>
                             <IsUserView>false</IsUserView>
@@ -79,6 +105,39 @@
                             <EnableQuickFind>false</EnableQuickFind>
                             <EnableViewPicker>false</EnableViewPicker>
                             <ViewIds>{27A63941-35CC-41F4-845B-42C05B0C492C}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{41505d13-e0b6-e632-bb85-1c787716e5a2}" showlabel="true" colspan="1" auto="false" rowspan="7">
+                        <labels>
+                          <label description="Inspectors" languagecode="1033" />
+                          <label description="Trip Inspectors" languagecode="1036" />
+                        </labels>
+                        <control id="Inspectors" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{54abd7bb-7a1e-2e36-5653-c89d2064ede5}">
+                          <parameters>
+                            <ViewId>{2BEBB4A4-801B-41EC-BEB2-4B84EBC95716}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_ts_trip_ts_tripinspector_trip</RelationshipName>
+                            <TargetEntityType>ts_tripinspector</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{2BEBB4A4-801B-41EC-BEB2-4B84EBC95716}</ViewIds>
                             <EnableJumpBar>false</EnableJumpBar>
                             <ChartGridMode>All</ChartGridMode>
                             <VisualizationId />

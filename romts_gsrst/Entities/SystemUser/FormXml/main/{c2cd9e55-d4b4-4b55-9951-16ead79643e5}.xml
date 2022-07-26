@@ -7,7 +7,8 @@
     <FormActivationState>1</FormActivationState>
     <form showImage="true" headerdensity="HighWithControls" solutionaction="Modified">
       <tabs>
-        <tab name="SUMMARY_TAB" id="{33c4221d-ccb0-4a92-853e-369d2d0adb85}" IsUserDefined="0" showlabel="true" expanded="true" ordinalvalue="1">
+        <tab name="usrstab" id="{d2d37b2a-d12c-bc13-1c6e-a8803487cdd8}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="false" visible="false" ordinalvalue="0" solutionaction="Removed" />
+        <tab name="SUMMARY_TAB" id="{33c4221d-ccb0-4a92-853e-369d2d0adb85}" IsUserDefined="0" showlabel="true" expanded="true" ordinalvalue="0" solutionaction="Modified">
           <columns>
             <column width="33%" id="0">
               <sections>
@@ -151,7 +152,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="DETAILS_TAB" id="{4feff6ea-5874-4746-aa30-353a3da2bd8c}" IsUserDefined="0" expanded="true" showlabel="true" ordinalvalue="2">
+        <tab name="DETAILS_TAB" id="{4feff6ea-5874-4746-aa30-353a3da2bd8c}" IsUserDefined="0" expanded="true" showlabel="true" ordinalvalue="1" solutionaction="Modified">
           <columns>
             <column width="34%" id="0">
               <sections>
@@ -227,7 +228,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="ADMINISTRATION_TAB" id="{cdb4e61c-1e67-48ae-a26b-2b6852eedc86}" IsUserDefined="0" expanded="true" showlabel="true" ordinalvalue="3">
+        <tab name="ADMINISTRATION_TAB" id="{cdb4e61c-1e67-48ae-a26b-2b6852eedc86}" IsUserDefined="0" expanded="true" showlabel="true" ordinalvalue="2" solutionaction="Modified">
           <columns>
             <column width="100%" id="0">
               <sections>
@@ -271,7 +272,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="MobileOfflineProfile_TAB" id="{4624aa3e-fb33-42e7-87c2-ca7b810a81c1}" IsUserDefined="0" visible="false" expanded="false" ordinalvalue="5" solutionaction="Modified">
+        <tab name="MobileOfflineProfile_TAB" id="{4624aa3e-fb33-42e7-87c2-ca7b810a81c1}" IsUserDefined="0" visible="false" expanded="false" ordinalvalue="4">
           <columns>
             <column width="100%" id="0">
               <sections>
@@ -291,7 +292,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_6" id="bceb93db-1f01-4c6c-a586-8ebdff6a423d" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="4" solutionaction="Added">
+        <tab name="tab_6" id="bceb93db-1f01-4c6c-a586-8ebdff6a423d" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="3" solutionaction="Added">
           <labels>
             <label description="Work Orders" languagecode="1033" />
           </labels>
@@ -307,7 +308,7 @@
                       <cell locklevel="0" id="{7d2998f2-cc00-4dd2-9ba8-2654893ca251}" rowspan="1" colspan="1" ordinalvalue="10000">
                         <labels>
                           <label description="Created Work Orders" languagecode="1033" />
-                          <label description="Ordres de travail" languagecode="1036" />
+                          <label description="Équipes" languagecode="1036" />
                         </labels>
                         <control id="Subgrid_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
@@ -338,6 +339,19 @@
           </row>
         </rows>
       </footer>
+      <Navigation>
+        <NavBar>
+          <NavBarByRelationshipItem Icon="$webresource:msdyn_/Icons/Sitemap/ServiceAgreement_32.png" RelationshipName="msdyn_systemuser_msdyn_agreement_SalesPerson" Sequence="10000" Client="Web" Area="Info" Id="nav_msdyn_systemuser_msdyn_agreement_SalesPerson" Show="false" solutionaction="Removed" />
+          <NavBarByRelationshipItem Icon="$webresource:msdyn_/Icons/Sitemap/WorkOrder_32.png" RelationshipName="msdyn_systemuser_msdyn_workorder_DispatchedBy" Sequence="10000" Client="Web" Area="Info" Id="nav_msdyn_systemuser_msdyn_workorder_DispatchedBy" Show="false" solutionaction="Removed" />
+          <NavBarByRelationshipItem Icon="$webresource:msdyn_/Icons/Sitemap/WorkOrder_32.png" RelationshipName="msdyn_systemuser_msdyn_workorder_SalesPerson" Sequence="10000" Client="Web" Area="Info" Id="nav_msdyn_systemuser_msdyn_workorder_SalesPerson" Show="false" solutionaction="Removed" />
+          <NavBarByRelationshipItem RelationshipName="ts_ts_inspectionhours_Inspector_systemuser" Sequence="10000" Area="Info" Id="nav_ts_ts_inspectionhours_Inspector_systemuser" Show="false" solutionaction="Added">
+            <Titles>
+              <Title LCID="1033" Text="Inspection Hours" />
+            </Titles>
+          </NavBarByRelationshipItem>
+        </NavBar>
+      </Navigation>
+      <DisplayConditions FallbackForm="true" Order="1" solutionaction="Modified" />
       <header id="{d4172dd7-bacc-4256-994e-fde4ca8d9d0a}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
         <rows>
           <row>
