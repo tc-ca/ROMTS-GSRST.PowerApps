@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{071e60a0-5013-ed11-b83f-002248ae429c}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_tripid">
+          <cell name="ts_id" width="100" />
+          <cell name="ts_name" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_plannedfiscalquarter" width="100" />
+          <cell name="ts_estimatedduration" width="100" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="ts_trip">
+          <attribute name="ts_name" />
+          <attribute name="createdon" />
+          <attribute name="ts_id" />
+          <attribute name="ts_plannedfiscalquarter" />
+          <attribute name="ts_estimatedduration" />
+          <order attribute="ts_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <link-entity name="systemuser" from="systemuserid" to="createdby" alias="aa">
+            <filter type="and">
+              <condition attribute="territoryid" operator="eq" uiname="National Capital Region" uitype="territory" value="{04B86E9E-1707-EB11-A813-000D3AF3A0D7}" />
+            </filter>
+          </link-entity>
+          <attribute name="ts_tripid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20220726.2</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Trips - National Capital" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
