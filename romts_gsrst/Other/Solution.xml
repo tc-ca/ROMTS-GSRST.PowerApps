@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20220815.1</Version>
+    <Version>1.0.20220815.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -321,6 +321,7 @@
       <RootComponent type="60" id="{e11e2c2d-9314-eb11-a813-000d3af3a7a7}" behavior="0" />
       <RootComponent type="60" id="{e631a301-3f03-eb11-a813-000d3af3a7a7}" />
       <RootComponent type="60" id="{eb3748b8-5f90-4050-a039-8b7d279ad8fe}" />
+      <RootComponent type="61" schemaName="msdyn_/IncidentType/IncidentType.js" behavior="0" />
       <RootComponent type="61" schemaName="ovs_/css/autocomplete.css" behavior="0" />
       <RootComponent type="61" schemaName="ovs_/css/bootstrap.min.css" behavior="0" />
       <RootComponent type="61" schemaName="ovs_/css/modern.css" behavior="0" />
@@ -395,6 +396,7 @@
       <RootComponent type="61" schemaName="ts_/js/InspectionHours.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/LegislationRibbon.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/Operation.js" behavior="0" />
+      <RootComponent type="61" schemaName="ts_/js/OperationActivityQuickCreate.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/OperationContact.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/OperationRibbon.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/QuestionnaireVersion.js" behavior="0" />
@@ -18259,6 +18261,12 @@
         <Dependent type="80" schemaName="ts_OversightPlanningModule" displayName="Oversight Planning Module" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="61" schemaName="msdyn_/IncidentType/IncidentType.js" displayName="msdyn_/IncidentType/IncidentType.js" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.71.41)</package>
+        </Required>
+        <Dependent type="61" schemaName="msdyn_/IncidentType/IncidentType.js" displayName="msdyn_/IncidentType/IncidentType.js" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="61" schemaName="msdyn_/IncidentType/IncidentType.Library.js" displayName="msdyn_/IncidentType/IncidentType.Library.js" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.71.41)</package>
         </Required>
@@ -18859,10 +18867,6 @@
           <package>msdyn_ServiceExtendedAnchor (9.0.22074.1003)</package>
         </Required>
         <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_/js/OperationActivityQuickCreate.js" displayName="ts_/js/OperationActivityQuickCreate.js" solution="Active" />
-        <Dependent type="60" displayName="Operation Activity quick create form" parentDisplayName="Operation Activity" id="{9e08e7a2-e517-ed11-b83f-002248ae441f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2208.1009)" />

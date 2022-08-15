@@ -422,26 +422,5 @@ var ROM;
             ;
         }
         Operation.setFieldsDisabled = setFieldsDisabled;
-        //     gridContext.getAttribute("ts_activity").setDisabled(true);
-        //     form.data.attributes.forEach(function (attr) {
-        //         //@ts-ignore
-        //         console.log("TESTZ");
-        //         if (attr.getName() === "ts_operation" || attr.getName() === "ts_activity") {
-        //             attr.controls.forEach(function (c) {
-        //                 c.setDisabled(true);
-        //             })
-        //         }
-        //     });
-        // }
-        // Xrm.Page.ui.controls.forEach(function (control, index) {
-        //     let controlName = control.getName();
-        //     console.log("controlName");
-        // });
-        // Xrm.Page.ui.controls.forEach(function (control, index) {
-        //     let controlName = control.getName();
-        // 			if(controlName == "cc_1660579006468"){
-        // 				console.log(controlName);
-        // 			}
-        // });
     })(Operation = ROM.Operation || (ROM.Operation = {}));
 })(ROM || (ROM = {}));
