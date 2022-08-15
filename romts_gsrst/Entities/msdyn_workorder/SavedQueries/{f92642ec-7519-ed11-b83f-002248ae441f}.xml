@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{f92642ec-7519-ed11-b83f-002248ae441f}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_workorderid">
+          <cell name="msdyn_name" width="200" />
+          <cell name="ovs_fiscalquarter" width="100" />
+          <cell name="ownerid" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="msdyn_workorder">
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_workorderid" />
+          <attribute name="ovs_fiscalquarter" />
+          <attribute name="ownerid" />
+          <filter type="and">
+            <condition attribute="ownerid" operator="eq-userid" />
+            <filter type="or">
+              <condition attribute="msdyn_systemstatus" operator="eq" value="690970003" />
+              <condition attribute="msdyn_systemstatus" operator="ne" value="690970004" />
+            </filter>
+          </filter>
+          <link-entity name="tc_tcfiscalquarter" alias="aa" link-type="inner" from="tc_tcfiscalquarterid" to="ovs_fiscalquarter">
+            <filter type="and">
+              <condition attribute="tc_quarterend" operator="on-or-before" value="2022-08-12" />
+            </filter>
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20220805.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Work Order In Progress and End Quarter" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

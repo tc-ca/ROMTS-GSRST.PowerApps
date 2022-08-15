@@ -28,14 +28,24 @@
         <Button Alt="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.Alt" Command="msdyn.ApplicationRibbon.HomeGrid.BookResource.Command" Description="Book" Id="msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button" LabelText="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.LabelText" Sequence="75" TemplateAlias="o2" ToolTipTitle="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.ToolTipTitle" ToolTipDescription="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.ToolTipDescription" ModernImage="$webresource:msdyn_/fps/Icons/CommandBar/CalendarButton.svg" />
       </CommandUIDefinition>
     </CustomAction>
-    <CustomAction Id="ts.msdyn_workorder.Button4.Planning.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="22">
+    <CustomAction Id="ts.msdyn_workorder.Button4.Planning.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="0">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:ts.msdyn_workorder.Button4.Planning.Alt" Command="ts.msdyn_workorder.TSIS.Planning" Id="ts.msdyn_workorder.Button4.Planning" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.Button4.Planning.LabelText" Sequence="22" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Button4.Planning.ToolTipTitle" />
+        <Button Alt="$LocLabels:ts.msdyn_workorder.Button4.Planning.Alt" Command="ts.msdyn_workorder.TSIS.Planning" Id="ts.msdyn_workorder.Button4.Planning" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.Button4.Planning.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Button4.Planning.ToolTipTitle" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.Button6.AddToTrip.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="22">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.Alt" Command="ts.msdyn_workorder.TSIS.AddToTrip" Id="ts.msdyn_workorder.Button6.AddToTrip" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.LabelText" Sequence="22" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.ToolTipTitle" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="60">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.Alt" Command="ts.msdyn_workorder.TSIS.ExportToPdf" CommandValueId="ts.msdyn_workorder.TSIS.ExportToPdf" Id="ts.msdyn_workorder.TSIS.ExportToPdfButton" LabelText="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.LabelText" Sequence="60" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.TSIS.Justify.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="15">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.TSIS.Justify.Alt" Command="ts.msdyn_workorder.TSIS.Justify" Id="ts.msdyn_workorder.TSIS.Justify" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.TSIS.Justify.LabelText" Sequence="15" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.TSIS.Justify.ToolTipTitle" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="35">
@@ -213,6 +223,17 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.TSIS.AddToTrip">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="workOrdersAddToTrip" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorder.TSIS.ExportToPdf">
       <EnableRules>
         <EnableRule Id="ts.msdyn_workorder.TSIS.hasWorkOrderName" />
@@ -221,6 +242,17 @@
       <Actions>
         <JavaScriptFunction FunctionName="exportWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
           <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.TSIS.Justify">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="justifyWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -437,16 +469,37 @@
     <LocLabel Id="ts.msdyn_workorder.Button4.Planning.Alt">
       <Titles>
         <Title description="Planning" languagecode="1033" />
+        <Title description="Planification" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.Button4.Planning.LabelText">
       <Titles>
         <Title description="Planning" languagecode="1033" />
+        <Title description="Planification" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.Button4.Planning.ToolTipTitle">
       <Titles>
         <Title description="Planning" languagecode="1033" />
+        <Title description="Planification" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Button6.AddToTrip.Alt">
+      <Titles>
+        <Title description="Add to trip" languagecode="1033" />
+        <Title description="Ajouter à un voyage" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Button6.AddToTrip.LabelText">
+      <Titles>
+        <Title description="Add to trip" languagecode="1033" />
+        <Title description="Ajouter à un voyage" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Button6.AddToTrip.ToolTipTitle">
+      <Titles>
+        <Title description="Add to trip" languagecode="1033" />
+        <Title description="Ajouter à un voyage" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.Alt">
@@ -471,6 +524,21 @@
       <Titles>
         <Title description="Export to PDF" languagecode="1033" />
         <Title description="Exporter au format PDF" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.Justify.Alt">
+      <Titles>
+        <Title description="Justify" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.Justify.LabelText">
+      <Titles>
+        <Title description="Justify" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.Justify.ToolTipTitle">
+      <Titles>
+        <Title description="Justify" languagecode="1033" />
       </Titles>
     </LocLabel>
   </LocLabels>

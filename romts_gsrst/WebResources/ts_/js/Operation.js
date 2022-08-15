@@ -55,6 +55,9 @@ var ROM;
                     userRoles.forEach(function (role) {
                         if (role.name == "System Administrator") {
                             form.getControl("ts_riskscore").setDisabled(false);
+                            form.getControl("ts_dateoflastsecurityplanreview").setDisabled(false);
+                            form.getControl("ts_dateoflastcomprehensiveinspection").setDisabled(false);
+                            form.getControl("ts_dateoflastriskbasedinspection").setDisabled(false);
                         }
                     });
                     userId = Xrm.Utility.getGlobalContext().userSettings.userId;
@@ -133,6 +136,7 @@ var ROM;
                                 }
                             }
                             else if (form.ui.getFormType() == 2) { //Update
+                                showOperationActivityTabIfAvSec(form);
                                 //We filter the form on the business unit of the owner of the record
                                 var ownerAttribute = form.getAttribute("ownerid").getValue();
                                 if (ownerAttribute != null) {
@@ -150,6 +154,9 @@ var ROM;
                                     form.getControl('ts_subsite').setDisabled(false);
                                 }
                             }
+                            else if (form.ui.getFormType() == 3 || form.ui.getFormType() == 4) {
+                                showOperationActivityTabIfAvSec(form);
+                            }
                         }
                     });
                     if (form.getAttribute("ts_statusstartdate").getValue() != null) {
@@ -162,6 +169,28 @@ var ROM;
             });
         }
         Operation.onLoad = onLoad;
+        function showOperationActivityTabIfAvSec(form) {
+            Xrm.WebApi.retrieveRecord('ovs_operation', form.data.entity.getId(), "?$select=_owningbusinessunit_value").then(function success(operation) {
+                var businessUnitfetchXml = [
+                    "<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false' returntotalrecordcount='true' no-lock='false'>",
+                    "  <entity name='businessunit'>",
+                    "    <attribute name='name'/>",
+                    "    <attribute name='businessunitid'/>",
+                    "    <filter>",
+                    "      <condition attribute='businessunitid' operator='eq' value='", operation._owningbusinessunit_value, "'/>",
+                    "    </filter>",
+                    "  </entity>",
+                    "</fetch>"
+                ].join("");
+                businessUnitfetchXml = "?fetchXml=" + businessUnitfetchXml;
+                Xrm.WebApi.retrieveMultipleRecords("businessunit", businessUnitfetchXml).then(function (result) {
+                    if (result.entities[0].name.startsWith("Aviation")) {
+                        form.ui.tabs.get("operation_activity_tab").setVisible(true);
+                    }
+                });
+            });
+        }
+        Operation.showOperationActivityTabIfAvSec = showOperationActivityTabIfAvSec;
         function onSave(eContext) {
             var form = eContext.getFormContext();
             var statusStartDateValue = form.getAttribute("ts_statusstartdate").getValue();
@@ -377,5 +406,42 @@ var ROM;
             }
         }
         Operation.typeOfDangerousGoodsOnChange = typeOfDangerousGoodsOnChange;
+        function setFieldsDisabled(eContext) {
+            var formContext = eContext.getFormContext();
+            var gridContext = formContext.getControl("operation_activity_grid");
+            if (formContext) {
+                var arrFields_1 = ["ts_operation", "ts_activity"];
+                var objEntity = formContext.data.entity;
+                objEntity.attributes.forEach(function (attribute, i) {
+                    if (arrFields_1.indexOf(attribute.getName()) > -1) {
+                        var attributeToDisable = attribute.controls.get(0);
+                        attributeToDisable.setDisabled(true);
+                    }
+                });
+            }
+            ;
+        }
+        Operation.setFieldsDisabled = setFieldsDisabled;
+        //     gridContext.getAttribute("ts_activity").setDisabled(true);
+        //     form.data.attributes.forEach(function (attr) {
+        //         //@ts-ignore
+        //         console.log("TESTZ");
+        //         if (attr.getName() === "ts_operation" || attr.getName() === "ts_activity") {
+        //             attr.controls.forEach(function (c) {
+        //                 c.setDisabled(true);
+        //             })
+        //         }
+        //     });
+        // }
+        // Xrm.Page.ui.controls.forEach(function (control, index) {
+        //     let controlName = control.getName();
+        //     console.log("controlName");
+        // });
+        // Xrm.Page.ui.controls.forEach(function (control, index) {
+        //     let controlName = control.getName();
+        // 			if(controlName == "cc_1660579006468"){
+        // 				console.log(controlName);
+        // 			}
+        // });
     })(Operation = ROM.Operation || (ROM.Operation = {}));
 })(ROM || (ROM = {}));

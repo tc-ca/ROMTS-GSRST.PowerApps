@@ -214,7 +214,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{9eda91cc-3ee3-79dc-1e46-e8439a9b9053}" showlabel="true" locklevel="0">
+                      <cell id="{9eda91cc-3ee3-79dc-1e46-e8439a9b9053}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Date of last Security Plan Review" languagecode="1033" />
                           <label description="Date de la dernière examen du plan de sûreté" languagecode="1036" />
@@ -223,7 +223,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{56eed04e-45e6-d829-3e53-e6431cd947cb}" showlabel="true" locklevel="0">
+                      <cell id="{56eed04e-45e6-d829-3e53-e6431cd947cb}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Date of last Comprehensive Inspection" languagecode="1033" />
                           <label description="Date de la dernière inspection complète" languagecode="1036" />
@@ -232,7 +232,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{6c3eeedb-6222-e8d5-3c9d-78b3a142413e}" showlabel="true" locklevel="0">
+                      <cell id="{6c3eeedb-6222-e8d5-3c9d-78b3a142413e}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Date of last Risk-based Inspection" languagecode="1033" />
                           <label description="Date de la dernière inspection basée sur les risques" languagecode="1036" />
@@ -307,6 +307,56 @@
                         </control>
                       </cell>
                     </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="operation_activity_tab" id="cd2ab6a4-4756-4183-b1fb-a0d92e9d8df6" IsUserDefined="0" locklevel="0" showlabel="true" visible="false">
+          <labels>
+            <label description="Operation Activities" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_8_section_1" id="2ae2de4d-7063-47e7-9394-49f530a7718b" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Operation Activities" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{ba2b1741-aeec-44a9-95b6-21943c4724fe}" colspan="1" rowspan="6" auto="false" showlabel="false">
+                        <labels>
+                          <label description="Operation Activities" languagecode="1033" />
+                          <label description="Contacts opérationnels" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="operation_activity_grid" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{826af1f0-faec-47cc-93c6-e011af58dbef}">
+                          <parameters>
+                            <TargetEntityType>ts_operationactivity</TargetEntityType>
+                            <ViewId>{D2E3E160-3870-4B88-8E03-CD9D465E6106}</ViewId>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <IsUserView>false</IsUserView>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <ViewIds>{D2E3E160-3870-4B88-8E03-CD9D465E6106}</ViewIds>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RelationshipName />
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>
@@ -674,7 +724,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -757,6 +807,89 @@
             <parameters>
               <value>ts_ppeguide</value>
               <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{826af1f0-faec-47cc-93c6-e011af58dbef}">
+          <customControl id="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+            <parameters />
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{D2E3E160-3870-4B88-8E03-CD9D465E6106}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_operationactivity" viewId="{d2e3e160-3870-4b88-8e03-cd9d465e6106}" attributeName="ts_operation">
+                    <DefaultViewId>{2cfcd309-d4d6-ec11-a7b5-000d3a8485f2}</DefaultViewId>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <TargetEntityType>ts_operationactivity</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{D2E3E160-3870-4B88-8E03-CD9D465E6106}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{D2E3E160-3870-4B88-8E03-CD9D465E6106}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_operationactivity" viewId="{d2e3e160-3870-4b88-8e03-cd9d465e6106}" attributeName="ts_operation">
+                    <DefaultViewId>{2cfcd309-d4d6-ec11-a7b5-000d3a8485f2}</DefaultViewId>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <TargetEntityType>ts_operationactivity</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{D2E3E160-3870-4B88-8E03-CD9D465E6106}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{D2E3E160-3870-4B88-8E03-CD9D465E6106}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_operationactivity" viewId="{d2e3e160-3870-4b88-8e03-cd9d465e6106}" attributeName="ts_operation">
+                    <DefaultViewId>{2cfcd309-d4d6-ec11-a7b5-000d3a8485f2}</DefaultViewId>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <TargetEntityType>ts_operationactivity</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{D2E3E160-3870-4B88-8E03-CD9D465E6106}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
             </parameters>
           </customControl>
         </controlDescription>
@@ -886,6 +1019,11 @@
         <event name="onchange" application="true" active="true" attribute="ts_typeofdangerousgoods">
           <Handlers>
             <Handler functionName="ROM.Operation.typeOfDangerousGoodsOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{3394b92d-1a33-4301-8918-81fd15805fdd}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onrecordselect" application="false" active="false" relationship="" control="operation_activity_grid">
+          <Handlers>
+            <Handler functionName="ROM.Operation.setFieldsDisabled" libraryName="ts_/js/Operation.js" handlerUniqueId="{b3c27354-0a59-8b05-46a5-9dab5e675c1c}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

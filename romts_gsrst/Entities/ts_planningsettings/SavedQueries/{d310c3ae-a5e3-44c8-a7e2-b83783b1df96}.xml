@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{d310c3ae-a5e3-44c8-a7e2-b83783b1df96}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_planningsettingsid">
+          <cell name="ts_task" width="100" />
+          <cell name="ts_effectivedate" width="100" />
+          <cell name="ts_taskstatus" width="100" />
+          <cell name="createdon" width="125" />
+          <cell name="createdby" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_planningsettings">
+          <attribute name="createdon" />
+          <order attribute="ts_effectivedate" descending="false" />
+          <order attribute="ts_task" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_taskstatus" />
+          <attribute name="ts_task" />
+          <attribute name="ts_effectivedate" />
+          <attribute name="createdby" />
+          <attribute name="ts_planningsettingsid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20220805.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Planning Settings" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

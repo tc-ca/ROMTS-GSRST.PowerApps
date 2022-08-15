@@ -11,10 +11,11 @@
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_tripinspectorid">
           <cell name="ts_inspector" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_e4b619df7507ed1182e6002248ae429c.ts_name" width="100" disableSorting="1" />
+          <cell name="a_e4b619df7507ed1182e6002248ae429c.ts_id" width="100" disableSorting="1" />
           <cell name="a_f3caec617607ed1182e6002248ae429c.title" width="100" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="a_f3caec617607ed1182e6002248ae429c.businessunitid" width="100" disableSorting="1" />
           <cell name="a_f3caec617607ed1182e6002248ae429c.internalemailaddress" width="125" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="createdon" width="125" />
         </row>
       </grid>
     </layoutxml>
@@ -22,8 +23,7 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ts_tripinspector">
-          <attribute name="createdon" />
-          <order attribute="createdon" descending="false" />
+          <order attribute="ts_inspector" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
@@ -32,6 +32,10 @@
             <attribute name="title" />
             <attribute name="internalemailaddress" />
             <attribute name="businessunitid" />
+          </link-entity>
+          <link-entity alias="a_e4b619df7507ed1182e6002248ae429c" name="ts_trip" from="ts_tripid" to="ts_trip" link-type="outer" visible="false">
+            <attribute name="ts_name" />
+            <attribute name="ts_id" />
           </link-entity>
           <attribute name="ts_tripinspectorid" />
         </entity>
