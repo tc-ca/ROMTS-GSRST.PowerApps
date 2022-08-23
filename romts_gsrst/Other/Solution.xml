@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20220823.1</Version>
+    <Version>1.0.20220823.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -316,7 +316,21 @@
       <RootComponent type="29" id="{d730fd17-4f6d-eb11-a812-000d3a84129e}" behavior="0" />
       <RootComponent type="29" id="{d8121d19-cec0-ec11-983e-0022483d7d11}" behavior="0" />
       <RootComponent type="29" id="{ffa2f91d-2517-ec11-b6e7-000d3a8408c3}" behavior="0" />
+      <RootComponent type="36" id="{16014ed7-31f3-ec11-bb3c-000d3af4f046}" behavior="0" />
+      <RootComponent type="36" id="{225de010-1818-ed11-b83e-000d3af408cb}" behavior="0" />
+      <RootComponent type="36" id="{23d34c13-f8e8-ec11-bb3c-0022486d9670}" behavior="0" />
       <RootComponent type="36" id="{2cf5346a-ee09-ed11-82e6-002248ae441f}" behavior="0" />
+      <RootComponent type="36" id="{2eca7eca-10f7-ec11-82e5-000d3a09f295}" behavior="0" />
+      <RootComponent type="36" id="{408e5cda-1918-ed11-b83e-000d3af408cb}" behavior="0" />
+      <RootComponent type="36" id="{75022aea-561a-ed11-b83e-000d3af408cb}" behavior="0" />
+      <RootComponent type="36" id="{792ed4d2-651a-ed11-b83e-000d3af408cb}" behavior="0" />
+      <RootComponent type="36" id="{89ded30e-531a-ed11-b83e-000d3af408cb}" behavior="0" />
+      <RootComponent type="36" id="{8c8522d1-0df7-ec11-82e5-000d3a09f295}" behavior="0" />
+      <RootComponent type="36" id="{92ac82b2-0e18-ed11-b83e-000d3af408cb}" behavior="0" />
+      <RootComponent type="36" id="{a013742a-541a-ed11-b83e-000d3af408cb}" behavior="0" />
+      <RootComponent type="36" id="{b7d5391b-1ff3-ec11-bb3c-000d3af4f046}" behavior="0" />
+      <RootComponent type="36" id="{c2d91675-641a-ed11-b83e-000d3af408cb}" behavior="0" />
+      <RootComponent type="36" id="{db8e15f7-11f7-ec11-82e5-000d3a09f295}" behavior="0" />
       <RootComponent type="60" id="{15915835-b87c-49ec-9ffc-bfac3ac44ef1}" />
       <RootComponent type="60" id="{70ad8b15-e3f3-4d7d-9e4b-16cb4e51b484}" />
       <RootComponent type="60" id="{80f8fba0-6d0d-eb11-a813-000d3af3a7a7}" behavior="0" />
@@ -401,6 +415,7 @@
       <RootComponent type="61" schemaName="ts_/js/InspectionHours.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/LegislationRibbon.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/Operation.js" behavior="0" />
+      <RootComponent type="61" schemaName="ts_/js/OperationActivity.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/OperationActivityQuickCreate.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/OperationContact.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/OperationRibbon.js" behavior="0" />
@@ -8046,6 +8061,42 @@
         <Dependent type="2" schemaName="checkemail" displayName="Check Email" parentSchemaName="incident" parentDisplayName="Case" />
       </MissingDependency>
       <MissingDependency>
+        <Required type="2" schemaName="contactid" displayName="Contact" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.22082.1007)</package>
+        </Required>
+        <Dependent type="36" displayName="Findings (Verbal Warning) (PAX) / Constatations (Avertissement verbal) (PAX)" id="{16014ed7-31f3-ec11-bb3c-000d3af4f046}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="contactid" displayName="Contact" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.22082.1007)</package>
+        </Required>
+        <Dependent type="36" displayName="Findings (Verbal Warning) (TDG) / Constatations (Avertissement verbal) (TMD)" id="{23d34c13-f8e8-ec11-bb3c-0022486d9670}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="contactid" displayName="Contact" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.22082.1007)</package>
+        </Required>
+        <Dependent type="36" displayName="Acknowledging Action Taken (PAX/TDG) / Reconnaissance des mesures prises (PAX/TMD)" id="{2eca7eca-10f7-ec11-82e5-000d3a09f295}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="contactid" displayName="Contact" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.22082.1007)</package>
+        </Required>
+        <Dependent type="36" displayName="Findings (Written Warning) (TDG) / Constatations (Avertissement verbal) (TMD)" id="{8c8522d1-0df7-ec11-82e5-000d3a09f295}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="contactid" displayName="Contact" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.22082.1007)</package>
+        </Required>
+        <Dependent type="36" displayName="Findings (Written Warning) (PAX) / Constatations (Avertissement écrit) (PAX)" id="{b7d5391b-1ff3-ec11-bb3c-000d3af4f046}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="contactid" displayName="Contact" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.22082.1007)</package>
+        </Required>
+        <Dependent type="36" displayName="Insufficient Action Taken (PAX/TDG) / Prise de mesures insuffisantes (PAX/TDG)" id="{db8e15f7-11f7-ec11-82e5-000d3a09f295}" />
+      </MissingDependency>
+      <MissingDependency>
         <Required type="2" schemaName="contractdetailid" displayName="Contract Line" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.22082.1007)</package>
         </Required>
@@ -8272,6 +8323,42 @@
           <package>msdynce_ServiceAnchor (9.0.22082.1007)</package>
         </Required>
         <Dependent type="26" schemaName="Case Lookup View" displayName="Case Lookup View" parentSchemaName="incident" parentDisplayName="Case" id="{9ac51863-58c7-49a0-adcc-afd9a4c3ee59}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="incidentid" displayName="Case" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.22082.1007)</package>
+        </Required>
+        <Dependent type="36" displayName="Findings (Verbal Warning) (PAX) / Constatations (Avertissement verbal) (PAX)" id="{16014ed7-31f3-ec11-bb3c-000d3af4f046}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="incidentid" displayName="Case" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.22082.1007)</package>
+        </Required>
+        <Dependent type="36" displayName="Findings (Verbal Warning) (TDG) / Constatations (Avertissement verbal) (TMD)" id="{23d34c13-f8e8-ec11-bb3c-0022486d9670}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="incidentid" displayName="Case" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.22082.1007)</package>
+        </Required>
+        <Dependent type="36" displayName="Acknowledging Action Taken (PAX/TDG) / Reconnaissance des mesures prises (PAX/TMD)" id="{2eca7eca-10f7-ec11-82e5-000d3a09f295}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="incidentid" displayName="Case" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.22082.1007)</package>
+        </Required>
+        <Dependent type="36" displayName="Findings (Written Warning) (TDG) / Constatations (Avertissement verbal) (TMD)" id="{8c8522d1-0df7-ec11-82e5-000d3a09f295}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="incidentid" displayName="Case" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.22082.1007)</package>
+        </Required>
+        <Dependent type="36" displayName="Findings (Written Warning) (PAX) / Constatations (Avertissement écrit) (PAX)" id="{b7d5391b-1ff3-ec11-bb3c-000d3af4f046}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="incidentid" displayName="Case" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.22082.1007)</package>
+        </Required>
+        <Dependent type="36" displayName="Insufficient Action Taken (PAX/TDG) / Prise de mesures insuffisantes (PAX/TDG)" id="{db8e15f7-11f7-ec11-82e5-000d3a09f295}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="incidentid" displayName="Case" parentSchemaName="incident" parentDisplayName="Case" solution="msdynce_Service (9.0.5.56)">
@@ -11637,7 +11724,55 @@
         <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.71.41)</package>
         </Required>
+        <Dependent type="36" displayName="Inspection Outcome - No Finding (TDG) / Résultat de l'inspection - Aucune constatations (TMD)" id="{225de010-1818-ed11-b83e-000d3af408cb}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.71.41)</package>
+        </Required>
         <Dependent type="36" displayName="Inspection Outcome – No Findings" id="{2cf5346a-ee09-ed11-82e6-002248ae441f}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.71.41)</package>
+        </Required>
+        <Dependent type="36" displayName="Security Plan Review – Inspection Outcome (TDG) / Examen du plan de sûreté – Résultat de l'inspection (TMD)" id="{408e5cda-1918-ed11-b83e-000d3af408cb}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.71.41)</package>
+        </Required>
+        <Dependent type="36" displayName="Notice of Inspection (PAX) / Avis d’inspection (PAX)" id="{75022aea-561a-ed11-b83e-000d3af408cb}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.71.41)</package>
+        </Required>
+        <Dependent type="36" displayName="Security Risk Assessment and Security Plan Review – Inspection Outcome (PAX) / Examen de l’évaluation des risques en matière de sûreté et du plan de sûreté – Résultat de l'inspection (PAX)" id="{792ed4d2-651a-ed11-b83e-000d3af408cb}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.71.41)</package>
+        </Required>
+        <Dependent type="36" displayName="Request for Security Plan (TDG) / Demande de plan de sûreté (TMD)" id="{89ded30e-531a-ed11-b83e-000d3af408cb}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.71.41)</package>
+        </Required>
+        <Dependent type="36" displayName="Inspection Outcome - No Finding (PAX) / Résultat de l'inspection - Aucune constatations (PAX)" id="{92ac82b2-0e18-ed11-b83e-000d3af408cb}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.71.41)</package>
+        </Required>
+        <Dependent type="36" displayName="Notice of Inspection (TDG) / Avis d’inspection (TMD)" id="{a013742a-541a-ed11-b83e-000d3af408cb}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.71.41)</package>
+        </Required>
+        <Dependent type="36" displayName="Request for Security Risk Assessment and Security Plan (PAX) / Demande de l’évaluation des risques en matière de sûreté et du plan de sûreté (PAX)" id="{c2d91675-641a-ed11-b83e-000d3af408cb}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workorderid" displayName="WO Number" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
@@ -18882,10 +19017,6 @@
           <package>msdyn_ServiceExtendedAnchor (9.0.22074.1003)</package>
         </Required>
         <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_/js/OperationActivity.js" displayName="ts_/js/OperationActivity.js" solution="Active" />
-        <Dependent type="60" displayName="Information" parentDisplayName="Operation Activity" id="{7e7fd8b1-8514-43e2-82e1-3a62319d6886}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2208.2010)" />

@@ -1,0 +1,1 @@
+﻿<?xml version="1.0" ?><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"><xsl:output method="text" indent="no"/><xsl:template match="/data"><![CDATA[<div data-wrapper="true" style="font-size:9pt;font-family:'Segoe UI','Helvetica Neue',sans-serif;">Notice of Inspection /&nbsp;Avis d’inspection</div>]]></xsl:template></xsl:stylesheet>
