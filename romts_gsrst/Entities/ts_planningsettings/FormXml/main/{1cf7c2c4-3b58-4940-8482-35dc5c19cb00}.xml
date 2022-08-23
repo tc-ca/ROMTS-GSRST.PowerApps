@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0.20220805.1</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab verticallayout="true" id="{f10942cb-3021-4fd2-86d7-ac5037da5a70}" IsUserDefined="1">
           <labels>
@@ -71,7 +71,7 @@
                         <labels>
                           <label description="Task" languagecode="1033" />
                         </labels>
-                        <control id="ts_task" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_task" disabled="false" />
+                        <control id="ts_task" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_task" disabled="false" uniqueid="{a404a3c7-8bd6-54b7-89c4-d0566a040564}" />
                       </cell>
                       <cell id="{739774ca-d512-d9ac-5910-0879d4acca8a}" showlabel="false">
                         <labels>
@@ -113,7 +113,7 @@
         </tab>
         <tab name="tab_2" id="{00b53eed-c9dd-7382-dacb-2777cc0e9ec4}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
           <labels>
-            <label description="Setting" languagecode="1033" />
+            <label description="Settings" languagecode="1033" />
           </labels>
           <columns>
             <column width="50%">
@@ -274,6 +274,21 @@
         </NavBarAreas>
       </Navigation>
       <controlDescriptions />
+      <formLibraries>
+        <Library name="ts_/js/PlanningSettings.js" libraryUniqueId="{419b2dee-4524-2182-e45d-1dd0dec4c082}" />
+      </formLibraries>
+      <events>
+        <event name="onchange" application="false" active="false" attribute="ts_task">
+          <Handlers>
+            <Handler functionName="ROM.PlanningSettings.taskOnChange" libraryName="ts_/js/PlanningSettings.js" handlerUniqueId="{8a5e69c1-a78d-152a-2a07-2aeea0188d26}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.PlanningSettings.onLoad" libraryName="ts_/js/PlanningSettings.js" handlerUniqueId="{b00403a5-9641-601a-c3a1-7785d9e41601}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
