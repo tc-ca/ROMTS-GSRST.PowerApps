@@ -38,6 +38,11 @@
         <Button Alt="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.Alt" Command="ts.msdyn_workorder.TSIS.AddToTrip" Id="ts.msdyn_workorder.Button6.AddToTrip" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.LabelText" Sequence="22" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.ToolTipTitle" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.TSIS.Cancel.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="18">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.TSIS.Cancel.Alt" Command="ts.msdyn_workorder.TSIS.Cancel" Id="ts.msdyn_workorder.TSIS.Cancel" Image32by32="/_imgs/ribbon/edit_32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.TSIS.Cancel.LabelText" Sequence="18" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.TSIS.Cancel.ToolTipTitle" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="60">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.Alt" Command="ts.msdyn_workorder.TSIS.ExportToPdf" CommandValueId="ts.msdyn_workorder.TSIS.ExportToPdf" Id="ts.msdyn_workorder.TSIS.ExportToPdfButton" LabelText="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.LabelText" Sequence="60" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.TSIS.ExportToPdfButton.ToolTipDescription" />
@@ -234,6 +239,18 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.TSIS.Cancel">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+        <EnableRule Id="ts.msdyn_workorder.EnableRule17.EnableCancelButton" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="justifyWorkOrderCancellation" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorder.TSIS.ExportToPdf">
       <EnableRules>
         <EnableRule Id="ts.msdyn_workorder.TSIS.hasWorkOrderName" />
@@ -398,6 +415,10 @@
       <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected">
         <SelectionCountRule Minimum="1" />
       </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.EnableRule17.EnableCancelButton">
+        <ValueRule Field="msdyn_systemstatus" Value="690970003" InvertResult="true" />
+        <ValueRule Field="msdyn_systemstatus" Value="690970004" InvertResult="true" />
+      </EnableRule>
       <EnableRule Id="ts.msdyn_workorder.HideInOperation.EnableRule">
         <EntityRule EntityName="ovs_operation" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
       </EnableRule>
@@ -502,6 +523,24 @@
         <Title description="Ajouter à un voyage" languagecode="1036" />
       </Titles>
     </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.Cancel.Alt">
+      <Titles>
+        <Title description="Cancel" languagecode="1033" />
+        <Title description="Annuler" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.Cancel.LabelText">
+      <Titles>
+        <Title description="Cancel" languagecode="1033" />
+        <Title description="Annuler" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TSIS.Cancel.ToolTipTitle">
+      <Titles>
+        <Title description="Cancel" languagecode="1033" />
+        <Title description="Annuler" languagecode="1036" />
+      </Titles>
+    </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.TSIS.ExportToPdfButton.Alt">
       <Titles>
         <Title description="Export to PDF" languagecode="1033" />
@@ -529,16 +568,19 @@
     <LocLabel Id="ts.msdyn_workorder.TSIS.Justify.Alt">
       <Titles>
         <Title description="Justify" languagecode="1033" />
+        <Title description="Justifier" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.TSIS.Justify.LabelText">
       <Titles>
         <Title description="Justify" languagecode="1033" />
+        <Title description="Justifier" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.TSIS.Justify.ToolTipTitle">
       <Titles>
         <Title description="Justify" languagecode="1033" />
+        <Title description="Justifier" languagecode="1036" />
       </Titles>
     </LocLabel>
   </LocLabels>

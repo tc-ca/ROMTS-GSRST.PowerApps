@@ -177,6 +177,14 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{567ac3e0-52ea-ce18-bd8b-125ee12316b4}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="State" languagecode="1033" />
+                        </labels>
+                        <control id="ts_state" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_state" disabled="true" uniqueid="{46791791-2591-4c01-a20d-86b6b080bedc}" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{a2f1ae0b-4e24-4851-8749-37abfd3f460f}" locklevel="0" visible="false">
                         <labels>
                           <label description="Work Order Start Date" languagecode="1033" />
@@ -809,12 +817,37 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{605100eb-1057-45eb-b7f7-6b58563651d8}" locklevel="0" labelid="{d224fbf3-b780-4de1-983f-5aa1db5cf42c}">
+                      <cell id="{605100eb-1057-45eb-b7f7-6b58563651d8}" locklevel="0" labelid="{d224fbf3-b780-4de1-983f-5aa1db5cf42c}" showlabel="true">
                         <labels>
-                          <label description="Rationale" languagecode="1033" />
+                          <label description="Category" languagecode="1033" />
                           <label description="Raisonnement" languagecode="1036" />
                         </labels>
-                        <control disabled="true" id="ovs_rational" datafieldname="ovs_rational" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" uniqueid="{0db7cbd7-77d8-16d8-ce40-5579a5a98269}" />
+                        <control disabled="true" id="ovs_rational" datafieldname="ovs_rational" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" uniqueid="{0db7cbd7-77d8-16d8-ce40-5579a5a98269}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{25B34529-5CB0-4A54-B6C0-7D1444625F49}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{22473496-5129-5bc6-b0c8-b070abb65c59}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Origin" languagecode="1033" />
+                        </labels>
+                        <control id="ts_origin" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_origin" disabled="true" uniqueid="{0a490130-38b6-07c8-83a8-9e63d000934e}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{576a0718-9a73-a2ba-138e-6a2d79c9b3dc}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Reason" languagecode="1033" />
+                        </labels>
+                        <control id="ts_reason" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_reason" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -1111,10 +1144,24 @@
                     <row />
                     <row />
                     <row>
-                      <cell locklevel="0" id="{210fbfae-acb0-4d35-aadb-7b44107cc255}" showlabel="false">
+                      <cell id="{5d8ed446-6af7-45eb-80cc-aa5f3c9339d9}" locklevel="0" colspan="1" rowspan="1" visible="true">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Canceled Inspection Justification" languagecode="1033" />
                         </labels>
+                        <control id="ts_canceledinspectionjustification" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_canceledinspectionjustification" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{EFB24267-2680-4F36-9034-095429A5DDB5}</DefaultViewId>
+                            <AvailableViewIds>{EFB24267-2680-4F36-9034-095429A5DDB5},{1B11C9E4-E0D5-4D65-A708-2CB032571CA7},{711BE4E7-7E57-4C3E-87C2-815104661AC8}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{885ffcff-f193-4ce1-a7dc-1191afe2ff82}" locklevel="0" colspan="1" rowspan="1" visible="true">
+                        <labels>
+                          <label description="Other Canceled Justification" languagecode="1033" />
+                        </labels>
+                        <control id="ts_othercanceledjustification" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_othercanceledjustification" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -3290,6 +3337,11 @@
         <event name="onchange" application="false" active="false" attribute="ovs_fiscalquarter">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.fiscalQuarterOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{85b41167-56e7-835c-1d0a-9ba484bb8150}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_canceledinspectionjustification">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.canceledWorkOrderReasonOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{f0840c01-f74d-4dff-befa-36b7fc95b1af}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

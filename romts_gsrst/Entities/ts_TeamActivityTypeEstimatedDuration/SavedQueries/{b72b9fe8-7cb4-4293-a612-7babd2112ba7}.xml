@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{b72b9fe8-7cb4-4293-a612-7babd2112ba7}</savedqueryid>
+    <layoutxml>
+      <grid name="ts_teamactivitytypeestimateddurations" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="ts_teamactivitytypeestimatedduration" id="ts_teamactivitytypeestimateddurationid">
+          <cell name="ts_activitytype" width="300" />
+          <cell name="ts_team" width="266" />
+          <cell name="ts_estimatedduration" width="273" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_teamactivitytypeestimatedduration">
+          <attribute name="ts_teamactivitytypeestimateddurationid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_activitytype" />
+          <attribute name="ts_team" />
+          <attribute name="ts_estimatedduration" />
+          <order attribute="ts_activitytype" descending="false" />
+          <order attribute="ts_team" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Team Activity Type Estimated Duration Associated View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

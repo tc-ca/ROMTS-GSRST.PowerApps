@@ -45,6 +45,7 @@ var ROM;
         var owningBusinessUnit;
         //Condition to filter fields based on current user BU
         var businessUnitCondition;
+        var issoOperationTypeGuids = ["{B27E5003-C751-EB11-A812-000D3AF3AC0D}", "{C97A1A12-D8EB-EB11-BACB-000D3AF4FBEC}", "{21CA416A-431A-EC11-B6E7-000D3A09D067}", "{3B261029-C751-EB11-A812-000D3AF3AC0D}", "{D883B39A-C751-EB11-A812-000D3AF3AC0D}", "{DA56FEA1-C751-EB11-A812-000D3AF3AC0D}", "{199E31AE-C751-EB11-A812-000D3AF3AC0D}"];
         function onLoad(eContext) {
             return __awaiter(this, void 0, void 0, function () {
                 var form, userRoles, userId, currentUserBusinessUnitFetchXML;
@@ -79,50 +80,56 @@ var ROM;
                         userBusinessUnitName = result.entities[0].name;
                         businessUnitCondition = '<condition attribute="owningbusinessunit" operator="eq" value="' + result.entities[0].businessunitid + '" />';
                         form.getAttribute("ts_ppeguide").setValue(false);
-                        //Show Properties Tab when the user is in Transport Canada or ISSO business unit
-                        if (userBusinessUnitName.startsWith("Transport") || userBusinessUnitName.startsWith("Intermodal")) {
-                            form.ui.tabs.get("tab_properties").setVisible(true);
-                            //Show PPE questions
-                            var ppeRequired = form.getAttribute("ts_pperequired").getValue();
-                            var specializedPPERequired = form.getAttribute("ts_specializedpperequired").getValue();
-                            if (ppeRequired) {
-                                form.getControl("ts_ppecategories").setVisible(true);
-                                form.getControl("ts_specializedpperequired").setVisible(true);
-                            }
-                            if (specializedPPERequired) {
-                                form.getControl("ts_typesofspecializedppe").setVisible(true);
-                            }
-                            //Show Visual Security Inspection question only for Railway Carrier and Railway Loader depending on Type Of Dangerous Goods
-                            var operationType = form.getAttribute("ovs_operationtypeid").getValue();
-                            if (operationType != null) {
-                                if (operationType[0].id == "{D883B39A-C751-EB11-A812-000D3AF3AC0D}" || operationType[0].id == "{DA56FEA1-C751-EB11-A812-000D3AF3AC0D}") {
-                                    form.getControl("ts_typeofdangerousgoods").setVisible(true);
-                                    if (form.getAttribute("ts_typeofdangerousgoods").getValue() == 717750002 /* NonSchedule1DangerousGoods */ || form.getAttribute("ts_typeofdangerousgoods").getValue() == 717750001 /* Schedule1DangerousGoods */) {
-                                        form.getControl("ts_visualsecurityinspection").setVisible(true);
+                        var operationType = form.getAttribute("ovs_operationtypeid").getValue();
+                        //Show ISSO Properties Tab if OperationType is ISSO, show Avsec if not 
+                        if (operationType != null) {
+                            if (issoOperationTypeGuids.includes(operationType[0].id)) {
+                                form.ui.tabs.get("tab_properties_isso").setVisible(true);
+                                //Show PPE questions
+                                var ppeRequired = form.getAttribute("ts_pperequired").getValue();
+                                var specializedPPERequired = form.getAttribute("ts_specializedpperequired").getValue();
+                                if (ppeRequired) {
+                                    form.getControl("ts_ppecategories").setVisible(true);
+                                    form.getControl("ts_specializedpperequired").setVisible(true);
+                                }
+                                if (specializedPPERequired) {
+                                    form.getControl("ts_typesofspecializedppe").setVisible(true);
+                                }
+                                //Show Visual Security Inspection question only for Railway Carrier and Railway Loader depending on Type Of Dangerous Goods
+                                if (operationType != null) {
+                                    if (operationType[0].id == "{D883B39A-C751-EB11-A812-000D3AF3AC0D}" || operationType[0].id == "{DA56FEA1-C751-EB11-A812-000D3AF3AC0D}") {
+                                        form.getControl("ts_typeofdangerousgoods").setVisible(true);
+                                        if (form.getAttribute("ts_typeofdangerousgoods").getValue() == 717750002 /* NonSchedule1DangerousGoods */ || form.getAttribute("ts_typeofdangerousgoods").getValue() == 717750001 /* Schedule1DangerousGoods */) {
+                                            form.getControl("ts_visualsecurityinspection").setVisible(true);
+                                            //Set default value for existing operations
+                                            if (form.getAttribute("ts_visualsecurityinspection").getValue() == null) {
+                                                form.getAttribute("ts_visualsecurityinspection").setValue(717750000 /* Unconfirmed */);
+                                            }
+                                            else {
+                                                if (form.getAttribute("ts_visualsecurityinspection").getValue() == 717750001 /* Yes */) {
+                                                    form.getControl("ts_visualsecurityinspectiondetails").setVisible(true);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    //If Operation Type is Small Passenger Company, Passenger Company, or Host Company
+                                    if (operationType[0].id == "{199E31AE-C751-EB11-A812-000D3AF3AC0D}" || operationType[0].id == "{3B261029-C751-EB11-A812-000D3AF3AC0D}" || operationType[0].id == "{B27E5003-C751-EB11-A812-000D3AF3AC0D}") {
+                                        form.getControl("ts_issecurityinspectionsite").setVisible(true);
                                         //Set default value for existing operations
-                                        if (form.getAttribute("ts_visualsecurityinspection").getValue() == null) {
-                                            form.getAttribute("ts_visualsecurityinspection").setValue(717750000 /* Unconfirmed */);
+                                        if (form.getAttribute("ts_issecurityinspectionsite").getValue() == null) {
+                                            form.getAttribute("ts_issecurityinspectionsite").setValue(717750000 /* Unconfirmed */);
                                         }
                                         else {
-                                            if (form.getAttribute("ts_visualsecurityinspection").getValue() == 717750001 /* Yes */) {
-                                                form.getControl("ts_visualsecurityinspectiondetails").setVisible(true);
+                                            if (form.getAttribute("ts_issecurityinspectionsite").getValue() == 717750001 /* Yes */) {
+                                                form.getControl("ts_securityinspectiondetails").setVisible(true);
                                             }
                                         }
                                     }
                                 }
-                                //If Operation Type is Small Passenger Company, Passenger Company, or Host Company
-                                if (operationType[0].id == "{199E31AE-C751-EB11-A812-000D3AF3AC0D}" || operationType[0].id == "{3B261029-C751-EB11-A812-000D3AF3AC0D}" || operationType[0].id == "{B27E5003-C751-EB11-A812-000D3AF3AC0D}") {
-                                    form.getControl("ts_issecurityinspectionsite").setVisible(true);
-                                    //Set default value for existing operations
-                                    if (form.getAttribute("ts_issecurityinspectionsite").getValue() == null) {
-                                        form.getAttribute("ts_issecurityinspectionsite").setValue(717750000 /* Unconfirmed */);
-                                    }
-                                    else {
-                                        if (form.getAttribute("ts_issecurityinspectionsite").getValue() == 717750001 /* Yes */) {
-                                            form.getControl("ts_securityinspectiondetails").setVisible(true);
-                                        }
-                                    }
-                                }
+                            }
+                            else {
+                                form.ui.tabs.get("tab_properties_avsec").setVisible(true);
+                                form.ui.tabs.get("operation_activity_tab").setVisible(true);
                             }
                             if (form.ui.getFormType() == 1) { //Create
                                 //If the form is opened with the stakeholder or site value already filled (from account/site subgrids)
@@ -136,7 +143,6 @@ var ROM;
                                 }
                             }
                             else if (form.ui.getFormType() == 2) { //Update
-                                showOperationActivityTabIfAvSec(form);
                                 //We filter the form on the business unit of the owner of the record
                                 var ownerAttribute = form.getAttribute("ownerid").getValue();
                                 if (ownerAttribute != null) {
@@ -154,9 +160,6 @@ var ROM;
                                     form.getControl('ts_subsite').setDisabled(false);
                                 }
                             }
-                            else if (form.ui.getFormType() == 3 || form.ui.getFormType() == 4) {
-                                showOperationActivityTabIfAvSec(form);
-                            }
                         }
                     });
                     if (form.getAttribute("ts_statusstartdate").getValue() != null) {
@@ -169,28 +172,6 @@ var ROM;
             });
         }
         Operation.onLoad = onLoad;
-        function showOperationActivityTabIfAvSec(form) {
-            Xrm.WebApi.retrieveRecord('ovs_operation', form.data.entity.getId(), "?$select=_owningbusinessunit_value").then(function success(operation) {
-                var businessUnitfetchXml = [
-                    "<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false' returntotalrecordcount='true' no-lock='false'>",
-                    "  <entity name='businessunit'>",
-                    "    <attribute name='name'/>",
-                    "    <attribute name='businessunitid'/>",
-                    "    <filter>",
-                    "      <condition attribute='businessunitid' operator='eq' value='", operation._owningbusinessunit_value, "'/>",
-                    "    </filter>",
-                    "  </entity>",
-                    "</fetch>"
-                ].join("");
-                businessUnitfetchXml = "?fetchXml=" + businessUnitfetchXml;
-                Xrm.WebApi.retrieveMultipleRecords("businessunit", businessUnitfetchXml).then(function (result) {
-                    if (result.entities[0].name.startsWith("Aviation")) {
-                        form.ui.tabs.get("operation_activity_tab").setVisible(true);
-                    }
-                });
-            });
-        }
-        Operation.showOperationActivityTabIfAvSec = showOperationActivityTabIfAvSec;
         function onSave(eContext) {
             var form = eContext.getFormContext();
             var statusStartDateValue = form.getAttribute("ts_statusstartdate").getValue();
