@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{52c9cbfd-b62e-ed11-9db0-0022483c5061}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="tc_name" select="1" icon="1" preview="1">
+        <row name="result" id="tc_tcfiscalquarterid">
+          <cell name="tc_name" width="200" />
+          <cell name="tc_tcfiscalyearid" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="tc_tcfiscalquarter">
+          <attribute name="tc_name" />
+          <attribute name="tc_tcfiscalyearid" />
+          <order attribute="tc_tcfiscalyearid" descending="false" />
+          <order attribute="tc_name" descending="false" />
+          <filter type="and">
+            <filter type="or">
+              <condition attribute="tc_quarterstart" operator="next-x-years" value="5" />
+              <condition attribute="tc_quarterstart" operator="this-fiscal-year" />
+            </filter>
+          </filter>
+          <attribute name="tc_tcfiscalquarterid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20220906.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Current and Future Fiscal Year" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Quarters in the current fiscal year" languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

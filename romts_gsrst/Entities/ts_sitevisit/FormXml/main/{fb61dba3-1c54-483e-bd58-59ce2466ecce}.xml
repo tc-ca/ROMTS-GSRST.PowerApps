@@ -44,11 +44,11 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{ebbac093-90bb-0096-e793-3c80e0395d90}" showlabel="true" locklevel="0">
+                      <cell id="{672aeb20-6172-9107-2617-025c45d12be4}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Site" languagecode="1033" />
                         </labels>
-                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="false" />
+                        <control id="ts_functionallocation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_functionallocation" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -56,7 +56,16 @@
                         <labels>
                           <label description="Fiscal Year" languagecode="1033" />
                         </labels>
-                        <control id="ts_fiscalyear" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalyear" disabled="false" />
+                        <control id="ts_fiscalyear" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalyear" disabled="false" uniqueid="{77948bd7-6c54-2a63-27c4-81b39bb44c60}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{2E130628-B72E-ED11-9DB0-0022483C5061}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -64,7 +73,20 @@
                         <labels>
                           <label description="Fiscal Quarter" languagecode="1033" />
                         </labels>
-                        <control id="ts_fiscalquarter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalquarter" disabled="false" />
+                        <control id="ts_fiscalquarter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalquarter" disabled="false" uniqueid="{532b67e8-961d-37d2-c256-5c6b20256d0e}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{52C9CBFD-B62E-ED11-9DB0-0022483C5061}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <AvailableViewIds>{72CCA668-4E5D-4AB1-AFEF-9B00703A5C41}</AvailableViewIds>
+                            <FilterRelationshipName>tc_TCFiscalQuarter_TCFiscalYear</FilterRelationshipName>
+                            <DependentAttributeName>ts_sitevisit.ts_fiscalyear</DependentAttributeName>
+                            <DependentAttributeType>tc_tcfiscalyear</DependentAttributeType>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>

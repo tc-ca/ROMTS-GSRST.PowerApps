@@ -10,10 +10,10 @@
     <layoutxml>
       <grid name="resultset" jump="ts_text" select="1" icon="1" preview="1">
         <row name="result" id="ts_assessmentratingid">
-          <cell name="ts_text" width="113" />
-          <cell name="ts_assessmenttool" width="170" />
-          <cell name="ts_factor" width="300" />
-          <cell name="ts_weight" width="134" />
+          <cell name="ts_text" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_assessmenttool" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_factor" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_weight" width="75" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
         </row>
       </grid>
     </layoutxml>
@@ -21,7 +21,6 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ts_assessmentrating">
-          <attribute name="ts_assessmentratingid" />
           <attribute name="ts_text" />
           <order attribute="ts_text" descending="false" />
           <filter type="and">
@@ -30,6 +29,7 @@
           <attribute name="ts_assessmenttool" />
           <attribute name="ts_factor" />
           <attribute name="ts_weight" />
+          <attribute name="ts_assessmentratingid" />
         </entity>
       </fetch>
     </fetchxml>

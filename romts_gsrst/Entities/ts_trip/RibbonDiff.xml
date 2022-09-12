@@ -6,6 +6,11 @@
         <Button Alt="$LocLabels:ts.ts_trip.Button2.Planning.Alt" Command="ts.ts_trip..Command.Planning" Id="ts.ts_trip.Button2.Planning" LabelText="$LocLabels:ts.ts_trip.Button2.Planning.LabelText" Sequence="23" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_trip.Button2.Planning.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_trip.Button2.Planning.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.ts_trip.CommitSelectedTrips.CustomAction" Location="Mscrm.HomepageGrid.ts_trip.MainTab.Management.Controls._children" Sequence="22">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_trip.CommitSelectedTrips.Alt" Command="ts.ts_trip.commitSelectedTrips" Id="ts.ts_trip.CommitSelectedTrips" LabelText="$LocLabels:ts.ts_trip.CommitSelectedTrips.LabelText" Sequence="22" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_trip.CommitSelectedTrips.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_trip.CommitSelectedTrips.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
   </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
@@ -22,6 +27,19 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="ts.ts_trip.commitSelectedTrips">
+      <EnableRules>
+        <EnableRule Id="ts.ts_trip.EnableRule0.ItemSelected" />
+        <EnableRule Id="ts.ts_trip.UserIsPlannerOrSystemAdmin" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="commitRelatedWorkOrdersOfSelectedTrips" Library="$webresource:ts_/js/TripRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
   </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
@@ -29,6 +47,11 @@
     <EnableRules>
       <EnableRule Id="ts.ts_trip.EnableRule0.ItemSelected">
         <SelectionCountRule Minimum="1" />
+      </EnableRule>
+      <EnableRule Id="ts.ts_trip.UserIsPlannerOrSystemAdmin">
+        <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+          <StringParameter Value="ROM - Planner|System Administrator" />
+        </CustomRule>
       </EnableRule>
     </EnableRules>
   </RuleDefinitions>
@@ -55,6 +78,26 @@
       <Titles>
         <Title description="Planning" languagecode="1033" />
         <Title description="Planification" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_trip.CommitSelectedTrips.Alt">
+      <Titles>
+        <Title description="Commit" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_trip.CommitSelectedTrips.LabelText">
+      <Titles>
+        <Title description="Commit" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_trip.CommitSelectedTrips.ToolTipDescription">
+      <Titles>
+        <Title description="Set the State of any Work Orders related to the selected Trips to Committed" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_trip.CommitSelectedTrips.ToolTipTitle">
+      <Titles>
+        <Title description="Commit" languagecode="1033" />
       </Titles>
     </LocLabel>
   </LocLabels>

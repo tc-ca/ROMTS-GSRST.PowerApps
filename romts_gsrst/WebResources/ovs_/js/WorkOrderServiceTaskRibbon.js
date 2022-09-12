@@ -598,9 +598,8 @@ function SendReport(primaryControl, SelectedControlSelectedItemReferences){
     Xrm.WebApi.retrieveRecord("msdyn_workorderservicetask", SelectedControlSelectedItemReferences[0].Id, "?$select=msdyn_inspectiontaskresult").then(
         function success(result) {
            if(result.msdyn_inspectiontaskresult == 192350000){
-            var workorderId = primaryControl.data.entity.getId();
-
-            let fetchXml = '<fetch version="1.0" output-format="xml-platform" mapping="logical" returntotalrecordcount="true" no-lock="false"><entity name="contact"><attribute name="contactid"/><attribute name="fullname"/><attribute name="parentcustomerid"/><link-entity name="ts_contact_msdyn_workorder" intersect="true" visible="false" to="contactid" from="contactid"><link-entity name="msdyn_workorder" from="msdyn_workorderid" to="msdyn_workorderid" alias="bb"><filter type="and"><condition attribute="msdyn_workorderid" operator="eq" uitype="msdyn_workorder" value="' + workorderId +'"/></filter></link-entity></link-entity></entity></fetch>';
+            var operationId = primaryControl.getAttribute("ovs_operationid").getValue()[0].id; 
+            let fetchXml = '<fetch version="1.0" mapping="logical"><entity name="contact"><attribute name="contactid" /><attribute name="fullname"/><filter type="and"><condition attribute="statecode" operator="eq" value="0"/></filter><link-entity name="ts_operationcontact" from="ts_contact" to="contactid"><link-entity name="ovs_operation" from="ovs_operationid" to="ts_operation"><filter><condition attribute="ovs_operationid" operator="eq" value="' + operationId +'"/></filter></link-entity></link-entity></entity></fetch>';
 
             //Retrieve contact that are associated with the operations in the WO
             Xrm.WebApi.retrieveMultipleRecords("contact", "?fetchXml=" + encodeURIComponent(fetchXml)).then(
@@ -620,7 +619,7 @@ function SendReport(primaryControl, SelectedControlSelectedItemReferences){
                         data: {
                             from: "",
                             contactfilter_0 : contactFilter,
-                            workorderid_0 : workorderId, 
+                            operationid_0 : operationId, 
                             cc: "",
                             bcc: "",
                             subject: "Positive report",
