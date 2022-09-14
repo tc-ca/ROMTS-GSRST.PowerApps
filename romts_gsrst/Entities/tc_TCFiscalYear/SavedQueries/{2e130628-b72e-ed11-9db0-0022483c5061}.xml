@@ -34,7 +34,10 @@
           <order attribute="tc_fiscalyearnum" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
-            <condition attribute="tc_fiscalstart" operator="next-x-fiscal-years" value="5" />
+            <filter type="or">
+              <condition attribute="tc_fiscalstart" operator="next-x-fiscal-years" value="5" />
+              <condition attribute="tc_fiscalstart" operator="this-fiscal-year" />
+            </filter>
           </filter>
           <attribute name="tc_tcfiscalyearid" />
         </entity>
