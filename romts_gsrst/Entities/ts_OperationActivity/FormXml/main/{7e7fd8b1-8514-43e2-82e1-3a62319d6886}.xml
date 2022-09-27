@@ -163,12 +163,22 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{e2e44e1a-4561-44af-9476-d76e88b8b31f}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{e2e44e1a-4561-44af-9476-d76e88b8b31f}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
                         <labels>
                           <label description="Due Date" languagecode="1033" />
                           <label description="Due Date FR" languagecode="1036" />
                         </labels>
-                        <control id="ts_duedate" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_duedate" disabled="true" />
+                        <control id="ts_duedate" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_duedate" disabled="false" uniqueid="{22d9540c-22da-6d68-7903-e2db61866246}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{52C9CBFD-B62E-ED11-9DB0-0022483C5061}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <AvailableViewIds>{52C9CBFD-B62E-ED11-9DB0-0022483C5061},{72CCA668-4E5D-4AB1-AFEF-9B00703A5C41}</AvailableViewIds>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -304,9 +314,6 @@
           </row>
         </rows>
       </footer>
-      <DisplayConditions Order="0" FallbackForm="true">
-        <Everyone />
-      </DisplayConditions>
       <formLibraries>
         <Library name="ts_/js/OperationActivity.js" libraryUniqueId="{d834f6bf-d9e0-4bf1-b2bd-3835bdccb86c}" />
       </formLibraries>
@@ -317,6 +324,40 @@
           </Handlers>
         </event>
       </events>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
