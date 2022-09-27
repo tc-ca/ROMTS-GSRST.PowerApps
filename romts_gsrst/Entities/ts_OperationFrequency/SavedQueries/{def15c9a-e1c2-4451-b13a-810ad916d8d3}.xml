@@ -10,8 +10,10 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_operationfrequencyid">
-          <cell name="ts_name" width="300" />
-          <cell name="createdon" width="125" />
+          <cell name="ts_frequencyenglish" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_frequencyfrench" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_cyclelengthyears" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_inspectionspercycle" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
         </row>
       </grid>
     </layoutxml>
@@ -19,13 +21,16 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ts_operationfrequency">
-          <attribute name="ts_operationfrequencyid" />
-          <attribute name="ts_name" />
-          <attribute name="createdon" />
-          <order attribute="ts_name" descending="false" />
+          <order attribute="ts_cyclelengthyears" descending="false" />
+          <order attribute="ts_frequencyenglish" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="ts_inspectionspercycle" />
+          <attribute name="ts_frequencyfrench" />
+          <attribute name="ts_frequencyenglish" />
+          <attribute name="ts_cyclelengthyears" />
+          <attribute name="ts_operationfrequencyid" />
         </entity>
       </fetch>
     </fetchxml>

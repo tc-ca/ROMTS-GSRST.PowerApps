@@ -14,7 +14,7 @@
           <cell name="msdyn_serviceaccount" width="150" />
           <cell name="ts_site" width="155" />
           <cell name="ts_region" width="100" />
-          <cell name="ovs_fiscalquarter" width="126" />
+          <cell name="a_6c13ce15b9a3eb11b1ac000d3ae8bbe0.ts_englishname" width="100" disableSorting="1" />
           <cell name="ownerid" width="100" />
           <cell name="ts_numberoffindings" width="100" />
         </row>
@@ -30,14 +30,16 @@
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <attribute name="msdyn_workorderid" />
           <attribute name="ts_site" />
           <attribute name="msdyn_primaryincidenttype" />
           <attribute name="ownerid" />
           <attribute name="ts_region" />
           <order attribute="msdyn_name" descending="true" />
           <attribute name="ts_numberoffindings" />
-          <attribute name="ovs_fiscalquarter" />
+          <link-entity alias="a_6c13ce15b9a3eb11b1ac000d3ae8bbe0" name="tc_tcfiscalquarter" from="tc_tcfiscalquarterid" to="ovs_fiscalquarter" link-type="outer" visible="false">
+            <attribute name="ts_englishname" />
+          </link-entity>
+          <attribute name="msdyn_workorderid" />
         </entity>
       </fetch>
     </fetchxml>
