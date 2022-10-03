@@ -168,7 +168,7 @@
                     <row>
                       <cell id="{19c6ddd6-9227-97e6-460e-1813d0b7993a}" showlabel="true" colspan="1" rowspan="4" auto="true" ordinalvalue="10000">
                         <labels>
-                          <label description="Produits de la facture" languagecode="1036" solutionaction="Added" />
+                          <label description="Produits de la facture" languagecode="1036" solutionaction="Modified" />
                         </labels>
                       </cell>
                     </row>
@@ -179,8 +179,9 @@
                     <row>
                       <cell colspan="1" rowspan="12" showlabel="true" id="{BB1D99BF-50D3-4F06-980C-4C2D3C1934EC}" labelid="{86411b0a-01b6-4297-a5a5-7d9507664c65}" auto="false" ordinalvalue="10000">
                         <labels>
-                          <label description="Produits de la facture" languagecode="1036" solutionaction="Added" />
+                          <label description="Produits de la facture" languagecode="1036" solutionaction="Modified" />
                         </labels>
+                        <control id="invoicedetailsGrid" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{E831CEA4-AE50-DA90-7CA1-7999475E99BE}" indicationOfSubgrid="true" solutionaction="Modified" />
                       </cell>
                     </row>
                   </rows>
@@ -190,42 +191,42 @@
                     <row>
                       <cell id="{79E6193D-7AE9-4429-8FBD-B8E309A83761}" labelid="{8dbe221d-fadf-4cc5-853b-c163221e996a}" ordinalvalue="10000">
                         <labels>
-                          <label description="Total détaillé" languagecode="1036" solutionaction="Added" />
+                          <label description="Total détaillé" languagecode="1036" solutionaction="Modified" />
                         </labels>
                       </cell>
                     </row>
                     <row>
                       <cell id="{26FBB967-3159-40C7-8C18-144DE9ED7051}" labelid="{6630e6ad-0655-45ad-91c7-9c8b6c0e6955}" ordinalvalue="10001">
                         <labels>
-                          <label description="Remise sur facture (%)" languagecode="1036" solutionaction="Added" />
+                          <label description="Remise sur facture (%)" languagecode="1036" solutionaction="Modified" />
                         </labels>
                       </cell>
                     </row>
                     <row>
                       <cell id="{7405FD08-0F46-48DF-81B0-D9CEE071E9F1}" labelid="{2add6d49-337a-42a0-99c7-3410cc12cd09}" ordinalvalue="10002">
                         <labels>
-                          <label description="Montant de la remise sur facture" languagecode="1036" solutionaction="Added" />
+                          <label description="Montant de la remise sur facture" languagecode="1036" solutionaction="Modified" />
                         </labels>
                       </cell>
                     </row>
                     <row>
                       <cell id="{BADCCE0E-C7DE-487A-A9E2-1F85B092B553}" labelid="{2cc760be-d33f-43bc-b7a4-fb27bcfacf9d}" ordinalvalue="10003">
                         <labels>
-                          <label description="Total hors frais de port" languagecode="1036" solutionaction="Added" />
+                          <label description="Total hors frais de port" languagecode="1036" solutionaction="Modified" />
                         </labels>
                       </cell>
                     </row>
                     <row>
                       <cell id="{291AE5D1-AD8E-44B7-A087-D0C8C315BCC2}" labelid="{785ff2b8-4bf6-4c1d-b736-6aeed1cf636f}" ordinalvalue="10004">
                         <labels>
-                          <label description="Frais de port" languagecode="1036" solutionaction="Added" />
+                          <label description="Frais de port" languagecode="1036" solutionaction="Modified" />
                         </labels>
                       </cell>
                     </row>
                     <row>
                       <cell id="{969A5256-21C2-4FAD-8DA9-103922A53082}" labelid="{d68b2b0f-d5e8-47c6-a38f-5f1b87067630}" ordinalvalue="10005">
                         <labels>
-                          <label description="Total des taxes" languagecode="1036" solutionaction="Added" />
+                          <label description="Total des taxes" languagecode="1036" solutionaction="Modified" />
                         </labels>
                       </cell>
                     </row>
@@ -323,6 +324,76 @@
           </Handlers>
         </event>
       </events>
+      <controlDescriptions>
+        <controlDescription forControl="{E831CEA4-AE50-DA90-7CA1-7999475E99BE}" solutionaction="Modified">
+          <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" formFactor="0">
+            <parameters>
+              <TargetEntityType>invoicedetail</TargetEntityType>
+              <ViewId>{A1FAA578-24AF-4ED6-B36D-47842E7E9B1E}</ViewId>
+              <RelationshipName>invoice_details</RelationshipName>
+              <AutoExpand>Auto</AutoExpand>
+              <EnableQuickFind>false</EnableQuickFind>
+              <EnableViewPicker>false</EnableViewPicker>
+              <EnableJumpBar>false</EnableJumpBar>
+              <RecordsPerPage>25</RecordsPerPage>
+              <MaxRowsBeforeScroll>8</MaxRowsBeforeScroll>
+              <EnableContextualActions>true</EnableContextualActions>
+              <HeaderColorCode>#F3F3F3</HeaderColorCode>
+              <IsUserView>false</IsUserView>
+              <ViewIds>{A1FAA578-24AF-4ED6-B36D-47842E7E9B1E}</ViewIds>
+              <ChartGridMode>All</ChartGridMode>
+              <VisualizationId />
+              <IsUserChart>false</IsUserChart>
+              <EnableChartPicker>true</EnableChartPicker>
+            </parameters>
+          </customControl>
+          <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" formFactor="1">
+            <parameters>
+              <TargetEntityType>invoicedetail</TargetEntityType>
+              <ViewId>{A1FAA578-24AF-4ED6-B36D-47842E7E9B1E}</ViewId>
+              <RelationshipName>invoice_details</RelationshipName>
+              <AutoExpand>Auto</AutoExpand>
+              <EnableQuickFind>false</EnableQuickFind>
+              <EnableViewPicker>false</EnableViewPicker>
+              <EnableJumpBar>false</EnableJumpBar>
+              <RecordsPerPage>25</RecordsPerPage>
+              <MaxRowsBeforeScroll>8</MaxRowsBeforeScroll>
+              <EnableContextualActions>true</EnableContextualActions>
+              <HeaderColorCode>#F3F3F3</HeaderColorCode>
+              <IsUserView>false</IsUserView>
+              <ViewIds>{A1FAA578-24AF-4ED6-B36D-47842E7E9B1E}</ViewIds>
+              <ChartGridMode>All</ChartGridMode>
+              <VisualizationId />
+              <IsUserChart>false</IsUserChart>
+              <EnableChartPicker>true</EnableChartPicker>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{A1FAA578-24AF-4ED6-B36D-47842E7E9B1E}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>invoice_details</RelationshipName>
+                <TargetEntityType>invoicedetail</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{A1FAA578-24AF-4ED6-B36D-47842E7E9B1E}</FilteredViewIds>
+              </data-set>
+              <data-set name="SubGrid">
+                <ViewId>{3C16727C-9BDA-4A84-84C6-94CF2F50840E}</ViewId>
+                <IsUserView>false</IsUserView>
+                <TargetEntityType>invoicedetail</TargetEntityType>
+                <SubGridParentId>parentbundleidref</SubGridParentId>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">yes</HideNestedGridColumnHeader>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
       <formLibraries>
         <Library name="Sales/Invoice/Invoice_main_system_library.js" libraryUniqueId="{5f52d8ef-3b2c-4696-9e78-0826e46e7f76}" solutionaction="Added" />
       </formLibraries>

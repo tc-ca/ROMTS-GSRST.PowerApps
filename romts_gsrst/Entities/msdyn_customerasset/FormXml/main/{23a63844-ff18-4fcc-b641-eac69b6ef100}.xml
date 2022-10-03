@@ -108,7 +108,7 @@
                     <row>
                       <cell id="{e3c39dee-2223-5b4e-3a7a-028b21b05eb4}" showlabel="true" colspan="1" rowspan="4" labelid="{e2a41cb7-a9db-4737-abdf-5a04d243ff5f}" auto="false" ordinalvalue="10000">
                         <labels>
-                          <label description="Appareils" languagecode="1036" solutionaction="Added" />
+                          <label description="Appareils" languagecode="1036" solutionaction="Modified" />
                         </labels>
                       </cell>
                     </row>
@@ -122,25 +122,7 @@
                           <label description="Device ID" languagecode="1033" solutionaction="Added" />
                           <label description="ID appareil" languagecode="1036" solutionaction="Added" />
                         </labels>
-                      </cell>
-                    </row>
-                  </rows>
-                </section>
-              </sections>
-            </column>
-          </columns>
-        </tab>
-        <tab name="fstab_sub_grids" id="{8cdb258c-1ad6-3943-036c-9b645d0acaa1}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="3">
-          <columns>
-            <column width="100%" id="0">
-              <sections>
-                <section name="fstab_sub_grids_section" showlabel="false" showbar="false" locklevel="0" id="{ccee5eb7-dce8-8368-8753-3221bc4e7620}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="0">
-                  <rows>
-                    <row>
-                      <cell id="{87e956ee-333a-ca43-688c-58cc0b59429c}" showlabel="true" colspan="1" auto="false" rowspan="4" ordinalvalue="10000">
-                        <labels>
-                          <label description="ORDRES DE TRAVAIL" languagecode="1036" solutionaction="Added" />
-                        </labels>
+                        <control disabled="false" id="msdyn_deviceid" datafieldname="msdyn_deviceid" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{0C44205B-0324-B4DA-B951-C43E1764037D}" solutionaction="Modified" />
                       </cell>
                     </row>
                   </rows>
@@ -176,6 +158,33 @@
           </columns>
         </tab>
       </tabs>
+      <controlDescriptions>
+        <controlDescription forControl="{0C44205B-0324-B4DA-B951-C43E1764037D}" solutionaction="Modified">
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}">
+            <parameters>
+              <datafieldname>msdyn_deviceid</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.SummaryVisualization.SummaryVisualizationControl">
+            <parameters>
+              <DeviceIDorAlertID>msdyn_deviceid</DeviceIDorAlertID>
+              <Configuration_Type type="Enum" static="true">Configuration 1</Configuration_Type>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.SummaryVisualization.SummaryVisualizationControl">
+            <parameters>
+              <DeviceIDorAlertID>msdyn_deviceid</DeviceIDorAlertID>
+              <Configuration_Type type="Enum" static="true">Configuration 1</Configuration_Type>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.SummaryVisualization.SummaryVisualizationControl">
+            <parameters>
+              <DeviceIDorAlertID>msdyn_deviceid</DeviceIDorAlertID>
+              <Configuration_Type type="Enum" static="true">Configuration 1</Configuration_Type>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
     </form>
     <LocalizedNames>
       <LocalizedName description="Customer Asset - Mobile" languagecode="1033" />
