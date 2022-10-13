@@ -11,12 +11,9 @@
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_recurrencefrequenciesid">
           <cell name="ts_name" width="136" />
-          <cell name="ts_class1interval" width="201" />
-          <cell name="ts_class1frequency" width="231" />
-          <cell name="ts_class2and3highriskinterval" width="300" />
-          <cell name="ts_class2and3highriskfrequency" width="300" />
-          <cell name="ts_class2and3lowriskinterval" width="296" />
-          <cell name="ts_class2and3lowriskfrequency" width="300" />
+          <cell name="ts_class1interval" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_class2and3highriskinterval" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_class2and3lowriskinterval" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
         </row>
       </grid>
     </layoutxml>
@@ -24,18 +21,15 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ts_recurrencefrequencies">
-          <attribute name="ts_recurrencefrequenciesid" />
           <attribute name="ts_name" />
           <order attribute="ts_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <attribute name="ts_class1interval" />
-          <attribute name="ts_class1frequency" />
           <attribute name="ts_class2and3highriskinterval" />
-          <attribute name="ts_class2and3highriskfrequency" />
           <attribute name="ts_class2and3lowriskinterval" />
-          <attribute name="ts_class2and3lowriskfrequency" />
+          <attribute name="ts_recurrencefrequenciesid" />
         </entity>
       </fetch>
     </fetchxml>

@@ -8,7 +8,7 @@
     <layoutxml>
       <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
         <row name="result" id="msdyn_functionallocationid">
-          <cell name="msdyn_name" width="300" />
+          <cell name="msdyn_name" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="msdyn_parentfunctionallocation" width="196" />
           <cell name="ts_region" width="185" />
           <cell name="ts_sitestatus" width="139" />
@@ -19,7 +19,6 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="msdyn_functionallocation">
-          <attribute name="msdyn_functionallocationid" />
           <attribute name="msdyn_name" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
@@ -28,6 +27,7 @@
           <attribute name="msdyn_parentfunctionallocation" />
           <order attribute="msdyn_name" descending="false" />
           <attribute name="ts_sitestatus" />
+          <attribute name="msdyn_functionallocationid" />
         </entity>
       </fetch>
     </fetchxml>

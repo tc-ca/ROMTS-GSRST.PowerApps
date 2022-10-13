@@ -33,7 +33,7 @@
                           <label description="Stakeholder" languagecode="1033" />
                           <label description="Intervenant" languagecode="1036" />
                         </labels>
-                        <control id="ts_accountid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_accountid" disabled="false" />
+                        <control id="ts_accountid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_accountid" disabled="false" uniqueid="{9bb78511-e2db-bc90-cc52-97eb0be8dcb6}" />
                       </cell>
                       <cell id="{d3f92bd4-bf99-49a8-b7bd-9139ea60881e}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
@@ -1111,6 +1111,65 @@
             </column>
           </columns>
         </tab>
+        <tab name="tab_6" id="{b44b9d9c-8116-e9d0-2cc4-b39e26d16712}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+          <labels>
+            <label description="Related Findings" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_6_section_1" showlabel="false" showbar="false" locklevel="0" id="{8d1d5e8e-cb33-5610-5be8-4d5358e7eb1e}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{da8bed63-2211-0436-ed72-0ab6298eb5aa}" showlabel="false" colspan="1" auto="false" rowspan="8">
+                        <labels>
+                          <label description="Findings" languagecode="1033" />
+                          <label description="Constatations" languagecode="1036" />
+                        </labels>
+                        <control id="relatedfinding_grid" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{7b680976-01ad-ea3d-9108-159d34469618}">
+                          <parameters>
+                            <ViewId>{A932FE14-BDAE-EC11-983E-002248ADE910}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName />
+                            <TargetEntityType>ovs_finding</TargetEntityType>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{A932FE14-BDAE-EC11-983E-002248ADE910},{77179513-BCAE-EC11-983E-002248ADE910}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>6</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <events>
+            <event name="tabstatechange" application="false" active="false">
+              <Handlers>
+                <Handler functionName="ROM.Finding.SubGridFilterExecution" libraryName="ovs_/js/Finding.js" handlerUniqueId="{26a3c291-6ecc-1d1b-56a8-b61e70cbc263}" enabled="true" parameters="" passExecutionContext="true" />
+              </Handlers>
+            </event>
+          </events>
+        </tab>
         <tab name="tab_Files" id="732f817b-0526-40ef-90b2-655d39607159" IsUserDefined="0" locklevel="0" showlabel="true">
           <labels>
             <label description="Files" languagecode="1033" />
@@ -1208,7 +1267,7 @@
         </rows>
       </footer>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
