@@ -11,12 +11,17 @@
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_planningdataid">
           <cell name="ts_name" width="200" />
-          <cell name="ts_teamestimatedduration" width="100" />
           <cell name="ts_target" width="100" />
+          <cell name="ts_teamestimatedduration" width="100" />
           <cell name="ts_plannedq1" width="100" />
           <cell name="ts_plannedq2" width="100" />
           <cell name="ts_plannedq3" width="100" />
           <cell name="ts_plannedq4" width="100" />
+          <cell name="ts_plannedwo" width="100" />
+          <cell name="a_817b43cca8e24909bdd0d4a7133d6bed.ts_stakeholder" width="100" />
+          <cell name="a_817b43cca8e24909bdd0d4a7133d6bed.ts_operationtype" width="100" />
+          <cell name="a_817b43cca8e24909bdd0d4a7133d6bed.ts_site" width="100" />
+          <cell name="a_817b43cca8e24909bdd0d4a7133d6bed.ts_activity" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -30,8 +35,15 @@
           <attribute name="ts_plannedq2" />
           <attribute name="ts_plannedq3" />
           <attribute name="ts_plannedq4" />
-          <attribute name="ts_teamestimatedduration" />
           <attribute name="ts_target" />
+          <link-entity alias="a_817b43cca8e24909bdd0d4a7133d6bed" name="ts_operationactivity" to="ts_operationactivity" from="ts_operationactivityid" link-type="outer" visible="false">
+            <attribute name="ts_stakeholder" />
+            <attribute name="ts_site" />
+            <attribute name="ts_operationtype" />
+            <attribute name="ts_activity" />
+          </link-entity>
+          <attribute name="ts_teamestimatedduration" />
+          <attribute name="ts_plannedwo" />
         </entity>
       </fetch>
     </fetchxml>

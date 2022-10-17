@@ -205,6 +205,7 @@
       <DisplayRules>
         <DisplayRule Id="Mscrm.PrimaryIsActivity" />
         <DisplayRule Id="Mscrm.CanSavePrimaryEntityType" />
+        <DisplayRule Id="ts.ovs_findingMarkCompleted.DisplayRule" />
       </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="SaveAsComplete" Library="$webresource:ovs_/js/FindingRibbon.js" />
@@ -245,6 +246,7 @@
       <EnableRules />
       <DisplayRules>
         <DisplayRule Id="ts.ovs_finding.ShowMarkComplete" />
+        <DisplayRule Id="ts.ovs_findingMarkCompleted.DisplayRule" />
       </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="markComplete" Library="$webresource:ovs_/js/FindingRibbon.js">
@@ -370,6 +372,9 @@
             <ValueRule Field="ts_findingtype" Value="717750001" />
           </Or>
         </OrRule>
+      </DisplayRule>
+      <DisplayRule Id="ts.ovs_findingMarkCompleted.DisplayRule">
+        <ValueRule Field="statuscode" Value="717750002" InvertResult="true" />
       </DisplayRule>
     </DisplayRules>
     <EnableRules>
