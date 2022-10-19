@@ -10,18 +10,19 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_planningdataid">
-          <cell name="ts_name" width="200" />
-          <cell name="ts_target" width="100" />
-          <cell name="ts_teamestimatedduration" width="100" />
-          <cell name="ts_plannedq1" width="100" />
-          <cell name="ts_plannedq2" width="100" />
-          <cell name="ts_plannedq3" width="100" />
-          <cell name="ts_plannedq4" width="100" />
-          <cell name="ts_plannedwo" width="100" />
-          <cell name="a_817b43cca8e24909bdd0d4a7133d6bed.ts_stakeholder" width="100" />
-          <cell name="a_817b43cca8e24909bdd0d4a7133d6bed.ts_operationtype" width="100" />
-          <cell name="a_817b43cca8e24909bdd0d4a7133d6bed.ts_site" width="100" />
-          <cell name="a_817b43cca8e24909bdd0d4a7133d6bed.ts_activity" width="100" />
+          <cell name="ts_name" width="72" />
+          <cell name="ts_stakeholder" width="100" />
+          <cell name="ts_operationtype" width="100" />
+          <cell name="ts_site" width="100" />
+          <cell name="ts_activitytype" width="100" />
+          <cell name="ts_target" width="59" />
+          <cell name="ts_teamestimatedduration" width="53" />
+          <cell name="ts_plannedq1" width="89" />
+          <cell name="ts_plannedq2" width="94" />
+          <cell name="ts_plannedq3" width="88" />
+          <cell name="ts_plannedq4" width="91" />
+          <cell name="ts_plannedwo" width="96" />
+          <cell name="ts_variance" width="72" />
         </row>
       </grid>
     </layoutxml>
@@ -31,19 +32,18 @@
         <entity name="ts_planningdata">
           <attribute name="ts_name" />
           <attribute name="ts_planningdataid" />
+          <attribute name="ts_stakeholder" />
+          <attribute name="ts_operationtype" />
+          <attribute name="ts_site" />
+          <attribute name="ts_activitytype" />
+          <attribute name="ts_target" />
+          <attribute name="ts_teamestimatedduration" />
           <attribute name="ts_plannedq1" />
           <attribute name="ts_plannedq2" />
           <attribute name="ts_plannedq3" />
           <attribute name="ts_plannedq4" />
-          <attribute name="ts_target" />
-          <link-entity alias="a_817b43cca8e24909bdd0d4a7133d6bed" name="ts_operationactivity" to="ts_operationactivity" from="ts_operationactivityid" link-type="outer" visible="false">
-            <attribute name="ts_stakeholder" />
-            <attribute name="ts_site" />
-            <attribute name="ts_operationtype" />
-            <attribute name="ts_activity" />
-          </link-entity>
-          <attribute name="ts_teamestimatedduration" />
           <attribute name="ts_plannedwo" />
+          <attribute name="ts_variance" />
         </entity>
       </fetch>
     </fetchxml>
