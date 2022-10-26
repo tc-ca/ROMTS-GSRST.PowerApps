@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{00000000-0000-0000-00aa-000010001027}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="teams" jump="name" select="1" icon="1" preview="1">
+        <row name="team" id="teamid">
+          <cell name="name" width="300" />
+          <cell name="businessunitid" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="team">
+          <attribute name="name" />
+          <attribute name="businessunitid" />
+          <attribute name="teamid" />
+          <attribute name="teamtype" />
+          <filter type="and">
+            <condition attribute="teamtype" operator="eq" value="0" />
+          </filter>
+          <order attribute="name" descending="false" />
+          <link-entity name="teammembership" intersect="true" to="teamid" from="teamid" link-type="inner" alias="teammembership0">
+            <link-entity name="systemuser" from="systemuserid" to="systemuserid" alias="systemuser0">
+              <filter type="and">
+                <condition attribute="systemuserid" operator="eq-userid" />
+              </filter>
+            </link-entity>
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>5.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="My Owner Teams" languagecode="1033" />
+      <LocalizedName description="Mes équipes de propriétaires" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

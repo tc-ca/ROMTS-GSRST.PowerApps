@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{023e8fd1-8872-46ac-82b6-76f9eececc20}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="teams" jump="name" select="1" icon="1" preview="1">
+        <row name="team" id="teamid">
+          <cell name="name" width="300" />
+          <cell name="businessunitid" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="team">
+          <attribute name="name" />
+          <attribute name="businessunitid" />
+          <attribute name="teamid" />
+          <attribute name="teamtype" />
+          <filter type="and">
+            <condition attribute="teamtype" operator="eq" value="3" />
+          </filter>
+          <order attribute="name" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>9.1.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="All AAD Office Group Teams" languagecode="1033" />
+      <LocalizedName description="Toutes les équipes de groupe Office AAD" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{e89c1160-4c80-4186-a7f1-5e682f17874b}</savedqueryid>
+    <queryapi></queryapi>
+    <layoutxml>
+      <grid name="teams" jump="name" select="1" icon="1" preview="1">
+        <row name="team" id="teamid">
+          <cell name="name" width="200" />
+          <cell name="administratorid" width="300" />
+          <cell name="description" width="300" />
+          <cell name="teamtype" ishidden="1" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>2048</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="team">
+          <attribute name="name" />
+          <filter type="and">
+            <condition attribute="teamtype" operator="eq" value="0" />
+          </filter>
+          <order attribute="name" descending="false" />
+          <attribute name="administratorid" />
+          <attribute name="description" />
+          <attribute name="teamid" />
+          <attribute name="teamtype" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>9.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="All User Owner Teams" languagecode="1033" />
+      <LocalizedName description="Toutes les équipes de propriétaires" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Shows all Owner Teams in the organization" languagecode="1033" />
+      <Description description="Affiche toutes les équipes de propriétaires dans l’organisation" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

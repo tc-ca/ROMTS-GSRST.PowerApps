@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form headerdensity="HighWithControls">
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab verticallayout="true" id="{fe8788c2-2408-45b3-9fc4-3855a43d85ad}" IsUserDefined="1">
           <labels>
@@ -95,6 +95,11 @@
                         </labels>
                         <control id="ts_dueq3" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_dueq3" disabled="true" />
                       </cell>
+                      <cell id="{0f8ae4fe-2f6f-4a41-85ca-e9346ae3835e}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
                     </row>
                     <row>
                       <cell id="{203083c5-cedc-6cec-ca28-e4e54b2663b1}" showlabel="true" locklevel="0">
@@ -149,17 +154,17 @@
                       </cell>
                     </row>
                     <row>
-                      <cell locklevel="0" id="{31afec03-31d7-4094-aa1c-67d97c276cd7}">
+                      <cell locklevel="0" id="{31afec03-31d7-4094-aa1c-67d97c276cd7}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                      <cell locklevel="0" id="{98c60edc-eb75-46d8-a464-d1fa7e420409}">
+                      <cell locklevel="0" id="{98c60edc-eb75-46d8-a464-d1fa7e420409}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                      <cell locklevel="0" id="{6a0d0e99-47f8-453c-8ba2-b936f63c4138}">
+                      <cell locklevel="0" id="{6a0d0e99-47f8-453c-8ba2-b936f63c4138}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -192,7 +197,7 @@
                     <row />
                     <row />
                     <row>
-                      <cell locklevel="0" id="{a6f70c6d-2359-4192-a64a-ca3085a874ad}">
+                      <cell locklevel="0" id="{a6f70c6d-2359-4192-a64a-ca3085a874ad}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -206,7 +211,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -284,6 +289,16 @@
           </row>
         </rows>
       </footer>
+      <formLibraries>
+        <Library name="ts_/js/PlanningData.js" libraryUniqueId="{6ba5709c-1e78-5e92-5e7e-4b76d6a558c6}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.PlanningData.onLoad" libraryName="ts_/js/PlanningData.js" handlerUniqueId="{3999c765-232d-b741-0613-7885a631c758}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>

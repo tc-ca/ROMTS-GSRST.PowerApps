@@ -10,8 +10,9 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_teamactivitytypeestimateddurationid">
-          <cell name="ts_activitytype" width="300" />
-          <cell name="ts_estimatedduration" width="208" />
+          <cell name="ts_activitytype" width="300" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_48b850f8af27ed119db1002248ada1fa.msdyn_estimatedduration" width="100" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_estimatedduration" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
         </row>
       </grid>
     </layoutxml>
@@ -19,7 +20,6 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ts_teamactivitytypeestimatedduration">
-          <attribute name="ts_teamactivitytypeestimateddurationid" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
@@ -27,6 +27,10 @@
           <attribute name="ts_estimatedduration" />
           <order attribute="ts_activitytype" descending="false" />
           <order attribute="ts_estimatedduration" descending="false" />
+          <link-entity alias="a_48b850f8af27ed119db1002248ada1fa" name="msdyn_incidenttype" from="msdyn_incidenttypeid" to="ts_activitytype" link-type="outer" visible="false">
+            <attribute name="msdyn_estimatedduration" />
+          </link-entity>
+          <attribute name="ts_teamactivitytypeestimateddurationid" />
         </entity>
       </fetch>
     </fetchxml>
