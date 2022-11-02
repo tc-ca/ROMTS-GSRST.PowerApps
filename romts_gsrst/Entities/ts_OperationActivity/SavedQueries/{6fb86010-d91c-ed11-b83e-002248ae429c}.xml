@@ -13,6 +13,7 @@
           <cell name="ts_activity" width="100" />
           <cell name="ts_operation" width="100" />
           <cell name="ts_operationalstatus" width="100" />
+          <cell name="a_8724d6e7b0b3476394005a2e3fd876d5.msdyn_description" width="300" />
         </row>
       </grid>
     </layoutxml>
@@ -29,6 +30,9 @@
           <attribute name="ts_operationalstatus" />
           <order attribute="ts_operationalstatus" descending="false" />
           <order attribute="ts_activity" descending="false" />
+          <link-entity alias="a_8724d6e7b0b3476394005a2e3fd876d5" name="msdyn_incidenttype" to="ts_activity" from="msdyn_incidenttypeid" link-type="outer" visible="false">
+            <attribute name="msdyn_description" />
+          </link-entity>
         </entity>
       </fetch>
     </fetchxml>

@@ -922,6 +922,46 @@
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="ts_Details">
+          <Type>nvarchar</Type>
+          <Name>ts_details</Name>
+          <LogicalName>ts_details</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20221027.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>textarea</Format>
+          <MaxLength>200</MaxLength>
+          <Length>400</Length>
+          <displaynames>
+            <displayname description="Details" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="ts_DueQ1">
           <Type>int</Type>
           <Name>ts_dueq1</Name>
@@ -1396,11 +1436,51 @@
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="ts_OriginalTeamEstimatedDuration">
+          <Type>decimal</Type>
+          <Name>ts_originalteamestimatedduration</Name>
+          <LogicalName>ts_originalteamestimatedduration</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20221027.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <MinValue>-100000000000</MinValue>
+          <MaxValue>100000000000</MaxValue>
+          <Accuracy>2</Accuracy>
+          <displaynames>
+            <displayname description="Original Team Estimated Duration" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Shows the starting value for Team Estimated Durations to determine if the value has changed" languagecode="1033" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="ts_PlannedQ1">
           <Type>int</Type>
           <Name>ts_plannedq1</Name>
           <LogicalName>ts_plannedq1</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
+          <RequiredLevel>required</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>disabled</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
@@ -1440,7 +1520,7 @@
           <Type>int</Type>
           <Name>ts_plannedq2</Name>
           <LogicalName>ts_plannedq2</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
+          <RequiredLevel>required</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>disabled</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
@@ -1480,7 +1560,7 @@
           <Type>int</Type>
           <Name>ts_plannedq3</Name>
           <LogicalName>ts_plannedq3</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
+          <RequiredLevel>required</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>disabled</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
@@ -1520,7 +1600,7 @@
           <Type>int</Type>
           <Name>ts_plannedq4</Name>
           <LogicalName>ts_plannedq4</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
+          <RequiredLevel>required</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>disabled</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
@@ -1596,6 +1676,46 @@
             <Description description="" languagecode="1033" />
           </Descriptions>
           <FormulaDefinitionFileName>/Formulas/ts_planningdata-ts_plannedwo.xaml</FormulaDefinitionFileName>
+        </attribute>
+        <attribute PhysicalName="ts_PlannedWOUncalculated">
+          <Type>int</Type>
+          <Name>ts_plannedwouncalculated</Name>
+          <LogicalName>ts_plannedwouncalculated</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20221027.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>none</Format>
+          <MinValue>-2147483648</MinValue>
+          <MaxValue>2147483647</MaxValue>
+          <displaynames>
+            <displayname description="Planned WO" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_PlanningDataId">
           <Type>primarykey</Type>
@@ -1907,6 +2027,46 @@
             <Description description="" languagecode="1033" />
           </Descriptions>
           <FormulaDefinitionFileName>/Formulas/ts_planningdata-ts_variance.xaml</FormulaDefinitionFileName>
+        </attribute>
+        <attribute PhysicalName="ts_VarianceUncalculated">
+          <Type>int</Type>
+          <Name>ts_varianceuncalculated</Name>
+          <LogicalName>ts_varianceuncalculated</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20221027.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>none</Format>
+          <MinValue>-2147483648</MinValue>
+          <MaxValue>2147483647</MaxValue>
+          <displaynames>
+            <displayname description="Variance" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
         </attribute>
         <attribute PhysicalName="UTCConversionTimeZoneCode">
           <Type>int</Type>

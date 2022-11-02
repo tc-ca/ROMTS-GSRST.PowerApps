@@ -57,7 +57,7 @@
                     <row>
                       <cell id="{34693a7e-3bc8-b55e-18e3-b188e1250753}" showlabel="true" locklevel="0" ordinalvalue="10001">
                         <labels>
-                          <label description="Nickname" languagecode="1033" solutionaction="Modified" />
+                          <label description="Nickname" languagecode="1033" solutionaction="Added" />
                           <label description="Surnom" languagecode="1036" solutionaction="Added" />
                         </labels>
                       </cell>
@@ -289,7 +289,7 @@
                     <row>
                       <cell id="{db84c82c-4940-260e-1ace-a6d8d235555c}" showlabel="true" locklevel="0" ordinalvalue="10000">
                         <labels>
-                          <label description="Capacity" languagecode="1033" solutionaction="Modified" />
+                          <label description="Capacity" languagecode="1033" solutionaction="Added" />
                           <label description="Capacité" languagecode="1036" solutionaction="Added" />
                         </labels>
                       </cell>
@@ -297,7 +297,7 @@
                     <row>
                       <cell id="{3d2d10dc-dd37-c959-5ed2-48660e5983b4}" showlabel="true" locklevel="0" ordinalvalue="10001">
                         <labels>
-                          <label description="Default Presence" languagecode="1033" solutionaction="Modified" />
+                          <label description="Default Presence" languagecode="1033" solutionaction="Added" />
                           <label description="Présence par défaut" languagecode="1036" solutionaction="Added" />
                         </labels>
                       </cell>
@@ -337,25 +337,41 @@
               <sections>
                 <section name="tab_6_section_1" id="8f6fcaf3-f60d-4d16-91b8-edac692cfa6b" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
                   <labels>
-                    <label description="New Section" languagecode="1033" />
+                    <label description="Created Work Orders" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell locklevel="0" id="{7d2998f2-cc00-4dd2-9ba8-2654893ca251}" rowspan="1" colspan="1" ordinalvalue="10000">
+                      <cell locklevel="0" id="{7d2998f2-cc00-4dd2-9ba8-2654893ca251}" rowspan="6" colspan="1" auto="false" showlabel="false" ordinalvalue="10000">
                         <labels>
                           <label description="Created Work Orders" languagecode="1033" />
                           <label description="Équipes" languagecode="1036" />
                         </labels>
-                        <control id="Subgrid_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="Work_Orders" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{4d712637-2541-bba8-1c4b-1ee67b5d1397}">
                           <parameters>
                             <TargetEntityType>msdyn_workorder</TargetEntityType>
-                            <ViewId>{FFE40A64-495B-EB11-A812-000D3A84DB40}</ViewId>
-                            <ViewIds>{FFE40A64-495B-EB11-A812-000D3A84DB40}</ViewIds>
+                            <ViewId>{FCE37246-EBA1-4E92-BB9D-F8CB3EC38E3F}</ViewId>
+                            <ViewIds>{FCE37246-EBA1-4E92-BB9D-F8CB3EC38E3F},{C34014A1-C706-ED11-82E6-002248AE429C}</ViewIds>
                             <EnableViewPicker>false</EnableViewPicker>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <IsUserView>false</IsUserView>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId>{8E746648-1A4E-E111-93B3-000C2959F9B8}</VisualizationId>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RelationshipName>user_msdyn_workorder</RelationshipName>
                           </parameters>
                         </control>
                       </cell>
                     </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>
@@ -389,7 +405,25 @@
       </Navigation>
       <DisplayConditions FallbackForm="true" Order="1" solutionaction="Modified" />
       <header id="{d4172dd7-bacc-4256-994e-fde4ca8d9d0a}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
-        <rows></rows>
+        <rows>
+          <row>
+            <cell id="{5d9ab363-769f-4463-a42e-a8591bb05df3}" showlabel="false" ordinalvalue="10000">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{370be714-871c-456a-9ca0-67832cd278f6}" showlabel="false" ordinalvalue="20001">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{b178cafc-ab91-474c-985b-3b8a111a94a1}" showlabel="false" ordinalvalue="30002">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
       </header>
     </form>
     <LocalizedNames>

@@ -368,12 +368,38 @@
       <events>
         <event name="onrecordselect" application="false" active="false" relationship="" control="Subgrid_new_1">
           <Handlers>
-            <Handler functionName="lockFields" libraryName="ts_/js/Common.js" handlerUniqueId="{20ae2ceb-d9d1-eddd-c137-5b1dbcd79ba4}" enabled="true" parameters="[&quot;ts_name&quot;,&quot;ts_target&quot;, &quot;ts_site&quot;, &quot;ts_operationtype&quot;, &quot;ts_stakeholder&quot;, &quot;ts_activitytype&quot;]" passExecutionContext="true" />
+            <Handler functionName="lockFields" libraryName="ts_/js/Common.js" handlerUniqueId="{20ae2ceb-d9d1-eddd-c137-5b1dbcd79ba4}" enabled="true" parameters="[&quot;ts_name&quot;,&quot;ts_target&quot;, &quot;ts_site&quot;, &quot;ts_operationtype&quot;, &quot;ts_stakeholder&quot;, &quot;ts_activitytype&quot;, &quot;ts_plannedwouncalculated&quot;, &quot;ts_varianceuncalculated&quot;]" passExecutionContext="true" />
+            <Handler functionName="ROM.PlanningData.gridOnSelect" libraryName="ts_/js/PlanningData.js" handlerUniqueId="{b303cdac-934e-0dc8-9dd0-51ad79621e0a}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onload" application="false" active="false">
           <Handlers>
             <Handler functionName="ROM.TeamPlanningData.onLoad" libraryName="ts_/js/TeamPlanningData.js" handlerUniqueId="{87da45e3-1607-1a60-5ac6-d6793acb2c71}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_plannedq1" relationship="" control="Subgrid_new_1">
+          <Handlers>
+            <Handler functionName="ROM.PlanningData.plannedOnChange" libraryName="ts_/js/PlanningData.js" handlerUniqueId="{4809d19d-2b12-5d9e-5b14-74680cb64b9a}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_plannedq2" relationship="" control="Subgrid_new_1">
+          <Handlers>
+            <Handler functionName="ROM.PlanningData.plannedOnChange" libraryName="ts_/js/PlanningData.js" handlerUniqueId="{3807468a-b4e5-3353-9c51-0580275242a8}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_plannedq3" relationship="" control="Subgrid_new_1">
+          <Handlers>
+            <Handler functionName="ROM.PlanningData.plannedOnChange" libraryName="ts_/js/PlanningData.js" handlerUniqueId="{4a009247-ce2b-2463-0354-96153c73a651}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_plannedq4" relationship="" control="Subgrid_new_1">
+          <Handlers>
+            <Handler functionName="ROM.PlanningData.plannedOnChange" libraryName="ts_/js/PlanningData.js" handlerUniqueId="{e5368d48-9c96-ad53-0573-4023c0d6d380}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_teamestimatedduration" relationship="" control="Subgrid_new_1">
+          <Handlers>
+            <Handler functionName="ROM.PlanningData.estimatedDurationOnChange" libraryName="ts_/js/PlanningData.js" handlerUniqueId="{06a3d2c7-2a3c-9d09-0661-04451799e509}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
