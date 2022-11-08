@@ -259,7 +259,7 @@
         </rows>
       </footer>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -400,6 +400,11 @@
         <event name="onchange" application="false" active="false" attribute="ts_teamestimatedduration" relationship="" control="Subgrid_new_1">
           <Handlers>
             <Handler functionName="ROM.PlanningData.estimatedDurationOnChange" libraryName="ts_/js/PlanningData.js" handlerUniqueId="{06a3d2c7-2a3c-9d09-0661-04451799e509}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.TeamPlanningData.onSave" libraryName="ts_/js/TeamPlanningData.js" handlerUniqueId="{bde55e2a-d084-474b-9ed8-dc63fac2d32d}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

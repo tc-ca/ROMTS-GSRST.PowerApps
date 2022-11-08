@@ -10,9 +10,14 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_operationactivityid">
-          <cell name="ts_activity" width="100" />
           <cell name="ts_operation" width="100" />
-          <cell name="ts_operationalstatus" width="100" />
+          <cell name="ts_stakeholder" width="180" />
+          <cell name="ts_operationtype" width="150" />
+          <cell name="ts_activity" width="300" />
+          <cell name="ts_operationalstatus" width="150" />
+          <cell name="a_d61ec42f7de4472188c7666713b6e0fe.msdyn_description" width="300" />
+          <cell name="ts_site" width="150" />
+          <cell name="a_f19beecfc5df4dbd9374fb3f7c800884.ts_subsite" width="175" />
         </row>
       </grid>
     </layoutxml>
@@ -24,12 +29,21 @@
           <attribute name="ts_activity" />
           <attribute name="ts_operation" />
           <attribute name="ts_operationalstatus" />
-          <order attribute="ts_operationalstatus" descending="false" />
-          <order attribute="ts_activity" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
             <condition attribute="ts_operationalstatus" operator="eq" value="717750001" />
           </filter>
+          <attribute name="ts_stakeholder" />
+          <link-entity alias="a_d61ec42f7de4472188c7666713b6e0fe" name="msdyn_incidenttype" to="ts_activity" from="msdyn_incidenttypeid" link-type="outer" visible="false">
+            <attribute name="msdyn_description" />
+          </link-entity>
+          <attribute name="ts_operationtype" />
+          <attribute name="ts_site" />
+          <link-entity alias="a_f19beecfc5df4dbd9374fb3f7c800884" name="ovs_operation" to="ts_operation" from="ovs_operationid" link-type="outer" visible="false">
+            <attribute name="ts_subsite" />
+          </link-entity>
+          <order attribute="ts_stakeholder" descending="false" />
+          <order attribute="ts_activity" descending="false" />
         </entity>
       </fetch>
     </fetchxml>

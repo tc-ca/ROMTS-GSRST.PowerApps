@@ -10,10 +10,14 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_operationactivityid">
-          <cell name="ts_activity" width="100" />
           <cell name="ts_operation" width="100" />
-          <cell name="ts_operationalstatus" width="100" />
+          <cell name="ts_stakeholder" width="180" />
+          <cell name="ts_operationtype" width="150" />
+          <cell name="ts_activity" width="300" />
+          <cell name="ts_operationalstatus" width="150" />
           <cell name="a_8724d6e7b0b3476394005a2e3fd876d5.msdyn_description" width="300" />
+          <cell name="ts_site" width="150" />
+          <cell name="a_48158c6c54ac48b083b4977ca5b3b668.ts_subsite" width="175" />
         </row>
       </grid>
     </layoutxml>
@@ -28,11 +32,17 @@
           <attribute name="ts_activity" />
           <attribute name="ts_operation" />
           <attribute name="ts_operationalstatus" />
-          <order attribute="ts_operationalstatus" descending="false" />
-          <order attribute="ts_activity" descending="false" />
           <link-entity alias="a_8724d6e7b0b3476394005a2e3fd876d5" name="msdyn_incidenttype" to="ts_activity" from="msdyn_incidenttypeid" link-type="outer" visible="false">
             <attribute name="msdyn_description" />
           </link-entity>
+          <attribute name="ts_stakeholder" />
+          <attribute name="ts_operationtype" />
+          <attribute name="ts_site" />
+          <link-entity alias="a_48158c6c54ac48b083b4977ca5b3b668" name="ovs_operation" to="ts_operation" from="ovs_operationid" link-type="outer" visible="false">
+            <attribute name="ts_subsite" />
+          </link-entity>
+          <order attribute="ts_stakeholder" descending="false" />
+          <order attribute="ts_activity" descending="false" />
         </entity>
       </fetch>
     </fetchxml>

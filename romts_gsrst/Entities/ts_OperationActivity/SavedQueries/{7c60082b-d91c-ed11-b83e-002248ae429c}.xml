@@ -10,10 +10,14 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_operationactivityid">
-          <cell name="ts_activity" width="100" />
           <cell name="ts_operation" width="100" />
-          <cell name="ts_operationalstatus" width="100" />
-          <cell name="createdon" width="125" />
+          <cell name="ts_stakeholder" width="180" />
+          <cell name="ts_operationtype" width="150" />
+          <cell name="ts_activity" width="300" />
+          <cell name="ts_operationalstatus" width="150" />
+          <cell name="a_f49f6ed78acd48afbbe7c48eda927c95.msdyn_description" width="300" />
+          <cell name="ts_site" width="150" />
+          <cell name="a_488be86f426b49d0946c16f5a8941048.ts_subsite" width="175" />
         </row>
       </grid>
     </layoutxml>
@@ -22,16 +26,24 @@
       <fetch version="1.0" mapping="logical" distinct="true">
         <entity name="ts_operationactivity">
           <attribute name="ts_operationactivityid" />
-          <attribute name="createdon" />
           <attribute name="ts_activity" />
           <attribute name="ts_operation" />
           <attribute name="ts_operationalstatus" />
-          <order attribute="ts_operationalstatus" descending="false" />
-          <order attribute="ts_activity" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
             <condition attribute="ts_operationalstatus" operator="eq" value="717750000" />
           </filter>
+          <attribute name="ts_stakeholder" />
+          <link-entity alias="a_f49f6ed78acd48afbbe7c48eda927c95" name="msdyn_incidenttype" to="ts_activity" from="msdyn_incidenttypeid" link-type="outer" visible="false">
+            <attribute name="msdyn_description" />
+          </link-entity>
+          <attribute name="ts_operationtype" />
+          <link-entity alias="a_488be86f426b49d0946c16f5a8941048" name="ovs_operation" to="ts_operation" from="ovs_operationid" link-type="outer" visible="false">
+            <attribute name="ts_subsite" />
+          </link-entity>
+          <attribute name="ts_site" />
+          <order attribute="ts_stakeholder" descending="false" />
+          <order attribute="ts_activity" descending="false" />
         </entity>
       </fetch>
     </fetchxml>
