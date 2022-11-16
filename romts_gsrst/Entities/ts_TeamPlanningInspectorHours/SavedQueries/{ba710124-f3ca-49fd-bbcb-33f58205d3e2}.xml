@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{ba710124-f3ca-49fd-bbcb-33f58205d3e2}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_teamplanninginspectorhoursid">
+          <cell name="a_7376b9763bb947b98c255430cd8cc8e0.fullname" width="223" />
+          <cell name="ts_varianceq1" width="100" />
+          <cell name="ts_varianceq2" width="100" />
+          <cell name="ts_varianceq3" width="100" />
+          <cell name="ts_varianceq4" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_teamplanninginspectorhours">
+          <attribute name="ts_teamplanninginspectorhoursid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <link-entity alias="a_7376b9763bb947b98c255430cd8cc8e0" name="systemuser" to="ts_inspector" from="systemuserid" link-type="outer" visible="false">
+            <attribute name="fullname" />
+          </link-entity>
+          <attribute name="ts_varianceq1" />
+          <attribute name="ts_varianceq2" />
+          <attribute name="ts_varianceq3" />
+          <attribute name="ts_varianceq4" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Team Planning Inspector Hours" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

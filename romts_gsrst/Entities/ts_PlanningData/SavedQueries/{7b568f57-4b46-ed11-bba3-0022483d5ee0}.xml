@@ -10,28 +10,26 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_planningdataid">
-          <cell name="ts_name" width="72" />
-          <cell name="ts_stakeholder" width="100" />
-          <cell name="ts_operationtype" width="100" />
-          <cell name="ts_site" width="100" />
-          <cell name="ts_activitytype" width="100" />
+          <cell name="ts_stakeholder" width="63" />
+          <cell name="ts_operationtype" width="68" />
+          <cell name="ts_site" width="58" />
+          <cell name="ts_activitytype" width="300" />
           <cell name="ts_target" width="68" />
-          <cell name="ts_teamestimatedduration" width="64" />
-          <cell name="ts_plannedq1" width="93" />
-          <cell name="ts_plannedq2" width="94" />
-          <cell name="ts_plannedq3" width="93" />
-          <cell name="ts_plannedq4" width="93" />
-          <cell name="ts_plannedwouncalculated" width="100" />
-          <cell name="ts_varianceuncalculated" width="100" />
+          <cell name="ts_teamestimatedduration" width="91" />
+          <cell name="ts_plannedq1" width="60" />
+          <cell name="ts_plannedq2" width="47" />
+          <cell name="ts_plannedq3" width="52" />
+          <cell name="ts_plannedq4" width="50" />
+          <cell name="ts_plannedwouncalculated" width="75" />
+          <cell name="ts_varianceuncalculated" width="77" />
           <cell name="ts_details" width="300" />
         </row>
       </grid>
     </layoutxml>
     <querytype>0</querytype>
     <fetchxml>
-      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
         <entity name="ts_planningdata">
-          <attribute name="ts_name" />
           <attribute name="ts_planningdataid" />
           <attribute name="ts_stakeholder" />
           <attribute name="ts_operationtype" />
@@ -46,6 +44,11 @@
           <attribute name="ts_plannedwouncalculated" />
           <attribute name="ts_varianceuncalculated" />
           <attribute name="ts_details" />
+          <link-entity name="ts_operationactivity" alias="aa" link-type="inner" from="ts_operationactivityid" to="ts_operationactivity">
+            <filter type="and">
+              <condition attribute="ts_operationalstatus" operator="eq" value="717750000" />
+            </filter>
+          </link-entity>
         </entity>
       </fetch>
     </fetchxml>

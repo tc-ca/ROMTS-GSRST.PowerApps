@@ -4,11 +4,32 @@
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="ts.ts_planningdata.SetNonOperational">
+      <EnableRules>
+        <EnableRule Id="ts.ts_planningdata.itemsSelected" />
+        <EnableRule Id="ts.ts_planningdata.EnableRule1.EnableRule" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="setSelectedNonOperational" Library="$webresource:ts_/js/planningDataRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
-    <EnableRules />
+    <EnableRules>
+      <EnableRule Id="ts.ts_planningdata.EnableRule1.EnableRule">
+        <ValueRule Value="" Default="false" />
+      </EnableRule>
+      <EnableRule Id="ts.ts_planningdata.itemsSelected">
+        <SelectionCountRule AppliesTo="PrimaryEntity" Minimum="1" Default="false" InvertResult="false" />
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
   <LocLabels />
 </RibbonDiffXml>

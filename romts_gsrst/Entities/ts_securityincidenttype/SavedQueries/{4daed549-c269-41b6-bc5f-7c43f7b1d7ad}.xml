@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{4daed549-c269-41b6-bc5f-7c43f7b1d7ad}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_securityincidenttypeid">
+          <cell name="ts_name" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_securityincidenttypenameenglish" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_securityincidenttypenamefrench" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_securityincidenttype">
+          <attribute name="ts_name" />
+          <order attribute="ts_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_securityincidenttypenamefrench" />
+          <attribute name="ts_securityincidenttypenameenglish" />
+          <attribute name="ts_securityincidenttypeid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20221108.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Security Incident Types" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

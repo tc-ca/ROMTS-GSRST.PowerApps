@@ -1,14 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
+  <CustomActions>
+    <CustomAction Id="ts.ts_teamplanningdata.Recalculate.CustomAction" Location="Mscrm.Form.ts_teamplanningdata.MainTab.Save.Controls._children" Sequence="6">
+      <CommandUIDefinition>
+        <Button Command="ts.ts_teamplanningdata.Recalculate" Id="ts.ts_teamplanningdata.Recalculate" LabelText="$LocLabels:ts.ts_teamplanningdata.Recalculate.LabelText" Sequence="6" TemplateAlias="o1" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="ts.ts_teamplanningdata.Recalculate">
+      <EnableRules>
+        <EnableRule Id="ts.ts_teamplanningdata.isNotCreate" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="recalculateTeamPlanningDataValues" Library="$webresource:ts_/js/TeamPlanningDataRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
-    <EnableRules />
+    <EnableRules>
+      <EnableRule Id="ts.ts_teamplanningdata.isNotCreate">
+        <FormStateRule State="Create" Default="false" InvertResult="true" />
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="ts.ts_teamplanningdata.Recalculate.LabelText">
+      <Titles>
+        <Title description="Recalculate" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>
