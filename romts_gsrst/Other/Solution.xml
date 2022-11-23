@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20221123.1</Version>
+    <Version>1.0.20221123.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -263,6 +263,7 @@
       <RootComponent type="9" schemaName="ts_assetcategorytype" behavior="0" />
       <RootComponent type="9" schemaName="ts_bridgeclosure" behavior="0" />
       <RootComponent type="9" schemaName="ts_damagestoibtproperty" behavior="0" />
+      <RootComponent type="9" schemaName="ts_delaystooperation" behavior="0" />
       <RootComponent type="9" schemaName="ts_documenttype" behavior="0" />
       <RootComponent type="9" schemaName="ts_enforcementaction" behavior="0" />
       <RootComponent type="9" schemaName="ts_factor" behavior="0" />
@@ -270,6 +271,7 @@
       <RootComponent type="9" schemaName="ts_filesubcontext" behavior="0" />
       <RootComponent type="9" schemaName="ts_finalenforcementaction" behavior="0" />
       <RootComponent type="9" schemaName="ts_findingtype" behavior="0" />
+      <RootComponent type="9" schemaName="ts_injuries" behavior="0" />
       <RootComponent type="9" schemaName="ts_issecurityinspectionsite" behavior="0" />
       <RootComponent type="9" schemaName="ts_language" behavior="0" />
       <RootComponent type="9" schemaName="ts_locationtype" behavior="0" />
@@ -282,12 +284,14 @@
       <RootComponent type="9" schemaName="ts_planningstatus" behavior="0" />
       <RootComponent type="9" schemaName="ts_ppecategories" behavior="0" />
       <RootComponent type="9" schemaName="ts_programaccess" behavior="0" />
+      <RootComponent type="9" schemaName="ts_province" behavior="0" />
       <RootComponent type="9" schemaName="ts_ratemanagerdecision" behavior="0" />
       <RootComponent type="9" schemaName="ts_raterecommendations" behavior="0" />
       <RootComponent type="9" schemaName="ts_ratespecificcompliancehistory" behavior="0" />
       <RootComponent type="9" schemaName="ts_ratespecificenforcementhistory" behavior="0" />
       <RootComponent type="9" schemaName="ts_requesttype" behavior="0" />
       <RootComponent type="9" schemaName="ts_role" behavior="0" />
+      <RootComponent type="9" schemaName="ts_ruralorurban" behavior="0" />
       <RootComponent type="9" schemaName="ts_securityincidentmode" behavior="0" />
       <RootComponent type="9" schemaName="ts_securityinspectiondetails" behavior="0" />
       <RootComponent type="9" schemaName="ts_securityplantype" behavior="0" />
@@ -452,6 +456,7 @@
       <RootComponent type="61" schemaName="ts_/js/RecordOfAction.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/RiskThreshold.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/SecurityIncident.js" behavior="0" />
+      <RootComponent type="61" schemaName="ts_/js/SecurityIncidentRibbon.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/surveyjs-widgets.min.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/SurveyRenderPrint.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/Team.js" behavior="0" />
@@ -1128,14 +1133,6 @@
           <package>msdynce_MarketingAnchor (9.0.22105.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="mbs_pluginprofile" displayName="Plug-in Profile" solution="PluginProfiler (2.0.0.0)" />
-        <Dependent type="1" schemaName="businessunit" displayName="Business Unit" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="mbs_pluginprofile" displayName="Plug-in Profile" solution="PluginProfiler (2.0.0.0)" />
-        <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_actioncardrolesetting" displayName="Action Card Role Setting" solution="Relationshipassistant (9.0.1.702132)">
@@ -14421,14 +14418,6 @@
         <Dependent type="60" displayName="Information" parentDisplayName="Province" id="{455ed4f5-b0f2-4a9e-96fd-3e3a5981da0d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="tc_provinceid" displayName="Province" parentSchemaName="tc_province" parentDisplayName="Province" solution="Active" />
-        <Dependent type="10" schemaName="ts_tc_province_ts_securityincident_Province" displayName="ts_tc_province_ts_securityincident_Province" parentSchemaName="tc_province" parentDisplayName="Province" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="tc_provincename" displayName="Province Name" parentSchemaName="tc_province" parentDisplayName="Province" solution="Active" />
-        <Dependent type="10" schemaName="ts_tc_province_ts_securityincident_Province" displayName="ts_tc_province_ts_securityincident_Province" parentSchemaName="tc_province" parentDisplayName="Province" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="2" schemaName="tc_provincename" displayName="Province Name" parentSchemaName="tc_province" parentDisplayName="Province" solution="Active" />
         <Dependent type="60" displayName="Information" parentDisplayName="Province" id="{235fa5e9-6d6d-440c-871e-100c9ef0acfe}" />
       </MissingDependency>
@@ -18071,12 +18060,6 @@
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
           <package>msdynce_AppCommonAnchor (9.0.22105.10001)</package>
         </Required>
-        <Dependent type="60" displayName="In Context Form" parentDisplayName="Contact" id="{4c9c89b9-f909-4b34-8f63-b87d7ff2f0c4}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
-          <package>msdynce_AppCommonAnchor (9.0.22105.10001)</package>
-        </Required>
         <Dependent type="60" displayName="Account - Mobile" parentDisplayName="Account" id="{74da4947-5d1d-4400-9f99-c6ed578211bb}" />
       </MissingDependency>
       <MissingDependency>
@@ -18096,6 +18079,12 @@
           <package>msdynce_AppCommonAnchor (9.0.22105.10001)</package>
         </Required>
         <Dependent type="60" displayName="Information" parentDisplayName="Account" id="{b053a39a-041a-4356-acef-ddf00182762b}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
+          <package>msdynce_AppCommonAnchor (9.0.22105.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="Organisations" parentDisplayName="Account" id="{b6466851-a1fd-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
@@ -19678,10 +19667,6 @@
         <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="ts_/js/SecurityIncidentRibbon.js" displayName="ts_/js/SecurityIncidentRibbon.js" solution="Active" />
-        <Dependent type="50" schemaName="ts_securityincident:RibbonDiffXml" displayName="ts_securityincident:RibbonDiffXml" parentSchemaName="ribboncustomization" parentDisplayName="Application Ribbons" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2211.1013)" />
         <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       </MissingDependency>
@@ -20835,20 +20820,8 @@
         <Dependent type="2" schemaName="ts_arrests" displayName="Arrests" parentSchemaName="ts_securityincident" parentDisplayName="Security Incident" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="9" schemaName="ts_delaystooperation" displayName="Delays to Operation" solution="Active" />
-        <Dependent type="2" schemaName="ts_delaystooperation" displayName="Delays to Operation" parentSchemaName="ts_securityincident" parentDisplayName="Security Incident" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="9" schemaName="ts_injuries" displayName="Injuries" solution="Active" />
-        <Dependent type="2" schemaName="ts_injuries" displayName="Injuries" parentSchemaName="ts_securityincident" parentDisplayName="Security Incident" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="9" schemaName="ts_publicorprivatecrossing" displayName="Public or Private Crossing" solution="Active" />
         <Dependent type="2" schemaName="ts_publicorprivatecrossing" displayName="Public or Private Crossing" parentSchemaName="ts_securityincident" parentDisplayName="Security Incident" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="9" schemaName="ts_ruralorurban" displayName="Rural or Urban" solution="Active" />
-        <Dependent type="2" schemaName="ts_ruralorurban" displayName="Rural or Urban" parentSchemaName="ts_securityincident" parentDisplayName="Security Incident" />
       </MissingDependency>
       <MissingDependency>
         <Required type="SettingDefinition" displayName="AllowNotificationsEarlyAccess" solution="AppNotifications (10.0.0.10)" id.uniquename="AllowNotificationsEarlyAccess" />
