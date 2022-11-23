@@ -1,14 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
+  <CustomActions>
+    <CustomAction Id="ts.ts_securityincident.Button.GenerateWorkOrder.CustomAction" Location="Mscrm.Form.ts_securityincident.MainTab.Save.Controls._children" Sequence="73">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_securityincident.Button.GenerateWorkOrder.Alt" Command="ts.ts_securityincident.Command.GenerateWorkOrder" Id="ts.ts_securityincident.Button.GenerateWorkOrder" LabelText="$LocLabels:ts.ts_securityincident.Button.GenerateWorkOrder.LabelText" Sequence="73" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.ts_securityincident.Button.GenerateWorkOrder.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_securityincident.Button.GenerateWorkOrder.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="ts.ts_securityincident.Command.GenerateWorkOrder">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="generateInspection" Library="$webresource:ts_/js/SecurityIncidentRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
     <EnableRules />
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="ts.ts_securityincident.Button.GenerateWorkOrder.Alt">
+      <Titles>
+        <Title description="Generate an inspection" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_securityincident.Button.GenerateWorkOrder.LabelText">
+      <Titles>
+        <Title description="Generate Inspection" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_securityincident.Button.GenerateWorkOrder.ToolTipDescription">
+      <Titles>
+        <Title description="Generate an inspection" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_securityincident.Button.GenerateWorkOrder.ToolTipTitle">
+      <Titles>
+        <Title description="Generate an inspection" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>

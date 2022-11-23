@@ -253,14 +253,6 @@
                         <control disabled="false" id="msdyn_worklocation" datafieldname="msdyn_worklocation" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" uniqueid="{b6d7d65e-83b0-6226-25c5-9ea91471d2d6}" />
                       </cell>
                     </row>
-                    <row>
-                      <cell id="{34de794d-5d11-6404-c69e-573e9a8e7607}" showlabel="true" locklevel="0">
-                        <labels>
-                          <label description="Incident" languagecode="1033" />
-                        </labels>
-                        <control id="ts_incident" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_incident" disabled="false" uniqueid="{bb37055a-adcc-0c57-e4e4-283282e08514}" />
-                      </cell>
-                    </row>
                   </rows>
                 </section>
                 <section name="{b8e326ee-5c21-4a18-ba55-e3b56966c249}_section_9" id="9c360ccd-7561-4d4d-a0ad-1b447a6a1c21" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
@@ -588,6 +580,14 @@
                         <control disabled="false" id="msdyn_opportunityid" datafieldname="msdyn_opportunityid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" uniqueid="{3aa0081a-0320-c59d-7830-1edd2cda6c55}" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{549c3969-50dd-c1a3-7e07-cc9354c4bde5}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Security Incident" languagecode="1033" />
+                        </labels>
+                        <control id="ts_securityincident" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_securityincident" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -627,6 +627,20 @@
             </column>
             <column width="50%">
               <sections>
+                <section name="tab_10_section_5" id="68bd73f8-a46e-4a54-9ddb-d914acf3f94e" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell showlabel="false" locklevel="0" id="{f07ae698-58c2-451c-8b40-f5f2ed8cabd3}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
                 <section name="tab_10_section_2" id="676e533e-4633-4a8b-a4a1-a74644025c90" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{5f8dd708-c218-4091-8789-d86c9ca8c2fb}">
                   <labels>
                     <label description="Contacts" languagecode="1033" />
@@ -648,7 +662,7 @@
                         </labels>
                         <control id="Subgrid_operation_contacts" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
                           <parameters>
-                            <RecordsPerPage>10</RecordsPerPage>
+                            <RecordsPerPage>4</RecordsPerPage>
                             <AutoExpand>Fixed</AutoExpand>
                             <TargetEntityType>contact</TargetEntityType>
                             <ViewId>{129A42C8-1501-ED11-82E6-002248AE429C}</ViewId>
@@ -3182,23 +3196,6 @@
           <customControl formFactor="2" name="MscrmControls.DeviceInsights.DeviceInsightsControl">
             <parameters>
               <Value>msdyn_iotalert</Value>
-            </parameters>
-          </customControl>
-        </controlDescription>
-        <controlDescription forControl="{2cc7db0b-9e3d-493f-9ca6-c0e31e7a1b7c}">
-          <customControl formFactor="0" name="MscrmControls.Canvas.CanvasControl">
-            <parameters>
-              <appId type="SingleLine.Text" static="true">20ef2713-554d-4e26-a257-d14199216f75</appId>
-            </parameters>
-          </customControl>
-          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
-            <parameters>
-              <appId type="SingleLine.Text" static="true">20ef2713-554d-4e26-a257-d14199216f75</appId>
-            </parameters>
-          </customControl>
-          <customControl formFactor="1" name="MscrmControls.Canvas.CanvasControl">
-            <parameters>
-              <appId type="SingleLine.Text" static="true">20ef2713-554d-4e26-a257-d14199216f75</appId>
             </parameters>
           </customControl>
         </controlDescription>

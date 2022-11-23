@@ -16,14 +16,8 @@ var ROM;
             recalculateVarianceAndPlannedWO(eContext);
         }
         PlanningData.onLoad = onLoad;
-        function onSave(eContext) {
-        }
-        PlanningData.onSave = onSave;
-        function gridOnSelect(eContext) {
-            //recalculateVarianceAndPlannedWO(eContext);
-        }
-        PlanningData.gridOnSelect = gridOnSelect;
         function plannedOnChange(eContext) {
+            setNullQuarterValueToZero(eContext);
             recalculateVarianceAndPlannedWO(eContext);
         }
         PlanningData.plannedOnChange = plannedOnChange;
@@ -57,6 +51,14 @@ var ROM;
                 }
                 else {
                     formContext.getAttribute("ts_details").setRequiredLevel("none");
+                }
+            }
+        }
+        function setNullQuarterValueToZero(eContext) {
+            var nameAttr = eContext.getEventSource();
+            if (nameAttr.getName() == "ts_plannedq1" || nameAttr.getName() == "ts_plannedq2" || nameAttr.getName() == "ts_plannedq3" || nameAttr.getName() == "ts_plannedq4") {
+                if (nameAttr.getValue() == null) {
+                    nameAttr.setValue(0);
                 }
             }
         }

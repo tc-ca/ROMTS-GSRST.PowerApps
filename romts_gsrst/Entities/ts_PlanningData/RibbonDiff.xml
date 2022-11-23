@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
+  <CustomActions>
+    <CustomAction Id="ts.ts_planningdata.SetNonOperation.CustomAction" Location="Mscrm.SubGrid.ts_planningdata.MainTab.Management.Controls._children" Sequence="45">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_planningdata.SetNonOperation.Alt" Command="ts.ts_planningdata.SetNonOperational" Id="ts.ts_planningdata.SetNonOperation" LabelText="$LocLabels:ts.ts_planningdata.SetNonOperation.LabelText" Sequence="45" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_planningdata.SetNonOperation.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_planningdata.SetNonOperation.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
@@ -8,7 +14,6 @@
     <CommandDefinition Id="ts.ts_planningdata.SetNonOperational">
       <EnableRules>
         <EnableRule Id="ts.ts_planningdata.itemsSelected" />
-        <EnableRule Id="ts.ts_planningdata.EnableRule1.EnableRule" />
       </EnableRules>
       <DisplayRules />
       <Actions>
@@ -23,13 +28,31 @@
     <TabDisplayRules />
     <DisplayRules />
     <EnableRules>
-      <EnableRule Id="ts.ts_planningdata.EnableRule1.EnableRule">
-        <ValueRule Value="" Default="false" />
-      </EnableRule>
       <EnableRule Id="ts.ts_planningdata.itemsSelected">
         <SelectionCountRule AppliesTo="PrimaryEntity" Minimum="1" Default="false" InvertResult="false" />
       </EnableRule>
     </EnableRules>
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="ts.ts_planningdata.SetNonOperation.Alt">
+      <Titles>
+        <Title description="Set Non-Operational" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_planningdata.SetNonOperation.LabelText">
+      <Titles>
+        <Title description="Set Non-Operational" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_planningdata.SetNonOperation.ToolTipDescription">
+      <Titles>
+        <Title description="Set Non-Operational" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_planningdata.SetNonOperation.ToolTipTitle">
+      <Titles>
+        <Title description="Set Non-Operational" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>
