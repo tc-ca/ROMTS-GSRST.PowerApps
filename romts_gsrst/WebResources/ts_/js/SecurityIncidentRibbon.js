@@ -16,10 +16,11 @@ function generateInspection(primaryControl) {
 
 
     //Create new inspection linked to current Security Inspection
+
     var data =
     {
-        "msdyn_serviceaccount@odata.bind": `/accounts(${stakeholderSliced})`,
-        "ts_Site@odata.bind": `/msdyn_functionallocations/(${siteSliced})`
+        "msdyn_ServiceAccount@odata.bind": `/accounts(${(stakeholder[0].id).slice(1, -1)})`,
+        "ts_Site@odata.bind": `/msdyn_functionallocations/(${(site[0].id).slice(1, -1)})`
     }
 
     Xrm.WebApi.createRecord("msdyn_workorder", data).then(
