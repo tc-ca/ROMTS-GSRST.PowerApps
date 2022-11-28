@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20221124.3</Version>
+    <Version>1.0.20221128.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -3957,7 +3957,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.78.23)">
           <package>FieldService_Anchor (8.8.78.23)</package>
         </Required>
-        <Dependent type="10" schemaName="bookableresource_bookableresourcebooking_Resource" displayName="bookableresource_bookableresourcebooking_Resource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" displayName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.78.23)">
@@ -7126,13 +7126,13 @@
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.78.23)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.78.23)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_systemuser_msdyn_purchaseorder_ApprovedRejectedBy" displayName="msdyn_systemuser_msdyn_purchaseorder_ApprovedRejectedBy" parentSchemaName="systemuser" parentDisplayName="User" solution="FieldService (8.8.0.88)">
@@ -9934,13 +9934,6 @@
           <package>FieldService_Anchor (8.8.78.23)</package>
           <package>msdynce_ServiceAnchor (9.0.22105.1008)</package>
         </Required>
-        <Dependent type="10" schemaName="ts_msdyn_functionallocation_ts_securityincident_Site" displayName="ts_msdyn_functionallocation_ts_securityincident_Site" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.28.3)">
-          <package>FieldService_Anchor (8.8.78.23)</package>
-          <package>msdynce_ServiceAnchor (9.0.22105.1008)</package>
-        </Required>
         <Dependent type="10" schemaName="ts_msdyn_functionallocation_ts_sitevisit_functionallocation" displayName="ts_msdyn_functionallocation_ts_sitevisit_functionallocation" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
@@ -9970,6 +9963,13 @@
           <package>msdynce_ServiceAnchor (9.0.22105.1008)</package>
         </Required>
         <Dependent type="10" schemaName="ts_ts_planningdata_Site_msdyn_functionalloca" displayName="ts_ts_planningdata_Site_msdyn_functionalloca" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.28.3)">
+          <package>FieldService_Anchor (8.8.78.23)</package>
+          <package>msdynce_ServiceAnchor (9.0.22105.1008)</package>
+        </Required>
+        <Dependent type="10" schemaName="ts_ts_securityincident_IBTLocation_msdyn_fun" displayName="ts_ts_securityincident_IBTLocation_msdyn_fun" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.28.3)">

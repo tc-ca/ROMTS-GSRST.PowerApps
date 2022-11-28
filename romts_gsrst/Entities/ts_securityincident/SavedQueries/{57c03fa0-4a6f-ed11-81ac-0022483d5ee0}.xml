@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{57c03fa0-4a6f-ed11-81ac-0022483d5ee0}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" preview="1" icon="1">
+        <row name="result" id="ts_securityincidentid">
+          <cell name="ts_name" width="150" />
+          <cell name="ts_region" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="statecode" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_stakeholder" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_site" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="ts_securityincident">
+          <attribute name="ts_name" />
+          <attribute name="statecode" />
+          <attribute name="ts_site" />
+          <attribute name="ts_stakeholder" />
+          <attribute name="ts_region" />
+          <order attribute="ts_name" descending="false" />
+          <filter type="and">
+            <condition attribute="ts_mode" operator="in">
+              <value>717750001</value>
+              <value>717750000</value>
+            </condition>
+          </filter>
+          <attribute name="ts_securityincidentid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20221124.3</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Security Incidents - ISSO" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
