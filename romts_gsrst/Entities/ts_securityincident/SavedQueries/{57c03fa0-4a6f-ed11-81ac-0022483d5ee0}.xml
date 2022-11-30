@@ -11,10 +11,18 @@
       <grid name="resultset" jump="ts_name" select="1" preview="1" icon="1">
         <row name="result" id="ts_securityincidentid">
           <cell name="ts_name" width="150" />
-          <cell name="ts_region" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="statecode" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_tcomsid" width="100" />
+          <cell name="ts_tcomsofficer" width="100" />
+          <cell name="ts_mode" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_securityincidenttype" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_targetelement" width="100" />
           <cell name="ts_stakeholder" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="ts_site" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_incidentdatetime" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_reporteddatetime" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_yardorstationname" width="100" />
+          <cell name="statecode" width="75" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_region" width="100" />
+          <cell name="ts_site" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
         </row>
       </grid>
     </layoutxml>
@@ -23,17 +31,25 @@
       <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
         <entity name="ts_securityincident">
           <attribute name="ts_name" />
-          <attribute name="statecode" />
           <attribute name="ts_site" />
           <attribute name="ts_stakeholder" />
-          <attribute name="ts_region" />
-          <order attribute="ts_name" descending="false" />
+          <order attribute="ts_name" descending="true" />
           <filter type="and">
             <condition attribute="ts_mode" operator="in">
               <value>717750001</value>
               <value>717750000</value>
             </condition>
           </filter>
+          <attribute name="ts_tcomsofficer" />
+          <attribute name="ts_tcomsid" />
+          <attribute name="ts_mode" />
+          <attribute name="ts_securityincidenttype" />
+          <attribute name="ts_targetelement" />
+          <attribute name="ts_incidentdatetime" />
+          <attribute name="ts_reporteddatetime" />
+          <attribute name="ts_yardorstationname" />
+          <attribute name="statecode" />
+          <attribute name="ts_region" />
           <attribute name="ts_securityincidentid" />
         </entity>
       </fetch>

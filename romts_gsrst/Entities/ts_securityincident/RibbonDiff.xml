@@ -12,7 +12,9 @@
   </Templates>
   <CommandDefinitions>
     <CommandDefinition Id="ts.ts_securityincident.Command.GenerateWorkOrder">
-      <EnableRules />
+      <EnableRules>
+        <EnableRule Id="ts.ts_securityincident.EnableRule.GenerateInspection" />
+      </EnableRules>
       <DisplayRules />
       <Actions>
         <JavaScriptFunction FunctionName="generateInspection" Library="$webresource:ts_/js/SecurityIncidentRibbon.js">
@@ -23,8 +25,16 @@
   </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
-    <DisplayRules />
-    <EnableRules />
+    <DisplayRules>
+      <DisplayRule Id="ts.ts_securityincident.DisplayRule.GenerationInspection">
+        <FormStateRule State="Existing" Default="true" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules>
+      <EnableRule Id="ts.ts_securityincident.EnableRule.GenerateInspection">
+        <CustomRule FunctionName="isFormTypeUpdate" Library="$webresource:ts_/js/Common.js" Default="false" />
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
   <LocLabels>
     <LocLabel Id="ts.ts_securityincident.Button.GenerateWorkOrder.Alt">

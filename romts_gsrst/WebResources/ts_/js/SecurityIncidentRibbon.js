@@ -4,18 +4,21 @@ var missingFieldsInspectionGenerationTitleLocalized;
 var missingFieldsInspectionGenerationTextLocalized;
 var inspectionGeneratedTextLocalized;
 var inspectionGeneratedTitleLocalized;
+var inspectionGenerationProgressText;
 
 if (lang == 1036) {
     missingFieldsInspectionGenerationTitleLocalized = "Champs manquants";
     missingFieldsInspectionGenerationTextLocalized = "Un des champs suivant est manquant: Intervenant, Site";
     inspectionGeneratedTextLocalized = "Ordre de travail créé avec succès";
     inspectionGeneratedTitleLocalized = "Inspection";
+    inspectionGenerationProgressText = "Veuillez attendre pendant que l'ordre de travail se fasse créer"
 
-} else {
+}else {
     missingFieldsInspectionGenerationTitleLocalized = "Missing fields";
     missingFieldsInspectionGenerationTextLocalized = "One of the following fields is not set: Reporting Company, Site";
     inspectionGeneratedTextLocalized = "Work order created successfully";
     inspectionGeneratedTitleLocalized = "Inspection";
+    inspectionGenerationProgressText = "Please wait while the Work Order is being created";
 }
 
 function generateInspection(primaryControl) {
@@ -29,10 +32,6 @@ function generateInspection(primaryControl) {
 
     const securityIncidentId = primaryControl.data.entity.getId().slice(1, -1);
 
-    let stakeholderSliced = (stakeholder[0].id).slice(1, -1);
-    let siteSliced = (site[0].id).slice(1, -1);
-
-
     //Create new inspection linked to current Security Inspection
     var data =
     {
@@ -41,10 +40,14 @@ function generateInspection(primaryControl) {
         "ts_SecurityIncident@odata.bind": `/ts_securityincidents(${securityIncidentId})`,
     }
 
+    Xrm.Utility.showProgressIndicator(inspectionGenerationProgressText);
+
     Xrm.WebApi.createRecord("msdyn_workorder", data).then(
         function success(result) {
+            Xrm.Utility.closeProgressIndicator();
             showAlertDialog(inspectionGeneratedTextLocalized, inspectionGeneratedTitleLocalized)
             primaryControl.ui.tabs.get("tab_4").setFocus();
+            primaryControl.ui.controls.get("grid_workorder").refresh();
         },
     )
 }
