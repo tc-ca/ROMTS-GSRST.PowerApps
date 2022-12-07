@@ -15,7 +15,9 @@
       <EnableRules>
         <EnableRule Id="ts.ts_securityincident.EnableRule.GenerateInspection" />
       </EnableRules>
-      <DisplayRules />
+      <DisplayRules>
+        <DisplayRule Id="ts.ts_securityincident.DisplayRule.GenerationInspectionHide" />
+      </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="generateInspection" Library="$webresource:ts_/js/SecurityIncidentRibbon.js">
           <CrmParameter Value="PrimaryControl" />
@@ -26,8 +28,8 @@
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules>
-      <DisplayRule Id="ts.ts_securityincident.DisplayRule.GenerationInspection">
-        <FormStateRule State="Existing" Default="true" />
+      <DisplayRule Id="ts.ts_securityincident.DisplayRule.GenerationInspectionHide">
+        <ValueRule Value="" InvertResult="true" />
       </DisplayRule>
     </DisplayRules>
     <EnableRules>

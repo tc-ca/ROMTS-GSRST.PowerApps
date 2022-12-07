@@ -1,14 +1,161 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
+  <CustomActions>
+    <CustomAction Id="ts.ts_operationactivity.SetNonOperational.CustomAction" Location="Mscrm.HomepageGrid.ts_operationactivity.MainTab.Management.Controls._children" Sequence="8">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_operationactivity.SetNonOperational.Alt" Command="ts.ts_operationactivity.SubgridSetNonOperational" Id="ts.ts_operationactivity.SetNonOperational" LabelText="$LocLabels:ts.ts_operationactivity.SetNonOperational.LabelText" Sequence="8" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_operationactivity.SetNonOperational.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_operationactivity.SetNonOperational.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ts_operationactivity.SetOperational.CustomAction" Location="Mscrm.HomepageGrid.ts_operationactivity.MainTab.Management.Controls._children" Sequence="5">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_operationactivity.SetOperational.Alt" Command="ts.ts_operationactivity.SubgridSetOperational" Id="ts.ts_operationactivity.SetOperational" LabelText="$LocLabels:ts.ts_operationactivity.SetOperational.LabelText" Sequence="5" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_operationactivity.SetOperational.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_operationactivity.SetOperational.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ts_operationactivity.SubgridSetNonOperational.CustomAction" Location="Mscrm.SubGrid.ts_operationactivity.MainTab.Management.Controls._children" Sequence="0">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_operationactivity.SubgridSetNonOperational.Alt" Command="ts.ts_operationactivity.SubgridSetNonOperational" Id="ts.ts_operationactivity.SubgridSetNonOperational" LabelText="$LocLabels:ts.ts_operationactivity.SubgridSetNonOperational.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_operationactivity.SubgridSetNonOperational.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_operationactivity.SubgridSetNonOperational.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ts_operationactivity.SubgridSetOperational.CustomAction" Location="Mscrm.SubGrid.ts_operationactivity.MainTab.Management.Controls._children" Sequence="6">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_operationactivity.SubgridSetOperational.Alt" Command="ts.ts_operationactivity.SubgridSetOperational" Id="ts.ts_operationactivity.SubgridSetOperational" LabelText="$LocLabels:ts.ts_operationactivity.SubgridSetOperational.LabelText" Sequence="6" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_operationactivity.SubgridSetOperational.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_operationactivity.SubgridSetOperational.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="ts.ts_operationactivity.SubgridSetNonOperational">
+      <EnableRules>
+        <EnableRule Id="ts.ts_operationactivity.RecordsSelected" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="setSelectedNonOperational" Library="$webresource:ts_/js/OperationActivityRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ts_operationactivity.SubgridSetOperational">
+      <EnableRules>
+        <EnableRule Id="ts.ts_operationactivity.RecordsSelected" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="setSelectedOperational" Library="$webresource:ts_/js/OperationActivityRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
-    <EnableRules />
+    <EnableRules>
+      <EnableRule Id="ts.ts_operationactivity.RecordsSelected">
+        <SelectionCountRule AppliesTo="PrimaryEntity" Minimum="1" Default="false" />
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="ts.ts_operationactivity.SetNonOperational.Alt">
+      <Titles>
+        <Title description="Set Non-Operational" languagecode="1033" />
+        <Title description="Passer à non opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SetNonOperational.LabelText">
+      <Titles>
+        <Title description="Set Non-Operational" languagecode="1033" />
+        <Title description="Passer à non opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SetNonOperational.ToolTipDescription">
+      <Titles>
+        <Title description="Set Non-Operational" languagecode="1033" />
+        <Title description="Passer à non opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SetNonOperational.ToolTipTitle">
+      <Titles>
+        <Title description="Set Non-Operational" languagecode="1033" />
+        <Title description="Passer à non opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SetOperational.Alt">
+      <Titles>
+        <Title description="Set Operational" languagecode="1033" />
+        <Title description="Passer à opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SetOperational.LabelText">
+      <Titles>
+        <Title description="Set Operational" languagecode="1033" />
+        <Title description="Passer à opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SetOperational.ToolTipDescription">
+      <Titles>
+        <Title description="Set Operational" languagecode="1033" />
+        <Title description="Passer à opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SetOperational.ToolTipTitle">
+      <Titles>
+        <Title description="Set Operational" languagecode="1033" />
+        <Title description="Passer à opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SubgridSetNonOperational.Alt">
+      <Titles>
+        <Title description="Set Non-Operational" languagecode="1033" />
+        <Title description="Passer à non opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SubgridSetNonOperational.LabelText">
+      <Titles>
+        <Title description="Set Non-Operational" languagecode="1033" />
+        <Title description="Passer à non opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SubgridSetNonOperational.ToolTipDescription">
+      <Titles>
+        <Title description="Set Non-Operational" languagecode="1033" />
+        <Title description="Passer à non opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SubgridSetNonOperational.ToolTipTitle">
+      <Titles>
+        <Title description="Set Non-Operational" languagecode="1033" />
+        <Title description="Passer à non opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SubgridSetOperational.Alt">
+      <Titles>
+        <Title description="Set Operational" languagecode="1033" />
+        <Title description="Passer à opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SubgridSetOperational.LabelText">
+      <Titles>
+        <Title description="Set Operational" languagecode="1033" />
+        <Title description="Passer à opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SubgridSetOperational.ToolTipDescription">
+      <Titles>
+        <Title description="Set Operational" languagecode="1033" />
+        <Title description="Passer à opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_operationactivity.SubgridSetOperational.ToolTipTitle">
+      <Titles>
+        <Title description="Set Operational" languagecode="1033" />
+        <Title description="Passer à opérationnel" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>

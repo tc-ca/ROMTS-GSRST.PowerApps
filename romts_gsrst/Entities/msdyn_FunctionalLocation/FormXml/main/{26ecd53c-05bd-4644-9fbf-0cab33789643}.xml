@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0.0.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form headerdensity="HighWithControls" solutionaction="Modified">
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab name="tab_3" id="{831d6850-85ea-09c8-9bc2-027799b28e00}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true" ordinalvalue="0">
           <labels>
@@ -109,6 +109,15 @@
                           <label description="Cote de risque" languagecode="1036" />
                         </labels>
                         <control id="ts_riskscore" classid="{C6D124CA-7EDA-4a60-AEA9-7FB8D318B68F}" datafieldname="ts_riskscore" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f8621913-719e-46aa-8ac9-3e7079a80f17}" locklevel="0" colspan="1" rowspan="1" visible="false" ordinalvalue="10011" solutionaction="Added">
+                        <labels>
+                          <label description="LPD to United States" languagecode="1033" />
+                          <label description="Dernier point de départ vers les États-Unis" languagecode="1036" />
+                        </labels>
+                        <control id="ts_lpdtounitedstates" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_lpdtounitedstates" disabled="false" uniqueid="{18dd7ccb-481b-44d8-b7a2-65362949bde2}" />
                       </cell>
                     </row>
                   </rows>
@@ -306,7 +315,6 @@
                     <label description="Section" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row />
                     <row>
                       <cell locklevel="0" id="{a3b714de-1611-48db-bae3-4bf0b424c52a}" rowspan="4" colspan="1" auto="false" showlabel="false" ordinalvalue="10000">
                         <labels>
@@ -323,8 +331,8 @@
                             <ChartGridMode>All</ChartGridMode>
                             <TargetEntityType>ovs_operation</TargetEntityType>
                             <ViewId>{CCA2CAE4-216E-46B5-934E-D9112870F36F}</ViewId>
-                            <ViewIds>{CCA2CAE4-216E-46B5-934E-D9112870F36F},{711F5276-75DB-EC11-A7B5-000D3AE86184}</ViewIds>
-                            <RelationshipName />
+                            <ViewIds>{CCA2CAE4-216E-46B5-934E-D9112870F36F}</ViewIds>
+                            <RelationshipName>ts_ovs_operation_site_msdyn_functionallocati</RelationshipName>
                           </parameters>
                         </control>
                       </cell>
@@ -357,13 +365,6 @@
               </sections>
             </column>
           </columns>
-          <events>
-            <event name="tabstatechange" application="false" active="false">
-              <Handlers>
-                <Handler functionName="ROM.FunctionalLocation.SubGridFilterExecution" libraryName="msdyn_/FunctionalLocation/FunctionalLocation.Library.js" handlerUniqueId="{0f29e8d8-69cf-46b1-bfea-eeb7c814512f}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
-              </Handlers>
-            </event>
-          </events>
         </tab>
         <tab name="Work Orders" id="0dd6c25b-9534-408b-91c9-fd0f019cdbcc" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="2" solutionaction="Added">
           <labels>
@@ -408,7 +409,7 @@
                     </row>
                     <row />
                     <row />
-                    <row />
+                    <row height="auto" />
                   </rows>
                 </section>
               </sections>
@@ -458,7 +459,7 @@
                     </row>
                     <row />
                     <row />
-                    <row />
+                    <row height="auto" />
                   </rows>
                 </section>
               </sections>
@@ -508,7 +509,7 @@
                     </row>
                     <row />
                     <row />
-                    <row />
+                    <row height="auto" />
                   </rows>
                 </section>
               </sections>
@@ -529,7 +530,7 @@
                     <label description="JOURNAUX DE PROPRIÉTÉ" languagecode="1036" />
                   </labels>
                   <rows>
-                    <row height="auto">
+                    <row>
                       <cell locklevel="0" id="{82133a64-245c-4790-b614-31beb0181689}" rowspan="1" colspan="1" auto="true" ordinalvalue="10000">
                         <labels>
                           <label description="Property Log History" languagecode="1033" />
@@ -548,6 +549,7 @@
                         </control>
                       </cell>
                     </row>
+                    <row height="auto" />
                   </rows>
                 </section>
               </sections>
@@ -926,6 +928,28 @@
             </parameters>
           </customControl>
         </controlDescription>
+        <controlDescription forControl="{18dd7ccb-481b-44d8-b7a2-65362949bde2}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_lpdtounitedstates</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_lpdtounitedstates</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_lpdtounitedstates</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_lpdtounitedstates</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
       </controlDescriptions>
       <header id="{163ea3df-ebcb-477c-8912-3a3c14b62a87}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
         <rows>
@@ -951,7 +975,25 @@
         </rows>
       </header>
       <footer id="{88a644ea-0f70-4b1f-ba54-70abd90d154c}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
-        <rows />
+        <rows>
+          <row>
+            <cell id="{ee1a2654-6072-46ea-b0a3-cbdfbd8e4d1c}" ordinalvalue="10000">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{520733fe-abb8-41ea-abe4-0df3c2b8fb0d}" ordinalvalue="20001">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{2f3df3b8-474b-4a74-9531-eae794e3c205}" ordinalvalue="30002">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
       </footer>
       <Navigation solutionaction="Added">
         <NavBar />

@@ -704,6 +704,13 @@
                         </control>
                       </cell>
                     </row>
+                  </rows>
+                </section>
+                <section name="tab_findings_section_5" id="7e5d1397-041c-499b-9056-8ce150977a3b" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
                     <row>
                       <cell locklevel="0" id="{3ebbc923-aa8b-4251-b258-7b8b76ce18b2}" rowspan="15" colspan="1">
                         <labels>
@@ -734,6 +741,37 @@
                     <row />
                     <row />
                     <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+                <section name="tab_findings_section_4" id="5c3ccc03-aaa9-41cc-acbd-8cd84f8d147c" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{b5a9d413-09e7-4eaf-aa60-814ea8bf855a}" rowspan="4" colspan="1" auto="false">
+                        <labels>
+                          <label description="Enforcement Actions" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_5" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_enforcementaction</TargetEntityType>
+                            <ViewId>{22CE72F1-710B-47A6-9CD9-3A43DE3A9CAF}</ViewId>
+                            <ViewIds>{06453E41-8875-426F-AF88-CBF885E2050B},{22CE72F1-710B-47A6-9CD9-3A43DE3A9CAF}</ViewIds>
+                            <RelationshipName>ts_enforcementaction_Incident_Incident</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
                     <row />
                     <row />
                     <row />
@@ -2085,202 +2123,6 @@
           <customControl formFactor="2" name="MscrmControls.DeviceInsights.DeviceInsightsControl">
             <parameters>
               <Value>msdyn_iotalert</Value>
-            </parameters>
-          </customControl>
-        </controlDescription>
-        <controlDescription forControl="{4d5cad4c-40e6-9016-929d-901748a41c72}">
-          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}">
-            <parameters>
-              <datafieldname>ticketnumber</datafieldname>
-            </parameters>
-          </customControl>
-          <customControl formFactor="0" name="MscrmControls.Canvas.CanvasControl">
-            <parameters>
-              <record>ticketnumber</record>
-              <entityName static="true" type="SingleLine.Text">Case</entityName>
-              <appId static="true" type="SingleLine.Text">8a133cba-9e3b-4834-9e0a-dcf8930abaee</appId>
-            </parameters>
-          </customControl>
-          <customControl formFactor="1" name="MscrmControls.Canvas.CanvasControl">
-            <parameters>
-              <record>ticketnumber</record>
-              <entityName static="true" type="SingleLine.Text">Case</entityName>
-              <appId static="true" type="SingleLine.Text">8a133cba-9e3b-4834-9e0a-dcf8930abaee</appId>
-            </parameters>
-          </customControl>
-          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
-            <parameters>
-              <record>ticketnumber</record>
-              <entityName static="true" type="SingleLine.Text">Case</entityName>
-              <appId static="true" type="SingleLine.Text">8a133cba-9e3b-4834-9e0a-dcf8930abaee</appId>
-            </parameters>
-          </customControl>
-        </controlDescription>
-        <controlDescription forControl="{8511c895-9d86-e94a-437c-24da84780e8e}">
-          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="0">
-            <parameters>
-              <datafieldname>title</datafieldname>
-            </parameters>
-          </customControl>
-          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" formFactor="1">
-            <parameters>
-              <datafieldname>title</datafieldname>
-            </parameters>
-          </customControl>
-          <customControl formFactor="2" name="MscrmControls.Canvas.CanvasControl">
-            <parameters>
-              <record>title</record>
-              <entityName static="true" type="SingleLine.Text">Case</entityName>
-              <appId static="true" type="SingleLine.Text">8a133cba-9e3b-4834-9e0a-dcf8930abaee</appId>
-            </parameters>
-          </customControl>
-        </controlDescription>
-        <controlDescription forControl="{0c50b180-26ac-631a-b6d7-bec9d2c84cb4}">
-          <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" formFactor="0">
-            <parameters>
-              <ViewId>{2583F0B3-137E-EC11-8D20-0022483CBF0E}</ViewId>
-              <IsUserView>false</IsUserView>
-              <RelationshipName>ovs_incident_ovs_finding</RelationshipName>
-              <TargetEntityType>ovs_finding</TargetEntityType>
-              <AutoExpand>Fixed</AutoExpand>
-              <EnableQuickFind>false</EnableQuickFind>
-              <EnableViewPicker>false</EnableViewPicker>
-              <ViewIds>{9711D0C3-7FCC-46DA-A259-A722BA88AF4D},{2583F0B3-137E-EC11-8D20-0022483CBF0E}</ViewIds>
-              <EnableJumpBar>false</EnableJumpBar>
-              <ChartGridMode>All</ChartGridMode>
-              <VisualizationId />
-              <IsUserChart>false</IsUserChart>
-              <EnableChartPicker>true</EnableChartPicker>
-              <RecordsPerPage>4</RecordsPerPage>
-              <HeaderColorCode>#F3F3F3</HeaderColorCode>
-            </parameters>
-          </customControl>
-          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
-            <parameters>
-              <data-set name="Grid">
-                <ViewId>{2583F0B3-137E-EC11-8D20-0022483CBF0E}</ViewId>
-                <columnsDefaultView>
-                  <cell entityName="ovs_finding" viewId="{2583F0B3-137E-EC11-8D20-0022483CBF0E}" attributeName="ts_ncatactualorpotentialharm">
-                    <DefaultViewId>{3F058D92-1F7E-EC11-8D20-0022483CBF0E}</DefaultViewId>
-                    <DependentAttributeType>systemuser</DependentAttributeType>
-                    <AllowFilterOff>false</AllowFilterOff>
-                    <DisableQuickFind>false</DisableQuickFind>
-                  </cell>
-                  <cell entityName="ovs_finding" viewId="{2583F0B3-137E-EC11-8D20-0022483CBF0E}" attributeName="ts_ncatintentionality">
-                    <DefaultViewId>{DDE6CAF6-1F7E-EC11-8D20-0022483CBF0E}</DefaultViewId>
-                    <DependentAttributeType>systemuser</DependentAttributeType>
-                    <AllowFilterOff>false</AllowFilterOff>
-                    <DisableQuickFind>false</DisableQuickFind>
-                  </cell>
-                  <cell entityName="ovs_finding" viewId="{2583F0B3-137E-EC11-8D20-0022483CBF0E}" attributeName="ts_ncatcompliancehistory">
-                    <DefaultViewId>{6AEAD01D-207E-EC11-8D20-0022483CBF0E}</DefaultViewId>
-                    <DependentAttributeType>systemuser</DependentAttributeType>
-                    <AllowFilterOff>false</AllowFilterOff>
-                    <DisableQuickFind>false</DisableQuickFind>
-                  </cell>
-                  <cell entityName="ovs_finding" viewId="{2583F0B3-137E-EC11-8D20-0022483CBF0E}" attributeName="ts_ncateconomicbenefit">
-                    <DefaultViewId>{5B61023F-207E-EC11-8D20-0022483CBF0E}</DefaultViewId>
-                    <DependentAttributeType>systemuser</DependentAttributeType>
-                    <AllowFilterOff>false</AllowFilterOff>
-                    <DisableQuickFind>false</DisableQuickFind>
-                  </cell>
-                  <cell entityName="ovs_finding" viewId="{2583F0B3-137E-EC11-8D20-0022483CBF0E}" attributeName="ts_ncatmitigationofnoncompliantbehaviors">
-                    <DefaultViewId>{D2AA5B6F-207E-EC11-8D20-0022483CBF0E}</DefaultViewId>
-                    <DependentAttributeType>systemuser</DependentAttributeType>
-                    <AllowFilterOff>false</AllowFilterOff>
-                    <DisableQuickFind>false</DisableQuickFind>
-                  </cell>
-                  <cell entityName="ovs_finding" viewId="{2583F0B3-137E-EC11-8D20-0022483CBF0E}" attributeName="ts_ncatcooperationwithinspectionorinvestigat">
-                    <DefaultViewId>{A62FBD8D-207E-EC11-8D20-0022483D65D3}</DefaultViewId>
-                    <DependentAttributeType>systemuser</DependentAttributeType>
-                    <AllowFilterOff>false</AllowFilterOff>
-                    <DisableQuickFind>false</DisableQuickFind>
-                  </cell>
-                  <cell entityName="ovs_finding" viewId="{2583F0B3-137E-EC11-8D20-0022483CBF0E}" attributeName="ts_ncatdetectionofnoncompliances">
-                    <DefaultViewId>{CA8054AD-207E-EC11-8D20-0022483D65D3}</DefaultViewId>
-                    <DependentAttributeType>systemuser</DependentAttributeType>
-                    <AllowFilterOff>false</AllowFilterOff>
-                    <DisableQuickFind>false</DisableQuickFind>
-                  </cell>
-                </columnsDefaultView>
-                <IsUserView>false</IsUserView>
-                <RelationshipName>ovs_incident_ovs_finding</RelationshipName>
-                <TargetEntityType>ovs_finding</TargetEntityType>
-                <EnableViewPicker>false</EnableViewPicker>
-                <FilteredViewIds>{9711D0C3-7FCC-46DA-A259-A722BA88AF4D},{2583F0B3-137E-EC11-8D20-0022483CBF0E}</FilteredViewIds>
-              </data-set>
-              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
-              <EnableEditing static="true" type="Enum">yes</EnableEditing>
-              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
-              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
-              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
-              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
-              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
-              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
-            </parameters>
-          </customControl>
-          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
-            <parameters>
-              <data-set name="Grid">
-                <ViewId>{2583F0B3-137E-EC11-8D20-0022483CBF0E}</ViewId>
-                <columnsDefaultView>
-                  <cell entityName="ovs_finding" viewId="{2583F0B3-137E-EC11-8D20-0022483CBF0E}" attributeName="ts_ncatactualorpotentialharm">
-                    <DefaultViewId>{3F058D92-1F7E-EC11-8D20-0022483CBF0E}</DefaultViewId>
-                    <DependentAttributeType>systemuser</DependentAttributeType>
-                    <AllowFilterOff>false</AllowFilterOff>
-                    <DisableQuickFind>false</DisableQuickFind>
-                  </cell>
-                  <cell entityName="ovs_finding" viewId="{2583F0B3-137E-EC11-8D20-0022483CBF0E}" attributeName="ts_ncatintentionality">
-                    <DefaultViewId>{DDE6CAF6-1F7E-EC11-8D20-0022483CBF0E}</DefaultViewId>
-                    <DependentAttributeType>systemuser</DependentAttributeType>
-                    <AllowFilterOff>false</AllowFilterOff>
-                    <DisableQuickFind>false</DisableQuickFind>
-                  </cell>
-                  <cell entityName="ovs_finding" viewId="{2583F0B3-137E-EC11-8D20-0022483CBF0E}" attributeName="ts_ncatcompliancehistory">
-                    <DefaultViewId>{6AEAD01D-207E-EC11-8D20-0022483CBF0E}</DefaultViewId>
-                    <DependentAttributeType>systemuser</DependentAttributeType>
-                    <AllowFilterOff>false</AllowFilterOff>
-                    <DisableQuickFind>false</DisableQuickFind>
-                  </cell>
-                  <cell entityName="ovs_finding" viewId="{2583F0B3-137E-EC11-8D20-0022483CBF0E}" attributeName="ts_ncateconomicbenefit">
-                    <DefaultViewId>{5B61023F-207E-EC11-8D20-0022483CBF0E}</DefaultViewId>
-                    <DependentAttributeType>systemuser</DependentAttributeType>
-                    <AllowFilterOff>false</AllowFilterOff>
-                    <DisableQuickFind>false</DisableQuickFind>
-                  </cell>
-                  <cell entityName="ovs_finding" viewId="{2583F0B3-137E-EC11-8D20-0022483CBF0E}" attributeName="ts_ncatmitigationofnoncompliantbehaviors">
-                    <DefaultViewId>{D2AA5B6F-207E-EC11-8D20-0022483CBF0E}</DefaultViewId>
-                    <DependentAttributeType>systemuser</DependentAttributeType>
-                    <AllowFilterOff>false</AllowFilterOff>
-                    <DisableQuickFind>false</DisableQuickFind>
-                  </cell>
-                  <cell entityName="ovs_finding" viewId="{2583F0B3-137E-EC11-8D20-0022483CBF0E}" attributeName="ts_ncatcooperationwithinspectionorinvestigat">
-                    <DefaultViewId>{A62FBD8D-207E-EC11-8D20-0022483D65D3}</DefaultViewId>
-                    <DependentAttributeType>systemuser</DependentAttributeType>
-                    <AllowFilterOff>false</AllowFilterOff>
-                    <DisableQuickFind>false</DisableQuickFind>
-                  </cell>
-                  <cell entityName="ovs_finding" viewId="{2583F0B3-137E-EC11-8D20-0022483CBF0E}" attributeName="ts_ncatdetectionofnoncompliances">
-                    <DefaultViewId>{CA8054AD-207E-EC11-8D20-0022483D65D3}</DefaultViewId>
-                    <DependentAttributeType>systemuser</DependentAttributeType>
-                    <AllowFilterOff>false</AllowFilterOff>
-                    <DisableQuickFind>false</DisableQuickFind>
-                  </cell>
-                </columnsDefaultView>
-                <IsUserView>false</IsUserView>
-                <RelationshipName>ovs_incident_ovs_finding</RelationshipName>
-                <TargetEntityType>ovs_finding</TargetEntityType>
-                <EnableViewPicker>false</EnableViewPicker>
-                <FilteredViewIds>{9711D0C3-7FCC-46DA-A259-A722BA88AF4D},{2583F0B3-137E-EC11-8D20-0022483CBF0E}</FilteredViewIds>
-              </data-set>
-              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
-              <EnableEditing static="true" type="Enum">yes</EnableEditing>
-              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
-              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
-              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
-              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
-              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
-              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
             </parameters>
           </customControl>
         </controlDescription>

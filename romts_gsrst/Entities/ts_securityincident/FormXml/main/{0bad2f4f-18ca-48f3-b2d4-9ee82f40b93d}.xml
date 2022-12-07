@@ -76,20 +76,6 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{b23a05ae-50e0-4229-b7e7-4545bad7c3c9}" showlabel="true" locklevel="1" visible="false">
-                        <labels>
-                          <label description="Owner" languagecode="1033" />
-                          <label description="Propriétaire" languagecode="1036" />
-                        </labels>
-                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" uniqueid="{1ee1c8b9-b786-bda3-84d6-b3c3c6924570}" disabled="false">
-                          <parameters>
-                            <AutoResolve>true</AutoResolve>
-                            <DisableMru>false</DisableMru>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                    <row>
                       <cell id="{e781bb81-a9c8-0027-977c-6024b7eb2a77}" showlabel="true" locklevel="1" visible="false">
                         <labels>
                           <label description="Status" languagecode="1033" />
@@ -110,7 +96,7 @@
                       <cell id="{357589a6-a3a2-4d98-3441-ab68ae222d79}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Reporting Company" languagecode="1033" />
-                          <label description="Stakeholder" languagecode="1036" />
+                          <label description="Société déclarante" languagecode="1036" />
                         </labels>
                         <control id="ts_stakeholder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_stakeholder" disabled="false" uniqueid="{9d272b12-9605-21c3-8d90-8843d2135b92}">
                           <parameters>
@@ -199,7 +185,7 @@
                       <cell id="{77947be9-7193-49a4-d73c-db854e8938c6}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Time taken for Stakeholder to Report" languagecode="1033" />
-                          <label description="Time taken for Stakeholder to Report" languagecode="1036" />
+                          <label description="Différence de temps" languagecode="1036" />
                         </labels>
                         <control id="ts_timetakenforstakeholdertoreport" classid="{AA987274-CE4E-4271-A803-66164311A958}" datafieldname="ts_timetakenforstakeholdertoreport" disabled="false" uniqueid="{6b7a1790-0ebc-3532-3e78-0e2995c49097}" />
                       </cell>
@@ -271,6 +257,14 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{705dcec2-9145-7a25-7712-475129974eb5}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Marker Post" languagecode="1033" />
+                        </labels>
+                        <control id="ts_markerpost" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_markerpost" disabled="true" uniqueid="{d4b79644-ea24-136e-bd86-8bb296c1932d}" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{0cda03ab-14c4-3724-0d3b-49c93578028a}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Latitude" languagecode="1033" />
@@ -310,7 +304,7 @@
                       <cell id="{c82cb255-ac08-6e98-cba5-42ee3d33477e}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Yard Or Station Name" languagecode="1033" />
-                          <label description="Yard Or Station Name" languagecode="1036" />
+                          <label description="Nom de triage ou de station" languagecode="1036" />
                         </labels>
                         <control id="ts_yardorstationname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_yardorstationname" disabled="true" uniqueid="{3a7565c1-4a72-d640-4a87-d138b17b9a24}" />
                       </cell>
@@ -412,7 +406,7 @@
                       <cell id="{8b02d7ac-6dd8-4774-a6b4-df28e7ff1f1e}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
                           <label description="Bridge Closure" languagecode="1033" />
-                          <label description="Bridge Closure" languagecode="1036" />
+                          <label description="Fermeture de pont" languagecode="1036" />
                         </labels>
                         <control id="ts_bridgeclosure" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_bridgeclosure" disabled="false" />
                       </cell>
@@ -421,7 +415,7 @@
                       <cell id="{30d1565a-3591-423b-938a-bab577aaae51}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
                           <label description="Damages to IBT property" languagecode="1033" />
-                          <label description="Damages to IBT property" languagecode="1036" />
+                          <label description=" Dommage aux biens des PTI" languagecode="1036" />
                         </labels>
                         <control id="ts_damagestoibtproperty" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_damagestoibtproperty" disabled="false" />
                       </cell>
@@ -647,7 +641,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -690,10 +684,12 @@
                 <label description="" languagecode="1033" />
               </labels>
             </cell>
-            <cell id="{328053d4-f80e-4d05-96fe-22c43b317f25}" showlabel="false">
+            <cell id="{9d58180e-91b3-db12-176c-9e4c53a67aad}" showlabel="true" locklevel="0">
               <labels>
-                <label description="" languagecode="1033" />
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
               </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
             </cell>
           </row>
         </rows>

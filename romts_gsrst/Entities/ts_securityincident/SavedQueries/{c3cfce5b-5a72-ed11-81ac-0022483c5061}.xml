@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{c3cfce5b-5a72-ed11-81ac-0022483c5061}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_securityincidentid">
+          <cell name="ts_name" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_tcomsid" width="100" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_tcomsofficer" width="100" />
+          <cell name="ts_mode" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_securityincidenttype" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_targetelement" width="100" />
+          <cell name="ts_stakeholder" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_incidentdatetime" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_reporteddatetime" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_yardorstationname" width="100" />
+          <cell name="ts_site" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="ts_securityincident">
+          <attribute name="ts_name" />
+          <attribute name="ts_tcomsid" />
+          <attribute name="ts_stakeholder" />
+          <attribute name="ts_site" />
+          <attribute name="ts_tcomsofficer" />
+          <attribute name="ts_mode" />
+          <attribute name="ts_securityincidenttype" />
+          <attribute name="ts_targetelement" />
+          <attribute name="ts_incidentdatetime" />
+          <attribute name="ts_reporteddatetime" />
+          <attribute name="ts_yardorstationname" />
+          <order attribute="ts_name" descending="true" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="ownerid" operator="eq-userid" />
+          </filter>
+          <attribute name="ts_securityincidentid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20221130.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="My Security Incidents" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
