@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{f88f3bcb-6a76-ed11-81ac-0022483d5ee0}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" preview="1" icon="1">
+        <row name="result" id="ts_securityincidenttypeid">
+          <cell name="ts_name" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="ts_securityincidenttype">
+          <attribute name="ts_name" />
+          <order attribute="ts_name" descending="false" />
+          <filter type="and">
+            <filter type="or">
+              <condition attribute="ownerid" operator="eq" uiname="Transport Canada" uitype="team" value="{C7432C33-29A1-EB11-B1AC-000D3AE8BBE0}" />
+              <condition attribute="ownerid" operator="eq" uiname="Aviation Security" uitype="team" value="{E2E3910D-A41F-EC11-B6E6-0022483CB5C7}" />
+            </filter>
+          </filter>
+          <attribute name="ts_securityincidenttypeid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20221207.3</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Security Incident Type Lookup - AvSec" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

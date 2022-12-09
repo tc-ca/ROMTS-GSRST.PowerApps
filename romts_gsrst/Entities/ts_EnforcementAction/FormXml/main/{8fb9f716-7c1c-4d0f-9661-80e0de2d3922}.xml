@@ -75,10 +75,19 @@
                     <row />
                     <row />
                     <row>
-                      <cell locklevel="0" id="{6ae5c3c2-51b8-4c81-9ce8-df8f6556cefe}">
+                      <cell id="{5d42172f-7a04-42b1-bb68-1e79e458a75f}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Is an elevated enforcement action required?" languagecode="1033" />
                         </labels>
+                        <control id="ts_elevatedenforcementactionrequired" classid="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}" datafieldname="ts_elevatedenforcementactionrequired" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ac7ea848-19bf-47a7-b7d6-5f851d58ad0f}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Justification" languagecode="1033" />
+                        </labels>
+                        <control id="ts_justificationelevatedenforcementaction" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_justificationelevatedenforcementaction" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -267,6 +276,11 @@
         <event name="onchange" application="false" active="false" attribute="ts_typeofenforcementaction">
           <Handlers>
             <Handler functionName="ROM.EnforcementAction.typeOnChange" libraryName="ts_/js/EnforcementAction.js" handlerUniqueId="{283290b5-b89e-484c-abd0-418a4821d9c8}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_elevatedenforcementactionrequired">
+          <Handlers>
+            <Handler functionName="ROM.EnforcementAction.elevatedEnforcementActionRequiredOnChange" libraryName="ts_/js/EnforcementAction.js" handlerUniqueId="{9eb13ea0-16c2-45fa-8bd2-1441d3921ce2}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

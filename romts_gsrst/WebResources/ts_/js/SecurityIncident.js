@@ -11,6 +11,8 @@ var ROM;
                 if (mode.getValue() == 717750001 /* InternationalBridgesandTunnels */) {
                     formContext.getControl("ts_bridgeclosure").setVisible(true);
                     formContext.getControl("ts_damagestoibtproperty").setVisible(true);
+                    formContext.getControl("ts_ruralorurban").setVisible(false);
+                    formContext.getControl("ts_publicorprivatecrossing").setVisible(false);
                     //Retrieve IBT locations
                     var ibtLocationFetchXML = [
                         "<fetch>",
@@ -28,6 +30,12 @@ var ROM;
                     var layoutXmlContact = '<grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1" object="10117"><row name="result" id="msdyn_functionallocationid"><cell name="msdyn_name" width="300" /><cell name="createdon" width="125" /></row></grid>';
                     var viewDisplayName = "Site";
                     formContext.getControl("ts_site").addCustomView(viewIBTLocationId, "msdyn_functionallocation", viewDisplayName, ibtLocationFetchXML, layoutXmlContact, true);
+                }
+                if (mode.getValue() == 717750002 /* AviationSecurity */) {
+                    formContext.getControl("ts_securityincidenttype").setDefaultView("f88f3bcb-6a76-ed11-81ac-0022483d5ee0");
+                }
+                else {
+                    formContext.getControl("ts_securityincidenttype").setDefaultView("b8d91bb4-6776-ed11-81ac-0022483d5ee0");
                 }
             }
         }
@@ -71,6 +79,8 @@ var ROM;
             if (mode.getValue() == 717750001 /* InternationalBridgesandTunnels */) {
                 form.getControl("ts_bridgeclosure").setVisible(true);
                 form.getControl("ts_damagestoibtproperty").setVisible(true);
+                form.getControl("ts_ruralorurban").setVisible(false);
+                form.getControl("ts_publicorprivatecrossing").setVisible(false);
                 //Retrieve IBT locations
                 var ibtLocationFetchXML = [
                     "<fetch>",
@@ -93,9 +103,19 @@ var ROM;
             else {
                 form.getControl("ts_bridgeclosure").setVisible(false);
                 form.getControl("ts_damagestoibtproperty").setVisible(false);
+                form.getControl("ts_ruralorurban").setVisible(true);
+                form.getControl("ts_publicorprivatecrossing").setVisible(true);
                 // Set default view
                 form.getControl("ts_site").setDefaultView("57f1ece8-04ac-4178-b2bd-cbd292d2ecc4");
                 form.getAttribute("ts_site").setValue(null);
+            }
+            if (mode.getValue() == 717750002 /* AviationSecurity */) {
+                form.getControl("ts_securityincidenttype").setDefaultView("f88f3bcb-6a76-ed11-81ac-0022483d5ee0");
+                form.getAttribute("ts_securityincidenttype").setValue(null);
+            }
+            else {
+                form.getControl("ts_securityincidenttype").setDefaultView("b8d91bb4-6776-ed11-81ac-0022483d5ee0");
+                form.getAttribute("ts_securityincidenttype").setValue(null);
             }
         }
         SecurityIncident.modeOnChange = modeOnChange;
