@@ -535,7 +535,7 @@ function createEnforcementAction(findingGUIDs, primaryControl){
                     Xrm.Navigation.navigateTo(pageInput, navigationOptions).then(
                         function success() {
                             // Run code on success
-                            primaryControl.getControl("EnforcementActionTimeline").refresh();
+                            primaryControl.getControl("Subgrid_EnforcementAction").refresh();                               
                         },
                         function error() {
                             // Handle errors
