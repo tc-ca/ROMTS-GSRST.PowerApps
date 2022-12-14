@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20221214.1</Version>
+    <Version>1.0.20221214.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -251,6 +251,7 @@
       <RootComponent type="1" schemaName="ts_tripinspection" behavior="0" />
       <RootComponent type="1" schemaName="ts_tripinspectionbatchadd" behavior="0" />
       <RootComponent type="1" schemaName="ts_tripinspector" behavior="0" />
+      <RootComponent type="1" schemaName="ts_userregistration" behavior="0" />
       <RootComponent type="1" schemaName="ts_workorderactivitytype" behavior="0" />
       <RootComponent type="1" schemaName="ts_workordercreationwizard" behavior="0" />
       <RootComponent type="1" schemaName="uom" behavior="1" />
@@ -688,6 +689,10 @@
       <RootComponent type="300" schemaName="ts_tripsinspections_6b903" behavior="0" />
     </RootComponents>
     <MissingDependencies>
+      <MissingDependency>
+        <Required type="1" schemaName="aaduser" displayName="AAD User" solution="MetadataExtension (1.0.2.29)" />
+        <Dependent type="10" schemaName="ts_UserRegistration_aaduser_aaduser" displayName="ts_UserRegistration_aaduser_aaduser" parentSchemaName="aaduser" parentDisplayName="AAD User" />
+      </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="appusersetting" displayName="Model-Driven App User Setting" solution="AppModule (9.1.22112.221109001)" />
         <Dependent type="1" schemaName="systemuser" displayName="User" />
@@ -3500,10 +3505,6 @@
         <Dependent type="1" schemaName="territory" displayName="Region" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="ts_userregistration" displayName="User Registration" solution="Active" />
-        <Dependent type="1" schemaName="businessunit" displayName="Business Unit" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="1" schemaName="uom" displayName="Unit" solution="msdynce_ProductManagement (9.0.4.0066)">
           <package>msdynce_ProductManagementAnchor (9.0.22112.10003)</package>
         </Required>
@@ -3985,7 +3986,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.79.32)">
           <package>FieldService_Anchor (8.8.79.32)</package>
         </Required>
-        <Dependent type="10" schemaName="bookableresource_bookableresourcebooking_Resource" displayName="bookableresource_bookableresourcebooking_Resource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.79.32)">
@@ -7154,13 +7155,13 @@
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.79.32)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.79.32)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_systemuser_msdyn_purchaseorder_ApprovedRejectedBy" displayName="msdyn_systemuser_msdyn_purchaseorder_ApprovedRejectedBy" parentSchemaName="systemuser" parentDisplayName="User" solution="FieldService (8.8.0.88)">
@@ -7376,6 +7377,14 @@
       <MissingDependency>
         <Required type="161" displayName="ROMTS-GSRST - Offline Profile" solution="Active" id="{8ce77666-a132-ec11-b6e6-0022483ccc0c}" />
         <Dependent type="80" schemaName="ovs_ROM" displayName="ROM" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="aaduserid" displayName="AAD user id" parentSchemaName="aaduser" parentDisplayName="AAD User" solution="MetadataExtension (1.0.2.29)" />
+        <Dependent type="10" schemaName="ts_UserRegistration_aaduser_aaduser" displayName="ts_UserRegistration_aaduser_aaduser" parentSchemaName="aaduser" parentDisplayName="AAD User" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="displayname" displayName="Display Name" parentSchemaName="aaduser" parentDisplayName="AAD User" solution="MetadataExtension (1.0.2.29)" />
+        <Dependent type="10" schemaName="ts_UserRegistration_aaduser_aaduser" displayName="ts_UserRegistration_aaduser_aaduser" parentSchemaName="aaduser" parentDisplayName="AAD User" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="defaultpricelevelid" displayName="Price List" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_ProductManagement (9.0.4.0066)">
@@ -19695,6 +19704,10 @@
           <package>msdyn_ServiceExtendedAnchor (9.0.22112.1016)</package>
         </Required>
         <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="ts_UserRegistration.js" displayName="ts_UserRegistration.js" solution="Active" />
+        <Dependent type="60" displayName="Information" parentDisplayName="User Registration" id="{e7c5c9cc-f283-4c26-a67d-3ae214eb685a}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2211.3014)" />
