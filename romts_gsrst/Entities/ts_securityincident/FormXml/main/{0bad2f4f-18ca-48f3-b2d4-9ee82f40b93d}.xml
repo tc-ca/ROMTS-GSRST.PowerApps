@@ -357,12 +357,11 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{e7215eb7-e6fe-4da5-8f4b-05eb00340c48}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                      <cell id="{3264d118-ba0a-493e-9abd-992c70921b6c}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
                         <labels>
-                          <label description="Delays Date and Time" languagecode="1033" />
-                          <label description="Temps" languagecode="1036" />
+                          <label description="Delay Duration" languagecode="1033" />
                         </labels>
-                        <control id="ts_delaystooperationtime" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_delaystooperationtime" disabled="false" />
+                        <control id="ts_delayduration" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_delayduration" disabled="false" uniqueid="{19b664e8-9899-8368-ad37-703cb1e0b487}" />
                       </cell>
                     </row>
                     <row>
@@ -691,7 +690,33 @@
           </NavBarArea>
         </NavBarAreas>
       </Navigation>
-      <controlDescriptions />
+      <controlDescriptions>
+        <controlDescription forControl="{19b664e8-9899-8368-ad37-703cb1e0b487}">
+          <customControl id="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}">
+            <parameters>
+              <datafieldname>ts_delayduration</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="ts_Pickers.DuractionPicker">
+            <parameters>
+              <duration>ts_delayduration</duration>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="ts_Pickers.DuractionPicker">
+            <parameters>
+              <duration>ts_delayduration</duration>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="ts_Pickers.DuractionPicker">
+            <parameters>
+              <duration>ts_delayduration</duration>
+              <msinternal.isvisibleinmocaonly static="true">true</msinternal.isvisibleinmocaonly>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
       <header id="{f100c587-b57e-461b-bae8-ce269944b7d6}" celllabelposition="Top" columns="1111" labelwidth="115" celllabelalignment="Left">
         <rows>
           <row>
