@@ -482,89 +482,93 @@ function createEnforcementAction(findingGUIDs, primaryControl) {
         //    return finalEnforcementAction.finalEnforcementAction;
         //});
 
-        const groupBy = key => findingRows =>
-            findingRows.reduce((objectsByKeyValue, obj) => {
-                const value = obj[key];
-                objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
-                return objectsByKeyValue;
-            }, {});
-        const byFinalEnforcementAction = groupBy('ts_enforcementaction');
-        byFinalEnforcementAction.forEach(function (findingRow) {
-            //const findingFinalEnforcementAction = findingRow.getAttribute("ts_finalenforcementaction").getValue();
-            var data =
-            {
-                "ts_Incident_ts_enforcementaction@odata.bind": `/incidents(${caseId})`,
-                "ts_typeofenforcementaction":  getTypeOfEnforcementActionValueInEntity(findingRow.getAttribute("ts_finalenforcementaction").getValue()),
-                "regardingobjectid_incident_ts_enforcementaction@odata.bind": `/incidents(${caseId})`
-            }
-            Xrm.WebApi.createRecord("ts_enforcementaction", data).then(
+        //const groupBy = key => findingRows =>
+        //    findingRows.reduce((objectsByKeyValue, obj) => {
+        //        const value = obj[key];
+        //        objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
+        //        return objectsByKeyValue;
+        //    }, {});
+        //const byFinalEnforcementAction = groupBy('ts_enforcementaction');
 
-                function (newEnforcementAction) {
-                    let relatedFindings = [];
-                    for (let findingGUID of findingGUIDs) {
-                        relatedFindings.push({
-                            entityType: "ovs_finding",
-                            id: findingGUID
-                        });
-                    }
-                    const oneToManyAssociateRequest = {
-                        getMetadata: () => ({
-                            boundParameter: null,
-                            parameterTypes: {},
-                            operationType: 2,
-                            operationName: "Associate"
-                        }),
+        const groupedPeople = groupBy(findingRows, 'ts_enforcementaction');
+        console.log(groupedPeople);
 
-                        relationship: "ts_enforcementaction_ts_enforcementaction",
+        //transformArray.forEach(function (findingRow) {
+        //    //const findingFinalEnforcementAction = findingRow.getAttribute("ts_finalenforcementaction").getValue();
+        //    var data =
+        //    {
+        //        "ts_Incident_ts_enforcementaction@odata.bind": `/incidents(${caseId})`,
+        //        "ts_typeofenforcementaction":  getTypeOfEnforcementActionValueInEntity(findingRow.getAttribute("ts_finalenforcementaction").getValue()),
+        //        "regardingobjectid_incident_ts_enforcementaction@odata.bind": `/incidents(${caseId})`
+        //    }
+        //    Xrm.WebApi.createRecord("ts_enforcementaction", data).then(
 
-                        target: {
-                            entityType: "ts_enforcementaction",
-                            id: newEnforcementAction.id
-                        },
+        //        function (newEnforcementAction) {
+        //            let relatedFindings = [];
+        //            for (let findingGUID of findingGUIDs) {
+        //                relatedFindings.push({
+        //                    entityType: "ovs_finding",
+        //                    id: findingGUID
+        //                });
+        //            }
+        //            const oneToManyAssociateRequest = {
+        //                getMetadata: () => ({
+        //                    boundParameter: null,
+        //                    parameterTypes: {},
+        //                    operationType: 2,
+        //                    operationName: "Associate"
+        //                }),
 
-                        relatedEntities: relatedFindings
-                    }
+        //                relationship: "ts_enforcementaction_ts_enforcementaction",
 
-                    Xrm.WebApi.online.execute(oneToManyAssociateRequest).then(
-                        (success) => {
-                            console.log("Success", success);
+        //                target: {
+        //                    entityType: "ts_enforcementaction",
+        //                    id: newEnforcementAction.id
+        //                },
 
-                            //var pageInput = {
-                            //    pageType: "entityrecord",
-                            //    entityName: "ts_enforcementaction",
-                            //    entityId: newEnforcementAction.id
-                            //};
-                            //var navigationOptions = {
-                            //    target: 2,
-                            //    height: {
-                            //        value: 100, unit: "%"
-                            //    },
-                            //    width: {
-                            //        value: 80, unit: "%"
-                            //    },
-                            //    position: 1
-                            //};
-                            ////Open finding record
-                            //Xrm.Navigation.navigateTo(pageInput, navigationOptions).then(
-                            //    function success() {
-                            //        // Run code on success
-                            //        primaryControl.getControl("Subgrid_EnforcementAction").refresh();
-                            //    },
-                            //    function error() {
-                            //        // Handle errors
-                            //    }
-                            //);
-                        },
-                        (error) => {
-                            console.log("Error", error);
-                        }
-                    )
-                },
-                function (error) {
-                    console.log(error.message);
-                });
+        //                relatedEntities: relatedFindings
+        //            }
 
-        });
+        //            Xrm.WebApi.online.execute(oneToManyAssociateRequest).then(
+        //                (success) => {
+        //                    console.log("Success", success);
+
+        //                    //var pageInput = {
+        //                    //    pageType: "entityrecord",
+        //                    //    entityName: "ts_enforcementaction",
+        //                    //    entityId: newEnforcementAction.id
+        //                    //};
+        //                    //var navigationOptions = {
+        //                    //    target: 2,
+        //                    //    height: {
+        //                    //        value: 100, unit: "%"
+        //                    //    },
+        //                    //    width: {
+        //                    //        value: 80, unit: "%"
+        //                    //    },
+        //                    //    position: 1
+        //                    //};
+        //                    ////Open finding record
+        //                    //Xrm.Navigation.navigateTo(pageInput, navigationOptions).then(
+        //                    //    function success() {
+        //                    //        // Run code on success
+        //                    //        primaryControl.getControl("Subgrid_EnforcementAction").refresh();
+        //                    //    },
+        //                    //    function error() {
+        //                    //        // Handle errors
+        //                    //    }
+        //                    //);
+        //                },
+        //                (error) => {
+        //                    console.log("Error", error);
+        //                }
+        //            )
+        //        },
+        //        function (error) {
+        //            console.log(error.message);
+        //        });
+
+        //});
     }
     else {
 
@@ -642,6 +646,18 @@ function createEnforcementAction(findingGUIDs, primaryControl) {
             function (error) {
                 console.log(error.message);
             });
+    }
+
+    function groupBy(findingRows, property) {
+        return new Array.from(Set(findingRows)).reduce((acc, obj) => {
+            const key = obj[property];
+            if (!acc[key]) {
+                acc[key] = [];
+            }
+            // Add object to list for given key's value
+            acc[key].push(obj);
+            return acc;
+        }, {});
     }
 }
 
