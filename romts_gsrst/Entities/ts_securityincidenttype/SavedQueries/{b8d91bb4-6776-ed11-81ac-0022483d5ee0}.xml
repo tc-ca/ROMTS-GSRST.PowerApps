@@ -21,7 +21,10 @@
           <attribute name="ts_name" />
           <order attribute="ts_name" descending="false" />
           <filter type="and">
-            <condition attribute="ownerid" operator="eq" uiname="Transport Canada (data)" uitype="team" value="{B1E6EB3D-F91A-EC11-B6E6-000D3A09E509}" />
+            <filter type="or">
+              <condition attribute="ownerid" operator="eq" uiname="Transport Canada (data)" uitype="team" value="{B1E6EB3D-F91A-EC11-B6E6-000D3A09E509}" />
+              <condition attribute="ownerid" operator="eq" uiname="Intermodal Surface Security Oversight (ISSO)" uitype="team" value="{478513C3-B426-EC11-B6E6-000D3AF4F86F}" />
+            </filter>
           </filter>
           <attribute name="ts_securityincidenttypeid" />
         </entity>
@@ -29,7 +32,7 @@
     </fetchxml>
     <IntroducedVersion>1.0.20221207.3</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Security Incident Type Lookup - TC" languagecode="1033" />
+      <LocalizedName description="Security Incident Type Lookup - ISSO" languagecode="1033" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

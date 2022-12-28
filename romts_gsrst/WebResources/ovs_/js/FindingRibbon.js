@@ -244,14 +244,14 @@ function RATEHideManagerReviewSection(primaryControl) {
     formContext.getControl("ts_ratemanagerenforcementjustification").setVisible(false);
 }
 
-function isAvSecBusinessUnit() {
+async function isAvSecBusinessUnit() {
     let userId = Xrm.Utility.getGlobalContext().userSettings.userId;
     let currentUserBusinessUnitFetchXML = [
         "<fetch top='50'>",
         "  <entity name='businessunit'>",
         "    <attribute name='name' />",
         "    <attribute name='businessunitid' />",
-        "    <link-entity name='systemuser' from='businessunitid' to='businessunitid'>",
+        "    <link-entity name='systemuser' from='businessunitid' to='businessunitid' link-type='inner' alias='ab'>>",
         "      <filter>",
         "        <condition attribute='systemuserid' operator='eq' value='", userId, "'/>",
         "      </filter>",
@@ -260,13 +260,11 @@ function isAvSecBusinessUnit() {
         "</fetch>",
     ].join("");
     currentUserBusinessUnitFetchXML = "?fetchXml=" + encodeURIComponent(currentUserBusinessUnitFetchXML);
-    Xrm.WebApi.retrieveMultipleRecords("businessunit", currentUserBusinessUnitFetchXML).then(function (result) {
-        let userBusinessUnitName = result.entities[0].name;
-        return userBusinessUnitName.startsWith("Aviation");
-    });
+    let userBusinessUnitName = await Xrm.WebApi.retrieveMultipleRecords("businessunit", currentUserBusinessUnitFetchXML);
+    return userBusinessUnitName.entities[0].name.startsWith("Aviation");
 }
 
-function isISSOBusinessUnit() {
+async function isISSOBusinessUnit() {
     let userId = Xrm.Utility.getGlobalContext().userSettings.userId;
     let currentUserBusinessUnitFetchXML = [
         "<fetch top='50'>",
@@ -282,13 +280,11 @@ function isISSOBusinessUnit() {
         "</fetch>",
     ].join("");
     currentUserBusinessUnitFetchXML = "?fetchXml=" + encodeURIComponent(currentUserBusinessUnitFetchXML);
-    Xrm.WebApi.retrieveMultipleRecords("businessunit", currentUserBusinessUnitFetchXML).then(function (result) {
-        let userBusinessUnitName = result.entities[0].name;
-        return userBusinessUnitName.startsWith("Intermodal");
-    });
+    let userBusinessUnitName = await Xrm.WebApi.retrieveMultipleRecords("businessunit", currentUserBusinessUnitFetchXML);
+    return userBusinessUnitName.entities[0].name.startsWith("Intermodal");
 }
 
-function isTCBusinessUnit() {
+async function isTCBusinessUnit() {
     let userId = Xrm.Utility.getGlobalContext().userSettings.userId;
     let currentUserBusinessUnitFetchXML = [
         "<fetch top='50'>",
@@ -304,10 +300,8 @@ function isTCBusinessUnit() {
         "</fetch>",
     ].join("");
     currentUserBusinessUnitFetchXML = "?fetchXml=" + encodeURIComponent(currentUserBusinessUnitFetchXML);
-    Xrm.WebApi.retrieveMultipleRecords("businessunit", currentUserBusinessUnitFetchXML).then(function (result) {
-        let userBusinessUnitName = result.entities[0].name;
-        return userBusinessUnitName.startsWith("Transport");
-    });
+    let userBusinessUnitName = await Xrm.WebApi.retrieveMultipleRecords("businessunit", currentUserBusinessUnitFetchXML);
+    return userBusinessUnitName.entities[0].name.startsWith("Transport");
 }
 
 function FindingsReport(findingGUIDs, primaryControl) {
@@ -459,7 +453,7 @@ function showAlertDialog(text, title) {
     Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
 }
 
-function createEnforcementAction(findingGUIDs, primaryControl) {
+async function createEnforcementAction(findingGUIDs, primaryControl) {
     const gridContext = primaryControl.getControl("subgrid_findings");
     const findingRows = gridContext.getGrid().getSelectedRows();
 
@@ -474,104 +468,94 @@ function createEnforcementAction(findingGUIDs, primaryControl) {
 
     const caseId = primaryControl.data.entity.getId().slice(1, -1);
 
-    //Retrieve highest enforcement action of findings
-    let highestEnforcementAction = getHighestEnforcementActionFromFindings(findingRows);
+    if (await isAvSecBusinessUnit()) {
+        var enforcementActionType = [];
+        findingRows.forEach(function (findingRow) {
+            var data =
+            {
+                "ts_Incident_ts_enforcementaction@odata.bind": `/incidents(${caseId})`,
+                "ts_typeofenforcementaction": getTypeOfEnforcementActionValueInEntity(findingRow.getAttribute("ts_finalenforcementaction").getValue()),
+                "regardingobjectid_incident_ts_enforcementaction@odata.bind": `/incidents(${caseId})`
+            }
 
-    if (isAvSecBusinessUnit) {
-        //const byFinalEnforcementAction = findingRows.groupBy(finalEnforcementAction => {
-        //    return finalEnforcementAction.finalEnforcementAction;
-        //});
+            if (!enforcementActionType.includes(getTypeOfEnforcementActionValueInEntity(findingRow.getAttribute("ts_finalenforcementaction").getValue()))) {
+                enforcementActionType.push(getTypeOfEnforcementActionValueInEntity(findingRow.getAttribute("ts_finalenforcementaction").getValue()));
 
-        //const groupBy = key => findingRows =>
-        //    findingRows.reduce((objectsByKeyValue, obj) => {
-        //        const value = obj[key];
-        //        objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
-        //        return objectsByKeyValue;
-        //    }, {});
-        //const byFinalEnforcementAction = groupBy('ts_enforcementaction');
+                Xrm.WebApi.createRecord("ts_enforcementaction", data).then(
 
-        const groupedPeople = groupBy(findingRows, 'ts_enforcementaction');
-        console.log(groupedPeople);
+                    function (newEnforcementAction) {
+                        let relatedFindings = [];
+                        for (let findingGUID of findingGUIDs) {
+                            relatedFindings.push({
+                                entityType: "ovs_finding",
+                                id: findingGUID
+                            });
+                        }
+                        const oneToManyAssociateRequest = {
+                            getMetadata: () => ({
+                                boundParameter: null,
+                                parameterTypes: {},
+                                operationType: 2,
+                                operationName: "Associate"
+                            }),
 
-        //transformArray.forEach(function (findingRow) {
-        //    //const findingFinalEnforcementAction = findingRow.getAttribute("ts_finalenforcementaction").getValue();
-        //    var data =
-        //    {
-        //        "ts_Incident_ts_enforcementaction@odata.bind": `/incidents(${caseId})`,
-        //        "ts_typeofenforcementaction":  getTypeOfEnforcementActionValueInEntity(findingRow.getAttribute("ts_finalenforcementaction").getValue()),
-        //        "regardingobjectid_incident_ts_enforcementaction@odata.bind": `/incidents(${caseId})`
-        //    }
-        //    Xrm.WebApi.createRecord("ts_enforcementaction", data).then(
+                            relationship: "ts_enforcementaction_ts_enforcementaction",
 
-        //        function (newEnforcementAction) {
-        //            let relatedFindings = [];
-        //            for (let findingGUID of findingGUIDs) {
-        //                relatedFindings.push({
-        //                    entityType: "ovs_finding",
-        //                    id: findingGUID
-        //                });
-        //            }
-        //            const oneToManyAssociateRequest = {
-        //                getMetadata: () => ({
-        //                    boundParameter: null,
-        //                    parameterTypes: {},
-        //                    operationType: 2,
-        //                    operationName: "Associate"
-        //                }),
+                            target: {
+                                entityType: "ts_enforcementaction",
+                                id: newEnforcementAction.id
+                            },
 
-        //                relationship: "ts_enforcementaction_ts_enforcementaction",
+                            relatedEntities: relatedFindings
+                        }
 
-        //                target: {
-        //                    entityType: "ts_enforcementaction",
-        //                    id: newEnforcementAction.id
-        //                },
+                        Xrm.WebApi.online.execute(oneToManyAssociateRequest).then(
+                            (success) => {
+                                console.log("Success", success);
 
-        //                relatedEntities: relatedFindings
-        //            }
+                                var pageInput = {
+                                    pageType: "entityrecord",
+                                    entityName: "ts_enforcementaction",
+                                    entityId: newEnforcementAction.id
+                                };
+                                var navigationOptions = {
+                                    target: 2,
+                                    height: {
+                                        value: 100, unit: "%"
+                                    },
+                                    width: {
+                                        value: 80, unit: "%"
+                                    },
+                                    position: 1
+                                };
+                                //Open enforcement action record
+                                Xrm.Navigation.navigateTo(pageInput, navigationOptions).then(
+                                    function success() {
+                                        // Run code on success
+                                        primaryControl.getControl("Subgrid_EnforcementAction").refresh();
+                                    },
+                                    function error() {
+                                        // Handle errors
+                                    }
+                                );
+                            },
+                            (error) => {
+                                console.log("Error", error);
+                            }
+                        )
 
-        //            Xrm.WebApi.online.execute(oneToManyAssociateRequest).then(
-        //                (success) => {
-        //                    console.log("Success", success);
+                    },
+                    function (error) {
+                        console.log(error.message);
+                    });
+            }
+        });
 
-        //                    //var pageInput = {
-        //                    //    pageType: "entityrecord",
-        //                    //    entityName: "ts_enforcementaction",
-        //                    //    entityId: newEnforcementAction.id
-        //                    //};
-        //                    //var navigationOptions = {
-        //                    //    target: 2,
-        //                    //    height: {
-        //                    //        value: 100, unit: "%"
-        //                    //    },
-        //                    //    width: {
-        //                    //        value: 80, unit: "%"
-        //                    //    },
-        //                    //    position: 1
-        //                    //};
-        //                    ////Open finding record
-        //                    //Xrm.Navigation.navigateTo(pageInput, navigationOptions).then(
-        //                    //    function success() {
-        //                    //        // Run code on success
-        //                    //        primaryControl.getControl("Subgrid_EnforcementAction").refresh();
-        //                    //    },
-        //                    //    function error() {
-        //                    //        // Handle errors
-        //                    //    }
-        //                    //);
-        //                },
-        //                (error) => {
-        //                    console.log("Error", error);
-        //                }
-        //            )
-        //        },
-        //        function (error) {
-        //            console.log(error.message);
-        //        });
-
-        //});
     }
-    else {
+    if (await isISSOBusinessUnit()) {
 
+        //Retrieve highest enforcement action of findings
+        let highestEnforcementAction = getHighestEnforcementActionFromFindings(findingRows);
 
         var data =
         {
@@ -627,7 +611,7 @@ function createEnforcementAction(findingGUIDs, primaryControl) {
                             },
                             position: 1
                         };
-                        //Open finding record
+                        //Open enforcement action record
                         Xrm.Navigation.navigateTo(pageInput, navigationOptions).then(
                             function success() {
                                 // Run code on success
@@ -646,18 +630,6 @@ function createEnforcementAction(findingGUIDs, primaryControl) {
             function (error) {
                 console.log(error.message);
             });
-    }
-
-    function groupBy(findingRows, property) {
-        return new Array.from(Set(findingRows)).reduce((acc, obj) => {
-            const key = obj[property];
-            if (!acc[key]) {
-                acc[key] = [];
-            }
-            // Add object to list for given key's value
-            acc[key].push(obj);
-            return acc;
-        }, {});
     }
 }
 

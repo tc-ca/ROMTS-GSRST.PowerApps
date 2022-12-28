@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20221220.2</Version>
+    <Version>1.0.20221228.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -301,6 +301,7 @@
       <RootComponent type="9" schemaName="ts_role" behavior="0" />
       <RootComponent type="9" schemaName="ts_ruralorurban" behavior="0" />
       <RootComponent type="9" schemaName="ts_securityincidentmode" behavior="0" />
+      <RootComponent type="9" schemaName="ts_securityincidentstatus" behavior="0" />
       <RootComponent type="9" schemaName="ts_securityinspectiondetails" behavior="0" />
       <RootComponent type="9" schemaName="ts_securityplantype" behavior="0" />
       <RootComponent type="9" schemaName="ts_sensitivitylevel" behavior="0" />
@@ -331,6 +332,7 @@
       <RootComponent type="20" id="{ed37675e-f72c-eb11-a813-000d3af3a7a7}" behavior="0" />
       <RootComponent type="29" id="{168249b4-0934-eb11-a813-000d3af3fc19}" behavior="0" />
       <RootComponent type="29" id="{16c87081-09cc-4f2b-9a53-01ddc9edf73b}" behavior="0" />
+      <RootComponent type="29" id="{17401720-3dd4-486a-bd08-15b90b230881}" behavior="0" />
       <RootComponent type="29" id="{25706b11-50f6-ec11-82e5-002248ae429c}" behavior="0" />
       <RootComponent type="29" id="{2cad0ea3-a5ad-4bf0-9fc7-6390c26c6989}" behavior="0" />
       <RootComponent type="29" id="{31c5f0e1-7b53-ec11-8f8e-000d3ae9a941}" behavior="0" />
@@ -341,6 +343,7 @@
       <RootComponent type="29" id="{586105f8-6657-eb11-a812-000d3aff12c2}" behavior="0" />
       <RootComponent type="29" id="{59295963-fe22-ed11-9db2-002248ae429c}" behavior="0" />
       <RootComponent type="29" id="{5c9834c1-6e6d-eb11-a812-000d3a84129e}" behavior="0" />
+      <RootComponent type="29" id="{5e30f581-2b82-ed11-81ad-0022483d5ee0}" behavior="0" />
       <RootComponent type="29" id="{6b9b9ceb-b318-ed11-b83f-002248ae429c}" behavior="0" />
       <RootComponent type="29" id="{6cb9a45f-3a03-4ce8-9ef6-856f56c4cfd4}" behavior="0" />
       <RootComponent type="29" id="{8997dbfa-c8a9-488b-8f39-349338eb0e77}" behavior="0" />
@@ -9975,7 +9978,7 @@
           <package>FieldService_Anchor (8.8.80.48)</package>
           <package>msdynce_ServiceAnchor (9.0.22121.1008)</package>
         </Required>
-        <Dependent type="10" schemaName="ts_msdyn_functionallocation_ts_securityincident_Site" displayName="ts_msdyn_functionallocation_ts_securityincident_Site" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
+        <Dependent type="10" schemaName="ts_msdyn_functionallocation_ts_securityincident_Origin" displayName="ts_msdyn_functionallocation_ts_securityincident_Origin" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.28.3)">
@@ -20031,6 +20034,10 @@
           <package>msdynce_ServiceAnchor (9.0.22121.1008)</package>
         </Required>
         <Dependent type="60" displayName="Main form" parentDisplayName="Work Order" id="{f10dda58-3203-eb11-a813-000d3af3ac0d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.FieldControls.ToggleControl" displayName="MscrmControls.FieldControls.ToggleControl" solution="BaseCustomControlsCore (9.0.2211.4023)" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Security Incident" id="{0bad2f4f-18ca-48f3-b2d4-9ee82f40b93d}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.FieldControls.ToggleControl" displayName="MscrmControls.FieldControls.ToggleControl" solution="BaseCustomControlsCore (9.0.2211.4023)" />

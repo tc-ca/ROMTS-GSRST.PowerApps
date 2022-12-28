@@ -152,7 +152,7 @@
                     <row />
                     <row />
                     <row>
-                      <cell id="{171bd5d3-7ed1-4d05-8350-c7d79f95d421}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
+                      <cell id="{171bd5d3-7ed1-4d05-8350-c7d79f95d421}" locklevel="0" colspan="1" rowspan="1" showlabel="true" visible="false">
                         <labels>
                           <label description="Was the issue addressed on-site?" languagecode="1033" />
                           <label description="Le problème a-t-il été résolu sur le site ?" languagecode="1036" />
@@ -184,7 +184,7 @@
                     <row />
                     <row />
                     <row>
-                      <cell id="{07ce152e-dc3f-4464-92a2-e1f79d1286bd}" locklevel="0" colspan="1" rowspan="6" showlabel="true">
+                      <cell id="{07ce152e-dc3f-4464-92a2-e1f79d1286bd}" locklevel="0" colspan="1" rowspan="6" showlabel="true" visible="false">
                         <labels>
                           <label description="Note to Stakeholder" languagecode="1033" />
                           <label description="Note à l'intervenant " languagecode="1036" />
@@ -198,7 +198,7 @@
                     <row />
                     <row />
                     <row>
-                      <cell id="{17dc73d1-0e91-448c-33dd-2ed03e93c27c}" showlabel="true" locklevel="0">
+                      <cell id="{17dc73d1-0e91-448c-33dd-2ed03e93c27c}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Sensitivity Level" languagecode="1033" />
                           <label description="Niveau de sensibilité" languagecode="1036" />
@@ -373,6 +373,7 @@
                 <section name="tab_NCAT_section_5" showlabel="false" showbar="false" locklevel="0" id="{b1892498-e98b-68c5-6a4e-989c90bd7523}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
                     <label description="NCAT Recommendation" languagecode="1033" />
+                    <label description="Recommandation de l'OENC" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
@@ -398,6 +399,7 @@
                 <section name="NCAT_proposed_section" id="e33c259e-82d2-44eb-ac85-06c4152c0b88" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" height="auto" visible="false">
                   <labels>
                     <label description="NCAT Proposed Section" languagecode="1033" />
+                    <label description="Section proposé de l'OENC" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
@@ -1249,7 +1251,7 @@
         </rows>
       </footer>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -1455,6 +1457,11 @@
         <event name="onchange" application="true" active="true" attribute="ts_acceptncatrecommendation">
           <Handlers>
             <Handler functionName="ROM.Finding.AcceptNCATRecommendationOnChange" libraryName="ovs_/js/Finding.js" handlerUniqueId="{ff247be7-14f0-478b-8ca6-580a44e2a40e}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_acceptraterecommendation">
+          <Handlers>
+            <Handler functionName="ROM.Finding.AcceptRATERecommendationOnChange" libraryName="ovs_/js/Finding.js" handlerUniqueId="{55a16ef3-038f-4922-9483-cbb267a82d19}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
