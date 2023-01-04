@@ -64,7 +64,7 @@
                           <label description="Site" languagecode="1033" />
                           <label description="Site" languagecode="1036" />
                         </labels>
-                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="true">
+                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="true" uniqueid="{89b92326-d5b2-003a-9595-bc26caaa5bac}">
                           <parameters>
                             <DisableViewPicker>true</DisableViewPicker>
                             <DisableMru>true</DisableMru>
@@ -73,15 +73,38 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{6b2c6e84-e3dc-491d-9b8c-5960a892493c}" locklevel="0">
+                      <cell id="{6b2c6e84-e3dc-491d-9b8c-5960a892493c}" locklevel="0" showlabel="true">
                         <labels>
                           <label description="Subsite" languagecode="1033" />
                           <label description="Sous-site" languagecode="1036" />
                         </labels>
-                        <control id="ts_subsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subsite" disabled="true">
+                        <control id="ts_subsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subsite" disabled="true" uniqueid="{60e98a15-41c9-e7d0-ae90-d99bec2ac65b}">
                           <parameters>
                             <DisableViewPicker>true</DisableViewPicker>
                             <DisableMru>true</DisableMru>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
+                            <AvailableViewIds>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</AvailableViewIds>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d039e939-cc5e-5662-2a05-e1ec78088143}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Sub subsite" languagecode="1033" />
+                        </labels>
+                        <control id="ts_subsubsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subsubsite" disabled="true" uniqueid="{9a049537-20b0-0588-386c-08035bacace4}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>true</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <AvailableViewIds>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</AvailableViewIds>
                           </parameters>
                         </control>
                       </cell>
@@ -850,7 +873,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -1417,6 +1440,11 @@
         <event name="onrecordselect" application="false" active="false" relationship="" control="operation_activity_grid">
           <Handlers>
             <Handler functionName="ROM.Operation.setFieldsDisabled" libraryName="ts_/js/Operation.js" handlerUniqueId="{b3c27354-0a59-8b05-46a5-9dab5e675c1c}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_subsite">
+          <Handlers>
+            <Handler functionName="ROM.Operation.subsiteOnChange" libraryName="ts_/js/Operation.js" handlerUniqueId="{833e1e73-edb8-c0c3-5171-351c5588d13d}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

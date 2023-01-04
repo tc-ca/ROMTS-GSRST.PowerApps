@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20221228.1</Version>
+    <Version>1.0.20230104.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -3993,7 +3993,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.80.48)">
           <package>FieldService_Anchor (8.8.80.48)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="bookableresource_bookableresourcebooking_Resource" displayName="bookableresource_bookableresourcebooking_Resource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.80.48)">
@@ -7162,13 +7162,13 @@
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.80.48)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.80.48)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_systemuser_msdyn_purchaseorder_ApprovedRejectedBy" displayName="msdyn_systemuser_msdyn_purchaseorder_ApprovedRejectedBy" parentSchemaName="systemuser" parentDisplayName="User" solution="FieldService (8.8.0.88)">
@@ -9978,6 +9978,13 @@
           <package>FieldService_Anchor (8.8.80.48)</package>
           <package>msdynce_ServiceAnchor (9.0.22121.1008)</package>
         </Required>
+        <Dependent type="10" schemaName="ts_msdyn_functionallocation_ovs_operation_Subsubsite" displayName="ts_msdyn_functionallocation_ovs_operation_Subsubsite" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.28.3)">
+          <package>FieldService_Anchor (8.8.80.48)</package>
+          <package>msdynce_ServiceAnchor (9.0.22121.1008)</package>
+        </Required>
         <Dependent type="10" schemaName="ts_msdyn_functionallocation_ts_securityincident_Origin" displayName="ts_msdyn_functionallocation_ts_securityincident_Origin" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
@@ -9993,13 +10000,6 @@
           <package>msdynce_ServiceAnchor (9.0.22121.1008)</package>
         </Required>
         <Dependent type="10" schemaName="ts_msdyn_functionallocation_ts_workordercw" displayName="ts_msdyn_functionallocation_ts_workordercw" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.28.3)">
-          <package>FieldService_Anchor (8.8.80.48)</package>
-          <package>msdynce_ServiceAnchor (9.0.22121.1008)</package>
-        </Required>
-        <Dependent type="10" schemaName="ts_ovs_operation_site_msdyn_functionallocati" displayName="ts_ovs_operation_site_msdyn_functionallocati" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.28.3)">
@@ -18106,6 +18106,12 @@
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
           <package>msdynce_AppCommonAnchor (9.0.22121.10001)</package>
         </Required>
+        <Dependent type="60" displayName="In Context Form" parentDisplayName="Contact" id="{4c9c89b9-f909-4b34-8f63-b87d7ff2f0c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
+          <package>msdynce_AppCommonAnchor (9.0.22121.10001)</package>
+        </Required>
         <Dependent type="60" displayName="Account - Mobile" parentDisplayName="Account" id="{74da4947-5d1d-4400-9f99-c6ed578211bb}" />
       </MissingDependency>
       <MissingDependency>
@@ -18125,12 +18131,6 @@
           <package>msdynce_AppCommonAnchor (9.0.22121.10001)</package>
         </Required>
         <Dependent type="60" displayName="Information" parentDisplayName="Account" id="{b053a39a-041a-4356-acef-ddf00182762b}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
-          <package>msdynce_AppCommonAnchor (9.0.22121.10001)</package>
-        </Required>
-        <Dependent type="60" displayName="Organisations" parentDisplayName="Account" id="{b6466851-a1fd-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
