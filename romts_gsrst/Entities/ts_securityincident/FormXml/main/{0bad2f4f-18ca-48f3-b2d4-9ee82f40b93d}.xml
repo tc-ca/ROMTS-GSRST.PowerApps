@@ -71,9 +71,17 @@
                             <DisableViewPicker>true</DisableViewPicker>
                             <DefaultViewId>{B8D91BB4-6776-ED11-81AC-0022483D5EE0}</DefaultViewId>
                             <AllowFilterOff>false</AllowFilterOff>
-                            <AvailableViewIds>{B8D91BB4-6776-ED11-81AC-0022483D5EE0},{E5B1A404-F239-46AA-9FA9-78E2D80FF4C3}</AvailableViewIds>
+                            <AvailableViewIds>{E5B1A404-F239-46AA-9FA9-78E2D80FF4C3}</AvailableViewIds>
                           </parameters>
                         </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e49aa318-640e-d578-0d0a-2d29e6452bce}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Tampering Subcategory" languagecode="1033" />
+                        </labels>
+                        <control id="ts_tamperingsubcategory" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_tamperingsubcategory" disabled="false" uniqueid="{28b5c082-42cc-4d50-0aa8-851d9c971435}" />
                       </cell>
                     </row>
                     <row>
@@ -940,6 +948,11 @@
         <event name="onchange" application="false" active="false" attribute="ts_site">
           <Handlers>
             <Handler functionName="ROM.SecurityIncident.siteOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{57bb3a62-7dbb-a298-0992-c15d6da8e995}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_securityincidenttype">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.securityIncidentTypeOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{7e26a075-148c-7b46-2164-cabdc24da4a9}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
