@@ -2,11 +2,11 @@
 <savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <savedquery>
     <IsCustomizable>1</IsCustomizable>
-    <CanBeDeleted>0</CanBeDeleted>
+    <CanBeDeleted>1</CanBeDeleted>
     <isquickfindquery>0</isquickfindquery>
     <isprivate>0</isprivate>
     <isdefault>0</isdefault>
-    <savedqueryid>{352abd90-9f6c-412f-835e-b81a589b23f3}</savedqueryid>
+    <savedqueryid>{501e11a8-2e91-ed11-aad0-0022483d7716}</savedqueryid>
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_securityincidentid">
@@ -25,13 +25,9 @@
     </layoutxml>
     <querytype>0</querytype>
     <fetchxml>
-      <fetch version="1.0" mapping="logical">
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
         <entity name="ts_securityincident">
           <attribute name="ts_name" />
-          <order attribute="ts_name" descending="true" />
-          <filter type="and">
-            <condition attribute="statecode" operator="eq" value="1" />
-          </filter>
           <attribute name="ts_tcomsid" />
           <attribute name="ts_tcomsofficer" />
           <attribute name="ts_mode" />
@@ -41,13 +37,17 @@
           <attribute name="ts_incidentdatetime" />
           <attribute name="ts_reporteddatetime" />
           <attribute name="ts_site" />
+          <order attribute="ts_name" descending="true" />
+          <filter type="and">
+            <condition attribute="ts_recordstatus" operator="eq" value="741130002" />
+          </filter>
           <attribute name="ts_securityincidentid" />
         </entity>
       </fetch>
     </fetchxml>
-    <IntroducedVersion>1.0.20221108.1</IntroducedVersion>
+    <IntroducedVersion>1.0.20230109.1</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Removed Security Incidents" languagecode="1033" />
+      <LocalizedName description="Completed Security Incidents" languagecode="1033" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

@@ -129,6 +129,7 @@
                           <label description="Last Calculated Time" languagecode="1033" solutionaction="Added" />
                           <label description="Heure du dernier calcul" languagecode="1036" solutionaction="Added" />
                         </labels>
+                        <control id="msdyn_lastcalculatedtime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="msdyn_lastcalculatedtime" disabled="true" uniqueid="{c8c19e2c-c46d-ebe2-347b-38e19017c16d}" solutionaction="Modified" />
                       </cell>
                     </row>
                     <row>
@@ -138,6 +139,19 @@
                           <label description="Cote de risque" languagecode="1036" />
                         </labels>
                         <control id="ts_riskscore" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_riskscore" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4477dcb5-9056-5b3b-840b-11b11e9a9d62}" showlabel="true" locklevel="0" ordinalvalue="10006" solutionaction="Added">
+                        <labels>
+                          <label description="Exclude from Planning" languagecode="1033" />
+                        </labels>
+                        <control id="ts_excludefromplanning" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="ts_excludefromplanning" disabled="false" />
+                      </cell>
+                      <cell id="{35b31a25-d524-e65b-c548-9862a4768e0d}" showlabel="false" ordinalvalue="20007" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                   </rows>
@@ -472,6 +486,9 @@
           </row>
         </rows>
       </footer>
+      <Navigation>
+        <NavBar />
+      </Navigation>
       <controlDescriptions>
         <controlDescription forControl="{634EAAC8-B1C8-4A52-A993-ADB2361ABF8A}" solutionaction="Added">
           <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
@@ -822,7 +839,25 @@
         </event>
       </events>
       <header id="{d6d4dd2f-cc5a-4581-89f9-a6731626d5cb}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
-        <rows></rows>
+        <rows>
+          <row>
+            <cell id="{9224b809-8181-49dc-90e1-f0996259061b}" showlabel="false" ordinalvalue="10000">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{88b426aa-65ab-4283-a8fa-349417190419}" showlabel="false" ordinalvalue="20001">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a8778422-ea36-419d-9384-d917c79ef341}" showlabel="false" ordinalvalue="30002">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
       </header>
       <DisplayConditions FallbackForm="true" Order="0" solutionaction="Added">
         <Everyone />

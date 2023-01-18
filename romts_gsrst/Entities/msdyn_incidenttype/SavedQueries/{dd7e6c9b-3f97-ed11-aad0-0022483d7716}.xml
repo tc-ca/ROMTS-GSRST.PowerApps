@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{dd7e6c9b-3f97-ed11-aad0-0022483d7716}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_incidenttypeid">
+          <cell name="msdyn_name" width="300" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ovs_incidenttypenameenglish" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ovs_incidenttypenamefrench" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_excludefromplanning" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="msdyn_estimatedduration" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="msdyn_incidenttype">
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_estimatedduration" />
+          <attribute name="ovs_incidenttypenameenglish" />
+          <attribute name="ovs_incidenttypenamefrench" />
+          <attribute name="ts_excludefromplanning" />
+          <order attribute="msdyn_name" descending="false" />
+          <filter type="and">
+            <condition attribute="ts_excludefromplanning" operator="eq" value="0" />
+          </filter>
+          <attribute name="msdyn_incidenttypeid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20230109.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Not Exclude from Planning Incident Types" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

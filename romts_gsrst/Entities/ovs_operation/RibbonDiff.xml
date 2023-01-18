@@ -4,6 +4,11 @@
     <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ovs_operation.Delete.Hide" Location="Mscrm.HomepageGrid.ovs_operation.Delete" />
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_operation.AddExistingAssoc.Hide" Location="Mscrm.SubGrid.ovs_operation.AddExistingAssoc" />
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_operation.AddExistingStandard.Hide" Location="Mscrm.SubGrid.ovs_operation.AddExistingStandard" />
+    <CustomAction Id="ts.Mscrm.SubGrid.ovs_operation.NewRecord.CustomAction" Location="Mscrm.SubGrid.ovs_operation.MainTab.Management.Controls._children" Sequence="10">
+      <CommandUIDefinition>
+        <Button Command="Mscrm.NewRecordFromGrid" Id="Mscrm.SubGrid.ovs_operation.NewRecord" Image32by32="/_imgs/ribbon/newrecord32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.MainTab.New" Sequence="10" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Ribbon.SubGrid.MainTab.New" ToolTipDescription="$Resources(EntityDisplayName):Ribbon.Tooltip.New" ModernImage="New" />
+      </CommandUIDefinition>
+    </CustomAction>
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_operation.Remove.Hide" Location="Mscrm.SubGrid.ovs_operation.Remove" />
     <CustomAction Id="ts.ovs_operation.Button.Mscrm.SubGrid.ovs_operation.AddExistingAssoc.CustomAction" Location="Mscrm.SubGrid.ovs_operation.MainTab.Management.Controls._children" Sequence="45">
       <CommandUIDefinition>
@@ -67,6 +72,30 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="Mscrm.AddNewRecordFromSubGridStandard">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.EntityFormIsEnabled" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+        <EnableRule Id="ts.ovs_operation.EnableRule.HideNew" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.ShowForOneToManyGrids" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.CreateSelectedEntityPermission" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="Mscrm.HideAddNewForChildEntities" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Open.addNewFromSubGridStandard" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="Mscrm.Form.Deactivate">
       <EnableRules>
         <EnableRule Id="Mscrm.CanWritePrimary" />
@@ -100,6 +129,28 @@
           <CrmParameter Value="SelectedControl" />
           <CrmParameter Value="SelectedControlSelectedItemReferences" />
           <CrmParameter Value="SelectedEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.NewRecordFromGrid">
+      <EnableRules>
+        <EnableRule Id="Mscrm.IsValidForHierarchyView" />
+        <EnableRule Id="Mscrm.IsValidForHierarchyPageInUC" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+        <EnableRule Id="Mscrm.PrimaryIsNotActivityHomePageGrid" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CreateSelectedEntityPermission" />
+        <DisplayRule Id="Mscrm.ShowForNonRelationshipBoundGrids" />
+        <DisplayRule Id="Mscrm.HideNewForChildEntities" />
+        <DisplayRule Id="Mscrm.HideAddressEntities" />
+        <DisplayRule Id="Mscrm.SelectedEntityIsNotBPFEntity" />
+        <DisplayRule Id="Mscrm.IsNotActivityPointer" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Open.openNewRecord" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -208,6 +259,28 @@
       <DisplayRule Id="Mscrm.CanWriteSelected">
         <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
       </DisplayRule>
+      <DisplayRule Id="Mscrm.CreateSelectedEntityPermission">
+        <EntityPrivilegeRule PrivilegeType="Create" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.HideAddNewForChildEntities">
+        <OrRule>
+          <Or>
+            <EntityPropertyRule AppliesTo="SelectedEntity" PropertyName="IsChildEntity" PropertyValue="false" />
+          </Or>
+          <Or>
+            <RelationshipTypeRule AppliesTo="SelectedEntity" AllowCustomRelationship="false" />
+          </Or>
+        </OrRule>
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.HideAddressEntities">
+        <EntityRule EntityName="customeraddress" AppliesTo="SelectedEntity" Default="false" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.HideNewForChildEntities">
+        <EntityPropertyRule AppliesTo="SelectedEntity" PropertyName="IsChildEntity" PropertyValue="false" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.IsNotActivityPointer">
+        <EntityRule EntityName="activitypointer" AppliesTo="SelectedEntity" InvertResult="true" />
+      </DisplayRule>
       <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode">
         <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="HasStateCode" PropertyValue="true" />
       </DisplayRule>
@@ -220,8 +293,14 @@
       <DisplayRule Id="Mscrm.SelectedEntityHasStatecode">
         <EntityPropertyRule AppliesTo="SelectedEntity" PropertyName="HasStateCode" PropertyValue="true" />
       </DisplayRule>
+      <DisplayRule Id="Mscrm.SelectedEntityIsNotBPFEntity">
+        <EntityPropertyRule AppliesTo="SelectedEntity" PropertyName="IsBPFEntity" PropertyValue="false" />
+      </DisplayRule>
       <DisplayRule Id="Mscrm.ShowForManyToManyGrids">
         <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="ManyToMany" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.ShowForNonRelationshipBoundGrids">
+        <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="NoRelationship" />
       </DisplayRule>
       <DisplayRule Id="Mscrm.ShowForOneToManyGrids">
         <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="OneToMany" />
@@ -247,6 +326,18 @@
           <CrmParameter Value="SelectedControl" />
         </CustomRule>
       </EnableRule>
+      <EnableRule Id="Mscrm.IsValidForHierarchyPageInUC">
+        <CustomRule FunctionName="XrmCore.Rules.HierarchyView.isValidForHierarchyPageInUC" Library="$webresource:Main_system_library.js" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsValidForHierarchyView">
+        <CustomRule FunctionName="XrmCore.Rules.HierarchyView.isValidForHierarchyView" Library="$webresource:Main_system_library.js" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.PrimaryIsNotActivityHomePageGrid">
+        <CustomRule FunctionName="XrmCore.Rules.Enabled.PrimaryIsNotActivityHomePageGrid" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </CustomRule>
+      </EnableRule>
       <EnableRule Id="Mscrm.SelectionCountAtLeastOne">
         <SelectionCountRule AppliesTo="SelectedEntity" Minimum="1" />
       </EnableRule>
@@ -261,6 +352,9 @@
             </CustomRule>
           </Or>
         </OrRule>
+      </EnableRule>
+      <EnableRule Id="ts.ovs_operation.EnableRule.HideNew">
+        <EntityRule EntityName="team" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
       </EnableRule>
       <EnableRule Id="ts.ovs_operation.isSystemOrBusinessAdmins">
         <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
