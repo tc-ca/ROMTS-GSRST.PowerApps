@@ -1,1 +1,196 @@
-{"properties":{"connectionReferences":{"shared_commondataserviceforapps_1":{"runtimeSource":"embedded","connection":{"connectionReferenceLogicalName":"ppp_sharedcommondataserviceforapps_7f22b"},"api":{"name":"shared_commondataserviceforapps"}}},"definition":{"$schema":"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#","contentVersion":"1.0.0.0","parameters":{"$connections":{"defaultValue":{},"type":"Object"},"$authentication":{"defaultValue":{},"type":"SecureObject"}},"triggers":{"Recurrence":{"recurrence":{"frequency":"Day","interval":1,"timeZone":"Eastern Standard Time","schedule":{"hours":["1"]}},"metadata":{"operationMetadataId":"bba6db77-360d-46bc-a9dd-9bc8acf3bca2"},"type":"Recurrence"}},"actions":{"List_All_Travellers":{"runAfter":{},"metadata":{"operationMetadataId":"297226d4-2392-49fd-9e93-a09366864c3c"},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps_1","operationId":"ListRecords","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"ppp_travellers","$filter":"(ppp_lastname ne null or ppp_dateofbirth ne null or ppp_firstname ne null or ppp_gender ne null or ppp_middlename ne null or ppp_iddetails ne null or ppp_idsused ne null or ppp_lastknownaddress ne null or _ppp_citizenship_value ne null or _ppp_idcountry_value ne null) and ppp_matchfound ne 927820000 and (ppp_finalstatustime lt @{addDays(utcNow(),-7)} and (ppp_recordstatus eq 927820002 or ppp_recordstatus eq 927820005))"},"authentication":"@parameters('$authentication')"}},"Apply_to_each_Traveller":{"foreach":"@outputs('List_All_Travellers')?['body/value']","actions":{"Clear_Traveller_Information":{"runAfter":{},"metadata":{"operationMetadataId":"7f0fdc82-3f83-4c22-a030-5746865b2015"},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps_1","operationId":"UpdateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"ppp_travellers","recordId":"@items('Apply_to_each_Traveller')?['ppp_travellerid']","item/ppp_dateofbirth":"@null","item/ppp_firstname":"@null","item/ppp_gender":"@null","item/ppp_iddetails":"@null","item/ppp_idsused":"@null","item/ppp_lastknownaddress":"@null","item/ppp_lastname":"@null","item/ppp_middlename":"@null"},"authentication":"@parameters('$authentication')"}},"If_Citizenship_is_not_null":{"actions":{"Unrelate_records":{"runAfter":{},"metadata":{"operationMetadataId":"e4d67c84-c8ce-458c-8441-f0896ff5d71f"},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps_1","operationId":"DisassociateEntities","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"tc_countries","recordId":"@outputs('Clear_Traveller_Information')?['body/_ppp_citizenship_value']","associationEntityRelationship":"ppp_Traveller_Citizenship_tc_Country","$id":"@outputs('Clear_Traveller_Information')?['body/ppp_travellerid']"},"authentication":"@parameters('$authentication')"}}},"runAfter":{"Clear_Traveller_Information":["Succeeded"]},"expression":{"not":{"equals":["@outputs('Clear_Traveller_Information')?['body/_ppp_citizenship_value']","@null"]}},"metadata":{"operationMetadataId":"197356a9-8072-4fe3-a4e9-c0014604fcb5"},"type":"If"},"If_ID_Country_is_not_null":{"actions":{"Unrelate_records_2":{"runAfter":{},"metadata":{"operationMetadataId":"8365a0fc-0c10-4982-bb95-129b767d779d"},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps_1","operationId":"DisassociateEntities","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"tc_countries","recordId":"@items('Apply_to_each_Traveller')?['_ppp_idcountry_value']","associationEntityRelationship":"ppp_Traveller_Country","$id":"@outputs('Clear_Traveller_Information')?['body/ppp_travellerid']"},"authentication":"@parameters('$authentication')"}}},"runAfter":{"If_Citizenship_is_not_null":["Succeeded"]},"expression":{"not":{"equals":["@items('Apply_to_each_Traveller')?['_ppp_idcountry_value']","@null"]}},"metadata":{"operationMetadataId":"fc6e9372-304b-4f4e-9f5a-d51e45ff8c94"},"type":"If"}},"runAfter":{"List_All_Travellers":["Succeeded"]},"metadata":{"operationMetadataId":"2e705d07-6144-45a2-a71c-f7bc0e025faf"},"type":"Foreach"}},"outputs":{}}},"schemaVersion":"1.0.0.0"}
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ppp_sharedcommondataserviceforapps_7f22b"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Recurrence": {
+          "recurrence": {
+            "frequency": "Day",
+            "interval": 1,
+            "timeZone": "Eastern Standard Time",
+            "schedule": {
+              "hours": [
+                "1"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "bba6db77-360d-46bc-a9dd-9bc8acf3bca2"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "List_All_Travellers": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "297226d4-2392-49fd-9e93-a09366864c3c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ppp_travellers",
+              "$filter": "(ppp_lastname ne null or ppp_dateofbirth ne null or ppp_firstname ne null or ppp_gender ne null or ppp_middlename ne null or ppp_iddetails ne null or ppp_idsused ne null or ppp_lastknownaddress ne null or _ppp_citizenship_value ne null or _ppp_idcountry_value ne null) and ppp_matchfound ne 927820000 and (ppp_finalstatustime lt @{addDays(utcNow(),-7)} and (ppp_recordstatus eq 927820002 or ppp_recordstatus eq 927820005))"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each_Traveller": {
+          "foreach": "@outputs('List_All_Travellers')?['body/value']",
+          "actions": {
+            "Clear_Traveller_Information": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "7f0fdc82-3f83-4c22-a030-5746865b2015"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ppp_travellers",
+                  "recordId": "@items('Apply_to_each_Traveller')?['ppp_travellerid']",
+                  "item/ppp_dateofbirth": "@null",
+                  "item/ppp_firstname": "@null",
+                  "item/ppp_gender": "@null",
+                  "item/ppp_iddetails": "@null",
+                  "item/ppp_idsused": "@null",
+                  "item/ppp_lastknownaddress": "@null",
+                  "item/ppp_lastname": "@null",
+                  "item/ppp_middlename": "@null"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "If_Citizenship_is_not_null": {
+              "actions": {
+                "Unrelate_records": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "e4d67c84-c8ce-458c-8441-f0896ff5d71f"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "DisassociateEntities",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "tc_countries",
+                      "recordId": "@outputs('Clear_Traveller_Information')?['body/_ppp_citizenship_value']",
+                      "associationEntityRelationship": "ppp_Traveller_Citizenship_tc_Country",
+                      "$id": "@outputs('Clear_Traveller_Information')?['body/ppp_travellerid']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Clear_Traveller_Information": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "not": {
+                  "equals": [
+                    "@outputs('Clear_Traveller_Information')?['body/_ppp_citizenship_value']",
+                    "@null"
+                  ]
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "197356a9-8072-4fe3-a4e9-c0014604fcb5"
+              },
+              "type": "If"
+            },
+            "If_ID_Country_is_not_null": {
+              "actions": {
+                "Unrelate_records_2": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "8365a0fc-0c10-4982-bb95-129b767d779d"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "DisassociateEntities",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "tc_countries",
+                      "recordId": "@items('Apply_to_each_Traveller')?['_ppp_idcountry_value']",
+                      "associationEntityRelationship": "ppp_Traveller_Country",
+                      "$id": "@outputs('Clear_Traveller_Information')?['body/ppp_travellerid']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "If_Citizenship_is_not_null": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "not": {
+                  "equals": [
+                    "@items('Apply_to_each_Traveller')?['_ppp_idcountry_value']",
+                    "@null"
+                  ]
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "fc6e9372-304b-4f4e-9f5a-d51e45ff8c94"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "List_All_Travellers": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2e705d07-6144-45a2-a71c-f7bc0e025faf"
+          },
+          "type": "Foreach"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,1 +1,255 @@
-{"properties":{"connectionReferences":{"shared_commondataserviceforapps":{"runtimeSource":"embedded","connection":{"connectionReferenceLogicalName":"ppp_sharedcommondataserviceforapps_7f22b"},"api":{"name":"shared_commondataserviceforapps"}},"shared_commondataserviceforapps_1":{"runtimeSource":"embedded","connection":{"connectionReferenceLogicalName":"ppp_sharedcommondataserviceforapps_7f22b"},"api":{"name":"shared_commondataserviceforapps"}}},"definition":{"$schema":"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#","contentVersion":"1.0.0.0","parameters":{"$connections":{"defaultValue":{},"type":"Object"},"$authentication":{"defaultValue":{},"type":"SecureObject"}},"triggers":{"Recurrence_at_1am_everyday":{"recurrence":{"frequency":"Day","interval":1,"timeZone":"Eastern Standard Time","schedule":{"hours":["1","14"],"minutes":[12]}},"type":"Recurrence"}},"actions":{"Apply_to_each":{"foreach":"@outputs('List_Draft_Traveller_Records_with_Flight_Origin_date_over_7_days_ago')?['body/value']","actions":{"Get_Owner":{"runAfter":{"If_ID_Country_is_not_null":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"GetItem","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"systemusers","recordId":"@items('Apply_to_each')?['_createdby_value']"},"authentication":"@parameters('$authentication')"}},"List_Users_in_PPP_Manager_Team":{"runAfter":{"Get_Owner":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"ListRecords","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"systemusers","$filter":"(teammembership_association/any(t:t/name eq 'ppp manager'))"},"authentication":"@parameters('$authentication')"}},"Apply_to_each_3":{"foreach":"@outputs('List_Users_in_PPP_Manager_Team')?['body/value']","actions":{"Send_an_email_(V2)":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_office365","operationId":"SendEmailV2","apiId":"/providers/Microsoft.PowerApps/apis/shared_office365"},"parameters":{"emailMessage/To":"@items('Apply_to_each_3')?['internalemailaddress']","emailMessage/Subject":"Traveller Validation Record Number @{items('Apply_to_each')?['ppp_travellerautonumber']} set to Unresolved / Numéro d'enregistrement de validation du voyageur @{items('Apply_to_each')?['ppp_travellerautonumber']} est défini comme \"Non résolu\"\n","emailMessage/Body":"<p>A Draft record @{items('Apply_to_each')?['ppp_travellerautonumber']}'s status was set to Unresolved due to the Flight Origin Date occuring over 7 days ago, or it being last modified over 7 days ago with no Flight Origin Date set. Any personal information of the traveller will be removed in 7 days.<br>\n<br>\nFlight Origin Date: @{items('Apply_to_each')?['ppp_flightorigindate']}.<br>\n<br>\nRecord created by: @{outputs('Get_Owner')?['body/firstname']} @{outputs('Get_Owner')?['body/lastname']}.<br>\n<br>\n****<br>\n<br>\nLe statut d'un dossier ébauche @{items('Apply_to_each')?['ppp_travellerautonumber']} a été défini sur \"Non résolu\" en raison de la date d'origine du vol survenue il y a plus de 7 jours, ou de sa dernière modification il y a plus de 7 jours sans date d'origine du vol définie.<br>\n<br>\n<br>\nDate d'origine du vol : @{items('Apply_to_each')?['ppp_flightorigindate']}.<br>\n<br>\nDossier créer par : @{outputs('Get_Owner')?['body/firstname']} @{outputs('Get_Owner')?['body/lastname']}.<br>\n<br>\n</p>"},"authentication":"@parameters('$authentication')"}}},"runAfter":{"List_Users_in_PPP_Manager_Team":["Succeeded"]},"type":"Foreach"},"Set_Status_to_Unresolved_and_clear_personal_data":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"UpdateRecord","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"ppp_travellers","recordId":"@items('Apply_to_each')?['ppp_travellerid']","item/ppp_dateofbirth":"@null","item/ppp_finalstatustime":"@utcNow()","item/ppp_firstname":"@null","item/ppp_gender":"@null","item/ppp_iddetails":"@null","item/ppp_idsused":"@null","item/ppp_lastknownaddress":"@null","item/ppp_lastname":"@null","item/ppp_middlename":"@null","item/ppp_recordstatus":927820005},"authentication":"@parameters('$authentication')"}},"If_Citizenship_is_not_null":{"actions":{"Unrelate_records":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps_1","operationId":"DisassociateEntities","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"tc_countries","recordId":"@outputs('Set_Status_to_Unresolved_and_clear_personal_data')?['body/_ppp_citizenship_value']","associationEntityRelationship":"ppp_Traveller_Citizenship_tc_Country","$id":"@outputs('Set_Status_to_Unresolved_and_clear_personal_data')?['body/ppp_travellerid']"},"authentication":"@parameters('$authentication')"}}},"runAfter":{"Set_Status_to_Unresolved_and_clear_personal_data":["Succeeded"]},"expression":{"not":{"equals":["@outputs('Set_Status_to_Unresolved_and_clear_personal_data')?['body/_ppp_citizenship_value']","@null"]}},"type":"If"},"If_ID_Country_is_not_null":{"actions":{"Unrelate_records_2":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps_1","operationId":"DisassociateEntities","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"tc_countries","recordId":"@items('Apply_to_each')?['_ppp_idcountry_value']","associationEntityRelationship":"ppp_Traveller_Country","$id":"@items('Apply_to_each')?['ppp_travellerid']"},"authentication":"@parameters('$authentication')"}}},"runAfter":{"If_Citizenship_is_not_null":["Succeeded"]},"expression":{"not":{"equals":["@items('Apply_to_each')?['_ppp_idcountry_value']","@null"]}},"type":"If"}},"runAfter":{"List_Draft_Traveller_Records_with_Flight_Origin_date_over_7_days_ago":["Succeeded"]},"type":"Foreach"},"List_Draft_Traveller_Records_with_Flight_Origin_date_over_7_days_ago":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps","operationId":"ListRecords","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"ppp_travellers","$filter":"ppp_recordstatus eq 927820001 and (ppp_flightorigindate lt @{addDays(utcNow(),-7)} or (ppp_flightorigindate eq null and modifiedon lt @{addDays(utcNow(), -7)}))"},"authentication":"@parameters('$authentication')"}}},"outputs":{}}},"schemaVersion":"1.0.0.0"}
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ppp_sharedcommondataserviceforapps_7f22b"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ppp_sharedcommondataserviceforapps_7f22b"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Recurrence_at_1am_everyday": {
+          "recurrence": {
+            "frequency": "Day",
+            "interval": 1,
+            "timeZone": "Eastern Standard Time",
+            "schedule": {
+              "hours": [
+                "1",
+                "14"
+              ],
+              "minutes": [
+                12
+              ]
+            }
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "Apply_to_each": {
+          "foreach": "@outputs('List_Draft_Traveller_Records_with_Flight_Origin_date_over_7_days_ago')?['body/value']",
+          "actions": {
+            "Get_Owner": {
+              "runAfter": {
+                "If_ID_Country_is_not_null": [
+                  "Succeeded"
+                ]
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "systemusers",
+                  "recordId": "@items('Apply_to_each')?['_createdby_value']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "List_Users_in_PPP_Manager_Team": {
+              "runAfter": {
+                "Get_Owner": [
+                  "Succeeded"
+                ]
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "systemusers",
+                  "$filter": "(teammembership_association/any(t:t/name eq 'ppp manager'))"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each_3": {
+              "foreach": "@outputs('List_Users_in_PPP_Manager_Team')?['body/value']",
+              "actions": {
+                "Send_an_email_(V2)": {
+                  "runAfter": {},
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365",
+                      "operationId": "SendEmailV2",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
+                    "parameters": {
+                      "emailMessage/To": "@items('Apply_to_each_3')?['internalemailaddress']",
+                      "emailMessage/Subject": "Traveller Validation Record Number @{items('Apply_to_each')?['ppp_travellerautonumber']} set to Unresolved / Numéro d'enregistrement de validation du voyageur @{items('Apply_to_each')?['ppp_travellerautonumber']} est défini comme \"Non résolu\"\n",
+                      "emailMessage/Body": "<p>A Draft record @{items('Apply_to_each')?['ppp_travellerautonumber']}'s status was set to Unresolved due to the Flight Origin Date occuring over 7 days ago, or it being last modified over 7 days ago with no Flight Origin Date set. Any personal information of the traveller will be removed in 7 days.<br>\n<br>\nFlight Origin Date: @{items('Apply_to_each')?['ppp_flightorigindate']}.<br>\n<br>\nRecord created by: @{outputs('Get_Owner')?['body/firstname']} @{outputs('Get_Owner')?['body/lastname']}.<br>\n<br>\n****<br>\n<br>\nLe statut d'un dossier ébauche @{items('Apply_to_each')?['ppp_travellerautonumber']} a été défini sur \"Non résolu\" en raison de la date d'origine du vol survenue il y a plus de 7 jours, ou de sa dernière modification il y a plus de 7 jours sans date d'origine du vol définie.<br>\n<br>\n<br>\nDate d'origine du vol : @{items('Apply_to_each')?['ppp_flightorigindate']}.<br>\n<br>\nDossier créer par : @{outputs('Get_Owner')?['body/firstname']} @{outputs('Get_Owner')?['body/lastname']}.<br>\n<br>\n</p>"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "List_Users_in_PPP_Manager_Team": [
+                  "Succeeded"
+                ]
+              },
+              "type": "Foreach"
+            },
+            "Set_Status_to_Unresolved_and_clear_personal_data": {
+              "runAfter": {},
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ppp_travellers",
+                  "recordId": "@items('Apply_to_each')?['ppp_travellerid']",
+                  "item/ppp_dateofbirth": "@null",
+                  "item/ppp_finalstatustime": "@utcNow()",
+                  "item/ppp_firstname": "@null",
+                  "item/ppp_gender": "@null",
+                  "item/ppp_iddetails": "@null",
+                  "item/ppp_idsused": "@null",
+                  "item/ppp_lastknownaddress": "@null",
+                  "item/ppp_lastname": "@null",
+                  "item/ppp_middlename": "@null",
+                  "item/ppp_recordstatus": 927820005
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "If_Citizenship_is_not_null": {
+              "actions": {
+                "Unrelate_records": {
+                  "runAfter": {},
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "DisassociateEntities",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "tc_countries",
+                      "recordId": "@outputs('Set_Status_to_Unresolved_and_clear_personal_data')?['body/_ppp_citizenship_value']",
+                      "associationEntityRelationship": "ppp_Traveller_Citizenship_tc_Country",
+                      "$id": "@outputs('Set_Status_to_Unresolved_and_clear_personal_data')?['body/ppp_travellerid']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Set_Status_to_Unresolved_and_clear_personal_data": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "not": {
+                  "equals": [
+                    "@outputs('Set_Status_to_Unresolved_and_clear_personal_data')?['body/_ppp_citizenship_value']",
+                    "@null"
+                  ]
+                }
+              },
+              "type": "If"
+            },
+            "If_ID_Country_is_not_null": {
+              "actions": {
+                "Unrelate_records_2": {
+                  "runAfter": {},
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "DisassociateEntities",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "tc_countries",
+                      "recordId": "@items('Apply_to_each')?['_ppp_idcountry_value']",
+                      "associationEntityRelationship": "ppp_Traveller_Country",
+                      "$id": "@items('Apply_to_each')?['ppp_travellerid']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "If_Citizenship_is_not_null": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "not": {
+                  "equals": [
+                    "@items('Apply_to_each')?['_ppp_idcountry_value']",
+                    "@null"
+                  ]
+                }
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "List_Draft_Traveller_Records_with_Flight_Origin_date_over_7_days_ago": [
+              "Succeeded"
+            ]
+          },
+          "type": "Foreach"
+        },
+        "List_Draft_Traveller_Records_with_Flight_Origin_date_over_7_days_ago": {
+          "runAfter": {},
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ppp_travellers",
+              "$filter": "ppp_recordstatus eq 927820001 and (ppp_flightorigindate lt @{addDays(utcNow(),-7)} or (ppp_flightorigindate eq null and modifiedon lt @{addDays(utcNow(), -7)}))"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

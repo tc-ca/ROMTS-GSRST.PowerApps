@@ -1,1 +1,91 @@
-{"properties":{"connectionReferences":{"shared_commondataserviceforapps_1":{"runtimeSource":"embedded","connection":{"connectionReferenceLogicalName":"ppp_sharedcommondataserviceforapps_7f22b"},"api":{"name":"shared_commondataserviceforapps"}}},"definition":{"$schema":"https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#","contentVersion":"1.0.0.0","parameters":{"$connections":{"defaultValue":{},"type":"Object"},"$authentication":{"defaultValue":{},"type":"SecureObject"}},"triggers":{"When_a_record_is_Created_or_Updated_as_a_Draft":{"type":"OpenApiConnectionWebhook","inputs":{"host":{"connectionName":"shared_commondataserviceforapps_1","operationId":"SubscribeWebhookTrigger","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"subscriptionRequest/message":4,"subscriptionRequest/entityname":"ppp_traveller","subscriptionRequest/scope":4,"subscriptionRequest/filteringattributes":"ppp_recordstatus","subscriptionRequest/filterexpression":"ppp_recordstatus eq 927820001"},"authentication":"@parameters('$authentication')"}}},"actions":{"Get_Owner":{"runAfter":{},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_commondataserviceforapps_1","operationId":"GetItem","apiId":"/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"},"parameters":{"entityName":"systemusers","recordId":"@triggerOutputs()?['body/_createdby_value']"},"authentication":"@parameters('$authentication')"}},"Send_an_email_(V2)":{"runAfter":{"Get_Owner":["Succeeded"]},"type":"OpenApiConnection","inputs":{"host":{"connectionName":"shared_office365_1","operationId":"SendEmailV2","apiId":"/providers/Microsoft.PowerApps/apis/shared_office365"},"parameters":{"emailMessage/To":"@outputs('Get_Owner')?['body/internalemailaddress']","emailMessage/Subject":"Traveller Validation Draft Record Created /Dossier ébauche pour la validation du voyageur créé.  Record Number / Numéro du dossier @{triggerOutputs()?['body/ppp_travellerautonumber']}","emailMessage/Body":"<p>Traveller Validation Record set to Draft status.<br>\n<br>\nRecord Number: @{triggerOutputs()?['body/ppp_travellerautonumber']}<br>\n<br>\nCreated On: @{triggerOutputs()?['body/createdon']}<br>\nCreated By: @{outputs('Get_Owner')?['body/firstname']} @{outputs('Get_Owner')?['body/lastname']}<br>\n<br>\n****<br>\n<br>\nDossier pour la validation du voyageur défini à l'état \"Ébauche\".<br>\n<br>\nNuméro du dossier : @{triggerOutputs()?['body/ppp_travellerautonumber']}<br>\n<br>\nCréé le : @{triggerOutputs()?['body/createdon']}<br>\nCréé par : @{outputs('Get_Owner')?['body/firstname']} @{outputs('Get_Owner')?['body/lastname']}<br>\n<br>\n</p>"},"authentication":"@parameters('$authentication')"}}},"outputs":{}}},"schemaVersion":"1.0.0.0"}
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ppp_sharedcommondataserviceforapps_7f22b"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_record_is_Created_or_Updated_as_a_Draft": {
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "ppp_traveller",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ppp_recordstatus",
+              "subscriptionRequest/filterexpression": "ppp_recordstatus eq 927820001"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Get_Owner": {
+          "runAfter": {},
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "systemusers",
+              "recordId": "@triggerOutputs()?['body/_createdby_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Send_an_email_(V2)": {
+          "runAfter": {
+            "Get_Owner": [
+              "Succeeded"
+            ]
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365_1",
+              "operationId": "SendEmailV2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+            },
+            "parameters": {
+              "emailMessage/To": "@outputs('Get_Owner')?['body/internalemailaddress']",
+              "emailMessage/Subject": "Traveller Validation Draft Record Created /Dossier ébauche pour la validation du voyageur créé.  Record Number / Numéro du dossier @{triggerOutputs()?['body/ppp_travellerautonumber']}",
+              "emailMessage/Body": "<p>Traveller Validation Record set to Draft status.<br>\n<br>\nRecord Number: @{triggerOutputs()?['body/ppp_travellerautonumber']}<br>\n<br>\nCreated On: @{triggerOutputs()?['body/createdon']}<br>\nCreated By: @{outputs('Get_Owner')?['body/firstname']} @{outputs('Get_Owner')?['body/lastname']}<br>\n<br>\n****<br>\n<br>\nDossier pour la validation du voyageur défini à l'état \"Ébauche\".<br>\n<br>\nNuméro du dossier : @{triggerOutputs()?['body/ppp_travellerautonumber']}<br>\n<br>\nCréé le : @{triggerOutputs()?['body/createdon']}<br>\nCréé par : @{outputs('Get_Owner')?['body/firstname']} @{outputs('Get_Owner')?['body/lastname']}<br>\n<br>\n</p>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
