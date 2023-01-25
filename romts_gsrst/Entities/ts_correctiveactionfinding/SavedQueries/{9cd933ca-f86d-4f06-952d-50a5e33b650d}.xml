@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{9cd933ca-f86d-4f06-952d-50a5e33b650d}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_correctiveactionfindingid">
+          <cell name="a_f5734de851c2491494b197727f21ef0e.ts_name" width="100" />
+          <cell name="a_f5734de851c2491494b197727f21ef0e.ts_description" width="100" />
+          <cell name="ts_finding" width="100" />
+          <cell name="a_f5734de851c2491494b197727f21ef0e.ts_duedate" width="100" />
+          <cell name="a_f5734de851c2491494b197727f21ef0e.ts_status" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_correctiveactionfinding">
+          <attribute name="ts_correctiveactionfindingid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <link-entity alias="a_f5734de851c2491494b197727f21ef0e" name="ts_correctiveaction" to="ts_correctiveaction" from="ts_correctiveactionid" link-type="outer" visible="false">
+            <attribute name="ts_name" />
+            <attribute name="ts_description" />
+            <attribute name="ts_duedate" />
+            <attribute name="ts_status" />
+          </link-entity>
+          <attribute name="ts_finding" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20230118.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Corrective Action Finding" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

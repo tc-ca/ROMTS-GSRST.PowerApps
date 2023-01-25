@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{468a90f8-9fce-4e97-83f5-bb7544c11d9b}</savedqueryid>
+    <layoutxml>
+      <grid name="ts_correctiveactions" jump="ts_name" select="1" icon="1" preview="0">
+        <row name="ts_correctiveaction" id="ts_correctiveactionid">
+          <cell name="ts_name" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_correctiveaction">
+          <attribute name="ts_correctiveactionid" />
+          <attribute name="ts_name" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20230118.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Corrective Action Lookup View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

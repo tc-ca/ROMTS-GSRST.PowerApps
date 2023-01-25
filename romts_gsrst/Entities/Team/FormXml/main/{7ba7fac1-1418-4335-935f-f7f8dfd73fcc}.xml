@@ -185,7 +185,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_planning" id="5a0b2586-0398-4dc6-b679-7d2ddc25ed90" IsUserDefined="0" locklevel="0" showlabel="true" visible="true" ordinalvalue="3" solutionaction="Added">
+        <tab name="tab_planning" id="5a0b2586-0398-4dc6-b679-7d2ddc25ed90" IsUserDefined="0" locklevel="0" showlabel="true" visible="false" ordinalvalue="3" solutionaction="Added">
           <labels>
             <label description="Planning" languagecode="1033" />
             <label description="Planification" languagecode="1036" />
@@ -245,6 +245,11 @@
         </rows>
       </header>
       <events>
+        <event name="onload" application="true" active="true">
+          <Handlers solutionaction="Added">
+            <Handler functionName="ROM.Team.onLoad" libraryName="ts_/js/Team.js" handlerUniqueId="{be0a4fda-5bc4-49e9-b445-980b86c27f6b}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
         <event name="onrecordselect" application="false" active="false" relationship="" control="activity_type_estimated_duration" solutionaction="Added">
           <Handlers>
             <Handler functionName="ROM.Team.setFieldsDisabled" libraryName="ts_/js/Team.js" handlerUniqueId="{e1c05c08-ac4d-0388-edaa-4bbe7197451c}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
@@ -322,7 +327,7 @@
         </controlDescription>
       </controlDescriptions>
       <Navigation solutionaction="Added">
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
