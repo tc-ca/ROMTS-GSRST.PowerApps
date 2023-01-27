@@ -41,6 +41,22 @@
                     </row>
                   </rows>
                 </section>
+                <section name="tab_Oversight_Location" showlabel="true" showbar="false" locklevel="0" id="{c5bed78b-0288-865b-6684-e4ca14198637}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Location Details" languagecode="1033" />
+                    <label description="Détails de l'emplacement" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{3c934c92-70ca-e3d2-a74b-0b82601324d3}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Location" languagecode="1033" />
+                        </labels>
+                        <control id="ts_location" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_location" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
                 <section name="tab_Oversight_Flight" showlabel="true" showbar="false" locklevel="0" id="{d9ac3972-2b52-9cd9-c4cc-83beea5d17d4}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" visible="false">
                   <labels>
                     <label description="Flight Details" languagecode="1033" />
@@ -77,19 +93,35 @@
                     <row>
                       <cell id="{012ca997-0038-46d9-1e67-84be4cc5602d}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="PAX Onboard" languagecode="1033" />
+                          <label description="PAX Checked-in" languagecode="1033" />
                           <label description="Passager à bord" languagecode="1036" />
                         </labels>
-                        <control id="ts_paxonboard" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_paxonboard" disabled="false" />
+                        <control id="ts_paxonboard" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_paxonboard" disabled="false" uniqueid="{dc7c93d8-1aaa-396d-5bec-992e94d636b9}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d16203aa-58b9-3a6e-7608-a58b11407260}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="PAX Boarded" languagecode="1033" />
+                        </labels>
+                        <control id="ts_paxboarded" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_paxboarded" disabled="false" />
                       </cell>
                     </row>
                     <row>
                       <cell id="{c95adb81-7334-5da4-469e-615e62515c0e}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="CB Onboard" languagecode="1033" />
+                          <label description="CB Checked-in" languagecode="1033" />
                           <label description="Bagages enregistrés à bord" languagecode="1036" />
                         </labels>
-                        <control id="ts_cbonboard" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_cbonboard" disabled="false" />
+                        <control id="ts_cbonboard" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_cbonboard" disabled="false" uniqueid="{15a8b050-742a-e06c-4423-c5450e09db7d}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0c9e390a-4ad9-cd69-c40c-1309876ab916}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="CB Loaded" languagecode="1033" />
+                        </labels>
+                        <control id="ts_cbloaded" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_cbloaded" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -112,36 +144,6 @@
                     </row>
                   </rows>
                 </section>
-              </sections>
-            </column>
-            <column width="50%">
-              <sections>
-                <section name="tab_Oversight_Location" showlabel="true" showbar="false" locklevel="0" id="{c5bed78b-0288-865b-6684-e4ca14198637}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" visible="false">
-                  <labels>
-                    <label description="Location Details" languagecode="1033" />
-                    <label description="Détails de l'emplacement" languagecode="1036" />
-                  </labels>
-                  <rows>
-                    <row>
-                      <cell id="{da2c834e-424a-00b7-e634-767d669e5126}" showlabel="true" locklevel="0">
-                        <labels>
-                          <label description="Boarding Lounge" languagecode="1033" />
-                          <label description="Salle d'embarquement" languagecode="1036" />
-                        </labels>
-                        <control id="ts_boardinglounge" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_boardinglounge" disabled="false" uniqueid="{5e42aa20-563d-75c2-875b-8144a0b395b2}" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{8d6709dd-0ac0-a65a-2830-86d1be670376}" showlabel="true" locklevel="0">
-                        <labels>
-                          <label description="Gate" languagecode="1033" />
-                          <label description="Porte" languagecode="1036" />
-                        </labels>
-                        <control id="ts_gate" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_gate" disabled="false" uniqueid="{a6ea980c-a828-4337-b28b-70cd5d2566e4}" />
-                      </cell>
-                    </row>
-                  </rows>
-                </section>
                 <section name="tab_Oversight_Aircraft" showlabel="true" showbar="false" locklevel="0" id="{722498e2-d230-3b6d-b484-b99b72db587b}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" visible="false">
                   <labels>
                     <label description="Aircraft Details" languagecode="1033" />
@@ -151,10 +153,10 @@
                     <row>
                       <cell id="{b2ad4b8a-a303-957e-2088-b597d94979c1}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Mark" languagecode="1033" />
+                          <label description="Registration (Mark)" languagecode="1033" />
                           <label description="Marquer" languagecode="1036" />
                         </labels>
-                        <control id="ts_aircraftmark" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_aircraftmark" disabled="false" />
+                        <control id="ts_aircraftmark" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_aircraftmark" disabled="false" uniqueid="{e60e0605-9426-8480-2cd4-5431c5542aa7}" />
                       </cell>
                     </row>
                     <row>
@@ -182,6 +184,277 @@
                           <label description="Autre modèle" languagecode="1036" />
                         </labels>
                         <control id="ts_aircraftmodelother" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_aircraftmodelother" disabled="false" uniqueid="{59c2b522-27d5-da4c-3091-3575516877ab}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="50%">
+              <sections>
+                <section name="tab_Oversight_section_5" showlabel="true" showbar="false" locklevel="0" id="{2191d30d-1483-27e8-2529-11b74ad45408}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Air Carrier Details" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{0d88538d-c388-e7ba-4333-8286d51350c4}" showlabel="false" colspan="1" auto="false">
+                        <labels>
+                          <label description="Planned Operation" languagecode="1033" />
+                          <label description="Ordre de travail" languagecode="1036" />
+                        </labels>
+                        <control id="PlannedOperation" classid="{5C5600E0-1D6E-4205-A272-BE80DA87FD42}" datafieldname="msdyn_workorder" disabled="false">
+                          <parameters>
+                            <QuickForms>&lt;QuickFormIds&gt;&lt;QuickFormId entityname="msdyn_workorder"&gt;7eba2501-eee0-4ea7-9eef-8d382c18a3fe&lt;/QuickFormId&gt;&lt;/QuickFormIds&gt;</QuickForms>
+                            <ControlMode>Edit</ControlMode>
+                            <DisplayAsCustomer360Tile>false</DisplayAsCustomer360Tile>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ebee6312-1844-4045-086c-50d1244ad1b7}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Brand Name" languagecode="1033" />
+                        </labels>
+                        <control id="ts_brandname" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_brandname" disabled="false" uniqueid="{b0770a97-7ab3-6b1d-78b4-a8a580b2367e}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a2d209e9-e89a-4450-288a-68ce04052aae}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="AOC Operation" languagecode="1033" />
+                        </labels>
+                        <control id="ts_aocoperation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_aocoperation" disabled="false" uniqueid="{b298d969-b5cd-c613-238c-0ca25e8cda5a}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{711F5276-75DB-EC11-A7B5-000D3AE86184}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <AvailableViewIds>{711F5276-75DB-EC11-A7B5-000D3AE86184},{AC98874B-C8C7-EC11-A7B5-0022483DCACC},{DFCAC278-14E6-45D1-8E67-289F2C7082A1}</AvailableViewIds>
+                            <FilterRelationshipName>ts_ovs_operation_site_msdyn_functionallocati</FilterRelationshipName>
+                            <DependentAttributeName>msdyn_workorderservicetask.ts_aocsite</DependentAttributeName>
+                            <DependentAttributeType>msdyn_functionallocation</DependentAttributeType>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1a2998de-0722-2272-ccc5-80536d16c94a}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="AOC Stakeholder" languagecode="1033" />
+                        </labels>
+                        <control id="ts_aocstakeholder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_aocstakeholder" disabled="false" uniqueid="{0e35b1a8-a9e2-e592-2e56-4676107ba036}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</DefaultViewId>
+                            <FilterRelationshipName>ts_ovs_operation_stakeholder_account</FilterRelationshipName>
+                            <DependentAttributeName>msdyn_workorderservicetask.ts_aocoperation</DependentAttributeName>
+                            <DependentAttributeType>ovs_operation</DependentAttributeType>
+                            <AllowFilterOff>true</AllowFilterOff>
+                            <AvailableViewIds>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a77c8b13-8392-8ab9-a1b3-d12d19b943ee}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="AOC Operation Type" languagecode="1033" />
+                        </labels>
+                        <control id="ts_aocoperationtype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_aocoperationtype" disabled="false" uniqueid="{a378798c-3d78-aea8-5550-a86681e7053d}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{1284A7EE-3693-435E-8C57-8F94B3D5DEAE}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{86b34ab8-cd76-392b-a5c4-521280d01edd}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="AOC Site" languagecode="1033" />
+                        </labels>
+                        <control id="ts_aocsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_aocsite" disabled="false" uniqueid="{5e66808a-362d-8dc0-a9cd-4e837874a507}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <AvailableViewIds>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_Oversight_section_6" showlabel="true" showbar="false" locklevel="0" id="{606b249a-b633-b166-cdbd-86de4d635ba3}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Service Providers" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{679ae30d-3605-b5ac-5955-053859d3d89c}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Passenger Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_passengerservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_passengerservices" disabled="false" uniqueid="{7c149c8b-9b41-9531-5c7a-664868d61a7c}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0b973793-0a95-880a-5c36-0779402173ba}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Ramp Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_rampservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_rampservices" disabled="false" uniqueid="{4a0b8331-d3bd-2b6d-7dbc-149cb384ebcd}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3837ed99-1bde-d372-5390-1a326648a0eb}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Cargo Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_cargoservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_cargoservices" disabled="false" uniqueid="{9630aa61-21d7-46c7-e18a-044d84e89529}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9b92bcd6-7a5e-96dc-a3d7-d33ce3555a23}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="CB Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_cbservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_cbservices" disabled="false" uniqueid="{c515ceb2-7d85-8e87-508a-28c245a88ab7}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d6331ce1-0d3c-311e-0955-294d15535372}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Catering Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_cateringservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_cateringservices" disabled="false" uniqueid="{2b36ebe9-79b7-e3e7-6a61-0559aa38de38}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{bc40b54d-4045-0c3d-85d2-a7125335c8c4}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Grooming Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_groomingservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_groomingservices" disabled="false" uniqueid="{10d3912a-31ab-5ba4-bb46-b3524b8d5665}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e0e65229-ca81-43e3-a949-3b7ca6ed7db4}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Security Search Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_securitysearchservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_securitysearchservices" disabled="false" uniqueid="{40c9d898-0883-01a2-6d77-6842c5e49060}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4539221c-31e5-ab30-daad-2757bc87b43e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Access Control Security Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_accesscontrolsecurityservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_accesscontrolsecurityservices" disabled="false" uniqueid="{be1ad0de-2a7e-8b28-95bc-6a8171c88c49}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8ab994e2-d14e-d32d-7b99-1179e65d5760}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Other Security Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_othersecurityservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_othersecurityservices" disabled="false" uniqueid="{740ba12b-e600-8d2e-b223-e725a973705b}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                   </rows>
@@ -1615,6 +1888,16 @@
         <event name="onchange" application="false" active="false" attribute="ts_aircraftmanufacturer">
           <Handlers>
             <Handler functionName="ROM.WorkOrderServiceTask.aircraftManufacturerOnChange" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{6dde29d5-cad6-04bd-6267-98e2d47d5221}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_aocstakeholder">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTask.onAOCFieldsOnChange" libraryName="ovs_/js/WorkOrderServiceTask.js" handlerUniqueId="{a946a0d4-b9e1-0ecd-cd17-13a5bae53c23}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_aocoperationtype">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTask.onAOCFieldsOnChange" libraryName="ovs_/js/WorkOrderServiceTask.js" handlerUniqueId="{1361d2d2-aad9-deb4-ee2d-c5843d2eb03b}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

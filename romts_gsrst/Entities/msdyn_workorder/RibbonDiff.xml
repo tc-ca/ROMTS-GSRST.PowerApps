@@ -74,12 +74,34 @@
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
   <CommandDefinitions>
+    <CommandDefinition Id="Mscrm.AddExistingRecordFromSubGridAssociated">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.EntityFormIsEnabled" />
+        <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotTeamPlanningData" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AddExisting" />
+        <DisplayRule Id="Mscrm.ShowForManyToManyGrids" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.AppendPrimary" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="Mscrm.AppendToSelected" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridAssociated" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="Mscrm.AddExistingRecordFromSubGridStandard">
       <EnableRules>
         <EnableRule Id="Mscrm.AppendToPrimary" />
         <EnableRule Id="Mscrm.EntityFormIsEnabled" />
         <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
         <EnableRule Id="Mscrm.IsRelationshipEnabledInMocaOffline" />
+        <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotTeamPlanningData" />
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="Mscrm.AddExisting" />
@@ -102,6 +124,7 @@
         <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
         <EnableRule Id="ts.msdyn_workorder.HideInOperation.EnableRule" />
         <EnableRule Id="ts.msdyn_workorder.HideInStakeholder.EnableRule" />
+        <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotTeamPlanningData" />
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="Mscrm.ShowForOneToManyGrids" />
@@ -238,6 +261,7 @@
         <EnableRule Id="Mscrm.IsRelationshipEnabledInMocaOffline" />
         <EnableRule Id="ts.msdyn_workorder.HideInOperation.EnableRule" />
         <EnableRule Id="ts.msdyn_workorder.HideInStakeholder.EnableRule" />
+        <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotTeamPlanningData" />
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="Mscrm.AddExisting" />
@@ -347,11 +371,17 @@
       <DisplayRule Id="Mscrm.AddExisting">
         <ReferencingAttributeRequiredRule Default="false" InvertResult="true" />
       </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendPrimary">
+        <EntityPrivilegeRule PrivilegeType="Append" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
       <DisplayRule Id="Mscrm.AppendSelected">
         <EntityPrivilegeRule PrivilegeType="Append" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
       </DisplayRule>
       <DisplayRule Id="Mscrm.AppendToPrimary">
         <EntityPrivilegeRule PrivilegeType="AppendTo" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendToSelected">
+        <EntityPrivilegeRule PrivilegeType="AppendTo" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
       </DisplayRule>
       <DisplayRule Id="Mscrm.AssignPrimaryPermission">
         <EntityPrivilegeRule PrivilegeType="Assign" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
@@ -413,6 +443,9 @@
       </DisplayRule>
       <DisplayRule Id="Mscrm.ShareSelectedEntityPermission">
         <EntityPrivilegeRule PrivilegeType="Share" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.ShowForManyToManyGrids">
+        <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="ManyToMany" />
       </DisplayRule>
       <DisplayRule Id="Mscrm.ShowForNonRelationshipBoundGrids">
         <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="NoRelationship" />
@@ -523,6 +556,9 @@
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorder.HideInStakeholder.EnableRule">
         <EntityRule EntityName="account" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotTeamPlanningData">
+        <EntityRule EntityName="ts_teamplanningdata" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorder.TSIS.hasWorkOrderName">
         <CustomRule FunctionName="hasWorkOrderName" Library="$webresource:ovs_/js/WorkOrderRibbon.js" Default="false" InvertResult="false">

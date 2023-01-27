@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20230125.1</Version>
+    <Version>1.0.20230127.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -268,6 +268,7 @@
       <RootComponent type="9" schemaName="msdyn_wosystemstatus" behavior="0" />
       <RootComponent type="9" schemaName="ovs_facilitytype" behavior="0" />
       <RootComponent type="9" schemaName="tc_gender" behavior="0" />
+      <RootComponent type="9" schemaName="ts_aircarrierbrandname" behavior="0" />
       <RootComponent type="9" schemaName="ts_aircraftmanufacturer" behavior="0" />
       <RootComponent type="9" schemaName="ts_aircraftmodel" behavior="0" />
       <RootComponent type="9" schemaName="ts_arrestsknownorunknown" behavior="0" />
@@ -298,6 +299,7 @@
       <RootComponent type="9" schemaName="ts_planningstate" behavior="0" />
       <RootComponent type="9" schemaName="ts_planningstatus" behavior="0" />
       <RootComponent type="9" schemaName="ts_ppecategories" behavior="0" />
+      <RootComponent type="9" schemaName="ts_program" behavior="0" />
       <RootComponent type="9" schemaName="ts_programaccess" behavior="0" />
       <RootComponent type="9" schemaName="ts_province" behavior="0" />
       <RootComponent type="9" schemaName="ts_publicorprivatecrossing" behavior="0" />
@@ -3874,6 +3876,12 @@
         <Required type="10" schemaName="msdyn_account_msdyn_workorder_ServiceAccount" displayName="msdyn_account_msdyn_workorder_ServiceAccount" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.81.89)</package>
         </Required>
+        <Dependent type="60" displayName="Planned Operation" parentDisplayName="Work Order" id="{7eba2501-eee0-4ea7-9eef-8d382c18a3fe}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_account_msdyn_workorder_ServiceAccount" displayName="msdyn_account_msdyn_workorder_ServiceAccount" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.81.89)</package>
+        </Required>
         <Dependent type="60" displayName="Work Order - Notes" parentDisplayName="Work Order" id="{7fac7159-31a5-4869-8f2f-ee88dd6c0f3a}" />
       </MissingDependency>
       <MissingDependency>
@@ -7169,13 +7177,13 @@
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.81.89)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.81.89)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
+        <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" displayName="msdyn_slakpiinstance_msdyn_workorder_resolutionkpiid" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_systemuser_msdyn_purchaseorder_ApprovedRejectedBy" displayName="msdyn_systemuser_msdyn_purchaseorder_ApprovedRejectedBy" parentSchemaName="systemuser" parentDisplayName="User" solution="FieldService (8.8.0.88)">
@@ -18126,7 +18134,7 @@
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
           <package>msdynce_AppCommonAnchor (9.0.23012.10001)</package>
         </Required>
-        <Dependent type="60" displayName="Account - Mobile" parentDisplayName="Account" id="{74da4947-5d1d-4400-9f99-c6ed578211bb}" />
+        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
@@ -18186,13 +18194,13 @@
         <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
           <package>msdynce_AppCommonAnchor (9.0.23012.10001)</package>
         </Required>
-        <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
+        <Dependent type="60" displayName="Contact - Mobile" parentDisplayName="Contact" id="{28b5b9b6-dfa2-45d6-8a81-3f6ba02a098a}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
           <package>msdynce_AppCommonAnchor (9.0.23012.10001)</package>
         </Required>
-        <Dependent type="60" displayName="Contact Main Form" parentDisplayName="Contact" id="{2c961780-b9f9-ea11-a815-000d3af3ac0d}" />
+        <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
@@ -19575,7 +19583,7 @@
         <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
           <package>msdynce_SalesAnchor (9.0.23012.10001)</package>
         </Required>
-        <Dependent type="60" displayName="Contact Main Form" parentDisplayName="Contact" id="{2c961780-b9f9-ea11-a815-000d3af3ac0d}" />
+        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
@@ -19599,7 +19607,7 @@
         <Required type="61" schemaName="Sales/Contact/Contact_main_system_library.js" displayName="Sales/Contact/Contact_main_system_library.js" solution="msdynce_SalesPatch201904 (9.0.1912.1007)">
           <package>msdynce_SalesAnchor (9.0.23012.10001)</package>
         </Required>
-        <Dependent type="60" displayName="Contact Main Form" parentDisplayName="Contact" id="{2c961780-b9f9-ea11-a815-000d3af3ac0d}" />
+        <Dependent type="60" displayName="Contact Quick Create" parentDisplayName="Contact" id="{661157fe-2fc9-4eaa-835f-5bfa2f7b64f7}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Scheduling/BookableResource/BookableResource_main_system_library.js" displayName="Scheduling/BookableResource/BookableResource_main_system_library.js" solution="msdynce_Scheduling (9.0.0.0)" />
@@ -19617,7 +19625,7 @@
         <Required type="61" schemaName="Service/Incident/Convert/Incident_convert_library.js" displayName="Service/Incident/Convert/Incident_convert_library.js" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.22123.1015)</package>
         </Required>
-        <Dependent type="60" displayName="Case Quick Create" parentDisplayName="Case" id="{8e10b902-0b3e-441c-8b12-88e6c1793848}" />
+        <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Convert/Incident_convert_library.js" displayName="Service/Incident/Convert/Incident_convert_library.js" solution="msdynce_Service (9.0.5.56)">
@@ -19653,7 +19661,7 @@
         <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.22123.1015)</package>
         </Required>
-        <Dependent type="60" displayName="Case Quick Create" parentDisplayName="Case" id="{8e10b902-0b3e-441c-8b12-88e6c1793848}" />
+        <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
@@ -19677,13 +19685,13 @@
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.22123.1015)</package>
         </Required>
-        <Dependent type="50" schemaName="incident:RibbonDiffXml" displayName="incident:RibbonDiffXml" parentSchemaName="ribboncustomization" parentDisplayName="Application Ribbons" />
+        <Dependent type="60" displayName="Case Quick Create" parentDisplayName="Case" id="{8e10b902-0b3e-441c-8b12-88e6c1793848}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.22123.1015)</package>
         </Required>
-        <Dependent type="60" displayName="Case Quick Create" parentDisplayName="Case" id="{8e10b902-0b3e-441c-8b12-88e6c1793848}" />
+        <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
