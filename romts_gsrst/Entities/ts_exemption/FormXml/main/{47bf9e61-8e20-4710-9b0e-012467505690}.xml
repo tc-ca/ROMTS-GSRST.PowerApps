@@ -7,35 +7,121 @@
     <FormActivationState>1</FormActivationState>
     <form>
       <tabs>
-        <tab verticallayout="true" id="{62c646fe-6dae-483e-a149-5acb1bcf5f28}" IsUserDefined="1">
+        <tab verticallayout="true" id="{62c646fe-6dae-483e-a149-5acb1bcf5f28}" IsUserDefined="1" name="Summary" locklevel="0" expanded="true" showlabel="true">
           <labels>
-            <label description="General" languagecode="1033" />
+            <label description="Summary" languagecode="1033" />
             <label description="Général" languagecode="1036" />
           </labels>
           <columns>
-            <column width="100%">
+            <column width="70%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{8b72d73e-46dc-4f33-b0b1-b6175cf7e70d}">
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{8b72d73e-46dc-4f33-b0b1-b6175cf7e70d}" name="Summary_section" columns="1" locklevel="0" labelwidth="130" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
-                    <label description="General" languagecode="1033" />
+                    <label description="Summary" languagecode="1033" />
                     <label description="Général" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{0491776c-25d4-44f3-9925-016b89923c86}">
+                      <cell id="{0491776c-25d4-44f3-9925-016b89923c86}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Exemption ID" languagecode="1033" />
+                          <label description="Identification de l’exemption" languagecode="1036" />
                         </labels>
-                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" uniqueid="{45a1eb58-2a32-388e-c878-48c1b456a2ad}" disabled="true" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{368aee8d-6501-4bd5-b7fe-ff52da8163ba}">
+                      <cell id="{1740b6a3-ea03-97ae-4226-3be391776988}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Owner" languagecode="1033" />
-                          <label description="Propriétaire" languagecode="1036" />
+                          <label description="Program" languagecode="1033" />
+                          <label description="Mode" languagecode="1036" />
                         </labels>
-                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                        <control id="ts_program" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_program" disabled="true" uniqueid="{2e07eae0-8492-c041-0374-846c394c8635}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ae6c66e2-e442-085c-0b81-8bebc9b7a576}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Exemption Type" languagecode="1033" />
+                          <label description="Type d’exemption" languagecode="1036" />
+                        </labels>
+                        <control id="ts_exemptiontype" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_exemptiontype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9b990b54-1080-cc79-79db-e35ce60447ee}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Exemption Number" languagecode="1033" />
+                          <label description="Numéro d’exemption" languagecode="1036" />
+                        </labels>
+                        <control id="ts_exemptionnumber" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_exemptionnumber" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0247d42a-c0d4-90ab-1d8e-138403b3eb2e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Operation Type" languagecode="1033" />
+                          <label description="Type d’exploitation" languagecode="1036" />
+                        </labels>
+                        <control id="ts_operationtype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operationtype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{67ee587b-81d5-7c39-6820-ee83e9384197}" showlabel="true" locklevel="0" rowspan="3">
+                        <labels>
+                          <label description="Description" languagecode="1033" />
+                          <label description="Description" languagecode="1036" />
+                        </labels>
+                        <control id="ts_description" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_description" disabled="false" uniqueid="{134d2637-2761-15d7-4dc1-bb80a67ace66}" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{79182667-5cee-85e2-64c9-d8a4b77adb6d}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Start Date" languagecode="1033" />
+                          <label description="Date de début" languagecode="1036" />
+                        </labels>
+                        <control id="ts_startdate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_startdate" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{cde63a9d-2ce4-839d-c5b2-4995751d8ae7}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="End Date" languagecode="1033" />
+                          <label description="Date de fin" languagecode="1036" />
+                        </labels>
+                        <control id="ts_enddate" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_enddate" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ecea005a-9c08-de92-b7aa-52940521292d}" showlabel="true" locklevel="0" rowspan="3">
+                        <labels>
+                          <label description="Comments" languagecode="1033" />
+                          <label description="Commentaires" languagecode="1036" />
+                        </labels>
+                        <control id="ts_comments" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_comments" disabled="false" uniqueid="{19652075-25e4-8b4b-d66b-e2035d161d8c}" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="30%">
+              <sections>
+                <section name="Summary_section_2" showlabel="false" showbar="false" locklevel="0" id="{68823392-63d2-3317-20c9-3a21127ccea4}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{d78e8a3d-9375-423e-62c4-6e4bd83aab53}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                   </rows>
@@ -45,6 +131,67 @@
           </columns>
         </tab>
       </tabs>
+      <header id="{19263910-9a18-4fb2-966b-9592db780cea}" columns="1111" labelwidth="130" celllabelalignment="Left" celllabelposition="Left">
+        <rows>
+          <row>
+            <cell id="{3a1b9639-227c-4ad9-8404-523b43fa5fe2}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{37dda3b9-b6b4-43bc-9ebe-b732a3d56b46}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{79db102e-1e31-2972-753a-402a9895e097}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+            </cell>
+            <cell id="{b9ab478e-c061-c7aa-eec4-a6b8b5cb0ba2}" showlabel="true" locklevel="0">
+              <labels>
+                <label description="Status" languagecode="1033" />
+                <label description="État" languagecode="1036" />
+              </labels>
+              <control id="header_ts_recordstatus" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_recordstatus" disabled="false" uniqueid="{6b8445a3-1413-56a4-a176-58e0d3288703}" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <Navigation>
+        <NavBar></NavBar>
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

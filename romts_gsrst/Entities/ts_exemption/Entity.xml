@@ -5,12 +5,15 @@
     <entity Name="ts_exemption">
       <LocalizedNames>
         <LocalizedName description="Exemption" languagecode="1033" />
+        <LocalizedName description="Exemption" languagecode="1036" />
       </LocalizedNames>
       <LocalizedCollectionNames>
         <LocalizedCollectionName description="Exemptions" languagecode="1033" />
+        <LocalizedCollectionName description="Exemptions" languagecode="1036" />
       </LocalizedCollectionNames>
       <Descriptions>
         <Description description="Exemption" languagecode="1033" />
+        <Description description="Exemption" languagecode="1036" />
       </Descriptions>
       <attributes>
         <attribute PhysicalName="CreatedBy">
@@ -719,9 +722,11 @@
           <MaxLength>2000</MaxLength>
           <displaynames>
             <displayname description="Comments" languagecode="1033" />
+            <displayname description="Commentaires" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Comments" languagecode="1033" />
+            <Description description="Commentaires" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_description">
@@ -758,9 +763,11 @@
           <MaxLength>2000</MaxLength>
           <displaynames>
             <displayname description="Description" languagecode="1033" />
+            <displayname description="Description" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Description" languagecode="1033" />
+            <Description description="Description" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_enddate">
@@ -798,9 +805,11 @@
           <Behavior>2</Behavior>
           <displaynames>
             <displayname description="End Date" languagecode="1033" />
+            <displayname description="Date de fin" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="End Date" languagecode="1033" />
+            <Description description="Date de fin" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_exemptionId">
@@ -835,6 +844,7 @@
           <IsLocalizable>0</IsLocalizable>
           <displaynames>
             <displayname description="Exemption" languagecode="1033" />
+            <displayname description="Exemption" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Unique identifier for entity instances" languagecode="1033" />
@@ -876,9 +886,11 @@
           <Length>200</Length>
           <displaynames>
             <displayname description="Exemption Number" languagecode="1033" />
+            <displayname description="Numéro d’exemption" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Exemption Number" languagecode="1033" />
+            <Description description="Numéro d’exemption" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_exemptiontype">
@@ -915,17 +927,19 @@
           <OptionSetName>ts_exemptiontype</OptionSetName>
           <displaynames>
             <displayname description="Exemption Type" languagecode="1033" />
+            <displayname description="Type d’exploitation" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Exemption Type" languagecode="1033" />
+            <Description description="Type d’exploitation" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_name">
           <Type>nvarchar</Type>
           <Name>ts_name</Name>
           <LogicalName>ts_name</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
-          <DisplayMask>PrimaryName|ValidForAdvancedFind|ValidForForm|ValidForGrid|RequiredForForm</DisplayMask>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>PrimaryName|ReadOnlyInUI|ValidForAdvancedFind|ValidForForm|ValidForGrid|RequiredForForm</DisplayMask>
           <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
@@ -945,7 +959,7 @@
           <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
           <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
           <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
+          <AutoNumberFormat>EXM-{SEQNUM:6}</AutoNumberFormat>
           <IsSearchable>1</IsSearchable>
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>1</IsRetrievable>
@@ -955,6 +969,7 @@
           <Length>200</Length>
           <displaynames>
             <displayname description="Exemption ID" languagecode="1033" />
+            <displayname description="Identification de l’exemption" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="The name of the custom entity." languagecode="1033" />
@@ -994,9 +1009,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Operation Type" languagecode="1033" />
+            <displayname description="Type d’exploitation" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Operation Type" languagecode="1033" />
+            <Description description="Type d’exploitation" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_program">
@@ -1029,13 +1046,15 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <AppDefaultValue>-1</AppDefaultValue>
+          <AppDefaultValue>741130000</AppDefaultValue>
           <OptionSetName>ts_program</OptionSetName>
           <displaynames>
             <displayname description="Program" languagecode="1033" />
+            <displayname description="Mode" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Program" languagecode="1033" />
+            <Description description="Mode" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_recordstatus">
@@ -1068,13 +1087,15 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <AppDefaultValue>-1</AppDefaultValue>
+          <AppDefaultValue>741130000</AppDefaultValue>
           <OptionSetName>ts_exemptionstatus</OptionSetName>
           <displaynames>
             <displayname description="Record Status" languagecode="1033" />
+            <displayname description="État" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Record Status" languagecode="1033" />
+            <Description description="État" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_startdate">
@@ -1112,9 +1133,11 @@
           <Behavior>2</Behavior>
           <displaynames>
             <displayname description="Start Date" languagecode="1033" />
+            <displayname description="Date de début" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Start Date" languagecode="1033" />
+            <Description description="Date de début" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="UTCConversionTimeZoneCode">

@@ -10,7 +10,13 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_exemptionid">
-          <cell name="ts_name" width="300" />
+          <cell name="ts_name" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_program" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_exemptiontype" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_exemptionnumber" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_startdate" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_enddate" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_operationtype" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -19,13 +25,19 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ts_exemption">
-          <attribute name="ts_exemptionid" />
           <attribute name="ts_name" />
           <attribute name="createdon" />
           <order attribute="ts_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="ts_program" />
+          <attribute name="ts_exemptiontype" />
+          <attribute name="ts_exemptionnumber" />
+          <attribute name="ts_startdate" />
+          <attribute name="ts_operationtype" />
+          <attribute name="ts_enddate" />
+          <attribute name="ts_exemptionid" />
         </entity>
       </fetch>
     </fetchxml>
