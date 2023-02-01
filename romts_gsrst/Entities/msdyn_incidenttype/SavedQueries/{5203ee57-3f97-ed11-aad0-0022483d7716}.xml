@@ -13,7 +13,7 @@
           <cell name="msdyn_name" width="300" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="ovs_incidenttypenameenglish" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="ovs_incidenttypenamefrench" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="ts_excludefromplanning" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_includeinplanning" width="100" />
           <cell name="msdyn_estimatedduration" width="125" />
         </row>
       </grid>
@@ -26,10 +26,10 @@
           <attribute name="msdyn_estimatedduration" />
           <attribute name="ovs_incidenttypenameenglish" />
           <attribute name="ovs_incidenttypenamefrench" />
-          <attribute name="ts_excludefromplanning" />
+          <attribute name="ts_includeinplanning" />
           <order attribute="msdyn_name" descending="false" />
           <filter type="and">
-            <condition attribute="ts_excludefromplanning" operator="eq" value="1" />
+            <condition attribute="ts_includeinplanning" operator="eq" value="1" />
           </filter>
           <attribute name="msdyn_incidenttypeid" />
         </entity>
@@ -37,7 +37,7 @@
     </fetchxml>
     <IntroducedVersion>1.0.20230109.1</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Exclude from Planning Incident Types" languagecode="1033" />
+      <LocalizedName description="Include in Planning Incident Types" languagecode="1033" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>
