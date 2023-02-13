@@ -35,10 +35,11 @@
                         </labels>
                         <control id="ts_team" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_team" disabled="false" />
                       </cell>
-                      <cell id="{4501a00e-4e06-42ba-9bef-81224ca36b98}" showlabel="false">
+                      <cell id="{f4b12f67-624a-429b-b7dc-c713c22d469a}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Status" languagecode="1033" />
                         </labels>
+                        <control id="ts_planstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_planstatus" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -354,7 +355,7 @@
                       <cell locklevel="0" id="{b549c4e8-1b83-42f7-ad1c-04e2c3071584}" rowspan="4" colspan="1" auto="true" showlabel="false">
                         <labels>
                           <label description="New SG control 1674757823458" languagecode="1033" />
-                          <label description="Ordres de travail" languagecode="1036" />
+                          <label description="Données de planification" languagecode="1036" />
                         </labels>
                         <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
                           <parameters>
@@ -691,6 +692,11 @@
         <event name="onchange" application="false" active="false" attribute="ts_totalhoursfiscalyear">
           <Handlers>
             <Handler functionName="ROM.TeamPlanningData.fiscalYearInspectorHoursOnChange" libraryName="ts_/js/TeamPlanningData.js" handlerUniqueId="{608260c1-cdd5-2c0d-de61-4d4d4bdaadd9}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_planstatus">
+          <Handlers>
+            <Handler functionName="ROM.TeamPlanningData.planStatusOnChange" libraryName="ts_/js/TeamPlanningData.js" handlerUniqueId="{ed572923-8902-412b-a4e4-1ac1b701c8dc}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
