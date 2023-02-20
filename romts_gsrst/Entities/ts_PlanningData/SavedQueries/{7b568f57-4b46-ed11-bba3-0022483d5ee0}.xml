@@ -57,6 +57,11 @@
           <attribute name="ts_planningdetail" />
           <attribute name="ts_details" />
           <attribute name="ts_planningdataid" />
+          <link-entity name="ts_operationactivity" alias="aa" link-type="inner" from="ts_operationactivityid" to="ts_operationactivity">
+            <filter type="and">
+              <condition attribute="statecode" operator="eq" value="0" />
+            </filter>
+          </link-entity>
         </entity>
       </fetch>
     </fetchxml>

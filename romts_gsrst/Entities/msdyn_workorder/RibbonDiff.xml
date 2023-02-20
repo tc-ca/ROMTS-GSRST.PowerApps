@@ -44,6 +44,11 @@
         <Button Alt="$LocLabels:ts.msdyn_workorder.Commit.Alt" Command="ts.msdyn_workorder.commitSelectedWorkOrders" Id="ts.msdyn_workorder.Commit" LabelText="$LocLabels:ts.msdyn_workorder.Commit.LabelText" Sequence="13" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Commit.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.Commit.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.SubGridCommit.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="6">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.SubGridCommit.Alt" Command="ts.msdyn_workorder.SubgridCommit" Id="ts.msdyn_workorder.SubGridCommit" LabelText="$LocLabels:ts.msdyn_workorder.SubGridCommit.LabelText" Sequence="6" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.SubGridCommit.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.SubGridCommit.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.TSIS.Cancel.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="18">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorder.TSIS.Cancel.Alt" Command="ts.msdyn_workorder.TSIS.Cancel" Id="ts.msdyn_workorder.TSIS.Cancel" Image32by32="/_imgs/ribbon/edit_32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.TSIS.Cancel.LabelText" Sequence="18" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.TSIS.Cancel.ToolTipTitle" />
@@ -308,6 +313,19 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.SubgridCommit">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.isTeamPlanningDataSubgrid" />
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="commitSelectedWorkOrders" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorder.TSIS.AddToTrip">
       <EnableRules>
         <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
@@ -557,6 +575,9 @@
       <EnableRule Id="ts.msdyn_workorder.HideInStakeholder.EnableRule">
         <EntityRule EntityName="account" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
       </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.isTeamPlanningDataSubgrid">
+        <EntityRule EntityName="ts_teamplanningdata" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="false" />
+      </EnableRule>
       <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotTeamPlanningData">
         <EntityRule EntityName="ts_teamplanningdata" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
       </EnableRule>
@@ -682,6 +703,30 @@
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.Commit.ToolTipTitle">
+      <Titles>
+        <Title description="Commit" languagecode="1033" />
+        <Title description="Validé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.SubGridCommit.Alt">
+      <Titles>
+        <Title description="Commit" languagecode="1033" />
+        <Title description="Validé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.SubGridCommit.LabelText">
+      <Titles>
+        <Title description="Commit" languagecode="1033" />
+        <Title description="Validé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.SubGridCommit.ToolTipDescription">
+      <Titles>
+        <Title description="Commit" languagecode="1033" />
+        <Title description="Validé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.SubGridCommit.ToolTipTitle">
       <Titles>
         <Title description="Commit" languagecode="1033" />
         <Title description="Validé" languagecode="1036" />

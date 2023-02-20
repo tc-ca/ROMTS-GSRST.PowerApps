@@ -1,11 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
-    <CustomAction Id="ts.ts_teamplanningdata.AddMissingPlanningData.CustomAction" Location="Mscrm.Form.ts_teamplanningdata.MainTab.Save.Controls._children" Sequence="4">
-      <CommandUIDefinition>
-        <Button Alt="$LocLabels:ts.ts_teamplanningdata.AddMissingPlanningData.Alt" Command="ts.ts_teamplanningdata.AddMissingPlanningData" Id="ts.ts_teamplanningdata.AddMissingPlanningData" LabelText="$LocLabels:ts.ts_teamplanningdata.AddMissingPlanningData.LabelText" Sequence="4" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_teamplanningdata.AddMissingPlanningData.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_teamplanningdata.AddMissingPlanningData.ToolTipDescription" />
-      </CommandUIDefinition>
-    </CustomAction>
     <CustomAction Id="ts.ts_teamplanningdata.CreateWorkOrders.CustomAction" Location="Mscrm.Form.ts_teamplanningdata.MainTab.Save.Controls._children" Sequence="3">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.ts_teamplanningdata.CreateWorkOrders.Alt" Command="ts.ts_teamplanningdata.CreateWorkOrders" Id="ts.ts_teamplanningdata.CreateWorkOrders" LabelText="$LocLabels:ts.ts_teamplanningdata.CreateWorkOrders.LabelText" Sequence="3" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_teamplanningdata.CreateWorkOrders.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_teamplanningdata.CreateWorkOrders.ToolTipDescription" />
@@ -13,12 +8,17 @@
     </CustomAction>
     <CustomAction Id="ts.ts_teamplanningdata.Recalculate.CustomAction" Location="Mscrm.Form.ts_teamplanningdata.MainTab.Save.Controls._children" Sequence="2">
       <CommandUIDefinition>
-        <Button Command="ts.ts_teamplanningdata.Recalculate" Id="ts.ts_teamplanningdata.Recalculate" LabelText="$LocLabels:ts.ts_teamplanningdata.Recalculate.LabelText" Sequence="2" TemplateAlias="o1" />
+        <Button Alt="$LocLabels:ts.ts_teamplanningdata.Recalculate.Alt" Command="ts.ts_teamplanningdata.Recalculate" Id="ts.ts_teamplanningdata.Recalculate" LabelText="$LocLabels:ts.ts_teamplanningdata.Recalculate.LabelText" Sequence="2" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_teamplanningdata.Recalculate.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_teamplanningdata.Recalculate.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.ts_teamplanningdata.ResetEstimatedDurations.CustomAction" Location="Mscrm.Form.ts_teamplanningdata.MainTab.Save.Controls._children" Sequence="5">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.ts_teamplanningdata.ResetEstimatedDurations.Alt" Command="ts.ts_teamplanningdata.resetEstimatedDurations" Id="ts.ts_teamplanningdata.ResetEstimatedDurations" LabelText="$LocLabels:ts.ts_teamplanningdata.ResetEstimatedDurations.LabelText" Sequence="5" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_teamplanningdata.ResetEstimatedDurations.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_teamplanningdata.ResetEstimatedDurations.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ts_teamplanningdata.UpdatePlanningData.CustomAction" Location="Mscrm.Form.ts_teamplanningdata.MainTab.Save.Controls._children" Sequence="4">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_teamplanningdata.UpdatePlanningData.Alt" Command="ts.ts_teamplanningdata.AddMissingPlanningData" Id="ts.ts_teamplanningdata.UpdatePlanningData" LabelText="$LocLabels:ts.ts_teamplanningdata.UpdatePlanningData.LabelText" Sequence="4" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_teamplanningdata.UpdatePlanningData.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_teamplanningdata.UpdatePlanningData.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
   </CustomActions>
@@ -27,8 +27,12 @@
   </Templates>
   <CommandDefinitions>
     <CommandDefinition Id="ts.ts_teamplanningdata.AddMissingPlanningData">
-      <EnableRules />
-      <DisplayRules />
+      <EnableRules>
+        <EnableRule Id="ts.ts_teamplanningdata.isNotCreate" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="ts.ts_teamplanningdata.HideIfComplete" />
+      </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="addMissingPlanningData" Library="$webresource:ts_/js/TeamPlanningDataRibbon.js">
           <CrmParameter Value="PrimaryControl" />
@@ -61,8 +65,12 @@
       </Actions>
     </CommandDefinition>
     <CommandDefinition Id="ts.ts_teamplanningdata.resetEstimatedDurations">
-      <EnableRules />
-      <DisplayRules />
+      <EnableRules>
+        <EnableRule Id="ts.ts_teamplanningdata.isNotCreate" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="ts.ts_teamplanningdata.HideIfComplete" />
+      </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="resetDurations" Library="$webresource:ts_/js/TeamPlanningDataRibbon.js">
           <CrmParameter Value="PrimaryControl" />
@@ -73,6 +81,9 @@
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules>
+      <DisplayRule Id="ts.ts_teamplanningdata.HideIfComplete">
+        <ValueRule Field="ts_planstatus" Value="741130000" InvertResult="false" />
+      </DisplayRule>
       <DisplayRule Id="ts.ts_teamplanningdata.ShowIfComplete">
         <ValueRule Field="ts_planstatus" Value="741130000" InvertResult="true" />
       </DisplayRule>
@@ -89,26 +100,6 @@
     </EnableRules>
   </RuleDefinitions>
   <LocLabels>
-    <LocLabel Id="ts.ts_teamplanningdata.AddMissingPlanningData.Alt">
-      <Titles>
-        <Title description="Add Missing Planning Data" languagecode="1033" />
-      </Titles>
-    </LocLabel>
-    <LocLabel Id="ts.ts_teamplanningdata.AddMissingPlanningData.LabelText">
-      <Titles>
-        <Title description="Add Missing Planning Data" languagecode="1033" />
-      </Titles>
-    </LocLabel>
-    <LocLabel Id="ts.ts_teamplanningdata.AddMissingPlanningData.ToolTipDescription">
-      <Titles>
-        <Title description="Add Missing Planning Data" languagecode="1033" />
-      </Titles>
-    </LocLabel>
-    <LocLabel Id="ts.ts_teamplanningdata.AddMissingPlanningData.ToolTipTitle">
-      <Titles>
-        <Title description="Add Missing Planning Data" languagecode="1033" />
-      </Titles>
-    </LocLabel>
     <LocLabel Id="ts.ts_teamplanningdata.CreateWorkOrders.Alt">
       <Titles>
         <Title description="Create Work Orders" languagecode="1033" />
@@ -133,30 +124,73 @@
         <Title description="Création d'ordres de travail" languagecode="1036" />
       </Titles>
     </LocLabel>
+    <LocLabel Id="ts.ts_teamplanningdata.Recalculate.Alt">
+      <Titles>
+        <Title description="Recalculer" languagecode="1036" />
+      </Titles>
+    </LocLabel>
     <LocLabel Id="ts.ts_teamplanningdata.Recalculate.LabelText">
       <Titles>
         <Title description="Recalculate" languagecode="1033" />
-        <Title description="Recalculate" languagecode="1036" />
+        <Title description="Recalculer" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_teamplanningdata.Recalculate.ToolTipDescription">
+      <Titles>
+        <Title description="Recalculer" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_teamplanningdata.Recalculate.ToolTipTitle">
+      <Titles>
+        <Title description="Recalculer" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.ts_teamplanningdata.ResetEstimatedDurations.Alt">
       <Titles>
-        <Title description="Reset Estimated Durations" languagecode="1033" />
+        <Title description="Reset Durations" languagecode="1033" />
+        <Title description="Réinitialiser les durées" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.ts_teamplanningdata.ResetEstimatedDurations.LabelText">
       <Titles>
-        <Title description="Reset Estimated Durations" languagecode="1033" />
+        <Title description="Reset Durations" languagecode="1033" />
+        <Title description="Réinitialiser les durées" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.ts_teamplanningdata.ResetEstimatedDurations.ToolTipDescription">
       <Titles>
-        <Title description="Reset Estimated Durations" languagecode="1033" />
+        <Title description="Reset Durations" languagecode="1033" />
+        <Title description="Réinitialiser les durées" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.ts_teamplanningdata.ResetEstimatedDurations.ToolTipTitle">
       <Titles>
-        <Title description="Reset Estimated Durations" languagecode="1033" />
+        <Title description="Reset Durations" languagecode="1033" />
+        <Title description="Réinitialiser les durées" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_teamplanningdata.UpdatePlanningData.Alt">
+      <Titles>
+        <Title description="Update Planning Data" languagecode="1033" />
+        <Title description="Mettre à jour les données de planification" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_teamplanningdata.UpdatePlanningData.LabelText">
+      <Titles>
+        <Title description="Update Planning Data" languagecode="1033" />
+        <Title description="Mettre à jour les données de planification" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_teamplanningdata.UpdatePlanningData.ToolTipDescription">
+      <Titles>
+        <Title description="Update Planning Data" languagecode="1033" />
+        <Title description="Mettre à jour les données de planification" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_teamplanningdata.UpdatePlanningData.ToolTipTitle">
+      <Titles>
+        <Title description="Update Planning Data" languagecode="1033" />
+        <Title description="Mettre à jour les données de planification" languagecode="1036" />
       </Titles>
     </LocLabel>
   </LocLabels>
