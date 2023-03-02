@@ -44,6 +44,7 @@
           <attribute name="ts_plannedq4" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="ts_operationactivityisactive" operator="eq" value="1" />
             <filter type="or">
               <condition attribute="ts_operationactivityisoperational" operator="eq" value="1" />
               <condition attribute="ts_operationactivity" operator="null" />
@@ -57,11 +58,6 @@
           <attribute name="ts_planningdetail" />
           <attribute name="ts_details" />
           <attribute name="ts_planningdataid" />
-          <link-entity name="ts_operationactivity" alias="aa" link-type="inner" from="ts_operationactivityid" to="ts_operationactivity">
-            <filter type="and">
-              <condition attribute="statecode" operator="eq" value="0" />
-            </filter>
-          </link-entity>
         </entity>
       </fetch>
     </fetchxml>

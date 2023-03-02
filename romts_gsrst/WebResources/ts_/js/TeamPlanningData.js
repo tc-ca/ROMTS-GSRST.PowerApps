@@ -45,7 +45,8 @@ var ROM;
             if (formContext.ui.getFormType() == 2) { //Update type. The form has already been saved for the first time
                 formContext.getControl("ts_team").setDisabled(true);
                 formContext.getControl("ts_fiscalyear").setDisabled(true);
-                if (formContext.getAttribute("ts_planstatus").getValue() == 741130001 /* Complete */) {
+                var planStatusValue = formContext.getAttribute("ts_planstatus").getValue();
+                if (planStatusValue == 741130001 /* Complete */ || planStatusValue == 447390001 /* HQreview */) {
                     if (userHasRole("ROM - Business Admin")) {
                         formContext.getControl("ts_planstatus").setDisabled(false);
                     }
@@ -357,8 +358,6 @@ var ROM;
                                                             teamPlanningDataPlannedQ4 += planningDataQuarters[3];
                                                         }
                                                     }
-                                                    if (planningDataStakeholderId == null)
-                                                        debugger;
                                                     data = {
                                                         "ts_name": planningDataName,
                                                         "ts_englishname": planningDataEnglishName,
@@ -517,7 +516,8 @@ var ROM;
         TeamPlanningData.userHasRole = userHasRole;
         function planStatusOnChange(eContext) {
             var formContext = eContext.getFormContext();
-            if (formContext.getAttribute("ts_planstatus").getValue() == 741130001 /* Complete */) {
+            var planStatusValue = formContext.getAttribute("ts_planstatus").getValue();
+            if (planStatusValue == 741130001 /* Complete */ || planStatusValue == 447390001 /* HQreview */) {
                 formContext.getControl("ts_totalhoursq1").setDisabled(true);
                 formContext.getControl("ts_totalhoursq2").setDisabled(true);
                 formContext.getControl("ts_totalhoursq3").setDisabled(true);
@@ -533,7 +533,7 @@ var ROM;
                     formContext.getControl("ts_planstatus").setDisabled(true);
                 }
             }
-            if (formContext.getAttribute("ts_planstatus").getValue() == 741130000 /* InProgress */) {
+            else {
                 formContext.getControl("ts_totalhoursq1").setDisabled(false);
                 formContext.getControl("ts_totalhoursq2").setDisabled(false);
                 formContext.getControl("ts_totalhoursq3").setDisabled(false);

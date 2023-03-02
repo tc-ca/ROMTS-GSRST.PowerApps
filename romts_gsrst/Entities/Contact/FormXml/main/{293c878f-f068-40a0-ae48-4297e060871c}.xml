@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form showImage="true">
+    <form showImage="true" shownavigationbar="true" maxWidth="1920">
       <tabs>
         <tab name="SUMMARY_TAB" id="{15bb2d4b-71da-74ea-3c5b-e497d78a55a2}" IsUserDefined="0" showlabel="true" expanded="true" labelid="{3709dd2f-f819-4f6f-afa4-ab9eec4ba1d9}" ordinalvalue="0">
           <columns>
@@ -46,26 +46,33 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{290b48ba-c0cc-7746-6dda-93e240e4cc78}" showlabel="true" labelid="{b25bd8a5-a156-4441-86ba-05759bb59634}" ordinalvalue="10005">
+                      <cell id="{21e15a06-4473-2d37-a602-a840987632de}" showlabel="true" locklevel="0" visible="false" ordinalvalue="10005">
+                        <control id="telephone1" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="telephone1" disabled="false" uniqueid="{7DE6FF6C-FBFB-4F2D-8D12-243324278FE1}" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{290b48ba-c0cc-7746-6dda-93e240e4cc78}" showlabel="true" labelid="{b25bd8a5-a156-4441-86ba-05759bb59634}" ordinalvalue="10006">
                         <labels>
-                          <label description="Mobile Phone" languagecode="1033" solutionaction="Added" />
-                          <label description="Téléphone mobile" languagecode="1036" solutionaction="Added" />
+                          <label description="Téléphone mobile" languagecode="1036" solutionaction="Modified" />
                         </labels>
                       </cell>
                     </row>
                     <row>
-                      <cell id="{1b54cdb3-1582-c29e-cc9e-9d4bc2a5700b}" showlabel="true" labelid="{83ae705a-e6bb-48c0-8d97-f6a4b3e49ab3}" ordinalvalue="10006">
+                      <cell id="{0ede1641-d3dc-627a-968d-3540ec5aa3ed}" showlabel="true" locklevel="0" visible="false" ordinalvalue="10007">
+                        <control id="mobilephone" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="mobilephone" disabled="false" uniqueid="{CDFF51B3-5D4E-40B5-BD08-B17A41395F0A}" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1b54cdb3-1582-c29e-cc9e-9d4bc2a5700b}" showlabel="true" labelid="{83ae705a-e6bb-48c0-8d97-f6a4b3e49ab3}" ordinalvalue="10008">
                         <labels>
-                          <label description="Fax" languagecode="1033" solutionaction="Added" />
-                          <label description="Télécopie" languagecode="1036" solutionaction="Added" />
+                          <label description="Télécopie" languagecode="1036" solutionaction="Modified" />
                         </labels>
                       </cell>
                     </row>
                     <row>
-                      <cell id="{408dda0b-48a7-c05c-e29a-56a93eb97172}" showlabel="true" labelid="{ff3ce693-5dcf-4c7c-97ee-17218d0124e7}" ordinalvalue="10007">
+                      <cell id="{408dda0b-48a7-c05c-e29a-56a93eb97172}" showlabel="true" labelid="{ff3ce693-5dcf-4c7c-97ee-17218d0124e7}" ordinalvalue="10009">
                         <labels>
-                          <label description="Preferred Method of Contact" languagecode="1033" solutionaction="Added" />
-                          <label description="Mode de communication privilégié" languagecode="1036" solutionaction="Added" />
+                          <label description="Mode de communication privilégié" languagecode="1036" solutionaction="Modified" />
                         </labels>
                       </cell>
                     </row>
@@ -224,6 +231,52 @@
           </row>
         </rows>
       </header>
+      <controlDescriptions>
+        <controlDescription forControl="{7DE6FF6C-FBFB-4F2D-8D12-243324278FE1}" solutionaction="Modified">
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}">
+            <parameters>
+              <datafieldname>telephone1</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="msdyn_SalesOmniChannel.SalesPhoneNumberControl">
+            <parameters>
+              <value>telephone1</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="msdyn_SalesOmniChannel.SalesPhoneNumberControl">
+            <parameters>
+              <value>telephone1</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="msdyn_SalesOmniChannel.SalesPhoneNumberControl">
+            <parameters>
+              <value>telephone1</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{CDFF51B3-5D4E-40B5-BD08-B17A41395F0A}" solutionaction="Modified">
+          <customControl id="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}">
+            <parameters>
+              <datafieldname>mobilephone</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="msdyn_SalesOmniChannel.SalesPhoneNumberControl">
+            <parameters>
+              <value>mobilephone</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="msdyn_SalesOmniChannel.SalesPhoneNumberControl">
+            <parameters>
+              <value>mobilephone</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="msdyn_SalesOmniChannel.SalesPhoneNumberControl">
+            <parameters>
+              <value>mobilephone</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
       <DisplayConditions FallbackForm="true" Order="8" solutionaction="Modified" />
     </form>
     <LocalizedNames>

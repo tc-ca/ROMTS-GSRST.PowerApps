@@ -32,6 +32,7 @@
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="ts.ts_teamplanningdata.HideIfComplete" />
+        <DisplayRule Id="ts.ts_teamplanningdata.HideIfHQReview" />
       </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="addMissingPlanningData" Library="$webresource:ts_/js/TeamPlanningDataRibbon.js">
@@ -70,6 +71,7 @@
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="ts.ts_teamplanningdata.HideIfComplete" />
+        <DisplayRule Id="ts.ts_teamplanningdata.HideIfHQReview" />
       </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="resetDurations" Library="$webresource:ts_/js/TeamPlanningDataRibbon.js">
@@ -82,10 +84,13 @@
     <TabDisplayRules />
     <DisplayRules>
       <DisplayRule Id="ts.ts_teamplanningdata.HideIfComplete">
-        <ValueRule Field="ts_planstatus" Value="741130000" InvertResult="false" />
+        <ValueRule Field="ts_planstatus" Value="741130001" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="ts.ts_teamplanningdata.HideIfHQReview">
+        <ValueRule Field="ts_planstatus" Value="447390001" InvertResult="true" />
       </DisplayRule>
       <DisplayRule Id="ts.ts_teamplanningdata.ShowIfComplete">
-        <ValueRule Field="ts_planstatus" Value="741130000" InvertResult="true" />
+        <ValueRule Field="ts_planstatus" Value="741130001" InvertResult="false" />
       </DisplayRule>
     </DisplayRules>
     <EnableRules>
