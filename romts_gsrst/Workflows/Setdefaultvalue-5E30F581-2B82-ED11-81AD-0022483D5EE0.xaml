@@ -1,14 +1,14 @@
-<Activity x:Class="XrmWorkflow00000000000000000000000000000000" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mcwc="clr-namespace:Microsoft.Crm.Workflow.ClientActivities;assembly=Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mxs="clr-namespace:Microsoft.Xrm.Sdk;assembly=Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mxsq="clr-namespace:Microsoft.Xrm.Sdk.Query;assembly=Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mxswa="clr-namespace:Microsoft.Xrm.Sdk.Workflow.Activities;assembly=Microsoft.Xrm.Sdk.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:s="clr-namespace:System;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:srs="clr-namespace:System.Runtime.Serialization;assembly=System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:this="clr-namespace:" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity x:Class="XrmWorkflow5e30f5812b82ed1181ad0022483d5ee0" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mcwc="clr-namespace:Microsoft.Crm.Workflow.ClientActivities;assembly=Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mxs="clr-namespace:Microsoft.Xrm.Sdk;assembly=Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mxsq="clr-namespace:Microsoft.Xrm.Sdk.Query;assembly=Microsoft.Xrm.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:mxswa="clr-namespace:Microsoft.Xrm.Sdk.Workflow.Activities;assembly=Microsoft.Xrm.Sdk.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" xmlns:s="clr-namespace:System;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:srs="clr-namespace:System.Runtime.Serialization;assembly=System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:this="clr-namespace:" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="InputEntities" Type="InArgument(scg:IDictionary(x:String, mxs:Entity))" />
     <x:Property Name="CreatedEntities" Type="InArgument(scg:IDictionary(x:String, mxs:Entity))" />
   </x:Members>
-  <this:XrmWorkflow00000000000000000000000000000000.InputEntities>
+  <this:XrmWorkflow5e30f5812b82ed1181ad0022483d5ee0.InputEntities>
     <InArgument x:TypeArguments="scg:IDictionary(x:String, mxs:Entity)" />
-  </this:XrmWorkflow00000000000000000000000000000000.InputEntities>
-  <this:XrmWorkflow00000000000000000000000000000000.CreatedEntities>
+  </this:XrmWorkflow5e30f5812b82ed1181ad0022483d5ee0.InputEntities>
+  <this:XrmWorkflow5e30f5812b82ed1181ad0022483d5ee0.CreatedEntities>
     <InArgument x:TypeArguments="scg:IDictionary(x:String, mxs:Entity)" />
-  </this:XrmWorkflow00000000000000000000000000000000.CreatedEntities>
+  </this:XrmWorkflow5e30f5812b82ed1181ad0022483d5ee0.CreatedEntities>
   <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
   <mxswa:Workflow>
     <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.ConditionSequence, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionStep1">
@@ -183,9 +183,9 @@
                       <mcwc:SetDefaultValue DisplayName="SetDefaultValueStep2" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ts_teamplanninginspectorhours" />
                       <Assign x:TypeArguments="mxs:Entity" To="[InputEntities(&quot;primaryEntity&quot;)]" Value="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" />
                     </Sequence>
-                    <Sequence DisplayName="SetDefaultValueStep_SetDefaultValueStep2_3: Q3">
+                    <Sequence DisplayName="SetDefaultValueStep3: Q3">
                       <Sequence.Variables>
-                        <Variable x:TypeArguments="x:Object" Name="SetDefaultValueStep_SetDefaultValueStep2_3_1" />
+                        <Variable x:TypeArguments="x:Object" Name="SetDefaultValueStep3_1" />
                       </Sequence.Variables>
                       <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ts_teamplanninginspectorhours&quot;)]" />
                       <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
@@ -196,22 +196,22 @@
                           <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                             <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Decimal" />
                           </InArgument>
-                          <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SetDefaultValueStep_SetDefaultValueStep2_3_1]</OutArgument>
+                          <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SetDefaultValueStep3_1]</OutArgument>
                         </mxswa:ActivityReference.Arguments>
                       </mxswa:ActivityReference>
-                      <mxswa:SetEntityProperty Attribute="ts_varianceq3" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ts_teamplanninginspectorhours" Value="[SetDefaultValueStep_SetDefaultValueStep2_3_1]">
+                      <mxswa:SetEntityProperty Attribute="ts_varianceq3" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ts_teamplanninginspectorhours" Value="[SetDefaultValueStep3_1]">
                         <mxswa:SetEntityProperty.TargetType>
                           <InArgument x:TypeArguments="s:Type">
                             <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Decimal" />
                           </InArgument>
                         </mxswa:SetEntityProperty.TargetType>
                       </mxswa:SetEntityProperty>
-                      <mcwc:SetDefaultValue DisplayName="SetDefaultValueStep_SetDefaultValueStep2_3" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ts_teamplanninginspectorhours" />
+                      <mcwc:SetDefaultValue DisplayName="SetDefaultValueStep3" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ts_teamplanninginspectorhours" />
                       <Assign x:TypeArguments="mxs:Entity" To="[InputEntities(&quot;primaryEntity&quot;)]" Value="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" />
                     </Sequence>
-                    <Sequence DisplayName="SetDefaultValueStep_SetDefaultValueStep2_3_4: Q4">
+                    <Sequence DisplayName="SetDefaultValueStep4: Q4">
                       <Sequence.Variables>
-                        <Variable x:TypeArguments="x:Object" Name="SetDefaultValueStep_SetDefaultValueStep2_3_4_1" />
+                        <Variable x:TypeArguments="x:Object" Name="SetDefaultValueStep4_1" />
                       </Sequence.Variables>
                       <Assign x:TypeArguments="mxs:Entity" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" Value="[New Entity(&quot;ts_teamplanninginspectorhours&quot;)]" />
                       <Assign x:TypeArguments="s:Guid" To="[CreatedEntities(&quot;primaryEntity#Temp&quot;).Id]" Value="[InputEntities(&quot;primaryEntity&quot;).Id]" />
@@ -222,17 +222,17 @@
                           <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                             <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Decimal" />
                           </InArgument>
-                          <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SetDefaultValueStep_SetDefaultValueStep2_3_4_1]</OutArgument>
+                          <OutArgument x:TypeArguments="x:Object" x:Key="Result">[SetDefaultValueStep4_1]</OutArgument>
                         </mxswa:ActivityReference.Arguments>
                       </mxswa:ActivityReference>
-                      <mxswa:SetEntityProperty Attribute="ts_varianceq4" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ts_teamplanninginspectorhours" Value="[SetDefaultValueStep_SetDefaultValueStep2_3_4_1]">
+                      <mxswa:SetEntityProperty Attribute="ts_varianceq4" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ts_teamplanninginspectorhours" Value="[SetDefaultValueStep4_1]">
                         <mxswa:SetEntityProperty.TargetType>
                           <InArgument x:TypeArguments="s:Type">
                             <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="x:Decimal" />
                           </InArgument>
                         </mxswa:SetEntityProperty.TargetType>
                       </mxswa:SetEntityProperty>
-                      <mcwc:SetDefaultValue DisplayName="SetDefaultValueStep_SetDefaultValueStep2_3_4" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ts_teamplanninginspectorhours" />
+                      <mcwc:SetDefaultValue DisplayName="SetDefaultValueStep4" Entity="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" EntityName="ts_teamplanninginspectorhours" />
                       <Assign x:TypeArguments="mxs:Entity" To="[InputEntities(&quot;primaryEntity&quot;)]" Value="[CreatedEntities(&quot;primaryEntity#Temp&quot;)]" />
                     </Sequence>
                   </sco:Collection>

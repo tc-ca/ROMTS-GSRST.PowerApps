@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0.0.6</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form headerdensity="HighWithControls">
       <tabs>
         <tab verticallayout="true" id="{a1fa6048-f68a-4dc7-9733-ff38d89d3afd}" IsUserDefined="1">
           <labels>
@@ -72,9 +72,54 @@
             </column>
           </columns>
         </tab>
+        <tab name="tab_filtering" id="7fcf7c19-20fe-48ba-ac94-f612b2d927dd" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Filtering" languagecode="1033" />
+            <label description="Filtrage" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" id="57aab653-f544-4aad-a34c-19882f678d7d" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Custom Inspections" languagecode="1033" />
+                    <label description="Inspections personnalisées" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{33e79f27-08b5-4b60-b903-f7a787b7d893}" rowspan="4" colspan="1" auto="false">
+                        <labels>
+                          <label description="Operation Types" languagecode="1033" />
+                          <label description="Types d'opération" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ovs_operationtype</TargetEntityType>
+                            <ViewId>{197A1F2C-DE05-4771-A10E-12478A08C99E}</ViewId>
+                            <ViewIds>{197A1F2C-DE05-4771-A10E-12478A08C99E}</ViewIds>
+                            <RelationshipName>ts_operationtypes_custom_wo_filter</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
       </tabs>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -103,6 +148,51 @@
           </NavBarArea>
         </NavBarAreas>
       </Navigation>
+      <header id="{6acfb189-683a-4b1e-86b1-9c757e7f174e}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{548f3179-bce4-4343-b537-2a109b8778ce}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{e3f8bd58-98e7-4bd5-811f-e433c7eecb91}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{c7c59c7c-bedc-47b7-97d9-2af9f082b3b6}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{6811f2e8-3b7e-422b-bf76-c6c1ee1b8acd}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{ca087b1e-7a5d-413e-b43c-e9d91af5f5b3}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{03d8b9e0-5e65-4b91-b718-9e51a995dc3f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9f1bb36f-ea57-433f-a844-a756a1779789}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
