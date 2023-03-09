@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20230309.1</Version>
+    <Version>1.0.20230309.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -4024,7 +4024,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.83.19)">
           <package>FieldService_Anchor (8.8.83.19)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="bookableresource_bookableresourcebooking_Resource" displayName="bookableresource_bookableresourcebooking_Resource" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.83.19)">
@@ -18814,6 +18814,12 @@
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
           <package>msdynce_AppCommonAnchor (9.0.23023.10002)</package>
         </Required>
+        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
+          <package>msdynce_AppCommonAnchor (9.0.23023.10002)</package>
+        </Required>
         <Dependent type="60" displayName="Account for Interactive experience" parentDisplayName="Account" id="{a72c7955-442b-4ea4-9499-b10cd18b4256}" />
       </MissingDependency>
       <MissingDependency>
@@ -18821,12 +18827,6 @@
           <package>msdynce_AppCommonAnchor (9.0.23023.10002)</package>
         </Required>
         <Dependent type="60" displayName="Information" parentDisplayName="Account" id="{b053a39a-041a-4356-acef-ddf00182762b}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
-          <package>msdynce_AppCommonAnchor (9.0.23023.10002)</package>
-        </Required>
-        <Dependent type="60" displayName="Organisations" parentDisplayName="Account" id="{b6466851-a1fd-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
@@ -20303,7 +20303,7 @@
         <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
           <package>msdynce_SalesAnchor (9.0.23023.10001)</package>
         </Required>
-        <Dependent type="60" displayName="Organisations" parentDisplayName="Account" id="{b6466851-a1fd-ea11-a813-000d3af3ac0d}" />
+        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
@@ -20321,7 +20321,7 @@
         <Required type="61" schemaName="Sales/Contact/Contact_main_system_library.js" displayName="Sales/Contact/Contact_main_system_library.js" solution="msdynce_SalesPatch201904 (9.0.1912.1007)">
           <package>msdynce_SalesAnchor (9.0.23023.10001)</package>
         </Required>
-        <Dependent type="60" displayName="Contact Quick Create" parentDisplayName="Contact" id="{661157fe-2fc9-4eaa-835f-5bfa2f7b64f7}" />
+        <Dependent type="60" displayName="Contact Main Form" parentDisplayName="Contact" id="{2c961780-b9f9-ea11-a815-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Scheduling/BookableResource/BookableResource_main_system_library.js" displayName="Scheduling/BookableResource/BookableResource_main_system_library.js" solution="msdynce_Scheduling (9.0.0.0)" />
@@ -20411,12 +20411,6 @@
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.23023.1012)</package>
         </Required>
-        <Dependent type="50" schemaName="incident:RibbonDiffXml" displayName="incident:RibbonDiffXml" parentSchemaName="ribboncustomization" parentDisplayName="Application Ribbons" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
-          <package>msdynce_ServiceAnchor (9.0.23023.1012)</package>
-        </Required>
         <Dependent type="60" displayName="Case Quick Create" parentDisplayName="Case" id="{8e10b902-0b3e-441c-8b12-88e6c1793848}" />
       </MissingDependency>
       <MissingDependency>
@@ -20430,6 +20424,12 @@
           <package>msdynce_ServiceAnchor (9.0.23023.1012)</package>
         </Required>
         <Dependent type="60" displayName="App for Outlook Case Quick Create" parentDisplayName="Case" id="{ac33e173-6502-4816-ab48-c3eefd7be580}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.23023.1012)</package>
+        </Required>
+        <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
