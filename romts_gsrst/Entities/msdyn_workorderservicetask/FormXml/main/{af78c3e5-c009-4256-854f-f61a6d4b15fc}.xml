@@ -76,19 +76,57 @@
                     <row>
                       <cell id="{ab575c35-28c7-9172-8224-e03e377b4331}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Origin" languagecode="1033" />
-                          <label description="Origine" languagecode="1036" />
+                          <label description="Departure Aerodrome" languagecode="1033" />
+                          <label description="Aérodrome de départ" languagecode="1036" />
                         </labels>
-                        <control id="ts_origin" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_origin" disabled="false" />
+                        <control id="ts_origin" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_origin" disabled="false" uniqueid="{7a30d18b-a7c3-182a-8623-d0ce1963901e}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{F49F4F64-5ABF-ED11-83FF-0022483D7716}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <AvailableViewIds>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</AvailableViewIds>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
                       <cell id="{6e18e7a7-0b4e-9d2b-b1e2-3ddc6e3ae4ab}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Destination" languagecode="1033" />
-                          <label description="Destination" languagecode="1036" />
+                          <label description="Arrival Aerodrome" languagecode="1033" />
+                          <label description="Aérodrome d'arrivée" languagecode="1036" />
                         </labels>
-                        <control id="ts_destination" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_destination" disabled="false" />
+                        <control id="ts_destination" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_destination" disabled="false" uniqueid="{42922583-aad2-5185-d88e-7bc52c9717dd}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{F49F4F64-5ABF-ED11-83FF-0022483D7716}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <AvailableViewIds>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a5e5c73c-6c22-3ad9-13a0-4c2c63c65bcc}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Flight Category" languagecode="1033" />
+                          <label description="Catégorie de vol" languagecode="1036" />
+                        </labels>
+                        <control id="ts_flightcategory" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_flightcategory" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{55ead6ad-2656-1046-c91d-6d2a263a760c}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Flight Type" languagecode="1033" />
+                          <label description="Type de vol" languagecode="1036" />
+                        </labels>
+                        <control id="ts_flighttype" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_flighttype" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -458,6 +496,27 @@
                         </control>
                       </cell>
                     </row>
+                  </rows>
+                </section>
+                <section name="tab_Oversight_Other" showlabel="false" showbar="false" locklevel="0" id="{18dbb3c3-6987-1382-7c78-5a0e62504b40}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" height="auto">
+                  <labels>
+                    <label description="Other" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{5507c39d-927b-1d2c-e112-49cc683de930}" showlabel="true" locklevel="0" auto="true" rowspan="6">
+                        <labels>
+                          <label description="Report Details" languagecode="1033" />
+                          <label description="Détails du rapport" languagecode="1036" />
+                        </labels>
+                        <control id="ts_reportdetails" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_reportdetails" disabled="false" uniqueid="{e976e9c0-2e65-2352-2710-6dd0ca4d3e90}" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
                   </rows>
                 </section>
               </sections>
@@ -1894,6 +1953,16 @@
         <event name="onchange" application="false" active="false" attribute="ts_aocoperation">
           <Handlers>
             <Handler functionName="ROM.WorkOrderServiceTask.AOCOperationOnChange" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{996db8e4-cdba-9002-44c5-6d82cae04829}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_origin">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTask.populateFlightCategory" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{2ec420ba-7723-5b8e-657e-10da63ed0b40}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_destination">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTask.populateFlightCategory" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{02314648-4239-367d-66e5-d6a798786717}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
