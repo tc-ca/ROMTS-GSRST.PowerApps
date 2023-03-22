@@ -100,7 +100,7 @@
             </column>
             <column width="25%" id="2">
               <sections>
-                <section name="organization information" showlabel="true" showbar="true" id="{81278426-fb20-424e-91bd-7ceb5a6248d2}" IsUserDefined="0" locklevel="0" ordinalvalue="1">
+                <section name="organization information" showlabel="true" showbar="true" id="{81278426-fb20-424e-91bd-7ceb5a6248d2}" IsUserDefined="0" locklevel="0" ordinalvalue="2" solutionaction="Modified">
                   <rows>
                     <row>
                       <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="1" id="{80d99dcb-d1e5-482f-b588-ba8524834bd0}" ordinalvalue="10000">
@@ -144,7 +144,7 @@
                     </row>
                   </rows>
                 </section>
-                <section name="queue selection" showlabel="true" showbar="true" locklevel="0" id="{11aec2bb-ecbc-4d53-a409-f4b849f03e6e}" IsUserDefined="0" ordinalvalue="2">
+                <section name="queue selection" showlabel="true" showbar="true" locklevel="0" id="{11aec2bb-ecbc-4d53-a409-f4b849f03e6e}" IsUserDefined="0" ordinalvalue="3" solutionaction="Modified">
                   <rows>
                     <row>
                       <cell id="{2a60273a-ec9b-4a97-9f28-b20899b1231c}" colspan="1" ordinalvalue="10000">
@@ -152,6 +152,22 @@
                           <label description="Default Queue" languagecode="1033" solutionaction="Added" />
                           <label description="File d’attente par défaut" languagecode="1036" solutionaction="Added" />
                         </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="queue information" showlabel="true" showbar="true" id="{8b91768d-1e89-41e2-a9df-d9ef9e5adfaa}" IsUserDefined="0" locklevel="0" ordinalvalue="4" solutionaction="Modified" />
+                <section name="SUMMARY_TAB_section_10" id="7313ea84-b553-4bde-a671-396a359502e6" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="1" solutionaction="Added">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{4a76b30f-32b1-4181-a9fc-a48aad9ca3cc}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10000">
+                        <labels>
+                          <label description="Dual Inspector" languagecode="1033" />
+                        </labels>
+                        <control id="ts_dualinspector" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_dualinspector" disabled="false" uniqueid="{a18b5e8a-6828-4958-bd9d-97ed0ecb0d68}" />
                       </cell>
                     </row>
                   </rows>
@@ -413,6 +429,30 @@
         </NavBar>
       </Navigation>
       <DisplayConditions FallbackForm="true" Order="1" solutionaction="Modified" />
+      <controlDescriptions>
+        <controlDescription forControl="{a18b5e8a-6828-4958-bd9d-97ed0ecb0d68}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_dualinspector</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_dualinspector</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_dualinspector</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_dualinspector</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
       <header id="{d4172dd7-bacc-4256-994e-fde4ca8d9d0a}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
         <rows />
       </header>

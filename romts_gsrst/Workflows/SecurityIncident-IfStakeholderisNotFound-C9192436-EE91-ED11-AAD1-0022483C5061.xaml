@@ -25,7 +25,7 @@
           <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep3_1" />
         </sco:Collection>
         <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
-          <mxswa:GetEntityProperty Attribute="ts_reportingcompany" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ts_securityincident" Value="[ConditionBranchStep2_1]">
+          <mxswa:GetEntityProperty Attribute="ts_stakeholder" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ts_securityincident" Value="[ConditionBranchStep2_1]">
             <mxswa:GetEntityProperty.TargetType>
               <InArgument x:TypeArguments="s:Type">
                 <mxswa:ReferenceLiteral x:TypeArguments="s:Type">
@@ -37,7 +37,7 @@
           <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
             <mxswa:ActivityReference.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.Guid, "26b2346f-ba69-ed11-81ac-000d3af4c525", "UniqueIdentifier" }]</InArgument>
+              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.Guid, "{26B2346F-BA69-ED11-81AC-000D3AF4C525}", "UniqueIdentifier" }]</InArgument>
               <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
                 <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="s:Guid" />
               </InArgument>
@@ -80,7 +80,7 @@
                 </mxswa:ActivityReference.Properties>
               </mxswa:ActivityReference>
               <x:Null x:Key="Else" />
-              <x:String x:Key="Description">If Reporting Company = Not Found</x:String>
+              <x:String x:Key="Description">If Stakeholder is Not Found</x:String>
             </mxswa:ActivityReference.Properties>
           </mxswa:ActivityReference>
           <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">

@@ -83,8 +83,8 @@ function markComplete(primaryControl) {
     if (finalEnforcementAction != null && (!issueaddressedonsiteVisibility || issueaddressedonsite != null) && nonComplianceTimeframeCheck) {
         primaryControl.getAttribute("statuscode").setValue(717750002); //Complete
         primaryControl.data.save().then(
-            function success(result) {                
-                primaryControl.ui.close();                
+            function success(result) {
+                primaryControl.ui.close();
             });
     }
     else {
