@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20230327.1</Version>
+    <Version>1.0.20230330.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -676,7 +676,6 @@
       <RootComponent type="92" id="{c31fa8f3-c28a-ec11-8d20-0022483ca2f9}" behavior="0" />
       <RootComponent type="92" id="{c3baad24-3b85-ec11-8d20-000d3ae92bba}" behavior="0" />
       <RootComponent type="92" id="{c41551ba-de72-eb11-a812-000d3af399b3}" behavior="0" />
-      <RootComponent type="92" id="{c5afc517-c44b-ed11-bba2-0022483d5ee0}" behavior="0" />
       <RootComponent type="92" id="{c647d601-b6a0-ec11-b3fe-002248ad8b2f}" behavior="0" />
       <RootComponent type="92" id="{c8ae72fa-1d35-ed11-9db1-0022483c5061}" behavior="0" />
       <RootComponent type="92" id="{c8f68d20-3c15-eb11-a813-000d3af3a7a7}" behavior="0" />
@@ -4055,7 +4054,7 @@
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.84.16)">
           <package>FieldService_Anchor (8.8.84.16)</package>
         </Required>
-        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" displayName="msdyn_bookableresource_bookableresourcebooking_ResourceGroup" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
+        <Dependent type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_bookableresourcebooking_Crew" displayName="msdyn_bookableresource_bookableresourcebooking_Crew" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="msdyn_FieldService_patch_update (8.8.84.16)">
@@ -10782,7 +10781,7 @@
           <package>FieldService_Anchor (8.8.84.16)</package>
           <package>msdynce_ServiceAnchor (9.0.23031.1007)</package>
         </Required>
-        <Dependent type="10" schemaName="ts_msdyn_functionallocation_ts_securityincident_Destination" displayName="ts_msdyn_functionallocation_ts_securityincident_Destination" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
+        <Dependent type="10" schemaName="ts_msdyn_functionallocation_ts_securityincident_Subsite" displayName="ts_msdyn_functionallocation_ts_securityincident_Subsite" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_functionallocationid" displayName="Functional Location" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_AssetCommon (1.0.30.47)">
@@ -14102,7 +14101,7 @@
         <Required type="2" schemaName="msdyn_workorderservicetaskid" displayName="Work Order Service Task" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.84.16)</package>
         </Required>
-        <Dependent type="10" schemaName="ts_incident_WorkOrderServiceTask1_msdyn_work" displayName="ts_incident_WorkOrderServiceTask1_msdyn_work" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" />
+        <Dependent type="10" schemaName="ts_incident_WorkOrderServiceTask2_msdyn_work" displayName="ts_incident_WorkOrderServiceTask2_msdyn_work" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_workorderservicetaskid" displayName="Work Order Service Task" parentSchemaName="msdyn_workorderservicetask" parentDisplayName="Work Order Service Task" solution="FieldService (8.8.0.88)">
@@ -19502,7 +19501,7 @@
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
           <package>msdynce_AppCommonAnchor (9.0.23031.10001)</package>
         </Required>
-        <Dependent type="60" displayName="Information" parentDisplayName="Account" id="{b053a39a-041a-4356-acef-ddf00182762b}" />
+        <Dependent type="60" displayName="Account for Interactive experience" parentDisplayName="Account" id="{a72c7955-442b-4ea4-9499-b10cd18b4256}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
@@ -21027,7 +21026,7 @@
         <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
           <package>msdynce_SalesAnchor (9.0.23031.10001)</package>
         </Required>
-        <Dependent type="60" displayName="Organisations" parentDisplayName="Account" id="{b6466851-a1fd-ea11-a813-000d3af3ac0d}" />
+        <Dependent type="60" displayName="Opportunity" parentDisplayName="Opportunity" id="{a837e4a7-01b8-4f82-a475-be9abd67e667}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
@@ -21117,12 +21116,6 @@
         <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.23031.1007)</package>
         </Required>
-        <Dependent type="60" displayName="Case" parentDisplayName="Case" id="{4a63c8d1-6c1e-48ec-9db4-3e6c7155334c}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
-          <package>msdynce_ServiceAnchor (9.0.23031.1007)</package>
-        </Required>
         <Dependent type="60" displayName="Case Quick Create" parentDisplayName="Case" id="{8e10b902-0b3e-441c-8b12-88e6c1793848}" />
       </MissingDependency>
       <MissingDependency>
@@ -21130,6 +21123,12 @@
           <package>msdynce_ServiceAnchor (9.0.23031.1007)</package>
         </Required>
         <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.23031.1007)</package>
+        </Required>
+        <Dependent type="60" displayName="App for Outlook Case Quick Create" parentDisplayName="Case" id="{ac33e173-6502-4816-ab48-c3eefd7be580}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">

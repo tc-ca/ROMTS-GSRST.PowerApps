@@ -700,16 +700,12 @@
         <Library name="ts_/js/PlanningData.js" libraryUniqueId="{7b7575e5-a61d-77e8-7728-4a4d7c1ed069}" />
         <Library name="ts_/js/planningDataRibbon.js" libraryUniqueId="{41b29eb7-c296-4717-a487-9554881b8508}" />
         <Library name="ovs_/js/WorkOrderRibbon.js" libraryUniqueId="{efa7da12-6c32-4360-81c7-5988d99ac6fe}" />
+        <Library name="ts_/js/TeamPlanningDataRibbon.js" libraryUniqueId="{eb4522d0-5e98-49cf-8942-905fb6a9ff11}" />
       </formLibraries>
       <events>
         <event name="onload" application="false" active="false">
           <Handlers>
             <Handler functionName="ROM.TeamPlanningData.onLoad" libraryName="ts_/js/TeamPlanningData.js" handlerUniqueId="{87da45e3-1607-1a60-5ac6-d6793acb2c71}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
-        <event name="onsave" application="false" active="false">
-          <Handlers>
-            <Handler functionName="ROM.TeamPlanningData.onSave" libraryName="ts_/js/TeamPlanningData.js" handlerUniqueId="{bde55e2a-d084-474b-9ed8-dc63fac2d32d}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="false" active="false" attribute="ts_plannedq1" relationship="" control="subgrid_planning_data">
@@ -770,6 +766,11 @@
         <event name="onrecordselect" application="false" active="false" relationship="" control="Subgrid_new_2">
           <Handlers>
             <Handler functionName="lockFieldsInspectorHoursEditableGrid" libraryName="ts_/js/Common.js" handlerUniqueId="{7a6d7e14-0d10-3050-b88d-c24b6bbb9da1}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.TeamPlanningData.onSave" libraryName="ts_/js/TeamPlanningData.js" handlerUniqueId="{bde55e2a-d084-474b-9ed8-dc63fac2d32d}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
