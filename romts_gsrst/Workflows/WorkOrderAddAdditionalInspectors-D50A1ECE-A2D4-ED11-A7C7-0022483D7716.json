@@ -1,0 +1,443 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_32e9e"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "3a8560bb-daef-4667-bb26-2946c2628547"
+          },
+          "type": "Request",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ParseJSON_Content": {
+                  "type": "any",
+                  "x-ms-powerflows-param-ispartial": false
+                }
+              },
+              "required": [
+                "ParseJSON_Content"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Parse_JSON": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "d11ef00c-00f0-42e2-a215-aba17b59167d"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerBody()['ParseJSON_Content']",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "userGuids": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "ID": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "ID"
+                      ]
+                    }
+                  },
+                  "workOrderGuids": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "Value": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "Value"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "userGuids",
+                  "workOrderGuids"
+                ]
+              }
+            }
+          }
+        },
+        "Apply_to_each_JSON_Object": {
+          "foreach": "@body('Parse_JSON')",
+          "actions": {
+            "Set_Work_Order_Guids": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "a7af0fd0-f226-43e5-ad13-be06882dd7bf"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "Work Order Guids",
+                "value": "@items('Apply_to_each_JSON_Object')['workOrderGuids']"
+              }
+            },
+            "Set_User_Guids": {
+              "runAfter": {
+                "Set_Work_Order_Guids": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "bacea546-1d88-49a6-82a3-1e147ad33dd5"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "User Guids",
+                "value": "@items('Apply_to_each_JSON_Object')['userGuids']"
+              }
+            },
+            "Apply_to_each_Work_Order": {
+              "foreach": "@variables('Work Order Guids')",
+              "actions": {
+                "Apply_to_each_User": {
+                  "foreach": "@variables('User Guids')",
+                  "actions": {
+                    "Set_Current_Work_Order": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "6a52ec71-5819-404e-bf9f-7086adfda60e"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "Current Work Order",
+                        "value": "@items('Apply_to_each_Work_Order')"
+                      }
+                    },
+                    "Set_Current_User": {
+                      "runAfter": {
+                        "Set_Current_Work_Order": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "1404f2ae-de52-4d1d-80c2-ff274512d9bb"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "Current User",
+                        "value": "@items('Apply_to_each_User')"
+                      }
+                    },
+                    "Try": {
+                      "actions": {
+                        "Perform_a_bound_action": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "43df51f5-9f5d-405d-8f84-df29c4624123"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "PerformBoundAction",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "systemusers",
+                              "actionName": "Microsoft.Dynamics.CRM.AddUserToRecordTeam",
+                              "recordId": "@variables('Current User')['ID']",
+                              "item/Record": "/msdyn_workorders(@{variables('Current Work Order')['Value']})",
+                              "item/TeamTemplate/teamtemplateid": "bddf1d45-706d-ec11-8f8e-0022483da5aa"
+                            },
+                            "authentication": {
+                              "type": "Raw",
+                              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                            }
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Set_Current_User": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "6507714f-54df-425e-9cdd-5d40c564b0ce"
+                      },
+                      "type": "Scope"
+                    },
+                    "Catch": {
+                      "actions": {
+                        "Append_to_array_variable": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "d4385b60-6379-4ac8-88a0-4ecff6eaae0a"
+                          },
+                          "type": "AppendToArrayVariable",
+                          "inputs": {
+                            "name": "FlowLog",
+                            "value": "@body('Perform_a_bound_action')"
+                          }
+                        },
+                        "Set_noErrors": {
+                          "runAfter": {
+                            "Append_to_array_variable": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "b022bf68-fdf7-4c10-86c9-8d750bee103b"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "hasError",
+                            "value": "@true"
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Try": [
+                          "Failed"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "b69ee8a5-5481-4a35-9a4f-e65f9730e3d8"
+                      },
+                      "type": "Scope"
+                    }
+                  },
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "45bc9bf7-e2ac-488f-89f1-f5aa744d7a54"
+                  },
+                  "type": "Foreach"
+                }
+              },
+              "runAfter": {
+                "Set_User_Guids": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e0b1ea72-e2de-4a63-81c3-dceac993ea08"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Initialize_noErrors": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "275d6414-3542-430c-9ae6-28277b7f976d"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_Work_Order_Guids": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1f514c65-f461-4b5a-ac8d-7ebda50e222c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Work Order Guids",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Initialize_User_Guids": {
+          "runAfter": {
+            "Initialize_Work_Order_Guids": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "91ef5e39-d4cb-4b03-95c0-628feb03db93"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "User Guids",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Initialize_Current_Work_Order": {
+          "runAfter": {
+            "Initialize_User_Guids": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1457cca7-b7c5-475c-9633-8f6a693230ce"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Current Work Order",
+                "type": "object"
+              }
+            ]
+          }
+        },
+        "Initialize_Current_User": {
+          "runAfter": {
+            "Initialize_Current_Work_Order": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4faac01e-214b-46f5-a2dd-5d1b1897b76f"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Current User",
+                "type": "object"
+              }
+            ]
+          }
+        },
+        "Initialize_FlowLog": {
+          "runAfter": {
+            "Initialize_Current_User": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f71d44a7-9f48-421f-9144-728fafe69530"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "FlowLog",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Join": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ce493471-7ef0-49e1-a921-2e85701b1d7b"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "errorlog": "@body('Join')",
+              "hasreturned": "@{true}",
+              "haserror": "@{variables('hasError')}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "errorlog": {
+                  "title": "errorLog",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "hasreturned": {
+                  "title": "hasReturned",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "haserror": {
+                  "title": "hasError",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Join": {
+          "runAfter": {
+            "Apply_to_each_JSON_Object": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1298eae4-cffc-454b-8d9d-a7af3304e48f"
+          },
+          "type": "Join",
+          "inputs": {
+            "from": "@variables('FlowLog')",
+            "joinWith": "\n"
+          }
+        },
+        "Initialize_noErrors": {
+          "runAfter": {
+            "Initialize_FlowLog": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7dd52efd-4b04-434e-8ca2-a1afa04e348e"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "hasError",
+                "type": "boolean",
+                "value": "@false"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

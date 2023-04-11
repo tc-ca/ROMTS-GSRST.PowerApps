@@ -29,6 +29,11 @@
         <Button Alt="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.Alt" Command="msdyn.ApplicationRibbon.HomeGrid.BookResource.Command" Description="Book" Id="msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button" LabelText="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.LabelText" Sequence="75" TemplateAlias="o2" ToolTipTitle="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.ToolTipTitle" ToolTipDescription="$LocLabels:msdyn.ApplicationRibbon.msdyn_workorder.SubGrid.BookResource.Button.ToolTipDescription" ModernImage="$webresource:msdyn_/fps/Icons/CommandBar/CalendarButton.svg" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.AddAdditionalInspectors.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="24">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.Alt" Command="ts.msdyn_workorder.AddAdditionalInspectors" Id="ts.msdyn_workorder.AddAdditionalInspectors" LabelText="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.LabelText" Sequence="24" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.Button4.Planning.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="0">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorder.Button4.Planning.Alt" Command="ts.msdyn_workorder.TSIS.Planning" Id="ts.msdyn_workorder.Button4.Planning" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.Button4.Planning.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Button4.Planning.ToolTipTitle" />
@@ -297,6 +302,18 @@
       <Actions>
         <JavaScriptFunction FunctionName="XrmCore.Commands.Assign.assignObject" Library="$webresource:Main_system_library.js">
           <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.AddAdditionalInspectors">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="bulkAddAdditionalInspectors" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -646,6 +663,26 @@
       <Titles>
         <Title description="Book Resource" languagecode="1033" />
         <Title description="Book Resource" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.AddAdditionalInspectors.Alt">
+      <Titles>
+        <Title description="Add Additional Inspectors" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.AddAdditionalInspectors.LabelText">
+      <Titles>
+        <Title description="Add Additional Inspectors" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.AddAdditionalInspectors.ToolTipDescription">
+      <Titles>
+        <Title description="Add Additional Inspectors" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.AddAdditionalInspectors.ToolTipTitle">
+      <Titles>
+        <Title description="Add Additional Inspectors" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.Button4.Planning.Alt">

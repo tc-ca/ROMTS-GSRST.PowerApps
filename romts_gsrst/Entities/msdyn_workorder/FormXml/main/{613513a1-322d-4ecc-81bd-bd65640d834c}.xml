@@ -93,6 +93,42 @@
                 <section name="fstab_service_section_summary" showlabel="false" showbar="false" locklevel="0" id="{7da751b1-d5d3-86ec-06a8-6e2dc6eb7c89}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" height="auto" celllabelalignment="Left" celllabelposition="Top" ordinalvalue="1">
                   <rows>
                     <row>
+                      <cell id="{3c4ec64b-e972-6cd7-919c-eb18d444da55}" showlabel="true" locklevel="0" ordinalvalue="10002" solutionaction="Modified" />
+                      <cell id="{6f8d5e83-ddeb-4715-8b5c-a8d3507da82b}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="20001" solutionaction="Modified">
+                        <control id="msdyn_pricentepercent" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="msdyn_pricentepercent" disabled="false" uniqueid="{720E806B-08D4-4771-8007-6D3FB502C081}" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d18148cb-0641-5a4b-bce6-d4294c09c788}" showlabel="true" locklevel="0" rowspan="2" auto="true" ordinalvalue="10004" solutionaction="Modified" />
+                      <cell id="{01235682-5890-4708-9363-f3863ac2733f}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="20003" solutionaction="Modified">
+                        <control id="msdyn_costntepercent" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="msdyn_costntepercent" disabled="false" uniqueid="{3B15F675-2AFF-4B23-8811-77DEE4C8FFEB}" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{62d5dc1d-c547-3e68-49de-6410087b0c96}" showlabel="true" locklevel="0" ordinalvalue="10007" solutionaction="Modified" />
+                      <cell id="{6b1a14bc-4991-4bd8-9d31-5ce7c11bd1a4}" showlabel="false" ordinalvalue="20006" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{19a60468-cb6d-ab09-cd7c-5727e45bb553}" showlabel="true" locklevel="0" auto="true" ordinalvalue="10009" solutionaction="Modified" />
+                      <cell id="{673c6e2e-3be2-9a94-9452-b9858bb714bc}" showlabel="false" ordinalvalue="20008" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{3c2eb150-b736-c9a7-944b-4dcb61489b29}" showlabel="true" locklevel="0" ordinalvalue="10011" solutionaction="Modified" />
+                      <cell id="{96ea3655-4957-a90a-586e-6e3a315e96eb}" showlabel="false" ordinalvalue="20010" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{59d0b640-9909-35a5-41eb-466c20c5259e}" showlabel="true" locklevel="0" ordinalvalue="10013" solutionaction="Modified" />
+                      <cell id="{c7b58ee0-9015-2955-086b-74117e916d9d}" showlabel="false" ordinalvalue="20012" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{a60dc5bc-9adc-c1a6-415d-bdd4deba4488}" showlabel="true" locklevel="0" ordinalvalue="10015" solutionaction="Modified" />
+                      <cell id="{29047796-4c21-a43a-5b92-db2989b4a1ba}" showlabel="false" ordinalvalue="20014" solutionaction="Modified" />
+                    </row>
+                    <row>
+                      <cell id="{678e6a6c-6827-a318-a911-c42cc4e62abb}" showlabel="true" locklevel="0" ordinalvalue="10017" solutionaction="Modified" />
+                      <cell locklevel="0" id="{cee4297d-8adb-4ab5-87a2-0c633fe83555}" ordinalvalue="20016" solutionaction="Modified" />
+                    </row>
+                    <row>
                       <cell id="{1b24a5ae-1e82-463f-8f50-e2f7cbe4ea0f}" ordinalvalue="20018" solutionaction="Added">
                         <labels>
                           <label description="" languagecode="1033" />
@@ -377,6 +413,86 @@
                 <EnableViewPicker>false</EnableViewPicker>
                 <FilteredViewIds>{0312A55E-E22C-4AFB-ABFF-4BDBF5CFD601},{C2E683AB-3D5F-E611-8108-000D3A146973}</FilteredViewIds>
               </data-set>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{3B15F675-2AFF-4B23-8811-77DEE4C8FFEB}" solutionaction="Modified">
+          <customControl id="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}">
+            <parameters>
+              <datafieldname>msdyn_costntepercent</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="msdyn_MscrmControls.FieldService.NotToExceed">
+            <parameters>
+              <DeviationNotice type="SingleLine.Text" static="true"></DeviationNotice>
+              <ProximityNotice type="SingleLine.Text" static="true"></ProximityNotice>
+              <ProximityThreshold type="Whole.None" static="true">95</ProximityThreshold>
+              <EstimateAmount type="Currency">msdyn_productsservicesestimatedcost</EstimateAmount>
+              <ProximityPercentage type="Whole.None">msdyn_costntepercent</ProximityPercentage>
+              <NteType type="Enum" static="true">192350200</NteType>
+              <transactioncurrencyid type="Lookup.Simple" static="false">transactioncurrencyid</transactioncurrencyid>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="msdyn_MscrmControls.FieldService.NotToExceed">
+            <parameters>
+              <DeviationNotice type="SingleLine.Text" static="true"></DeviationNotice>
+              <ProximityNotice type="SingleLine.Text" static="true"></ProximityNotice>
+              <ProximityThreshold type="Whole.None" static="true">95</ProximityThreshold>
+              <EstimateAmount type="Currency">msdyn_productsservicesestimatedcost</EstimateAmount>
+              <ProximityPercentage type="Whole.None">msdyn_costntepercent</ProximityPercentage>
+              <NteType type="Enum" static="true">192350200</NteType>
+              <transactioncurrencyid type="Lookup.Simple" static="false">transactioncurrencyid</transactioncurrencyid>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="msdyn_MscrmControls.FieldService.NotToExceed">
+            <parameters>
+              <DeviationNotice type="SingleLine.Text" static="true"></DeviationNotice>
+              <ProximityNotice type="SingleLine.Text" static="true"></ProximityNotice>
+              <ProximityThreshold type="Whole.None" static="true">95</ProximityThreshold>
+              <EstimateAmount type="Currency">msdyn_productsservicesestimatedcost</EstimateAmount>
+              <ProximityPercentage type="Whole.None">msdyn_costntepercent</ProximityPercentage>
+              <NteType type="Enum" static="true">192350200</NteType>
+              <transactioncurrencyid type="Lookup.Simple" static="false">transactioncurrencyid</transactioncurrencyid>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{720E806B-08D4-4771-8007-6D3FB502C081}" solutionaction="Modified">
+          <customControl id="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}">
+            <parameters>
+              <datafieldname>msdyn_pricentepercent</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="msdyn_MscrmControls.FieldService.NotToExceed">
+            <parameters>
+              <DeviationNotice type="SingleLine.Text" static="true"></DeviationNotice>
+              <ProximityNotice type="SingleLine.Text" static="true"></ProximityNotice>
+              <ProximityThreshold type="Whole.None" static="true">95</ProximityThreshold>
+              <EstimateAmount type="Currency">msdyn_totalestimatedaftertaxprice</EstimateAmount>
+              <ProximityPercentage type="Whole.None">msdyn_pricentepercent</ProximityPercentage>
+              <NteType type="Enum" static="true">192350100</NteType>
+              <transactioncurrencyid type="Lookup.Simple" static="false">transactioncurrencyid</transactioncurrencyid>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="msdyn_MscrmControls.FieldService.NotToExceed">
+            <parameters>
+              <DeviationNotice type="SingleLine.Text" static="true"></DeviationNotice>
+              <ProximityNotice type="SingleLine.Text" static="true"></ProximityNotice>
+              <ProximityThreshold type="Whole.None" static="true">95</ProximityThreshold>
+              <EstimateAmount type="Currency">msdyn_totalestimatedaftertaxprice</EstimateAmount>
+              <ProximityPercentage type="Whole.None">msdyn_pricentepercent</ProximityPercentage>
+              <NteType type="Enum" static="true">192350100</NteType>
+              <transactioncurrencyid type="Lookup.Simple" static="false">transactioncurrencyid</transactioncurrencyid>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="msdyn_MscrmControls.FieldService.NotToExceed">
+            <parameters>
+              <DeviationNotice type="SingleLine.Text" static="true"></DeviationNotice>
+              <ProximityNotice type="SingleLine.Text" static="true"></ProximityNotice>
+              <ProximityThreshold type="Whole.None" static="true">95</ProximityThreshold>
+              <EstimateAmount type="Currency">msdyn_totalestimatedaftertaxprice</EstimateAmount>
+              <ProximityPercentage type="Whole.None">msdyn_pricentepercent</ProximityPercentage>
+              <NteType type="Enum" static="true">192350100</NteType>
+              <transactioncurrencyid type="Lookup.Simple" static="false">transactioncurrencyid</transactioncurrencyid>
             </parameters>
           </customControl>
         </controlDescription>
