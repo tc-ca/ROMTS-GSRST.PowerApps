@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 /* eslint-disable @typescript-eslint/triple-slash-reference */
 var ROM;
 (function (ROM) {
@@ -212,6 +212,98 @@ var ROM;
             }
         }
         Incident.tradenameOnChange = tradenameOnChange;
+        function systemStatusCodeOnChange(eContext) {
+            //const form = <Form.msdyn_workorder.Main.ROMOversightActivity>eContext.getFormContext();
+            //var newSystemStatus = form.getAttribute("msdyn_systemstatus").getValue();
+            ////If user try to cancel Complete WO
+            //if (currentSystemStatus == 690970003 && newSystemStatus == 690970005) {
+            //    var alertStrings = {
+            //        text: Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "CantCancelText"),
+            //    };
+            //    var alertOptions = { height: 160, width: 340 };
+            //    Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(function () { });
+            //    form.getAttribute("msdyn_systemstatus").setValue(currentSystemStatus);
+            //}
+            //else
+            //    //If system status is set to closed
+            //    if (newSystemStatus == 690970004) {
+            //        Xrm.WebApi.retrieveMultipleRecords("msdyn_workorderservicetask", "?$select=msdyn_workorder&$filter=msdyn_workorder/msdyn_workorderid eq " + form.data.entity.getId() + " and statuscode ne 918640002 and ts_mandatory eq true").then(function success(result) {
+            //            if (result.entities.length > 0) {
+            //                var alertStrings = {
+            //                    text: Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "CloseWOWithUnCompletedSTText"),
+            //                    title: Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "CloseWOWithUnCompletedSTTitle")
+            //                };
+            //                var alertOptions = { height: 160, width: 340 };
+            //                Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(function () { });
+            //                form.getAttribute("msdyn_systemstatus").setValue(currentSystemStatus);
+            //            }
+            //            else {
+            //                var confirmStrings = {
+            //                    text: Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "CloseWorkOrderConfirmationText"),
+            //                    title: Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "CloseWorkOrderConfirmationTitle")
+            //                };
+            //                var confirmOptions = { height: 200, width: 450 };
+            //                Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+            //                    function (success) {
+            //                        if (success.confirmed) {
+            //                            //Set state to Inactive
+            //                            form.getAttribute("statecode").setValue(1);
+            //                            //Set Status Reason to Closed
+            //                            form.getAttribute("statuscode").setValue(918640000);
+            //                            currentSystemStatus = newSystemStatus;
+            //                            //At Transport Canada, Fiscal Years run from Apr 1st to Mar 31, Q1 = Apr-Jun, Q2 = Jul-Sept, Q3 = Oct-Dec, Q4 = Jan-Mar
+            //                            var currentQuarter = Math.floor(new Date().getMonth() / 3);
+            //                            if (currentQuarter == 0) {
+            //                                currentQuarter = 4;
+            //                            }
+            //                            form.getAttribute("ts_completedquarter").setValue(717750000 + currentQuarter);
+            //                            form.getControl("ts_completedquarter").setVisible(true);
+            //                        } else {
+            //                            //Undo the system status change
+            //                            form.getAttribute("msdyn_systemstatus").setValue(currentSystemStatus);
+            //                        }
+            //                    });
+            //            }
+            //        }, function (error) {
+            //            showErrorMessageAlert(error);
+            //        });
+            //    }
+            //    else {
+            //        if (newSystemStatus == 690970005 && currentSystemStatus != 690970003 && userHasRole("System Administrator|ROM - Business Admin|ROM - Planner")) {
+            //            var confirmStrings = {
+            //                text: Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "CancelWorkOrderConfirmationText"),
+            //                title: Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "CancelWorkOrderConfirmationTitle")
+            //            };
+            //            var confirmOptions = { height: 200, width: 450 };
+            //            Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+            //                function (success) {
+            //                    if (success.confirmed) {
+            //                        //Set state to Inactive
+            //                        form.getAttribute("statecode").setValue(1);
+            //                        //Set Status Reason to Closed
+            //                        form.getAttribute("statuscode").setValue(918640000);
+            //                        currentSystemStatus = newSystemStatus;
+            //                        //Set visible canceled inspection justification field
+            //                        form.getControl("ts_canceledinspectionjustification").setVisible(true);
+            //                        form.getAttribute("ts_canceledinspectionjustification").setRequiredLevel("required");
+            //                    } else {
+            //                        //Undo the system status change
+            //                        form.getAttribute("msdyn_systemstatus").setValue(currentSystemStatus);
+            //                    }
+            //                });
+            //        }
+            //        else {
+            //            //Keep record Active
+            //            form.getAttribute("statecode").setValue(0);
+            //            form.getAttribute("statuscode").setValue(1);
+            //            form.getControl("ts_canceledinspectionjustification").setVisible(false);
+            //            form.getControl("ts_canceledinspectionjustification").setVisible(false);
+            //            form.getAttribute("ts_canceledinspectionjustification").setRequiredLevel("none");
+            //            currentSystemStatus = newSystemStatus;
+            //        }
+            //    }
+        }
+        Incident.systemStatusCodeOnChange = systemStatusCodeOnChange;
         // FUNCTIONS
         function setRegion(eContext) {
             var currentUserId = Xrm.Utility.getGlobalContext().userSettings.userId;

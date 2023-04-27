@@ -750,7 +750,7 @@
             </column>
             <column width="30%">
               <sections>
-                <section name="_section_369" id="c4ab651a-d19f-44ef-8457-98de64b35723" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                <section name="tab_findings_section_aef" id="c4ab651a-d19f-44ef-8457-98de64b35723" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
                   <labels>
                     <label description="New Section" languagecode="1033" />
                   </labels>
@@ -1636,12 +1636,17 @@
               </labels>
               <control id="header_createdon" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="createdon" disabled="true" />
             </cell>
-            <cell id="{53dd311c-6ec7-4cde-b299-d39fe21c3dcf}" labelid="{272d2bb0-9538-4ca0-8da3-059ed218fa72}">
+            <cell locklevel="0" id="{709423f4-5bd9-414a-8187-1ab80b71ca11}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{3d90b672-f8c5-44fc-b9d9-bcfaa29147ca}" locklevel="0" colspan="1" rowspan="1">
               <labels>
                 <label description="Status" languagecode="1033" />
-                <label description="Statut" languagecode="1036" />
+                <label description="Raison du statut" languagecode="1036" />
               </labels>
-              <control id="header_statuscode" classid="{5D68B988-0661-4db2-BC3E-17598AD3BE6C}" datafieldname="statuscode" disabled="false" />
+              <control id="header_statuscode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statuscode" disabled="false" />
             </cell>
             <cell id="{d2c3b79d-4172-4f15-aa40-e69aa7bd2ab6}" labelid="{17c02ea8-6b27-4ef2-88cf-a0b177f668ad}">
               <labels>
@@ -2322,6 +2327,11 @@
         <event name="onchange" application="true" active="true" attribute="ts_workorder2">
           <Handlers>
             <Handler functionName="ROM.Incident.workOrder2OnChange" libraryName="msdyn_/Case/Case.Library.js" handlerUniqueId="{3c0e643f-7987-4c6e-ad24-7bef79cf8ab5}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="statuscode">
+          <Handlers>
+            <Handler functionName="ROM.Incident.systemStatusCodeOnChange" libraryName="ovs_/js/Incident.js" handlerUniqueId="{d2d30a51-baff-47d7-b036-dce06dab70cf}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
