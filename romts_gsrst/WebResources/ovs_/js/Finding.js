@@ -123,37 +123,54 @@ var ROM;
                                 }
                                 //Show RATE Sections and fields when the operation type owning business unit is Aviation Security or if the user business unit is Transport Canada
                                 else {
-                                    //If Operation Type is Air Carrier (Passenger) or Air Carrier(All Cargo) or Operator of an Aerodrome
-                                    if (avSecOperationTypeGuides.includes(operationTypeAttributeValue[0].id)) {
-                                        formContext.ui.tabs.get("tab_RATE").setVisible(true);
-                                        formContext.getControl("ts_finalenforcementaction").setDisabled(true);
-                                    }
-                                    else {
-                                        formContext.getControl("ts_finalenforcementaction").setDisabled(false);
-                                        formContext.ui.tabs.get("tab_RATE").setVisible(false);
-                                    }
-                                    formContext.getControl("header_ts_rateenforcementrecommendation").setVisible(true);
-                                    //If there's a recommended enforcement action and the finding is not complete yet, then the accept rate recommendation field should be unlocked
-                                    var enforcementRecommendation = formContext.getAttribute("ts_rateenforcementrecommendation").getValue();
-                                    var recordStatus = formContext.getAttribute("statuscode").getValue();
-                                    if (enforcementRecommendation != null && recordStatus != 717750002 /* Complete */) {
-                                        formContext.getControl("ts_acceptraterecommendation").setDisabled(false);
-                                    }
-                                    //If they have accepted or rejected the RATE recommendation previously, then the RATE factors should be locked.
-                                    var acceptRATERecommendation = formContext.getAttribute("ts_acceptraterecommendation").getValue();
-                                    if (acceptRATERecommendation != null) {
-                                        lockRATEFactors(eContext);
-                                    }
-                                    //If they did not accept the rate recommendation, show proposal sections and fields
-                                    if (formContext.getAttribute("ts_acceptraterecommendation").getValue() == 717750001 /* No */) {
-                                        formContext.ui.tabs.get("tab_RATE").sections.get("RATE_proposed_section").setVisible(true);
-                                        setPostRATERecommendationSelectionFieldsVisibility(eContext);
-                                        RATEManagerDecisionOnChange(eContext);
-                                    }
+                                    var findingID = formContext.data.entity.getId();
+                                    var findingFetchXml = [
+                                        "<fetch>",
+                                        "  <entity name='ovs_finding'>",
+                                        "    <filter type='and'>",
+                                        "      <condition attribute='ovs_findingid' operator='eq' value='", findingID, "'/>",
+                                        "    </filter>",
+                                        "    <link-entity name='msdyn_functionallocation' from='msdyn_functionallocationid' to='ts_functionallocation' alias='site'>",
+                                        "      <attribute name='ts_region'/>",
+                                        "    </link-entity>",
+                                        "  </entity>",
+                                        "</fetch>"
+                                    ].join("");
+                                    findingFetchXml = "?fetchXml=" + encodeURIComponent(findingFetchXml);
+                                    Xrm.WebApi.retrieveMultipleRecords("ovs_finding", findingFetchXml).then(function (result) {
+                                        var currentFinding = result.entities[0];
+                                        var regionId = currentFinding["site.ts_region"];
+                                        //If Operation Type is Air Carrier (Passenger) or Air Carrier(All Cargo) or Operator of an Aerodrome and not international
+                                        if (avSecOperationTypeGuides.includes(operationTypeAttributeValue[0].id) && regionId != "3bf0fa88-150f-eb11-a813-000d3af3a7a7") { //GUID for International region
+                                            formContext.ui.tabs.get("tab_RATE").setVisible(true);
+                                            formContext.getControl("ts_finalenforcementaction").setDisabled(true);
+                                        }
+                                        else {
+                                            formContext.getControl("ts_finalenforcementaction").setDisabled(false);
+                                            formContext.ui.tabs.get("tab_RATE").setVisible(false);
+                                        }
+                                        formContext.getControl("header_ts_rateenforcementrecommendation").setVisible(true);
+                                        //If there's a recommended enforcement action and the finding is not complete yet, then the accept rate recommendation field should be unlocked
+                                        var enforcementRecommendation = formContext.getAttribute("ts_rateenforcementrecommendation").getValue();
+                                        var recordStatus = formContext.getAttribute("statuscode").getValue();
+                                        if (enforcementRecommendation != null && recordStatus != 717750002 /* Complete */) {
+                                            formContext.getControl("ts_acceptraterecommendation").setDisabled(false);
+                                        }
+                                        //If they have accepted or rejected the RATE recommendation previously, then the RATE factors should be locked.
+                                        var acceptRATERecommendation = formContext.getAttribute("ts_acceptraterecommendation").getValue();
+                                        if (acceptRATERecommendation != null) {
+                                            lockRATEFactors(eContext);
+                                        }
+                                        //If they did not accept the rate recommendation, show proposal sections and fields
+                                        if (formContext.getAttribute("ts_acceptraterecommendation").getValue() == 717750001 /* No */) {
+                                            formContext.ui.tabs.get("tab_RATE").sections.get("RATE_proposed_section").setVisible(true);
+                                            setPostRATERecommendationSelectionFieldsVisibility(eContext);
+                                            RATEManagerDecisionOnChange(eContext);
+                                        }
+                                    });
                                 }
                             }
                             approvingNCATTeamsOnChange(eContext);
-                            approvingRATETeamsOnChange(eContext);
                             RATESpecificComplianceHistoryOnChange(eContext);
                             setApprovingTeamsViews(formContext);
                             if (formContext.getAttribute("statuscode").getValue() == 717750002 /* Complete */) {
@@ -242,7 +259,7 @@ var ROM;
                             factor5AssessmentRatingPromise = Xrm.WebApi.retrieveRecord("ts_assessmentrating", factor5AssessmentRatingId, "?$select=ts_weight");
                             factor6AssessmentRatingPromise = Xrm.WebApi.retrieveRecord("ts_assessmentrating", factor6AssessmentRatingId, "?$select=ts_weight");
                             factor7AssessmentRatingPromise = Xrm.WebApi.retrieveRecord("ts_assessmentrating", factor7AssessmentRatingId, "?$select=ts_weight");
-                            thresholdsPromise = Xrm.WebApi.retrieveMultipleRecords("ts_assessmentscorethredshots", "?$select=ts_minimum,ts_maximum,ts_ncatenforcementaction&$filter=ts_assessmenttool eq " + 717750000 /* NCAT */);
+                            thresholdsPromise = Xrm.WebApi.retrieveMultipleRecords("ts_assessmentscorethredshots", "?$select=ts_minimum,ts_maximum,ts_ncatenforcementaction&$filter=ts_assessmenttool eq ".concat(717750000 /* NCAT */));
                             //Wait for all factors the retrieve, then calculate and set the enforcement recommendation
                             return [4 /*yield*/, Promise.all([factor1AssessmentRatingPromise, factor2AssessmentRatingPromise, factor3AssessmentRatingPromise, factor4AssessmentRatingPromise, factor5AssessmentRatingPromise, factor6AssessmentRatingPromise, factor7AssessmentRatingPromise, thresholdsPromise]).then(function (factorPromises) {
                                     var totalWeight = 0;
@@ -345,7 +362,7 @@ var ROM;
                             factor8AssessmentRatingPromise = Xrm.WebApi.retrieveRecord("ts_assessmentrating", factor8AssessmentRatingId, "?$select=ts_weight");
                             if (enforcementHistory == null)
                                 enforcementHistory = 717750000 /* Nil */;
-                            thresholdsPromise = Xrm.WebApi.retrieveMultipleRecords("ts_assessmentscorethredshots", "?$select=ts_minimum,ts_maximum,ts_rateenforcementaction&$filter=ts_assessmenttool eq " + 717750001 /* RATE */ + " and ts_rateenforcementhistory eq " + enforcementHistory);
+                            thresholdsPromise = Xrm.WebApi.retrieveMultipleRecords("ts_assessmentscorethredshots", "?$select=ts_minimum,ts_maximum,ts_rateenforcementaction&$filter=ts_assessmenttool eq ".concat(717750001 /* RATE */, " and ts_rateenforcementhistory eq ").concat(enforcementHistory));
                             //Wait for all factors the retrieve, then calculate and set the enforcement recommendation
                             return [4 /*yield*/, Promise.all([factor1AssessmentRatingPromise, factor2AssessmentRatingPromise, factor3AssessmentRatingPromise, factor4AssessmentRatingPromise, factor5AssessmentRatingPromise, factor6AssessmentRatingPromise, factor7AssessmentRatingPromise, factor8AssessmentRatingPromise, thresholdsPromise]).then(function (factorPromises) {
                                     var totalWeight = 0;
@@ -678,7 +695,7 @@ var ROM;
                 var entityNameApprovingManagers = "systemuser";
                 var viewDisplayNameApprovingManagers = "FilteredApprovingManagers";
                 //Approving managers in the same region as the case with the AvSec Business Unit
-                var fetchXmlApprovingManagersNCAT = "<fetch distinct=\"true\" page=\"1\" no-lock=\"false\"><entity name=\"systemuser\"><attribute name=\"systemuserid\"/><attribute name=\"fullname\"/><link-entity name=\"teammembership\" from=\"systemuserid\" to=\"systemuserid\" intersect=\"true\"><filter><condition attribute=\"teamid\" operator=\"eq\" value=\"" + NCATApprovingTeam[0].id + "\"/></filter></link-entity></entity></fetch>";
+                var fetchXmlApprovingManagersNCAT = "<fetch distinct=\"true\" page=\"1\" no-lock=\"false\"><entity name=\"systemuser\"><attribute name=\"systemuserid\"/><attribute name=\"fullname\"/><link-entity name=\"teammembership\" from=\"systemuserid\" to=\"systemuserid\" intersect=\"true\"><filter><condition attribute=\"teamid\" operator=\"eq\" value=\"".concat(NCATApprovingTeam[0].id, "\"/></filter></link-entity></entity></fetch>");
                 var layoutXmlApprovingManagers = '<grid name="resultset" object="8" jump="fullname" select="1" icon="1" preview="1"><row name="result" id="systemuserid"><cell name="fullname" width="300" /></row></grid>';
                 formContext.getControl("ts_ncatmanager").addCustomView(viewIdApprovingManagerNCAT, entityNameApprovingManagers, viewDisplayNameApprovingManagers, fetchXmlApprovingManagersNCAT, layoutXmlApprovingManagers, true);
                 if (formContext.getAttribute("ts_ncatmanager").getValue != null) {
@@ -703,7 +720,7 @@ var ROM;
                 var entityNameApprovingManagers = "systemuser";
                 var viewDisplayNameApprovingManagers = "FilteredApprovingManagers";
                 //Approving managers in the same region as the case with the ISSO Business Unit
-                var fetchXmlApprovingManagersRATE = "<fetch distinct=\"true\" page=\"1\" no-lock=\"false\"><entity name=\"systemuser\"><attribute name=\"systemuserid\"/><attribute name=\"fullname\"/><link-entity name=\"teammembership\" from=\"systemuserid\" to=\"systemuserid\" intersect=\"true\"><filter><condition attribute=\"teamid\" operator=\"eq\" value=\"" + RATEApprovingTeam[0].id + "\"/></filter></link-entity></entity></fetch>";
+                var fetchXmlApprovingManagersRATE = "<fetch distinct=\"true\" page=\"1\" no-lock=\"false\"><entity name=\"systemuser\"><attribute name=\"systemuserid\"/><attribute name=\"fullname\"/><link-entity name=\"teammembership\" from=\"systemuserid\" to=\"systemuserid\" intersect=\"true\"><filter><condition attribute=\"teamid\" operator=\"eq\" value=\"".concat(RATEApprovingTeam[0].id, "\"/></filter></link-entity></entity></fetch>");
                 var layoutXmlApprovingManagers = '<grid name="resultset" object="8" jump="fullname" select="1" icon="1" preview="1"><row name="result" id="systemuserid"><cell name="fullname" width="300" /></row></grid>';
                 formContext.getControl("ts_ratemanager").addCustomView(viewIdApprovingManagerRATE, entityNameApprovingManagers, viewDisplayNameApprovingManagers, fetchXmlApprovingManagersRATE, layoutXmlApprovingManagers, true);
                 formContext.getControl("ts_ratemanager").setDisabled(false);
@@ -766,9 +783,6 @@ var ROM;
         //Clears, Hides, and sets Required level to None for every field in the NCAT Manager Review Section
         function NCATHideManagerReviewSection(eContext) {
             var formContext = eContext.getFormContext();
-            formContext.getAttribute("ts_rateapprovingteam").setValue(null);
-            formContext.getAttribute("ts_rateapprovingteam").setRequiredLevel("none");
-            formContext.getControl("ts_rateapprovingteam").setVisible(false);
             formContext.getAttribute("ts_ncatmanagerdecision").setRequiredLevel("none");
             formContext.getAttribute("ts_ncatmanagerdecision").setValue(null);
             formContext.getControl("ts_ncatmanagerdecision").setVisible(false);
@@ -783,9 +797,6 @@ var ROM;
         //Clears, Hides, and sets Required level to None for every field in the RATE Proposed Section
         function RATEHideProposedSection(eContext) {
             var formContext = eContext.getFormContext();
-            formContext.getAttribute("ts_rateapprovingteam").setValue(null);
-            formContext.getAttribute("ts_rateapprovingteam").setRequiredLevel("none");
-            formContext.getControl("ts_rateapprovingteam").setVisible(false);
             formContext.getAttribute("ts_ratemanager").setValue(null);
             formContext.getAttribute("ts_ratemanager").setRequiredLevel("none");
             formContext.getControl("ts_ratemanager").setVisible(false);
@@ -824,7 +835,6 @@ var ROM;
             var fetchXmlApprovingTeamsRATE = "<fetch output-format=\"xml-platform\" mapping=\"logical\" no-lock=\"false\"><entity name=\"team\"><attribute name=\"name\"/><attribute name=\"businessunitid\"/><attribute name=\"teamid\"/><attribute name=\"teamtype\"/><filter type=\"and\"><condition attribute=\"teamtype\" operator=\"eq\" value=\"0\"/><condition attribute=\"ts_territory\" operator=\"not-null\"/></filter><order attribute=\"name\" descending=\"false\"/><link-entity name=\"businessunit\" from=\"businessunitid\" to=\"businessunitid\"><filter><condition attribute=\"name\" operator=\"like\" value=\"Aviation%\"/></filter></link-entity></entity></fetch>";
             var layoutXmlApprovingTeams = '<grid name="resultset" object="8" jump="name" select="1" icon="1" preview="1"><row name="result" id="businessunitid"><cell name="name" width="300" /></row></grid>';
             form.getControl("ts_ncatapprovingteam").addCustomView(viewIdApprovingTeamNCAT, entityNameApprovingTeams, viewDisplayNameApprovingTeams, fetchXmlApprovingTeamsNCAT, layoutXmlApprovingTeams, true);
-            form.getControl("ts_rateapprovingteam").addCustomView(viewIdApprovingTeamRATE, entityNameApprovingTeams, viewDisplayNameApprovingTeams, fetchXmlApprovingTeamsRATE, layoutXmlApprovingTeams, true);
         }
         function setPostNCATRecommendationSelectionFieldsVisibility(eContext) {
             var formContext = eContext.getFormContext();
@@ -907,10 +917,6 @@ var ROM;
             }
             //If they did not accept the RATE recommendation
             if (acceptRATERecommendation == 717750001 /* No */) {
-                //Show RATE Approving Team
-                formContext.getControl("ts_rateapprovingteam").setVisible(true);
-                formContext.getControl("ts_rateapprovingteam").setDisabled(false);
-                formContext.getAttribute("ts_rateapprovingteam").setRequiredLevel("required");
                 //Show RATE Approving Manager
                 formContext.getControl("ts_ratemanager").setVisible(true);
                 formContext.getControl("ts_ratemanager").setDisabled(false);
@@ -935,7 +941,7 @@ var ROM;
                     formContext.getControl("ts_rateenforcementjustification").setDisabled(true);
                 }
                 //If the proposed section has been filled out, show the manager review section
-                if (formContext.getAttribute("ts_rateapprovingteam").getValue() != null) {
+                if (formContext.getAttribute("ts_ratemanager").getValue() != null) {
                     var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
                     //If the user is a system admin or ROM - Manager, show the RATE manager review section
                     var isAdminOrManager_2 = false;

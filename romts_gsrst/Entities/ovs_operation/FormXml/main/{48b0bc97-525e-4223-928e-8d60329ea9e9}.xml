@@ -494,6 +494,106 @@
             </column>
           </columns>
         </tab>
+        <tab name="tab_9" id="869e3239-d19e-4280-9aa2-a55b713e2df9" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Related Actions" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_9_section_1" id="eb3723e4-0a14-4e47-8044-029fd06cc54f" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{4cfd8615-f208-41d4-b042-21b331a9594d}" rowspan="4" colspan="1" auto="true" showlabel="false">
+                        <labels>
+                          <label description="Related Actions" languagecode="1033" />
+                          <label description="Activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="subgrid_related_actions" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_action</TargetEntityType>
+                            <ViewId>{96C3881F-1BE9-ED11-A7C6-0022483C5061}</ViewId>
+                            <ViewIds>{3512178F-31FF-4A2D-A610-18D5C8F0BA94},{96C3881F-1BE9-ED11-A7C6-0022483C5061}</ViewIds>
+                            <RelationshipName />
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+          <events>
+            <event name="tabstatechange" application="false" active="false">
+              <Handlers>
+                <Handler functionName="ROM.Operation.setRelatedActionFetchXML" libraryName="ts_/js/Operation.js" handlerUniqueId="{160e52ba-f094-4742-974a-ae2c12b53da5}" enabled="true" parameters="" passExecutionContext="true" />
+              </Handlers>
+            </event>
+          </events>
+        </tab>
+        <tab name="tab_8" id="34ab9cf2-e3f0-4f6f-963f-ad3ad0225f88" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Related Actions *nested" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_8_section_1" id="25a2580a-e455-4ce4-bab9-93ad55ce817a" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{570c9904-4cce-4f76-b4bc-f0d4efef52ff}" rowspan="6" colspan="1" auto="true" showlabel="false">
+                        <labels>
+                          <label description="subgrid_related_actions" languagecode="1033" />
+                          <label description="Activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="subgrid_related_actions_nested" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{a84a310b-3191-4b88-ab45-9be0b2d9a88b}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ovs_finding</TargetEntityType>
+                            <ViewId>{293497C0-BCAE-EC11-983E-002248ADE910}</ViewId>
+                            <ViewIds>{293497C0-BCAE-EC11-983E-002248ADE910},{77179513-BCAE-EC11-983E-002248ADE910}</ViewIds>
+                            <RelationshipName>ts_ovs_Finding_operationid_ovs_operation</RelationshipName>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <IsUserView>false</IsUserView>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
         <tab name="tab_properties_avsec" id="79f957f0-2cf6-469d-b770-e017b753d8d2" IsUserDefined="0" locklevel="0" showlabel="true" visible="false">
           <labels>
             <label description="Properties" languagecode="1033" />
@@ -1336,6 +1436,92 @@
           <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
             <parameters>
               <value type="TwoOptions">ts_ron</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{a84a310b-3191-4b88-ab45-9be0b2d9a88b}">
+          <customControl id="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+            <parameters />
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{293497C0-BCAE-EC11-983E-002248ADE910}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ovs_Finding_operationid_ovs_operation</RelationshipName>
+                <TargetEntityType>ovs_finding</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{293497C0-BCAE-EC11-983E-002248ADE910},{77179513-BCAE-EC11-983E-002248ADE910}</FilteredViewIds>
+              </data-set>
+              <data-set name="SubGrid">
+                <ViewId>{3512178F-31FF-4A2D-A610-18D5C8F0BA94}</ViewId>
+                <IsUserView>false</IsUserView>
+                <TargetEntityType>ts_action</TargetEntityType>
+                <SubGridParentId>ts_finding</SubGridParentId>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">no</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{293497C0-BCAE-EC11-983E-002248ADE910}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ovs_Finding_operationid_ovs_operation</RelationshipName>
+                <TargetEntityType>ovs_finding</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{293497C0-BCAE-EC11-983E-002248ADE910},{77179513-BCAE-EC11-983E-002248ADE910}</FilteredViewIds>
+              </data-set>
+              <data-set name="SubGrid">
+                <ViewId>{3512178F-31FF-4A2D-A610-18D5C8F0BA94}</ViewId>
+                <IsUserView>false</IsUserView>
+                <TargetEntityType>ts_action</TargetEntityType>
+                <SubGridParentId>ts_finding</SubGridParentId>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">no</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{293497C0-BCAE-EC11-983E-002248ADE910}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_ovs_Finding_operationid_ovs_operation</RelationshipName>
+                <TargetEntityType>ovs_finding</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{293497C0-BCAE-EC11-983E-002248ADE910},{77179513-BCAE-EC11-983E-002248ADE910}</FilteredViewIds>
+              </data-set>
+              <data-set name="SubGrid">
+                <ViewId>{3512178F-31FF-4A2D-A610-18D5C8F0BA94}</ViewId>
+                <IsUserView>false</IsUserView>
+                <TargetEntityType>ts_action</TargetEntityType>
+                <SubGridParentId>ts_finding</SubGridParentId>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">no</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
             </parameters>
           </customControl>
         </controlDescription>

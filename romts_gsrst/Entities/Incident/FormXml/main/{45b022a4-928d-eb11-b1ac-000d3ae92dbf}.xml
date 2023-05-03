@@ -772,7 +772,7 @@
         </tab>
         <tab name="Enforcement_Action_tab" id="{ae2e16d9-536c-d030-dd0a-63cbcd770434}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
           <labels>
-            <label description="Enforcement Actions" languagecode="1033" />
+            <label description="Actions" languagecode="1033" />
             <label description="Mesures d'exécution" languagecode="1036" />
           </labels>
           <columns>
@@ -780,17 +780,17 @@
               <sections>
                 <section name="Enforcement_Action_section" showlabel="false" showbar="false" locklevel="0" id="{d1a28067-1d78-4dd9-ee26-3c24b0bac34e}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
-                    <label description="Enforcement Actions" languagecode="1033" />
+                    <label description="Actions" languagecode="1033" />
                     <label description="Mesures d'exécution" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
-                      <cell locklevel="0" id="{b5a9d413-09e7-4eaf-aa60-814ea8bf855a}" rowspan="4" colspan="1" auto="false">
+                      <cell locklevel="0" id="{b5a9d413-09e7-4eaf-aa60-814ea8bf855a}" rowspan="6" colspan="1" auto="false" showlabel="false">
                         <labels>
-                          <label description="Enforcement Actions" languagecode="1033" />
+                          <label description="Actions" languagecode="1033" />
                           <label description="Mesures d'exécution" languagecode="1036" />
                         </labels>
-                        <control indicationOfSubgrid="true" id="Subgrid_EnforcementAction" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                        <control indicationOfSubgrid="true" id="Subgrid_EnforcementAction" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" uniqueid="{a24c9cce-5d84-687d-7d1c-20a309544b72}">
                           <parameters>
                             <RecordsPerPage>4</RecordsPerPage>
                             <AutoExpand>Fixed</AutoExpand>
@@ -798,14 +798,21 @@
                             <EnableViewPicker>false</EnableViewPicker>
                             <EnableChartPicker>true</EnableChartPicker>
                             <ChartGridMode>All</ChartGridMode>
-                            <TargetEntityType>ts_enforcementaction</TargetEntityType>
-                            <ViewId>{22CE72F1-710B-47A6-9CD9-3A43DE3A9CAF}</ViewId>
-                            <ViewIds>{06453E41-8875-426F-AF88-CBF885E2050B},{22CE72F1-710B-47A6-9CD9-3A43DE3A9CAF}</ViewIds>
-                            <RelationshipName>ts_enforcementaction_Incident_Incident</RelationshipName>
+                            <TargetEntityType>ts_action</TargetEntityType>
+                            <ViewId>{4DEC383E-F7E8-ED11-A7C6-0022483D7716}</ViewId>
+                            <ViewIds>{3512178F-31FF-4A2D-A610-18D5C8F0BA94},{4DEC383E-F7E8-ED11-A7C6-0022483D7716}</ViewIds>
+                            <RelationshipName>ts_incident_ts_action_Case</RelationshipName>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <IsUserView>false</IsUserView>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
                           </parameters>
                         </control>
                       </cell>
                     </row>
+                    <row />
+                    <row />
                     <row />
                     <row />
                     <row />
@@ -1636,7 +1643,7 @@
               </labels>
               <control id="header_createdon" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="createdon" disabled="true" />
             </cell>
-            <cell locklevel="0" id="{709423f4-5bd9-414a-8187-1ab80b71ca11}">
+            <cell locklevel="0" id="{709423f4-5bd9-414a-8187-1ab80b71ca11}" showlabel="false">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
@@ -2331,7 +2338,7 @@
         </event>
         <event name="onchange" application="false" active="false" attribute="statuscode">
           <Handlers>
-            <Handler functionName="ROM.Incident.systemStatusCodeOnChange" libraryName="ovs_/js/Incident.js" handlerUniqueId="{d2d30a51-baff-47d7-b036-dce06dab70cf}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.Incident.systemStatusCodeOnChange" libraryName="ovs_/js/Incident.js" handlerUniqueId="{d2d30a51-baff-47d7-b036-dce06dab70cf}" enabled="false" parameters="" passExecutionContext="false" />
           </Handlers>
         </event>
       </events>

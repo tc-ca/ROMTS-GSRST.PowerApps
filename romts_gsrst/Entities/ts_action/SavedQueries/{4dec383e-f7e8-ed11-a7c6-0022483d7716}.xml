@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{4dec383e-f7e8-ed11-a7c6-0022483d7716}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_actionid">
+          <cell name="ts_name" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_actioncategory" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_actiontype" width="200" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_actionstatus" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="createdon" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_action">
+          <attribute name="ts_name" />
+          <order attribute="createdon" descending="false" />
+          <order attribute="ts_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_actiontype" />
+          <attribute name="ts_actioncategory" />
+          <attribute name="ts_actionstatus" />
+          <attribute name="createdon" />
+          <attribute name="ts_actionid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20230427.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Case Actions" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="All Actions for Case" languagecode="1033" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

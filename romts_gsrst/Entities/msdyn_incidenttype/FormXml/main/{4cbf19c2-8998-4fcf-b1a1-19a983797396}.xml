@@ -150,6 +150,32 @@
                         </labels>
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{50a27102-e0bd-48c7-a845-10fccd4e67db}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10010" solutionaction="Added">
+                        <labels>
+                          <label description="International" languagecode="1033" />
+                        </labels>
+                        <control id="ts_international" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_international" disabled="false" uniqueid="{ed3cadfd-1fbd-4af0-968a-6d32e4dc3708}" />
+                      </cell>
+                      <cell locklevel="0" id="{328351c5-befb-4501-8796-f6132c776b75}" ordinalvalue="20011" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{d6c36c42-6406-402f-af7b-68190fb05da1}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10012" solutionaction="Added">
+                        <labels>
+                          <label description="Domestic" languagecode="1033" />
+                        </labels>
+                        <control id="ts_domestic" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_domestic" disabled="false" uniqueid="{8214306e-ed83-4207-9ae3-60b173030ab9}" />
+                      </cell>
+                      <cell locklevel="0" id="{4a39a14b-35eb-41eb-8e6a-93a111ca97d0}" ordinalvalue="20013" solutionaction="Added">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                   </rows>
                 </section>
                 <section name="KnowledgeArticleSection" showlabel="false" showbar="false" locklevel="0" id="{edc00ad5-8d16-ec19-2721-2172911864e1}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Left" ordinalvalue="2" solutionaction="Modified">
@@ -355,7 +381,7 @@
                     <label description="Field Visible" languagecode="1033" />
                     <label description="Champ visible" languagecode="1036" />
                   </labels>
-                  <rows></rows>
+                  <rows />
                 </section>
               </sections>
             </column>
@@ -1754,6 +1780,50 @@
             </parameters>
           </customControl>
         </controlDescription>
+        <controlDescription forControl="{ed3cadfd-1fbd-4af0-968a-6d32e4dc3708}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_international</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_international</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_international</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_international</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{8214306e-ed83-4207-9ae3-60b173030ab9}" solutionaction="Added">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_domestic</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_domestic</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_domestic</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ts_domestic</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
       </controlDescriptions>
       <formLibraries>
         <Library name="ovs_/js/IncidentType.js" libraryUniqueId="{81572579-4c7e-4546-b6a0-26dd7c6c02f1}" solutionaction="Added" />
@@ -1771,7 +1841,7 @@
         </event>
       </events>
       <header id="{d6d4dd2f-cc5a-4581-89f9-a6731626d5cb}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
-        <rows></rows>
+        <rows />
       </header>
       <DisplayConditions FallbackForm="true" Order="0" solutionaction="Added">
         <Everyone />
