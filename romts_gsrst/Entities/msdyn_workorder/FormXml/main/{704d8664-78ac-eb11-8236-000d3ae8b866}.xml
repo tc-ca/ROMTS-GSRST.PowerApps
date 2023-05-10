@@ -136,6 +136,7 @@
                             <AutoResolve>true</AutoResolve>
                             <DisableQuickFind>false</DisableQuickFind>
                             <AllowFilterOff>false</AllowFilterOff>
+                            <useMainFormDialogForEdit>false</useMainFormDialogForEdit>
                           </parameters>
                         </control>
                       </cell>
@@ -3303,6 +3304,7 @@
         <Library name="msdyn_/CFS/WorkOrder/WorkOrderForm.js" libraryUniqueId="{66c75878-8967-ee9a-4dae-5d4142dbb309}" />
         <Library name="ovs_/js/WorkOrder.js" libraryUniqueId="{ed68d241-5966-3dae-2d71-e4d9bbe7668a}" />
         <Library name="ovs_/lib/dg.xrmquery.web.min.js" libraryUniqueId="{0d997e24-b2e9-4957-b63e-5cfa0001c6c6}" />
+        <Library name="ts_/js/Common.js" libraryUniqueId="{1cb8dc7a-8546-abb2-8038-3ddeee5d0c32}" />
       </formLibraries>
       <events>
         <event name="onload" application="false" active="false">
@@ -3311,6 +3313,7 @@
             <Handler functionName="ROM.WorkOrder.onLoad" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{5b1eb5e2-332b-2896-ac43-4d44dd518859}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler functionName="msdyn.workOrderForm.onLoad" libraryName="msdyn_/CFS/WorkOrder/WorkOrderForm.js" handlerUniqueId="{56e4c9eb-ba02-4319-841d-deec4f5ce6f5}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler functionName="WorkOrders.Library.Load" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{e1fc70a3-64bc-4e4d-a397-e2d0ba64274b}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="openLookupModalDialogWOForm" libraryName="ts_/js/Common.js" handlerUniqueId="{665dc799-2b6a-5cb3-7145-d5155a8021a1}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="false" active="false" attribute="msdyn_iotalert">

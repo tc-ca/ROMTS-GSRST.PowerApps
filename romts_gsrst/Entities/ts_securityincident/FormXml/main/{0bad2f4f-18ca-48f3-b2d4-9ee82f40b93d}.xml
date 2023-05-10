@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0.20221108.1</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form headerdensity="HighWithControls">
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab verticallayout="true" id="{99b37896-4f52-4179-8296-3cc0e6722411}" IsUserDefined="1" name="{99b37896-4f52-4179-8296-3cc0e6722411}" locklevel="0" expanded="true" showlabel="true">
           <labels>
@@ -621,6 +621,14 @@
                     </row>
                     <row />
                     <row />
+                    <row>
+                      <cell id="{4754ca01-70f7-42c2-b807-77925f303296}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Incident Details Attachment" languagecode="1033" />
+                        </labels>
+                        <control id="ts_incidentdetailsattachment" classid="{0A7FF475-B016-4687-9CE5-042BFDBD6519}" datafieldname="ts_incidentdetailsattachment" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -1035,11 +1043,13 @@
       </footer>
       <formLibraries>
         <Library name="ts_/js/SecurityIncident.js" libraryUniqueId="{06894a4b-8214-4243-ba45-7dd83d8037fa}" />
+        <Library name="ts_/js/Common.js" libraryUniqueId="{3a97dae8-55e6-dcd5-757c-94ea09437037}" />
       </formLibraries>
       <events>
         <event name="onload" application="false" active="false">
           <Handlers>
             <Handler functionName="ROM.SecurityIncident.onLoad" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{4c10d204-7c4d-49b8-bb00-c227a349aa27}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="openLookupModalDialogSecurityIncidentForm" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{ebaac45c-4364-18a2-e2e2-53a9170132c4}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="false" active="false" attribute="ts_arrests">
