@@ -457,7 +457,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{02bac47c-97e2-9610-52de-9272ed7b3aae}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                      <cell id="{02bac47c-97e2-9610-52de-9272ed7b3aae}" showlabel="false" colspan="1" auto="true" rowspan="6">
                         <labels>
                           <label description="Work Orders (Operation)" languagecode="1033" />
                           <label description="Connexions" languagecode="1036" />
@@ -468,7 +468,7 @@
                             <IsUserView>false</IsUserView>
                             <RelationshipName>ovs_ovs_operation_msdyn_workorder</RelationshipName>
                             <TargetEntityType>msdyn_workorder</TargetEntityType>
-                            <AutoExpand>Fixed</AutoExpand>
+                            <AutoExpand>Auto</AutoExpand>
                             <EnableQuickFind>false</EnableQuickFind>
                             <EnableViewPicker>false</EnableViewPicker>
                             <ViewIds>{FFE40A64-495B-EB11-A812-000D3A84DB40},{73C6442E-42D8-EC11-A7B5-000D3AE86ADA}</ViewIds>
@@ -539,12 +539,12 @@
           <events>
             <event name="tabstatechange" application="false" active="false">
               <Handlers>
-                <Handler functionName="ROM.Operation.setRelatedActionFetchXML" libraryName="ts_/js/Operation.js" handlerUniqueId="{160e52ba-f094-4742-974a-ae2c12b53da5}" enabled="true" parameters="" passExecutionContext="true" />
+                <Handler functionName="ROM.Operation.setRelatedActionsFetchXML" libraryName="ts_/js/Operation.js" handlerUniqueId="{160e52ba-f094-4742-974a-ae2c12b53da5}" enabled="true" parameters="" passExecutionContext="true" />
               </Handlers>
             </event>
           </events>
         </tab>
-        <tab name="tab_8" id="34ab9cf2-e3f0-4f6f-963f-ad3ad0225f88" IsUserDefined="0" locklevel="0" showlabel="true">
+        <tab name="tab_8" id="34ab9cf2-e3f0-4f6f-963f-ad3ad0225f88" IsUserDefined="0" locklevel="0" showlabel="true" visible="false">
           <labels>
             <label description="Related Actions *nested" languagecode="1033" />
           </labels>
@@ -1003,7 +1003,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{8bfdae62-d2f0-ed11-8848-0022483c5061}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" preview="1" icon="1">
+        <row name="result" id="ts_actionfindingid">
+          <cell name="ts_action" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_d58bfd5766efed1188480022483c5061.ts_actioncategory" width="150" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_d58bfd5766efed1188480022483c5061.ts_actiontype" width="150" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_d58bfd5766efed1188480022483c5061.ts_actionstatus" width="150" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="ts_actionfinding">
+          <order attribute="ts_action" descending="false" />
+          <attribute name="ts_action" />
+          <link-entity alias="a_d58bfd5766efed1188480022483c5061" name="ts_action" from="ts_actionid" to="ts_action" link-type="outer" visible="false">
+            <attribute name="ts_actiontype" />
+            <attribute name="ts_actioncategory" />
+            <attribute name="ts_actionstatus" />
+          </link-entity>
+          <attribute name="ts_actionfindingid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20230510.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Finding Associated Action" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

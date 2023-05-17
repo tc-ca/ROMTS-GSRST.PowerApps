@@ -13,6 +13,7 @@
       </LocalizedCollectionNames>
       <Descriptions>
         <Description description="Work orders store all information about the job performed for an account. Stores incident details, resource, expenses, tasks, communications, billing and more" languagecode="1033" />
+        <Description description="Les ordres de travail stockent toutes les informations sur le travail exécuté pour un compte. Stocke les détails des incidents, les ressources, les dépenses, les tâches, les communications, la facturation et plus encore" languagecode="1036" />
       </Descriptions>
       <attributes>
         <attribute PhysicalName="CreatedBy">
@@ -737,6 +738,41 @@
           <Descriptions>
             <Description description="When Bookings are used on a Work Order, this field is auto-populated based on the latest End Time from the related Bookings. Otherwise, this field is populated based on the change of System Status" languagecode="1033" />
             <Description description="Lorsque des réservations sont utilisées sur un ordre de travail, ce champ est renseigné automatiquement en fonction de l’heure de fin la plus récente des réservations associées. Sinon, ce champ est renseigné en fonction de la modification du statut du système." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_CostNTEPercent">
+          <Type>int</Type>
+          <Name>msdyn_costntepercent</Name>
+          <LogicalName>msdyn_costntepercent</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>8.8.90.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>none</Format>
+          <MinValue>0</MinValue>
+          <MaxValue>2147483647</MaxValue>
+          <displaynames>
+            <displayname description="Cost not-to-exceed" languagecode="1033" />
+            <displayname description="Coût à ne pas dépasser" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Indicates the percentage proximity or overage of the work order cost based on applied Cost not-to-exceed (rounded up to the nearest whole number)." languagecode="1033" />
+            <Description description="Indique le pourcentage de dépassement du coût de l’ordre de travail basé sur le coût à ne pas dépasser appliqué (arrondi au nombre entier le plus proche)." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="msdyn_Country">
@@ -1655,6 +1691,41 @@
           <Descriptions>
             <Description description="Price List that controls pricing for products / services added to this work order. By default the system will use the Price List specified on the account" languagecode="1033" />
             <Description description="Tarifs qui contrôlent les prix des produits / services ajoutés à cet ordre de travail. Par défaut, le système utilise les tarifs spécifiés sur le compte" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_PriceNTEPercent">
+          <Type>int</Type>
+          <Name>msdyn_pricentepercent</Name>
+          <LogicalName>msdyn_pricentepercent</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>disabled</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>8.8.90.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>none</Format>
+          <MinValue>0</MinValue>
+          <MaxValue>2147483647</MaxValue>
+          <displaynames>
+            <displayname description="Price not-to-exceed" languagecode="1033" />
+            <displayname description="Prix à ne pas dépasser" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Indicates the percentage proximity or overage of the work order price based on applied Price not-to-exceed (rounded up to the nearest whole number)." languagecode="1033" />
+            <Description description="Indique le pourcentage de dépassement du prix de l’ordre de travail basé sur le prix à ne pas dépasser appliqué (arrondi au nombre entier le plus proche)." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="msdyn_PrimaryIncidentDescription">
@@ -3925,7 +3996,7 @@
           <IsDataSourceSecret>0</IsDataSourceSecret>
           <AutoNumberFormat></AutoNumberFormat>
           <IsSearchable>0</IsSearchable>
-          <IsFilterable>1</IsFilterable>
+          <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
           <optionset Name="msdyn_workorder_statecode">

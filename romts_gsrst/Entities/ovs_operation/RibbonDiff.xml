@@ -2,32 +2,21 @@
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
     <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ovs_operation.Delete.Hide" Location="Mscrm.HomepageGrid.ovs_operation.Delete" />
-    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_operation.AddExistingAssoc.Hide" Location="Mscrm.SubGrid.ovs_operation.AddExistingAssoc" />
-    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_operation.AddExistingStandard.Hide" Location="Mscrm.SubGrid.ovs_operation.AddExistingStandard" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_operation.AddNewStandard.Hide" Location="Mscrm.SubGrid.ovs_operation.AddNewStandard" />
     <CustomAction Id="ts.Mscrm.SubGrid.ovs_operation.NewRecord.CustomAction" Location="Mscrm.SubGrid.ovs_operation.MainTab.Management.Controls._children" Sequence="10">
       <CommandUIDefinition>
         <Button Command="Mscrm.NewRecordFromGrid" Id="Mscrm.SubGrid.ovs_operation.NewRecord" Image32by32="/_imgs/ribbon/newrecord32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.MainTab.New" Sequence="10" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Ribbon.SubGrid.MainTab.New" ToolTipDescription="$Resources(EntityDisplayName):Ribbon.Tooltip.New" ModernImage="New" />
       </CommandUIDefinition>
     </CustomAction>
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_operation.Remove.Hide" Location="Mscrm.SubGrid.ovs_operation.Remove" />
-    <CustomAction Id="ts.ovs_operation.Button.Mscrm.SubGrid.ovs_operation.AddExistingAssoc.CustomAction" Location="Mscrm.SubGrid.ovs_operation.MainTab.Management.Controls._children" Sequence="45">
+    <CustomAction Id="ts.ovs_operation.btn_AddExistingStandard.CustomAction" Location="Mscrm.SubGrid.ovs_operation.MainTab.Management.Controls._children" Sequence="19">
       <CommandUIDefinition>
-        <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="ts.ovs_operation.SubGrid.AddExistingAssociated" Id="ts.ovs_operation.Button.Mscrm.SubGrid.ovs_operation.AddExistingAssoc" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Sequence="45" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipDescription" ModernImage="AddExisting" />
-      </CommandUIDefinition>
-    </CustomAction>
-    <CustomAction Id="ts.ovs_operation.Button.Mscrm.SubGrid.ovs_operation.AddExistingStandard.CustomAction" Location="Mscrm.SubGrid.ovs_operation.MainTab.Management.Controls._children" Sequence="0">
-      <CommandUIDefinition>
-        <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="Mscrm.AddExistingRecordFromSubGridStandard" Id="ts.ovs_operation.Button.Mscrm.SubGrid.ovs_operation.AddExistingStandard" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Sequence="0" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipDescription" ModernImage="AddExisting" />
+        <Button Alt="$LocLabels:ts.ovs_operation.btn_AddExistingStandard.Alt" Command="ts.ovs_operation.btn_AddExistingStandard" Id="ts.ovs_operation.btn_AddExistingStandard" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:ts.ovs_operation.btn_AddExistingStandard.LabelText" Sequence="19" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_operation.btn_AddExistingStandard.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_operation.btn_AddExistingStandard.ToolTipDescription" ModernImage="AddExisting" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.ovs_operation.Button.Mscrm.SubGrid.ovs_operation.Remove.CustomAction" Location="Mscrm.SubGrid.ovs_operation.MainTab.Management.Controls._children" Sequence="0">
       <CommandUIDefinition>
         <Button Alt="$Resources:MenuItem_Label_Remove" Command="ts.ovs_operation.RemoveSelectedRecord" Id="ts.ovs_operation.Button.Mscrm.SubGrid.ovs_operation.Remove" Image32by32="/_imgs/Workplace/Remove_32.png" Image16by16="/_imgs/ribbon/Delete_16.png" LabelText="$Resources:MenuItem_Label_Remove" Sequence="0" TemplateAlias="o2" ToolTipTitle="$Resources:Mscrm_SubGrid_Other_MainTab_Management_Remove_ToolTipTitle" ToolTipDescription="$Resources:Mscrm_SubGrid_Other_MainTab_Management_Remove_ToolTipDescription" ModernImage="Remove" />
-      </CommandUIDefinition>
-    </CustomAction>
-    <CustomAction Id="ts.ovs_operation.Button2.Button.ts.ovs_operation.Button.Mscrm.SubGrid.ovs_operation.AddExistingStandard.CustomAction" Location="Mscrm.SubGrid.ovs_operation.MainTab.Management.Controls._children" Sequence="40">
-      <CommandUIDefinition>
-        <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="Mscrm.AddExistingRecordFromSubGridAssociated" Id="ts.ovs_operation.Button2.Button.ts.ovs_operation.Button.Mscrm.SubGrid.ovs_operation.AddExistingStandard" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Sequence="40" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipDescription" ModernImage="AddExisting" />
       </CommandUIDefinition>
     </CustomAction>
   </CustomActions>
@@ -174,6 +163,16 @@
           <CrmParameter Value="SelectedEntityTypeName" />
           <CrmParameter Value="SelectedControl" />
           <CrmParameter Value="FirstSelectedItemId" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ovs_operation.btn_AddExistingStandard">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridStandard" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -372,5 +371,26 @@
       </EnableRule>
     </EnableRules>
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="ts.ovs_operation.btn_AddExistingStandard.Alt">
+      <Titles>
+        <Title description="Add Existing {0}" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_operation.btn_AddExistingStandard.LabelText">
+      <Titles>
+        <Title description="Add Existing {0}" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_operation.btn_AddExistingStandard.ToolTipDescription">
+      <Titles>
+        <Title description="Add a {0} that already exists to the record you are working with." languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_operation.btn_AddExistingStandard.ToolTipTitle">
+      <Titles>
+        <Title description="Add Existing {0}" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>

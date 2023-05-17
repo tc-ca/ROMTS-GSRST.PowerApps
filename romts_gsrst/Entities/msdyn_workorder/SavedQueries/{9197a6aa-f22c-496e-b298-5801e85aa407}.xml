@@ -16,27 +16,24 @@
     </layoutxml>
     <querytype>4</querytype>
     <fetchxml>
-      <fetch version="1.0" mapping="logical">
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
         <entity name="msdyn_workorder">
           <attribute name="msdyn_name" />
-          <order attribute="msdyn_name" descending="true" />
-          <filter type="and">
-            <condition attribute="statecode" operator="eq" value="0" />
-          </filter>
           <attribute name="msdyn_serviceaccount" />
+          <attribute name="ts_site" />
+          <order attribute="msdyn_name" descending="true" />
           <filter type="or" isquickfindfields="1">
             <condition attribute="msdyn_name" operator="like" value="{0}" />
             <condition attribute="msdyn_serviceaccount" operator="like" value="{0}" />
             <condition attribute="ts_site" operator="like" value="{0}" />
           </filter>
-          <attribute name="ts_site" />
           <attribute name="msdyn_workorderid" />
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>3.1.0.3</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Quick Find Active Work Orders" languagecode="1033" />
+      <LocalizedName description="Quick Find Work Orders" languagecode="1033" />
       <LocalizedName description="Recherche rapide d'ordres de travail" languagecode="1036" />
     </LocalizedNames>
   </savedquery>

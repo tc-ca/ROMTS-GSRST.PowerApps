@@ -42,7 +42,7 @@ var ROM;
                 }
             }
             // Lock some fields if there are associated WOs
-            var fetchXML = "<fetch> <entity name=\"incident\" > <attribute name=\"incidentid\" /> <filter> <condition attribute=\"incidentid\" operator=\"eq\" value=\"" + form.data.entity.getId() + "\" /> </filter> <link-entity name=\"msdyn_workorder\" from=\"msdyn_servicerequest\" to=\"incidentid\" /> </entity> </fetch>";
+            var fetchXML = "<fetch> <entity name=\"incident\" > <attribute name=\"incidentid\" /> <filter> <condition attribute=\"incidentid\" operator=\"eq\" value=\"".concat(form.data.entity.getId(), "\" /> </filter> <link-entity name=\"msdyn_workorder\" from=\"msdyn_servicerequest\" to=\"incidentid\" /> </entity> </fetch>");
             fetchXML = "?fetchXml=" + encodeURIComponent(fetchXML);
             Xrm.WebApi.retrieveMultipleRecords("incident", fetchXML).then(function success(result) {
                 if (result.entities.length > 0) {
@@ -77,8 +77,24 @@ var ROM;
                 }
             });
             emailTemplateFieldsOnLoad(eContext);
+            //Hide OOB status code we don't use
+            var caseStatus = form.getControl("header_statuscode");
+            if (caseStatus != null && caseStatus != undefined) {
+                var options = caseStatus.getOptions();
+                for (var i = 0; i < options.length; i++) {
+                    if (options[i].value == 3 || options[i].value == 4) {
+                        caseStatus.removeOption(options[i].value);
+                    }
+                }
+            }
         }
         Incident.onLoad = onLoad;
+        function systemStatusCodeOnChange(eContext) {
+            var form = eContext.getFormContext();
+            if (form.getAttribute("statuscode").getValue() == 7) {
+            }
+        }
+        Incident.systemStatusCodeOnChange = systemStatusCodeOnChange;
         function regionOnChange(eContext) {
             try {
                 var form = eContext.getFormContext();

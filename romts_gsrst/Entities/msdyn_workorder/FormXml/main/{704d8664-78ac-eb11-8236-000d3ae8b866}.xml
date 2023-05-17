@@ -803,7 +803,7 @@
           <columns>
             <column width="50%">
               <sections>
-                <section id="{d4c2e81b-eaa0-899b-1906-858861d13a44}" name="tab_7_section_1" labelid="{73c3edb0-a87c-4133-8295-bfae3b211157}" showlabel="true" locklevel="0" IsUserDefined="0" celllabelposition="Left" celllabelalignment="Left" labelwidth="220" columns="1" showbar="false" layout="varwidth">
+                <section id="{d4c2e81b-eaa0-899b-1906-858861d13a44}" name="tab_7_section_1" labelid="{73c3edb0-a87c-4133-8295-bfae3b211157}" showlabel="true" locklevel="0" IsUserDefined="0" celllabelposition="Left" celllabelalignment="Left" labelwidth="220" columns="1" showbar="false" layout="varwidth" visible="false">
                   <labels>
                     <label description="GENERAL" languagecode="1033" />
                     <label description="RÉSUMÉ" languagecode="1036" />
@@ -1133,7 +1133,7 @@
             </column>
             <column width="50%">
               <sections>
-                <section id="{6e7e80b0-c9b6-d65b-05d0-cee560dcc794}" name="f1tab_mainsettings_section_2" labelid="{412c2c61-2523-4bed-ac84-ed0c27dc478d}" showlabel="true" locklevel="0" IsUserDefined="0" celllabelposition="Left" celllabelalignment="Left" labelwidth="200" columns="1" showbar="false" layout="varwidth">
+                <section id="{6e7e80b0-c9b6-d65b-05d0-cee560dcc794}" name="f1tab_mainsettings_section_2" labelid="{412c2c61-2523-4bed-ac84-ed0c27dc478d}" showlabel="true" locklevel="0" IsUserDefined="0" celllabelposition="Left" celllabelalignment="Left" labelwidth="200" columns="1" showbar="false" layout="varwidth" visible="false">
                   <labels>
                     <label description="PREFERENCES" languagecode="1033" />
                     <label description="PÉFÉRENCES" languagecode="1036" />
@@ -3352,20 +3352,10 @@
             <Handler functionName="ROM.WorkOrder.countryOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{04579c97-300b-4617-949c-c441213e521c}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
-        <event name="onchange" application="true" active="true" attribute="msdyn_functionallocation">
-          <Handlers>
-            <Handler functionName="ROM.WorkOrder.functionalLocationOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{7a66d68b-c967-435f-b7fa-675a59b60ab7}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
         <event name="onchange" application="true" active="true" attribute="ts_region">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.regionOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{7b58ce0b-2ccf-49bc-9794-1ca4c0895151}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler functionName="ROM.WorkOrder.updateCaseView" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{4b5cf0b5-fa79-48b5-b011-14ed3e8dcd37}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
-        <event name="onchange" application="true" active="true" attribute="ts_site">
-          <Handlers>
-            <Handler functionName="ROM.WorkOrder.siteOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{70d6011e-410c-4aad-8867-5280b61dd201}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="true" active="true" attribute="msdyn_servicerequest">
@@ -3416,6 +3406,16 @@
         <event name="onchange" application="false" active="false" attribute="ts_canceledinspectionjustification">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.canceledWorkOrderReasonOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{f0840c01-f74d-4dff-befa-36b7fc95b1af}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_contact">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.siteOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{1e3a798d-e7ea-4a68-a2ae-715f63a7a644}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_site">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.siteOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{58ea5e5c-da4f-42ef-8c61-3820cccb03eb}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

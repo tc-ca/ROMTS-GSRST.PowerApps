@@ -249,23 +249,23 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell locklevel="0" id="{70b9101f-5511-481c-b2b1-19f819466556}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                      <cell locklevel="0" id="{70b9101f-5511-481c-b2b1-19f819466556}" rowspan="4" colspan="1" auto="true" showlabel="false">
                         <labels>
                           <label description="New SG control 1682968752300" languagecode="1033" />
                           <label description="Notes" languagecode="1036" />
                         </labels>
-                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                        <control indicationOfSubgrid="true" id="subgrid_related_findings" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
                           <parameters>
                             <RecordsPerPage>4</RecordsPerPage>
-                            <AutoExpand>Fixed</AutoExpand>
+                            <AutoExpand>Auto</AutoExpand>
                             <EnableQuickFind>false</EnableQuickFind>
                             <EnableViewPicker>false</EnableViewPicker>
                             <EnableChartPicker>true</EnableChartPicker>
                             <ChartGridMode>All</ChartGridMode>
-                            <TargetEntityType>annotation</TargetEntityType>
-                            <ViewId>{8A9A0D47-51AC-454E-98C4-B3CF4EF50F2B}</ViewId>
-                            <ViewIds>{8A9A0D47-51AC-454E-98C4-B3CF4EF50F2B}</ViewIds>
-                            <RelationshipName>ts_action_Annotations</RelationshipName>
+                            <TargetEntityType>ovs_finding</TargetEntityType>
+                            <ViewId>{A67AAA91-54E8-ED11-A7C6-0022483C5061}</ViewId>
+                            <ViewIds>{77179513-BCAE-EC11-983E-002248ADE910},{A67AAA91-54E8-ED11-A7C6-0022483C5061}</ViewIds>
+                            <RelationshipName />
                           </parameters>
                         </control>
                       </cell>
@@ -309,7 +309,7 @@
         </rows>
       </header>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -364,6 +364,16 @@
         <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
         <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
       </DisplayConditions>
+      <formLibraries>
+        <Library name="ts_/js/Action.js" libraryUniqueId="{e60c14bf-54c4-4a08-bdee-5b0597249fd9}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.Action.onLoad" libraryName="ts_/js/Action.js" handlerUniqueId="{3b276485-4f18-4ce0-9fc0-0f004a8af2fe}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

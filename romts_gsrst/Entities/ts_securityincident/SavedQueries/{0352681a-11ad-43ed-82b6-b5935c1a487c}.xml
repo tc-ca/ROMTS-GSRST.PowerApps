@@ -17,24 +17,21 @@
     </layoutxml>
     <querytype>4</querytype>
     <fetchxml>
-      <fetch version="1.0" mapping="logical">
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
         <entity name="ts_securityincident">
-          <attribute name="ts_securityincidentid" />
           <attribute name="ts_name" />
           <attribute name="createdon" />
           <order attribute="ts_name" descending="false" />
-          <filter type="and">
-            <condition attribute="statecode" operator="eq" value="0" />
-          </filter>
           <filter type="or" isquickfindfields="1">
             <condition attribute="ts_name" operator="like" value="{0}" />
           </filter>
+          <attribute name="ts_securityincidentid" />
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0.20221108.1</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Quick Find Active Security Incidents" languagecode="1033" />
+      <LocalizedName description="Quick Find Security Incidents" languagecode="1033" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

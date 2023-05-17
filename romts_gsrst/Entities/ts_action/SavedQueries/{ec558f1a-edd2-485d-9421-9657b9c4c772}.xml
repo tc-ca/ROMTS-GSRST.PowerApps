@@ -17,24 +17,21 @@
     </layoutxml>
     <querytype>4</querytype>
     <fetchxml>
-      <fetch version="1.0" mapping="logical">
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
         <entity name="ts_action">
-          <attribute name="ts_actionid" />
           <attribute name="ts_name" />
           <attribute name="createdon" />
           <order attribute="ts_name" descending="false" />
-          <filter type="and">
-            <condition attribute="statecode" operator="eq" value="0" />
-          </filter>
           <filter type="or" isquickfindfields="1">
             <condition attribute="ts_name" operator="like" value="{0}" />
           </filter>
+          <attribute name="ts_actionid" />
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0.20230417.1</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Quick Find Active Actions" languagecode="1033" />
+      <LocalizedName description="Quick Find Actions" languagecode="1033" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

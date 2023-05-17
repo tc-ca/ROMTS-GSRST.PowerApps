@@ -10,19 +10,18 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_actionid">
-          <cell name="aa.ovs_finding" width="100" />
-          <cell name="ts_name" width="85" />
-          <cell name="ts_actioncategory" width="125" />
-          <cell name="ts_actiontype" width="200" />
-          <cell name="ts_actionstatus" width="95" />
-          <cell name="createdon" width="125" />
+          <cell name="ts_name" width="100" />
+          <cell name="ts_actiontype" width="100" />
+          <cell name="ts_actioncategory" width="100" />
+          <cell name="ts_actionstatus" width="100" />
           <cell name="ownerid" width="100" />
+          <cell name="ts_actionid" width="100" />
         </row>
       </grid>
     </layoutxml>
     <querytype>0</querytype>
     <fetchxml>
-      <fetch version="1.0" mapping="logical" distinct="true">
+      <fetch version="1.0" mapping="logical" distinct="true" count="50">
         <entity name="ts_action">
           <attribute name="ts_name" />
           <attribute name="createdon" />
@@ -33,15 +32,9 @@
           <attribute name="ts_actionid" />
           <order attribute="ts_finding" />
           <order attribute="ts_name" />
-          <filter type="and">
-            <condition attribute="statecode" operator="eq" value="0" />
-          </filter>
-          <link-entity name="ovs_finding" alias="aa" link-type="inner" from="ovs_findingid" to="ts_finding">
-            <attribute name="ovs_finding" />
-            <link-entity name="ovs_operation" alias="ac" link-type="inner" from="ovs_operationid" to="ts_operationid">
-              <filter>
-                <condition attribute="ovs_operationid" operator="not-null" />
-              </filter>
+          <link-entity name="ts_actionfinding" from="ts_action" to="ts_actionid" link-type="inner" alias="af">
+            <link-entity name="ovs_finding" from="ovs_findingid" to="ts_ovs_finding" link-type="inner" alias="f">
+              <link-entity name="ovs_operation" from="ovs_operationid" to="ts_operationid" link-type="inner" alias="op" />
             </link-entity>
           </link-entity>
         </entity>
