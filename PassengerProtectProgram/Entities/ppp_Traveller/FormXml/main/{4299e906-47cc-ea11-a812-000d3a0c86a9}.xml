@@ -659,6 +659,24 @@
                   </labels>
                   <rows>
                     <row>
+                      <cell id="{906c7a04-b735-4fcc-b9e8-973ee3e002c8}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Traveller Present?" languagecode="1033" />
+                          <label description="Voyageur est présent?" languagecode="1036" />
+                        </labels>
+                        <control id="ppp_ispresent" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ppp_ispresent" disabled="true" uniqueid="{08495b7d-296e-4e06-b28c-c87854e8c536}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f6d61802-8746-4ac7-98dc-36233939fe14}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Minutes Waiting in Line Prior to Call" languagecode="1033" />
+                          <label description="Minutes d’attente en file avant l’appel" languagecode="1036" />
+                        </labels>
+                        <control id="ppp_minuteswaiting" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ppp_minuteswaiting" disabled="true" uniqueid="{27868698-4faf-48c8-8afc-27ce6e267c97}" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{f40d7a17-2693-45f9-aa98-5a88c475f627}" showlabel="true" locklevel="0" labelid="{0486d24d-2fe1-4279-b597-35313dfa4ef8}">
                         <labels>
                           <label description="SATA ID" languagecode="1033" />
@@ -2044,9 +2062,56 @@
             </parameters>
           </customControl>
         </controlDescription>
+        <controlDescription forControl="{08495b7d-296e-4e06-b28c-c87854e8c536}">
+          <customControl id="{67FAC785-CD58-4F9F-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ppp_ispresent</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ppp_ispresent</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ppp_ispresent</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value type="TwoOptions">ppp_ispresent</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{27868698-4faf-48c8-8afc-27ce6e267c97}">
+          <customControl id="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}">
+            <parameters>
+              <datafieldname>ppp_minuteswaiting</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.NumberInput.NumberInputControl">
+            <parameters>
+              <value type="Currency">ppp_minuteswaiting</value>
+              <step type="Whole.None" static="true">5</step>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.NumberInput.NumberInputControl">
+            <parameters>
+              <value type="Currency">ppp_minuteswaiting</value>
+              <step type="Whole.None" static="true">5</step>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.NumberInput.NumberInputControl">
+            <parameters>
+              <value type="Currency">ppp_minuteswaiting</value>
+              <step type="Whole.None" static="true">5</step>
+            </parameters>
+          </customControl>
+        </controlDescription>
       </controlDescriptions>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -2087,7 +2152,7 @@
             <Handler functionName="TSIS.PPP.showHideBusinessProcessFlow" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{e645764e-de74-8ead-6be1-19cb104a1dd1}" enabled="false" parameters="" passExecutionContext="true" />
             <Handler functionName="TSIS.PPP.setTimeFieldNow" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{2515ebd0-0187-70b1-9892-d4bcb456c0b7}" enabled="true" parameters="&quot;ppp_newrecordtime&quot;, null, &quot;ppp_newrecordtime&quot;" passExecutionContext="true" />
             <Handler functionName="TSIS.PPP.showHideFlightConnections" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{5829d70c-d9c3-2b29-1641-788b8b245111}" enabled="true" parameters="10" passExecutionContext="true" />
-            <Handler functionName="TSIS.PPP.ReadOnlyOnClosed" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{ac7b9146-4597-671e-ca1a-e7e8e40915c9}" enabled="true" parameters="[&quot;ppp_name&quot;, &quot;ppp_aircarrier1&quot;, &quot;ppp_flightnumber1&quot;, &quot;ppp_flightorigin1&quot;, &quot;ppp_flightorigindate1&quot;, &quot;ppp_flightoriginhour1&quot;, &quot;ppp_flightdestination1&quot;, &quot;ppp_flightconnection11&quot;, &quot;ppp_flightconnection21&quot;, &quot;ppp_flightconnection31&quot;, &quot;ppp_flightconnection41&quot;, &quot;ppp_flightconnection51&quot;, &quot;ppp_flightconnection61&quot;, &quot;ppp_flightconnection71&quot;, &quot;ppp_flightconnection81&quot;, &quot;ppp_flightconnection91&quot;, &quot;ppp_flightconnection101&quot;, &quot;ppp_recordstatus&quot;], [&quot;header_ppp_recordstatus&quot;]" passExecutionContext="true" />
+            <Handler functionName="TSIS.PPP.ReadOnlyOnClosed" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{ac7b9146-4597-671e-ca1a-e7e8e40915c9}" enabled="true" parameters="[&quot;ppp_name&quot;, &quot;ppp_aircarrier1&quot;, &quot;ppp_flightnumber1&quot;, &quot;ppp_flightorigin1&quot;, &quot;ppp_flightorigindate1&quot;, &quot;ppp_flightoriginhour1&quot;, &quot;ppp_flightdestination1&quot;, &quot;ppp_flightconnection11&quot;, &quot;ppp_flightconnection21&quot;, &quot;ppp_flightconnection31&quot;, &quot;ppp_flightconnection41&quot;, &quot;ppp_flightconnection51&quot;, &quot;ppp_flightconnection61&quot;, &quot;ppp_flightconnection71&quot;, &quot;ppp_flightconnection81&quot;, &quot;ppp_flightconnection91&quot;, &quot;ppp_flightconnection101&quot;, &quot;ppp_recordstatus&quot;,&quot;ppp_ispresent1&quot;,&quot;ppp_minuteswaiting1&quot;], [&quot;header_ppp_recordstatus&quot;]" passExecutionContext="true" />
             <Handler functionName="TSIS.PPP.showHideMatchConfirmed" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{72707a89-3c60-b858-c062-9787d92a39aa}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler functionName="TSIS.PPP.updateCurrentRecordStatus" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{0457e27d-22e6-2393-4da1-0075d1c24e5a}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
@@ -2152,7 +2217,7 @@
         <event name="onsave" application="false" active="false">
           <Handlers>
             <Handler functionName="TSIS.PPP.showHideFlightConnections" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{7b026183-decc-4579-12d9-53c8de56e2d8}" enabled="true" parameters="10" passExecutionContext="true" />
-            <Handler functionName="TSIS.PPP.ReadOnlyOnClosed" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{881a651e-ebd4-1e47-c76e-ee92923c3279}" enabled="true" parameters="[&quot;ppp_name&quot;, &quot;ppp_aircarrier1&quot;, &quot;ppp_flightnumber1&quot;, &quot;ppp_flightorigin1&quot;, &quot;ppp_flightorigindate1&quot;, &quot;ppp_flightoriginhour1&quot;, &quot;ppp_flightdestination1&quot;, &quot;ppp_flightconnection11&quot;, &quot;ppp_flightconnection21&quot;, &quot;ppp_flightconnection31&quot;, &quot;ppp_flightconnection41&quot;, &quot;ppp_flightconnection51&quot;, &quot;ppp_flightconnection61&quot;, &quot;ppp_flightconnection71&quot;, &quot;ppp_flightconnection81&quot;, &quot;ppp_flightconnection91&quot;, &quot;ppp_flightconnection101&quot;, &quot;ppp_recordstatus&quot;], [&quot;header_ppp_recordstatus&quot;]" passExecutionContext="true" />
+            <Handler functionName="TSIS.PPP.ReadOnlyOnClosed" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{881a651e-ebd4-1e47-c76e-ee92923c3279}" enabled="true" parameters="[&quot;ppp_name&quot;, &quot;ppp_aircarrier1&quot;, &quot;ppp_flightnumber1&quot;, &quot;ppp_flightorigin1&quot;, &quot;ppp_flightorigindate1&quot;, &quot;ppp_flightoriginhour1&quot;, &quot;ppp_flightdestination1&quot;, &quot;ppp_flightconnection11&quot;, &quot;ppp_flightconnection21&quot;, &quot;ppp_flightconnection31&quot;, &quot;ppp_flightconnection41&quot;, &quot;ppp_flightconnection51&quot;, &quot;ppp_flightconnection61&quot;, &quot;ppp_flightconnection71&quot;, &quot;ppp_flightconnection81&quot;, &quot;ppp_flightconnection91&quot;, &quot;ppp_flightconnection101&quot;, &quot;ppp_recordstatus&quot;,&quot;ppp_ispresent1&quot;,&quot;ppp_minuteswaiting1&quot;], [&quot;header_ppp_recordstatus&quot;]" passExecutionContext="true" />
             <Handler functionName="TSIS.PPP.showHideMatchConfirmed" libraryName="ppp_scripts/travellerTS.js" handlerUniqueId="{a2a77821-948a-e3ca-7e74-6784596b754e}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
