@@ -61,7 +61,11 @@
       },
       "actions": {
         "Create_file": {
-          "runAfter": {},
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
           "metadata": {
             "operationMetadataId": "7ef67256-48b6-4221-97ff-dc09ac1a0598"
           },
@@ -74,7 +78,7 @@
             },
             "parameters": {
               "dataset": "https://034gc.sharepoint.com/sites/Dynamics365Development",
-              "folderPath": "/Test Document Library",
+              "folderPath": "/Test Document Library/@{variables('Work Order Number')}",
               "name": "@triggerBody()['file']['name']",
               "body": "@triggerBody()['file']['contentBytes']"
             },
@@ -84,6 +88,22 @@
             "contentTransfer": {
               "transferMode": "Chunked"
             }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "a43e7624-d5f8-4d8b-b90f-25653a1c3db0"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Work Order Number",
+                "type": "string",
+                "value": "300-007248"
+              }
+            ]
           }
         }
       }

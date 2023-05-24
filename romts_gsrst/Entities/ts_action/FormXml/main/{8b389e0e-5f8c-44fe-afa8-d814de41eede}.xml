@@ -59,7 +59,7 @@
                           <label description="Action Type" languagecode="1033" />
                           <label description="Catégorie de la mesure" languagecode="1036" />
                         </labels>
-                        <control id="ts_actiontype" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_actiontype" disabled="false" />
+                        <control id="ts_actiontype" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_actiontype" disabled="false" uniqueid="{d2b61e71-a11b-0002-0865-707b3a510b5e}" />
                       </cell>
                       <cell id="{05633b19-61ae-e26a-3470-e938076c088e}" showlabel="true" locklevel="0">
                         <labels>
@@ -75,7 +75,7 @@
                           <label description="Action Status" languagecode="1033" />
                           <label description="état" languagecode="1036" />
                         </labels>
-                        <control id="ts_actionstatus" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_actionstatus" disabled="false" />
+                        <control id="ts_actionstatus" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_actionstatus" disabled="false" uniqueid="{60a6ebbb-9e63-01a3-152e-3082456b1a67}" />
                       </cell>
                       <cell id="{845ea22b-b826-77a5-4ea1-9513c03ada89}" showlabel="true" locklevel="0">
                         <labels>
@@ -273,6 +273,7 @@
                     <row />
                     <row />
                     <row />
+                    <row height="auto" />
                   </rows>
                 </section>
               </sections>
@@ -309,7 +310,7 @@
         </rows>
       </header>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -360,10 +361,6 @@
           </row>
         </rows>
       </footer>
-      <DisplayConditions Order="1">
-        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
-        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
-      </DisplayConditions>
       <formLibraries>
         <Library name="ts_/js/Action.js" libraryUniqueId="{e60c14bf-54c4-4a08-bdee-5b0597249fd9}" />
       </formLibraries>
@@ -373,7 +370,21 @@
             <Handler functionName="ROM.Action.onLoad" libraryName="ts_/js/Action.js" handlerUniqueId="{3b276485-4f18-4ce0-9fc0-0f004a8af2fe}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
+        <event name="onchange" application="false" active="false" attribute="ts_actionstatus">
+          <Handlers>
+            <Handler functionName="ROM.Action.actionStatusOnChange" libraryName="ts_/js/Action.js" handlerUniqueId="{2332853c-ac54-bb49-d98d-6556dbbe2e56}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_actiontype">
+          <Handlers>
+            <Handler functionName="ROM.Action.actionTypeOnChange" libraryName="ts_/js/Action.js" handlerUniqueId="{c6e7ac34-4c3a-a259-e333-89535b706c09}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
       </events>
+      <DisplayConditions Order="1">
+        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
+        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

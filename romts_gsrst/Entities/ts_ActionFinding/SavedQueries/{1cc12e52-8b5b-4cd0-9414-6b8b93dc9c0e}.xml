@@ -10,8 +10,10 @@
     <layoutxml>
       <grid name="ts_actionfindings" jump="ts_name" select="1" icon="1" preview="0">
         <row name="ts_actionfinding" id="ts_actionfindingid">
-          <cell name="ts_name" width="300" />
-          <cell name="createdon" width="125" />
+          <cell name="ts_name" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_action" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_ovs_finding" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="createdon" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
         </row>
       </grid>
     </layoutxml>
@@ -25,6 +27,9 @@
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <order attribute="ts_name" descending="false" />
+          <attribute name="ts_ovs_finding" />
+          <attribute name="ts_action" />
         </entity>
       </fetch>
     </fetchxml>
