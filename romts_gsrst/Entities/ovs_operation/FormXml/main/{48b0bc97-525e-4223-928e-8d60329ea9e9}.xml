@@ -31,6 +31,22 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{a0321cfc-5225-4dfc-9b28-7a3b32154784}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Operation Name English" languagecode="1033" />
+                        </labels>
+                        <control id="ts_operationnameenglish" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_operationnameenglish" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{80969a30-fb7b-4bba-af73-5fb5a5706ffa}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Operation Name French" languagecode="1033" />
+                        </labels>
+                        <control id="ts_operationnamefrench" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_operationnamefrench" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{2ed32984-2419-4fd5-9e4e-dc1ce4199f82}" locklevel="0">
                         <labels>
                           <label description="Stakeholder" languagecode="1033" />
@@ -361,7 +377,7 @@
                     </row>
                   </rows>
                 </section>
-                <section name="tab_8_section_1" id="2ae2de4d-7063-47e7-9394-49f530a7718b" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" height="auto">
+                <section name="tab_8_section_1" id="2ae2de4d-7063-47e7-9394-49f530a7718b" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" height="auto">
                   <labels>
                     <label description="Operation Activities" languagecode="1033" />
                     <label description="Activités opérationnelles" languagecode="1036" />
@@ -536,13 +552,6 @@
               </sections>
             </column>
           </columns>
-          <events>
-            <event name="tabstatechange" application="false" active="false">
-              <Handlers>
-                <Handler functionName="ROM.Operation.setRelatedActionsFetchXML" libraryName="ts_/js/Operation.js" handlerUniqueId="{160e52ba-f094-4742-974a-ae2c12b53da5}" enabled="true" parameters="" passExecutionContext="true" />
-              </Handlers>
-            </event>
-          </events>
         </tab>
         <tab name="tab_8" id="34ab9cf2-e3f0-4f6f-963f-ad3ad0225f88" IsUserDefined="0" locklevel="0" showlabel="true" visible="false">
           <labels>
@@ -1003,7 +1012,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -1591,6 +1600,7 @@
       </footer>
       <formLibraries>
         <Library name="ts_/js/Operation.js" libraryUniqueId="{07b1987c-8bbd-bd36-c671-15b1d2c226c3}" />
+        <Library name="ts_/js/utils/SubGridFetchXmlModifier.js" libraryUniqueId="{f9fc3fca-4f1c-4b14-ba7e-7f70d24c6af5}" />
       </formLibraries>
       <events>
         <event name="onchange" application="true" active="true" attribute="ts_site">

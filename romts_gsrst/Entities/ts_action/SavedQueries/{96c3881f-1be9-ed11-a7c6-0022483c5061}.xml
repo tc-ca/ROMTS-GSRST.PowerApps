@@ -11,11 +11,12 @@
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_actionid">
           <cell name="ts_name" width="100" />
+          <cell name="af.ts_ovs_finding" width="100" />
           <cell name="ts_actiontype" width="100" />
-          <cell name="ts_actioncategory" width="100" />
           <cell name="ts_actionstatus" width="100" />
+          <cell name="ts_actioncategory" width="100" />
           <cell name="ownerid" width="100" />
-          <cell name="ts_actionid" width="100" />
+          <cell name="createdon" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -29,12 +30,16 @@
           <attribute name="ts_actionstatus" />
           <attribute name="ts_actioncategory" />
           <attribute name="ownerid" />
-          <attribute name="ts_actionid" />
-          <order attribute="ts_finding" />
           <order attribute="ts_name" />
           <link-entity name="ts_actionfinding" from="ts_action" to="ts_actionid" link-type="inner" alias="af">
+            <attribute name="ts_ovs_finding" />
+            <order attribute="ts_ovs_finding" />
             <link-entity name="ovs_finding" from="ovs_findingid" to="ts_ovs_finding" link-type="inner" alias="f">
-              <link-entity name="ovs_operation" from="ovs_operationid" to="ts_operationid" link-type="inner" alias="op" />
+              <link-entity name="ovs_operation" from="ovs_operationid" to="ts_operationid" link-type="inner" alias="op">
+                <filter>
+                  <condition attribute="ovs_operationid" operator="not-null" />
+                </filter>
+              </link-entity>
             </link-entity>
           </link-entity>
         </entity>

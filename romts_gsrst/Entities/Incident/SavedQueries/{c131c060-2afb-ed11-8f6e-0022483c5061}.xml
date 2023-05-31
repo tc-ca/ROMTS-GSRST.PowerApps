@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{c131c060-2afb-ed11-8f6e-0022483c5061}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="1">
+        <row name="result" id="incidentid">
+          <cell name="title" width="101" />
+          <cell name="ts_casereportinganddocumentation" width="260" />
+          <cell name="ts_traveltime" width="166" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="incident">
+          <attribute name="title" />
+          <attribute name="incidentid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_traveltime" />
+          <attribute name="ts_casereportinganddocumentation" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20230524.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Time Tracking" languagecode="1033" />
+      <LocalizedName description="Suivi du temps" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

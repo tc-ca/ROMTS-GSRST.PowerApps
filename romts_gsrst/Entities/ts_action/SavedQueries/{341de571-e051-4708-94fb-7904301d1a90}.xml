@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{341de571-e051-4708-94fb-7904301d1a90}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" preview="1" icon="1">
+        <row name="result" id="ts_actionid">
+          <cell name="ts_name" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch mapping="logical">
+        <entity name="ts_action">
+          <all-attributes />
+          <link-entity name="postfollow" from="regardingobjectid" to="ts_actionid" alias="ab">
+            <filter type="and">
+              <condition attribute="ownerid" operator="eq-userid" />
+            </filter>
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Actions I Follow" languagecode="1033" />
+      <LocalizedName description="Actions I Suivre" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Actions that you follow." languagecode="1033" />
+      <Description description="Actions que vous suivez." languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

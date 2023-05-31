@@ -819,15 +819,6 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{1048cb24-a076-05e5-ac8b-b65c99ad81e8}" labelid="{a3679fac-8ac5-4934-92df-223efbbf6c17}" showlabel="true" locklevel="0" rowspan="1" colspan="1">
-                        <labels>
-                          <label description="Instructions" languagecode="1033" />
-                          <label description="Instructions" languagecode="1036" />
-                        </labels>
-                        <control disabled="false" id="msdyn_instructions" datafieldname="msdyn_instructions" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" />
-                      </cell>
-                    </row>
-                    <row>
                       <cell id="{14157cc2-1a78-7513-b396-c2e7506974a2}" labelid="{483946f8-5339-4e56-8e1e-d1bedce684d6}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Reported By Contact" languagecode="1033" />
@@ -1110,6 +1101,15 @@
                           <label description="Commentaires de planification" languagecode="1036" />
                         </labels>
                         <control id="ts_details" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_details" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1048cb24-a076-05e5-ac8b-b65c99ad81e8}" labelid="{a3679fac-8ac5-4934-92df-223efbbf6c17}" showlabel="true" locklevel="0" rowspan="1" colspan="1">
+                        <labels>
+                          <label description="Instructions" languagecode="1033" />
+                          <label description="Instructions" languagecode="1036" />
+                        </labels>
+                        <control disabled="false" id="msdyn_instructions" datafieldname="msdyn_instructions" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" />
                       </cell>
                     </row>
                   </rows>
@@ -1643,6 +1643,7 @@
         <tab name="tab_TimeTracking" id="{c9ee7d2c-104d-24a7-2998-81dc8bbdc8c7}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
           <labels>
             <label description="Time Tracking" languagecode="1033" />
+            <label description="Suivi du temps" languagecode="1036" />
           </labels>
           <columns>
             <column width="100%">
@@ -1655,7 +1656,8 @@
                     <row>
                       <cell id="{d3421e61-7814-0129-540e-dae646953908}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Preparation Time" languagecode="1033" />
+                          <label description="WO Preparation Time" languagecode="1033" />
+                          <label description="Temps de préparation de l'ordre de travail" languagecode="1036" />
                         </labels>
                         <control id="ts_preparationtime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_preparationtime" disabled="false" />
                       </cell>
@@ -1668,7 +1670,8 @@
                     <row>
                       <cell id="{0bbcb4c9-470d-5b26-9b3c-51e81ddc15db}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
                         <labels>
-                          <label description="Conducting Oversight" languagecode="1033" />
+                          <label description="WO Conducting Oversight" languagecode="1033" />
+                          <label description="Temps lié à la surveillance de l'ordre de travail" languagecode="1036" />
                         </labels>
                         <control id="ts_conductingoversight" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_conductingoversight" disabled="false" />
                       </cell>
@@ -1682,6 +1685,7 @@
                       <cell id="{3be129c9-bc1d-5cb9-2cd6-148bd1c923da}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="WO Reporting and Documentation" languagecode="1033" />
+                          <label description="Rapport et documentation de l'ordre de travail" languagecode="1036" />
                         </labels>
                         <control id="ts_woreportinganddocumentation" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_woreportinganddocumentation" disabled="false" />
                       </cell>
@@ -1690,13 +1694,14 @@
                           <label description="Case" languagecode="1033" />
                           <label description="Cas" languagecode="1036" />
                         </labels>
-                        <control id="msdyn_servicerequest" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_servicerequest" disabled="false" />
+                        <control id="msdyn_servicerequest" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_servicerequest" disabled="true" />
                       </cell>
                     </row>
                     <row>
                       <cell id="{b20ce960-793a-2ce7-44e2-686c2239b7b2}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
                         <labels>
-                          <label description="Travel Time" languagecode="1033" />
+                          <label description="WO Travel Time" languagecode="1033" />
+                          <label description="Temps de voyagement de l'ordre de travail" languagecode="1036" />
                         </labels>
                         <control id="ts_traveltime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_traveltime" disabled="false" />
                       </cell>
@@ -1707,19 +1712,24 @@
                       </cell>
                     </row>
                     <row>
-                      <cell locklevel="0" id="{9a376645-68b6-47a3-95d6-e6369b02cda7}" showlabel="false">
+                      <cell id="{12e75db4-d0ca-4199-afaf-b992081c4f92}" locklevel="0" colspan="1" rowspan="4">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Comments" languagecode="1033" />
+                          <label description="Commentaires" languagecode="1036" />
                         </labels>
+                        <control id="ts_comments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_comments" disabled="false" />
                       </cell>
                       <cell id="{9c47122e-f85f-4b94-8011-572174da1f58}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Security Incident" languagecode="1033" />
                           <label description="Incident de sûreté" languagecode="1036" />
                         </labels>
-                        <control id="ts_securityincident" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_securityincident" disabled="false" />
+                        <control id="ts_securityincident" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_securityincident" disabled="true" />
                       </cell>
                     </row>
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>

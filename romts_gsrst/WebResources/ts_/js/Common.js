@@ -2,9 +2,9 @@ function userHasRole(rolesName) {
     var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
     var hasRole = false;
     var roles = rolesName.split("|");
-    roles.forEach(function (roleItem) {
+    roles.forEach(function(roleItem){
         userRoles.forEach(function (userRoleItem) {
-            if (userRoleItem.name.toLowerCase() == roleItem.toLowerCase()) hasRole = true;
+            if (userRoleItem.name.toLowerCase() == roleItem.toLowerCase()) hasRole =true;
         });
     });
     return hasRole;
@@ -53,24 +53,23 @@ function showButtonBasedOnPlanStatus(primaryControl) {
     let planStatusValue = formContext.getAttribute("ts_planstatus").getValue();
     return !(planStatusValue == 741130001 || planStatusValue == 447390001);
 }
-function isFormTypeCreate() {
+function isFormTypeCreate(){
     return Xrm.Page.ui.getFormType() == 1;
 }
 
-function isFormTypeUpdate() {
+function isFormTypeUpdate(){
     return Xrm.Page.ui.getFormType() == 2;
 }
 
 function openLookupModalDialogWOForm(executionContext) {
-    var formContext = executionContext.getFormContext();
-
+    var formContext = executionContext.getFormContext(); 
+    
     formContext.getControl("msdyn_workordertype").addOnLookupTagClick(onLookupClick);
     formContext.getControl("ts_region").addOnLookupTagClick(onLookupClick);
     formContext.getControl("ovs_operationtypeid").addOnLookupTagClick(onLookupClick);
     formContext.getControl("ts_tradenameid").addOnLookupTagClick(onLookupClick);
     formContext.getControl("msdyn_serviceaccount").addOnLookupTagClick(onLookupClick);
-    formContext.getControl("ts_site").addOnLookupTagClick(onLookupClick);
-    formContext.getControl("msdyn_servicerequest").addOnLookupTagClick(onLookupClickCaseTimeTracking);
+    formContext.getControl("ts_site").addOnLookupTagClick(onLookupClick);    
 }
 
 function openLookupModalDialogCaseForm(executionContext) {
@@ -116,7 +115,7 @@ function onLookupClick(executionContext) {
         entityName: record.entityType,
         entityId: record.id
     }, {
-        target: 2,
+        target: 2,      
         position: 2,
         width:
         {
@@ -125,24 +124,17 @@ function onLookupClick(executionContext) {
         }
     });
 }
+function showFieldWarningMessageIfOwnerIsNotISSONorAvSec(formContext){
+    const ownerAttributeValue= formContext.getAttribute("ownerid").getValue();
 
-function onLookupClickCaseTimeTracking(executionContext) {
-    executionContext.getEventArgs().preventDefault();
-    var record = executionContext.getEventArgs().getTagValue();
-    Xrm.Navigation.navigateTo({
-        pageType: "entityrecord",
-        entityName: record.entityType,
-        entityId: record.id,
-        formId: "cc169f8e-7df9-ed11-8f6e-000d3af36bac"
-    }, {
-        target: 2,
-        position: 2,
-        width:
-        {
-            value: 30,
-            unit: "%"
+    if (ownerAttributeValue && ownerAttributeValue[0].name) { 
+        if (!ownerAttributeValue[0].name.startsWith("Aviation") && !ownerAttributeValue[0].name.startsWith("Intermodal")) {
+            //const warningMessage = Xrm.Utility.getResourceString("ts_/resx/Common", "WarningMessageText");
+            const warningMessage = "Le propriétaire doit être soit Aviation Security ou Intermodal Surface Security Oversight (ISSO)";
+            formContext.getControl("header_ownerid").setNotification(warningMessage, "error");
         }
-    });
+        else {
+            formContext.getControl("header_ownerid").clearNotification("error");
+        }
+    }
 }
-
-

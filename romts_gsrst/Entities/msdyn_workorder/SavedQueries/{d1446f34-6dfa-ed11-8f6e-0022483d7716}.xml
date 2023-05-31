@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{d1446f34-6dfa-ed11-8f6e-0022483d7716}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_workorderid">
+          <cell name="msdyn_name" width="165" />
+          <cell name="ts_preparationtime" width="139" />
+          <cell name="ts_conductingoversight" width="165" />
+          <cell name="ts_woreportinganddocumentation" width="244" />
+          <cell name="a_4c20bf347a1b487bb60331de36e99a1e.ts_traveltime" width="173" />
+          <cell name="a_4c20bf347a1b487bb60331de36e99a1e.ts_casereportinganddocumentation" width="300" />
+          <cell name="a_8be74a357a3c460b82afce8760209b66.ts_traveltime" width="220" />
+          <cell name="a_8be74a357a3c460b82afce8760209b66.ts_securityincidenttime" width="281" />
+          <cell name="msdyn_servicerequest" width="123" />
+          <cell name="ts_securityincident" width="137" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="msdyn_workorder">
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_workorderid" />
+          <attribute name="ts_preparationtime" />
+          <attribute name="ts_conductingoversight" />
+          <attribute name="ts_woreportinganddocumentation" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <link-entity alias="a_4c20bf347a1b487bb60331de36e99a1e" name="incident" to="msdyn_servicerequest" from="incidentid" link-type="outer" visible="false">
+            <attribute name="ts_traveltime" />
+            <attribute name="ts_casereportinganddocumentation" />
+          </link-entity>
+          <link-entity alias="a_8be74a357a3c460b82afce8760209b66" name="ts_securityincident" to="ts_securityincident" from="ts_securityincidentid" link-type="outer" visible="false">
+            <attribute name="ts_traveltime" />
+            <attribute name="ts_securityincidenttime" />
+          </link-entity>
+          <order attribute="msdyn_name" descending="true" />
+          <attribute name="msdyn_servicerequest" />
+          <attribute name="ts_securityincident" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20230524.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Time Tracking" languagecode="1033" />
+      <LocalizedName description="Suivi du temps" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

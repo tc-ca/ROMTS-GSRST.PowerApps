@@ -22,7 +22,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{17b07d04-2717-4aab-ab1b-e8e527ad3512}" showlabel="true" locklevel="0">
+                      <cell id="{17b07d04-2717-4aab-ab1b-e8e527ad3512}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Security Incident ID" languagecode="1033" />
                           <label description="Numéro d'incident de sûreté" languagecode="1036" />
@@ -802,6 +802,7 @@
         <tab name="tab_time_tracking" id="fa7a9454-c1be-4ded-8ed8-cd459f72397f" IsUserDefined="0" locklevel="0" showlabel="true">
           <labels>
             <label description="Time Tracking" languagecode="1033" />
+            <label description="Suivi du temps" languagecode="1036" />
           </labels>
           <columns>
             <column width="100%">
@@ -814,7 +815,8 @@
                     <row>
                       <cell id="{8ff8a569-edd6-4841-b2c9-14b02730c2eb}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
-                          <label description="Security Incident Time" languagecode="1033" />
+                          <label description="SI Time" languagecode="1033" />
+                          <label description="Temps lié à l'incident" languagecode="1036" />
                         </labels>
                         <control id="ts_securityincidenttime" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_securityincidenttime" disabled="false" />
                       </cell>
@@ -822,11 +824,24 @@
                     <row>
                       <cell id="{6973c6a9-e202-442e-8320-fb10d3497244}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
-                          <label description="Travel Time" languagecode="1033" />
+                          <label description="SI Travel Time" languagecode="1033" />
+                          <label description="Temps de voyagement de l'incident" languagecode="1036" />
                         </labels>
                         <control id="ts_traveltime" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_traveltime" disabled="false" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{0a2000c3-02cb-4cb9-8bc3-ded075a46dca}" locklevel="0" colspan="1" rowspan="4">
+                        <labels>
+                          <label description="Comments" languagecode="1033" />
+                          <label description="Commentaires" languagecode="1036" />
+                        </labels>
+                        <control id="ts_comments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_comments" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>
@@ -1151,6 +1166,11 @@
         <event name="onchange" application="false" active="false" attribute="ts_stakeholder">
           <Handlers>
             <Handler functionName="ROM.SecurityIncident.stakeholderCompanyOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{de5671f2-2543-4c45-8835-85951d9d1aed}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ownerid">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.ownerOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{5a4b8415-5616-42ed-9eef-aba3fe133b95}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
