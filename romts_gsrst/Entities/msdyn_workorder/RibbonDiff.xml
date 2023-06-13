@@ -49,6 +49,11 @@
         <Button Alt="$LocLabels:ts.msdyn_workorder.Commit.Alt" Command="ts.msdyn_workorder.commitSelectedWorkOrders" Id="ts.msdyn_workorder.Commit" LabelText="$LocLabels:ts.msdyn_workorder.Commit.LabelText" Sequence="13" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Commit.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.Commit.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.CopyServiceTask.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="25">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.CopyServiceTask.Alt" Command="ts.msdyn_workorder.CopyserviceTask" Id="ts.msdyn_workorder.CopyServiceTask" LabelText="$LocLabels:ts.msdyn_workorder.CopyServiceTask.LabelText" Sequence="25" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.CopyServiceTask.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.CopyServiceTask.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.SubGridCommit.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="6">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorder.SubGridCommit.Alt" Command="ts.msdyn_workorder.SubgridCommit" Id="ts.msdyn_workorder.SubGridCommit" LabelText="$LocLabels:ts.msdyn_workorder.SubGridCommit.LabelText" Sequence="6" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.SubGridCommit.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.SubGridCommit.ToolTipDescription" />
@@ -327,6 +332,15 @@
         <JavaScriptFunction FunctionName="commitSelectedWorkOrders" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
           <CrmParameter Value="SelectedControlSelectedItemIds" />
           <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.CopyserviceTask">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="copyServiceTask" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -747,6 +761,26 @@
       <Titles>
         <Title description="Commit" languagecode="1033" />
         <Title description="Validé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.Alt">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.LabelText">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.ToolTipDescription">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.ToolTipTitle">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.SubGridCommit.Alt">

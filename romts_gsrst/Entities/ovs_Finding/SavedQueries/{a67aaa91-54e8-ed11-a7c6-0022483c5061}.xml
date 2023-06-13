@@ -13,7 +13,6 @@
           <cell name="ovs_finding" width="200" />
           <cell name="ts_findingtype" width="115" />
           <cell name="ovs_findingprovisionreference" width="154" />
-          <cell name="aa.ts_ovs_finding" width="200" />
         </row>
       </grid>
     </layoutxml>
@@ -22,11 +21,9 @@
       <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
         <entity name="ovs_finding">
           <attribute name="ovs_finding" />
-          <attribute name="ovs_findingid" />
           <attribute name="ovs_findingprovisionreference" />
           <attribute name="ts_findingtype" />
           <link-entity name="ts_actionfinding" alias="aa" link-type="inner" from="ts_ovs_finding" to="ovs_findingid">
-            <attribute name="ts_ovs_finding" />
             <filter type="and">
               <condition attribute="ts_ovs_finding" operator="not-null" />
             </filter>

@@ -631,3 +631,39 @@ function bulkAddAdditionalInspectors(formContext, selectedWorkOrdersGuids) {
             }
         );
 }
+
+function copyServiceTask(formContext) {
+    //const workOrderType = formContext.data.getAttribute("msdyn_workordertype").getValue()[0].id;
+    //const operationType = formContext.data.getAttribute("ovs_operationtypeid").getValue()[0].id;
+    //const activityType = formContext.data.getAttribute("msdyn_primaryincidenttype").getValue()[0].id;
+    //const site = formContext.data.getAttribute("ts_site").getValue()[0].id;
+    const workOrdersGuid = formContext.data.entity.getId().replace(/({|})/g, '');
+    // Centered Dialog
+    var pageInput = {
+        pageType: "custom",
+        name: "ts_copyservicetask_50612", //Unique name of Custom page
+        recordId: workOrdersGuid,
+        //WOType: workOrderType,
+        //operationType: operationType,
+        //activityType: activityType,
+        //site: site
+    };
+    var navigationOptions = {
+        target: 2,
+        position: 1,
+        width: { value: 450, unit: "px" },
+        height: { value: 550, unit: "px" },
+        title: (lang == 1036) ? "Copier les taches de service" : "Copy Service Task"
+    };
+    Xrm.Navigation.navigateTo(pageInput, navigationOptions)
+        .then(
+            //function () {
+            //    // Called when the dialog closes
+            //    formContext.data.refresh();
+            //}
+        ).catch(
+            function (error) {
+                // Handle error
+            }
+        );
+}

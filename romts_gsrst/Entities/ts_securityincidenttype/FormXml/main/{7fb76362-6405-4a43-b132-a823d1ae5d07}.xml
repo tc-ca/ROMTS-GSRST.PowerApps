@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0.20221108.1</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab verticallayout="true" id="{dc233808-1a90-4c7f-9e32-26d87d8443b6}" IsUserDefined="1">
           <labels>
@@ -65,7 +65,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -94,6 +94,87 @@
           </NavBarArea>
         </NavBarAreas>
       </Navigation>
+      <header id="{ee77a83d-f0aa-4018-a5ef-425c175d7ac8}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{a9e6e9b2-48f0-475e-8699-a61cf07f4cee}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{b74e492f-a4b0-452f-a418-f32064a8d095}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{6eb845db-01aa-4292-a6eb-051f717cad6d}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{aebb5628-4159-4adc-a7c0-ad9fd4c9c954}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{c13e0b3f-3ad0-4851-bb1f-8cbcbd149a4f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{b42bb4ce-c4c8-47d3-9ac5-5eca41386fa8}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{f70c4966-1442-4b54-b69d-efab2f7a9612}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <formLibraries>
+        <Library name="ts_/js/SecurityIncidentType.js" libraryUniqueId="{359cd34c-451e-4c4c-9e89-2c8e39ecd680}" />
+        <Library name="ts_/js/Common.js" libraryUniqueId="{4902add3-6540-47a3-8220-49ec63798dcf}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncidentType.onLoad" libraryName="ts_/js/SecurityIncidentType.js" handlerUniqueId="{bb39fb64-db58-45e4-ba3b-f92b217d52dc}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ownerid">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncidentType.ownerOnChange" libraryName="ts_/js/SecurityIncidentType.js" handlerUniqueId="{75f59eaf-bba5-44bc-9c24-94dfc66abf48}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncidentType.onSave" libraryName="ts_/js/SecurityIncidentType.js" handlerUniqueId="{2c89581c-0b78-478f-93c9-0f7d8eb18fef}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_name">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncidentType.nameOnChange" libraryName="ts_/js/SecurityIncidentType.js" handlerUniqueId="{a9f03874-6410-4d00-90f2-fc3f012c89be}" enabled="true" parameters="&quot;ts_name&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_securityincidenttypenameenglish">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncidentType.nameOnChange" libraryName="ts_/js/SecurityIncidentType.js" handlerUniqueId="{c23f3a6b-8276-44cb-adc1-c509e9cca90a}" enabled="true" parameters="&quot;ts_securityincidenttypenameenglish&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_securityincidenttypenamefrench">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncidentType.nameOnChange" libraryName="ts_/js/SecurityIncidentType.js" handlerUniqueId="{1bd45abc-0953-4e89-a0bd-4ef86a882a02}" enabled="true" parameters="&quot;ts_securityincidenttypenamefrench&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

@@ -124,17 +124,76 @@ function onLookupClick(executionContext) {
         }
     });
 }
-function showFieldWarningMessageIfOwnerIsNotISSONorAvSec(formContext){
-    const ownerAttributeValue= formContext.getAttribute("ownerid").getValue();
+
+function setOwnerToUserBusinessUnit(formContext){
+    const ownerAttribute = formContext.getAttribute("ownerid");
+    let userId = Xrm.Utility.getGlobalContext().userSettings.userId;
+    let currentUserBusinessUnitFetchXML = [
+        "<fetch top='1'>",
+        "  <entity name='businessunit'>",
+        "    <attribute name='name' />",
+        "    <attribute name='businessunitid' />",
+        "    <link-entity name='systemuser' from='businessunitid' to='businessunitid'>",
+        "      <filter>",
+        "        <condition attribute='systemuserid' operator='eq' value='", userId, "'/>",
+        "      </filter>",
+        "    </link-entity>",
+        "  </entity>",
+        "</fetch>",
+    ].join("");
+    currentUserBusinessUnitFetchXML = "?fetchXml=" + encodeURIComponent(currentUserBusinessUnitFetchXML);
+    Xrm.WebApi.retrieveMultipleRecords("businessunit", currentUserBusinessUnitFetchXML).then(function (result) {
+        if(!result.entities[0].name.startsWith("Transport")){
+            const headerOwnerIdControl = formContext.getControl("header_ownerid");
+            if(headerOwnerIdControl) {
+                headerOwnerIdControl.clearNotification("error");
+            }
+            
+            const ownerIdControl = formContext.getControl("ownerid");
+            if(ownerIdControl) {
+                ownerIdControl.clearNotification("error");
+            }
+            
+            ownerAttribute.setValue([{
+                "entityType": "team",
+                "name": `${result.entities[0].name}`,
+                "id": `${result.entities[0].businessunitid}`
+            }]
+        );
+        }
+    });
+}
+
+function showFieldWarningMessageIfOwnerIsNotISSONorAvSec(formContext) {
+    const ownerAttributeValue = formContext.getAttribute("ownerid").getValue();
 
     if (ownerAttributeValue && ownerAttributeValue[0].name) { 
         if (!ownerAttributeValue[0].name.startsWith("Aviation") && !ownerAttributeValue[0].name.startsWith("Intermodal")) {
-            //const warningMessage = Xrm.Utility.getResourceString("ts_/resx/Common", "WarningMessageText");
-            const warningMessage = "Le propriétaire doit être soit Aviation Security ou Intermodal Surface Security Oversight (ISSO)";
-            formContext.getControl("header_ownerid").setNotification(warningMessage, "error");
+            const warningMessage = Xrm.Utility.getResourceString("ts_/resx/Common", "WarningMessageText");
+            
+            const headerOwnerIdControl = formContext.getControl("header_ownerid");
+            if(headerOwnerIdControl) {
+                headerOwnerIdControl.setNotification(warningMessage, "error");
+            }
+            
+            const ownerIdControl = formContext.getControl("ownerid");
+            if(ownerIdControl) {
+                ownerIdControl.setNotification(warningMessage, "error");
+            }
+
+            return true;
         }
         else {
-            formContext.getControl("header_ownerid").clearNotification("error");
+            const headerOwnerIdControl = formContext.getControl("header_ownerid");
+            if(headerOwnerIdControl) {
+                headerOwnerIdControl.clearNotification("error");
+            }
+            
+            const ownerIdControl = formContext.getControl("ownerid");
+            if(ownerIdControl) {
+                ownerIdControl.clearNotification("error");
+            }
         }
     }
+    return false;
 }
