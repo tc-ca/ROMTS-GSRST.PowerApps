@@ -1670,7 +1670,7 @@
           <columns>
             <column width="100%">
               <sections>
-                <section name="tab_TimeTracking_section" showlabel="false" showbar="false" locklevel="0" id="{60861294-b2d4-596c-0c42-bb41e4ba9470}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                <section name="tab_TimeTracking_section" showlabel="false" showbar="false" locklevel="0" id="{60861294-b2d4-596c-0c42-bb41e4ba9470}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="275" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
                     <label description="Section" languagecode="1033" />
                   </labels>
@@ -1683,10 +1683,11 @@
                         </labels>
                         <control id="ts_preparationtime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_preparationtime" disabled="false" />
                       </cell>
-                      <cell id="{614cf786-8261-40fe-9606-c92b2f89e886}" showlabel="false">
+                      <cell id="{881aa778-5d12-0dca-bdc8-09326584d5ea}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Quarter of Preparation Time" languagecode="1033" />
                         </labels>
+                        <control id="ts_quarterofpreparationtime" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_quarterofpreparationtime" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -1697,10 +1698,11 @@
                         </labels>
                         <control id="ts_conductingoversight" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_conductingoversight" disabled="false" />
                       </cell>
-                      <cell id="{8a3423f4-105c-424f-8f22-8423d1668793}" showlabel="false">
+                      <cell id="{3460532b-3d99-976a-31be-499877224a65}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Quarter of Conducting Oversight" languagecode="1033" />
                         </labels>
+                        <control id="ts_quarterofconductingoversight" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_quarterofconductingoversight" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -1711,6 +1713,36 @@
                         </labels>
                         <control id="ts_woreportinganddocumentation" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_woreportinganddocumentation" disabled="false" />
                       </cell>
+                      <cell id="{a8a23c45-d8a6-1a2b-bb89-69c662b40dcd}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Quarter of Reporting and Documentation" languagecode="1033" />
+                        </labels>
+                        <control id="ts_quarterofreportinganddocumentation" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_quarterofreportinganddocumentation" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b20ce960-793a-2ce7-44e2-686c2239b7b2}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="WO Travel Time" languagecode="1033" />
+                          <label description="Temps de voyagement de l'ordre de travail" languagecode="1036" />
+                        </labels>
+                        <control id="ts_traveltime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_traveltime" disabled="false" uniqueid="{c3701b99-4d72-1e82-9e61-cb459b5725dc}" />
+                      </cell>
+                      <cell id="{94ece3ea-addb-a719-ce40-b0d668455439}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Quarter of Travel Time" languagecode="1033" />
+                        </labels>
+                        <control id="ts_quarteroftraveltime" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_quarteroftraveltime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{12e75db4-d0ca-4199-afaf-b992081c4f92}" locklevel="0" colspan="1" rowspan="4">
+                        <labels>
+                          <label description="Comments" languagecode="1033" />
+                          <label description="Commentaires" languagecode="1036" />
+                        </labels>
+                        <control id="ts_comments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_comments" disabled="false" uniqueid="{1b6bedc3-d480-8918-9a26-edcc6deab57e}" />
+                      </cell>
                       <cell id="{5e20f25c-c8d0-4874-898a-0ebc5d401449}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Case" languagecode="1033" />
@@ -1720,27 +1752,6 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{b20ce960-793a-2ce7-44e2-686c2239b7b2}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
-                        <labels>
-                          <label description="WO Travel Time" languagecode="1033" />
-                          <label description="Temps de voyagement de l'ordre de travail" languagecode="1036" />
-                        </labels>
-                        <control id="ts_traveltime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_traveltime" disabled="false" />
-                      </cell>
-                      <cell id="{049c9d08-2ba0-48e2-bc45-fcd0e34a4e97}" showlabel="false">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{12e75db4-d0ca-4199-afaf-b992081c4f92}" locklevel="0" colspan="1" rowspan="4">
-                        <labels>
-                          <label description="Comments" languagecode="1033" />
-                          <label description="Commentaires" languagecode="1036" />
-                        </labels>
-                        <control id="ts_comments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_comments" disabled="false" />
-                      </cell>
                       <cell id="{9c47122e-f85f-4b94-8011-572174da1f58}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Security Incident" languagecode="1033" />
@@ -1750,21 +1761,14 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{3e14dfeb-73bb-42a2-b4bc-3e690d19b6a2}" showlabel="false">
+                      <cell id="{9845c98b-280e-bdce-a472-a824e2a25608}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
                     </row>
                     <row>
-                      <cell id="{71ed7882-0501-4072-9cdc-2241d140a601}" showlabel="false">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{3ecaa423-0eed-4daf-a749-9d0c3436acea}" showlabel="false">
+                      <cell id="{6e62c052-5c4e-dca6-669c-b006ee16be2a}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>

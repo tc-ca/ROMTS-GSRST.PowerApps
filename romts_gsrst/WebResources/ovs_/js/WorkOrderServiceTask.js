@@ -58,7 +58,7 @@ var ROM;
         var aocRegion;
         function onLoad(eContext) {
             return __awaiter(this, void 0, void 0, function () {
-                var Form, taskType, statusReason, workOrderStartDateCtl, workOrderEndDateCtl, workOrderTaskTypeCtl;
+                var Form, taskType, statusReason, workOrderStartDateCtl, workOrderStartDateValue, workOrderEndDateCtl, workOrderTaskTypeCtl;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
@@ -88,6 +88,7 @@ var ROM;
                             }
                             statusReason = Form.getAttribute("statuscode").getValue();
                             workOrderStartDateCtl = Form.getControl("ts_servicetaskstartdate");
+                            workOrderStartDateValue = Form.getAttribute("ts_servicetaskstartdate").getValue();
                             workOrderEndDateCtl = Form.getControl("ts_servicetaskenddate");
                             workOrderTaskTypeCtl = Form.getControl("msdyn_tasktype");
                             workOrderEndDateCtl.setDisabled(true);
@@ -100,12 +101,20 @@ var ROM;
                             else if (statusReason == 918640005) {
                                 workOrderStartDateCtl.setDisabled(false);
                                 // Also, add a message that work order service task start date should be filled in to proceed.
-                                workOrderStartDateCtl.setNotification(enterStartDateToProceedText, "ts_servicetaskstartdate_entertoproceed");
+                                if (workOrderStartDateValue == null) {
+                                    workOrderStartDateCtl.setNotification(enterStartDateToProceedText, "ts_servicetaskstartdate_entertoproceed");
+                                    Form.getControl('WebResource_QuestionnaireRender').setVisible(false);
+                                }
+                                //If work order service task is in new status but has start date and questionnaire (it was copied from anothe WO)
+                                else {
+                                    workOrderStartDateCtl.setDisabled(true);
+                                    ToggleQuestionnaire(eContext);
+                                }
                                 // Also, add a message that task type start date should be filled in to proceed.
                                 if (taskType == null) {
                                     workOrderTaskTypeCtl.setNotification(enterTaskTypeToProccedText, "ts_tasktype_entertoproceed");
+                                    Form.getControl('WebResource_QuestionnaireRender').setVisible(false);
                                 }
-                                Form.getControl('WebResource_QuestionnaireRender').setVisible(false);
                             }
                             else {
                                 workOrderStartDateCtl.setDisabled(true);
@@ -273,7 +282,7 @@ var ROM;
             // Get formContext
             var Form = eContext.getFormContext();
             var percentComplete = Form.getAttribute("msdyn_percentcomplete").getValue();
-            if (percentComplete != 100.00) {
+            if (percentComplete != 100.00 && Form.getAttribute("statecode").getValue() == 0 /* Active */) {
                 //Set percentComplete to 50.00
                 Form.getAttribute("msdyn_percentcomplete").setValue(50.00);
                 //Set Status Reason to In-Progress

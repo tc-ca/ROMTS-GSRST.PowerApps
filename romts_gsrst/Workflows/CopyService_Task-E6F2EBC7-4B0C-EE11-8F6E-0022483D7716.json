@@ -1,0 +1,290 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_32e9e"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "2d0a4332-6c7a-405f-b7fb-c81bc61df176"
+          },
+          "type": "Request",
+          "kind": "PowerApp",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ParseJSON_Content": {
+                  "type": "any",
+                  "x-ms-powerflows-param-ispartial": false
+                }
+              },
+              "required": [
+                "ParseJSON_Content"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Parse_JSON": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "bfa6be5d-f696-4ae0-a12e-1b3faa2313de"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerBody()['ParseJSON_Content']",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ParentWoID": {
+                    "type": "string"
+                  },
+                  "SelectedWOGuids": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "ID": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "ID"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "ParentWoID",
+                  "SelectedWOGuids"
+                ]
+              }
+            }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "78abd67c-69a0-4a34-bbe4-754adf28f940"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "ParentWorkOrderGuid",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@body('Parse_JSON')",
+          "actions": {
+            "For_each_selected_Work_Order": {
+              "foreach": "@items('Apply_to_each')['SelectedWOGuids']",
+              "actions": {
+                "List_Work_Order_Service_Tasks_of_current_Selected_Work_Order": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "4e8b26f1-a153-4804-bb87-93304a162993"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "ListRecords",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "msdyn_workorderservicetasks",
+                      "$filter": "_msdyn_workorder_value eq @{items('For_each_selected_Work_Order')['ID']} and statuscode eq 918640005"
+                    },
+                    "authentication": {
+                      "type": "Raw",
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                    }
+                  }
+                },
+                "Apply_to_each_WOST_of_Selected_Work_Order": {
+                  "foreach": "@outputs('List_Work_Order_Service_Tasks_of_current_Selected_Work_Order')?['body/value']",
+                  "actions": {
+                    "Apply_to_each_WOST_of_Parent_Work_Order": {
+                      "foreach": "@outputs('List_Work_Order_Service_Tasks_of_Parent_Work_Order')?['body/value']",
+                      "actions": {
+                        "Condition": {
+                          "actions": {
+                            "Update_a_row": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "fd9a6367-9823-4b4a-8a70-4fd3321d4592"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps",
+                                  "operationId": "UpdateRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "msdyn_workorderservicetasks",
+                                  "recordId": "@items('Apply_to_each_WOST_of_Selected_Work_Order')?['msdyn_workorderservicetaskid']",
+                                  "item/ovs_Questionnaire@odata.bind": "ovs_questionnaires(@{items('Apply_to_each_WOST_of_Parent_Work_Order')?['_ovs_questionnaire_value']})",
+                                  "item/ovs_questionnairedefinition": "@items('Apply_to_each_WOST_of_Parent_Work_Order')?['ovs_questionnairedefinition']",
+                                  "item/ovs_questionnaireresponse": "@items('Apply_to_each_WOST_of_Parent_Work_Order')?['ovs_questionnaireresponse']",
+                                  "item/ovs_questionnaireresultjson": "@items('Apply_to_each_WOST_of_Parent_Work_Order')?['ovs_questionnaireresultjson']",
+                                  "item/ts_servicetaskstartdate": "@items('Apply_to_each_WOST_of_Parent_Work_Order')?['ts_servicetaskstartdate']"
+                                },
+                                "authentication": {
+                                  "type": "Raw",
+                                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                                }
+                              }
+                            }
+                          },
+                          "runAfter": {},
+                          "expression": {
+                            "equals": [
+                              "@items('Apply_to_each_WOST_of_Selected_Work_Order')?['_msdyn_tasktype_value']",
+                              "@items('Apply_to_each_WOST_of_Parent_Work_Order')?['_msdyn_tasktype_value']"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "f94b968a-ea9b-4c05-aa4e-8259ef1bcf40"
+                          },
+                          "type": "If"
+                        }
+                      },
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "6eafbad8-429e-44eb-836e-1104e5c99a4b"
+                      },
+                      "type": "Foreach"
+                    }
+                  },
+                  "runAfter": {
+                    "List_Work_Order_Service_Tasks_of_current_Selected_Work_Order": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "3e67c1f8-d698-445d-8688-5e5e5136d298"
+                  },
+                  "type": "Foreach"
+                }
+              },
+              "runAfter": {
+                "List_Work_Order_Service_Tasks_of_Parent_Work_Order": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e7a67f74-9237-4463-93d8-d799bac31259"
+              },
+              "type": "Foreach"
+            },
+            "List_Work_Order_Service_Tasks_of_Parent_Work_Order": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "3ebdaaf5-94ea-4a2c-8b51-8877425c1623"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "msdyn_workorderservicetasks",
+                  "$filter": "_msdyn_workorder_value  eq @{items('Apply_to_each')['ParentWoID']} and statuscode eq 918640002"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_3": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1c01b0cd-4737-4db4-9cec-6d6f462d7871"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable_2": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b7aaebe8-af14-4d4a-bb03-dc191936a8ee"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "WOST 1",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_3": {
+          "runAfter": {
+            "Initialize_variable_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "91ea7b00-fdad-4f20-b4c2-5420c918894d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "WOST 2",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
