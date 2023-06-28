@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{811f7583-2932-4fe1-90ac-7e3b57279f66}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_nonoversightactivityid">
+          <cell name="ts_program" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_category" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_dateofactivity" width="100" />
+          <cell name="ts_activitytime" width="100" />
+          <cell name="ts_quarter" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_nonoversightactivity">
+          <order attribute="ts_dateofactivity" descending="false" />
+          <order attribute="ts_program" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_quarter" />
+          <attribute name="ts_program" />
+          <attribute name="ts_dateofactivity" />
+          <attribute name="ts_category" />
+          <attribute name="ts_activitytime" />
+          <attribute name="ts_nonoversightactivityid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20230621.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Non-Oversight Activities" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

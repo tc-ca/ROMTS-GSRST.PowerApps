@@ -50,10 +50,18 @@
                       "format": "byte"
                     }
                   }
+                },
+                "text": {
+                  "title": "recordTags",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
                 }
               },
               "required": [
-                "file"
+                "file",
+                "text"
               ]
             }
           }
@@ -78,7 +86,7 @@
             },
             "parameters": {
               "dataset": "https://034gc.sharepoint.com/sites/Dynamics365Development",
-              "folderPath": "/Test Document Library/@{variables('Work Order Number')}",
+              "folderPath": "/Test Document Library/",
               "name": "@triggerBody()['file']['name']",
               "body": "@triggerBody()['file']['contentBytes']"
             },
@@ -90,18 +98,77 @@
             }
           }
         },
+        "Update_file_properties": {
+          "runAfter": {
+            "Create_file": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0605e0c5-bef9-4c55-85ee-c3256a073f44"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "PatchFileItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "https://034gc.sharepoint.com/sites/Dynamics365Development",
+              "table": "04a32f00-a0b7-42b2-8a0d-269b7160bfef",
+              "id": "@outputs('Create_file')?['body/ItemId']",
+              "item/Multi_x002d_lineTag": "@triggerBody()['text']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Update_file_properties": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f02f2e48-0eea-4a11-8b47-9b4cddd2ca72"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "hasreturned": "True",
+              "haserror": "False"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hasreturned": {
+                  "title": "hasReturned",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "haserror": {
+                  "title": "hasError",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
         "Initialize_variable": {
           "runAfter": {},
           "metadata": {
-            "operationMetadataId": "a43e7624-d5f8-4d8b-b90f-25653a1c3db0"
+            "operationMetadataId": "5466b421-e486-407b-aeb1-5c16c9e15a42"
           },
           "type": "InitializeVariable",
           "inputs": {
             "variables": [
               {
-                "name": "Work Order Number",
-                "type": "string",
-                "value": "300-007248"
+                "name": "hasError",
+                "type": "boolean",
+                "value": "@false"
               }
             ]
           }

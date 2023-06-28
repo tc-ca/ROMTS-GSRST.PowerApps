@@ -34,6 +34,11 @@
         <Button Alt="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.Alt" Command="ts.msdyn_workorder.AddAdditionalInspectors" Id="ts.msdyn_workorder.AddAdditionalInspectors" LabelText="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.LabelText" Sequence="24" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.AttachFile.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="60">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.AttachFile.Alt" Command="ts.msdyn_workorder.AttachFile" Id="ts.msdyn_workorder.AttachFile" LabelText="$LocLabels:ts.msdyn_workorder.AttachFile.LabelText" Sequence="60" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.msdyn_workorder.AttachFile.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.AttachFile.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.Button4.Planning.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="0">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorder.Button4.Planning.Alt" Command="ts.msdyn_workorder.TSIS.Planning" Id="ts.msdyn_workorder.Button4.Planning" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.Button4.Planning.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Button4.Planning.ToolTipTitle" />
@@ -47,6 +52,11 @@
     <CustomAction Id="ts.msdyn_workorder.Commit.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="13">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorder.Commit.Alt" Command="ts.msdyn_workorder.commitSelectedWorkOrders" Id="ts.msdyn_workorder.Commit" LabelText="$LocLabels:ts.msdyn_workorder.Commit.LabelText" Sequence="13" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Commit.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.Commit.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.CopyServiceTask.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="60">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.CopyServiceTask.Alt" Command="ts.msdyn_workorder.CopyServiceTask" Id="ts.msdyn_workorder.CopyServiceTask" LabelText="$LocLabels:ts.msdyn_workorder.CopyServiceTask.LabelText" Sequence="60" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.msdyn_workorder.CopyServiceTask.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.CopyServiceTask.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.SubGridCommit.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="6">
@@ -317,12 +327,14 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
-    <CommandDefinition Id="ts.msdyn_workorder.Button8.Button.ts.msdyn_workorder.CopyServiceTask">
+    <CommandDefinition Id="ts.msdyn_workorder.AttachFile">
       <EnableRules />
       <DisplayRules />
       <Actions>
-        <JavaScriptFunction FunctionName="copyServiceTask" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+        <JavaScriptFunction FunctionName="OpenFileUploadPage" Library="$webresource:ts_/js/AttachFile.js">
           <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+          <CrmParameter Value="PrimaryControlId" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -340,7 +352,9 @@
       </Actions>
     </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorder.CopyServiceTask">
-      <EnableRules />
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.TSIS.hasWorkOrderName" />
+      </EnableRules>
       <DisplayRules />
       <Actions>
         <JavaScriptFunction FunctionName="copyServiceTask" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
@@ -604,11 +618,6 @@
       <EnableRule Id="ts.msdyn_workorder.EnableRule20.ShowAdmin">
         <CustomRule FunctionName="isSystemAdministrator" Library="$webresource:ovs_/js/WorkOrderRibbon.js" />
       </EnableRule>
-      <EnableRule Id="ts.msdyn_workorder.hasCompletedServiceTask">
-        <CustomRule FunctionName="hasCompletedServiceTask" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
-          <CrmParameter Value="PrimaryControl" />
-        </CustomRule>
-      </EnableRule>
       <EnableRule Id="ts.msdyn_workorder.HideInOperation.EnableRule">
         <EntityRule EntityName="ovs_operation" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
       </EnableRule>
@@ -712,6 +721,30 @@
         <Title description="Ajouter des inspecteurs supplémentaires" languagecode="1036" />
       </Titles>
     </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.AttachFile.Alt">
+      <Titles>
+        <Title description="Attach File" languagecode="1033" />
+        <Title description="Attach File" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.AttachFile.LabelText">
+      <Titles>
+        <Title description="Attach File" languagecode="1033" />
+        <Title description="Attach File" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.AttachFile.ToolTipDescription">
+      <Titles>
+        <Title description="Attach File" languagecode="1033" />
+        <Title description="Attach File" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.AttachFile.ToolTipTitle">
+      <Titles>
+        <Title description="Attach File" languagecode="1033" />
+        <Title description="Attach File" languagecode="1036" />
+      </Titles>
+    </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.Button4.Planning.Alt">
       <Titles>
         <Title description="Planning" languagecode="1033" />
@@ -770,6 +803,30 @@
       <Titles>
         <Title description="Commit" languagecode="1033" />
         <Title description="Validé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.Alt">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+        <Title description="Copier la tâche de service" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.LabelText">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+        <Title description="Copier la tâche de service" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.ToolTipDescription">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+        <Title description="Copier la tâche de service" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.ToolTipTitle">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+        <Title description="Copier la tâche de service" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.SubGridCommit.Alt">
