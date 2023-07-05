@@ -138,7 +138,7 @@
                           <label description="Details" languagecode="1033" />
                           <label description="Détails" languagecode="1036" />
                         </labels>
-                        <control id="ts_details" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_details" disabled="false" uniqueid="{5b017414-c122-a032-4d73-c3511544270b}" />
+                        <control id="ts_details" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_details" disabled="false" uniqueid="{5b017414-c122-a032-4d73-c3511544270b}" />
                       </cell>
                     </row>
                     <row>
@@ -310,7 +310,7 @@
         </rows>
       </header>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -339,7 +339,30 @@
           </NavBarArea>
         </NavBarAreas>
       </Navigation>
-      <controlDescriptions />
+      <controlDescriptions>
+        <controlDescription forControl="{5b017414-c122-a032-4d73-c3511544270b}">
+          <customControl id="{E0DECE4B-6FC8-4a8f-A065-082708572369}">
+            <parameters>
+              <datafieldname>ts_details</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.RichTextEditor.RichTextEditorControl">
+            <parameters>
+              <value>ts_details</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.RichTextEditor.RichTextEditorControl">
+            <parameters>
+              <value>ts_details</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.RichTextEditor.RichTextEditorControl">
+            <parameters>
+              <value>ts_details</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
       <footer id="{b2f07170-5518-4783-a6d4-abed68aa9330}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
         <rows>
           <row>
@@ -379,6 +402,11 @@
         <event name="onchange" application="false" active="false" attribute="ts_actiontype">
           <Handlers>
             <Handler functionName="ROM.Action.actionTypeOnChange" libraryName="ts_/js/Action.js" handlerUniqueId="{c6e7ac34-4c3a-a259-e333-89535b706c09}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_actioncategory">
+          <Handlers>
+            <Handler functionName="ROM.Action.actionCategoryOnChange" libraryName="ts_/js/Action.js" handlerUniqueId="{2d2bb5cb-f368-49d8-aa2a-d5baae45ec7e}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

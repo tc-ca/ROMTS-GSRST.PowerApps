@@ -26,14 +26,20 @@
           <attribute name="ts_name" />
           <attribute name="createdon" />
           <order attribute="ts_name" descending="false" />
-          <filter type="or" isquickfindfields="1">
-            <condition attribute="ts_name" operator="like" value="{0}" />
-          </filter>
-          <attribute name="ts_securityincidentid" />
           <attribute name="ts_tcomsid" />
           <attribute name="ts_reportingcompany" />
           <attribute name="ts_site" />
           <attribute name="ts_stakeholder" />
+          <filter type="or" isquickfindfields="1">
+            <condition attribute="ts_tcomsid" operator="like" value="{0}" />
+            <condition attribute="ts_targetelement" operator="like" value="{0}" />
+            <condition attribute="ts_stakeholder" operator="like" value="{0}" />
+            <condition attribute="ts_site" operator="like" value="{0}" />
+            <condition attribute="ts_name" operator="like" value="{0}" />
+            <condition attribute="ts_reportingcompany" operator="like" value="{0}" />
+            <condition attribute="ts_mode" operator="like" value="{0}" />
+          </filter>
+          <attribute name="ts_securityincidentid" />
         </entity>
       </fetch>
     </fetchxml>
