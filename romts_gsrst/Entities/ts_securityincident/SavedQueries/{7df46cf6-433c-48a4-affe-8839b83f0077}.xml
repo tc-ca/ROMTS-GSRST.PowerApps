@@ -10,7 +10,11 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_securityincidentid">
-          <cell name="ts_name" width="300" />
+          <cell name="ts_name" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_tcomsid" width="100" />
+          <cell name="ts_tcomsofficer" width="100" />
+          <cell name="ts_mode" width="100" />
+          <cell name="ts_securityincidenttype" width="100" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -19,10 +23,14 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ts_securityincident">
-          <attribute name="ts_securityincidentid" />
           <attribute name="ts_name" />
           <attribute name="createdon" />
           <order attribute="ts_name" descending="false" />
+          <attribute name="ts_tcomsofficer" />
+          <attribute name="ts_tcomsid" />
+          <attribute name="ts_mode" />
+          <attribute name="ts_securityincidenttype" />
+          <attribute name="ts_securityincidentid" />
         </entity>
       </fetch>
     </fetchxml>

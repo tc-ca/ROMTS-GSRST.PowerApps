@@ -2,25 +2,25 @@
 function OpenFileUploadPage(PrimaryControl, PrimaryTypeEntityName, PrimaryControlId) {
     const lang = Xrm.Utility.getGlobalContext().userSettings.languageId;
 
-    let recordTags = "";
+    let recordTag = "";
 
     //Logic for getting tags when attaching files to Work Orders
     if (PrimaryTypeEntityName == "msdyn_workorder") {
-        recordTags += PrimaryControl.getAttribute("msdyn_name").getValue();
+        recordTag = PrimaryControl.getAttribute("msdyn_name").getValue();
     }
 
     // Centered Dialog
     var pageInput = {
         pageType: "custom",
         name: "ts_fileupload_2bf02", //Unique name of Custom page
-        recordId: recordTags, //Using the recordId param as a way to pass data to the custom page
+        recordId: recordTag, //Using the recordId param as a way to pass data to the custom page
     };
     var navigationOptions = {
         target: 2,
         position: 1,
-        width: { value: 450, unit: "px" },
+        width: { value: 1000, unit: "px" },
         height: { value: 550, unit: "px" },
-        title: (lang == 1036) ? "Attach File (FR)" : "Attach File"
+        title: (lang == 1036) ? "Documents (FR)" : "Documents"
     };
     Xrm.Navigation.navigateTo(pageInput, navigationOptions)
         .then(

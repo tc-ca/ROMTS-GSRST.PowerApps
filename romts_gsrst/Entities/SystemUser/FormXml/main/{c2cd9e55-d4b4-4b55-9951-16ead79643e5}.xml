@@ -165,7 +165,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{4a76b30f-32b1-4181-a9fc-a48aad9ca3cc}" locklevel="0" colspan="1" rowspan="1" ordinalvalue="10000">
+                      <cell id="{4a76b30f-32b1-4181-a9fc-a48aad9ca3cc}" locklevel="0" colspan="1" rowspan="1" visible="false" ordinalvalue="10000">
                         <labels>
                           <label description="Dual Inspector" languagecode="1033" />
                         </labels>
@@ -418,6 +418,18 @@
           </row>
         </rows>
       </footer>
+      <events>
+        <event name="onload" application="true" active="true">
+          <Handlers>
+            <Handler functionName="ROM.User.onLoad" libraryName="ts_/js/User.js" handlerUniqueId="{38e12c70-6471-4f80-b2ae-853c80d924ba}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="6" solutionaction="Added" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_dualinspector" solutionaction="Added">
+          <Handlers>
+            <Handler functionName="ROM.User.dualInspectorToggleOnChange" libraryName="ts_/js/User.js" handlerUniqueId="{d9443523-a94e-42c5-aa87-7e1d3e651a05}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="0" />
+          </Handlers>
+        </event>
+      </events>
       <Navigation>
         <NavBar>
           <NavBarByRelationshipItem Icon="$webresource:msdyn_/Icons/Sitemap/ServiceAgreement_32.png" RelationshipName="msdyn_systemuser_msdyn_agreement_SalesPerson" Sequence="10000" Client="Web" Area="Info" Id="nav_msdyn_systemuser_msdyn_agreement_SalesPerson" Show="false" solutionaction="Removed" />
@@ -455,6 +467,10 @@
           </customControl>
         </controlDescription>
       </controlDescriptions>
+      <formLibraries>
+        <Library name="ts_/js/Common.js" libraryUniqueId="{e47d5215-50c8-486f-97c3-8c8a20160ecf}" solutionaction="Added" />
+        <Library name="ts_/js/User.js" libraryUniqueId="{afaea8fe-685a-4928-90f8-54d5a82e3774}" solutionaction="Added" />
+      </formLibraries>
       <header id="{d4172dd7-bacc-4256-994e-fde4ca8d9d0a}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
         <rows />
       </header>
