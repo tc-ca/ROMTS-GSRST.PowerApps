@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
+    <HideCustomAction HideActionId="ts.Mscrm.Form.ts_securityincident.AddConnection.Hide" Location="Mscrm.Form.ts_securityincident.AddConnection" />
+    <HideCustomAction HideActionId="ts.Mscrm.Form.ts_securityincident.FollowButton.Hide" Location="Mscrm.Form.ts_securityincident.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.Form.ts_securityincident.Reports.Hide" Location="Mscrm.Form.ts_securityincident.Reports" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ts_securityincident.AddConnection.Hide" Location="Mscrm.HomepageGrid.ts_securityincident.AddConnection" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ts_securityincident.FollowButton.Hide" Location="Mscrm.HomepageGrid.ts_securityincident.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ts_securityincident.MBPF.ConvertTo.Hide" Location="Mscrm.HomepageGrid.ts_securityincident.MBPF.ConvertTo" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ts_securityincident.RefreshButton.Hide" Location="Mscrm.HomepageGrid.ts_securityincident.RefreshButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ts_securityincident.RunReport.Hide" Location="Mscrm.HomepageGrid.ts_securityincident.RunReport" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_securityincident.AddConnection.Hide" Location="Mscrm.SubGrid.ts_securityincident.AddConnection" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_securityincident.FollowButton.Hide" Location="Mscrm.SubGrid.ts_securityincident.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_securityincident.RunReport.Hide" Location="Mscrm.SubGrid.ts_securityincident.RunReport" />
     <CustomAction Id="ts.ts_securityincident.Button.GenerateWorkOrder.CustomAction" Location="Mscrm.Form.ts_securityincident.MainTab.Save.Controls._children" Sequence="73">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.ts_securityincident.Button.GenerateWorkOrder.Alt" Command="ts.ts_securityincident.Command.GenerateWorkOrder" Id="ts.ts_securityincident.Button.GenerateWorkOrder" LabelText="$LocLabels:ts.ts_securityincident.Button.GenerateWorkOrder.LabelText" Sequence="73" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.ts_securityincident.Button.GenerateWorkOrder.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_securityincident.Button.GenerateWorkOrder.ToolTipDescription" />
@@ -11,6 +22,42 @@
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
   <CommandDefinitions>
+    <CommandDefinition Id="Mscrm.Form.Deactivate">
+      <EnableRules>
+        <EnableRule Id="Mscrm.CanWritePrimary" />
+        <EnableRule Id="ts.ts_securityincident.isadminormanager" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CanWritePrimary" />
+        <DisplayRule Id="Mscrm.PrimaryIsActive" />
+        <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode" />
+        <DisplayRule Id="Mscrm.PrimaryIsNotActivity" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Deactivate.deactivatePrimaryRecord" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.HomepageGrid.Deactivate">
+      <EnableRules>
+        <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+        <EnableRule Id="ts.ts_securityincident.isadminormanager" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CanWriteSelected" />
+        <DisplayRule Id="Mscrm.SelectedEntityHasStatecode" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Deactivate.deactivateRecords" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedControl" />
+          <CrmParameter Value="SelectedControlSelectedItemReferences" />
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="ts.ts_securityincident.Command.GenerateWorkOrder">
       <EnableRules>
         <EnableRule Id="ts.ts_securityincident.EnableRule.GenerateInspection" />
@@ -28,13 +75,63 @@
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules>
+      <DisplayRule Id="Mscrm.CanWritePrimary">
+        <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.CanWriteSelected">
+        <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="HasStateCode" PropertyValue="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsActive">
+        <FormStateRule State="Existing" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsNotActivity">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="false" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.SelectedEntityHasStatecode">
+        <EntityPropertyRule AppliesTo="SelectedEntity" PropertyName="HasStateCode" PropertyValue="true" />
+      </DisplayRule>
       <DisplayRule Id="ts.ts_securityincident.DisplayRule.GenerationInspectionHide">
         <ValueRule Value="" InvertResult="true" />
       </DisplayRule>
     </DisplayRules>
     <EnableRules>
+      <EnableRule Id="Mscrm.CanWritePrimary">
+        <RecordPrivilegeRule PrivilegeType="Write" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.SelectionCountAtLeastOne">
+        <SelectionCountRule AppliesTo="SelectedEntity" Minimum="1" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.VisualizationPaneNotMaximized">
+        <OrRule>
+          <Or>
+            <CommandClientTypeRule Type="Modern" />
+          </Or>
+          <Or>
+            <CustomRule FunctionName="Mscrm.GridCommandActions.disableButtonsWhenChartMaximized" Library="/_static/_common/scripts/CommandBarActions.js">
+              <CrmParameter Value="SelectedControl" />
+            </CustomRule>
+          </Or>
+        </OrRule>
+      </EnableRule>
       <EnableRule Id="ts.ts_securityincident.EnableRule.GenerateInspection">
         <CustomRule FunctionName="isFormTypeUpdate" Library="$webresource:ts_/js/Common.js" Default="false" />
+      </EnableRule>
+      <EnableRule Id="ts.ts_securityincident.isadminormanager">
+        <OrRule>
+          <Or>
+            <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+              <StringParameter Value="ROM - Manager" />
+            </CustomRule>
+          </Or>
+          <Or>
+            <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+              <StringParameter Value="System Administrator" />
+            </CustomRule>
+          </Or>
+        </OrRule>
       </EnableRule>
     </EnableRules>
   </RuleDefinitions>

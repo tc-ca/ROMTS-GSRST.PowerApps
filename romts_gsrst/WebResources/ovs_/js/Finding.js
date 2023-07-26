@@ -192,6 +192,7 @@ var ROM;
                     }
                 }
             });
+            resizeRATEFactorGuide();
         }
         Finding.onLoad = onLoad;
         function shouldShowISSOOnlyFields(isDualInspector, operationTypeOwningBusinessUnit, userBusinessUnitName) {
@@ -1050,5 +1051,35 @@ var ROM;
             }
         }
         Finding.SubGridFilterExecution = SubGridFilterExecution;
+        function resizeRATEFactorGuide() {
+            var ids = [
+                "WebResource_RATEFactorGuide_SpecificNonComplianceHistory",
+                "WebResource_RATEFactorGuide_GeneralNonComplianceHistory",
+                "WebResource_RATEFactorGuide_ActualPotentialHarmVulnerability",
+                "WebResource_RATEFactorGuide_Intentionality",
+                "WebResource_RATEFactorGuide_EconomicBenefit",
+                "WebResource_RATEFactorGuide_AcceptanceOfResponsibility",
+                "WebResource_RATEFactorGuide_MitigationOfHarm",
+                "WebResource_RATEFactorGuide_PreventionOfRecurrence",
+                "WebResource_RATEFactorGuide_Cooperation"
+            ];
+            // Create an observer instance
+            var observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                    ids.forEach(function (id) {
+                        var element = document.getElementById(id);
+                        if (element) {
+                            element.style.height = "52px";
+                            observer.disconnect(); // stop observing once we've resized
+                        }
+                    });
+                });
+            });
+            // Configuration of the observer
+            var config = { attributes: true, childList: true, subtree: true };
+            // Pass in the target node (in this case, the whole document), as well as the observer options
+            observer.observe(document, config);
+        }
+        Finding.resizeRATEFactorGuide = resizeRATEFactorGuide;
     })(Finding = ROM.Finding || (ROM.Finding = {}));
 })(ROM || (ROM = {}));

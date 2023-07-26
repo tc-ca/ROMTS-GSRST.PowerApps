@@ -1,14 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
+  <CustomActions>
+    <HideCustomAction HideActionId="ts.Mscrm.Form.ts_action.FollowButton.Hide" Location="Mscrm.Form.ts_action.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.Form.ts_action.Reports.Hide" Location="Mscrm.Form.ts_action.Reports" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ts_action.FollowButton.Hide" Location="Mscrm.HomepageGrid.ts_action.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ts_action.RefreshButton.Hide" Location="Mscrm.HomepageGrid.ts_action.RefreshButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ts_action.RunReport.Hide" Location="Mscrm.HomepageGrid.ts_action.RunReport" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_action.FollowButton.Hide" Location="Mscrm.SubGrid.ts_action.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_action.RunReport.Hide" Location="Mscrm.SubGrid.ts_action.RunReport" />
+  </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="Mscrm.Form.Deactivate">
+      <EnableRules>
+        <EnableRule Id="Mscrm.CanWritePrimary" />
+        <EnableRule Id="ts.ts_action.isadminormanager" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CanWritePrimary" />
+        <DisplayRule Id="Mscrm.PrimaryIsActive" />
+        <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode" />
+        <DisplayRule Id="Mscrm.PrimaryIsNotActivity" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Deactivate.deactivatePrimaryRecord" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
-    <DisplayRules />
-    <EnableRules />
+    <DisplayRules>
+      <DisplayRule Id="Mscrm.CanWritePrimary">
+        <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="HasStateCode" PropertyValue="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsActive">
+        <FormStateRule State="Existing" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsNotActivity">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="false" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules>
+      <EnableRule Id="Mscrm.CanWritePrimary">
+        <RecordPrivilegeRule PrivilegeType="Write" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="ts.ts_action.isadminormanager">
+        <OrRule>
+          <Or>
+            <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+              <StringParameter Value="ROM - Manager" />
+            </CustomRule>
+          </Or>
+          <Or>
+            <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+              <StringParameter Value="System Administrator" />
+            </CustomRule>
+          </Or>
+        </OrRule>
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
   <LocLabels />
 </RibbonDiffXml>

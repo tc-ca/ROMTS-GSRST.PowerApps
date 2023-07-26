@@ -1,16 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
+    <HideCustomAction HideActionId="ts.Mscrm.Form.activitypointer.AddConnection.Hide" Location="Mscrm.Form.activitypointer.AddConnection" />
+    <HideCustomAction HideActionId="ts.Mscrm.Form.activitypointer.Delete.Hide" Location="Mscrm.Form.activitypointer.Delete" />
+    <HideCustomAction HideActionId="ts.Mscrm.Form.activitypointer.FollowButton.Hide" Location="Mscrm.Form.activitypointer.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.Form.activitypointer.Reports.Hide" Location="Mscrm.Form.activitypointer.Reports" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.activitypointer.AddConnection.Hide" Location="Mscrm.HomepageGrid.activitypointer.AddConnection" />
     <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.activitypointer.Delete.Hide" Location="Mscrm.HomepageGrid.activitypointer.Delete" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.activitypointer.DeleteMenu.Hide" Location="Mscrm.HomepageGrid.activitypointer.DeleteMenu" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.activitypointer.FollowButton.Hide" Location="Mscrm.HomepageGrid.activitypointer.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.activitypointer.RunReport.Hide" Location="Mscrm.HomepageGrid.activitypointer.RunReport" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.activitypointer.AddConnection.Hide" Location="Mscrm.SubGrid.activitypointer.AddConnection" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.activitypointer.Delete.Hide" Location="Mscrm.SubGrid.activitypointer.Delete" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.activitypointer.FollowButton.Hide" Location="Mscrm.SubGrid.activitypointer.FollowButton" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.activitypointer.RunReport.Hide" Location="Mscrm.SubGrid.activitypointer.RunReport" />
   </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="Mscrm.Form.Deactivate">
+      <EnableRules>
+        <EnableRule Id="Mscrm.CanWritePrimary" />
+        <EnableRule Id="ts.activitypointer.isadminormanager" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.CanWritePrimary" />
+        <DisplayRule Id="Mscrm.PrimaryIsActive" />
+        <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode" />
+        <DisplayRule Id="Mscrm.PrimaryIsNotActivity" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Deactivate.deactivatePrimaryRecord" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
-    <DisplayRules />
-    <EnableRules />
+    <DisplayRules>
+      <DisplayRule Id="Mscrm.CanWritePrimary">
+        <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryEntityHasStatecode">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="HasStateCode" PropertyValue="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsActive">
+        <FormStateRule State="Existing" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.PrimaryIsNotActivity">
+        <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="false" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules>
+      <EnableRule Id="Mscrm.CanWritePrimary">
+        <RecordPrivilegeRule PrivilegeType="Write" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="ts.activitypointer.isadminormanager">
+        <OrRule>
+          <Or>
+            <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+              <StringParameter Value="ROM - Manager" />
+            </CustomRule>
+          </Or>
+          <Or>
+            <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+              <StringParameter Value="System Administrator" />
+            </CustomRule>
+          </Or>
+        </OrRule>
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
   <LocLabels />
 </RibbonDiffXml>

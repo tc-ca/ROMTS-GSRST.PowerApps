@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{755fb6bc-1126-435e-bbd7-1cc791902745}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_suggestedinspectionid">
+          <cell name="ts_name" width="300" />
+          <cell name="ts_riskthreshold" width="126" />
+          <cell name="ts_q1" width="100" />
+          <cell name="ts_q3" width="100" />
+          <cell name="ts_q2" width="100" />
+          <cell name="ts_q4" width="100" />
+          <cell name="ts_inspector" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_suggestedinspection">
+          <attribute name="ts_suggestedinspectionid" />
+          <attribute name="ts_name" />
+          <order attribute="ts_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_q1" />
+          <attribute name="ts_q3" />
+          <attribute name="ts_q2" />
+          <attribute name="ts_q4" />
+          <attribute name="ts_inspector" />
+          <attribute name="ts_riskthreshold" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Suggested Inspections" languagecode="1033" />
+      <LocalizedName description="Active Suggested Inspections" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
