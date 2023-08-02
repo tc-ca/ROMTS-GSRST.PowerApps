@@ -10,13 +10,17 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_suggestedinspectionid">
-          <cell name="ts_name" width="300" />
+          <cell name="ts_stakeholder" width="107" />
+          <cell name="ts_operationtype" width="128" />
+          <cell name="ts_site" width="100" />
+          <cell name="ts_activitytype" width="118" />
           <cell name="ts_riskthreshold" width="126" />
-          <cell name="ts_q1" width="100" />
-          <cell name="ts_q3" width="100" />
-          <cell name="ts_q2" width="100" />
-          <cell name="ts_q4" width="100" />
-          <cell name="ts_inspector" width="100" />
+          <cell name="ts_inspector" width="133" />
+          <cell name="a_9d662beb02634b22849aa93902221758.msdyn_estimatedduration" width="117" />
+          <cell name="ts_q1" width="50" />
+          <cell name="ts_q2" width="50" />
+          <cell name="ts_q3" width="50" />
+          <cell name="ts_q4" width="50" />
         </row>
       </grid>
     </layoutxml>
@@ -25,8 +29,6 @@
       <fetch version="1.0" mapping="logical">
         <entity name="ts_suggestedinspection">
           <attribute name="ts_suggestedinspectionid" />
-          <attribute name="ts_name" />
-          <order attribute="ts_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
@@ -34,8 +36,15 @@
           <attribute name="ts_q3" />
           <attribute name="ts_q2" />
           <attribute name="ts_q4" />
-          <attribute name="ts_inspector" />
           <attribute name="ts_riskthreshold" />
+          <attribute name="ts_stakeholder" />
+          <attribute name="ts_operationtype" />
+          <attribute name="ts_site" />
+          <attribute name="ts_activitytype" />
+          <attribute name="ts_inspector" />
+          <link-entity alias="a_9d662beb02634b22849aa93902221758" name="msdyn_incidenttype" to="ts_activitytype" from="msdyn_incidenttypeid" link-type="outer" visible="false">
+            <attribute name="msdyn_estimatedduration" />
+          </link-entity>
         </entity>
       </fetch>
     </fetchxml>

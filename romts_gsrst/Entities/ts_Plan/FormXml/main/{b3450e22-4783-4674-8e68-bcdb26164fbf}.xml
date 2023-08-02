@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab verticallayout="true" id="{fc9c31f0-faa2-4e05-ab8c-616876e20bd1}" IsUserDefined="1">
           <labels>
@@ -15,18 +15,24 @@
           <columns>
             <column width="100%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{bc0aa5b6-bbb7-4974-bda1-b85d2c797a42}">
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{bc0aa5b6-bbb7-4974-bda1-b85d2c797a42}" columns="11">
                   <labels>
                     <label description="General" languagecode="1033" />
                     <label description="Général" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{67db77c7-82cd-4b4f-917f-6db7564f6dcb}">
+                      <cell id="{67db77c7-82cd-4b4f-917f-6db7564f6dcb}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Name" languagecode="1033" />
                         </labels>
-                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" uniqueid="{569542b5-7d11-4529-34b7-66c262387d90}" disabled="false" />
+                      </cell>
+                      <cell id="{44b9a3e5-8683-44e0-b42c-424aad6b22d5}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Team" languagecode="1033" />
+                        </labels>
+                        <control id="ts_team" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_team" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -37,35 +43,41 @@
                         </labels>
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
                       </cell>
+                      <cell id="{cf06c250-fbce-41f1-9212-91d7025f339a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Fiscal Year" languagecode="1033" />
+                        </labels>
+                        <control id="ts_fiscalyear" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalyear" disabled="false" />
+                      </cell>
                     </row>
                   </rows>
                 </section>
-                <section name="{fc9c31f0-faa2-4e05-ab8c-616876e20bd1}_section_2" showlabel="false" showbar="false" locklevel="0" id="{caec7dea-c12c-045d-c44c-cdeb5d91bb2d}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                <section name="{fc9c31f0-faa2-4e05-ab8c-616876e20bd1}_section_3" showlabel="false" showbar="false" locklevel="0" id="{ba87b3cb-0177-767e-b96e-22d6d7be3571}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
-                    <label description="Section" languagecode="1033" />
+                    <label description="Inspector Hours" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{c7064329-6218-1437-905b-32634794893a}" showlabel="false" colspan="1" auto="false" rowspan="6">
+                      <cell id="{513b9948-9d3a-b0e3-d414-cb3d3ea9c9d7}" showlabel="false" colspan="1" auto="false" rowspan="22">
                         <labels>
-                          <label description="Suggested Inspections (Plan)" languagecode="1033" />
+                          <label description="Plan Inspector Hours (Plan)" languagecode="1033" />
                         </labels>
-                        <control id="suggested_inspections_grid" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="suggested_inspectorhours_grid" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{e84e83a8-0040-e054-43d3-e1016969be11}">
                           <parameters>
-                            <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
+                            <ViewId>{4611204D-36B6-4B08-8FEF-06C5E0E0D71F}</ViewId>
                             <IsUserView>false</IsUserView>
-                            <RelationshipName>ts_suggestedinspection_ts_plan</RelationshipName>
-                            <TargetEntityType>ts_suggestedinspection</TargetEntityType>
+                            <RelationshipName>ts_planinspectorhours_plan</RelationshipName>
+                            <TargetEntityType>ts_planinspectorhours</TargetEntityType>
                             <AutoExpand>Fixed</AutoExpand>
                             <EnableQuickFind>false</EnableQuickFind>
                             <EnableViewPicker>false</EnableViewPicker>
-                            <ViewIds>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewIds>
+                            <ViewIds>{4611204D-36B6-4B08-8FEF-06C5E0E0D71F}</ViewIds>
                             <EnableJumpBar>false</EnableJumpBar>
                             <ChartGridMode>All</ChartGridMode>
                             <VisualizationId />
                             <IsUserChart>false</IsUserChart>
                             <EnableChartPicker>true</EnableChartPicker>
-                            <RecordsPerPage>4</RecordsPerPage>
+                            <RecordsPerPage>20</RecordsPerPage>
                             <HeaderColorCode>#F3F3F3</HeaderColorCode>
                           </parameters>
                         </control>
@@ -76,6 +88,58 @@
                     <row />
                     <row />
                     <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+                <section name="{fc9c31f0-faa2-4e05-ab8c-616876e20bd1}_section_2" showlabel="false" showbar="false" locklevel="0" id="{caec7dea-c12c-045d-c44c-cdeb5d91bb2d}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" height="auto">
+                  <labels>
+                    <label description="Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{c7064329-6218-1437-905b-32634794893a}" showlabel="false" colspan="1" rowspan="4" auto="true">
+                        <labels>
+                          <label description="Suggested Inspections (Plan)" languagecode="1033" />
+                        </labels>
+                        <control id="suggested_inspections_grid" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" indicationOfSubgrid="true" uniqueid="{85954262-821e-a6e0-393e-59b0e692cde5}">
+                          <parameters>
+                            <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
+                            <IsUserView>false</IsUserView>
+                            <RelationshipName>ts_suggestedinspection_ts_plan</RelationshipName>
+                            <TargetEntityType>ts_suggestedinspection</TargetEntityType>
+                            <AutoExpand>Auto</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <ViewIds>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewIds>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RecordsPerPage>100</RecordsPerPage>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row height="auto" />
                   </rows>
                 </section>
               </sections>
@@ -113,7 +177,140 @@
           </NavBarArea>
         </NavBarAreas>
       </Navigation>
-      <controlDescriptions />
+      <controlDescriptions>
+        <controlDescription forControl="{85954262-821e-a6e0-393e-59b0e692cde5}">
+          <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" formFactor="0">
+            <parameters>
+              <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
+              <IsUserView>false</IsUserView>
+              <RelationshipName>ts_suggestedinspection_ts_plan</RelationshipName>
+              <TargetEntityType>ts_suggestedinspection</TargetEntityType>
+              <AutoExpand>Auto</AutoExpand>
+              <EnableQuickFind>false</EnableQuickFind>
+              <EnableViewPicker>false</EnableViewPicker>
+              <ViewIds>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewIds>
+              <EnableJumpBar>false</EnableJumpBar>
+              <ChartGridMode>All</ChartGridMode>
+              <VisualizationId />
+              <IsUserChart>false</IsUserChart>
+              <EnableChartPicker>true</EnableChartPicker>
+              <RecordsPerPage>100</RecordsPerPage>
+              <HeaderColorCode>#F3F3F3</HeaderColorCode>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_inspector">
+                    <DefaultViewId>{E88CA999-0B16-4AE9-B6A9-9EDC840D42D8}</DefaultViewId>
+                    <DependentAttributeType>msdyn_incidenttype</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>true</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_suggestedinspection_ts_plan</RelationshipName>
+                <TargetEntityType>ts_suggestedinspection</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{755FB6BC-1126-435E-BBD7-1CC791902745}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_inspector">
+                    <DefaultViewId>{E88CA999-0B16-4AE9-B6A9-9EDC840D42D8}</DefaultViewId>
+                    <DependentAttributeType>msdyn_incidenttype</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>true</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_suggestedinspection_ts_plan</RelationshipName>
+                <TargetEntityType>ts_suggestedinspection</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{755FB6BC-1126-435E-BBD7-1CC791902745}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+        </controlDescription>
+      </controlDescriptions>
+      <header id="{11b7f9fa-d97e-461d-b376-615a81208613}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{e9ce8157-2989-4873-8540-024d210f5aa9}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9cbbda0f-1d93-4684-810c-b14693a00ef0}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{694c8e01-b3ca-4e23-bbdc-647d72149579}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{5c6578c3-13f6-4f08-80a0-397543b523c6}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{7db5b0a2-9e36-4fdd-80d4-f2e71fda42b3}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{af3b1551-e37d-4398-af68-f78268051824}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{a361e9f2-ea42-4d24-ab4a-98c99dc1a0bf}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <formLibraries>
+        <Library name="ts_/js/Plan.js" libraryUniqueId="{b000c881-59d7-22b6-349a-ce2480dce832}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.Plan.onLoad" libraryName="ts_/js/Plan.js" handlerUniqueId="{8437a809-cc07-352b-5d60-9b9e3d470533}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

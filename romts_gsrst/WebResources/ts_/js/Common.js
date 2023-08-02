@@ -193,14 +193,6 @@ function setOwnerToUserBusinessUnit(formContext) {
           ]);
         }
       });
-
-      //   ownerAttribute.setValue([
-      //     {
-      //       entityType: "team",
-      //       name: `${businessunit.entities[0].name}`,
-      //       id: `${businessunit.entities[0].businessunitid}`,
-      //     },
-      //   ]);
     }
   });
 }

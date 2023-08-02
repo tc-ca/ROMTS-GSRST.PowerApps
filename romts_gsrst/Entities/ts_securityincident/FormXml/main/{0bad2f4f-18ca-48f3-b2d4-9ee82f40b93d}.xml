@@ -233,7 +233,15 @@
                           <label description="Incident Date / Time" languagecode="1033" />
                           <label description="Heure de l'incident" languagecode="1036" />
                         </labels>
-                        <control id="ts_incidentdatetime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_incidentdatetime" disabled="false" />
+                        <control id="ts_incidentdatetime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_incidentdatetime" disabled="false" uniqueid="{c809b900-a8ba-b476-936e-71d9ee08e899}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1b025303-0d31-3b6e-8e37-99b05c9dc1e6}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Incident Date / Time" languagecode="1033" />
+                        </labels>
+                        <control id="ts_incidentdatetimeadjust" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_incidentdatetimeadjust" disabled="true" uniqueid="{79902e24-c562-4b15-92aa-1c20c7d8e9dd}" />
                       </cell>
                     </row>
                     <row>
@@ -242,7 +250,15 @@
                           <label description="Reported Date / Time" languagecode="1033" />
                           <label description="Heure signalée" languagecode="1036" />
                         </labels>
-                        <control id="ts_reporteddatetime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_reporteddatetime" disabled="false" />
+                        <control id="ts_reporteddatetime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_reporteddatetime" disabled="false" uniqueid="{270da99d-78ba-4644-41e6-ee7b9b877607}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ebe2bdda-bba1-65eb-5310-e1b07e475d6e}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Reported Date / Time" languagecode="1033" />
+                        </labels>
+                        <control id="ts_reporteddatetimeadjust" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_reporteddatetimeadjust" disabled="true" uniqueid="{da9e98ce-4645-40d6-da88-e024bc05515b}" />
                       </cell>
                     </row>
                     <row>
@@ -251,7 +267,7 @@
                           <label description="Time zone" languagecode="1033" />
                           <label description="fuseau horaire" languagecode="1036" />
                         </labels>
-                        <control id="ts_timezone" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_timezone" disabled="false" />
+                        <control id="ts_timezone" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_timezone" disabled="false" uniqueid="{39bd6496-2cd5-e239-9ac5-b24dcac45643}" />
                       </cell>
                     </row>
                     <row>
@@ -386,24 +402,6 @@
                             <DisableMru>false</DisableMru>
                             <DisableQuickFind>false</DisableQuickFind>
                             <DisableViewPicker>false</DisableViewPicker>
-                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
-                            <AllowFilterOff>false</AllowFilterOff>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{ad2cab46-754a-6cb0-b2a6-637c7beed60d}" showlabel="true" locklevel="0" visible="false">
-                        <labels>
-                          <label description="Subsite" languagecode="1033" />
-                          <label description="Sous-site" languagecode="1036" />
-                        </labels>
-                        <control id="ts_subsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subsite" disabled="false" uniqueid="{87b57707-1522-5246-a1ce-e4e46cd6302e}">
-                          <parameters>
-                            <AutoResolve>true</AutoResolve>
-                            <DisableMru>false</DisableMru>
-                            <DisableQuickFind>true</DisableQuickFind>
-                            <DisableViewPicker>true</DisableViewPicker>
                             <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
                             <AllowFilterOff>false</AllowFilterOff>
                           </parameters>
@@ -932,7 +930,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -1150,11 +1148,6 @@
             <Handler functionName="ROM.SecurityIncident.modeOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{f6382938-331b-4d29-ab46-d8d4b3d27e6b}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
-        <event name="onchange" application="false" active="false" attribute="ts_site">
-          <Handlers>
-            <Handler functionName="ROM.SecurityIncident.siteOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{57bb3a62-7dbb-a298-0992-c15d6da8e995}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
         <event name="onchange" application="false" active="false" attribute="ts_securityincidenttype">
           <Handlers>
             <Handler functionName="ROM.SecurityIncident.securityIncidentTypeOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{7e26a075-148c-7b46-2164-cabdc24da4a9}" enabled="true" parameters="" passExecutionContext="true" />
@@ -1178,6 +1171,11 @@
         <event name="onchange" application="false" active="false" attribute="ts_stakeholder">
           <Handlers>
             <Handler functionName="ROM.SecurityIncident.stakeholderCompanyOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{de5671f2-2543-4c45-8835-85951d9d1aed}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_timezone">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.TimeZoneOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{04aa832a-bcca-20c2-c98b-3aa08769702d}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
