@@ -394,6 +394,7 @@
         <EnableRule Id="FieldService.Form.msdyn_workorderservicetask.MainTab.Save.AsComplete.Command.EnableRule.FormStateRule" />
         <EnableRule Id="FieldService.Form.msdyn_workorderservicetask.MainTab.Save.AsComplete.Command.EnableRule.FormStateRule2" />
         <EnableRule Id="ts.msdyn_workorderservicetask.TSIS.isStatusReasonNew.Inverted" />
+        <EnableRule Id="ts.msdyn_workorderservicetask.IsNotCompleted" />
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="FieldService.Form.msdyn_workorderservicetask.MainTab.Save.AsComplete.Command.DisplayRule.EntityPrivilegeRule" />
@@ -781,6 +782,9 @@
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorderservicetask.isEntityWorkOrder">
         <EntityRule EntityName="msdyn_workorder" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="false" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorderservicetask.IsNotCompleted">
+        <ValueRule Field="statuscode" Value="918640002" InvertResult="true" />
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorderservicetask.isSystemOrBusinessAdmins">
         <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
