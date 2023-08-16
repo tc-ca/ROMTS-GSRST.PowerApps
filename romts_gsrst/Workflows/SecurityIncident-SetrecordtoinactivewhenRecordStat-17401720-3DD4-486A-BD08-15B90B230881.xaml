@@ -11,79 +11,17 @@
   </this:XrmWorkflow174017203dd4486abd0815b90b230881.CreatedEntities>
   <mva:VisualBasic.Settings>Assembly references and imported namespaces for internal implementation</mva:VisualBasic.Settings>
   <mxswa:Workflow>
-    <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.ConditionSequence, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionStep1: If Record Status = Completed">
+    <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.ConditionSequence, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionStep1: If Record Status = Inactive">
       <mxswa:ActivityReference.Arguments>
         <InArgument x:TypeArguments="x:Boolean" x:Key="Wait">False</InArgument>
       </mxswa:ActivityReference.Arguments>
       <mxswa:ActivityReference.Properties>
         <sco:Collection x:TypeArguments="Variable" x:Key="Variables">
-          <Variable x:TypeArguments="x:Boolean" Default="False" Name="ConditionBranchStep2_condition" />
-          <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep2_1" />
-          <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep2_2" />
           <Variable x:TypeArguments="x:Boolean" Default="False" Name="ConditionBranchStep4_condition" />
           <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep4_1" />
           <Variable x:TypeArguments="x:Object" Name="ConditionBranchStep4_2" />
         </sco:Collection>
         <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
-          <mxswa:GetEntityProperty Attribute="ts_recordstatus" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ts_securityincident" Value="[ConditionBranchStep2_1]">
-            <mxswa:GetEntityProperty.TargetType>
-              <InArgument x:TypeArguments="s:Type">
-                <mxswa:ReferenceLiteral x:TypeArguments="s:Type">
-                  <x:Null />
-                </mxswa:ReferenceLiteral>
-              </InArgument>
-            </mxswa:GetEntityProperty.TargetType>
-          </mxswa:GetEntityProperty>
-          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateExpression, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateExpression">
-            <mxswa:ActivityReference.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="ExpressionOperator">CreateCrmType</InArgument>
-              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { Microsoft.Xrm.Sdk.Workflow.WorkflowPropertyType.OptionSetValue, "741130002", "Picklist" }]</InArgument>
-              <InArgument x:TypeArguments="s:Type" x:Key="TargetType">
-                <mxswa:ReferenceLiteral x:TypeArguments="s:Type" Value="mxs:OptionSetValue" />
-              </InArgument>
-              <OutArgument x:TypeArguments="x:Object" x:Key="Result">[ConditionBranchStep2_2]</OutArgument>
-            </mxswa:ActivityReference.Arguments>
-          </mxswa:ActivityReference>
-          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.EvaluateCondition, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="EvaluateCondition">
-            <mxswa:ActivityReference.Arguments>
-              <InArgument x:TypeArguments="mxsq:ConditionOperator" x:Key="ConditionOperator">Equal</InArgument>
-              <InArgument x:TypeArguments="s:Object[]" x:Key="Parameters">[New Object() { ConditionBranchStep2_2 }]</InArgument>
-              <InArgument x:TypeArguments="x:Object" x:Key="Operand">[ConditionBranchStep2_1]</InArgument>
-              <OutArgument x:TypeArguments="x:Boolean" x:Key="Result">[ConditionBranchStep2_condition]</OutArgument>
-            </mxswa:ActivityReference.Arguments>
-          </mxswa:ActivityReference>
-          <mxswa:ActivityReference AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.ConditionBranch, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionBranchStep2">
-            <mxswa:ActivityReference.Arguments>
-              <InArgument x:TypeArguments="x:Boolean" x:Key="Condition">[ConditionBranchStep2_condition]</InArgument>
-            </mxswa:ActivityReference.Arguments>
-            <mxswa:ActivityReference.Properties>
-              <mxswa:ActivityReference x:Key="Then" AssemblyQualifiedName="Microsoft.Crm.Workflow.Activities.Composite, Microsoft.Crm.Workflow, Version=9.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" DisplayName="ConditionBranchStep2">
-                <mxswa:ActivityReference.Properties>
-                  <sco:Collection x:TypeArguments="Variable" x:Key="Variables" />
-                  <sco:Collection x:TypeArguments="Activity" x:Key="Activities">
-                    <mxswa:SetState DisplayName="SetStateStep3: Set Security Incident to Completed" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityId="[InputEntities(&quot;primaryEntity&quot;).Id]" EntityName="ts_securityincident">
-                      <mxswa:SetState.State>
-                        <InArgument x:TypeArguments="mxs:OptionSetValue">
-                          <mxswa:ReferenceLiteral x:TypeArguments="mxs:OptionSetValue">
-                            <mxs:OptionSetValue ExtensionData="{x:Null}" Value="1" />
-                          </mxswa:ReferenceLiteral>
-                        </InArgument>
-                      </mxswa:SetState.State>
-                      <mxswa:SetState.Status>
-                        <InArgument x:TypeArguments="mxs:OptionSetValue">
-                          <mxswa:ReferenceLiteral x:TypeArguments="mxs:OptionSetValue">
-                            <mxs:OptionSetValue ExtensionData="{x:Null}" Value="717750001" />
-                          </mxswa:ReferenceLiteral>
-                        </InArgument>
-                      </mxswa:SetState.Status>
-                    </mxswa:SetState>
-                  </sco:Collection>
-                </mxswa:ActivityReference.Properties>
-              </mxswa:ActivityReference>
-              <x:Null x:Key="Else" />
-              <x:Null x:Key="Description" />
-            </mxswa:ActivityReference.Properties>
-          </mxswa:ActivityReference>
           <mxswa:GetEntityProperty Attribute="ts_recordstatus" Entity="[InputEntities(&quot;primaryEntity&quot;)]" EntityName="ts_securityincident" Value="[ConditionBranchStep4_1]">
             <mxswa:GetEntityProperty.TargetType>
               <InArgument x:TypeArguments="s:Type">

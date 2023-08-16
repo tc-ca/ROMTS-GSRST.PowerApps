@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{9077fe14-8e37-ee11-bdf4-0022483d5ee0}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_nonoversightactivityid">
+          <cell name="ts_program" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_category" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_dateofactivity" width="100" />
+          <cell name="ts_activitytime" width="100" />
+          <cell name="ts_quarter" width="100" />
+          <cell name="ownerid" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+        <entity name="ts_nonoversightactivity">
+          <attribute name="ts_quarter" />
+          <attribute name="ts_program" />
+          <attribute name="ts_dateofactivity" />
+          <attribute name="ts_category" />
+          <attribute name="ts_activitytime" />
+          <attribute name="ownerid" />
+          <order attribute="ts_dateofactivity" descending="false" />
+          <order attribute="ts_program" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="ownerid" operator="eq-userid" />
+          </filter>
+          <attribute name="ts_nonoversightactivityid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20230809.2</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="My Active Non-Oversight Activities" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

@@ -27,7 +27,9 @@ var ROM;
             if (incidentDetailsAttachment == null || incidentDetailsAttachment == undefined) {
                 formContext.ui.tabs.get("{99b37896-4f52-4179-8296-3cc0e6722411}").sections.get("IncidentDetails").setVisible(false);
             }
+            unlockRecordLogFieldsIfUserIsSystemAdmin(formContext);
             adjustIncidentDateTime(formContext);
+            lockAllSummaryFieldsWhenStatusClosed(eContext);
         }
         SecurityIncident.onLoad = onLoad;
         function adjustIncidentDateTime(formContext) {
@@ -352,11 +354,60 @@ var ROM;
             }
         }
         SecurityIncident.stakeholderCompanyOnChange = stakeholderCompanyOnChange;
+        function lockAllSummaryFieldsWhenStatusClosed(eContext) {
+            var formContext = eContext.getFormContext();
+            var recordstatus = formContext.getAttribute("ts_recordstatus").getValue();
+            if (recordstatus == 741130002 /* Closed */) {
+                setAllFieldsDisabledInTab(formContext, "{99b37896-4f52-4179-8296-3cc0e6722411}");
+            }
+        }
+        SecurityIncident.lockAllSummaryFieldsWhenStatusClosed = lockAllSummaryFieldsWhenStatusClosed;
+        function setAllFieldsDisabledInTab(formContext, tabname) {
+            var tab = formContext.ui.tabs.get(tabname);
+            if (tab != null) {
+                var tabSections = tab.sections.get();
+                for (var i in tabSections) {
+                    var secName = tabSections[i].getName();
+                    setAllFieldsDisabledInSection(formContext, secName);
+                }
+            }
+        }
+        function setAllFieldsDisabledInSection(formContext, sectionName) {
+            var ctrlName = formContext.ui.controls.get();
+            for (var i in ctrlName) {
+                var ctrl = ctrlName[i];
+                if (ctrl.getParent() != null) {
+                    var ctrlSection = ctrl.getParent().getName();
+                    if (ctrlSection == sectionName) {
+                        ctrl.setDisabled(true);
+                    }
+                }
+            }
+        }
         function setDefaultView(form) {
             form.getControl("ts_aircarrier").setDefaultView("d06d7b47-80bf-ed11-83ff-0022483c5061");
             form.getControl("ts_origin").setDefaultView("3507a249-81bf-ed11-83ff-0022483d7716");
             form.getControl("ts_destination").setDefaultView("3507a249-81bf-ed11-83ff-0022483d7716");
             form.getControl("ts_diversionaerodrome").setDefaultView("3507a249-81bf-ed11-83ff-0022483d7716");
+        }
+        function userHasRole(rolesName) {
+            var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+            var hasRole = false;
+            var roles = rolesName.split("|");
+            roles.forEach(function (roleItem) {
+                userRoles.forEach(function (userRoleItem) {
+                    if (userRoleItem.name.toLowerCase() == roleItem.toLowerCase())
+                        hasRole = true;
+                });
+            });
+            return hasRole;
+        }
+        SecurityIncident.userHasRole = userHasRole;
+        function unlockRecordLogFieldsIfUserIsSystemAdmin(formContext) {
+            if (userHasRole("System Administrator")) {
+                formContext.getControl("ts_closedon").setDisabled(false);
+                formContext.getControl("ts_closedby").setDisabled(false);
+            }
         }
     })(SecurityIncident = ROM.SecurityIncident || (ROM.SecurityIncident = {}));
 })(ROM || (ROM = {}));
