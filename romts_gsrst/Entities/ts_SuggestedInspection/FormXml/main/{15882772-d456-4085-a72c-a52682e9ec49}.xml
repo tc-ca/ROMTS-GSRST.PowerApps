@@ -40,19 +40,29 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{780e7922-7e2c-4bda-83a4-f422d7b5a3b8}" locklevel="0" colspan="1" rowspan="1">
-                        <labels>
-                          <label description="Stakeholder" languagecode="1033" />
-                        </labels>
-                        <control id="ts_stakeholder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_stakeholder" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
                       <cell id="{b980aa03-88c7-4679-a3c6-72053767f3fb}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Operation Type" languagecode="1033" />
+                          <label description="Type d'opération" languagecode="1036" />
                         </labels>
-                        <control id="ts_operationtype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operationtype" disabled="false" />
+                        <control id="ts_operationtype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operationtype" disabled="true">
+                          <parameters>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{780e7922-7e2c-4bda-83a4-f422d7b5a3b8}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Stakeholder" languagecode="1033" />
+                          <label description="Intervenants" languagecode="1036" />
+                        </labels>
+                        <control id="ts_stakeholder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_stakeholder" disabled="true">
+                          <parameters>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -60,7 +70,11 @@
                         <labels>
                           <label description="Site" languagecode="1033" />
                         </labels>
-                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="false" />
+                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="true">
+                          <parameters>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -68,15 +82,24 @@
                         <labels>
                           <label description="Operation" languagecode="1033" />
                         </labels>
-                        <control id="ts_operation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operation" disabled="false" />
+                        <control id="ts_operation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operation" disabled="true">
+                          <parameters>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
                       <cell id="{e319d1b7-2288-44ac-b86c-c5d8df97e4a9}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Activity Type" languagecode="1033" />
+                          <label description="Type d’activité" languagecode="1036" />
                         </labels>
-                        <control id="ts_activitytype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_activitytype" disabled="false" />
+                        <control id="ts_activitytype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_activitytype" disabled="true">
+                          <parameters>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -94,7 +117,11 @@
                           <label description="Risk Threshold" languagecode="1033" />
                           <label description="Seuil de risque" languagecode="1036" />
                         </labels>
-                        <control id="ts_riskthreshold" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_riskthreshold" disabled="false" />
+                        <control id="ts_riskthreshold" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_riskthreshold" disabled="true">
+                          <parameters>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                   </rows>
@@ -216,6 +243,41 @@
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>
+      <formLibraries>
+        <Library name="ts_/js/SuggestedInspection.js" libraryUniqueId="{765129be-3edb-471f-b96c-9f4b895825ef}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.SuggestedInspection.onLoad" libraryName="ts_/js/SuggestedInspection.js" handlerUniqueId="{1462cc59-aeda-459b-8357-7755b6d5e7d9}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_operationtype">
+          <Handlers>
+            <Handler functionName="ROM.SuggestedInspection.operationTypeOnChange" libraryName="ts_/js/SuggestedInspection.js" handlerUniqueId="{0eb91634-14aa-40e0-98a0-832705612f0f}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_activitytype">
+          <Handlers>
+            <Handler functionName="ROM.SuggestedInspection.activityTypeOnChange" libraryName="ts_/js/SuggestedInspection.js" handlerUniqueId="{12d5fab1-497b-4dcb-b0db-1033924bed6a}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_operation">
+          <Handlers>
+            <Handler functionName="ROM.SuggestedInspection.operationOnChange" libraryName="ts_/js/SuggestedInspection.js" handlerUniqueId="{0599c186-f8d3-4a56-bc55-6eca37ca310d}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_site">
+          <Handlers>
+            <Handler functionName="ROM.SuggestedInspection.siteOnChange" libraryName="ts_/js/SuggestedInspection.js" handlerUniqueId="{8f46b99f-c9b6-4381-8802-3c43d8546c23}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_stakeholder">
+          <Handlers>
+            <Handler functionName="ROM.SuggestedInspection.stakeholderOnChange" libraryName="ts_/js/SuggestedInspection.js" handlerUniqueId="{a8a303fd-3b68-4a2c-b485-c936f8df5718}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

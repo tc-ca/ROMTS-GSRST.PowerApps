@@ -106,6 +106,8 @@ var ROM;
             setCaseLookupClickNavigation(eContext);
             //Set Security Incident Lookup Navigation to open Time Tracking form when on Time Tracking Tab
             setSecurityIncidentLookupClickNavigation(eContext);
+            //Set Trip Lookup Navigation to open Time Tracking form when on Time Tracking Tab
+            setTripLookupClickNavigation(eContext);
             if (currentSystemStatus == 690970004 || currentSystemStatus == 741130000 /* Closed */) {
                 form.getControl("ts_completedquarter").setVisible(true);
             }
@@ -237,6 +239,9 @@ var ROM;
                         form.getControl("msdyn_worklocation").setDisabled(true);
                         form.getControl("header_ownerid").setDisabled(true);
                         form.getControl("ownerid").setDisabled(true);
+                    }
+                    if (form.getAttribute("ts_trip").getValue() != null) {
+                        form.getControl("ts_traveltime").setVisible(false);
                     }
                     showHideContact(form);
                     break;
@@ -1767,6 +1772,30 @@ var ROM;
                         entityName: record.entityType,
                         entityId: record.id,
                         formId: "54b321b6-6afa-ed11-8f6e-0022483c5061"
+                    }, {
+                        target: 2,
+                        position: 2,
+                        width: {
+                            value: 30,
+                            unit: "%"
+                        }
+                    });
+                }
+            });
+        }
+        function setTripLookupClickNavigation(eContext) {
+            var formContext = eContext.getFormContext();
+            formContext.getControl("ts_trip").addOnLookupTagClick(function (eContext) {
+                var formContext = eContext.getFormContext();
+                //Check if the Time Tracking Tab is Expanded
+                if (formContext.ui.tabs.get("tab_TimeTracking").getDisplayState() == 'expanded') {
+                    eContext.getEventArgs().preventDefault(); //Prevent default navigation to normal Case form
+                    var record = eContext.getEventArgs().getTagValue();
+                    Xrm.Navigation.navigateTo({
+                        pageType: "entityrecord",
+                        entityName: record.entityType,
+                        entityId: record.id,
+                        formId: "F9A735C7-D9C6-4CFF-B0CE-C78A28C8E5AD"
                     }, {
                         target: 2,
                         position: 2,
