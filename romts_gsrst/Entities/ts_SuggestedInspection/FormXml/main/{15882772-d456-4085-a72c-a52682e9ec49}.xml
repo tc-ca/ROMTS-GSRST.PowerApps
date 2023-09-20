@@ -69,6 +69,7 @@
                       <cell id="{15f28229-236e-4859-9d0f-6ae8f3969763}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Site" languagecode="1033" />
+                          <label description="Site" languagecode="1036" />
                         </labels>
                         <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="true">
                           <parameters>
@@ -81,6 +82,7 @@
                       <cell id="{8b66487d-c9e8-481f-b598-9a13a4b025f7}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Operation" languagecode="1033" />
+                          <label description="Operation" languagecode="1036" />
                         </labels>
                         <control id="ts_operation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operation" disabled="true">
                           <parameters>
@@ -122,6 +124,15 @@
                             <DisableMru>true</DisableMru>
                           </parameters>
                         </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9c92c26e-0612-6e47-cce3-0b0ae5dbac64}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Category" languagecode="1033" />
+                          <label description="Catégorie" languagecode="1036" />
+                        </labels>
+                        <control id="ts_category" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_category" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -211,7 +222,7 @@
         </rows>
       </footer>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -240,9 +251,6 @@
           </NavBarArea>
         </NavBarAreas>
       </Navigation>
-      <DisplayConditions Order="0" FallbackForm="true">
-        <Everyone />
-      </DisplayConditions>
       <formLibraries>
         <Library name="ts_/js/SuggestedInspection.js" libraryUniqueId="{765129be-3edb-471f-b96c-9f4b895825ef}" />
       </formLibraries>
@@ -278,6 +286,9 @@
           </Handlers>
         </event>
       </events>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{eedf5449-d553-ee11-be6f-0022483d7716}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" preview="1" icon="1">
+        <row name="result" id="ts_actionfindingid">
+          <cell name="ts_ovs_finding" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_0c45f36d66efed1188480022483c94c0.ts_findingtype" width="150" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_0c45f36d66efed1188480022483c94c0.ovs_findingprovisionreference" width="150" disableSorting="1" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="ts_actionfinding">
+          <order attribute="ts_ovs_finding" descending="false" />
+          <attribute name="ts_ovs_finding" />
+          <link-entity alias="a_0c45f36d66efed1188480022483c94c0" name="ovs_finding" from="ovs_findingid" to="ts_ovs_finding" link-type="outer" visible="false">
+            <attribute name="ovs_findingprovisionreference" />
+            <attribute name="ts_findingtype" />
+          </link-entity>
+          <attribute name="ts_actionfindingid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20230913.2</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Related Findings" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
