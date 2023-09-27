@@ -73,6 +73,11 @@
         <Button Alt="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.Alt" Command="ts.msdyn_workorder.TSIS.AddToTrip" Id="ts.msdyn_workorder.Button6.AddToTrip" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.LabelText" Sequence="22" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.ToolTipTitle" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.Button8.AddToTrip.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="8">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.Button8.AddToTrip.Alt" Command="ts.msdyn_workorder.TSIS.AddToTrip" Id="ts.msdyn_workorder.Button8.AddToTrip" LabelText="$LocLabels:ts.msdyn_workorder.Button8.AddToTrip.LabelText" Sequence="8" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Button8.AddToTrip.ToolTipTitle" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.Commit.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="13">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorder.Commit.Alt" Command="ts.msdyn_workorder.commitSelectedWorkOrders" Id="ts.msdyn_workorder.Commit" LabelText="$LocLabels:ts.msdyn_workorder.Commit.LabelText" Sequence="13" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Commit.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.Commit.ToolTipDescription" />
@@ -653,6 +658,9 @@
       <EnableRule Id="ts.msdyn_workorder.isTeamPlanningDataSubgrid">
         <EntityRule EntityName="ts_teamplanningdata" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="false" />
       </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotPlanData">
+        <EntityRule EntityName="ts_plan" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="false" />
+      </EnableRule>
       <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotTeamPlanningData">
         <EntityRule EntityName="ts_teamplanningdata" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
       </EnableRule>
@@ -805,6 +813,21 @@
       <Titles>
         <Title description="Add to trip" languagecode="1033" />
         <Title description="Ajouter à un voyage" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Button8.AddToTrip.Alt">
+      <Titles>
+        <Title description="Add to trip" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Button8.AddToTrip.LabelText">
+      <Titles>
+        <Title description="Add To Trip" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Button8.AddToTrip.ToolTipTitle">
+      <Titles>
+        <Title description="Add to trip" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.Commit.Alt">
