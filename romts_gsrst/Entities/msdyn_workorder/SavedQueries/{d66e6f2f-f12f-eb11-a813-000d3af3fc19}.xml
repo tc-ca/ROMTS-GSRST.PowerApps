@@ -20,7 +20,7 @@
           <cell name="msdyn_stateorprovince" width="100" />
           <cell name="msdyn_postalcode" width="100" />
           <cell name="ovs_primaryinspector" width="100" />
-          <cell name="ovs_fiscalquarter" width="100" />
+          <cell name="ovs_revisedquarterid" width="145" />
         </row>
       </grid>
     </layoutxml>
@@ -38,13 +38,13 @@
           <attribute name="msdyn_stateorprovince" />
           <attribute name="msdyn_postalcode" />
           <attribute name="ovs_primaryinspector" />
-          <attribute name="ovs_fiscalquarter" />
           <link-entity name="bookableresourcebooking" from="msdyn_workorder" to="msdyn_workorderid" alias="aa">
             <filter type="and">
               <condition attribute="bookableresourcebookingid" operator="null" />
             </filter>
           </link-entity>
           <attribute name="msdyn_workorderid" />
+          <attribute name="ovs_revisedquarterid" />
         </entity>
       </fetch>
     </fetchxml>

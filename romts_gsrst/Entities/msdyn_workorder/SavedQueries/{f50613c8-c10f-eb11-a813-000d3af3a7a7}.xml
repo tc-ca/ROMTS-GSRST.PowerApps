@@ -20,7 +20,7 @@
           <cell name="msdyn_stateorprovince" width="100" />
           <cell name="msdyn_postalcode" width="100" />
           <cell name="ovs_primaryinspector" width="100" />
-          <cell name="ovs_fiscalquarter" width="100" />
+          <cell name="ovs_revisedquarterid" width="145" />
         </row>
       </grid>
     </layoutxml>
@@ -29,7 +29,6 @@
       <fetch version="1.0" output-format="xml-platform" mapping="logical">
         <entity name="msdyn_workorder">
           <attribute name="msdyn_serviceaccount" />
-          <attribute name="ovs_fiscalquarter" />
           <attribute name="msdyn_billingaccount" />
           <attribute name="msdyn_workorderid" />
           <attribute name="ovs_rational" />
@@ -40,7 +39,6 @@
           <attribute name="ovs_primaryinspector" />
           <attribute name="msdyn_name" />
           <attribute name="msdyn_serviceterritory" />
-          <order attribute="ovs_fiscalquarter" descending="false" />
           <filter type="and">
             <condition attribute="ovs_rational" operator="eq" value="{994C3EC1-C104-EB11-A813-000D3AF3A7A7}" />
           </filter>
@@ -49,6 +47,7 @@
               <condition attribute="tc_iscurrentfiscalyear" operator="eq" value="1" />
             </filter>
           </link-entity>
+          <attribute name="ovs_revisedquarterid" />
         </entity>
       </fetch>
     </fetchxml>

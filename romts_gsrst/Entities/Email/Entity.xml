@@ -4,6 +4,39 @@
   <EntityInfo>
     <entity Name="Email">
       <attributes>
+        <attribute PhysicalName="ActualEnd">
+          <Type>datetime</Type>
+          <Name>actualend</Name>
+          <LogicalName>actualend</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>inactive</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>date</Format>
+          <displaynames>
+            <displayname description="Actual End" languagecode="1033" />
+            <displayname description="Fin réelle" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Entrez la date et l'heure de fin réelles du courrier électronique. Par défaut, la date et l'heure auxquelles l'activité est terminée ou annulée sont affichées, mais elles peuvent être modifiées pour tenir compte de la durée réelle de la création et de l'envoi du courrier électronique." languagecode="1036" />
+            <Description description="Enter the actual end date and time of the email. By default, it displays the date and time when the activity was completed or cancelled, but can be edited to capture the actual time to create and send the email." languagecode="1033" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="InternetMessageHeaders">
           <Type>nvarchar</Type>
           <Name>internetmessageheaders</Name>
@@ -78,6 +111,164 @@
           <Descriptions>
             <Description description="Enter the related records for the email." languagecode="1033" />
             <Description description="Enter the related records for the email." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="StateCode">
+          <Type>state</Type>
+          <Name>statecode</Name>
+          <LogicalName>statecode</LogicalName>
+          <RequiredLevel>systemrequired</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <optionset Name="email_statecode">
+            <OptionSetType>state</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Activity Status" languagecode="1033" />
+              <displayname description="Statut d'activité" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Status of the email activity." languagecode="1033" />
+              <Description description="Statut de l'activité de courrier électronique." languagecode="1036" />
+            </Descriptions>
+            <states>
+              <state value="0" defaultstatus="1" invariantname="Open">
+                <labels>
+                  <label description="Open" languagecode="1033" />
+                  <label description="Ouvert" languagecode="1036" />
+                </labels>
+              </state>
+              <state value="1" defaultstatus="2" invariantname="Completed">
+                <labels>
+                  <label description="Completed" languagecode="1033" />
+                  <label description="Terminé" languagecode="1036" />
+                </labels>
+              </state>
+              <state value="2" defaultstatus="5" invariantname="Canceled">
+                <labels>
+                  <label description="Annulé" languagecode="1036" />
+                  <label description="Cancelled" languagecode="1033" />
+                </labels>
+              </state>
+            </states>
+          </optionset>
+          <displaynames>
+            <displayname description="Activity Status" languagecode="1033" />
+            <displayname description="Statut d'activité" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Indique si le courrier électronique est ouvert, terminé ou annulé. Les courriers électroniques terminés et annulés sont en lecture seule et ne peuvent pas être modifiés." languagecode="1036" />
+            <Description description="Shows whether the email is open, completed, or cancelled. Completed and cancelled email is read-only and can't be edited." languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="StatusCode">
+          <Type>status</Type>
+          <Name>statuscode</Name>
+          <LogicalName>statuscode</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>5.0.0.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>1</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <optionset Name="email_statuscode">
+            <OptionSetType>status</OptionSetType>
+            <IntroducedVersion>5.0.0.0</IntroducedVersion>
+            <displaynames>
+              <displayname description="Status Reason" languagecode="1033" />
+              <displayname description="Raison du statut" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="Reason for the status of the email activity." languagecode="1033" />
+              <Description description="Raison du statut de l'activité de courrier électronique." languagecode="1036" />
+            </Descriptions>
+            <statuses>
+              <status value="1" state="0" Color="#3b79b7">
+                <labels>
+                  <label description="Draft" languagecode="1033" />
+                  <label description="Brouillon" languagecode="1036" />
+                </labels>
+              </status>
+              <status value="2" state="1" Color="#358717">
+                <labels>
+                  <label description="Completed" languagecode="1033" />
+                  <label description="Terminé(e)" languagecode="1036" />
+                </labels>
+              </status>
+              <status value="3" state="1" Color="#358717">
+                <labels>
+                  <label description="Sent" languagecode="1033" />
+                  <label description="Envoyé(e)" languagecode="1036" />
+                </labels>
+              </status>
+              <status value="4" state="1" Color="#358717">
+                <labels>
+                  <label description="Received" languagecode="1033" />
+                  <label description="Reçu" languagecode="1036" />
+                </labels>
+              </status>
+              <status value="5" state="2" Color="#666666">
+                <labels>
+                  <label description="Annulé(e)" languagecode="1036" />
+                  <label description="Cancelled" languagecode="1033" />
+                </labels>
+              </status>
+              <status value="6" state="1" Color="#bf991f">
+                <labels>
+                  <label description="Pending Send" languagecode="1033" />
+                  <label description="Envoi en attente" languagecode="1036" />
+                </labels>
+              </status>
+              <status value="7" state="1" Color="#bf991f">
+                <labels>
+                  <label description="Sending" languagecode="1033" />
+                  <label description="Envoi en cours" languagecode="1036" />
+                </labels>
+              </status>
+              <status value="8" state="0" Color="#ea0600">
+                <labels>
+                  <label description="Failed" languagecode="1033" />
+                  <label description="Échec" languagecode="1036" />
+                </labels>
+              </status>
+            </statuses>
+          </optionset>
+          <displaynames>
+            <displayname description="Status Reason" languagecode="1033" />
+            <displayname description="Raison du statut" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Select the email's status." languagecode="1033" />
+            <Description description="Sélectionnez le statut du courrier électronique." languagecode="1036" />
           </Descriptions>
         </attribute>
       </attributes>
