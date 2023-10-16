@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
+    <CustomAction Id="ts.ts_plan.CreateWorkOrders.CustomAction" Location="Mscrm.Form.ts_plan.MainTab.Save.Controls._children" Sequence="18">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_plan.CreateWorkOrders.Alt" Command="ts.ts_plan.CreateWorkOrders" Id="ts.ts_plan.CreateWorkOrders" LabelText="$LocLabels:ts.ts_plan.CreateWorkOrders.LabelText" Sequence="18" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_plan.CreateWorkOrders.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_plan.CreateWorkOrders.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.ts_plan.Recalculate.CustomAction" Location="Mscrm.Form.ts_plan.MainTab.Save.Controls._children" Sequence="15">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.ts_plan.Recalculate.Alt" Command="ts.ts_plan.Recalculate" Id="ts.ts_plan.Recalculate" LabelText="$LocLabels:ts.ts_plan.Recalculate.LabelText" Sequence="15" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_plan.Recalculate.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_plan.Recalculate.ToolTipDescription" />
@@ -11,8 +16,18 @@
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
   <CommandDefinitions>
+    <CommandDefinition Id="ts.ts_plan.CreateWorkOrders">
+      <EnableRules>
+        <EnableRule Id="ts.ts_plan.planStatusComplete" />
+        <EnableRule Id="ts.ts_plan.RecordExisting" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions />
+    </CommandDefinition>
     <CommandDefinition Id="ts.ts_plan.Recalculate">
-      <EnableRules />
+      <EnableRules>
+        <EnableRule Id="ts.ts_plan.RecordExisting" />
+      </EnableRules>
       <DisplayRules />
       <Actions>
         <JavaScriptFunction FunctionName="recalculate" Library="$webresource:ts_/js/PlanRibbon.js">
@@ -24,9 +39,36 @@
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
-    <EnableRules />
+    <EnableRules>
+      <EnableRule Id="ts.ts_plan.planStatusComplete">
+        <ValueRule Field="ts_planstatus" Value="741130001" Default="false" />
+      </EnableRule>
+      <EnableRule Id="ts.ts_plan.RecordExisting">
+        <FormStateRule State="Existing" />
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
   <LocLabels>
+    <LocLabel Id="ts.ts_plan.CreateWorkOrders.Alt">
+      <Titles>
+        <Title description="Create Work Orders" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_plan.CreateWorkOrders.LabelText">
+      <Titles>
+        <Title description="Create Work Orders" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_plan.CreateWorkOrders.ToolTipDescription">
+      <Titles>
+        <Title description="Create Work Orders" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_plan.CreateWorkOrders.ToolTipTitle">
+      <Titles>
+        <Title description="Create Work Orders" languagecode="1033" />
+      </Titles>
+    </LocLabel>
     <LocLabel Id="ts.ts_plan.Recalculate.Alt">
       <Titles>
         <Title description="Recalculate" languagecode="1033" />
