@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{70518e86-6ec4-ed11-b596-0022482d11ed}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_workorderid">
+          <cell name="msdyn_name" width="170" />
+          <cell name="msdyn_primaryincidenttype" width="220" />
+          <cell name="msdyn_serviceaccount" width="250" />
+          <cell name="msdyn_systemstatus" width="240" />
+          <cell name="msdyn_substatus" width="100" />
+          <cell name="msdyn_priority" width="130" />
+          <cell name="createdon" width="200" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="msdyn_workorder">
+          <attribute name="msdyn_serviceaccount" />
+          <attribute name="msdyn_priority" />
+          <attribute name="msdyn_systemstatus" />
+          <attribute name="msdyn_substatus" />
+          <attribute name="createdon" />
+          <attribute name="msdyn_primaryincidenttype" />
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_workorderid" />
+          <order attribute="createdon" descending="true" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Work Orders (preview)" languagecode="1033" />
+      <LocalizedName description="Ordres de travail (version préliminaire)" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

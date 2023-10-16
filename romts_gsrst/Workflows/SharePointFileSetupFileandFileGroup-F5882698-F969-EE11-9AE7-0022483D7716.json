@@ -1,0 +1,253 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_4a7e9"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "27b24a61-d8b3-4138-8347-c82c798f0d97"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "TableRecordID",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Enter the GUID ID of the record (Example: Work Order ID)",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "TableRecordOwner",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The owning Business Unit",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "TableNameEnglish",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The English name of the table that the file belongs to.",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_3": {
+                  "title": "TableNameFrench",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The French name of the table that the file belongs to.",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_4": {
+                  "title": "TableRecordName",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The name of the record that the file belongs to (Example: The Stakeholder Name or Work Order Number)",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_2",
+                "text_3",
+                "text_4"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "95c637e0-3b9f-42bb-bb74-e02b714f4206"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_sharepointfiles",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"ts_sharepointfile\">\n    <attribute name=\"ts_sharepointfileid\" />\n    <filter>\n      <condition attribute=\"ts_tablerecordid\" operator=\"eq\" value=\"@{triggerBody()['text']}\" />\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Condition_-_Does_the_TableRecordID_exist_in_SharePoint_Files_Table": {
+          "actions": {
+            "Apply_to_each": {
+              "foreach": "@outputs('List_rows')?['body/value']",
+              "actions": {
+                "Set_variable": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "61fe8572-c436-4622-bc64-3b1c5225232d"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "romSharePointFileID",
+                    "value": "@items('Apply_to_each')?['ts_sharepointfileid']"
+                  }
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "5cfc7546-3619-4e22-ac62-47b9bcdb79cc"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Apply_to_each_2": {
+                "foreach": "@outputs('List_rows')?['body/value']",
+                "actions": {
+                  "Add_a_new_row": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "3f302b5d-26c6-4b26-9e30-d3bc06f7b9f1"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_commondataserviceforapps",
+                        "operationId": "CreateRecord",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                      },
+                      "parameters": {
+                        "entityName": "ts_sharepointfiles",
+                        "item/ts_name": "@items('Apply_to_each_2')?['ts_tablerecordname']",
+                        "item/ts_tablename": "@items('Apply_to_each_2')?['ts_tablename']",
+                        "item/ts_tablenamefrench": "@items('Apply_to_each_2')?['ts_tablenamefrench']",
+                        "item/ts_tablerecordid": "@items('Apply_to_each_2')?['ts_tablerecordid']",
+                        "item/ts_tablerecordname": "@items('Apply_to_each_2')?['ts_tablerecordname']",
+                        "item/ts_tablerecordowner": "@items('Apply_to_each_2')?['ts_tablerecordowner']"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  },
+                  "Set_variable_2": {
+                    "runAfter": {
+                      "Add_a_new_row": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "9f17190d-6462-4f53-ae8b-5c1a68a1362f"
+                    },
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "romSharePointFileID",
+                      "value": "@outputs('Add_a_new_row')?['body/ts_sharepointfileid']"
+                    }
+                  }
+                },
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "ecdd7b30-9c07-4e7f-a93d-af3cec8210f1"
+                },
+                "type": "Foreach"
+              }
+            }
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@outputs('List_rows')?['body/value']",
+                "@null"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "4e2e3482-23b7-4abb-84bd-f47fd306e4dd"
+          },
+          "type": "If"
+        },
+        "Respond_to_a_PowerApp_or_flow": {
+          "runAfter": {
+            "Condition_-_Does_the_TableRecordID_exist_in_SharePoint_Files_Table": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bd6b4c3e-4405-4fb2-b4bf-6ef61446fa13"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "romsharepointfileid": "@variables('romSharePointFileID')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "romsharepointfileid": {
+                  "title": "romSharePointFileID",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "503fb4b0-bc9a-4c78-9f01-688ffc3cba57"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "romSharePointFileID",
+                "type": "string",
+                "value": "@{null}"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,411 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_4a7e9"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedsharepointonline_bdaec"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "2d3966e6-28a3-4497-a2de-fde3e63c83c4"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "RecordID",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Enter the GUID ID of the record (Example: Work Order ID)",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "RecordOwner",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The owning Business Unit",
+                  "x-ms-content-hint": "TEXT",
+                  "enum": [
+                    "Aviation Security",
+                    "Intermodal Surface Security Oversight"
+                  ]
+                },
+                "text_3": {
+                  "title": "Document Reference ID",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The name of the record that the file belongs to (Example: The Stakeholder Name or Work Order Number)",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_4": {
+                  "title": "Category",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The selected category of the file",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_5": {
+                  "title": "Description",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The user description of the file",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_6": {
+                  "title": "File Content JSON",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The JSON String that contains all the files that will be uploaded",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_7": {
+                  "title": "Table Name English",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The English name of the table that the file belongs to.",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_8": {
+                  "title": "Table Name French",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The French name of the table that the file belongs to.",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_3",
+                "text_4",
+                "text_5",
+                "text_6",
+                "text_7",
+                "text_8"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "List_rows_-_Get_ID_from_SharePoint_Files_Table": {
+          "runAfter": {
+            "Parse_JSON_-_Uploaded_Files": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0e272f62-fff4-4ac4-a4e8-3530f718942d"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_sharepointfiles",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"ts_sharepointfile\">\n    <attribute name=\"ts_sharepointfileid\" />\n    <filter>\n      <condition attribute=\"ts_tablerecordid\" operator=\"eq\" value=\"@{triggerBody()['text']}\" />\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Condition_-_Does_the_RecordID_exist_in_SharePoint_Files_Table": {
+          "actions": {
+            "Switch_-_What_is_the_Record_Owner": {
+              "runAfter": {},
+              "cases": {
+                "Case_-_AvSec": {
+                  "case": "Aviation Security",
+                  "actions": {
+                    "Apply_to_each": {
+                      "foreach": "@body('Parse_JSON_-_Uploaded_Files')",
+                      "actions": {},
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "c17c51b5-edec-4624-9b9b-61d7957d577b"
+                      },
+                      "type": "Foreach"
+                    }
+                  }
+                },
+                "Case_-_ISSO": {
+                  "case": "Intermodal Surface Security Oversight",
+                  "actions": {}
+                }
+              },
+              "default": {
+                "actions": {
+                  "Respond_to_a_PowerApp_or_flow": {
+                    "runAfter": {},
+                    "metadata": {
+                      "operationMetadataId": "0514931e-0e19-434c-838e-ea33567d6b10"
+                    },
+                    "type": "Response",
+                    "kind": "PowerApp",
+                    "inputs": {
+                      "statusCode": 200,
+                      "body": {
+                        "haserror": "Invalid RecordOwner"
+                      },
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "haserror": {
+                            "title": "hasError",
+                            "x-ms-dynamically-added": true,
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "expression": "@triggerBody()['text_1']",
+              "metadata": {
+                "operationMetadataId": "fd6b1a7b-5c44-43f8-8b98-6b5cad0ee921"
+              },
+              "type": "Switch"
+            }
+          },
+          "runAfter": {
+            "List_rows_-_Get_ID_from_SharePoint_Files_Table": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Add_a_new_row": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "65df822f-be4b-4475-a474-99b8c9945346"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps_1",
+                    "operationId": "CreateRecord",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "ts_sharepointfiles",
+                    "item/ts_name": "@triggerBody()['text_3']",
+                    "item/ts_tablename": "@triggerBody()['text_7']",
+                    "item/ts_tablenamefrench": "@triggerBody()['text_8']",
+                    "item/ts_tablerecordid": "@triggerBody()['text']",
+                    "item/ts_tablerecordname": "@triggerBody()['text_3']"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              },
+              "Switch": {
+                "runAfter": {
+                  "Add_a_new_row": [
+                    "Succeeded"
+                  ]
+                },
+                "cases": {
+                  "Case_-_AvSec": {
+                    "case": "Aviation Security",
+                    "actions": {
+                      "Apply_to_each_attachment": {
+                        "foreach": "@body('Parse_JSON_-_Uploaded_Files')",
+                        "actions": {
+                          "Try_Creating_Files": {
+                            "actions": {
+                              "Create_file": {
+                                "runAfter": {},
+                                "metadata": {
+                                  "operationMetadataId": "03d6a9d3-04d9-44b7-8c97-febe2c275093"
+                                },
+                                "type": "OpenApiConnection",
+                                "inputs": {
+                                  "host": {
+                                    "connectionName": "shared_sharepointonline",
+                                    "operationId": "CreateFile",
+                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                                  },
+                                  "parameters": {
+                                    "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
+                                    "folderPath": "/TC2030",
+                                    "name": "@items('Apply_to_each_attachment')['Name']",
+                                    "body": "@base64ToBinary(items('Apply_to_each_attachment')['base64'])"
+                                  },
+                                  "authentication": "@parameters('$authentication')"
+                                },
+                                "runtimeConfiguration": {
+                                  "contentTransfer": {
+                                    "transferMode": "Chunked"
+                                  }
+                                }
+                              },
+                              "Update_file_properties": {
+                                "runAfter": {
+                                  "Create_file": [
+                                    "Succeeded"
+                                  ]
+                                },
+                                "metadata": {
+                                  "operationMetadataId": "b980b505-7c2b-42d0-b055-cc3e7ae28012"
+                                },
+                                "type": "OpenApiConnection",
+                                "inputs": {
+                                  "host": {
+                                    "connectionName": "shared_sharepointonline",
+                                    "operationId": "PatchFileItem",
+                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                                  },
+                                  "parameters": {
+                                    "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
+                                    "table": "2ce0827f-419c-4446-9d01-2770297b31a5",
+                                    "id": "@outputs('Create_file')?['body/ItemId']",
+                                    "item/FileDescription_x002d_descriptiondufichier": "@triggerBody()['text_5']",
+                                    "item/Lang/Value": "ENG|ea6cfe94-b62a-4502-b387-6430cecaac66",
+                                    "item/OPI/Value": "ABAC|740b6c8f-9f0e-463d-bdd9-3a74988c2e27",
+                                    "item/OData__ExtendedDescription": "@triggerBody()['text_5']"
+                                  },
+                                  "authentication": "@parameters('$authentication')"
+                                }
+                              }
+                            },
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "a027a084-3b62-4f1d-b18d-d9900e478c74"
+                            },
+                            "type": "Scope"
+                          }
+                        },
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "4729201b-6d3a-45df-92dc-bea1c73dd9aa"
+                        },
+                        "type": "Foreach"
+                      }
+                    }
+                  },
+                  "Case_-_ISSO": {
+                    "case": "Intermodal Surface Security Oversight",
+                    "actions": {}
+                  }
+                },
+                "default": {
+                  "actions": {
+                    "Respond_to_a_PowerApp_or_flow_2": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "62e8b078-ad0c-4ccb-be38-31e23cea5439"
+                      },
+                      "type": "Response",
+                      "kind": "PowerApp",
+                      "inputs": {
+                        "statusCode": 200,
+                        "body": {
+                          "haserror": "Invalid RecordOwner"
+                        },
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "haserror": {
+                              "title": "hasError",
+                              "x-ms-dynamically-added": true,
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "expression": "@triggerBody()['text_1']",
+                "metadata": {
+                  "operationMetadataId": "9c0408c2-ae0c-4f9f-bd35-dbb593d711a9"
+                },
+                "type": "Switch"
+              }
+            }
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@outputs('List_rows_-_Get_ID_from_SharePoint_Files_Table')?['body/value']",
+                "@null"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "a734bacb-26fd-4a1b-a331-4e48b10f44d0"
+          },
+          "type": "If"
+        },
+        "Parse_JSON_-_Uploaded_Files": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "e6a622ad-7f48-41ca-bec2-e1ec20c30953"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerBody()['text_6']",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "base64": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "Name",
+                  "base64",
+                  "tags"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
