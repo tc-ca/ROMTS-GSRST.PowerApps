@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{8fbc489e-95db-432c-b037-ae9a19cffcc6}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_workordertimetrackingid">
+          <cell name="ts_region" width="100" />
+          <cell name="ts_preparationtime" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_conductingoversight" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_reportinganddocumentation" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_wotraveltime" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_workordertimetracking">
+          <order attribute="ts_conductingoversight" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_reportinganddocumentation" />
+          <attribute name="ts_preparationtime" />
+          <attribute name="ts_conductingoversight" />
+          <attribute name="ts_wotraveltime" />
+          <attribute name="ts_region" />
+          <attribute name="ts_workordertimetrackingid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20230531.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Work Order Time Trackings" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

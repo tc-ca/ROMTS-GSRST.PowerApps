@@ -83,7 +83,7 @@
         }
       },
       "actions": {
-        "List_rows": {
+        "List_rows_-_Check_SharePoint_File": {
           "runAfter": {},
           "metadata": {
             "operationMetadataId": "95c637e0-3b9f-42bb-bb74-e02b714f4206"
@@ -102,104 +102,9 @@
             "authentication": "@parameters('$authentication')"
           }
         },
-        "Condition_-_Does_the_TableRecordID_exist_in_SharePoint_Files_Table": {
-          "actions": {
-            "Apply_to_each": {
-              "foreach": "@outputs('List_rows')?['body/value']",
-              "actions": {
-                "Set_variable": {
-                  "runAfter": {},
-                  "metadata": {
-                    "operationMetadataId": "61fe8572-c436-4622-bc64-3b1c5225232d"
-                  },
-                  "type": "SetVariable",
-                  "inputs": {
-                    "name": "romSharePointFileID",
-                    "value": "@items('Apply_to_each')?['ts_sharepointfileid']"
-                  }
-                }
-              },
-              "runAfter": {},
-              "metadata": {
-                "operationMetadataId": "5cfc7546-3619-4e22-ac62-47b9bcdb79cc"
-              },
-              "type": "Foreach"
-            }
-          },
-          "runAfter": {
-            "Initialize_variable": [
-              "Succeeded"
-            ]
-          },
-          "else": {
-            "actions": {
-              "Apply_to_each_2": {
-                "foreach": "@outputs('List_rows')?['body/value']",
-                "actions": {
-                  "Add_a_new_row": {
-                    "runAfter": {},
-                    "metadata": {
-                      "operationMetadataId": "3f302b5d-26c6-4b26-9e30-d3bc06f7b9f1"
-                    },
-                    "type": "OpenApiConnection",
-                    "inputs": {
-                      "host": {
-                        "connectionName": "shared_commondataserviceforapps",
-                        "operationId": "CreateRecord",
-                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                      },
-                      "parameters": {
-                        "entityName": "ts_sharepointfiles",
-                        "item/ts_name": "@items('Apply_to_each_2')?['ts_tablerecordname']",
-                        "item/ts_tablename": "@items('Apply_to_each_2')?['ts_tablename']",
-                        "item/ts_tablenamefrench": "@items('Apply_to_each_2')?['ts_tablenamefrench']",
-                        "item/ts_tablerecordid": "@items('Apply_to_each_2')?['ts_tablerecordid']",
-                        "item/ts_tablerecordname": "@items('Apply_to_each_2')?['ts_tablerecordname']",
-                        "item/ts_tablerecordowner": "@items('Apply_to_each_2')?['ts_tablerecordowner']"
-                      },
-                      "authentication": "@parameters('$authentication')"
-                    }
-                  },
-                  "Set_variable_2": {
-                    "runAfter": {
-                      "Add_a_new_row": [
-                        "Succeeded"
-                      ]
-                    },
-                    "metadata": {
-                      "operationMetadataId": "9f17190d-6462-4f53-ae8b-5c1a68a1362f"
-                    },
-                    "type": "SetVariable",
-                    "inputs": {
-                      "name": "romSharePointFileID",
-                      "value": "@outputs('Add_a_new_row')?['body/ts_sharepointfileid']"
-                    }
-                  }
-                },
-                "runAfter": {},
-                "metadata": {
-                  "operationMetadataId": "ecdd7b30-9c07-4e7f-a93d-af3cec8210f1"
-                },
-                "type": "Foreach"
-              }
-            }
-          },
-          "expression": {
-            "not": {
-              "equals": [
-                "@outputs('List_rows')?['body/value']",
-                "@null"
-              ]
-            }
-          },
-          "metadata": {
-            "operationMetadataId": "4e2e3482-23b7-4abb-84bd-f47fd306e4dd"
-          },
-          "type": "If"
-        },
         "Respond_to_a_PowerApp_or_flow": {
           "runAfter": {
-            "Condition_-_Does_the_TableRecordID_exist_in_SharePoint_Files_Table": [
+            "Condition_-_TableRecordID_exist_in_SharePoint_Files_Table": [
               "Succeeded"
             ]
           },
@@ -225,9 +130,9 @@
             }
           }
         },
-        "Initialize_variable": {
+        "Initialize_variable_-_romSharePointFileID": {
           "runAfter": {
-            "List_rows": [
+            "List_rows_-_Check_SharePoint_File": [
               "Succeeded"
             ]
           },
@@ -244,6 +149,89 @@
               }
             ]
           }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_rows_-_Check_SharePoint_File')?['body/value']",
+          "actions": {
+            "Set_variable_-_romSharePointFileID": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "2d5b0c41-e3be-4007-bc12-c7a43bbd2345"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "romSharePointFileID",
+                "value": "@items('Apply_to_each')?['ts_sharepointfileid']"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_romSharePointFileID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "25a3925e-f9c9-413f-8c57-4a9c270f457b"
+          },
+          "type": "Foreach"
+        },
+        "Condition_-_TableRecordID_exist_in_SharePoint_Files_Table": {
+          "actions": {
+            "Add_a_new_row_-_SharePoint_File": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "12d58fed-5732-420d-bfba-fbae1784f5a0"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_sharepointfiles",
+                  "item/ts_name": "@triggerBody()['text_4']",
+                  "item/ts_tablename": "@triggerBody()['text_2']",
+                  "item/ts_tablenamefrench": "@triggerBody()['text_3']",
+                  "item/ts_tablerecordid": "@triggerBody()['text']",
+                  "item/ts_tablerecordname": "@triggerBody()['text_4']",
+                  "item/ts_tablerecordowner": "@triggerBody()['text_1']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Set_variable_-_new_romSharePointFileID": {
+              "runAfter": {
+                "Add_a_new_row_-_SharePoint_File": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "e37aea0f-0c4f-4ca0-b24d-32113f6bb7f7"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "romSharePointFileID",
+                "value": "@outputs('Add_a_new_row_-_SharePoint_File')?['body/ts_sharepointfileid']"
+              }
+            }
+          },
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@variables('romSharePointFileID')",
+              ""
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "59943bd3-62a5-46b8-8b29-1f7a3d46bb7f"
+          },
+          "type": "If"
         }
       }
     },
