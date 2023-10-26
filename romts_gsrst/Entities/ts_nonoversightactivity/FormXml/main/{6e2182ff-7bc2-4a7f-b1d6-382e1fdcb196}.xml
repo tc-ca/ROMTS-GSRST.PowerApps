@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0.20230621.1</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form shownavigationbar="true" showImage="false" maxWidth="1920">
+    <form shownavigationbar="true" showImage="false" maxWidth="1920" headerdensity="HighWithControls">
       <tabs>
         <tab verticallayout="true" id="{4928073f-89b3-4cee-a9b6-f75e65c0e282}" IsUserDefined="1">
           <labels>
@@ -15,7 +15,7 @@
           <columns>
             <column width="100%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{8d2eb832-12be-4e11-9550-51b64147dda8}">
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{8d2eb832-12be-4e11-9550-51b64147dda8}" visible="true">
                   <labels>
                     <label description="General" languagecode="1033" />
                     <label description="Général" languagecode="1036" />
@@ -119,9 +119,18 @@
                         <control id="ts_description" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_description" disabled="false" uniqueid="{ea72637e-8221-2186-4570-b83914ec27b4}" />
                       </cell>
                     </row>
-                    <row></row>
                     <row />
                     <row />
+                    <row />
+                    <row>
+                      <cell id="{528e1823-5a87-4c84-9d37-b8bd07be7621}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Overtime" languagecode="1033" />
+                          <label description="Heures supplémentaires" languagecode="1036" />
+                        </labels>
+                        <control id="ts_overtime" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_overtime" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -153,7 +162,7 @@
         </rows>
       </header>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -203,6 +212,30 @@
           </Handlers>
         </event>
       </events>
+      <footer id="{3a4f32d9-daeb-4c58-b325-75eba800e94c}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{4925a7f2-1d87-43e0-9d88-6e4a36278852}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{d4b19bc9-a5f9-49e4-b517-e56f4a641d0e}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9794aa44-dacf-465d-8831-b52d71592a25}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

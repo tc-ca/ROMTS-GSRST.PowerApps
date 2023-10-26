@@ -93,7 +93,7 @@
       "actions": {
         "Switch_-_What_type_of_record": {
           "runAfter": {
-            "Initialize_variable_-_WorkOrderServiceTaskSharePointFileCount": [
+            "Initialize_variable": [
               "Succeeded"
             ]
           },
@@ -523,7 +523,267 @@
             },
             "Case_-_Work_Order": {
               "case": "Work Order",
-              "actions": {}
+              "actions": {
+                "List_rows_-_Work_Order_Case": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "9a86b8ca-e441-423c-b43f-f438ab7f466f"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "ListRecords",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "msdyn_workorders",
+                      "fetchXml": "<fetch>\n  <entity name='msdyn_workorder'>\n    <attribute name='msdyn_servicerequest' />\n    <link-entity name='incident' to='msdyn_servicerequest' from='incidentid' alias='incident' link-type='inner'>\n      <attribute name='title'  alias='CaseTitle'/>\n    </link-entity>\n    <filter>\n      <condition attribute='msdyn_workorderid' operator='eq' value='@{triggerBody()['text']}' />\n    </filter>\n  </entity>\n</fetch>"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Apply_to_each_-_Work_Order_Case": {
+                  "foreach": "@outputs('List_rows_-_Work_Order_Case')?['body/value']",
+                  "actions": {
+                    "Set_variable_-_WorkOrderCaseID": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "5db72c5b-8aae-4b73-8809-21c9fa599c7d"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "WorkOrderCaseID",
+                        "value": "@items('Apply_to_each_-_Work_Order_Case')?['_msdyn_servicerequest_value']"
+                      }
+                    },
+                    "Set_variable_-_WorkOrderCaseName": {
+                      "runAfter": {
+                        "Set_variable_-_WorkOrderCaseID": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "17ce09e1-8b7e-40e5-b659-a137f291d8dd"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "WorkOrderCaseName",
+                        "value": "@{items('Apply_to_each_-_Work_Order_Case')?['CaseTitle']}"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "List_rows_-_Work_Order_Case": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "34d7263f-90ec-435a-99eb-cad6032160fd"
+                  },
+                  "type": "Foreach"
+                },
+                "Condition_-_Does_the_Work_Order_Have_a_Case": {
+                  "actions": {
+                    "List_rows_-_SharePoint_Files_for_Case": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "783b95cf-a25f-4a73-a778-49af811ca429"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "ListRecords",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ts_sharepointfiles",
+                          "fetchXml": "<fetch>\n  <entity name='ts_sharepointfile'>\n    <attribute name='ts_sharepointfileid' />\n    <attribute name='ts_sharepointfilegroup' />\n    <filter>\n      <condition attribute='ts_tablerecordid' operator='eq' value='@{variables('WorkOrderCaseID')}' />\n    </filter>\n  </entity>\n</fetch>"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Apply_to_each_-_SharePoint_Files_for_Case": {
+                      "foreach": "@outputs('List_rows_-_SharePoint_Files_for_Case')?['body/value']",
+                      "actions": {
+                        "Set_variable_-_SharePointFileID": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "c99c8e27-e7c1-41e0-9700-de88598a80d8"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "SharePointFileID",
+                            "value": "@items('Apply_to_each_-_SharePoint_Files_for_Case')?['ts_sharepointfileid']"
+                          }
+                        },
+                        "Set_variable_-_SharePointFileGroupID": {
+                          "runAfter": {
+                            "Set_variable_-_SharePointFileID": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "50bf80f3-14ab-4178-950d-e481e4aa6880"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "SharePointFileGroupID",
+                            "value": "@items('Apply_to_each_-_SharePoint_Files_for_Case')?['_ts_sharepointfilegroup_value']"
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "List_rows_-_SharePoint_Files_for_Case": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "d31a4d68-ca9d-4a9a-ab61-21794967cad4"
+                      },
+                      "type": "Foreach"
+                    },
+                    "Condition_-_Does_the_Case_have_a_SharePoint_File": {
+                      "actions": {},
+                      "runAfter": {
+                        "Apply_to_each_-_SharePoint_Files_for_Case": [
+                          "Succeeded"
+                        ]
+                      },
+                      "else": {
+                        "actions": {
+                          "Run_a_Child_Flow_-_SharePoint_File_Setup_File": {
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "c18e0fce-7597-414c-82e8-585eeb36f004"
+                            },
+                            "type": "Workflow",
+                            "inputs": {
+                              "host": {
+                                "workflowReferenceName": "f5882698-f969-ee11-9ae7-0022483d7716"
+                              },
+                              "body": {
+                                "text": "@variables('WorkOrderCaseID')",
+                                "text_1": "@triggerBody()['text_5']",
+                                "text_2": "Case",
+                                "text_3": "Cas",
+                                "text_4": "@variables('WorkOrderCaseName')"
+                              }
+                            }
+                          },
+                          "Set_variable_-_new_SharePointFileID": {
+                            "runAfter": {
+                              "Run_a_Child_Flow_-_SharePoint_File_Setup_File": [
+                                "Succeeded"
+                              ]
+                            },
+                            "metadata": {
+                              "operationMetadataId": "1bf7c3c1-ca26-4d8b-ac1c-711630c20321"
+                            },
+                            "type": "SetVariable",
+                            "inputs": {
+                              "name": "SharePointFileID",
+                              "value": "@body('Run_a_Child_Flow_-_SharePoint_File_Setup_File')?['romsharepointfileid']"
+                            }
+                          },
+                          "Add_a_new_row_-__new_Case_SharePoint_File_Group": {
+                            "runAfter": {
+                              "Set_variable_-_new_SharePointFileID": [
+                                "Succeeded"
+                              ]
+                            },
+                            "metadata": {
+                              "operationMetadataId": "8c2d8126-b618-441e-9232-9004f87821e2"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps",
+                                "operationId": "CreateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ts_sharepointfilegroups",
+                                "item/ts_name": "@variables('WorkOrderCaseName')"
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          },
+                          "Update_a_row_-_New_Case_SharePoint_File_": {
+                            "runAfter": {
+                              "Set_variable_-_new_SharePointFileGroupID": [
+                                "Succeeded"
+                              ]
+                            },
+                            "metadata": {
+                              "operationMetadataId": "b138a483-ed0f-48ff-a78c-385a954ac7e7"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps",
+                                "operationId": "UpdateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ts_sharepointfiles",
+                                "recordId": "@variables('SharePointFileID')",
+                                "item/ts_SharePointFileGroup@odata.bind": "ts_sharepointfilegroups(@{variables('SharePointFileGroupID')})"
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          },
+                          "Set_variable_-_new_SharePointFileGroupID": {
+                            "runAfter": {
+                              "Add_a_new_row_-__new_Case_SharePoint_File_Group": [
+                                "Succeeded"
+                              ]
+                            },
+                            "metadata": {
+                              "operationMetadataId": "8c0bf76e-d246-4b2b-93e7-9db2f0372ba2"
+                            },
+                            "type": "SetVariable",
+                            "inputs": {
+                              "name": "SharePointFileGroupID",
+                              "value": "@outputs('Add_a_new_row_-__new_Case_SharePoint_File_Group')?['body/ts_sharepointfilegroupid']"
+                            }
+                          }
+                        }
+                      },
+                      "expression": {
+                        "not": {
+                          "equals": [
+                            "@variables('SharePointFileID')",
+                            ""
+                          ]
+                        }
+                      },
+                      "metadata": {
+                        "operationMetadataId": "38728f60-d2d1-4d93-ab09-163afa45fd04"
+                      },
+                      "type": "If"
+                    }
+                  },
+                  "runAfter": {
+                    "Apply_to_each_-_Work_Order_Case": [
+                      "Succeeded"
+                    ]
+                  },
+                  "expression": {
+                    "not": {
+                      "equals": [
+                        "@variables('WorkOrderCaseID')",
+                        ""
+                      ]
+                    }
+                  },
+                  "metadata": {
+                    "operationMetadataId": "4da9bd7a-981b-425f-975f-deb2982c6ab0"
+                  },
+                  "type": "If"
+                }
+              }
             },
             "Case_-_Work_Order_Service_Task": {
               "case": "Work Order Service Task",
@@ -654,6 +914,86 @@
             "variables": [
               {
                 "name": "WorkOrderServiceTaskSharePointFileID",
+                "type": "string",
+                "value": "@{null}"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_WorkOrderCaseID": {
+          "runAfter": {
+            "Initialize_variable_-_WorkOrderServiceTaskSharePointFileCount": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fac6b0ca-c913-4921-99c1-2d2c2d7bec7a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "WorkOrderCaseID",
+                "type": "string",
+                "value": "@{null}"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_SharePointFileID": {
+          "runAfter": {
+            "Initialize_variable_-_WorkOrderCaseName": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "35889f9a-37ac-4c80-a865-66795059d03f"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SharePointFileID",
+                "type": "string",
+                "value": "@{null}"
+              }
+            ]
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Initialize_variable_-_SharePointFileID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4abce41e-81f7-4d4b-b444-6ecfa3a9ce94"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SharePointFileGroupID",
+                "type": "string",
+                "value": "@{null}"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_WorkOrderCaseName": {
+          "runAfter": {
+            "Initialize_variable_-_WorkOrderCaseID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "13a94144-7925-4e65-882a-1d26a83a7585"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "WorkOrderCaseName",
                 "type": "string",
                 "value": "@{null}"
               }

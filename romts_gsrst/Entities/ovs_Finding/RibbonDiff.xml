@@ -26,14 +26,19 @@
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_finding.FollowButton.Hide" Location="Mscrm.SubGrid.ovs_finding.FollowButton" />
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_finding.NewRecord.Hide" Location="Mscrm.SubGrid.ovs_finding.NewRecord" />
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ovs_finding.RunReport.Hide" Location="Mscrm.SubGrid.ovs_finding.RunReport" />
-    <CustomAction Id="ts.ovs_finding.AssignCorrectiveAction.CustomAction" Location="Mscrm.SubGrid.ovs_finding.MainTab.Management.Controls._children" Sequence="12">
+    <CustomAction Id="ts.ovs_finding.AssignCorrectiveAction.CustomAction" Location="Mscrm.SubGrid.ovs_finding.MainTab.Management.Controls._children" Sequence="8">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:ts.ovs_finding.AssignCorrectiveAction.Alt" Command="ts.ovs_finding.AssignCorrectiveAction" Id="ts.ovs_finding.AssignCorrectiveAction" Image32by32="$webresource:Service/_imgs/ribbon/Assign_32.png" Image16by16="$webresource:Service/_imgs/ribbon/Assign_16.png" LabelText="$LocLabels:ts.ovs_finding.AssignCorrectiveAction.LabelText" Sequence="12" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.AssignCorrectiveAction.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.AssignCorrectiveAction.ToolTipDescription" />
+        <Button Alt="$LocLabels:ts.ovs_finding.AssignCorrectiveAction.Alt" Command="ts.ovs_finding.AssignCorrectiveAction" Id="ts.ovs_finding.AssignCorrectiveAction" Image32by32="$webresource:Service/_imgs/ribbon/Assign_32.png" Image16by16="$webresource:Service/_imgs/ribbon/Assign_16.png" LabelText="$LocLabels:ts.ovs_finding.AssignCorrectiveAction.LabelText" Sequence="8" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.AssignCorrectiveAction.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.AssignCorrectiveAction.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.CustomAction" Location="Mscrm.Form.ovs_finding.MainTab.Save.Controls._children" Sequence="7">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.Alt" Command="ts.ovs_finding.unlockNCAT" CommandValueId="ts.ovs.finding.resetAssessmentTool" Id="ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool" LabelText="$LocLabels:ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.LabelText" Sequence="7" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.Button3.Button.ts.ovs_finding.ResetAssessmentTool.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ovs_finding.CopyResult.Button.CustomAction" Location="Mscrm.SubGrid.ovs_finding.MainTab.Management.Controls._children" Sequence="12">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ovs_finding.CopyResult.Button.Alt" Command="ts.ovs_finding.CopyResult.Command" Id="ts.ovs_finding.CopyResult.Button" LabelText="$LocLabels:ts.ovs_finding.CopyResult.Button.LabelText" Sequence="12" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.CopyResult.Button.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.CopyResult.Button.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.ovs_finding.CreateReport.CustomAction" Location="Mscrm.SubGrid.ovs_finding.MainTab.Management.Controls._children" Sequence="14">
@@ -49,9 +54,9 @@
         </FlyoutAnchor>
       </CommandUIDefinition>
     </CustomAction>
-    <CustomAction Id="ts.ovs_finding.EnforcementAction.CustomAction" Location="Mscrm.SubGrid.ovs_finding.MainTab.Management.Controls._children" Sequence="8">
+    <CustomAction Id="ts.ovs_finding.EnforcementAction.CustomAction" Location="Mscrm.SubGrid.ovs_finding.MainTab.Management.Controls._children" Sequence="5">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:ts.ovs_finding.EnforcementAction.Alt" Command="ts.ovs_finding.EnforcementAction" Id="ts.ovs_finding.EnforcementAction" Image32by32="" Image16by16="" LabelText="$LocLabels:ts.ovs_finding.EnforcementAction.LabelText" Sequence="8" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.EnforcementAction.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.EnforcementAction.ToolTipDescription" ModernImage="" />
+        <Button Alt="$LocLabels:ts.ovs_finding.EnforcementAction.Alt" Command="ts.ovs_finding.EnforcementAction" Id="ts.ovs_finding.EnforcementAction" Image32by32="" Image16by16="" LabelText="$LocLabels:ts.ovs_finding.EnforcementAction.LabelText" Sequence="5" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ovs_finding.EnforcementAction.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ovs_finding.EnforcementAction.ToolTipDescription" ModernImage="" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.ovs_finding.ResetAssessmentTool.CustomAction" Location="Mscrm.Form.ovs_finding.MainTab.Save.Controls._children" Sequence="4">
@@ -234,6 +239,19 @@
         <JavaScriptFunction FunctionName="AssignCorrectiveAction" Library="$webresource:ovs_/js/Finding.js">
           <CrmParameter Value="SelectedControlSelectedItemIds" />
           <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ovs_finding.CopyResult.Command">
+      <EnableRules>
+        <EnableRule Id="ts.ovs_finding.isSystemAdmin" />
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="copyEnforcementActionToolResults" Library="$webresource:ts_/js/FindingRibbon">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -578,6 +596,26 @@
       <Titles>
         <Title description="Unlock NCAT" languagecode="1033" />
         <Title description="Déverrouiller l’OENC" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.CopyResult.Button.Alt">
+      <Titles>
+        <Title description="Copy Result" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.CopyResult.Button.LabelText">
+      <Titles>
+        <Title description="Copy Result" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.CopyResult.Button.ToolTipDescription">
+      <Titles>
+        <Title description="Copy Result" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_finding.CopyResult.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Copy Result" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.ovs_finding.CreateReport.Alt">

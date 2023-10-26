@@ -84,13 +84,6 @@
                   "description": "The French name of the table that the file belongs to.",
                   "x-ms-content-hint": "TEXT"
                 },
-                "text_8": {
-                  "title": "ROM SharePoint File ID",
-                  "type": "string",
-                  "x-ms-dynamically-added": true,
-                  "description": "The SharePoint File ID associated with the file",
-                  "x-ms-content-hint": "TEXT"
-                },
                 "text_10": {
                   "title": "Categroy ID",
                   "type": "string",
@@ -107,7 +100,6 @@
                 "text_5",
                 "text_6",
                 "text_7",
-                "text_8",
                 "text_10"
               ]
             }
@@ -149,7 +141,7 @@
         },
         "Switch_-_Who_is_the_Record_Owner": {
           "runAfter": {
-            "Initialize_variable_-_hasError": [
+            "Initialize_variable_-_UniqueFileName": [
               "Succeeded"
             ]
           },
@@ -201,7 +193,7 @@
                             "parameters": {
                               "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
                               "folderPath": "/TC2030",
-                              "name": "@{utcNow()}-@{items('Apply_to_each_AvSec')['Name']}",
+                              "name": "@{variables('UniqueFileName')}-@{items('Apply_to_each_AvSec')['Name']}",
                               "body": "@base64ToBinary(items('Apply_to_each_AvSec')['base64'])"
                             },
                             "authentication": "@parameters('$authentication')"
@@ -232,7 +224,7 @@
                                   "table": "2ce0827f-419c-4446-9d01-2770297b31a5",
                                   "id": "@outputs('Create_file')?['body/ItemId']",
                                   "item/Title": "@items('Apply_to_each_AvSec')['Name']",
-                                  "item/ROMSharePointFileID": "@triggerBody()['text']",
+                                  "item/ROMSharePointFileID": "@variables('SharePointFileID')",
                                   "item/DocumentType_x002d_TypedeDocument": "@{triggerBody()['text_6']} - @{triggerBody()['text_7']}",
                                   "item/DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument": "@triggerBody()['text_2']",
                                   "item/Category_x002d_Cat_x00e9_gorie/Id": "@items('Apply_to_each')?['ID']",
@@ -392,7 +384,7 @@
                             "parameters": {
                               "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
                               "folderPath": "/TC2030",
-                              "name": "@{utcNow()}-@{items('Apply_to_each_ISSO')['Name']}",
+                              "name": "@{variables('UniqueFileName')}-@{items('Apply_to_each_ISSO')['Name']}",
                               "body": "@base64ToBinary(items('Apply_to_each_ISSO')['base64'])"
                             },
                             "authentication": "@parameters('$authentication')"
@@ -423,7 +415,7 @@
                                   "table": "57ae4d14-3c61-41be-a2b2-9e42b6346322",
                                   "id": "@outputs('Create_file_-_ISSO_File')?['body/ItemId']",
                                   "item/Title": "@items('Apply_to_each_ISSO')['Name']",
-                                  "item/ROMSharePointFileID": "@triggerBody()['text']",
+                                  "item/ROMSharePointFileID": "@variables('SharePointFileID')",
                                   "item/DocumentType_x002d_TypedeDocument": "@{triggerBody()['text_6']} - @{triggerBody()['text_7']}",
                                   "item/DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument": "@triggerBody()['text_2']",
                                   "item/Category_x002d_Cat_x00e9_gorie/Id": "@items('Apply_to_each_2')?['ID']",
@@ -629,7 +621,7 @@
         },
         "Initialize_variable_-_resultMessage": {
           "runAfter": {
-            "Parse_JSON": [
+            "Set_variable_-_SharePointFileID": [
               "Succeeded"
             ]
           },
@@ -643,6 +635,84 @@
                 "name": "resultMessage",
                 "type": "string",
                 "value": "Upload Successful"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_SharePointFileID": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a154cc5d-a9c5-4d09-a74e-91632e04b0da"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SharePointFileID",
+                "type": "string",
+                "value": "@{null}"
+              }
+            ]
+          }
+        },
+        "Run_a_Child_Flow_-_SharePoint_File_Setup_File": {
+          "runAfter": {
+            "Initialize_variable_-_SharePointFileID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1b5dd2e0-c25e-4b50-8f49-7a3f2153e4c7"
+          },
+          "type": "Workflow",
+          "inputs": {
+            "host": {
+              "workflowReferenceName": "f5882698-f969-ee11-9ae7-0022483d7716"
+            },
+            "body": {
+              "text": "@triggerBody()['text']",
+              "text_1": "@triggerBody()['text_1']",
+              "text_2": "@triggerBody()['text_6']",
+              "text_3": "@triggerBody()['text_7']",
+              "text_4": "@triggerBody()['text_2']"
+            }
+          }
+        },
+        "Set_variable_-_SharePointFileID": {
+          "runAfter": {
+            "Run_a_Child_Flow_-_SharePoint_File_Setup_File": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a5082611-5761-4a8e-bcf0-bd9ef6f6c4be"
+          },
+          "type": "SetVariable",
+          "inputs": {
+            "name": "SharePointFileID",
+            "value": "@body('Run_a_Child_Flow_-_SharePoint_File_Setup_File')?['romsharepointfileid']"
+          }
+        },
+        "Initialize_variable_-_UniqueFileName": {
+          "runAfter": {
+            "Initialize_variable_-_hasError": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5be7e8ef-3e3c-4b00-8a03-9cfdf131dd6a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "UniqueFileName",
+                "type": "string",
+                "value": "@{formatDateTime(utcNow(),'yyyyMMddHHmmssfff')}"
               }
             ]
           }

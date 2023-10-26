@@ -1147,6 +1147,31 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{d27a31d4-b37d-989c-ba1d-0bb1a0bb45cc}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Scheduled Quarter Justification" languagecode="1033" />
+                        </labels>
+                        <control id="ts_scheduledquarterjustification" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_scheduledquarterjustification" disabled="false" uniqueid="{4216a33d-d664-9633-d509-3ebda7a60339}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{80AB4821-D571-EE11-8179-0022483D7716}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5313a1b4-07b5-75d1-0066-8b1202132d5a}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Justification Comment" languagecode="1033" />
+                        </labels>
+                        <control id="ts_justificationcomment" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_justificationcomment" disabled="false" uniqueid="{008a05db-d20c-93db-1b5c-9215252b0ba5}" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{4e80e534-c639-c1bb-b510-107d5d86e0b9}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Planned Cost" languagecode="1033" />
@@ -1756,12 +1781,14 @@
                       <cell id="{bc341ba7-7430-6d24-1ab1-c149503c2ad3}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Total Preparation Time" languagecode="1033" />
+                          <label description="Temps total de préparation" languagecode="1036" />
                         </labels>
                         <control id="ts_totalpreparationtime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_totalpreparationtime" disabled="false" />
                       </cell>
                       <cell id="{3351232b-b741-dd4b-db38-15c2178813e1}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Total Conduct Oversight" languagecode="1033" />
+                          <label description="Temps total de la surveillance" languagecode="1036" />
                         </labels>
                         <control id="ts_totalconductoversight" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_totalconductoversight" disabled="false" />
                       </cell>
@@ -1770,12 +1797,14 @@
                       <cell id="{06134384-0da8-5637-15e9-d7856e92e9b1}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Total Reporting and Document Time" languagecode="1033" />
+                          <label description="Temps total des rapports et de la documentation" languagecode="1036" />
                         </labels>
                         <control id="ts_totalrepanddoctime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_totalrepanddoctime" disabled="false" uniqueid="{8d9bb576-a3cb-b98b-3014-a884d83d8432}" />
                       </cell>
                       <cell id="{6938b39a-1c05-d085-b611-3c6ed67b1238}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Total Travel Time" languagecode="1033" />
+                          <label description="Temps total de voyagement" languagecode="1036" />
                         </labels>
                         <control id="ts_totaltraveltime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_totaltraveltime" disabled="false" />
                       </cell>
@@ -1827,7 +1856,7 @@
                       <cell id="{a4751085-cb25-86c6-9b86-4b55890b9822}" showlabel="false" colspan="1" auto="false">
                         <labels>
                           <label description="Travel Time" languagecode="1033" />
-                          <label description="Voyage" languagecode="1036" />
+                          <label description="Temps de voyagement" languagecode="1036" />
                         </labels>
                         <control id="TravelTime" classid="{5C5600E0-1D6E-4205-A272-BE80DA87FD42}" datafieldname="ts_trip" disabled="false">
                           <parameters>
@@ -1839,16 +1868,17 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{36303e58-b4b6-0bcc-d6b0-1719c6a3e67e}" showlabel="false">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
                       <cell id="{80ac52c6-730c-40c4-8be8-1854fee1a350}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
                           <label description="Overtime" languagecode="1033" />
+                          <label description="Heures supplémentaires" languagecode="1036" />
                         </labels>
                         <control id="ts_overtime" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_overtime" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{33b96b79-c876-4a5a-9c3f-70603d9aefba}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                     <row>
@@ -3665,6 +3695,11 @@
         <event name="onchange" application="false" active="false" attribute="ts_site">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.siteOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{58ea5e5c-da4f-42ef-8c61-3820cccb03eb}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ovs_revisedquarterid">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.scheduledQuarterOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{e58ac9d2-2144-e473-24d2-5c7b9c426d3a}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

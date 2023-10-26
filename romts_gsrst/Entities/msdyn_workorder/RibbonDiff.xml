@@ -8,7 +8,9 @@
         <Button Alt="$Resources:Ribbon.HomepageGrid.account.Record.Status.Activate" Command="Mscrm.Form.Activate.TSIS" Id="Mscrm.Form.msdyn_workorder.Activate.TSIS" Image32by32="/_imgs/ribbon/Activate_32.png" Image16by16="/_imgs/ribbon/Activate_16.png" LabelText="$LocLabels:Mscrm.Form.msdyn_workorder.Activate.TSIS.LabelText" Sequence="55" TemplateAlias="o2" ToolTipTitle="$Resources:Ribbon.HomepageGrid.account.Record.Status.Activate" ToolTipDescription="$Resources(EntityPluralDisplayName):Ribbon.Tooltip.Activate" ModernImage="Activate" />
       </CommandUIDefinition>
     </CustomAction>
+    <HideCustomAction HideActionId="ts.Mscrm.Form.msdyn_workorder.Delete.Hide" Location="Mscrm.Form.msdyn_workorder.Delete" />
     <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.msdyn_workorder.Delete.Hide" Location="Mscrm.HomepageGrid.msdyn_workorder.Delete" />
+    <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.msdyn_workorder.DeleteMenu.Hide" Location="Mscrm.HomepageGrid.msdyn_workorder.DeleteMenu" />
     <CustomAction Id="ts.Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="40">
       <CommandUIDefinition>
         <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="Mscrm.AddExistingRecordFromSubGridAssociated" Id="Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Sequence="40" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipDescription" ModernImage="AddExisting" />
@@ -47,6 +49,16 @@
     <CustomAction Id="ts.msdyn_workorder.Commit.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="13">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorder.Commit.Alt" Command="ts.msdyn_workorder.commitSelectedWorkOrders" Id="ts.msdyn_workorder.Commit" LabelText="$LocLabels:ts.msdyn_workorder.Commit.LabelText" Sequence="13" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Commit.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.Commit.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.CopyServiceTask.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="50">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.CopyServiceTask.Alt" Id="ts.msdyn_workorder.CopyServiceTask" LabelText="$LocLabels:ts.msdyn_workorder.CopyServiceTask.LabelText" Sequence="50" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.CopyServiceTask.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.CopyServiceTask.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.Documents.Button.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="58">
+      <CommandUIDefinition>
+        <Button Command="ts.msdyn_workorder.Documents.Command" Id="ts.msdyn_workorder.Documents.Button" LabelText="$LocLabels:ts.msdyn_workorder.Documents.Button.LabelText" Sequence="58" TemplateAlias="o2" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.SubGridCommit.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="6">
@@ -327,6 +339,28 @@
         <JavaScriptFunction FunctionName="commitSelectedWorkOrders" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
           <CrmParameter Value="SelectedControlSelectedItemIds" />
           <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.CopyServiceTask">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="copyServiceTask" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.Documents.Command">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule20.ShowAdmin" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="OpenFileUploadPage" Library="$webresource:ts_/js/AttachFile.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+          <CrmParameter Value="PrimaryControlId" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -747,6 +781,31 @@
       <Titles>
         <Title description="Commit" languagecode="1033" />
         <Title description="Validé" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.Alt">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.LabelText">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.ToolTipDescription">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.CopyServiceTask.ToolTipTitle">
+      <Titles>
+        <Title description="Copy Service Task" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.Documents.Button.LabelText">
+      <Titles>
+        <Title description="Documents" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.SubGridCommit.Alt">

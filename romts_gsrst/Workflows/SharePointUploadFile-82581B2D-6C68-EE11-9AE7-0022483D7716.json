@@ -56,11 +56,7 @@
                   "type": "string",
                   "x-ms-dynamically-added": true,
                   "description": "The owning Business Unit",
-                  "x-ms-content-hint": "TEXT",
-                  "enum": [
-                    "Aviation Security",
-                    "Intermodal Surface Security Oversight"
-                  ]
+                  "x-ms-content-hint": "TEXT"
                 },
                 "text_3": {
                   "title": "Document Reference ID",
@@ -122,7 +118,7 @@
       "actions": {
         "List_rows_-_Get_ID_from_SharePoint_Files_Table": {
           "runAfter": {
-            "Parse_JSON_-_Uploaded_Files": [
+            "Set_variable_-_SharePointFileID": [
               "Succeeded"
             ]
           },
@@ -401,6 +397,64 @@
                 ]
               }
             }
+          }
+        },
+        "Run_a_Child_Flow_-_SharePoint_File_Setup_File": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9d5adb63-74b9-463f-91d7-3d522e7dade7"
+          },
+          "type": "Workflow",
+          "inputs": {
+            "host": {
+              "workflowReferenceName": "f5882698-f969-ee11-9ae7-0022483d7716"
+            },
+            "body": {
+              "text": "@triggerBody()['text']",
+              "text_1": "@triggerBody()['text_1']",
+              "text_2": "@triggerBody()['text_7']",
+              "text_3": "@triggerBody()['text_8']",
+              "text_4": "@triggerBody()['text_3']"
+            }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Parse_JSON_-_Uploaded_Files": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f4c9a03b-e5a0-4f0f-ab25-c349ee3b05ec"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SharePointFileID",
+                "type": "string",
+                "value": "@{null}"
+              }
+            ]
+          }
+        },
+        "Set_variable_-_SharePointFileID": {
+          "runAfter": {
+            "Run_a_Child_Flow_-_SharePoint_File_Setup_File": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4b112b77-26a5-4e50-9d04-968082d6d2ba"
+          },
+          "type": "SetVariable",
+          "inputs": {
+            "name": "SharePointFileID",
+            "value": "@body('Run_a_Child_Flow_-_SharePoint_File_Setup_File')?['romsharepointfileid']"
           }
         }
       }
