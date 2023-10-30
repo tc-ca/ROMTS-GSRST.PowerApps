@@ -53,7 +53,7 @@
     </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.CopyServiceTask.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="50">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:ts.msdyn_workorder.CopyServiceTask.Alt" Id="ts.msdyn_workorder.CopyServiceTask" LabelText="$LocLabels:ts.msdyn_workorder.CopyServiceTask.LabelText" Sequence="50" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.CopyServiceTask.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.CopyServiceTask.ToolTipDescription" />
+        <Button Alt="$LocLabels:ts.msdyn_workorder.CopyServiceTask.Alt" Command="ts.msdyn_workorder.CopyServiceTask" Id="ts.msdyn_workorder.CopyServiceTask" LabelText="$LocLabels:ts.msdyn_workorder.CopyServiceTask.LabelText" Sequence="50" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.CopyServiceTask.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.CopyServiceTask.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.Documents.Button.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="58">
@@ -625,6 +625,9 @@
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorder.HideInStakeholder.EnableRule">
         <EntityRule EntityName="account" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.IsSecurityIncident">
+        <EntityRule EntityName="ts_securityincident" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="false" />
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorder.isTeamPlanningDataSubgrid">
         <EntityRule EntityName="ts_teamplanningdata" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="false" />
