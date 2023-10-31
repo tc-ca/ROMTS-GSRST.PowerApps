@@ -1,0 +1,116 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_4a7e9"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "61e4fa06-581a-4df3-8188-9e6072b7b1b9"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "List_rows_-_Blocked_File_Extensions_For_Canvas_Apps": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "a765c43a-bded-4afe-b703-d3f0e4de16b6"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_blockedfileextensionsforcanvasappses",
+              "$select": "ts_fileextension",
+              "fetchXml": "<fetch>\n  <entity name='ts_blockedfileextensionsforcanvasapps'>\n    <attribute name='ts_fileextension' />\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Select_-_ts_fileextension": {
+          "runAfter": {
+            "List_rows_-_Blocked_File_Extensions_For_Canvas_Apps": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "70a70a3d-96d1-45e7-b9b3-0b3d12068322"
+          },
+          "type": "Select",
+          "inputs": {
+            "from": "@outputs('List_rows_-_Blocked_File_Extensions_For_Canvas_Apps')?['body/value']",
+            "select": {
+              "ts_fileextension": "@item()?['ts_fileextension']"
+            }
+          }
+        },
+        "Response_-_File_Extensions": {
+          "runAfter": {
+            "Select_-_ts_fileextension": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0f4371aa-97f3-4af0-966f-408381f7debb"
+          },
+          "type": "Response",
+          "kind": "Http",
+          "inputs": {
+            "statusCode": 200,
+            "body": "@body('Select_-_ts_fileextension')",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ts_fileextension": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "ts_fileextension"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

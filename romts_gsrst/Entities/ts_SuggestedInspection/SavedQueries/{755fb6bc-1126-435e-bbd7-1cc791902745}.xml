@@ -22,6 +22,7 @@
           <cell name="ts_q2" width="50" />
           <cell name="ts_q3" width="50" />
           <cell name="ts_q4" width="50" />
+          <cell name="ts_estimatedcost" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -29,7 +30,6 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ts_suggestedinspection">
-          <attribute name="ts_suggestedinspectionid" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
@@ -45,6 +45,8 @@
           <attribute name="ts_inspector" />
           <attribute name="ts_estimatedduration" />
           <attribute name="ts_operation" />
+          <attribute name="ts_estimatedcost" />
+          <attribute name="ts_suggestedinspectionid" />
         </entity>
       </fetch>
     </fetchxml>

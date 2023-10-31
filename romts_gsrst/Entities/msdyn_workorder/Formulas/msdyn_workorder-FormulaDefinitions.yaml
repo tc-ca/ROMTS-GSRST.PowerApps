@@ -1,0 +1,27 @@
+msdyn_displayaddress: |-
+    =Concatenate(
+        msdyn_address1,
+        If(Or(
+            IsBlank(msdyn_address1),
+            And(IsBlank(msdyn_address2), IsBlank(msdyn_address3))
+        ), "", ", "),
+        msdyn_address2,
+        If(Or(
+            IsBlank(msdyn_address2),
+            IsBlank(msdyn_address3)
+        ), "", ", "),
+        msdyn_address3,
+        If(And(
+            IsBlank(msdyn_address1),
+            IsBlank(msdyn_address2),
+            IsBlank(msdyn_address3)
+        ), "", Char(10)),
+        msdyn_city,
+        If(Or(IsBlank(msdyn_city), IsBlank(msdyn_stateorprovince)), "", ", "),
+        msdyn_stateorprovince,
+        If(Or(
+            IsBlank(msdyn_postalcode),
+            And(IsBlank(msdyn_city), IsBlank(msdyn_stateorprovince))
+        ), "", " "),
+        msdyn_postalcode
+    )
