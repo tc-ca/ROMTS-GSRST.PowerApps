@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{33af1cab-aa59-4325-880f-5cc64ef4937c}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_planinspectionsupportregionid">
+          <cell name="ts_suggestedinspection" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_region" width="100" />
+          <cell name="ts_hours" width="100" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_planinspectionsupportregion">
+          <attribute name="createdon" />
+          <order attribute="createdon" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_suggestedinspection" />
+          <attribute name="ts_region" />
+          <attribute name="ts_hours" />
+          <attribute name="ts_planinspectionsupportregionid" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20231031.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Plan Inspection Support Regions" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

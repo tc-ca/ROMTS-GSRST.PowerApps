@@ -447,6 +447,30 @@
                     </row>
                   </rows>
                 </section>
+                <section name="{b8e326ee-5c21-4a18-ba55-e3b56966c249}_section_11" id="ab2c135e-628f-40e8-9528-17a08a49bcac" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Report Details" languagecode="1033" />
+                    <label description="Détails du rapport" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{11721626-2b4c-4b46-a958-35f0e8fd1306}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{71fbb694-db9e-4480-b200-b121499a0118}" locklevel="0" colspan="1" rowspan="1" showlabel="false">
+                        <labels>
+                          <label description="Report Details" languagecode="1033" />
+                          <label description="Détails du rapport" languagecode="1036" />
+                        </labels>
+                        <control id="ts_reportdetails" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_reportdetails" disabled="false" uniqueid="{5d42ae55-9e5e-4715-bc4e-f12363b21e9a}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
               </sections>
             </column>
             <column width="50%">
@@ -1774,41 +1798,73 @@
           <columns>
             <column width="100%">
               <sections>
-                <section name="tab_TimeTracking_section" showlabel="false" showbar="false" locklevel="0" id="{60861294-b2d4-596c-0c42-bb41e4ba9470}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="275" celllabelalignment="Left" celllabelposition="Left">
+                <section name="WO_TimeTracking" showlabel="true" showbar="false" locklevel="0" id="{e6053b53-3ba3-099b-ea5e-84c8b166a06d}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="276" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
-                    <label description="Section" languagecode="1033" />
+                    <label description="Work Order Time Tracking" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{bc341ba7-7430-6d24-1ab1-c149503c2ad3}" showlabel="true" locklevel="0">
+                      <cell id="{e8721231-6490-c53b-17ba-45d2a00a239e}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Total Preparation Time" languagecode="1033" />
-                          <label description="Temps total de préparation" languagecode="1036" />
+                          <label description="WO Preparation Time" languagecode="1033" />
+                          <label description="Temps de préparation de l'ordre de travail" languagecode="1036" />
                         </labels>
-                        <control id="ts_totalpreparationtime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_totalpreparationtime" disabled="false" />
+                        <control id="ts_preparationtime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_preparationtime" disabled="false" />
                       </cell>
-                      <cell id="{3351232b-b741-dd4b-db38-15c2178813e1}" showlabel="true" locklevel="0">
+                      <cell id="{cea77183-098b-558d-a113-b2a6e949ec2b}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Total Conduct Oversight" languagecode="1033" />
-                          <label description="Temps total de la surveillance" languagecode="1036" />
+                          <label description="WO Conducting Oversight" languagecode="1033" />
+                          <label description="Temps lié à la surveillance de l'ordre de travail" languagecode="1036" />
                         </labels>
-                        <control id="ts_totalconductoversight" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_totalconductoversight" disabled="false" />
+                        <control id="ts_conductingoversight" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_conductingoversight" disabled="false" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{06134384-0da8-5637-15e9-d7856e92e9b1}" showlabel="true" locklevel="0">
+                      <cell id="{4e751bc7-1d74-d0c7-0866-14ade1509894}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Total Reporting and Document Time" languagecode="1033" />
-                          <label description="Temps total des rapports et de la documentation" languagecode="1036" />
+                          <label description="Quarter of Preparation Time" languagecode="1033" />
+                          <label description="Quarter of Preparation Time" languagecode="1036" />
                         </labels>
-                        <control id="ts_totalrepanddoctime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_totalrepanddoctime" disabled="false" uniqueid="{8d9bb576-a3cb-b98b-3014-a884d83d8432}" />
+                        <control id="ts_quarterofpreparationtime" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_quarterofpreparationtime" disabled="false" />
                       </cell>
-                      <cell id="{6938b39a-1c05-d085-b611-3c6ed67b1238}" showlabel="true" locklevel="0">
+                      <cell id="{bd73b189-7645-c205-58d7-93b0be0de987}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Total Travel Time" languagecode="1033" />
-                          <label description="Temps total de voyagement" languagecode="1036" />
+                          <label description="Quarter of Conducting Oversight" languagecode="1033" />
+                          <label description="Quarter of Conducting Oversight" languagecode="1036" />
                         </labels>
-                        <control id="ts_totaltraveltime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_totaltraveltime" disabled="false" />
+                        <control id="ts_quarterofconductingoversight" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_quarterofconductingoversight" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9751a690-cee3-2073-ab20-9e063b86a36d}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="WO Reporting and Documentation" languagecode="1033" />
+                          <label description="Rapport et documentation de l'ordre de travail" languagecode="1036" />
+                        </labels>
+                        <control id="ts_woreportinganddocumentation" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_woreportinganddocumentation" disabled="false" />
+                      </cell>
+                      <cell id="{58525906-bb38-a530-9441-c77d648d5a9a}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="WO Travel Time" languagecode="1033" />
+                          <label description="Temps de voyagement de l'ordre de travail" languagecode="1036" />
+                        </labels>
+                        <control id="ts_traveltime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_traveltime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a9824826-6ab8-c47b-018c-c387118b4830}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Quarter of Reporting and Documentation" languagecode="1033" />
+                          <label description="Quarter of Reporting and Documentation" languagecode="1036" />
+                        </labels>
+                        <control id="ts_quarterofreportinganddocumentation" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_quarterofreportinganddocumentation" disabled="false" />
+                      </cell>
+                      <cell id="{9476b552-789d-90e1-3372-32a0d395084c}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Quarter of Travel Time" languagecode="1033" />
+                          <label description="Quarter of Travel Time" languagecode="1036" />
+                        </labels>
+                        <control id="ts_quarteroftraveltime" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_quarteroftraveltime" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -1877,10 +1933,49 @@
                         </labels>
                         <control id="ts_overtime" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_overtime" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{33b96b79-c876-4a5a-9c3f-70603d9aefba}" showlabel="false">
+                      <cell id="{07b1215c-d786-d6ad-631d-7a997b529558}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="SupportRegion_TimeTracking" showlabel="true" showbar="false" locklevel="0" id="{60861294-b2d4-596c-0c42-bb41e4ba9470}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="275" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Support Region Time Tracking" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{bc341ba7-7430-6d24-1ab1-c149503c2ad3}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Total Preparation Time" languagecode="1033" />
+                          <label description="Temps total de préparation" languagecode="1036" />
+                        </labels>
+                        <control id="ts_totalpreparationtime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_totalpreparationtime" disabled="false" />
+                      </cell>
+                      <cell id="{3351232b-b741-dd4b-db38-15c2178813e1}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Total Conduct Oversight" languagecode="1033" />
+                          <label description="Temps total de la surveillance" languagecode="1036" />
+                        </labels>
+                        <control id="ts_totalconductoversight" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_totalconductoversight" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{06134384-0da8-5637-15e9-d7856e92e9b1}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Total Reporting and Document Time" languagecode="1033" />
+                          <label description="Temps total des rapports et de la documentation" languagecode="1036" />
+                        </labels>
+                        <control id="ts_totalrepanddoctime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_totalrepanddoctime" disabled="false" uniqueid="{8d9bb576-a3cb-b98b-3014-a884d83d8432}" />
+                      </cell>
+                      <cell id="{6938b39a-1c05-d085-b611-3c6ed67b1238}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Total Travel Time" languagecode="1033" />
+                          <label description="Temps total de voyagement" languagecode="1036" />
+                        </labels>
+                        <control id="ts_totaltraveltime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_totaltraveltime" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -1889,7 +1984,7 @@
                           <label description="Time Trackings" languagecode="1033" />
                           <label description="Utilisateurs" languagecode="1036" />
                         </labels>
-                        <control id="TimeTrackings" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="TimeTrackings" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{c87db9e9-460c-65e8-c40b-4299e630acb6}">
                           <parameters>
                             <ViewId>{8FBC489E-95DB-432C-B037-AE9A19CFFCC6}</ViewId>
                             <IsUserView>false</IsUserView>
@@ -1900,10 +1995,10 @@
                             <EnableViewPicker>false</EnableViewPicker>
                             <ViewIds>{8FBC489E-95DB-432C-B037-AE9A19CFFCC6}</ViewIds>
                             <EnableJumpBar>false</EnableJumpBar>
-                            <ChartGridMode>All</ChartGridMode>
+                            <ChartGridMode>Grid</ChartGridMode>
                             <VisualizationId />
                             <IsUserChart>false</IsUserChart>
-                            <EnableChartPicker>true</EnableChartPicker>
+                            <EnableChartPicker>false</EnableChartPicker>
                             <RecordsPerPage>4</RecordsPerPage>
                             <HeaderColorCode>#F3F3F3</HeaderColorCode>
                           </parameters>
@@ -3575,6 +3670,31 @@
           <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
             <parameters>
               <value>ts_cantcompleteinspection</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{5d42ae55-9e5e-4715-bc4e-f12363b21e9a}">
+          <customControl id="{E0DECE4B-6FC8-4A8F-A065-082708572369}">
+            <parameters>
+              <datafieldname>ts_reportdetails</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.RichTextEditor.RichTextEditorControl">
+            <parameters>
+              <value>ts_reportdetails</value>
+              <configUrl static="true" type="SingleLine.URL">/WebResources/Activities/SystemLibraries/msdyn_EmailRTEconfig.js</configUrl>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.RichTextEditor.RichTextEditorControl">
+            <parameters>
+              <value>ts_reportdetails</value>
+              <configUrl static="true" type="SingleLine.URL">/WebResources/Activities/SystemLibraries/msdyn_EmailRTEconfig.js</configUrl>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.RichTextEditor.RichTextEditorControl">
+            <parameters>
+              <value>ts_reportdetails</value>
+              <configUrl static="true" type="SingleLine.URL">/WebResources/Activities/SystemLibraries/msdyn_EmailRTEconfig.js</configUrl>
             </parameters>
           </customControl>
         </controlDescription>

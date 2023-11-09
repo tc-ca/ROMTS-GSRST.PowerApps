@@ -16,6 +16,7 @@
         <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="Mscrm.AddExistingRecordFromSubGridAssociated" Id="Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Sequence="40" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipDescription" ModernImage="AddExisting" />
       </CommandUIDefinition>
     </CustomAction>
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.msdyn_workorder.Delete.Hide" Location="Mscrm.SubGrid.msdyn_workorder.Delete" />
     <CustomAction Id="ts.Mscrm.SubGrid.msdyn_workorder.NewRecord.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="10">
       <CommandUIDefinition>
         <Button Command="Mscrm.NewRecordFromGrid" Id="Mscrm.SubGrid.msdyn_workorder.NewRecord" Image32by32="/_imgs/ribbon/newrecord32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.MainTab.New" Sequence="10" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Ribbon.SubGrid.MainTab.New" ToolTipDescription="$Resources(EntityDisplayName):Ribbon.Tooltip.New" ModernImage="New" />
@@ -243,6 +244,23 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="Mscrm.RemoveSelectedRecord">
+      <EnableRules>
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Disassociate.gridDisassociate" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+          <CrmParameter Value="FirstSelectedItemId" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="Mscrm.ShareSelectedRecord">
       <EnableRules>
         <EnableRule Id="Mscrm.NotOffline" />
@@ -381,9 +399,7 @@
       </Actions>
     </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorder.Documents.Command">
-      <EnableRules>
-        <EnableRule Id="ts.msdyn_workorder.EnableRule20.ShowAdmin" />
-      </EnableRules>
+      <EnableRules />
       <DisplayRules />
       <Actions>
         <JavaScriptFunction FunctionName="OpenFileUploadPage" Library="$webresource:ts_/js/AttachFile.js">

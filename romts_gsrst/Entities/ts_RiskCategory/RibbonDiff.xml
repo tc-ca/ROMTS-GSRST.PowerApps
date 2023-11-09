@@ -1,14 +1,57 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
+  <CustomActions>
+    <CustomAction Id="ts.ts_riskcategory.UpdateOperations.Button.CustomAction" Location="Mscrm.HomepageGrid.ts_riskcategory.MainTab.Management.Controls._children" Sequence="41">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_riskcategory.UpdateOperations.Button.Alt" Command="ts.ts_riskcategory.UpdateOperations.Command" Id="ts.ts_riskcategory.UpdateOperations.Button" LabelText="$LocLabels:ts.ts_riskcategory.UpdateOperations.Button.LabelText" Sequence="41" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.ts_riskcategory.UpdateOperations.Button.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_riskcategory.UpdateOperations.Button.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="ts.ts_riskcategory.UpdateOperations.Command">
+      <EnableRules>
+        <EnableRule Id="ts.ts_riskcategory.AdminOrPlanner.EnableRule" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="updateOperationsFlow" Library="$webresource:ts_/js/RiskThresholdRibbon.js" />
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
-    <EnableRules />
+    <EnableRules>
+      <EnableRule Id="ts.ts_riskcategory.AdminOrPlanner.EnableRule">
+        <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js">
+          <StringParameter Value="System Administrator|ROM - Planner" />
+        </CustomRule>
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="ts.ts_riskcategory.UpdateOperations.Button.Alt">
+      <Titles>
+        <Title description="Update Operations" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_riskcategory.UpdateOperations.Button.LabelText">
+      <Titles>
+        <Title description="Update Operations" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_riskcategory.UpdateOperations.Button.ToolTipDescription">
+      <Titles>
+        <Title description="Update Operations" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_riskcategory.UpdateOperations.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Update Operations" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>

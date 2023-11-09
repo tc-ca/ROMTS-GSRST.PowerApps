@@ -13,6 +13,7 @@
     let teamPlanningDataTeamEstimatedDurationQ3 = 0;
     let teamPlanningDataTeamEstimatedDurationQ4 = 0;
     let teamPlanningDataTeamEstimatedDurationTotal = 0;
+    let teamPlanningDataTeamEstimatedTravelTimeTotal = 0;
 
     //Retrieve the Plan Inspector Hours records with the user id
     let planInspectorHoursFetchXml = [
@@ -63,9 +64,14 @@
         "    <attribute name='ts_q2'/>",
         "    <attribute name='ts_q3'/>",
         "    <attribute name='ts_q4'/>",
+        "    <attribute name='ts_estimatedtraveltime'/>",
         "    <filter>",
         "      <condition attribute='ts_plan' operator='eq' value='", planId, "' uitype='ts_plan'/>",
         "    </filter>",
+        "    <link-entity name='ts_trip' from='ts_tripid' to='ts_trip' visible='false' link-type='outer' alias='plantrip'>",
+        "    <attribute name='ts_estimatedtraveltime' />",
+        "    <attribute name='ts_estimatedcost' />",
+        "    </link-entity>",
         "  </entity>",
         "</fetch>"
     ].join("");
@@ -114,7 +120,12 @@
         teamPlanningDataTeamEstimatedDurationQ3 += inspection.ts_estimatedduration * inspection.ts_q3;
         teamPlanningDataTeamEstimatedDurationQ4 += inspection.ts_estimatedduration * inspection.ts_q4;
         teamPlanningDataTeamEstimatedDurationTotal += inspection.ts_estimatedduration;
-
+        if (inspection["plantrip.ts_estimatedtraveltime"] != null) {
+            teamPlanningDataTeamEstimatedTravelTimeTotal += inspection["plantrip.ts_estimatedtraveltime"];
+        }
+        else if (inspection.ts_estimatedtraveltime != null) {
+            teamPlanningDataTeamEstimatedTravelTimeTotal += inspection.ts_estimatedtraveltime;
+        }
     });
 
     formContext.getAttribute("ts_plannedactivityq1").setValue(teamPlanningDataPlannedQ1);
@@ -127,7 +138,7 @@
     formContext.getAttribute("ts_estimateddurationq2").setValue(teamPlanningDataTeamEstimatedDurationQ2);
     formContext.getAttribute("ts_estimateddurationq3").setValue(teamPlanningDataTeamEstimatedDurationQ3);
     formContext.getAttribute("ts_estimateddurationq4").setValue(teamPlanningDataTeamEstimatedDurationQ4);
-    formContext.getAttribute("ts_estimateddurationfiscalyear").setValue(teamPlanningDataTeamEstimatedDurationTotal);
+    formContext.getAttribute("ts_estimateddurationfiscalyear").setValue(teamPlanningDataTeamEstimatedDurationTotal - teamPlanningDataTeamEstimatedTravelTimeTotal);
 
     //wait until all updates have finished
     await Promise.all(updatePromises);
