@@ -416,11 +416,14 @@ var ROM;
                                 "       <attribute name='ts_q3'/>",
                                 "       <attribute name='ts_q4'/>",
                                 "       <attribute name='ts_estimatedtraveltime'/>",
-                                "       <attribute name='ts_estimatedcost'/>",
                                 "       <link-entity name='ts_plan' from='ts_planid' to='ts_plan' link-type='inner' alias='ad'>",
                                 "           <filter type='and'>",
                                 "               <condition attribute='ts_planid' operator='eq' value='", formContext.data.entity.getId(), "'/>",
                                 "</filter>",
+                                "       </link-entity>",
+                                "       <link-entity name='ts_trip' from='ts_tripid' to='ts_trip' visible='false' link-type='outer' alias='plantrip'>",
+                                "       <attribute name='ts_estimatedtraveltime' />",
+                                "       <attribute name='ts_estimatedcost' />",
                                 "       </link-entity>",
                                 "   </entity>",
                                 "</fetch>"
@@ -442,11 +445,17 @@ var ROM;
                                 teamPlanningDataTeamEstimatedDurationQ3 += inspection.ts_estimatedduration * inspection.ts_q3;
                                 teamPlanningDataTeamEstimatedDurationQ4 += inspection.ts_estimatedduration * inspection.ts_q4;
                                 teamPlanningDataTeamEstimatedDurationTotal += inspection.ts_estimatedduration;
-                                if (inspection.ts_estimatedcost != null) {
-                                    teamPlanningDataTeamEstimatedCostTotal += inspection.ts_estimatedcost;
+                                if (inspection["plantrip.ts_estimatedtraveltime"] != null) {
+                                    teamPlanningDataTeamEstimatedTravelTimeTotal += inspection["plantrip.ts_estimatedtraveltime"];
                                 }
-                                if (inspection.ts_estimatedtraveltime != null) {
+                                else if (inspection.ts_estimatedtraveltime != null) {
                                     teamPlanningDataTeamEstimatedTravelTimeTotal += inspection.ts_estimatedtraveltime;
+                                }
+                                if (inspection["plantrip.ts_estimatedcost"] != null) {
+                                    teamPlanningDataTeamEstimatedCostTotal += inspection["plantrip.ts_estimatedcost"];
+                                }
+                                else if (inspection.ts_estimatedcost != null) {
+                                    teamPlanningDataTeamEstimatedCostTotal += inspection.ts_estimatedcost;
                                 }
                             });
                             formContext.getAttribute("ts_plannedactivityq1").setValue(teamPlanningDataPlannedQ1);
@@ -484,9 +493,11 @@ var ROM;
                 var trip = entity.attributes.getByName("ts_trip").getValue();
                 if (trip != null) {
                     entity.attributes.getByName("ts_estimatedcost").controls.get(0).setDisabled(true);
+                    entity.attributes.getByName("ts_estimatedtraveltime").controls.get(0).setDisabled(true);
                 }
                 else {
                     entity.attributes.getByName("ts_estimatedcost").controls.get(0).setDisabled(false);
+                    entity.attributes.getByName("ts_estimatedtraveltime").controls.get(0).setDisabled(false);
                 }
                 //let entityId = entity._entityId.guid;
                 //let suggestedinspection = Xrm.WebApi.retrieveRecord("ts_suggestedinspection", entityId, "?$select=_ts_trip_value").then(

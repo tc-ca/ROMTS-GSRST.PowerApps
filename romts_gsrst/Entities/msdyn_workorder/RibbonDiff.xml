@@ -189,6 +189,25 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="Mscrm.AssignSelectedRecord">
+      <EnableRules>
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+        <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
+        <EnableRule Id="Mscrm.NotOffline" />
+        <EnableRule Id="Mscrm.IsValidForHierarchyView" />
+        <EnableRule Id="Mscrm.IsValidForHierarchyPageInUC" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AssignSelectedEntityPermission" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Assign.assignSelectedRecords" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedControl" />
+          <CrmParameter Value="SelectedControlSelectedItemReferences" />
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="Mscrm.Form.Activate">
       <EnableRules>
         <EnableRule Id="Mscrm.CanWritePrimary" />
@@ -500,6 +519,9 @@
       <DisplayRule Id="Mscrm.AssignPrimaryPermission">
         <EntityPrivilegeRule PrivilegeType="Assign" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
       </DisplayRule>
+      <DisplayRule Id="Mscrm.AssignSelectedEntityPermission">
+        <EntityPrivilegeRule PrivilegeType="Assign" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
       <DisplayRule Id="Mscrm.CanWritePrimary">
         <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
       </DisplayRule>
@@ -572,6 +594,11 @@
       </DisplayRule>
     </DisplayRules>
     <EnableRules>
+      <EnableRule Id="FieldService.Form.msdyn_workorder.EnableRule.ShowSimplifiedCommands">
+        <CustomRule FunctionName="WorkOrders.Library.areAllRibbonCommandsEnabled" Library="$webresource:msdyn_/WorkOrder/WorkOrder.Library.js" Default="false" InvertResult="false">
+          <CrmParameter Value="SelectedControl" />
+        </CustomRule>
+      </EnableRule>
       <EnableRule Id="Mscrm.AppendToPrimary">
         <RecordPrivilegeRule PrivilegeType="AppendTo" AppliesTo="PrimaryEntity" />
       </EnableRule>
