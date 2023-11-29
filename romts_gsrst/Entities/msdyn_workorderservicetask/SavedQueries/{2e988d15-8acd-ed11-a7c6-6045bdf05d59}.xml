@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{2e988d15-8acd-ed11-a7c6-6045bdf05d59}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_workorderservicetaskid">
+          <cell name="msdyn_name" width="300" />
+          <cell name="msdyn_customerasset" width="150" />
+          <cell name="msdyn_estimatedduration" width="150" />
+          <cell name="msdyn_actualduration" width="100" />
+          <cell name="msdyn_percentcomplete" width="150" />
+          <cell name="msdyn_inspectiontaskresult" width="150" />
+          <cell name="msdyn_description" width="100" />
+          <cell name="msdyn_tasktype" width="100" />
+          <cell name="msdyn_inspection" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="msdyn_workorderservicetask">
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_workorderservicetaskid" />
+          <attribute name="msdyn_estimatedduration" />
+          <attribute name="msdyn_percentcomplete" />
+          <attribute name="msdyn_inspectiontaskresult" />
+          <attribute name="msdyn_description" />
+          <attribute name="msdyn_actualduration" />
+          <attribute name="msdyn_tasktype" />
+          <attribute name="msdyn_inspection" />
+          <attribute name="msdyn_customerasset" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.2.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Work Order Service Tasks - WO Tasks Tab" languagecode="1033" />
+      <LocalizedName description="Tâches de service de l’ordre de travail actives - Onglet Tâches de l’ordre de travail" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="The grid of Work Order Service Tasks displayed on an open Work Order's Tasks tab." languagecode="1033" />
+      <Description description="Grille des tâches de service de l’ordre de travail affichée sous l’onglet Tâches de l’ordre de travail ouvert." languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

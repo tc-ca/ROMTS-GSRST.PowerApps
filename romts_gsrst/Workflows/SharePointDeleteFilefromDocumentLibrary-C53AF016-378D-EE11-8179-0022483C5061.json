@@ -1,0 +1,327 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedsharepointonline_72708"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "213229f2-5e70-40cd-99f8-86c76ce4c67c"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "RecordOwner",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The owning Business Unit",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "FileIdentifier",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The File Identifier of the SharePoint File that needs to be deleted",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Switch_-_Who_is_the_Record_Owner": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Case_-_AvSec": {
+              "case": "Aviation Security",
+              "actions": {
+                "Scope_-_Try_Deleting_AvSec_file": {
+                  "actions": {
+                    "Delete_file_-_AvSec": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "19fe32c8-59b6-451b-b143-418da5fc9ab5"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_sharepointonline_1",
+                          "operationId": "DeleteFile",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                        },
+                        "parameters": {
+                          "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
+                          "id": "@triggerBody()['text_1']"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "0ba8111b-73f2-468d-8e7d-e3a300523558"
+                  },
+                  "type": "Scope"
+                },
+                "Scope_-_Catch_Deleting_AvSec_file": {
+                  "actions": {
+                    "Set_variable_-_hasError_-_AvSec": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "f6ec94fc-4bf1-46b2-ab7e-38fdd0a02c69"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "hasError",
+                        "value": "@true"
+                      }
+                    },
+                    "Set_variable_-_result_Message_-_AvSec": {
+                      "runAfter": {
+                        "Set_variable_-_hasError_-_AvSec": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "a5934f79-84ad-4f90-9c9d-35bb9d0424cf"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "resultMessage",
+                        "value": "Unable to delete AvSec file - check log for [SharePoint] Delete File from Document Library @{utcNow()}"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Scope_-_Try_Deleting_AvSec_file": [
+                      "Failed",
+                      "TimedOut"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "cba64fa7-ca3e-4381-9acf-329d23759b5f"
+                  },
+                  "type": "Scope"
+                }
+              }
+            },
+            "Case": {
+              "case": "Intermodal Surface Security Oversight",
+              "actions": {
+                "Scope_-_Try_Deleting_ISSO_file": {
+                  "actions": {
+                    "Delete_file_-_ISSO": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "3e70ef82-aca8-4bd8-869a-320d3b2aa530"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_sharepointonline_1",
+                          "operationId": "DeleteFile",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                        },
+                        "parameters": {
+                          "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
+                          "id": "@triggerBody()['text_1']"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "040c6f18-8225-4ee6-a562-c26cb1ec3dbb"
+                  },
+                  "type": "Scope"
+                },
+                "Scope_-_Catch_Deleting_ISSO_file": {
+                  "actions": {
+                    "Set_variable_-_hasError_-_ISSO": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "ae39cd91-f50f-41e8-919d-3972ea114d15"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "hasError",
+                        "value": "@true"
+                      }
+                    },
+                    "Set_variable_-_result_Message_-_ISSO": {
+                      "runAfter": {
+                        "Set_variable_-_hasError_-_ISSO": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "1636be6f-957a-451d-afff-805bbff850c8"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "resultMessage",
+                        "value": "Unable to delete ISSO file - check log for [SharePoint] Delete File from Document Library @{utcNow()}"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Scope_-_Try_Deleting_ISSO_file": [
+                      "Failed",
+                      "TimedOut"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "e08369a5-b8e8-4dd8-ae4c-54bb9b8cc3f3"
+                  },
+                  "type": "Scope"
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {
+              "Set_variable_-_hasError": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "40f8d289-4395-415c-8d3e-fe1bfd3e7345"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "hasError",
+                  "value": "@true"
+                }
+              },
+              "Set_variable_-_resultMessage": {
+                "runAfter": {
+                  "Set_variable_-_hasError": [
+                    "Succeeded"
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "6ad785b4-08a3-4fde-b6a9-4de06d39c22f"
+                },
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "resultMessage",
+                  "value": "Invalid record owner, the record has to be owned by Aviation Security or Intermodal Surface Security Oversight."
+                }
+              }
+            }
+          },
+          "expression": "@triggerBody()['text']",
+          "metadata": {
+            "operationMetadataId": "cc7e967f-7b62-4c59-94f8-0a4df0cdd6f0"
+          },
+          "type": "Switch"
+        },
+        "Initialize_variable_-_hasError": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "488c08b6-cabd-4c84-b054-36099fe5cd7d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "hasError",
+                "type": "boolean",
+                "value": "@false"
+              }
+            ]
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Initialize_variable_-_hasError": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "82553775-0bae-4f50-b1e0-41f059d79446"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "resultMessage",
+                "type": "string",
+                "value": "Delete Successful"
+              }
+            ]
+          }
+        },
+        "Respond_to_a_PowerApp_or_flow_-_Delete_File_Completed": {
+          "runAfter": {
+            "Switch_-_Who_is_the_Record_Owner": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f8cdf290-92a6-49d5-a0d1-8b884d108855"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "resultmessage": "@variables('resultMessage')",
+              "haserror": "@{variables('hasError')}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "resultmessage": {
+                  "title": "resultMessage",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "haserror": {
+                  "title": "hasError",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -47,6 +47,11 @@
         <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.Button2.Button.Alt" Command="ts.msdyn_workorderservicetask.AttachFile" Id="ts.msdyn_workorderservicetask.Button2.Button" LabelText="$LocLabels:ts.msdyn_workorderservicetask.Button2.Button.LabelText" Sequence="10" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.Button2.Button.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.Button2.Button.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorderservicetask.Documents.Button.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="16">
+      <CommandUIDefinition>
+        <Button Command="ts.msdyn_workorderservicetask.Documents.Command" Id="ts.msdyn_workorderservicetask.Documents.Button" LabelText="$LocLabels:ts.msdyn_workorderservicetask.Documents.Button.LabelText" Sequence="16" TemplateAlias="o1" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorderservicetask.TSIS.SendReportButton.CustomAction" Location="Mscrm.SubGrid.msdyn_workorderservicetask.MainTab.Management.Controls._children" Sequence="53">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.TSIS.SendReportButton.Alt" Command="ts.msdyn_workorderservicetask.TSIS.SendReport" Id="ts.msdyn_workorderservicetask.TSIS.SendReportButton" Image32by32="$webresource:Service/_imgs/ribbon/Email_32.png" Image16by16="/_imgs/ribbon/AddEmail_16.png" LabelText="$LocLabels:ts.msdyn_workorderservicetask.TSIS.SendReportButton.LabelText" Sequence="53" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.TSIS.SendReportButton.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.TSIS.SendReportButton.ToolTipDescription" ModernImage="EmailLink" />
@@ -508,6 +513,17 @@
       <Actions>
         <JavaScriptFunction FunctionName="buildCustomQuestionnaire" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js">
           <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorderservicetask.Documents.Command">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="OpenFileUploadPage" Library="$webresource:ts_/js/AttachFile.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+          <CrmParameter Value="PrimaryControlId" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -994,6 +1010,11 @@
     <LocLabel Id="ts.msdyn_workorderservicetask.Button2.Button.ToolTipTitle">
       <Titles>
         <Title description="Attach File" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.Documents.Button.LabelText">
+      <Titles>
+        <Title description="Documents" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.TSIS.SendReportButton.Alt">

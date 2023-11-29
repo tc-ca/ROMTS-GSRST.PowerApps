@@ -22,7 +22,11 @@
         <EnableRule Id="ts.ts_plan.RecordExisting" />
       </EnableRules>
       <DisplayRules />
-      <Actions />
+      <Actions>
+        <JavaScriptFunction FunctionName="createWorkOrders" Library="$webresource:ts_/js/PlanRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
     </CommandDefinition>
     <CommandDefinition Id="ts.ts_plan.Recalculate">
       <EnableRules>

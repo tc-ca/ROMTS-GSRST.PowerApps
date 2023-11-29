@@ -4,6 +4,11 @@
     <HideCustomAction HideActionId="ovs.Mscrm.Form.incident.Assign.Hide" Location="Mscrm.Form.incident.Assign" />
     <HideCustomAction HideActionId="ovs.Mscrm.Form.incident.Save.Hide" Location="Mscrm.Form.incident.Save" />
     <HideCustomAction HideActionId="ts.FieldService.Form.incident.MainTab.Save.ConvertToWorkOrder.Hide" Location="FieldService.Form.incident.MainTab.Save.ConvertToWorkOrder" />
+    <CustomAction Id="ts.incident.Documents.Button.CustomAction" Location="Mscrm.Form.incident.MainTab.Save.Controls._children" Sequence="31">
+      <CommandUIDefinition>
+        <Button Command="ts.incident.Documents.Command" Id="ts.incident.Documents.Button" LabelText="$LocLabels:ts.incident.Documents.Button.LabelText" Sequence="31" TemplateAlias="o1" />
+      </CommandUIDefinition>
+    </CustomAction>
     <HideCustomAction HideActionId="ts.Mscrm.Form.incident.AddConnection.Hide" Location="Mscrm.Form.incident.AddConnection" />
     <HideCustomAction HideActionId="ts.Mscrm.Form.incident.AddToQueue.Hide" Location="Mscrm.Form.incident.AddToQueue" />
     <HideCustomAction HideActionId="ts.Mscrm.Form.incident.ConvertTo.Hide" Location="Mscrm.Form.incident.ConvertTo" />
@@ -80,6 +85,17 @@
         <JavaScriptFunction FunctionName="CrmService.IncidentRibbon.GridCommandActions.cancelCase" Library="$webresource:Service/Incident/Ribbon/Incident_ribbon_library.js">
           <CrmParameter Value="FirstSelectedItemId" />
           <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.incident.Documents.Command">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="OpenFileUploadPage" Library="$webresource:ts_/js/AttachFile.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+          <CrmParameter Value="PrimaryControlId" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -218,6 +234,11 @@
         <Title description="取消此案例。取消后，将无法再分派它。您可以重新激活已取消的案例。" languagecode="2052" />
         <Title description="取消此案例。案例取消後，便無法再加以指派。您可以重新啟用取消的案例。" languagecode="3076" />
         <Title description="取消此案例。案例取消後，便無法再加以指派。您可以重新啟用取消的案例。" languagecode="1028" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.incident.Documents.Button.LabelText">
+      <Titles>
+        <Title description="Documents" languagecode="1033" />
       </Titles>
     </LocLabel>
   </LocLabels>

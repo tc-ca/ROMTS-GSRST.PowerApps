@@ -208,9 +208,10 @@
                       "CategoryEnglish": "@item()?['Category_x002d_Cat_x00e9_gorie/Value']",
                       "CategoryFrench": "@item()?['Category_x0020__x002d__x0020_Cat_x00e9_gorie_x003a__x0020_Cat_x00e9_gorie/Value']",
                       "Description": "@item()?['FileDescription_x002d_descriptiondufichier']",
-                      "DocumentLink": "@item()?['Document_x0020_Link_x0020__x002d__x0020_Lien_x0020_du_x0020_Document']",
+                      "DocumentLink": "@item()?['{Link}']",
                       "DocumentType": "@item()?['DocumentType_x002d_TypedeDocument']",
-                      "DocumentReferenceID": "@item()?['DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument']"
+                      "DocumentReferenceID": "@item()?['DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument']",
+                      "FileIdentifier": "@item()?['{Identifier}']"
                     }
                   }
                 },
@@ -231,7 +232,7 @@
                 }
               }
             },
-            "Case": {
+            "Case_-_ISSO": {
               "case": "Intermodal Surface Security Oversight",
               "actions": {
                 "Get_items_-_ISSO_Individual_Inspections": {
@@ -273,9 +274,10 @@
                       "CategoryEnglish": "@item()?['Category_x002d_Cat_x00e9_gorie/Value']",
                       "CategoryFrench": "@item()?['Category_x0020__x002d__x0020_Cat_x00e9_gorie_x003a__x0020_Cat_x00e9_gorie/Value']",
                       "Description": "@item()?['FileDescription_x002d_descriptiondufichier']",
-                      "DocumentLink": "@item()?['Link']",
+                      "DocumentLink": "@item()?['{Link}']",
                       "DocumentType": "@item()?['DocumentType_x002d_TypedeDocument']",
-                      "DocumentReferenceID": "@item()?['DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument']"
+                      "DocumentReferenceID": "@item()?['DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument']",
+                      "FileIdentifier": "@item()?['{Identifier}']"
                     }
                   }
                 },
@@ -368,6 +370,9 @@
                   },
                   "DocumentReferenceID": {
                     "type": "string"
+                  },
+                  "FileIdentifier": {
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -378,7 +383,8 @@
                   "Description",
                   "DocumentLink",
                   "DocumentType",
-                  "DocumentReferenceID"
+                  "DocumentReferenceID",
+                  "FileIdentifier"
                 ]
               }
             }
