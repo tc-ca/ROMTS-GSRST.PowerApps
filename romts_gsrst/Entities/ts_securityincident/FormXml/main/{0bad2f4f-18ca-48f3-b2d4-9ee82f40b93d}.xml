@@ -411,6 +411,24 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{28134a96-7a3a-3ebc-0629-75bc98aa3724}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Site Type" languagecode="1033" />
+                          <label description="Type de site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_sitetype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_sitetype" disabled="true" uniqueid="{ed2a32e5-59a4-7769-e032-a6c6a876b408}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{34A3B92A-A67A-4D39-BC77-3ABDE3AEE365}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{a3739b75-5caa-b65e-1853-caa5ab404d4d}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Subsite" languagecode="1033" />
@@ -423,6 +441,24 @@
                             <DisableQuickFind>false</DisableQuickFind>
                             <DisableViewPicker>false</DisableViewPicker>
                             <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4b879a19-d23b-106a-2ea4-931902cb1a0e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Subsite Type" languagecode="1033" />
+                          <label description="Type de sous-site" languagecode="1036" />
+                        </labels>
+                        <control id="ts_subsitetype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subsitetype" disabled="true" uniqueid="{00b0754d-4049-258e-86bc-589e4ad226d9}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{34A3B92A-A67A-4D39-BC77-3ABDE3AEE365}</DefaultViewId>
                             <AllowFilterOff>false</AllowFilterOff>
                           </parameters>
                         </control>
@@ -1079,7 +1115,7 @@
                         </labels>
                         <control id="ts_overtime" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_overtime" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{fb2d2679-f668-4130-a995-3460b7c0c2a7}">
+                      <cell locklevel="0" id="{fb2d2679-f668-4130-a995-3460b7c0c2a7}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -1164,7 +1200,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -1410,6 +1446,16 @@
         <event name="onchange" application="false" active="false" attribute="ts_timezone">
           <Handlers>
             <Handler functionName="ROM.SecurityIncident.TimeZoneOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{04aa832a-bcca-20c2-c98b-3aa08769702d}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_site">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.siteOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{671cd820-1233-515a-2664-91075ba04e32}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_subsite">
+          <Handlers>
+            <Handler functionName="ROM.SecurityIncident.subSiteOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{8761975c-a68d-ea1d-ea11-84d1ce4994c7}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
