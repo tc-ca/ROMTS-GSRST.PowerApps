@@ -254,7 +254,6 @@ async function createWorkOrders(formContext) {
                     "    <attribute name='ts_operation'/>",
                     "    <attribute name='ts_q3'/>",
                     "    <attribute name='ts_stakeholder'/>",
-                    //                   "    <attribute name='ts_fiscalyear'/>",
                     "    <attribute name='ts_site'/>",
                     "    <attribute name='ts_activitytype'/>",
                     "    <attribute name='ts_operationtype'/>",
@@ -262,7 +261,6 @@ async function createWorkOrders(formContext) {
                     "    <attribute name='ts_q1'/>",
                     "    <attribute name='ts_plan'/>",
                     "    <attribute name='ts_q2'/>",
-                    //                   "    <attribute name='ts_details'/>",
                     "    <filter type='and'>",
                     "      <condition attribute='ts_plan' operator='eq' value='", planId, "'/>",
                     "      <condition attribute='statecode' operator='eq' value='0'/>",
@@ -274,13 +272,6 @@ async function createWorkOrders(formContext) {
                     "        <condition attribute='ts_q3' operator='gt' value='0'/>",
                     "        <condition attribute='ts_q4' operator='gt' value='0'/>",
                     "      </filter>",
-                    //"      <filter type='or'>",
-                    //"        <condition attribute='ts_operationactivity' operator='null'/>",
-                    //"        <condition attribute='ts_operationactivityisoperational' operator='eq' value='1'/>",
-                    //"      </filter>",
-                    //"    <filter>",
-                    //"      <condition attribute='ts_operationactivityisactive' operator='eq' value='1'/>",
-                    //"    </filter>",
                     "    </filter>",
                     "    <link-entity name='msdyn_functionallocation' from='msdyn_functionallocationid' to='ts_site' link-type='outer' alias='ts_site'>",
                     "      <attribute name='ts_region'/>",
@@ -301,10 +292,9 @@ async function createWorkOrders(formContext) {
                     for (const suggestedInspection of suggestedInspections) {
                         let tradeNameId = null
                         if (suggestedInspection["_ts_stakeholder_value"] != null && suggestedInspection["ts_stakeholder.name"] != null) tradeNameId = await determineTradeNameOfStakeholder(suggestedInspection._ts_stakeholder_value, suggestedInspection["ts_stakeholder.name"]);
-                        //Set the Work Order Lookups using the Planning Data Lookups. Some can be null, so they are only added if there is a value.
+                        //Set the Work Order Lookups using the Suggested Inspection Lookups. Some can be null, so they are only added if there is a value.
                         let workOrderData = {}
                         if (planId != null) workOrderData["ts_plan@odata.bind"] = "/ts_plans(" + planId.slice(1, -1) + ")";
-                        //if (teamId != null) workOrderData["ownerid@odata.bind"] = "/teams(" + teamId.slice(1, -1) + ")";
                         if (suggestedInspection.ts_suggestedinspectionid != null) workOrderData["ts_suggestedinspection@odata.bind"] = "/ts_suggestedinspections(" + suggestedInspection.ts_suggestedinspectionid + ")";
                         if (fiscalYearId != null) workOrderData["ovs_FiscalYear@odata.bind"] = "/tc_tcfiscalyears(" + fiscalYearId + ")";
                         if (suggestedInspection["ts_site.ts_region"] != null) workOrderData["ts_Region@odata.bind"] = "/territories(" + suggestedInspection["ts_site.ts_region"] + ")";
@@ -314,11 +304,10 @@ async function createWorkOrders(formContext) {
                         if (suggestedInspection._ts_site_value != null) workOrderData["ts_Site@odata.bind"] = "/msdyn_functionallocations(" + suggestedInspection._ts_site_value + ")";
                         if (suggestedInspection._ts_activitytype_value != null) workOrderData["msdyn_primaryincidenttype@odata.bind"] = "/msdyn_incidenttypes(" + suggestedInspection._ts_activitytype_value + ")";
                         if (suggestedInspection._ts_operation_value != null) workOrderData["ovs_OperationId@odata.bind"] = "/ovs_operations(" + suggestedInspection._ts_operation_value + ")";
-                        //                        if (suggestedInspection.ts_details != null) workOrderData["ts_details"] = suggestedInspection.ts_details;
-
+ 
                         /*
-                         * For each ts_plannedq field, determine how many Work Orders must be created, then create them.
-                         * Subtract the current number of work orders related to the current Planning Data record to prevent duplicates.
+                         * For each ts_q field, determine how many Work Orders must be created, then create them.
+                         * Subtract the current number of work orders related to the current Suggested Inspection record to prevent duplicates.
                          * Duplicate the above workOrderData object for each quarter so that the correct Fiscal Quarter lookup can be set.
                          * Update the Progress Indicator after the Work Order is created.
                          */
@@ -337,7 +326,7 @@ async function createWorkOrders(formContext) {
                             }
                         }
                         if (suggestedInspection.ts_q2 > 0) {
-                            const currentQ2InspectionsCount = await Xrm.WebApi.retrieveMultipleRecords("msdyn_workorder", `?$select=msdyn_name&$filter=_ts_planningdata_value eq ${suggestedInspection.ts_planningdataid} and _ovs_fiscalquarter_value eq ${Q2Id}`).then(function (result) { return result.entities.length });
+                            const currentQ2InspectionsCount = await Xrm.WebApi.retrieveMultipleRecords("msdyn_workorder", `?$select=msdyn_name&$filter=_ts_suggestedinspection_value eq ${suggestedInspection.ts_suggestedinspectionid} and _ovs_fiscalquarter_value eq ${Q2Id}`).then(function (result) { return result.entities.length });
                             const workOrdersToCreateInQ2 = suggestedInspection.ts_q2 - currentQ2InspectionsCount;
                             totalWorkOrders -= currentQ2InspectionsCount;
                             const dataQ2 = { ...workOrderData };
@@ -350,7 +339,7 @@ async function createWorkOrders(formContext) {
                             }
                         }
                         if (suggestedInspection.ts_q3 > 0) {
-                            const currentQ3InspectionsCount = await Xrm.WebApi.retrieveMultipleRecords("msdyn_workorder", `?$select=msdyn_name&$filter=_ts_planningdata_value eq ${suggestedInspection.ts_planningdataid} and _ovs_fiscalquarter_value eq ${Q3Id}`).then(function (result) { return result.entities.length });
+                            const currentQ3InspectionsCount = await Xrm.WebApi.retrieveMultipleRecords("msdyn_workorder", `?$select=msdyn_name&$filter=_ts_suggestedinspection_value eq ${suggestedInspection.ts_suggestedinspectionid} and _ovs_fiscalquarter_value eq ${Q3Id}`).then(function (result) { return result.entities.length });
                             const workOrdersToCreateInQ3 = suggestedInspection.ts_q3 - currentQ3InspectionsCount;
                             totalWorkOrders -= currentQ3InspectionsCount;
                             const dataQ3 = { ...workOrderData };
@@ -363,7 +352,7 @@ async function createWorkOrders(formContext) {
                             }
                         }
                         if (suggestedInspection.ts_q4 > 0) {
-                            const currentQ4InspectionsCount = await Xrm.WebApi.retrieveMultipleRecords("msdyn_workorder", `?$select=msdyn_name&$filter=_ts_planningdata_value eq ${suggestedInspection.ts_planningdataid} and _ovs_fiscalquarter_value eq ${Q4Id}`).then(function (result) { return result.entities.length });
+                            const currentQ4InspectionsCount = await Xrm.WebApi.retrieveMultipleRecords("msdyn_workorder", `?$select=msdyn_name&$filter=_ts_suggestedinspection_value eq ${suggestedInspection.ts_suggestedinspectionid} and _ovs_fiscalquarter_value eq ${Q4Id}`).then(function (result) { return result.entities.length });
                             const workOrdersToCreateInQ4 = suggestedInspection.ts_q4 - currentQ4InspectionsCount;
                             totalWorkOrders -= currentQ4InspectionsCount;
                             const dataQ4 = { ...workOrderData };
