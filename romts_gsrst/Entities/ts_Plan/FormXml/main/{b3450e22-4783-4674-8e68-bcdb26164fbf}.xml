@@ -25,6 +25,7 @@
                       <cell id="{67db77c7-82cd-4b4f-917f-6db7564f6dcb}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Name" languagecode="1033" />
+                          <label description="Name" languagecode="1036" />
                         </labels>
                         <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" uniqueid="{569542b5-7d11-4529-34b7-66c262387d90}" disabled="false" />
                       </cell>
@@ -47,6 +48,7 @@
                       <cell id="{44b9a3e5-8683-44e0-b42c-424aad6b22d5}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Team" languagecode="1033" />
+                          <label description="Team" languagecode="1036" />
                         </labels>
                         <control id="ts_team" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_team" disabled="false" />
                       </cell>
@@ -55,6 +57,7 @@
                       <cell id="{cf06c250-fbce-41f1-9212-91d7025f339a}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Fiscal Year" languagecode="1033" />
+                          <label description="Fiscal Year" languagecode="1036" />
                         </labels>
                         <control id="ts_fiscalyear" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalyear" disabled="false" />
                       </cell>
@@ -63,6 +66,7 @@
                       <cell id="{e45c6cfb-af8f-4d0d-981e-d6a7863be3c8}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Status" languagecode="1033" />
+                          <label description="Plan Status" languagecode="1036" />
                         </labels>
                         <control id="ts_planstatus" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_planstatus" disabled="false" />
                       </cell>
@@ -366,6 +370,7 @@
         <tab name="tab_supporting_inspections" id="{e70d90cc-c1ae-7504-1610-0d557bd38807}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
           <labels>
             <label description="Supporting Inspections" languagecode="1033" />
+            <label description="les inspections de souteins" languagecode="1036" />
           </labels>
           <columns>
             <column width="100%">
@@ -378,7 +383,7 @@
                     <row>
                       <cell id="{c8bd43a4-d671-a81b-6aa3-3a288b7591cc}" showlabel="false" colspan="1" auto="false" rowspan="6">
                         <labels>
-                          <label description="Plan Inspection Support Regions" languagecode="1033" />
+                          <label description="Plan Inspector Hours" languagecode="1033" />
                           <label description="Plan Inspection Support Regions" languagecode="1036" />
                         </labels>
                         <control id="subgrid_supporting_inspections" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
@@ -412,6 +417,13 @@
               </sections>
             </column>
           </columns>
+          <events>
+            <event name="tabstatechange" application="false" active="false">
+              <Handlers>
+                <Handler functionName="ROM.Plan.SubGridFilterExecution" libraryName="ts_/js/Plan.js" handlerUniqueId="{262b98ce-c437-9aec-ad58-1c59a23dd65b}" enabled="true" parameters="" passExecutionContext="true" />
+              </Handlers>
+            </event>
+          </events>
         </tab>
       </tabs>
       <Navigation>

@@ -103,6 +103,7 @@
         "    <attribute name='ts_q4'/>",
         "    <attribute name='ts_estimatedtraveltime'/>",
         "    <attribute name='ts_estimatedcost' />",
+        "    <attribute name='ts_trip' />",
         "    <filter>",
         "      <condition attribute='ts_plan' operator='eq' value='", planId, "' uitype='ts_plan'/>",
         "    </filter>",
@@ -117,6 +118,7 @@
     let suggestedInspections = await Xrm.WebApi.retrieveMultipleRecords("ts_suggestedinspection", suggestedInspectionsFetchXml).then(function success(result) {
         return result.entities;
     });
+    let tripInspectorIds = "";
     //For each suggested inspection, if the assigned inspector has a matching inspector hours object, subtract from the total hours of each quarter 
     for (let suggestedInspection of suggestedInspections) {
         if (planInspectorHours[suggestedInspection._ts_inspector_value] != null) {
@@ -126,8 +128,11 @@
             const q4 = (suggestedInspection.ts_q4 != null) ? suggestedInspection.ts_q4 : 0;
 
             var estimatedTravelTime = 0;
-            if (suggestedInspection["plantrip.ts_estimatedtraveltime"] != null) {
-                estimatedTravelTime = Math.round(suggestedInspection["plantrip.ts_estimatedtraveltime"]);
+            if (suggestedInspection["plantrip.ts_estimatedtraveltime"] != null && suggestedInspection["_ts_trip_value"] != null) {
+                if (tripInspectorIds.indexOf(suggestedInspection["_ts_trip_value"] + ";" + suggestedInspection["_ts_inspector_value"]) == -1) {
+                    estimatedTravelTime = Math.round(suggestedInspection["plantrip.ts_estimatedtraveltime"]);
+                    tripInspectorIds += suggestedInspection["_ts_trip_value"] + ";" + suggestedInspection["_ts_inspector_value"] + "|";
+                }
             }
             else if (suggestedInspection["ts_estimatedtraveltime"] != null) {
                 estimatedTravelTime = Math.round(suggestedInspection["ts_estimatedtraveltime"]);
@@ -155,7 +160,7 @@
             updatePromises.push(Xrm.WebApi.updateRecord("ts_planinspectorhours", planInspectorHours[inspectorId].planInspectorHoursId, data));
         }
     }
-
+    let tripIds = "";
     suggestedInspections.forEach(function (inspection) {
         teamPlanningDataPlannedQ1 += inspection.ts_q1;
         teamPlanningDataPlannedQ2 += inspection.ts_q2;
@@ -167,8 +172,11 @@
         teamPlanningDataTeamEstimatedDurationQ3 += inspection.ts_estimatedduration * inspection.ts_q3;
         teamPlanningDataTeamEstimatedDurationQ4 += inspection.ts_estimatedduration * inspection.ts_q4;
         teamPlanningDataTeamEstimatedDurationTotal += inspection.ts_estimatedduration;
-        if (inspection["plantrip.ts_estimatedtraveltime"] != null) {
-            teamPlanningDataTeamEstimatedTravelTimeTotal += inspection["plantrip.ts_estimatedtraveltime"];
+        if (inspection["plantrip.ts_estimatedtraveltime"] != null && inspection["_ts_trip_value"]  != null) {
+            if (tripIds.indexOf(inspection["_ts_trip_value"] ) == -1) {
+                teamPlanningDataTeamEstimatedTravelTimeTotal += inspection["plantrip.ts_estimatedtraveltime"];
+                tripIds += inspection["_ts_trip_value"] + "|";
+            }
         }
         else if (inspection.ts_estimatedtraveltime != null) {
             teamPlanningDataTeamEstimatedTravelTimeTotal += inspection.ts_estimatedtraveltime;
@@ -261,6 +269,7 @@ async function createWorkOrders(formContext) {
                     "    <attribute name='ts_q1'/>",
                     "    <attribute name='ts_plan'/>",
                     "    <attribute name='ts_q2'/>",
+                    "    <attribute name='ts_trip'/>",
                     "    <filter type='and'>",
                     "      <condition attribute='ts_plan' operator='eq' value='", planId, "'/>",
                     "      <condition attribute='statecode' operator='eq' value='0'/>",
@@ -273,6 +282,9 @@ async function createWorkOrders(formContext) {
                     "        <condition attribute='ts_q4' operator='gt' value='0'/>",
                     "      </filter>",
                     "    </filter>",
+                    "    <link-entity name='ts_trip' from='ts_tripid' to='ts_trip' visible='false' link-type='outer' alias='plantrip'>",
+                    "      <attribute name='ts_name'/>",
+                    "    </link-entity>",
                     "    <link-entity name='msdyn_functionallocation' from='msdyn_functionallocationid' to='ts_site' link-type='outer' alias='ts_site'>",
                     "      <attribute name='ts_region'/>",
                     "    </link-entity>",
@@ -304,6 +316,7 @@ async function createWorkOrders(formContext) {
                         if (suggestedInspection._ts_site_value != null) workOrderData["ts_Site@odata.bind"] = "/msdyn_functionallocations(" + suggestedInspection._ts_site_value + ")";
                         if (suggestedInspection._ts_activitytype_value != null) workOrderData["msdyn_primaryincidenttype@odata.bind"] = "/msdyn_incidenttypes(" + suggestedInspection._ts_activitytype_value + ")";
                         if (suggestedInspection._ts_operation_value != null) workOrderData["ovs_OperationId@odata.bind"] = "/ovs_operations(" + suggestedInspection._ts_operation_value + ")";
+                        if (suggestedInspection["plantrip.ts_name"] != null) workOrderData["ts_trip@odata.bind"] = "/ts_trips(" + suggestedInspection._ts_trip_value + ")";
  
                         /*
                          * For each ts_q field, determine how many Work Orders must be created, then create them.
