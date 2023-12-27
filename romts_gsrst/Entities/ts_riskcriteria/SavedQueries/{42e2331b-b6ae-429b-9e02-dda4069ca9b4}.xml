@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{42e2331b-b6ae-429b-9e02-dda4069ca9b4}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_riskcriteriaid">
+          <cell name="ts_name" width="300" />
+          <cell name="ts_riskcriteriadescription" width="181" />
+          <cell name="ts_ovs_operationtype" width="128" />
+          <cell name="ts_riskcriteriarange" width="152" />
+          <cell name="a_50913855d53a4b19aba94094bb1ae75a.ts_score" width="196" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_riskcriteria">
+          <attribute name="ts_riskcriteriaid" />
+          <attribute name="ts_name" />
+          <order attribute="ts_name" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_riskcriteriadescription" />
+          <attribute name="ts_riskcriteriarange" />
+          <link-entity alias="a_50913855d53a4b19aba94094bb1ae75a" name="ts_riskcriteriarange" to="ts_riskcriteriarange" from="ts_riskcriteriarangeid" link-type="outer" visible="false">
+            <attribute name="ts_score" />
+          </link-entity>
+          <attribute name="ts_ovs_operationtype" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Risk Criteria" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
