@@ -17,6 +17,11 @@
         <Button Alt="$LocLabels:ts.ts_securityincident.Button.GenerateWorkOrder.Alt" Command="ts.ts_securityincident.Command.GenerateWorkOrder" Id="ts.ts_securityincident.Button.GenerateWorkOrder" LabelText="$LocLabels:ts.ts_securityincident.Button.GenerateWorkOrder.LabelText" Sequence="73" TemplateAlias="o2" ToolTipTitle="$LocLabels:ts.ts_securityincident.Button.GenerateWorkOrder.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_securityincident.Button.GenerateWorkOrder.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.ts_securityincident.Documents.Button.CustomAction" Location="Mscrm.Form.ts_securityincident.MainTab.Save.Controls._children" Sequence="55">
+      <CommandUIDefinition>
+        <Button Command="ts.ts_securityincident.Documents.Command" Id="ts.ts_securityincident.Documents.Button" LabelText="$LocLabels:ts.ts_securityincident.Documents.Button.LabelText" Sequence="55" TemplateAlias="o2" />
+      </CommandUIDefinition>
+    </CustomAction>
   </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
@@ -68,6 +73,17 @@
       <Actions>
         <JavaScriptFunction FunctionName="generateInspection" Library="$webresource:ts_/js/SecurityIncidentRibbon.js">
           <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ts_securityincident.Documents.Command">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="OpenFileUploadPage" Library="$webresource:ts_/js/AttachFile.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+          <CrmParameter Value="PrimaryControlId" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -154,6 +170,11 @@
     <LocLabel Id="ts.ts_securityincident.Button.GenerateWorkOrder.ToolTipTitle">
       <Titles>
         <Title description="Generate an inspection" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_securityincident.Documents.Button.LabelText">
+      <Titles>
+        <Title description="Documents" languagecode="1033" />
       </Titles>
     </LocLabel>
   </LocLabels>

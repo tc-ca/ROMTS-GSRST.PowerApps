@@ -2,6 +2,11 @@
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
     <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.msdyn_functionallocation.Delete.Hide" Location="Mscrm.HomepageGrid.msdyn_functionallocation.Delete" />
+    <CustomAction Id="ts.msdyn_functionallocation.Documents.Button.CustomAction" Location="Mscrm.Form.msdyn_functionallocation.MainTab.Save.Controls._children" Sequence="55">
+      <CommandUIDefinition>
+        <Button Command="ts.msdyn_functionallocation.Documents.Command" Id="ts.msdyn_functionallocation.Documents.Button" LabelText="$LocLabels:ts.msdyn_functionallocation.Documents.Button.LabelText" Sequence="55" TemplateAlias="o2" />
+      </CommandUIDefinition>
+    </CustomAction>
   </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
@@ -40,6 +45,17 @@
           <CrmParameter Value="SelectedControl" />
           <CrmParameter Value="SelectedControlSelectedItemReferences" />
           <CrmParameter Value="SelectedEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_functionallocation.Documents.Command">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="OpenFileUploadPage" Library="$webresource:ts_/js/AttachFile.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+          <CrmParameter Value="PrimaryControlId" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -92,5 +108,11 @@
       </EnableRule>
     </EnableRules>
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="ts.msdyn_functionallocation.Documents.Button.LabelText">
+      <Titles>
+        <Title description="Documents" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>

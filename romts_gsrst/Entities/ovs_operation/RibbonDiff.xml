@@ -24,6 +24,11 @@
         <Button Alt="$Resources:MenuItem_Label_Remove" Command="ts.ovs_operation.RemoveSelectedRecord" Id="ts.ovs_operation.Button.Mscrm.SubGrid.ovs_operation.Remove" Image32by32="/_imgs/Workplace/Remove_32.png" Image16by16="/_imgs/ribbon/Delete_16.png" LabelText="$Resources:MenuItem_Label_Remove" Sequence="0" TemplateAlias="o2" ToolTipTitle="$Resources:Mscrm_SubGrid_Other_MainTab_Management_Remove_ToolTipTitle" ToolTipDescription="$Resources:Mscrm_SubGrid_Other_MainTab_Management_Remove_ToolTipDescription" ModernImage="Remove" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.ovs_operation.Documents.Button.CustomAction" Location="Mscrm.Form.ovs_operation.MainTab.Save.Controls._children" Sequence="55">
+      <CommandUIDefinition>
+        <Button Command="ts.ovs_operation.Documents.Command" Id="ts.ovs_operation.Documents.Button" LabelText="$LocLabels:ts.ovs_operation.Documents.Button.LabelText" Sequence="55" TemplateAlias="o2" />
+      </CommandUIDefinition>
+    </CustomAction>
   </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
@@ -178,6 +183,17 @@
         <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridStandard" Library="$webresource:Main_system_library.js">
           <CrmParameter Value="SelectedEntityTypeName" />
           <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ovs_operation.Documents.Command">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="OpenFileUploadPage" Library="$webresource:ts_/js/AttachFile.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+          <CrmParameter Value="PrimaryControlId" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -385,6 +401,11 @@
     <LocLabel Id="Mscrm.SubGrid.ovs_operation.AddExistingStandard.LabelText">
       <Titles>
         <Title description="Add Existing {0}" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ovs_operation.Documents.Button.LabelText">
+      <Titles>
+        <Title description="Documents" languagecode="1033" />
       </Titles>
     </LocLabel>
   </LocLabels>

@@ -1019,9 +1019,54 @@
             </column>
           </columns>
         </tab>
+        <tab name="plan_track" id="91cb443c-3562-41d9-97d7-c7149cc1b8fe" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Plan &amp; Track" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_10_section_1" id="719ff35e-c443-4e0f-a006-346ba3ce4c8c" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{f2cf8591-7e34-43ce-b176-5bced0b4e325}" colspan="1" rowspan="6" showlabel="false" auto="false">
+                        <labels>
+                          <label description="New editable grid" languagecode="1033" />
+                          <label description="Activités opérationnelles" languagecode="1036" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="cc_1703701323281" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{de5701bd-24a5-403a-b033-db7a3969ae74}">
+                          <parameters>
+                            <TargetEntityType>ts_riskcriteria</TargetEntityType>
+                            <ViewId>{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}</ViewId>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <IsUserView>false</IsUserView>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <RelationshipName />
+                            <ViewIds>{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}</ViewIds>
+                            <ChartGridMode>All</ChartGridMode>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
       </tabs>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -1562,6 +1607,131 @@
           <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
             <parameters>
               <value type="TwoOptions">ts_targetedinspectionneeded</value>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{de5701bd-24a5-403a-b033-db7a3969ae74}">
+          <customControl id="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+            <parameters />
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_riskcriteria" viewId="{42e2331b-b6ae-429b-9e02-dda4069ca9b4}" attributeName="ts_riskcriteriarange">
+                    <DefaultViewId>{7799B4D6-A17D-458F-B189-421762898A8F}</DefaultViewId>
+                    <DependentAttributeType>systemuser</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_riskcriteria" viewId="{42e2331b-b6ae-429b-9e02-dda4069ca9b4}" attributeName="ts_riskcriteriadescription">
+                    <DefaultViewId>{a9d58fd1-9a47-40bb-800e-f7ca8b878674}</DefaultViewId>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_riskcriteria" viewId="{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}" attributeName="ts_ovs_operationtype">
+                    <DefaultViewId>{1284A7EE-3693-435E-8C57-8F94B3D5DEAE}</DefaultViewId>
+                    <FilterRelationshipName>ts_ovs_operationtype_riskcriteria</FilterRelationshipName>
+                    <DependentAttributeName>ovs_operationtype.ts_riskcriteria</DependentAttributeName>
+                    <DependentAttributeType>ts_riskcriteria</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <TargetEntityType>ts_riskcriteria</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">no</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_riskcriteria" viewId="{42e2331b-b6ae-429b-9e02-dda4069ca9b4}" attributeName="ts_riskcriteriarange">
+                    <DefaultViewId>{7799B4D6-A17D-458F-B189-421762898A8F}</DefaultViewId>
+                    <DependentAttributeType>systemuser</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_riskcriteria" viewId="{42e2331b-b6ae-429b-9e02-dda4069ca9b4}" attributeName="ts_riskcriteriadescription">
+                    <DefaultViewId>{a9d58fd1-9a47-40bb-800e-f7ca8b878674}</DefaultViewId>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_riskcriteria" viewId="{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}" attributeName="ts_ovs_operationtype">
+                    <DefaultViewId>{1284A7EE-3693-435E-8C57-8F94B3D5DEAE}</DefaultViewId>
+                    <FilterRelationshipName>ts_ovs_operationtype_riskcriteria</FilterRelationshipName>
+                    <DependentAttributeName>ovs_operationtype.ts_riskcriteria</DependentAttributeName>
+                    <DependentAttributeType>ts_riskcriteria</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <TargetEntityType>ts_riskcriteria</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">no</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_riskcriteria" viewId="{42e2331b-b6ae-429b-9e02-dda4069ca9b4}" attributeName="ts_riskcriteriarange">
+                    <DefaultViewId>{7799B4D6-A17D-458F-B189-421762898A8F}</DefaultViewId>
+                    <DependentAttributeType>systemuser</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_riskcriteria" viewId="{42e2331b-b6ae-429b-9e02-dda4069ca9b4}" attributeName="ts_riskcriteriadescription">
+                    <DefaultViewId>{a9d58fd1-9a47-40bb-800e-f7ca8b878674}</DefaultViewId>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_riskcriteria" viewId="{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}" attributeName="ts_ovs_operationtype">
+                    <DefaultViewId>{1284A7EE-3693-435E-8C57-8F94B3D5DEAE}</DefaultViewId>
+                    <FilterRelationshipName>ts_ovs_operationtype_riskcriteria</FilterRelationshipName>
+                    <DependentAttributeName>ovs_operationtype.ts_riskcriteria</DependentAttributeName>
+                    <DependentAttributeType>ts_riskcriteria</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <TargetEntityType>ts_riskcriteria</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">no</EnableJumpBar>
             </parameters>
           </customControl>
         </controlDescription>

@@ -10,25 +10,25 @@
       <tabs showlabels="true">
         <tab name="general" verticallayout="true" id="{564b9a08-4626-46f5-8bd8-3d31e17a8873}" IsUserDefined="0" labelid="{8ee52043-e14e-4b08-8f04-d447887812b1}" locklevel="0" expanded="true" showlabel="true">
           <labels>
-            <label description="Summary" languagecode="1033" />
+            <label description="Overview" languagecode="1033" />
             <label description="Résumé" languagecode="1036" />
           </labels>
           <columns>
             <column width="67%">
               <sections>
-                <section name="Details" showlabel="true" labelwidth="102" showbar="false" id="{09d03c8d-5a6b-4a94-b7d9-cfa1b5364015}" IsUserDefined="0" locklevel="0" celllabelposition="Left" labelid="{e7480d59-a19e-48a1-bfc5-5b660e88fa2d}" height="auto">
+                <section name="Details" showlabel="true" labelwidth="102" showbar="false" id="{09d03c8d-5a6b-4a94-b7d9-cfa1b5364015}" IsUserDefined="0" locklevel="0" celllabelposition="Left" labelid="{e7480d59-a19e-48a1-bfc5-5b660e88fa2d}" height="auto" columns="1" celllabelalignment="Left">
                   <labels>
-                    <label description="CASE DETAILS" languagecode="1033" />
+                    <label description="General" languagecode="1033" />
                     <label description="DÉTAILS DU CAS" languagecode="1036" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{f28544c6-382e-4e29-a09c-3f2804012d04}" showlabel="true" locklevel="0" labelid="{504730b7-5b96-4cc6-a81b-c0dfedd38934}">
+                      <cell id="{f28544c6-382e-4e29-a09c-3f2804012d04}" showlabel="true" locklevel="0" labelid="{504730b7-5b96-4cc6-a81b-c0dfedd38934}" visible="false">
                         <labels>
                           <label description="ID" languagecode="1033" />
                           <label description="ID" languagecode="1036" />
                         </labels>
-                        <control id="ticketnumber" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ticketnumber" disabled="true" />
+                        <control id="ticketnumber" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ticketnumber" disabled="true" uniqueid="{36900830-322a-bc71-1528-ee4b345c717a}" />
                       </cell>
                     </row>
                     <row>
@@ -435,7 +435,7 @@
             </column>
             <column width="33%">
               <sections>
-                <section name="general_section_7" id="96dbede7-c565-4ee1-b020-fce569138537" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="true" labelid="{7623d163-2de2-45a9-a8e5-4a144f485ab9}">
+                <section name="general_section_7" id="96dbede7-c565-4ee1-b020-fce569138537" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false" labelid="{7623d163-2de2-45a9-a8e5-4a144f485ab9}">
                   <labels>
                     <label description="CUSTOMER DETAILS" languagecode="1033" />
                   </labels>
@@ -457,19 +457,22 @@
                     </row>
                   </rows>
                 </section>
-                <section id="{2335806E-F713-402F-A9BD-6BEEEC6B8645}" columns="1" showlabel="true" showbar="false" IsUserDefined="0" locklevel="0" height="auto" labelid="{43dcf4ef-37f8-4dca-a52b-c19dec398ab0}" name="{2335806E-F713-402F-A9BD-6BEEEC6B8645}" labelwidth="130" celllabelalignment="Left" celllabelposition="Left" visible="false">
+                <section name="general_section_Notes" showlabel="true" showbar="false" locklevel="0" id="{0116da42-3691-6ca6-8e6e-05b93c6d23e8}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
-                    <label description="DESCRIPTION" languagecode="1033" />
-                    <label description="DESCRIPTION" languagecode="1036" />
+                    <label description="Notes" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{05c77d70-be97-7ce2-2339-c8d1aa37573d}" showlabel="false">
+                      <cell id="{ee1a5506-52d1-1273-92e7-34b0a66d2e5a}" showlabel="false" locklevel="0" rowspan="4">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Notes" languagecode="1033" />
                         </labels>
+                        <control id="ts_notes" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_notes" disabled="false" uniqueid="{6344cd82-d0ee-3a39-cca5-e1c9ee2ce389}" />
                       </cell>
                     </row>
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>
@@ -481,15 +484,122 @@
             <label description="Workspace" languagecode="1033" />
           </labels>
           <columns>
-            <column width="100%">
+            <column width="67%">
               <sections>
-                <section name="tab_17_section_1" showlabel="false" showbar="false" locklevel="0" id="{bac6229b-ca64-328a-9bbd-4e4c89292113}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                <section name="tab_16_section_1" id="1220a110-6266-4df4-b586-ee7278b28604" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{29193c5e-2443-494b-80b0-b391ec9fc816}">
+                  <labels>
+                    <label description="Time Tracking" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{b7d5c3ba-56ba-42b4-8f60-b5345b2b46f3}" locklevel="0" colspan="1" rowspan="1" labelid="{fbdb6df5-7a52-4600-9934-c5a3461fa66b}">
+                        <labels>
+                          <label description="Case Reporting and Documentation" languagecode="1033" />
+                          <label description="Rapport et documentation du cas" languagecode="1036" />
+                        </labels>
+                        <control id="ts_casereportinganddocumentation" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_casereportinganddocumentation" disabled="false" uniqueid="{1db112e8-459a-6337-1923-5ca420398bd9}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8b27dcab-4ad3-439c-becd-4f4777f25bb5}" locklevel="0" colspan="1" rowspan="1" labelid="{2fb7aa8b-9ac7-4a16-99ea-245395b13c5a}">
+                        <labels>
+                          <label description="Case Travel Time" languagecode="1033" />
+                          <label description="Temps de voyagement du cas" languagecode="1036" />
+                        </labels>
+                        <control id="ts_traveltime" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_traveltime" disabled="false" uniqueid="{0e61a5d6-45c2-464d-a8e8-2c930d086694}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{03e59700-1e9c-4288-bd0c-93c70b7375c2}" locklevel="0" colspan="1" rowspan="4" showlabel="true" labelid="{39c5ff2c-efb3-4cfe-805d-cff39b5a01ae}">
+                        <labels>
+                          <label description="Comments" languagecode="1033" />
+                          <label description="Commentaires" languagecode="1036" />
+                        </labels>
+                        <control id="ts_comments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_comments" disabled="false" uniqueid="{2b9d390b-1d58-0e92-b749-c2d6d7b344ae}" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell id="{4148c200-c608-7009-bcd4-218572212aa1}" showlabel="true" locklevel="0" labelid="{c2089a21-e042-421e-b6a2-08f700e6aabd}">
+                        <labels>
+                          <label description="Quarter of Report &amp; Doc" languagecode="1033" />
+                        </labels>
+                        <control id="ts_quarterofreportinganddocumentation" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_quarterofreportinganddocumentation" disabled="false" uniqueid="{89570237-1d1b-062b-98eb-150527a7b367}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{88e0a627-8703-d5d5-8a02-973735215d00}" showlabel="true" locklevel="0" labelid="{0d971321-7fc5-4cab-b446-796894940b20}">
+                        <labels>
+                          <label description="Quarter of Travel Time" languagecode="1033" />
+                        </labels>
+                        <control id="ts_quarteroftraveltime" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_quarteroftraveltime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{da7a37d3-0d66-4f96-bf71-c06805b1c6ea}" locklevel="0" colspan="1" rowspan="1" visible="false" labelid="{371c7864-44d6-4624-a43d-b3e5aab07c61}">
+                        <labels>
+                          <label description="Overtime" languagecode="1033" />
+                          <label description="Heures supplémentaires" languagecode="1036" />
+                        </labels>
+                        <control id="ts_overtime" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_overtime" disabled="false" uniqueid="{50c278cb-b412-5720-dba4-a55742228ba0}" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="_section_349" id="8da23ad5-57e8-4388-9496-fa6181cef9a7" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{eac20a61-775e-4fde-ab77-08b7e04cdd70}">
+                  <labels>
+                    <label description="Contacts" languagecode="1033" />
+                    <label description="Contacts" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell locklevel="0" id="{3204ef5d-a579-407f-91a6-50a6ba735cb1}" rowspan="6" colspan="1" auto="false" showlabel="false" labelid="{1d401688-6cc9-48b5-8d8d-e51ee3871218}">
+                        <labels>
+                          <label description="Contacts" languagecode="1033" />
+                          <label description="Contact" languagecode="1036" />
+                        </labels>
+                        <control id="Subgrid_4" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{56a6b87d-5e4e-2b8e-c3e2-3867992983bc}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <TargetEntityType>contact</TargetEntityType>
+                            <ViewId>{DC1100E2-66A6-EE11-A568-6045BD60D367}</ViewId>
+                            <ViewIds>{00000000-0000-0000-00AA-000010001004},{129A42C8-1501-ED11-82E6-002248AE429C},{DC1100E2-66A6-EE11-A568-6045BD60D367}</ViewIds>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <RelationshipName>ts_Contact_Incident_Incident</RelationshipName>
+                            <VisualizationId>{E365462F-1DB9-46A8-928D-BEAB1A7A2375}</VisualizationId>
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <IsUserView>false</IsUserView>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <ChartGridMode>All</ChartGridMode>
+                            <IsUserChart>false</IsUserChart>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <RelationshipRoleOrdinal>1</RelationshipRoleOrdinal>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row></row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+            <column width="33%">
+              <sections>
+                <section name="tab_workspace_section_2" showlabel="false" showbar="false" locklevel="0" id="{905468cc-5312-9299-4530-9b8e6bad6ed2}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
                   <labels>
                     <label description="Section" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{0a37baa9-8278-e101-c476-221a7e404bce}" showlabel="false">
+                      <cell id="{5c312480-d01e-cbe2-5350-5232d5a455ec}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -545,37 +655,21 @@
             </column>
             <column width="50%">
               <sections>
-                <section name="_section_349" id="8da23ad5-57e8-4388-9496-fa6181cef9a7" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{eac20a61-775e-4fde-ab77-08b7e04cdd70}">
+                <section name="tab_13_section_2" showlabel="false" showbar="false" locklevel="0" id="{686ce174-030e-82b5-d997-cb9bca00d017}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115">
                   <labels>
-                    <label description="Contacts" languagecode="1033" />
-                    <label description="Contacts" languagecode="1036" />
+                    <label description="Section" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{7610b754-2345-4e92-b3e6-5daec07f1716}" showlabel="false" labelid="{c51e9988-99ab-4c9d-a5d8-ee6163616425}">
+                      <cell id="{979b0b82-8aec-eacd-15c1-21729c0e9132}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                    </row>
-                    <row>
-                      <cell locklevel="0" id="{3204ef5d-a579-407f-91a6-50a6ba735cb1}" rowspan="1" colspan="1" auto="false" showlabel="false" labelid="{1d401688-6cc9-48b5-8d8d-e51ee3871218}">
+                      <cell id="{534c277a-2b54-487d-89ca-a1ec1d69be95}" showlabel="false">
                         <labels>
-                          <label description="Contacts" languagecode="1033" />
-                          <label description="Contact" languagecode="1036" />
+                          <label description="" languagecode="1033" />
                         </labels>
-                        <control id="Subgrid_4" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}" indicationOfSubgrid="true">
-                          <parameters>
-                            <RecordsPerPage>4</RecordsPerPage>
-                            <AutoExpand>Fixed</AutoExpand>
-                            <TargetEntityType>contact</TargetEntityType>
-                            <ViewId>{129A42C8-1501-ED11-82E6-002248AE429C}</ViewId>
-                            <ViewIds>{00000000-0000-0000-00AA-000010001004},{129A42C8-1501-ED11-82E6-002248AE429C}</ViewIds>
-                            <EnableViewPicker>false</EnableViewPicker>
-                            <RelationshipName>ts_Contact_Incident_Incident</RelationshipName>
-                            <VisualizationId>{E365462F-1DB9-46A8-928D-BEAB1A7A2375}</VisualizationId>
-                          </parameters>
-                        </control>
                       </cell>
                     </row>
                   </rows>
@@ -858,62 +952,18 @@
           <columns>
             <column width="100%">
               <sections>
-                <section name="tab_16_section_1" id="1220a110-6266-4df4-b586-ee7278b28604" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="11" labelwidth="115" labelid="{29193c5e-2443-494b-80b0-b391ec9fc816}">
+                <section name="tab_timetracking_section_1" showlabel="false" showbar="false" locklevel="0" id="{b16749e4-73c1-0cb0-40ad-c23424157544}" IsUserDefined="0" layout="varwidth" columns="11" labelwidth="115">
                   <labels>
-                    <label description="New Section" languagecode="1033" />
+                    <label description="Section" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{b7d5c3ba-56ba-42b4-8f60-b5345b2b46f3}" locklevel="0" colspan="1" rowspan="1" labelid="{fbdb6df5-7a52-4600-9934-c5a3461fa66b}">
+                      <cell id="{0edb78e3-8841-83ad-0629-87ec0766b5be}" showlabel="false">
                         <labels>
-                          <label description="Case Reporting and Documentation" languagecode="1033" />
-                          <label description="Rapport et documentation du cas" languagecode="1036" />
+                          <label description="" languagecode="1033" />
                         </labels>
-                        <control id="ts_casereportinganddocumentation" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_casereportinganddocumentation" disabled="false" />
                       </cell>
-                      <cell id="{4148c200-c608-7009-bcd4-218572212aa1}" showlabel="true" locklevel="0" labelid="{c2089a21-e042-421e-b6a2-08f700e6aabd}">
-                        <labels>
-                          <label description="Quarter of Report &amp; Doc" languagecode="1033" />
-                        </labels>
-                        <control id="ts_quarterofreportinganddocumentation" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_quarterofreportinganddocumentation" disabled="false" uniqueid="{89570237-1d1b-062b-98eb-150527a7b367}" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{8b27dcab-4ad3-439c-becd-4f4777f25bb5}" locklevel="0" colspan="1" rowspan="1" labelid="{2fb7aa8b-9ac7-4a16-99ea-245395b13c5a}">
-                        <labels>
-                          <label description="Case Travel Time" languagecode="1033" />
-                          <label description="Temps de voyagement du cas" languagecode="1036" />
-                        </labels>
-                        <control id="ts_traveltime" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_traveltime" disabled="false" />
-                      </cell>
-                      <cell id="{88e0a627-8703-d5d5-8a02-973735215d00}" showlabel="true" locklevel="0" labelid="{0d971321-7fc5-4cab-b446-796894940b20}">
-                        <labels>
-                          <label description="Quarter of Travel Time" languagecode="1033" />
-                        </labels>
-                        <control id="ts_quarteroftraveltime" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_quarteroftraveltime" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{03e59700-1e9c-4288-bd0c-93c70b7375c2}" locklevel="0" colspan="2" rowspan="4" showlabel="true" labelid="{39c5ff2c-efb3-4cfe-805d-cff39b5a01ae}">
-                        <labels>
-                          <label description="Comments" languagecode="1033" />
-                          <label description="Commentaires" languagecode="1036" />
-                        </labels>
-                        <control id="ts_comments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_comments" disabled="false" uniqueid="{2b9d390b-1d58-0e92-b749-c2d6d7b344ae}" />
-                      </cell>
-                    </row>
-                    <row />
-                    <row />
-                    <row />
-                    <row>
-                      <cell id="{da7a37d3-0d66-4f96-bf71-c06805b1c6ea}" locklevel="0" colspan="1" rowspan="1" visible="false" labelid="{371c7864-44d6-4624-a43d-b3e5aab07c61}">
-                        <labels>
-                          <label description="Overtime" languagecode="1033" />
-                          <label description="Heures supplémentaires" languagecode="1036" />
-                        </labels>
-                        <control id="ts_overtime" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_overtime" disabled="false" />
-                      </cell>
-                      <cell locklevel="0" id="{af16e961-73e6-460c-a34b-12a998c954a9}" showlabel="false" labelid="{e0495146-88e6-47b4-a14d-a5db840f68f0}">
+                      <cell id="{0807a153-aa87-3314-09ee-9a4735595116}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -2455,8 +2505,7 @@
         </event>
       </events>
       <DisplayConditions FallbackForm="true" Order="32">
-        <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
-        <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
+        <Role Id="{EED78BB6-BCA5-EE11-A568-002248AEEBDB}" />
       </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
