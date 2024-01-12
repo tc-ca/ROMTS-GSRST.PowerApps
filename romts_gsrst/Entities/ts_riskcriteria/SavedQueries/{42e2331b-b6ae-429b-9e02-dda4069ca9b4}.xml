@@ -11,10 +11,7 @@
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_riskcriteriaid">
           <cell name="ts_name" width="300" />
-          <cell name="ts_riskcriteriadescription" width="181" />
-          <cell name="ts_ovs_operationtype" width="128" />
-          <cell name="ts_riskcriteriarange" width="152" />
-          <cell name="a_50913855d53a4b19aba94094bb1ae75a.ts_score" width="196" />
+          <cell name="ts_description" width="209" />
         </row>
       </grid>
     </layoutxml>
@@ -28,12 +25,7 @@
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <attribute name="ts_riskcriteriadescription" />
-          <attribute name="ts_riskcriteriarange" />
-          <link-entity alias="a_50913855d53a4b19aba94094bb1ae75a" name="ts_riskcriteriarange" to="ts_riskcriteriarange" from="ts_riskcriteriarangeid" link-type="outer" visible="false">
-            <attribute name="ts_score" />
-          </link-entity>
-          <attribute name="ts_ovs_operationtype" />
+          <attribute name="ts_description" />
         </entity>
       </fetch>
     </fetchxml>

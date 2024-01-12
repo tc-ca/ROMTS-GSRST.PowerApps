@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20240108.1</Version>
+    <Version>1.0.20240112.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -240,6 +240,7 @@
       <RootComponent type="1" schemaName="ts_operationactivity" behavior="0" />
       <RootComponent type="1" schemaName="ts_operationcontact" behavior="0" />
       <RootComponent type="1" schemaName="ts_operationfrequency" behavior="0" />
+      <RootComponent type="1" schemaName="ts_operationriskassessment" behavior="0" />
       <RootComponent type="1" schemaName="ts_plan" behavior="0" />
       <RootComponent type="1" schemaName="ts_planinspectionsupportregion" behavior="0" />
       <RootComponent type="1" schemaName="ts_planinspectorhours" behavior="0" />
@@ -255,7 +256,9 @@
       <RootComponent type="1" schemaName="ts_riskcategory" behavior="0" />
       <RootComponent type="1" schemaName="ts_riskcriteria" behavior="0" />
       <RootComponent type="1" schemaName="ts_riskcriteriadescription" behavior="0" />
+      <RootComponent type="1" schemaName="ts_riskcriteriaoption" behavior="0" />
       <RootComponent type="1" schemaName="ts_riskcriteriarange" behavior="0" />
+      <RootComponent type="1" schemaName="ts_riskcriteriaresponse" behavior="0" />
       <RootComponent type="1" schemaName="ts_role" behavior="0" />
       <RootComponent type="1" schemaName="ts_securityincident" behavior="0" />
       <RootComponent type="1" schemaName="ts_securityincidenttype" behavior="0" />
@@ -444,6 +447,8 @@
       <RootComponent type="36" id="{c2d91675-641a-ed11-b83e-000d3af408cb}" behavior="0" />
       <RootComponent type="36" id="{db8e15f7-11f7-ec11-82e5-000d3a09f295}" behavior="0" />
       <RootComponent type="60" id="{15915835-b87c-49ec-9ffc-bfac3ac44ef1}" />
+      <RootComponent type="60" id="{1bcb01ba-f7af-ee11-a568-6045bd60d367}" behavior="0" />
+      <RootComponent type="60" id="{4623cfe0-b2b0-ee11-a568-6045bd60d367}" behavior="0" />
       <RootComponent type="60" id="{70ad8b15-e3f3-4d7d-9e4b-16cb4e51b484}" />
       <RootComponent type="60" id="{80f8fba0-6d0d-eb11-a813-000d3af3a7a7}" behavior="0" />
       <RootComponent type="60" id="{a4640db1-4962-4e79-92c6-690e627924d7}" />
@@ -957,8 +962,8 @@
         <Dependent type="80" schemaName="ts_OversightPlanningModule" displayName="Oversight Planning Module" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="bot" displayName="Chatbot" solution="PowerVirtualAgents (2.0.0.635)">
-          <package>msdynce_CustomerCareIntelligenceBots_Anchor (2.0.0.635)</package>
+        <Required type="1" schemaName="bot" displayName="Chatbot" solution="PowerVirtualAgents (2.0.0.644)">
+          <package>msdynce_CustomerCareIntelligenceBots_Anchor (2.0.0.644)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
@@ -1413,20 +1418,20 @@
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_accountkpiitem" displayName="Account KPI Item" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_accountkpiitem" displayName="Account KPI Item" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_accountkpiitem" displayName="Account KPI Item" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_accountkpiitem" displayName="Account KPI Item" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_accountkpiitem_account_accountkpiid" displayName="msdyn_msdyn_accountkpiitem_account_accountkpiid" parentSchemaName="msdyn_accountkpiitem" parentDisplayName="Account KPI Item" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_actioncardrolesetting" displayName="Action Card Role Setting" solution="Relationshipassistant (9.1.0.122)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="role" displayName="Security Role" />
       </MissingDependency>
@@ -1473,32 +1478,32 @@
         <Dependent type="1" schemaName="territory" displayName="Region" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_agentcapacityprofileunit" displayName="Agent Capacity Profile Unit" solution="msdyn_AgentAvailabilityStatus (1.0.0.731)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_agentcapacityprofileunit" displayName="Agent Capacity Profile Unit" solution="msdyn_AgentAvailabilityStatus (1.0.0.985)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_agentcapacityupdatehistory" displayName="Agent capacity update history" solution="OCBaseURBase (1.1.0.400)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_agentcapacityupdatehistory" displayName="Agent capacity update history" solution="OCBaseURBase (1.1.0.546)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_agentchannelstate" displayName="Agent Channel State" solution="msdyn_AgentAvailabilityStatus (1.0.0.731)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_agentchannelstate" displayName="Agent Channel State" solution="msdyn_AgentAvailabilityStatus (1.0.0.985)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_agentstatus" displayName="Agent Status" solution="msdyn_AgentAvailabilityStatus (1.0.0.731)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_agentstatus" displayName="Agent Status" solution="msdyn_AgentAvailabilityStatus (1.0.0.985)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_agentstatushistory" displayName="Agent Status history" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_agentstatushistory" displayName="Agent Status history" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
@@ -1695,8 +1700,8 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_assignmentmap" displayName="Assignment Map" solution="msdyn_SalesRouting (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
@@ -1744,8 +1749,8 @@
         <Dependent type="80" schemaName="ts_OversightPlanningModule" displayName="Oversight Planning Module" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_bookableresourcecapacityprofile" displayName="Bookable Resource Capacity Profile" solution="OCBaseURBase (1.1.0.400)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_bookableresourcecapacityprofile" displayName="Bookable Resource Capacity Profile" solution="OCBaseURBase (1.1.0.546)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="bookableresource" displayName="Bookable Resource" />
       </MissingDependency>
@@ -1830,8 +1835,8 @@
         <Dependent type="80" schemaName="ts_OversightPlanningModule" displayName="Oversight Planning Module" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_capacityprofile" displayName="Capacity Profile" solution="UnifiedRouting (1.0.0.4611)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_capacityprofile" displayName="Capacity Profile" solution="UnifiedRouting (1.0.0.4756)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
@@ -1862,14 +1867,14 @@
         <Dependent type="1" schemaName="incident" displayName="Case" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_contactkpiitem" displayName="Contact KPI Item" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_contactkpiitem" displayName="Contact KPI Item" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="contact" displayName="Contact" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_contactkpiitem" displayName="Contact KPI Item" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_contactkpiitem" displayName="Contact KPI Item" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_contactkpiitem_contact_contactkpiid" displayName="msdyn_msdyn_contactkpiitem_contact_contactkpiid" parentSchemaName="msdyn_contactkpiitem" parentDisplayName="Contact KPI Item" />
       </MissingDependency>
@@ -1880,8 +1885,8 @@
         <Dependent type="1" schemaName="email" displayName="Email" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_conversationmessageblock" displayName="Conversation Message Block" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_conversationmessageblock" displayName="Conversation Message Block" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
@@ -1939,27 +1944,27 @@
         <Dependent type="1" schemaName="msdyn_customerassetcategory" displayName="Customer Asset Category" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_customeremailcommunication" displayName="Customer email communication" solution="SICommon (9.0.23121.2)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_customeremailcommunication" displayName="Customer email communication" solution="SICommon (9.0.23121.3)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_dailyaccountkpiitem" displayName="Daily Kpis for account" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_dailyaccountkpiitem" displayName="Daily Kpis for account" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_dailycontactkpiitem" displayName="Daily kpis for contact" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_dailycontactkpiitem" displayName="Daily kpis for contact" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="contact" displayName="Contact" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_dataanalyticsworkspace" displayName="Data Analytics Workspace" solution="msdyn_DataInsightsAndAnalytics (1.2.23313.1)">
           <package>FieldService_Anchor (8.8.105.46)</package>
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
           <package>msdyn_CustomerServiceAnalyticsAnchor (1.2.23313.1)</package>
           <package>msdyn_ServiceExtendedAnchor (9.0.23121.1021)</package>
           <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
@@ -1968,7 +1973,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_duplicateleadmapping" displayName="Duplicate Lead Mapping" solution="msdyn_leadhygiene (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
@@ -2620,31 +2625,31 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_linkedentityattributevalidity" displayName="Linked Entity Attribute Validity" solution="msdyn_leadhygiene (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="1" schemaName="contact" displayName="Contact" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_liveconversation" displayName="Ongoing conversation (Deprecated)" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_liveconversation" displayName="Ongoing conversation (Deprecated)" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_liveconversation" displayName="Ongoing conversation (Deprecated)" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_liveconversation" displayName="Ongoing conversation (Deprecated)" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="contact" displayName="Contact" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_liveconversation" displayName="Ongoing conversation (Deprecated)" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_liveconversation" displayName="Ongoing conversation (Deprecated)" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_liveworkstream" displayName="Work Stream" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_liveworkstream" displayName="Work Stream" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
@@ -2656,26 +2661,26 @@
         <Dependent type="1" schemaName="msdyn_functionallocation" displayName="Functional Location" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_mostcontacted" displayName="Most Contacted" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_mostcontacted" displayName="Most Contacted" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_mostcontacted" displayName="Most Contacted" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_mostcontacted" displayName="Most Contacted" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="contact" displayName="Contact" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_mostcontactedby" displayName="Most Contacted By" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_mostcontactedby" displayName="Most Contacted By" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_mostcontactedby" displayName="Most Contacted By" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_mostcontactedby" displayName="Most Contacted By" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="contact" displayName="Contact" />
       </MissingDependency>
@@ -2698,50 +2703,50 @@
         <Dependent type="1" schemaName="msdyn_incidenttype" displayName="Incident Type" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_ocliveworkitem" displayName="Conversation" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_ocliveworkitem" displayName="Conversation" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_ocliveworkitem" displayName="Conversation" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_ocliveworkitem" displayName="Conversation" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="contact" displayName="Contact" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_ocliveworkitem" displayName="Conversation" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_ocliveworkitem" displayName="Conversation" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="incident" displayName="Case" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_ocliveworkitem" displayName="Conversation" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_ocliveworkitem" displayName="Conversation" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_ocliveworkitemcharacteristic" displayName="Conversation Characteristic" solution="OmnichannelSBR (1.5.0.18)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_ocliveworkitemparticipant" displayName="Live Work Item Participant (Deprecated)" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_ocliveworkitemparticipant" displayName="Live Work Item Participant (Deprecated)" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_ocruleitem" displayName="Rule Item" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_ocruleitem" displayName="Rule Item" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_ocsitrainingdata" displayName="Training record" solution="OCISBR (1.0.0.4594)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_ocsitrainingdata" displayName="Training record" solution="OCISBR (1.0.0.4740)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
@@ -2797,8 +2802,8 @@
         <Dependent type="1" schemaName="msdyn_workorder" displayName="Work Order" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_personasecurityrolemapping" displayName="Persona Security Role Mapping" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_personasecurityrolemapping" displayName="Persona Security Role Mapping" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="role" displayName="Security Role" />
       </MissingDependency>
@@ -2809,26 +2814,26 @@
         <Dependent type="1" schemaName="territory" displayName="Region" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_preferredagent" displayName="Preferred Agent" solution="UnifiedRouting (1.0.0.4611)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_preferredagent" displayName="Preferred Agent" solution="UnifiedRouting (1.0.0.4756)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_preferredagent" displayName="Preferred Agent" solution="UnifiedRouting (1.0.0.4611)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_preferredagent" displayName="Preferred Agent" solution="UnifiedRouting (1.0.0.4756)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="contact" displayName="Contact" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_preferredagent" displayName="Preferred Agent" solution="UnifiedRouting (1.0.0.4611)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_preferredagent" displayName="Preferred Agent" solution="UnifiedRouting (1.0.0.4756)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_presence" displayName="Presence" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_presence" displayName="Presence" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_presence_systemuser" displayName="msdyn_msdyn_presence_systemuser" parentSchemaName="msdyn_presence" parentDisplayName="Presence" />
       </MissingDependency>
@@ -3193,29 +3198,29 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_sabackupdiagnostic" displayName="sabackupdiagnostic" solution="msdyn_segment (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_sabackupdiagnostic" displayName="sabackupdiagnostic" solution="msdyn_segment (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="contact" displayName="Contact" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_salesaccelerationinsight" displayName="Sales acceleration insights" solution="msdyn_acceleratedsales (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_salesaccelerationinsight" displayName="Sales acceleration insights" solution="msdyn_acceleratedsales (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_salesaccelerationinsight" displayName="Sales acceleration insights" solution="msdyn_acceleratedsales (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_salesaccelerationinsight" displayName="Sales acceleration insights" solution="msdyn_acceleratedsales (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_insightsid_salesaccelerationinsights" displayName="msdyn_insightsid_salesaccelerationinsights" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
@@ -3239,43 +3244,43 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_salesroutingdiagnostic" displayName="salesroutingdiagnostic" solution="msdyn_segment (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_salesroutingdiagnostic" displayName="salesroutingdiagnostic" solution="msdyn_segment (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="contact" displayName="Contact" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_salesroutingrun" displayName="Sales routing run" solution="msdyn_SalesRouting (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_salesroutingrun" displayName="Sales routing run" solution="msdyn_SalesRouting (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="team" displayName="Team" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_salessuggestion" displayName="Suggestion" solution="msdyn_acceleratedsales (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_salessuggestion" displayName="Suggestion" solution="msdyn_acceleratedsales (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_salessuggestion" displayName="Suggestion" solution="msdyn_acceleratedsales (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_salessuggestion" displayName="Suggestion" solution="msdyn_acceleratedsales (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="contact" displayName="Contact" />
       </MissingDependency>
@@ -3302,29 +3307,29 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_segment" displayName="Segment" solution="msdyn_segment (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_segment_account" displayName="msdyn_msdyn_segment_account" parentSchemaName="msdyn_segment" parentDisplayName="Segment" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="msdyn_segment" displayName="Segment" solution="msdyn_segment (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_segment_contact" displayName="msdyn_msdyn_segment_contact" parentSchemaName="msdyn_segment" parentDisplayName="Segment" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_sequencetarget" displayName="Sequence Target" solution="msdyn_Sequence (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_sequencetarget" displayName="Sequence Target" solution="msdyn_Sequence (9.1.2312.1002)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_sequencetarget" displayName="Sequence Target" solution="msdyn_Sequence (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_sequencetarget" displayName="Sequence Target" solution="msdyn_Sequence (9.1.2312.1002)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="contact" displayName="Contact" />
       </MissingDependency>
@@ -3335,8 +3340,8 @@
         <Dependent type="1" schemaName="msdyn_servicetasktype" displayName="Service Task Type" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_sessionparticipant" displayName="Session participant" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="1" schemaName="msdyn_sessionparticipant" displayName="Session participant" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
@@ -3354,8 +3359,8 @@
         <Dependent type="1" schemaName="incident" displayName="Case" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_suggestionprincipalobjectaccess" displayName="Suggestion Principal Object Access" solution="msdyn_SalesSuggestion (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+        <Required type="1" schemaName="msdyn_suggestionprincipalobjectaccess" displayName="Suggestion Principal Object Access" solution="msdyn_SalesSuggestion (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
@@ -3609,14 +3614,14 @@
         <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_wkwcolleaguesforcompany" displayName="wkwcolleaguesforcompany" solution="msdyn_connectiongraph (9.3.0.93231211)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_wkwcolleaguesforcompany" displayName="wkwcolleaguesforcompany" solution="msdyn_connectiongraph (9.3.0.93231212)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_wkwcolleaguesforcontact" displayName="wkwcolleaguesforcontact" solution="msdyn_connectiongraph (9.3.0.93231211)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="1" schemaName="msdyn_wkwcolleaguesforcontact" displayName="wkwcolleaguesforcontact" solution="msdyn_connectiongraph (9.3.0.93231212)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
@@ -4343,6 +4348,12 @@
         <Required type="10" schemaName="msdyn_account_msdyn_agreement_ServiceAccount" displayName="msdyn_account_msdyn_agreement_ServiceAccount" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_account_msdyn_agreement_ServiceAccount" displayName="msdyn_account_msdyn_agreement_ServiceAccount" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Organisations" parentDisplayName="Account" id="{b6466851-a1fd-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -4675,6 +4686,12 @@
         <Required type="10" schemaName="msdyn_account_msdyn_workorder_ServiceAccount" displayName="msdyn_account_msdyn_workorder_ServiceAccount" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_account_msdyn_workorder_ServiceAccount" displayName="msdyn_account_msdyn_workorder_ServiceAccount" parentSchemaName="account" parentDisplayName="Account" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Organisations" parentDisplayName="Account" id="{b6466851-a1fd-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -4762,9 +4779,9 @@
         <Dependent type="60" displayName="Account - Mobile" parentDisplayName="Account" id="{74da4947-5d1d-4400-9f99-c6ed578211bb}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="10" schemaName="msdyn_insightsid_salesaccelerationinsights" displayName="msdyn_insightsid_salesaccelerationinsights" parentSchemaName="account" parentDisplayName="Account" solution="msdyn_acceleratedsales (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="10" schemaName="msdyn_insightsid_salesaccelerationinsights" displayName="msdyn_insightsid_salesaccelerationinsights" parentSchemaName="account" parentDisplayName="Account" solution="msdyn_acceleratedsales (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_insightsid_salesaccelerationinsights" displayName="msdyn_insightsid_salesaccelerationinsights" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
@@ -4940,6 +4957,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_bookableresource_msdyn_workorder_SupportContact" displayName="msdyn_bookableresource_msdyn_workorder_SupportContact" parentSchemaName="bookableresource" parentDisplayName="Bookable Resource" solution="FieldService (8.8.0.88)">
@@ -5172,6 +5195,12 @@
         <Required type="10" schemaName="msdyn_contact_msdyn_workorder_ReportedByContact" displayName="msdyn_contact_msdyn_workorder_ReportedByContact" parentSchemaName="contact" parentDisplayName="Contact" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_contact_msdyn_workorder_ReportedByContact" displayName="msdyn_contact_msdyn_workorder_ReportedByContact" parentSchemaName="contact" parentDisplayName="Contact" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -5284,6 +5313,12 @@
         <Required type="10" schemaName="msdyn_incident_msdyn_workorder_ServiceRequest" displayName="msdyn_incident_msdyn_workorder_ServiceRequest" parentSchemaName="incident" parentDisplayName="Case" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_incident_msdyn_workorder_ServiceRequest" displayName="msdyn_incident_msdyn_workorder_ServiceRequest" parentSchemaName="incident" parentDisplayName="Case" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -5383,8 +5418,8 @@
         <Dependent type="60" displayName="Field Service Information" parentDisplayName="Invoice" id="{e42e464f-c249-4005-896e-cdee472d7e1e}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="10" schemaName="msdyn_msdyn_accountkpiitem_account_accountkpiid" displayName="msdyn_msdyn_accountkpiitem_account_accountkpiid" parentSchemaName="msdyn_accountkpiitem" parentDisplayName="Account KPI Item" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="10" schemaName="msdyn_msdyn_accountkpiitem_account_accountkpiid" displayName="msdyn_msdyn_accountkpiitem_account_accountkpiid" parentSchemaName="msdyn_accountkpiitem" parentDisplayName="Account KPI Item" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_accountkpiitem_account_accountkpiid" displayName="msdyn_msdyn_accountkpiitem_account_accountkpiid" parentSchemaName="msdyn_accountkpiitem" parentDisplayName="Account KPI Item" />
       </MissingDependency>
@@ -5435,6 +5470,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_agreement_msdyn_workorder_Agreement" displayName="msdyn_msdyn_agreement_msdyn_workorder_Agreement" parentSchemaName="msdyn_agreement" parentDisplayName="Agreement" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_agreement_msdyn_workorder_Agreement" displayName="msdyn_msdyn_agreement_msdyn_workorder_Agreement" parentSchemaName="msdyn_agreement" parentDisplayName="Agreement" solution="FieldService (8.8.0.88)">
@@ -5553,8 +5594,8 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_attributevalue_systemuser" displayName="msdyn_msdyn_attributevalue_systemuser" parentSchemaName="msdyn_attributevalue" parentDisplayName="Attribute Value" solution="msdyn_SalesRouting (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_attributevalue_systemuser" displayName="msdyn_msdyn_attributevalue_systemuser" parentSchemaName="msdyn_attributevalue" parentDisplayName="Attribute Value" />
       </MissingDependency>
@@ -5572,8 +5613,8 @@
         <Dependent type="10" schemaName="msdyn_ciprovider_systemuser_membership" displayName="msdyn_ciprovider_systemuser_membership" parentSchemaName="msdyn_ciprovider" parentDisplayName="Channel Integration Framework v1.0 Provider" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="10" schemaName="msdyn_msdyn_contactkpiitem_contact_contactkpiid" displayName="msdyn_msdyn_contactkpiitem_contact_contactkpiid" parentSchemaName="msdyn_contactkpiitem" parentDisplayName="Contact KPI Item" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="10" schemaName="msdyn_msdyn_contactkpiitem_contact_contactkpiid" displayName="msdyn_msdyn_contactkpiitem_contact_contactkpiid" parentSchemaName="msdyn_contactkpiitem" parentDisplayName="Contact KPI Item" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_contactkpiitem_contact_contactkpiid" displayName="msdyn_msdyn_contactkpiitem_contact_contactkpiid" parentSchemaName="msdyn_contactkpiitem" parentDisplayName="Contact KPI Item" />
       </MissingDependency>
@@ -5778,6 +5819,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_workorder_CustomerAsset" displayName="msdyn_msdyn_customerasset_msdyn_workorder_CustomerAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_customerasset_msdyn_workorder_CustomerAsset" displayName="msdyn_msdyn_customerasset_msdyn_workorder_CustomerAsset" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="FieldService (8.8.0.88)">
@@ -6064,6 +6111,12 @@
         <Required type="10" schemaName="msdyn_msdyn_functionallocation_msdyn_workorder_FunctionalLocation" displayName="msdyn_msdyn_functionallocation_msdyn_workorder_FunctionalLocation" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_FieldService_patch_update (8.8.105.46)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_functionallocation_msdyn_workorder_FunctionalLocation" displayName="msdyn_msdyn_functionallocation_msdyn_workorder_FunctionalLocation" parentSchemaName="msdyn_functionallocation" parentDisplayName="Functional Location" solution="msdyn_FieldService_patch_update (8.8.105.46)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Work Order - Customer" parentDisplayName="Work Order" id="{c0ebdf20-f27f-4acc-8c9f-a9a202a5e917}" />
       </MissingDependency>
       <MissingDependency>
@@ -6284,6 +6337,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_incidenttype_msdyn_workorder_PrimaryIncidentType" displayName="msdyn_msdyn_incidenttype_msdyn_workorder_PrimaryIncidentType" parentSchemaName="msdyn_incidenttype" parentDisplayName="Incident Type" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_incidenttype_msdyn_workorder_PrimaryIncidentType" displayName="msdyn_msdyn_incidenttype_msdyn_workorder_PrimaryIncidentType" parentSchemaName="msdyn_incidenttype" parentDisplayName="Incident Type" solution="FieldService (8.8.0.88)">
@@ -6522,14 +6581,14 @@
         <Dependent type="60" displayName="Add/Edit Inspector Form" parentDisplayName="Bookable Resource" id="{eae25a08-d9fd-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="10" schemaName="msdyn_msdyn_presence_systemuser" displayName="msdyn_msdyn_presence_systemuser" parentSchemaName="msdyn_presence" parentDisplayName="Presence" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="10" schemaName="msdyn_msdyn_presence_systemuser" displayName="msdyn_msdyn_presence_systemuser" parentSchemaName="msdyn_presence" parentDisplayName="Presence" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_presence_systemuser" displayName="msdyn_msdyn_presence_systemuser" parentSchemaName="msdyn_presence" parentDisplayName="Presence" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="10" schemaName="msdyn_msdyn_presence_systemuser" displayName="msdyn_msdyn_presence_systemuser" parentSchemaName="msdyn_presence" parentDisplayName="Presence" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="10" schemaName="msdyn_msdyn_presence_systemuser" displayName="msdyn_msdyn_presence_systemuser" parentSchemaName="msdyn_presence" parentDisplayName="Presence" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
@@ -6562,6 +6621,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_priority_msdyn_workorder_Priority" displayName="msdyn_msdyn_priority_msdyn_workorder_Priority" parentSchemaName="msdyn_priority" parentDisplayName="Priority" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_priority_msdyn_workorder_Priority" displayName="msdyn_msdyn_priority_msdyn_workorder_Priority" parentSchemaName="msdyn_priority" parentDisplayName="Priority" solution="FieldService (8.8.0.88)">
@@ -6855,6 +6920,12 @@
         <Required type="10" schemaName="msdyn_msdyn_taxcode_msdyn_workorder_TaxCode" displayName="msdyn_msdyn_taxcode_msdyn_workorder_TaxCode" parentSchemaName="msdyn_taxcode" parentDisplayName="Tax Code" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_taxcode_msdyn_workorder_TaxCode" displayName="msdyn_msdyn_taxcode_msdyn_workorder_TaxCode" parentSchemaName="msdyn_taxcode" parentDisplayName="Tax Code" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -6916,6 +6987,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="ROM Oversight Activity" parentDisplayName="Work Order" id="{704d8664-78ac-eb11-8236-000d3ae8b866}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_timegroup_msdyn_workorder_TimeGroup" displayName="msdyn_msdyn_timegroup_msdyn_workorder_TimeGroup" parentSchemaName="msdyn_timegroup" parentDisplayName="Fulfillment Preference" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_timegroup_msdyn_workorder_TimeGroup" displayName="msdyn_msdyn_timegroup_msdyn_workorder_TimeGroup" parentSchemaName="msdyn_timegroup" parentDisplayName="Fulfillment Preference" solution="FieldService (8.8.0.88)">
@@ -7102,6 +7179,12 @@
         <Required type="10" schemaName="msdyn_msdyn_workhourtemplate_msdyn_workorder_workhourtemplate" displayName="msdyn_msdyn_workhourtemplate_msdyn_workorder_workhourtemplate" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workhourtemplate_msdyn_workorder_workhourtemplate" displayName="msdyn_msdyn_workhourtemplate_msdyn_workorder_workhourtemplate" parentSchemaName="msdyn_workhourtemplate" parentDisplayName="Work Template" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -7151,6 +7234,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_iotalert_msdyn_workorder_IoTAlert" displayName="msdyn_msdyn_iotalert_msdyn_workorder_IoTAlert" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="ConnectedFieldService (1.8.41.0)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_iotalert_msdyn_workorder_IoTAlert" displayName="msdyn_msdyn_iotalert_msdyn_workorder_IoTAlert" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="ConnectedFieldService (1.8.41.0)">
@@ -7270,6 +7359,12 @@
         <Required type="10" schemaName="msdyn_msdyn_workorder_bookableresourcebooking_WorkOrder" displayName="msdyn_msdyn_workorder_bookableresourcebooking_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workorder_bookableresourcebooking_WorkOrder" displayName="msdyn_msdyn_workorder_bookableresourcebooking_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
@@ -7366,6 +7461,12 @@
         <Required type="10" schemaName="msdyn_msdyn_workorder_invoicedetail" displayName="msdyn_msdyn_workorder_invoicedetail" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workorder_invoicedetail" displayName="msdyn_msdyn_workorder_invoicedetail" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -7432,6 +7533,12 @@
         <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_purchaseorder_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_purchaseorder_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_purchaseorder_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_purchaseorder_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -7493,6 +7600,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_rma_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_rma_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_rma_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_rma_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
@@ -7565,6 +7678,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_rtv_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_rtv_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_rtv_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_rtv_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
@@ -7678,6 +7797,12 @@
         <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_workorderincident_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_workorderincident_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_workorderincident_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_workorderincident_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="SurveyJS" parentDisplayName="Work Order Service Task" id="{af78c3e5-c009-4256-854f-f61a6d4b15fc}" />
       </MissingDependency>
       <MissingDependency>
@@ -7780,6 +7905,12 @@
         <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_workorderproduct_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_workorderproduct_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_workorderproduct_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_workorderproduct_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -7895,6 +8026,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_workorderservice_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_workorderservice_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_workorderservice_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_workorderservice_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
@@ -8009,6 +8146,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_workorderservicetask_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_workorderservicetask_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_msdyn_workorder_msdyn_workorderservicetask_WorkOrder" displayName="msdyn_msdyn_workorder_msdyn_workorderservicetask_WorkOrder" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
@@ -8188,6 +8331,12 @@
         <Required type="10" schemaName="msdyn_msdyn_workordersubstatus_msdyn_workorder_Status" displayName="msdyn_msdyn_workordersubstatus_msdyn_workorder_Status" parentSchemaName="msdyn_workordersubstatus" parentDisplayName="Work Order Substatus" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workordersubstatus_msdyn_workorder_Status" displayName="msdyn_msdyn_workordersubstatus_msdyn_workorder_Status" parentSchemaName="msdyn_workordersubstatus" parentDisplayName="Work Order Substatus" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -8302,6 +8451,12 @@
         <Required type="10" schemaName="msdyn_msdyn_workordertype_msdyn_workorder_WorkOrderType" displayName="msdyn_msdyn_workordertype_msdyn_workorder_WorkOrderType" parentSchemaName="msdyn_workordertype" parentDisplayName="Work Order Type" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_msdyn_workordertype_msdyn_workorder_WorkOrderType" displayName="msdyn_msdyn_workordertype_msdyn_workorder_WorkOrderType" parentSchemaName="msdyn_workordertype" parentDisplayName="Work Order Type" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -8393,6 +8548,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_opportunity_msdyn_workorder" displayName="msdyn_opportunity_msdyn_workorder" parentSchemaName="opportunity" parentDisplayName="Opportunity" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_opportunity_msdyn_workorder" displayName="msdyn_opportunity_msdyn_workorder" parentSchemaName="opportunity" parentDisplayName="Opportunity" solution="FieldService (8.8.0.88)">
@@ -8581,8 +8742,8 @@
         <Dependent type="10" schemaName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" displayName="msdyn_slakpiinstance_msdyn_workorder_arrival_timekpi" parentSchemaName="slakpiinstance" parentDisplayName="SLA KPI Instance" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="10" schemaName="msdyn_systemuser_msdyn_omnichannelqueue" displayName="msdyn_systemuser_msdyn_omnichannelqueue" parentSchemaName="systemuser" parentDisplayName="User" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="10" schemaName="msdyn_systemuser_msdyn_omnichannelqueue" displayName="msdyn_systemuser_msdyn_omnichannelqueue" parentSchemaName="systemuser" parentDisplayName="User" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_systemuser_msdyn_omnichannelqueue" displayName="msdyn_systemuser_msdyn_omnichannelqueue" parentSchemaName="systemuser" parentDisplayName="User" />
       </MissingDependency>
@@ -8639,6 +8800,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_systemuser_msdyn_workorder_ClosedBy" displayName="msdyn_systemuser_msdyn_workorder_ClosedBy" parentSchemaName="systemuser" parentDisplayName="User" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_systemuser_msdyn_workorder_ClosedBy" displayName="msdyn_systemuser_msdyn_workorder_ClosedBy" parentSchemaName="systemuser" parentDisplayName="User" solution="FieldService (8.8.0.88)">
@@ -8747,6 +8914,12 @@
         <Required type="10" schemaName="msdyn_territory_msdyn_workorder_ServiceTerritory" displayName="msdyn_territory_msdyn_workorder_ServiceTerritory" parentSchemaName="territory" parentDisplayName="Region" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="10" schemaName="msdyn_territory_msdyn_workorder_ServiceTerritory" displayName="msdyn_territory_msdyn_workorder_ServiceTerritory" parentSchemaName="territory" parentDisplayName="Region" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -8828,8 +9001,8 @@
         <Dependent type="10" schemaName="msdyn_account_account_BillingAccount" displayName="msdyn_account_account_BillingAccount" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_accountkpiid" displayName="KPI" parentSchemaName="account" parentDisplayName="Account" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="2" schemaName="msdyn_accountkpiid" displayName="KPI" parentSchemaName="account" parentDisplayName="Account" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_accountkpiitem_account_accountkpiid" displayName="msdyn_msdyn_accountkpiitem_account_accountkpiid" parentSchemaName="msdyn_accountkpiitem" parentDisplayName="Account KPI Item" />
       </MissingDependency>
@@ -8841,7 +9014,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_gdproptout" displayName="GDPR Optout" parentSchemaName="account" parentDisplayName="Account" solution="PredictiveOpportunityScoring (9.0.23121.10002)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="2" schemaName="msdyn_gdproptout" displayName="GDPR Optout" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
@@ -8859,9 +9032,9 @@
         <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_salesaccelerationinsightid" displayName="Sales Acceleration Insights ID" parentSchemaName="account" parentDisplayName="Account" solution="msdyn_acceleratedsales (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="2" schemaName="msdyn_salesaccelerationinsightid" displayName="Sales Acceleration Insights ID" parentSchemaName="account" parentDisplayName="Account" solution="msdyn_acceleratedsales (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_insightsid_salesaccelerationinsights" displayName="msdyn_insightsid_salesaccelerationinsights" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
@@ -9894,14 +10067,14 @@
         <Dependent type="2" schemaName="parentcustomerid" displayName="Company Name" parentSchemaName="contact" parentDisplayName="Contact" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_contactkpiid" displayName="KPI" parentSchemaName="contact" parentDisplayName="Contact" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="2" schemaName="msdyn_contactkpiid" displayName="KPI" parentSchemaName="contact" parentDisplayName="Contact" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_contactkpiitem_contact_contactkpiid" displayName="msdyn_msdyn_contactkpiitem_contact_contactkpiid" parentSchemaName="msdyn_contactkpiitem" parentDisplayName="Contact KPI Item" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_gdproptout" displayName="GDPR Optout" parentSchemaName="contact" parentDisplayName="Contact" solution="SICommon (9.0.23121.2)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="2" schemaName="msdyn_gdproptout" displayName="GDPR Optout" parentSchemaName="contact" parentDisplayName="Contact" solution="SICommon (9.0.23121.3)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="2" schemaName="msdyn_gdproptout" displayName="GDPR Optout" parentSchemaName="contact" parentDisplayName="Contact" />
       </MissingDependency>
@@ -11742,14 +11915,14 @@
         <Dependent type="60" displayName="Lead" parentDisplayName="Lead" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_accountkpiitemid" displayName="Unique Identifier for Entity Instances" parentSchemaName="msdyn_accountkpiitem" parentDisplayName="Account KPI Item" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="2" schemaName="msdyn_accountkpiitemid" displayName="Unique Identifier for Entity Instances" parentSchemaName="msdyn_accountkpiitem" parentDisplayName="Account KPI Item" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_accountkpiitem_account_accountkpiid" displayName="msdyn_msdyn_accountkpiitem_account_accountkpiid" parentSchemaName="msdyn_accountkpiitem" parentDisplayName="Account KPI Item" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Custom Entity Name" parentSchemaName="msdyn_accountkpiitem" parentDisplayName="Account KPI Item" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="2" schemaName="msdyn_name" displayName="Custom Entity Name" parentSchemaName="msdyn_accountkpiitem" parentDisplayName="Account KPI Item" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_accountkpiitem_account_accountkpiid" displayName="msdyn_msdyn_accountkpiitem_account_accountkpiid" parentSchemaName="msdyn_accountkpiitem" parentDisplayName="Account KPI Item" />
       </MissingDependency>
@@ -12006,14 +12179,14 @@
         <Dependent type="10" schemaName="msdyn_msdyn_bookingsetupmetadata_bookableresourcebooking" displayName="msdyn_msdyn_bookingsetupmetadata_bookableresourcebooking" parentSchemaName="msdyn_bookingsetupmetadata" parentDisplayName="Booking Setup Metadata" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_contactkpiitemid" displayName="Unique Identifier for Entity Instances" parentSchemaName="msdyn_contactkpiitem" parentDisplayName="Contact KPI Item" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="2" schemaName="msdyn_contactkpiitemid" displayName="Unique Identifier for Entity Instances" parentSchemaName="msdyn_contactkpiitem" parentDisplayName="Contact KPI Item" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_contactkpiitem_contact_contactkpiid" displayName="msdyn_msdyn_contactkpiitem_contact_contactkpiid" parentSchemaName="msdyn_contactkpiitem" parentDisplayName="Contact KPI Item" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Custom Entity Name" parentSchemaName="msdyn_contactkpiitem" parentDisplayName="Contact KPI Item" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="2" schemaName="msdyn_name" displayName="Custom Entity Name" parentSchemaName="msdyn_contactkpiitem" parentDisplayName="Contact KPI Item" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_contactkpiitem_contact_contactkpiid" displayName="msdyn_msdyn_contactkpiitem_contact_contactkpiid" parentSchemaName="msdyn_contactkpiitem" parentDisplayName="Contact KPI Item" />
       </MissingDependency>
@@ -13413,14 +13586,14 @@
         <Dependent type="10" schemaName="msdyn_msdyn_organizationalunit_bookableresource_organizationalunit" displayName="msdyn_msdyn_organizationalunit_bookableresource_organizationalunit" parentSchemaName="msdyn_organizationalunit" parentDisplayName="Organizational Unit" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_presence" parentDisplayName="Presence" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_presence" parentDisplayName="Presence" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_presence_systemuser" displayName="msdyn_msdyn_presence_systemuser" parentSchemaName="msdyn_presence" parentDisplayName="Presence" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_presenceid" displayName="Presence" parentSchemaName="msdyn_presence" parentDisplayName="Presence" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="2" schemaName="msdyn_presenceid" displayName="Presence" parentSchemaName="msdyn_presence" parentDisplayName="Presence" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_presence_systemuser" displayName="msdyn_msdyn_presence_systemuser" parentSchemaName="msdyn_presence" parentDisplayName="Presence" />
       </MissingDependency>
@@ -13711,44 +13884,44 @@
         <Dependent type="60" displayName="RMA" parentDisplayName="RMA" id="{eebf7d5a-f47b-4d71-a164-583d6d5519a7}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_salesaccelerationinsight" parentDisplayName="Sales acceleration insights" solution="msdyn_acceleratedsales (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_salesaccelerationinsight" parentDisplayName="Sales acceleration insights" solution="msdyn_acceleratedsales (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_insightsid_salesaccelerationinsights" displayName="msdyn_insightsid_salesaccelerationinsights" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_salesaccelerationinsightid" displayName="Sales acceleration insights" parentSchemaName="msdyn_salesaccelerationinsight" parentDisplayName="Sales acceleration insights" solution="msdyn_acceleratedsales (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="2" schemaName="msdyn_salesaccelerationinsightid" displayName="Sales acceleration insights" parentSchemaName="msdyn_salesaccelerationinsight" parentDisplayName="Sales acceleration insights" solution="msdyn_acceleratedsales (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_insightsid_salesaccelerationinsights" displayName="msdyn_insightsid_salesaccelerationinsights" parentSchemaName="account" parentDisplayName="Account" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_name" displayName="Segment name" parentSchemaName="msdyn_segment" parentDisplayName="Segment" solution="msdyn_segment (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_segment_account" displayName="msdyn_msdyn_segment_account" parentSchemaName="msdyn_segment" parentDisplayName="Segment" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_name" displayName="Segment name" parentSchemaName="msdyn_segment" parentDisplayName="Segment" solution="msdyn_segment (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_segment_contact" displayName="msdyn_msdyn_segment_contact" parentSchemaName="msdyn_segment" parentDisplayName="Segment" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_segmentid" displayName="segment" parentSchemaName="msdyn_segment" parentDisplayName="Segment" solution="msdyn_segment (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_segment_account" displayName="msdyn_msdyn_segment_account" parentSchemaName="msdyn_segment" parentDisplayName="Segment" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_segmentid" displayName="segment" parentSchemaName="msdyn_segment" parentDisplayName="Segment" solution="msdyn_segment (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_segment_contact" displayName="msdyn_msdyn_segment_contact" parentSchemaName="msdyn_segment" parentDisplayName="Segment" />
       </MissingDependency>
@@ -14277,6 +14450,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_mapcontrol" displayName="This field should only be used to load the custom map control" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_mapcontrol" displayName="This field should only be used to load the custom map control" parentSchemaName="msdyn_workorder" parentDisplayName="Work Order" solution="FieldService (8.8.0.88)">
@@ -17485,61 +17664,61 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_agentType" displayName="User type" parentSchemaName="systemuser" parentDisplayName="User" solution="OmnichannelBotEnabler (1.5.0.4)">
-          <package>OmnichannelPrimeAnchor (1.5.26.80)</package>
+          <package>OmnichannelPrimeAnchor (1.5.26.91)</package>
         </Required>
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_agentType" displayName="User type" parentSchemaName="systemuser" parentDisplayName="User" solution="OmnichannelBotEnabler (1.5.0.4)">
-          <package>OmnichannelPrimeAnchor (1.5.26.80)</package>
+          <package>OmnichannelPrimeAnchor (1.5.26.91)</package>
         </Required>
         <Dependent type="60" displayName="Application User" parentDisplayName="User" id="{d26924ef-4d80-46f7-ab1d-e6ae80a54ce8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_botapplicationid" displayName="Bot application ID" parentSchemaName="systemuser" parentDisplayName="User" solution="OmnichannelBotEnabler (1.5.0.4)">
-          <package>OmnichannelPrimeAnchor (1.5.26.80)</package>
+          <package>OmnichannelPrimeAnchor (1.5.26.91)</package>
         </Required>
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_botapplicationid" displayName="Bot application ID" parentSchemaName="systemuser" parentDisplayName="User" solution="OmnichannelBotEnabler (1.5.0.4)">
-          <package>OmnichannelPrimeAnchor (1.5.26.80)</package>
+          <package>OmnichannelPrimeAnchor (1.5.26.91)</package>
         </Required>
         <Dependent type="60" displayName="Application User" parentDisplayName="User" id="{d26924ef-4d80-46f7-ab1d-e6ae80a54ce8}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_botdescription" displayName="Description" parentSchemaName="systemuser" parentDisplayName="User" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="2" schemaName="msdyn_botdescription" displayName="Description" parentSchemaName="systemuser" parentDisplayName="User" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_botprovider" displayName="Bot Provider" parentSchemaName="systemuser" parentDisplayName="User" solution="msdyn_OmnichannelBotEnablerPatch (1.5.26.0)">
-          <package>OmnichannelPrimeAnchor (1.5.26.80)</package>
+          <package>OmnichannelPrimeAnchor (1.5.26.91)</package>
         </Required>
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_capacity" displayName="Capacity" parentSchemaName="systemuser" parentDisplayName="User" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="2" schemaName="msdyn_capacity" displayName="Capacity" parentSchemaName="systemuser" parentDisplayName="User" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_defaultpresenceiduser" displayName="Default Presence" parentSchemaName="systemuser" parentDisplayName="User" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="2" schemaName="msdyn_defaultpresenceiduser" displayName="Default Presence" parentSchemaName="systemuser" parentDisplayName="User" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_msdyn_presence_systemuser" displayName="msdyn_msdyn_presence_systemuser" parentSchemaName="msdyn_presence" parentDisplayName="Presence" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_defaultpresenceiduser" displayName="Default Presence" parentSchemaName="systemuser" parentDisplayName="User" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="2" schemaName="msdyn_defaultpresenceiduser" displayName="Default Presence" parentSchemaName="systemuser" parentDisplayName="User" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_gdproptout" displayName="GDPR Optout" parentSchemaName="systemuser" parentDisplayName="User" solution="SICommon (9.0.23121.2)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="2" schemaName="msdyn_gdproptout" displayName="GDPR Optout" parentSchemaName="systemuser" parentDisplayName="User" solution="SICommon (9.0.23121.3)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="2" schemaName="msdyn_gdproptout" displayName="GDPR Optout" parentSchemaName="systemuser" parentDisplayName="User" />
       </MissingDependency>
@@ -18284,6 +18463,12 @@
         <Required type="26" schemaName="Active Work Order Services" displayName="Active Work Order Services" parentSchemaName="msdyn_workorderservice" parentDisplayName="Work Order Service" solution="FieldService (8.8.0.88)" id="{0312a55e-e22c-4afb-abff-4bdbf5cfd601}">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Active Work Order Services" displayName="Active Work Order Services" parentSchemaName="msdyn_workorderservice" parentDisplayName="Work Order Service" solution="FieldService (8.8.0.88)" id="{0312a55e-e22c-4afb-abff-4bdbf5cfd601}">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -18439,6 +18624,12 @@
         <Required type="26" schemaName="Agreement Lookup View" displayName="Agreement Lookup View" parentSchemaName="msdyn_agreement" parentDisplayName="Agreement" solution="FieldService (8.8.0.88)" id="{0e202e69-7e40-4559-bd44-d1c1029e84e1}">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Agreement Lookup View" displayName="Agreement Lookup View" parentSchemaName="msdyn_agreement" parentDisplayName="Agreement" solution="FieldService (8.8.0.88)" id="{0e202e69-7e40-4559-bd44-d1c1029e84e1}">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -18575,6 +18766,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Active Work Order Products" displayName="Active Work Order Products" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" solution="FieldService (8.8.0.88)" id="{1662ced4-9bc6-4e77-90b2-6bbf2bef029f}">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Active Work Order Products" displayName="Active Work Order Products" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" solution="FieldService (8.8.0.88)" id="{1662ced4-9bc6-4e77-90b2-6bbf2bef029f}">
@@ -18808,6 +19005,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Custom Work Order Products View" displayName="Custom Work Order Products View" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" solution="FieldService (8.8.0.88)" id="{293498de-a23c-e311-974a-00155da8fa1b}">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Custom Work Order Products View" displayName="Custom Work Order Products View" parentSchemaName="msdyn_workorderproduct" parentDisplayName="Work Order Product" solution="FieldService (8.8.0.88)" id="{293498de-a23c-e311-974a-00155da8fa1b}">
@@ -19114,8 +19317,8 @@
         <Dependent type="26" schemaName="Active Incident Types" displayName="Active Incident Types" parentSchemaName="msdyn_incidenttype" parentDisplayName="Incident Type" id="{467a8f92-753b-485e-8ba9-13de8b7cb3a7}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="26" schemaName="Omnichannel queues" displayName="Omnichannel queues" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.53)" id="{475ba760-c16c-e911-8196-000d3af7379e}">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="26" schemaName="Omnichannel queues" displayName="Omnichannel queues" parentSchemaName="queue" parentDisplayName="Queue" solution="OmnichannelBase (1.10.0.56)" id="{475ba760-c16c-e911-8196-000d3af7379e}">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
@@ -19411,8 +19614,8 @@
         <Dependent type="26" schemaName="Service Task Type Associated View" displayName="Service Task Type Associated View" parentSchemaName="msdyn_servicetasktype" parentDisplayName="Service Task Type" id="{58dc656d-6051-493b-a993-7ed79abd809c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="26" schemaName="Active Capacity Profiles" displayName="Active Capacity Profiles" parentSchemaName="msdyn_capacityprofile" parentDisplayName="Capacity Profile" solution="UnifiedRouting (1.0.0.4611)" id="{59137c65-5747-433b-8a7d-fd1dc252f13f}">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="26" schemaName="Active Capacity Profiles" displayName="Active Capacity Profiles" parentSchemaName="msdyn_capacityprofile" parentDisplayName="Capacity Profile" solution="UnifiedRouting (1.0.0.4756)" id="{59137c65-5747-433b-8a7d-fd1dc252f13f}">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
@@ -19485,8 +19688,8 @@
         <Dependent type="60" displayName="Knowledge Article for Interactive experience" parentDisplayName="Knowledge Article" id="{f7502aaf-4874-49fc-868d-cc201c6c4453}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="26" schemaName="Capacity profile Subgrid View" displayName="Capacity profile Subgrid View" parentSchemaName="msdyn_capacityprofile" parentDisplayName="Capacity Profile" solution="OCBaseURBase (1.1.0.400)" id="{6313eed9-e160-eb11-a812-000d3a9bbc54}">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="26" schemaName="Capacity profile Subgrid View" displayName="Capacity profile Subgrid View" parentSchemaName="msdyn_capacityprofile" parentDisplayName="Capacity Profile" solution="OCBaseURBase (1.1.0.546)" id="{6313eed9-e160-eb11-a812-000d3a9bbc54}">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
@@ -19513,6 +19716,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Custom Work Order Service View" displayName="Custom Work Order Service View" parentSchemaName="msdyn_workorderservice" parentDisplayName="Work Order Service" solution="FieldService (8.8.0.88)" id="{637fd9ff-b25b-e111-b0e5-000c2959f9b8}">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Custom Work Order Service View" displayName="Custom Work Order Service View" parentSchemaName="msdyn_workorderservice" parentDisplayName="Work Order Service" solution="FieldService (8.8.0.88)" id="{637fd9ff-b25b-e111-b0e5-000c2959f9b8}">
@@ -19597,6 +19806,12 @@
           <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Active Customer Assets" displayName="Active Customer Assets" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_ConnectedCustomerService (9.0.23114.1001)" id="{64f8ed51-5066-449d-8bf9-73a39737ece7}">
+          <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Active Customer Assets" displayName="Active Customer Assets" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_ConnectedCustomerService (9.0.23114.1001)" id="{64f8ed51-5066-449d-8bf9-73a39737ece7}">
@@ -20323,6 +20538,13 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
           <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Primary alerts" displayName="Primary alerts" parentSchemaName="msdyn_iotalert" parentDisplayName="IoT Alert" solution="IoTConnector (1.8.47.0)" id="{b96d141d-a429-e611-8107-00155db9cd0a}">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+          <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
+        </Required>
         <Dependent type="60" displayName="TSIS Oversight Activity" parentDisplayName="Work Order" id="{d8dc9595-c451-eb11-a812-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -20639,7 +20861,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="All Bookable Resource Characteristics for OC" displayName="All Bookable Resource Characteristics for OC" parentSchemaName="bookableresourcecharacteristic" parentDisplayName="Bookable Resource Characteristic" solution="OmnichannelSBR (1.5.0.18)" id="{e5fd7fff-02da-e911-a81b-000d3a703724}">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="60" displayName="Main Form" parentDisplayName="Bookable Resource" id="{3e8942a7-ff8e-4634-84ec-8ce174ab807c}" />
       </MissingDependency>
@@ -20910,6 +21132,13 @@
           <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="26" schemaName="Customer Asset Lookup View" displayName="Customer Asset Lookup View" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.46.7)" id="{fd2fda4c-4b7f-4a68-a2cb-c1e1c6a31c8f}">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+          <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Customer Asset Lookup View" displayName="Customer Asset Lookup View" parentSchemaName="msdyn_customerasset" parentDisplayName="Customer Asset" solution="msdyn_AssetCommon (1.0.46.7)" id="{fd2fda4c-4b7f-4a68-a2cb-c1e1c6a31c8f}">
@@ -21273,8 +21502,8 @@
         <Dependent type="60" displayName="Accounts Dashboard" parentDisplayName="Account" id="{15915835-b87c-49ec-9ffc-bfac3ac44ef1}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Issue snapshot" parentDisplayName="Case" solution="OmnichannelPrime (1.10.0.13)" id="{185177f7-780e-4897-a60a-32a245841ee9}">
-          <package>OmnichannelPrimeAnchor (1.5.26.80)</package>
+        <Required type="60" displayName="Issue snapshot" parentDisplayName="Case" solution="OmnichannelPrime (1.10.0.16)" id="{185177f7-780e-4897-a60a-32a245841ee9}">
+          <package>OmnichannelPrimeAnchor (1.5.26.91)</package>
         </Required>
         <Dependent type="60" displayName="Issue snapshot" parentDisplayName="Case" id="{185177f7-780e-4897-a60a-32a245841ee9}" />
       </MissingDependency>
@@ -21376,8 +21605,8 @@
         <Dependent type="60" displayName="Contact - Mobile" parentDisplayName="Contact" id="{28b5b9b6-dfa2-45d6-8a81-3f6ba02a098a}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="AI for Sales" parentDisplayName="Contact" solution="SICommon (9.0.23121.2)" id="{293c878f-f068-40a0-ae48-4297e060871c}">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="60" displayName="AI for Sales" parentDisplayName="Contact" solution="SICommon (9.0.23121.3)" id="{293c878f-f068-40a0-ae48-4297e060871c}">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
@@ -21433,7 +21662,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="60" displayName="In Context Form" parentDisplayName="Contact" solution="msdynce_DealManager (9.0.231101.3)" id="{4c9c89b9-f909-4b34-8f63-b87d7ff2f0c4}">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="In Context Form" parentDisplayName="Contact" id="{4c9c89b9-f909-4b34-8f63-b87d7ff2f0c4}" />
       </MissingDependency>
@@ -21450,8 +21679,8 @@
         <Dependent type="60" displayName="Field Service Information" parentDisplayName="Order" id="{578e22c0-2084-490d-8019-4b55dbbfadc9}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="TimelineWallControl - Case- Main" parentDisplayName="Case" solution="OmnichannelPrime (1.10.0.13)" id="{5f304da5-d0c5-4776-b8d6-7d5bcd94d869}">
-          <package>OmnichannelPrimeAnchor (1.5.26.80)</package>
+        <Required type="60" displayName="TimelineWallControl - Case- Main" parentDisplayName="Case" solution="OmnichannelPrime (1.10.0.16)" id="{5f304da5-d0c5-4776-b8d6-7d5bcd94d869}">
+          <package>OmnichannelPrimeAnchor (1.5.26.91)</package>
         </Required>
         <Dependent type="60" displayName="TimelineWallControl - Case- Main" parentDisplayName="Case" id="{5f304da5-d0c5-4776-b8d6-7d5bcd94d869}" />
       </MissingDependency>
@@ -21690,7 +21919,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="60" displayName="In Context Form" parentDisplayName="Opportunity" solution="msdynce_DealManager (9.0.231101.3)" id="{ba7f7ad7-e0e7-43aa-be19-5069dd9c60eb}">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="In Context Form" parentDisplayName="Opportunity" id="{ba7f7ad7-e0e7-43aa-be19-5069dd9c60eb}" />
       </MissingDependency>
@@ -21731,8 +21960,8 @@
         <Dependent type="60" displayName="Account Quick Create" parentDisplayName="Account" id="{c9e7ec2d-efca-4e4c-b3e3-f63c4bba5e4b}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Sales Insights" parentDisplayName="Account" solution="SICommon (9.0.23121.2)" id="{cb430327-bcc1-416d-959d-db7592e685af}">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="60" displayName="Sales Insights" parentDisplayName="Account" solution="SICommon (9.0.23121.3)" id="{cb430327-bcc1-416d-959d-db7592e685af}">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Sales Insights" parentDisplayName="Account" id="{cb430327-bcc1-416d-959d-db7592e685af}" />
       </MissingDependency>
@@ -21954,7 +22183,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="60" displayName="In Context Form" parentDisplayName="Account" solution="msdynce_DealManager (9.0.231101.3)" id="{face3aa6-99c4-4b7e-af07-55f121cdca86}">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="In Context Form" parentDisplayName="Account" id="{face3aa6-99c4-4b7e-af07-55f121cdca86}" />
       </MissingDependency>
@@ -22014,7 +22243,7 @@
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
           <package>msdynce_AppCommonAnchor (9.0.23121.10001)</package>
         </Required>
-        <Dependent type="60" displayName="ROM Information" parentDisplayName="Account" id="{f3f3935c-b7dd-4dd4-a86b-2b0735f57d13}" />
+        <Dependent type="60" displayName="Sales Insights" parentDisplayName="Account" id="{cb430327-bcc1-416d-959d-db7592e685af}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
@@ -22038,6 +22267,12 @@
         <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
           <package>msdynce_AppCommonAnchor (9.0.23121.10001)</package>
         </Required>
+        <Dependent type="60" displayName="Contact - Mobile" parentDisplayName="Contact" id="{28b5b9b6-dfa2-45d6-8a81-3f6ba02a098a}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
+          <package>msdynce_AppCommonAnchor (9.0.23121.10001)</package>
+        </Required>
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
@@ -22051,12 +22286,6 @@
           <package>msdynce_AppCommonAnchor (9.0.23121.10001)</package>
         </Required>
         <Dependent type="60" displayName="Information" parentDisplayName="Contact" id="{894cc46a-b0cb-4ab0-8bf6-200544e46a2d}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
-          <package>msdynce_AppCommonAnchor (9.0.23121.10001)</package>
-        </Required>
-        <Dependent type="60" displayName="Contact for Interactive experience" parentDisplayName="Contact" id="{cc760212-3eab-4009-b5c3-ea9cf6f3e141}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
@@ -22087,7 +22316,7 @@
           <package>msdyn_SalesIntegrationsAddOns (9.0.22054.10002)</package>
           <package>msdyn_SalesIntegrationsAddOns (9.0.23121.10003)</package>
         </Required>
-        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
+        <Dependent type="60" displayName="Sales Insights" parentDisplayName="Account" id="{cb430327-bcc1-416d-959d-db7592e685af}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="MarketingSales/Lead/Lead_main_system_library.js" displayName="MarketingSales/Lead/Lead_main_system_library.js" solution="msdynce_MarketingSales (9.0.4.29)">
@@ -22146,14 +22375,14 @@
         <Dependent type="60" displayName="ROM Information" parentDisplayName="Account" id="{f3f3935c-b7dd-4dd4-a86b-2b0735f57d13}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_/ACI/Scripts/ACILoader.js" displayName="msdyn_/ACI/Scripts/ACILoader.js" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="61" schemaName="msdyn_/ACI/Scripts/ACILoader.js" displayName="msdyn_/ACI/Scripts/ACILoader.js" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_/ACI/Scripts/ACILoader.js" displayName="msdyn_/ACI/Scripts/ACILoader.js" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="61" schemaName="msdyn_/ACI/Scripts/ACILoader.js" displayName="msdyn_/ACI/Scripts/ACILoader.js" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Sales Insights" parentDisplayName="Account" id="{cb430327-bcc1-416d-959d-db7592e685af}" />
       </MissingDependency>
@@ -22341,6 +22570,12 @@
         <Required type="61" schemaName="msdyn_/CFS/Utils/RibbonUtils.js" displayName="msdyn_/CFS/Utils/RibbonUtils.js" solution="ConnectedFieldService (1.8.41.0)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/CFS/Utils/RibbonUtils.js" displayName="msdyn_/CFS/Utils/RibbonUtils.js" solution="ConnectedFieldService (1.8.41.0)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -22396,6 +22631,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/CFS/WorkOrder/WorkOrderForm.js" displayName="msdyn_/CFS/WorkOrder/WorkOrderForm.js" solution="ConnectedFieldService (1.8.41.0)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="msdyn_/CFS/WorkOrder/WorkOrderForm.js" displayName="msdyn_/CFS/WorkOrder/WorkOrderForm.js" solution="ConnectedFieldService (1.8.41.0)">
@@ -22514,7 +22755,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="msdyn_/FollowAttachments/Scripts/Email_Engagement_Attachments.js" displayName="msdyn_/FollowAttachments/Scripts/Email_Engagement_Attachments.js" solution="EmailEngagement (9.0.1.7018)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Email" parentDisplayName="Email" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}" />
       </MissingDependency>
@@ -22587,6 +22828,13 @@
           <package>msdynce_CoreServiceSchedulingAnchor (9.0.21101.1006)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/fps/CrmControls/TimeField.html" displayName="msdyn_/fps/CrmControls/TimeField.html" solution="MicrosoftDynamicsScheduling (3.12.0.448)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+          <package>msdynce_CoreServiceSchedulingAnchor (9.0.21101.1006)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="msdyn_/fps/CrmControls/TimeField.html" displayName="msdyn_/fps/CrmControls/TimeField.html" solution="MicrosoftDynamicsScheduling (3.12.0.448)">
@@ -23230,14 +23478,14 @@
         <Dependent type="60" displayName="RMA" parentDisplayName="RMA" id="{eebf7d5a-f47b-4d71-a164-583d6d5519a7}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_/Scripts/WhoKnowsWhomLoader.js" displayName="msdyn_/Scripts/WhoKnowsWhomLoader.js" solution="msdyn_connectiongraph (9.3.0.93231211)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="61" schemaName="msdyn_/Scripts/WhoKnowsWhomLoader.js" displayName="msdyn_/Scripts/WhoKnowsWhomLoader.js" solution="msdyn_connectiongraph (9.3.0.93231212)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_/Scripts/WhoKnowsWhomLoader.js" displayName="msdyn_/Scripts/WhoKnowsWhomLoader.js" solution="msdyn_connectiongraph (9.3.0.93231211)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="61" schemaName="msdyn_/Scripts/WhoKnowsWhomLoader.js" displayName="msdyn_/Scripts/WhoKnowsWhomLoader.js" solution="msdyn_connectiongraph (9.3.0.93231212)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Lead" parentDisplayName="Lead" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
       </MissingDependency>
@@ -23324,6 +23572,12 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/Utils/FieldServiceTrial.js" displayName="msdyn_/Utils/FieldServiceTrial.js" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="msdyn_/Utils/FieldServiceTrial.js" displayName="msdyn_/Utils/FieldServiceTrial.js" solution="FieldService (8.8.0.88)">
@@ -23461,6 +23715,12 @@
         <Required type="61" schemaName="msdyn_/WorkOrder/WorkOrder.Library.js" displayName="msdyn_/WorkOrder/WorkOrder.Library.js" solution="FieldService (8.8.0.88)">
           <package>FieldService_Anchor (8.8.105.46)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/WorkOrder/WorkOrder.Library.js" displayName="msdyn_/WorkOrder/WorkOrder.Library.js" solution="FieldService (8.8.0.88)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -23584,8 +23844,8 @@
         <Dependent type="60" displayName="Work Order Create" parentDisplayName="Work Order" id="{ccf0b34e-a265-4005-bd73-be6f4fe30dd7}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_capacityprofileSubgridActions.js" displayName="msdyn_capacityprofileSubgridActions.js" solution="OCBaseURBase (1.1.0.400)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="61" schemaName="msdyn_capacityprofileSubgridActions.js" displayName="msdyn_capacityprofileSubgridActions.js" solution="OCBaseURBase (1.1.0.546)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
@@ -23640,7 +23900,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="msdyn_OmnichannelBotEnabler/msdyn_BotUser.js" displayName="msdyn_OmnichannelBotEnabler/msdyn_BotUser.js" solution="msdyn_OmnichannelBotEnablerPatch (1.5.26.0)">
-          <package>OmnichannelPrimeAnchor (1.5.26.80)</package>
+          <package>OmnichannelPrimeAnchor (1.5.26.91)</package>
         </Required>
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
@@ -23651,56 +23911,56 @@
         <Dependent type="60" displayName="Email" parentDisplayName="Email" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" displayName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" solution="msdyn_SalesOmniChannel (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+        <Required type="61" schemaName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" displayName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" solution="msdyn_SalesOmniChannel (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" displayName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" solution="msdyn_SalesOmniChannel (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+        <Required type="61" schemaName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" displayName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" solution="msdyn_SalesOmniChannel (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" displayName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" solution="msdyn_SalesOmniChannel (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+        <Required type="61" schemaName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" displayName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" solution="msdyn_SalesOmniChannel (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" displayName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" solution="msdyn_SalesOmniChannel (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+        <Required type="61" schemaName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" displayName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" solution="msdyn_SalesOmniChannel (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="60" displayName="Sales Insights" parentDisplayName="Account" id="{cb430327-bcc1-416d-959d-db7592e685af}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" displayName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" solution="msdyn_SalesOmniChannel (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+        <Required type="61" schemaName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" displayName="msdyn_SalesOmniChannel/SalesPhoneNumber.Library.js" solution="msdyn_SalesOmniChannel (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="60" displayName="Lead" parentDisplayName="Lead" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="msdyn_talkingpointsloader.js" displayName="msdyn_talkingpointsloader.js" solution="msdynce_Talkingpoints (9.1.0.59)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="msdyn_talkingpointsloader.js" displayName="msdyn_talkingpointsloader.js" solution="msdynce_Talkingpoints (9.1.0.59)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="msdyn_talkingpointsloader.js" displayName="msdyn_talkingpointsloader.js" solution="msdynce_Talkingpoints (9.1.0.59)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Contact Main Form" parentDisplayName="Contact" id="{2c961780-b9f9-ea11-a815-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_userSettings.js" displayName="msdyn_userSettings.js" solution="OmnichannelBase (1.10.0.53)">
-          <package>UnifiedRoutingPrimeAnchor (1.5.26.53)</package>
+        <Required type="61" schemaName="msdyn_userSettings.js" displayName="msdyn_userSettings.js" solution="OmnichannelBase (1.10.0.56)">
+          <package>UnifiedRoutingPrimeAnchor (1.5.26.63)</package>
         </Required>
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
@@ -23708,7 +23968,7 @@
         <Required type="61" schemaName="msdyncrm_/KnowledgeManagement/KnowledgeArticle/KnowledgeArticleMainSystemLibrary.js" displayName="msdyncrm_/KnowledgeManagement/KnowledgeArticle/KnowledgeArticleMainSystemLibrary.js" solution="msdynce_KnowledgeManagementPatch (9.0.23121.5017)">
           <package>msdynce_KnowledgeManagementAnchor (9.0.23121.5017)</package>
         </Required>
-        <Dependent type="60" displayName="Knowledge Article for Interactive experience" parentDisplayName="Knowledge Article" id="{f7502aaf-4874-49fc-868d-cc201c6c4453}" />
+        <Dependent type="60" displayName="Knowledge Article" parentDisplayName="Knowledge Article" id="{e7ef555e-7f57-4164-b604-59fa4f0a7e2e}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="msdyncrm_/KnowledgeManagementFeatureWebResource/KnowledgeArticleAttachment/KnowledgeArticleAttachment.js" displayName="msdyncrm_/KnowledgeManagementFeatureWebResource/KnowledgeArticleAttachment/KnowledgeArticleAttachment.js" solution="msdynce_KnowledgeManagementFeatures (9.0.23121.5017)">
@@ -23804,13 +24064,13 @@
         <Required type="61" schemaName="Service/_imgs/ribbon/Assign_16.png" displayName="Service/_imgs/ribbon/Assign_16.png" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
         </Required>
-        <Dependent type="50" schemaName="incident:RibbonDiffXml" displayName="incident:RibbonDiffXml" parentSchemaName="ribboncustomization" parentDisplayName="Application Ribbons" />
+        <Dependent type="50" schemaName="ovs_finding:RibbonDiffXml" displayName="ovs_finding:RibbonDiffXml" parentSchemaName="ribboncustomization" parentDisplayName="Application Ribbons" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/_imgs/ribbon/Assign_32.png" displayName="Service/_imgs/ribbon/Assign_32.png" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
         </Required>
-        <Dependent type="50" schemaName="incident:RibbonDiffXml" displayName="incident:RibbonDiffXml" parentSchemaName="ribboncustomization" parentDisplayName="Application Ribbons" />
+        <Dependent type="50" schemaName="ovs_finding:RibbonDiffXml" displayName="ovs_finding:RibbonDiffXml" parentSchemaName="ribboncustomization" parentDisplayName="Application Ribbons" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Convert/Incident_convert_library.js" displayName="Service/Incident/Convert/Incident_convert_library.js" solution="msdynce_Service (9.0.5.56)">
@@ -23847,6 +24107,12 @@
           <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
         </Required>
         <Dependent type="60" displayName="ROM Case" parentDisplayName="Case" id="{45b022a4-928d-eb11-b1ac-000d3ae92dbf}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
+        </Required>
+        <Dependent type="60" displayName="Case" parentDisplayName="Case" id="{4a63c8d1-6c1e-48ec-9db4-3e6c7155334c}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
@@ -23903,12 +24169,6 @@
         <Dependent type="60" displayName="Enhanced full case form" parentDisplayName="Case" id="{cd0d48a0-10c6-ec11-a7b5-000d3a58b83a}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
-          <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
-        </Required>
-        <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
           <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
         </Required>
@@ -23931,6 +24191,12 @@
           <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
         </Required>
         <Dependent type="60" displayName="Case Quick Create" parentDisplayName="Case" id="{8e10b902-0b3e-441c-8b12-88e6c1793848}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
+          <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
+        </Required>
+        <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
@@ -23961,12 +24227,6 @@
           <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
         </Required>
         <Dependent type="60" displayName="Enhanced full case form" parentDisplayName="Case" id="{cd0d48a0-10c6-ec11-a7b5-000d3a58b83a}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
-          <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
-        </Required>
-        <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Swarming/msdyn_Swarming.js" displayName="Swarming/msdyn_Swarming.js" solution="msdyn_Swarming (9.0.23121.1021)">
@@ -24107,6 +24367,13 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
           <package>msdynce_CoreServiceSchedulingAnchor (9.0.21101.1006)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MicrosoftDynamicsFPS.TimeControl" displayName="MicrosoftDynamicsFPS.TimeControl" solution="MicrosoftDynamicsScheduling (3.12.0.448)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+          <package>msdynce_CoreServiceSchedulingAnchor (9.0.21101.1006)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -24145,30 +24412,30 @@
         <Dependent type="60" displayName="Main form" parentDisplayName="Work Order" id="{f10dda58-3203-eb11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.AcceleratedSales.CadenceWidgetControl" displayName="MscrmControls.AcceleratedSales.CadenceWidgetControl" solution="msdyn_acceleratedsales (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="66" schemaName="MscrmControls.AcceleratedSales.CadenceWidgetControl" displayName="MscrmControls.AcceleratedSales.CadenceWidgetControl" solution="msdyn_acceleratedsales (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.AcceleratedSales.CadenceWidgetControl" displayName="MscrmControls.AcceleratedSales.CadenceWidgetControl" solution="msdyn_acceleratedsales (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="66" schemaName="MscrmControls.AcceleratedSales.CadenceWidgetControl" displayName="MscrmControls.AcceleratedSales.CadenceWidgetControl" solution="msdyn_acceleratedsales (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Opportunity" parentDisplayName="Opportunity" id="{a837e4a7-01b8-4f82-a475-be9abd67e667}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.AcceleratedSales.CadenceWidgetControl" displayName="MscrmControls.AcceleratedSales.CadenceWidgetControl" solution="msdyn_acceleratedsales (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="66" schemaName="MscrmControls.AcceleratedSales.CadenceWidgetControl" displayName="MscrmControls.AcceleratedSales.CadenceWidgetControl" solution="msdyn_acceleratedsales (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Sales Insights" parentDisplayName="Account" id="{cb430327-bcc1-416d-959d-db7592e685af}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.AcceleratedSales.CadenceWidgetControl" displayName="MscrmControls.AcceleratedSales.CadenceWidgetControl" solution="msdyn_acceleratedsales (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="66" schemaName="MscrmControls.AcceleratedSales.CadenceWidgetControl" displayName="MscrmControls.AcceleratedSales.CadenceWidgetControl" solution="msdyn_acceleratedsales (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Lead" parentDisplayName="Lead" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
       </MissingDependency>
@@ -24215,6 +24482,10 @@
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.Canvas.CanvasControl" displayName="MscrmControls.Canvas.CanvasControl" solution="BaseCustomControlsCore (9.0.2312.2025)" />
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.Canvas.CanvasControl" displayName="MscrmControls.Canvas.CanvasControl" solution="BaseCustomControlsCore (9.0.2312.2025)" />
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.Canvas.CanvasControl" displayName="MscrmControls.Canvas.CanvasControl" solution="BaseCustomControlsCore (9.0.2312.2025)" />
@@ -24447,6 +24718,13 @@
           <package>FieldService_Anchor (8.8.105.46)</package>
           <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.DeviceInsights.DeviceInsightsControl" displayName="MscrmControls.DeviceInsights.DeviceInsightsControl" solution="IoTConnector (1.8.47.0)">
+          <package>FieldService_Anchor (8.8.105.46)</package>
+          <package>msdynce_ServiceAnchor (9.0.23121.1009)</package>
+        </Required>
         <Dependent type="60" displayName="Oversight Activity" parentDisplayName="Work Order" id="{bf91650f-71fe-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -24554,6 +24832,10 @@
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.FieldControls.ToggleControl" displayName="MscrmControls.FieldControls.ToggleControl" solution="BaseCustomControlsCore (9.0.2312.2025)" />
         <Dependent type="60" displayName="ROM Information" parentDisplayName="Service Task Type" id="{9f0e18fc-8a70-eb11-a812-000d3af390d5}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.FieldControls.ToggleControl" displayName="MscrmControls.FieldControls.ToggleControl" solution="BaseCustomControlsCore (9.0.2312.2025)" />
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.FieldControls.ToggleControl" displayName="MscrmControls.FieldControls.ToggleControl" solution="BaseCustomControlsCore (9.0.2312.2025)" />
@@ -24739,19 +25021,19 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.LeadHygiene.ValidatedFieldControl" displayName="MscrmControls.LeadHygiene.ValidatedFieldControl" solution="msdyn_leadhygiene (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.LeadHygiene.ValidatedFieldControl" displayName="MscrmControls.LeadHygiene.ValidatedFieldControl" solution="msdyn_leadhygiene (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.LeadHygiene.ValidatedFieldControl" displayName="MscrmControls.LeadHygiene.ValidatedFieldControl" solution="msdyn_leadhygiene (9.1.2312.1001)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="60" displayName="Lead" parentDisplayName="Lead" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
       </MissingDependency>
@@ -24786,6 +25068,10 @@
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2312.2025)" />
         <Dependent type="60" displayName="WO Justify Cancellation" parentDisplayName="Work Order" id="{a2e8c429-b027-ed11-9db1-002248ada8c4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2312.2025)" />
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.Map.MapControl" displayName="MscrmControls.Map.MapControl" solution="BaseCustomControlsCore (9.0.2312.2025)" />
@@ -24824,38 +25110,38 @@
         <Dependent type="60" displayName="Booking and Work Order" parentDisplayName="Bookable Resource Booking" id="{c0ace4ca-f0f1-42a7-aacb-618cb8e6751a}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.RAContainer.RAControl" displayName="MscrmControls.RAContainer.RAControl" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="66" schemaName="MscrmControls.RAContainer.RAControl" displayName="MscrmControls.RAContainer.RAControl" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.RAContainer.RAControl" displayName="MscrmControls.RAContainer.RAControl" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="66" schemaName="MscrmControls.RAContainer.RAControl" displayName="MscrmControls.RAContainer.RAControl" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Opportunity" parentDisplayName="Opportunity" id="{a837e4a7-01b8-4f82-a475-be9abd67e667}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.RAContainer.RAControl" displayName="MscrmControls.RAContainer.RAControl" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="66" schemaName="MscrmControls.RAContainer.RAControl" displayName="MscrmControls.RAContainer.RAControl" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Sales Insights" parentDisplayName="Account" id="{cb430327-bcc1-416d-959d-db7592e685af}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.RAContainer.RAControlv2" displayName="MscrmControls.RAContainer.RAControlv2" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="66" schemaName="MscrmControls.RAContainer.RAControlv2" displayName="MscrmControls.RAContainer.RAControlv2" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.RAContainer.RAControlv2" displayName="MscrmControls.RAContainer.RAControlv2" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="66" schemaName="MscrmControls.RAContainer.RAControlv2" displayName="MscrmControls.RAContainer.RAControlv2" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Opportunity" parentDisplayName="Opportunity" id="{a837e4a7-01b8-4f82-a475-be9abd67e667}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.RAContainer.RAControlv2" displayName="MscrmControls.RAContainer.RAControlv2" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="66" schemaName="MscrmControls.RAContainer.RAControlv2" displayName="MscrmControls.RAContainer.RAControlv2" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Sales Insights" parentDisplayName="Account" id="{cb430327-bcc1-416d-959d-db7592e685af}" />
       </MissingDependency>
@@ -24874,6 +25160,10 @@
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.RichTextEditor.RichTextEditorControl" displayName="MscrmControls.RichTextEditor.RichTextEditorControl" solution="msdyn_RichTextEditor (1.0.0.2934)" />
         <Dependent type="60" displayName="ROM Action" parentDisplayName="Action" id="{8b389e0e-5f8c-44fe-afa8-d814de41eede}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.RichTextEditor.RichTextEditorControl" displayName="MscrmControls.RichTextEditor.RichTextEditorControl" solution="msdyn_RichTextEditor (1.0.0.2934)" />
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Work Order" id="{a629bb8a-da93-4e58-b777-3f338a46d4d8}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.RichTextEditor.RichTextEditorControl" displayName="MscrmControls.RichTextEditor.RichTextEditorControl" solution="msdyn_RichTextEditor (1.0.0.2934)" />
@@ -24913,19 +25203,19 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.TalkingPointsControl.TalkingPoints" displayName="MscrmControls.TalkingPointsControl.TalkingPoints" solution="msdynce_Talkingpoints (9.1.0.59)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.TalkingPointsControl.TalkingPoints" displayName="MscrmControls.TalkingPointsControl.TalkingPoints" solution="msdynce_Talkingpoints (9.1.0.59)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.TalkingPointsControl.TalkingPoints" displayName="MscrmControls.TalkingPointsControl.TalkingPoints" solution="msdynce_Talkingpoints (9.1.0.59)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Contact Main Form" parentDisplayName="Contact" id="{2c961780-b9f9-ea11-a815-000d3af3ac0d}" />
       </MissingDependency>
@@ -25303,56 +25593,56 @@
         <Dependent type="60" displayName="Work Order Create" parentDisplayName="Work Order" id="{ccf0b34e-a265-4005-bd73-be6f4fe30dd7}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" displayName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" solution="msdyn_SalesOmniChannel (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+        <Required type="66" schemaName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" displayName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" solution="msdyn_SalesOmniChannel (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" displayName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" solution="msdyn_SalesOmniChannel (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+        <Required type="66" schemaName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" displayName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" solution="msdyn_SalesOmniChannel (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" displayName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" solution="msdyn_SalesOmniChannel (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+        <Required type="66" schemaName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" displayName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" solution="msdyn_SalesOmniChannel (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" displayName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" solution="msdyn_SalesOmniChannel (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+        <Required type="66" schemaName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" displayName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" solution="msdyn_SalesOmniChannel (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="60" displayName="Sales Insights" parentDisplayName="Account" id="{cb430327-bcc1-416d-959d-db7592e685af}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" displayName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" solution="msdyn_SalesOmniChannel (9.1.23121.10004)">
-          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10004)</package>
+        <Required type="66" schemaName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" displayName="msdyn_SalesOmniChannel.SalesPhoneNumberControl" solution="msdyn_SalesOmniChannel (9.1.23121.10005)">
+          <package>msdyn_AcceleratedSalesAnchor (9.1.23121.10005)</package>
         </Required>
         <Dependent type="60" displayName="Lead" parentDisplayName="Lead" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MsdynControls.RAControls.HealthWidget" displayName="MsdynControls.RAControls.HealthWidget" solution="RelationshipAnalytics (9.0.3.90231212)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="66" schemaName="MsdynControls.RAControls.HealthWidget" displayName="MsdynControls.RAControls.HealthWidget" solution="RelationshipAnalytics (9.0.3.90231214)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MsdynControls.WKWControls.ConnectionsWidget" displayName="MsdynControls.WKWControls.ConnectionsWidget" solution="msdyn_connectiongraph (9.3.0.93231211)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="66" schemaName="MsdynControls.WKWControls.ConnectionsWidget" displayName="MsdynControls.WKWControls.ConnectionsWidget" solution="msdyn_connectiongraph (9.3.0.93231212)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MsdynControls.WKWControls.ConnectionsWidget" displayName="MsdynControls.WKWControls.ConnectionsWidget" solution="msdyn_connectiongraph (9.3.0.93231211)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="66" schemaName="MsdynControls.WKWControls.ConnectionsWidget" displayName="MsdynControls.WKWControls.ConnectionsWidget" solution="msdyn_connectiongraph (9.3.0.93231212)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MsdynControls.WKWControls.ConnectionsWidget" displayName="MsdynControls.WKWControls.ConnectionsWidget" solution="msdyn_connectiongraph (9.3.0.93231211)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="66" schemaName="MsdynControls.WKWControls.ConnectionsWidget" displayName="MsdynControls.WKWControls.ConnectionsWidget" solution="msdyn_connectiongraph (9.3.0.93231212)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="60" displayName="Lead" parentDisplayName="Lead" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
       </MissingDependency>
@@ -25480,7 +25770,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="9" schemaName="msdyn_account_msdyn_gdproptout" displayName="GDPR Optout" solution="PredictiveOpportunityScoring (9.0.23121.10002)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="9" schemaName="msdyn_account_msdyn_gdproptout" displayName="GDPR Optout" />
       </MissingDependency>
@@ -25557,8 +25847,8 @@
         <Dependent type="9" schemaName="msdyn_bookableresourcebooking_msdyn_traveltimerescheduling" displayName="Travel Time Rescheduling" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="9" schemaName="msdyn_contact_msdyn_gdproptout" displayName="GDPR Optout" solution="SICommon (9.0.23121.2)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="9" schemaName="msdyn_contact_msdyn_gdproptout" displayName="GDPR Optout" solution="SICommon (9.0.23121.3)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="9" schemaName="msdyn_contact_msdyn_gdproptout" displayName="GDPR Optout" />
       </MissingDependency>
@@ -25715,8 +26005,8 @@
         <Dependent type="9" schemaName="msdyn_servicetasktype_statuscode" displayName="Status Reason" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="9" schemaName="msdyn_systemuser_msdyn_gdproptout" displayName="GDPR Optout" solution="SICommon (9.0.23121.2)">
-          <package>msdynce_SalesInsightsAnchor (9.0.23121.10006)</package>
+        <Required type="9" schemaName="msdyn_systemuser_msdyn_gdproptout" displayName="GDPR Optout" solution="SICommon (9.0.23121.3)">
+          <package>msdynce_SalesInsightsAnchor (9.0.23121.10008)</package>
         </Required>
         <Dependent type="9" schemaName="msdyn_systemuser_msdyn_gdproptout" displayName="GDPR Optout" />
       </MissingDependency>

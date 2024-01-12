@@ -9,6 +9,15 @@
         "api": {
           "name": "shared_commondataserviceforapps"
         }
+      },
+      "shared_sharepointonline_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedsharepointonline_72708"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
       }
     },
     "definition": {
@@ -46,97 +55,6 @@
         }
       },
       "actions": {
-        "Switch_-_isProcessed": {
-          "runAfter": {
-            "Initialize_variable_-_IsProcessed": [
-              "Succeeded"
-            ]
-          },
-          "cases": {
-            "Case_-_isProcessed_-_False": {
-              "case": "False",
-              "actions": {
-                "List_rows_-_Get_SharePoint_File_Id": {
-                  "runAfter": {},
-                  "metadata": {
-                    "operationMetadataId": "9eced676-f60e-4907-be88-8327e279d64e"
-                  },
-                  "type": "OpenApiConnection",
-                  "inputs": {
-                    "host": {
-                      "connectionName": "shared_commondataserviceforapps",
-                      "operationId": "ListRecords",
-                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                    },
-                    "parameters": {
-                      "entityName": "ts_sharepointfiles",
-                      "fetchXml": "<fetch>\n  <entity name=\"ts_sharepointfile\">\n    <attribute name=\"ts_sharepointfileid\" />\n    <filter>\n      <condition attribute=\"ts_sharepointfilegroup\" operator=\"eq\" value=\"@{triggerOutputs()?['body/ts_recordid']}\" />\n      <condition attribute=\"ts_tablerecordid\" operator=\"not-null\" />\n    </filter>\n  </entity>\n</fetch>"
-                    },
-                    "authentication": "@parameters('$authentication')"
-                  }
-                },
-                "Switch_-_Who_is_the_Record_Owner": {
-                  "runAfter": {
-                    "Apply_to_each": [
-                      "Succeeded"
-                    ]
-                  },
-                  "cases": {
-                    "Case_-_AvSec": {
-                      "case": "Aviation Security",
-                      "actions": {}
-                    },
-                    "Case": {
-                      "case": "Intermodal Surface Security Oversight",
-                      "actions": {}
-                    }
-                  },
-                  "default": {
-                    "actions": {}
-                  },
-                  "expression": "@triggerOutputs()?['body/ts_recordowner']",
-                  "metadata": {
-                    "operationMetadataId": "e1f6f1f1-17ec-43bd-aadb-4a59d6af4efb"
-                  },
-                  "type": "Switch"
-                },
-                "Apply_to_each": {
-                  "foreach": "@outputs('List_rows_-_Get_SharePoint_File_Id')?['body/value']",
-                  "actions": {
-                    "Append_to_array_variable": {
-                      "runAfter": {},
-                      "metadata": {
-                        "operationMetadataId": "b1e62c7d-4f17-44e6-b8f1-7689cc0e1599"
-                      },
-                      "type": "AppendToArrayVariable",
-                      "inputs": {
-                        "name": "SharePointFileIdList",
-                        "value": "@items('Apply_to_each')?['ts_sharepointfileid']"
-                      }
-                    }
-                  },
-                  "runAfter": {
-                    "List_rows_-_Get_SharePoint_File_Id": [
-                      "Succeeded"
-                    ]
-                  },
-                  "metadata": {
-                    "operationMetadataId": "f1f9f785-eb80-409b-813a-e93a3bb476ae"
-                  },
-                  "type": "Foreach"
-                }
-              }
-            }
-          },
-          "default": {
-            "actions": {}
-          },
-          "expression": "@variables('IsProcessed')",
-          "metadata": {
-            "operationMetadataId": "119e207f-6990-44be-b7b1-9329215d301e"
-          },
-          "type": "Switch"
-        },
         "Initialize_variable_-_RecordsList": {
           "runAfter": {},
           "metadata": {
@@ -151,6 +69,361 @@
                 "value": "@{null}"
               }
             ]
+          }
+        },
+        "Initialize_variable_-_SharePoineFileGroup": {
+          "runAfter": {
+            "Initialize_variable_-_SharePointQuery": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d8db7f7b-09f3-4d40-8154-8c26f62b7912"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SharePoineFileGroup",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Condition_-_Is_not_Processed": {
+          "actions": {
+            "List_rows_-_Get_SharePoint_Files_from_Group": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "f5901aa8-02a7-43f6-8ecb-256b3b81a3cb"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_sharepointfiles",
+                  "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"ts_sharepointfile\">\n    <attribute name=\"ts_sharepointfilegroup\" />\n    <filter>\n      <condition attribute=\"ts_tablerecordid\" operator=\"eq\" value=\"@{triggerOutputs()?['body/ts_recordid']}\" />\n    </filter>\n  </entity>\n</fetch>"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each": {
+              "foreach": "@outputs('List_rows_-_Get_SharePoint_Files_from_Group')?['body/value']",
+              "actions": {
+                "Set_variable_-_SharePointFileGroup": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "5fc5d777-6828-4ef8-ab35-159a0e53b121"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "SharePoineFileGroup",
+                    "value": "@items('Apply_to_each')?['_ts_sharepointfilegroup_value']"
+                  }
+                }
+              },
+              "runAfter": {
+                "List_rows_-_Get_SharePoint_Files_from_Group": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "9f0f2a52-261c-4aba-ac0e-48673ef1418a"
+              },
+              "type": "Foreach"
+            },
+            "Switch_-_Who_is_the_Record_Owner": {
+              "runAfter": {
+                "Condition_-_The_file_have_a_SharePoint_File_Group": [
+                  "Succeeded"
+                ]
+              },
+              "cases": {
+                "Case_-_AvSec": {
+                  "case": "Aviation Security",
+                  "actions": {
+                    "Get_items_-_AvSec_Individual_": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "5c009369-5ecf-4fc3-b445-bf48db8f091f"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_sharepointonline_1",
+                          "operationId": "GetItems",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                        },
+                        "parameters": {
+                          "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
+                          "table": "Individual Inspections - Inspections individuelles",
+                          "$filter": "@variables('SharePointQuery')",
+                          "$orderby": "Title"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      },
+                      "runtimeConfiguration": {
+                        "paginationPolicy": {
+                          "minimumItemCount": 5000
+                        }
+                      }
+                    },
+                    "Select_-_AvSec_SharePoint_Files": {
+                      "runAfter": {
+                        "Get_items_-_AvSec_Individual_": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "bea9bcf2-6679-4d1d-bbcf-bb32efa03692"
+                      },
+                      "type": "Select",
+                      "inputs": {
+                        "from": "@outputs('Get_items_-_AvSec_Individual_')?['body/value']",
+                        "select": {
+                          "fileName": "@item()?['Title']",
+                          "id": "@item()?['{Identifier}']"
+                        }
+                      }
+                    },
+                    "Set_variable_-_AvSec_Record_List": {
+                      "runAfter": {
+                        "Select_-_AvSec_SharePoint_Files": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "c51f21c3-3fe6-432e-8ba3-2c59c69e89ab"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "RecordsList",
+                        "value": "@{body('Select_-_AvSec_SharePoint_Files')}"
+                      }
+                    }
+                  }
+                },
+                "Case_-_ISSO": {
+                  "case": "Intermodal Surface Security Oversight",
+                  "actions": {
+                    "Get_items_-_ISSO": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "90a5e093-5314-4335-9718-295627afb2c7"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_sharepointonline_1",
+                          "operationId": "GetItems",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                        },
+                        "parameters": {
+                          "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
+                          "table": "Individual Inspections - Inspections individuelles",
+                          "$filter": "@variables('SharePointQuery')",
+                          "$orderby": "Title"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Select_-_ISSO_SharePoint_Files": {
+                      "runAfter": {
+                        "Get_items_-_ISSO": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "8ea70813-a01f-4103-b392-d74cf35d7ad7"
+                      },
+                      "type": "Select",
+                      "inputs": {
+                        "from": "@outputs('Get_items_-_ISSO')?['body/value']",
+                        "select": {
+                          "fileName": "@item()?['Title']",
+                          "id": "@item()?['{Identifier}']"
+                        }
+                      }
+                    },
+                    "Set_variable": {
+                      "runAfter": {
+                        "Select_-_ISSO_SharePoint_Files": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "640b3c03-83ea-4efe-9f70-a4ac3fa177e7"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "RecordsList",
+                        "value": "@{body('Select_-_ISSO_SharePoint_Files')}"
+                      }
+                    }
+                  }
+                }
+              },
+              "default": {
+                "actions": {}
+              },
+              "expression": "@triggerOutputs()?['body/ts_recordowner']",
+              "metadata": {
+                "operationMetadataId": "e1f6f1f1-17ec-43bd-aadb-4a59d6af4efb"
+              },
+              "type": "Switch"
+            },
+            "Condition_-_The_file_have_a_SharePoint_File_Group": {
+              "actions": {
+                "List_rows_-_Get_SharePoint_File_Id_List": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "069e969f-dd19-484c-adc9-c7cf24c84488"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "ListRecords",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_sharepointfiles",
+                      "fetchXml": "<fetch>\n  <entity name=\"ts_sharepointfile\">\n    <attribute name=\"ts_sharepointfileid\" />\n    <filter>\n      <condition attribute=\"ts_sharepointfilegroup\" operator=\"eq\" value=\"@{variables('SharePoineFileGroup')}\" />\n      <condition attribute=\"ts_tablerecordid\" operator=\"ne\" value=\"@{triggerOutputs()?['body/ts_recordid']}\" />\n      <condition attribute=\"ts_tablerecordid\" operator=\"not-null\" />\n    </filter>\n  </entity>\n</fetch>"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Apply_to_each_-_SharePoint_File_Id_List": {
+                  "foreach": "@outputs('List_rows_-_Get_SharePoint_File_Id_List')?['body/value']",
+                  "actions": {
+                    "Append_to_array_variable_-_SharePointFileList": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "c6ba3b07-483f-4acd-a2b4-71b7596d6538"
+                      },
+                      "type": "AppendToArrayVariable",
+                      "inputs": {
+                        "name": "SharePointFileIdList",
+                        "value": "@items('Apply_to_each_-_SharePoint_File_Id_List')?['ts_sharepointfileid']"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "List_rows_-_Get_SharePoint_File_Id_List": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "db37d26e-23b0-4119-b47a-9cbc8072776a"
+                  },
+                  "type": "Foreach"
+                },
+                "Apply_to_each_-_SharePoint_Query": {
+                  "foreach": "@variables('SharePointFileIdList')",
+                  "actions": {
+                    "Append_to_string_variable": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "82495288-ee07-4477-b90d-8adecca8905e"
+                      },
+                      "type": "AppendToStringVariable",
+                      "inputs": {
+                        "name": "SharePointQuery",
+                        "value": "or ROMSharePointFileID eq '@{items('Apply_to_each_-_SharePoint_Query')}'"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Apply_to_each_-_SharePoint_File_Id_List": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "9a4a49fe-1c14-49a1-9ed9-9937e4879301"
+                  },
+                  "type": "Foreach"
+                }
+              },
+              "runAfter": {
+                "Apply_to_each": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "not": {
+                  "equals": [
+                    "@variables('SharePoineFileGroup')",
+                    "@null"
+                  ]
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "2cc66dfa-ab20-4aa4-8e3a-30a64e7709a9"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_SharePoineFileGroup": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/ts_processed']",
+              false
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d943b1cd-cacb-49ac-83ee-657ef18c0d3c"
+          },
+          "type": "If"
+        },
+        "Initialize_variable_-_SharePointQuery": {
+          "runAfter": {
+            "Apply_to_each_-_Get_SharePoint_File_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1863c397-b3a4-4bd5-af9c-a37ece78f685"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SharePointQuery",
+                "type": "string",
+                "value": "ROMSharePointFileID eq '@{variables('SharePointFileId')}'"
+              }
+            ]
+          }
+        },
+        "List_rows_-_Get_SharePoint_File_ID": {
+          "runAfter": {
+            "Initialize_variable_-_SharePointFileId": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c404dc7c-a62f-4f46-aa83-ffa84bd1e532"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_sharepointfiles",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"ts_sharepointfile\">\n    <attribute name=\"ts_sharepointfileid\" />\n    <filter>\n      <condition attribute=\"ts_tablerecordid\" operator=\"eq\" value=\"@{triggerOutputs()?['body/ts_recordid']}\" />\n    </filter>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
           }
         },
         "Initialize_variable_-_SharePointFileIdList": {
@@ -172,24 +445,88 @@
             ]
           }
         },
-        "Initialize_variable_-_IsProcessed": {
+        "Apply_to_each_-_Get_SharePoint_File_ID": {
+          "foreach": "@outputs('List_rows_-_Get_SharePoint_File_ID')?['body/value']",
+          "actions": {
+            "Append_to_array_variable_-_SharePointFileIdList": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "153d122e-2655-4472-bcf6-dee5b14008ac"
+              },
+              "type": "AppendToArrayVariable",
+              "inputs": {
+                "name": "SharePointFileIdList",
+                "value": "@items('Apply_to_each_-_Get_SharePoint_File_ID')?['ts_sharepointfileid']"
+              }
+            },
+            "Set_variable_-_SharePointFileId": {
+              "runAfter": {
+                "Append_to_array_variable_-_SharePointFileIdList": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "9bf88d20-243d-4c92-afbd-db83ede4c164"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "SharePointFileId",
+                "value": "@items('Apply_to_each_-_Get_SharePoint_File_ID')?['ts_sharepointfileid']"
+              }
+            }
+          },
+          "runAfter": {
+            "List_rows_-_Get_SharePoint_File_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a02049f4-bf4d-4817-ab82-ba9d458ea06c"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable_-_SharePointFileId": {
           "runAfter": {
             "Initialize_variable_-_SharePointFileIdList": [
               "Succeeded"
             ]
           },
           "metadata": {
-            "operationMetadataId": "f6f6c403-b4ce-4285-84a2-e6613458609d"
+            "operationMetadataId": "acdb2c72-d507-4340-8f03-12c3b3e65bec"
           },
           "type": "InitializeVariable",
           "inputs": {
             "variables": [
               {
-                "name": "IsProcessed",
-                "type": "string",
-                "value": "@{triggerOutputs()?['body/ts_processed']}"
+                "name": "SharePointFileId",
+                "type": "string"
               }
             ]
+          }
+        },
+        "Update_a_row": {
+          "runAfter": {
+            "Condition_-_Is_not_Processed": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "01834ed3-78f4-4a0f-821d-88d2d049838c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "UpdateRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_sharepointfilerequests",
+              "recordId": "@triggerOutputs()?['body/ts_sharepointfilerequestid']",
+              "item/ts_processed": true,
+              "item/ts_response": "@variables('RecordsList')"
+            },
+            "authentication": "@parameters('$authentication')"
           }
         }
       },

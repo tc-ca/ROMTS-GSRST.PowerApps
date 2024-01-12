@@ -98,6 +98,7 @@
   <EntityRelationship Name="business_unit_ts_operationactivity" />
   <EntityRelationship Name="business_unit_ts_operationcontact" />
   <EntityRelationship Name="business_unit_ts_operationfrequency" />
+  <EntityRelationship Name="business_unit_ts_operationriskassessment" />
   <EntityRelationship Name="business_unit_ts_plan" />
   <EntityRelationship Name="business_unit_ts_planinspectionsupportregion" />
   <EntityRelationship Name="business_unit_ts_planinspectorhours" />
@@ -113,7 +114,9 @@
   <EntityRelationship Name="business_unit_ts_riskcategory" />
   <EntityRelationship Name="business_unit_ts_riskcriteria" />
   <EntityRelationship Name="business_unit_ts_riskcriteriadescription" />
+  <EntityRelationship Name="business_unit_ts_riskcriteriaoption" />
   <EntityRelationship Name="business_unit_ts_riskcriteriarange" />
+  <EntityRelationship Name="business_unit_ts_riskcriteriaresponse" />
   <EntityRelationship Name="business_unit_ts_role" />
   <EntityRelationship Name="business_unit_ts_securityincident" />
   <EntityRelationship Name="business_unit_ts_securityincidenttype" />
@@ -406,6 +409,8 @@
   <EntityRelationship Name="lk_ts_operationcontact_modifiedby" />
   <EntityRelationship Name="lk_ts_operationfrequency_createdby" />
   <EntityRelationship Name="lk_ts_operationfrequency_modifiedby" />
+  <EntityRelationship Name="lk_ts_operationriskassessment_createdby" />
+  <EntityRelationship Name="lk_ts_operationriskassessment_modifiedby" />
   <EntityRelationship Name="lk_ts_plan_createdby" />
   <EntityRelationship Name="lk_ts_plan_modifiedby" />
   <EntityRelationship Name="lk_ts_planinspectionsupportregion_createdby" />
@@ -436,8 +441,12 @@
   <EntityRelationship Name="lk_ts_riskcriteria_modifiedby" />
   <EntityRelationship Name="lk_ts_riskcriteriadescription_createdby" />
   <EntityRelationship Name="lk_ts_riskcriteriadescription_modifiedby" />
+  <EntityRelationship Name="lk_ts_riskcriteriaoption_createdby" />
+  <EntityRelationship Name="lk_ts_riskcriteriaoption_modifiedby" />
   <EntityRelationship Name="lk_ts_riskcriteriarange_createdby" />
   <EntityRelationship Name="lk_ts_riskcriteriarange_modifiedby" />
+  <EntityRelationship Name="lk_ts_riskcriteriaresponse_createdby" />
+  <EntityRelationship Name="lk_ts_riskcriteriaresponse_modifiedby" />
   <EntityRelationship Name="lk_ts_role_createdby" />
   <EntityRelationship Name="lk_ts_role_modifiedby" />
   <EntityRelationship Name="lk_ts_securityincident_createdby" />
@@ -1427,6 +1436,7 @@
   <EntityRelationship Name="owner_ts_operationactivity" />
   <EntityRelationship Name="owner_ts_operationcontact" />
   <EntityRelationship Name="owner_ts_operationfrequency" />
+  <EntityRelationship Name="owner_ts_operationriskassessment" />
   <EntityRelationship Name="owner_ts_plan" />
   <EntityRelationship Name="owner_ts_planinspectionsupportregion" />
   <EntityRelationship Name="owner_ts_planinspectorhours" />
@@ -1442,7 +1452,9 @@
   <EntityRelationship Name="owner_ts_riskcategory" />
   <EntityRelationship Name="owner_ts_riskcriteria" />
   <EntityRelationship Name="owner_ts_riskcriteriadescription" />
+  <EntityRelationship Name="owner_ts_riskcriteriaoption" />
   <EntityRelationship Name="owner_ts_riskcriteriarange" />
+  <EntityRelationship Name="owner_ts_riskcriteriaresponse" />
   <EntityRelationship Name="owner_ts_role" />
   <EntityRelationship Name="owner_ts_securityincident" />
   <EntityRelationship Name="owner_ts_securityincidenttype" />
@@ -1607,6 +1619,7 @@
   <EntityRelationship Name="team_ts_operationactivity" />
   <EntityRelationship Name="team_ts_operationcontact" />
   <EntityRelationship Name="team_ts_operationfrequency" />
+  <EntityRelationship Name="team_ts_operationriskassessment" />
   <EntityRelationship Name="team_ts_plan" />
   <EntityRelationship Name="team_ts_planinspectionsupportregion" />
   <EntityRelationship Name="team_ts_planinspectorhours" />
@@ -1622,7 +1635,9 @@
   <EntityRelationship Name="team_ts_riskcategory" />
   <EntityRelationship Name="team_ts_riskcriteria" />
   <EntityRelationship Name="team_ts_riskcriteriadescription" />
+  <EntityRelationship Name="team_ts_riskcriteriaoption" />
   <EntityRelationship Name="team_ts_riskcriteriarange" />
+  <EntityRelationship Name="team_ts_riskcriteriaresponse" />
   <EntityRelationship Name="team_ts_role" />
   <EntityRelationship Name="team_ts_securityincident" />
   <EntityRelationship Name="team_ts_securityincidenttype" />
@@ -1836,6 +1851,7 @@
   <EntityRelationship Name="ts_operation_ts_operationcontact_operation" />
   <EntityRelationship Name="ts_operationcontact_workorder_msdyn_worko" />
   <EntityRelationship Name="ts_operationfrequency_ovs_operation_operationfrequency" />
+  <EntityRelationship Name="ts_operationriskassessment_operation" />
   <EntityRelationship Name="ts_operationtype_ts_exemption_operationtype" />
   <EntityRelationship Name="ts_operationtypes_custom_wo_filter" />
   <EntityRelationship Name="ts_ovs_AirCarrier_Country_tc_Country" />
@@ -1905,11 +1921,13 @@
   <EntityRelationship Name="ts_request_ts_interviews" />
   <EntityRelationship Name="ts_riskcategory_msdyn_workorder_riskthreshold" />
   <EntityRelationship Name="ts_riskcategory_ovs_operation_risk" />
-  <EntityRelationship Name="ts_riskcriteria_ovs_operationtype_ovs_ope" />
-  <EntityRelationship Name="ts_riskcriteria_riskcriteriadescription_ts_r" />
-  <EntityRelationship Name="ts_riskcriteria_riskcriteriarange_ts_riskcri" />
+  <EntityRelationship Name="ts_riskcriteria_ovs_operationtype" />
   <EntityRelationship Name="ts_riskcriteria_ts_riskcriteria_ts_riskcr" />
   <EntityRelationship Name="ts_riskcriteria_ts_riskcriteriarange" />
+  <EntityRelationship Name="ts_riskcriteriaoption_riskcriteria" />
+  <EntityRelationship Name="ts_riskcriteriaresponse_operationriskassessm" />
+  <EntityRelationship Name="ts_riskcriteriaresponse_riskcriteria" />
+  <EntityRelationship Name="ts_riskcriteriaresponse_riskcriteriaoption" />
   <EntityRelationship Name="ts_role_ts_operationcontact_connectionrole" />
   <EntityRelationship Name="ts_securityincident_ActivityPointers" />
   <EntityRelationship Name="ts_securityincident_Annotations" />
@@ -2074,6 +2092,7 @@
   <EntityRelationship Name="user_ts_operationactivity" />
   <EntityRelationship Name="user_ts_operationcontact" />
   <EntityRelationship Name="user_ts_operationfrequency" />
+  <EntityRelationship Name="user_ts_operationriskassessment" />
   <EntityRelationship Name="user_ts_plan" />
   <EntityRelationship Name="user_ts_planinspectionsupportregion" />
   <EntityRelationship Name="user_ts_planinspectorhours" />
@@ -2089,7 +2108,9 @@
   <EntityRelationship Name="user_ts_riskcategory" />
   <EntityRelationship Name="user_ts_riskcriteria" />
   <EntityRelationship Name="user_ts_riskcriteriadescription" />
+  <EntityRelationship Name="user_ts_riskcriteriaoption" />
   <EntityRelationship Name="user_ts_riskcriteriarange" />
+  <EntityRelationship Name="user_ts_riskcriteriaresponse" />
   <EntityRelationship Name="user_ts_role" />
   <EntityRelationship Name="user_ts_securityincident" />
   <EntityRelationship Name="user_ts_securityincidenttype" />
