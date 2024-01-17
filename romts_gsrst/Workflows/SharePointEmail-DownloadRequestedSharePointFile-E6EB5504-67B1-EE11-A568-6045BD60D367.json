@@ -1,0 +1,295 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedsharepointonline_72708"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_4a7e9"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "dc66e0bd-86ad-439b-bb8f-043cbbab65c5"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ts_sharepointemailfileupload",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition_-_Is_not_Processed": {
+          "actions": {
+            "Switch_-_Who_is_the_Record_Owner": {
+              "runAfter": {},
+              "cases": {
+                "Case_-_Aviation_Security": {
+                  "case": "Aviation Security",
+                  "actions": {
+                    "Get_items_-_AvSec": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "c3847942-9e45-4da3-84d0-f9b2416f9713"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_sharepointonline_1",
+                          "operationId": "GetItems",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                        },
+                        "parameters": {
+                          "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
+                          "table": "Individual Inspections - Inspections individuelles",
+                          "$filter": "Title eq '@{triggerOutputs()?['body/ts_name']}'"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      },
+                      "runtimeConfiguration": {
+                        "paginationPolicy": {
+                          "minimumItemCount": 5000
+                        }
+                      }
+                    },
+                    "Get_file_content_-_AvSec": {
+                      "runAfter": {
+                        "Get_items_-_AvSec": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "01abe122-0d0d-40f1-bf6c-43fdcba079ab"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_sharepointonline_1",
+                          "operationId": "GetFileContent",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                        },
+                        "parameters": {
+                          "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
+                          "id": "@triggerOutputs()?['body/ts_sharepointfileidentifier']",
+                          "inferContentType": true
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Apply_to_each_-_AvSec": {
+                      "foreach": "@outputs('Get_items_-_AvSec')?['body/value']",
+                      "actions": {
+                        "Upload_a_file_or_an_image": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "708d8eb1-64d6-42fc-9208-8e39e0bf3a94"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "UpdateEntityFileImageFieldContent",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ts_sharepointemailfileuploads",
+                              "recordId": "@triggerOutputs()?['body/ts_sharepointemailfileuploadid']",
+                              "fileImageFieldName": "ts_downloadedsharepointfile",
+                              "item": "@body('Get_file_content_-_AvSec')",
+                              "x-ms-file-name": "@items('Apply_to_each_-_AvSec')?['Title']"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Get_file_content_-_AvSec": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "247dfaab-25d9-478a-be2e-361127cea195"
+                      },
+                      "type": "Foreach"
+                    }
+                  }
+                },
+                "Case_-_ISSO": {
+                  "case": "Intermodal Surface Security Oversight",
+                  "actions": {
+                    "Get_items_-_ISSO": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "a2ed87f3-5bd2-45fa-ace1-7978c026f4e8"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_sharepointonline_1",
+                          "operationId": "GetItems",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                        },
+                        "parameters": {
+                          "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
+                          "table": "Individual Inspections - Inspections individuelles",
+                          "$filter": "Title eq '@{triggerOutputs()?['body/ts_name']}'"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      },
+                      "runtimeConfiguration": {
+                        "paginationPolicy": {
+                          "minimumItemCount": 5000
+                        }
+                      }
+                    },
+                    "Get_file_content_-_ISSO": {
+                      "runAfter": {
+                        "Get_items_-_ISSO": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "dae046cc-158a-4a8e-aa29-3f3012f810ad"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_sharepointonline_1",
+                          "operationId": "GetFileContent",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                        },
+                        "parameters": {
+                          "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
+                          "id": "@triggerOutputs()?['body/ts_sharepointfileidentifier']",
+                          "inferContentType": true
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Apply_to_each_-_ISSO": {
+                      "foreach": "@outputs('Get_items_-_ISSO')?['body/value']",
+                      "actions": {
+                        "Upload_a_file_or_an_image_-_ISSO": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "3c007f18-49c6-407c-bc26-08a48c27e6fa"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "UpdateEntityFileImageFieldContent",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ts_sharepointemailfileuploads",
+                              "recordId": "@triggerOutputs()?['body/ts_sharepointemailfileuploadid']",
+                              "fileImageFieldName": "ts_downloadedsharepointfile",
+                              "item": "@body('Get_file_content_-_ISSO')",
+                              "x-ms-file-name": "@items('Apply_to_each_-_ISSO')?['Title']"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Get_file_content_-_ISSO": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "eaf4fbc6-9eb3-4dfe-b2d2-f984fa8e3c82"
+                      },
+                      "type": "Foreach"
+                    }
+                  }
+                }
+              },
+              "default": {
+                "actions": {}
+              },
+              "expression": "@triggerOutputs()?['body/ts_recordowner']",
+              "metadata": {
+                "operationMetadataId": "08da9465-a5b7-45c6-b01f-16eafb0f9e2a"
+              },
+              "type": "Switch"
+            },
+            "Update_a_row": {
+              "runAfter": {
+                "Switch_-_Who_is_the_Record_Owner": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "de1bc7e2-cb0d-4b5c-8cca-7b703418c521"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_sharepointemailfileuploads",
+                  "recordId": "@triggerOutputs()?['body/ts_sharepointemailfileuploadid']",
+                  "item/ts_processed": true
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "expression": {
+            "equals": [
+              "@triggerOutputs()?['body/ts_processed']",
+              false
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9a37d524-8f52-4ab3-97fd-6a1b8f954e32"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

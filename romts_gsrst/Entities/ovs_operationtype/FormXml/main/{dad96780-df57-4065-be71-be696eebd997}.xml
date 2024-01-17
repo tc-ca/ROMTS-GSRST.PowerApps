@@ -133,7 +133,8 @@
                     <row>
                       <cell locklevel="0" id="{d6c2cbc9-4923-4142-b7f4-32c1ba6c853b}" rowspan="4" colspan="1" auto="false" showlabel="false">
                         <labels>
-                          <label description="Risk Criteria" languagecode="1033" />
+                          <label description="Operations" languagecode="1033" />
+                          <label description="Opérations" languagecode="1036" />
                         </labels>
                         <control indicationOfSubgrid="true" id="Subgrid_Risk_Criteria" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
                           <parameters>
@@ -147,6 +148,30 @@
                             <ViewId>{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}</ViewId>
                             <ViewIds>{42E2331B-B6AE-429B-9E02-DDA4069CA9B4}</ViewIds>
                             <RelationshipName>ts_riskcriteria_ovs_operationtype</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{0062a0d1-9ac6-422d-b68f-f979b020250a}" rowspan="4" colspan="1" auto="false">
+                        <labels>
+                          <label description="Discretionary Factor Groupings" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_DiscretionaryFactorGroupings" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_discretionaryfactorgrouping</TargetEntityType>
+                            <ViewId>{27CC3812-53E7-40A4-9F53-721D53ED5B59}</ViewId>
+                            <ViewIds>{27CC3812-53E7-40A4-9F53-721D53ED5B59}</ViewIds>
+                            <RelationshipName>ts_discretionarygrouping_operationtype</RelationshipName>
                           </parameters>
                         </control>
                       </cell>
@@ -266,6 +291,27 @@
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>
+      <formLibraries>
+        <Library name="ts_/js/OperationType.js" libraryUniqueId="{aaee469b-bca2-45d3-9adb-757a77ae904e}" />
+        <Library name="ts_/js/Common.js" libraryUniqueId="{7ec3dba8-09d2-4af9-9328-23a90b218e53}" />
+      </formLibraries>
+      <events>
+        <event name="onchange" application="false" active="false" attribute="ovs_name">
+          <Handlers>
+            <Handler functionName="ROM.OperationType.nameOnChange" libraryName="ts_/js/OperationType.js" handlerUniqueId="{6de4d768-8ec3-4b9d-a2bd-49353f540cd3}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ovs_operationtypenameenglish">
+          <Handlers>
+            <Handler functionName="ROM.OperationType.englishNameOnChange" libraryName="ts_/js/OperationType.js" handlerUniqueId="{02b5c2cd-1f32-4123-9884-1acd02a4d3f4}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ovs_operationtypenamefrench">
+          <Handlers>
+            <Handler functionName="ROM.OperationType.frenchNameOnChange" libraryName="ts_/js/OperationType.js" handlerUniqueId="{13ef10b6-40b8-410d-b028-b23114fa2786}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

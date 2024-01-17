@@ -186,7 +186,8 @@
                         "from": "@outputs('Get_items_-_AvSec_Individual_')?['body/value']",
                         "select": {
                           "fileName": "@item()?['Title']",
-                          "id": "@item()?['{Identifier}']"
+                          "id": "@item()?['{Identifier}']",
+                          "sensitivityLevel": "@item()?['OData__DisplayName']"
                         }
                       }
                     },
@@ -229,6 +230,11 @@
                           "$orderby": "Title"
                         },
                         "authentication": "@parameters('$authentication')"
+                      },
+                      "runtimeConfiguration": {
+                        "paginationPolicy": {
+                          "minimumItemCount": 5000
+                        }
                       }
                     },
                     "Select_-_ISSO_SharePoint_Files": {
@@ -245,7 +251,8 @@
                         "from": "@outputs('Get_items_-_ISSO')?['body/value']",
                         "select": {
                           "fileName": "@item()?['Title']",
-                          "id": "@item()?['{Identifier}']"
+                          "id": "@item()?['{Identifier}']",
+                          "sensitivityLevel": "@item()?['OData__DisplayName']"
                         }
                       }
                     },

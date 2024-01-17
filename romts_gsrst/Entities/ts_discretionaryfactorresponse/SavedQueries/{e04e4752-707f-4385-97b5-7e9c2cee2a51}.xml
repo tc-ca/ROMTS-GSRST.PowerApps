@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{e04e4752-707f-4385-97b5-7e9c2cee2a51}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_discretionaryfactorresponseid">
+          <cell name="ts_discretionaryfactorgrouping" width="213" />
+          <cell name="ts_name" width="300" />
+          <cell name="ts_description" width="268" />
+          <cell name="ts_comments" width="211" />
+          <cell name="ts_discretionaryfactoroption" width="198" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_discretionaryfactorresponse">
+          <attribute name="ts_discretionaryfactorresponseid" />
+          <attribute name="ts_name" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_discretionaryfactoroption" />
+          <attribute name="ts_discretionaryfactorgrouping" />
+          <order attribute="ts_discretionaryfactorgrouping" descending="false" />
+          <order attribute="ts_name" descending="false" />
+          <attribute name="ts_description" />
+          <attribute name="ts_comments" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Discretionary Factor Responses" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
