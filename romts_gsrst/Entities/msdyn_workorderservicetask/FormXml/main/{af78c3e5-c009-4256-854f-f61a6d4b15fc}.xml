@@ -1536,13 +1536,13 @@
                     <label description="Operation Risk Assessments" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row />
                     <row>
-                      <cell locklevel="0" id="{115c9ec8-738b-4711-8bcf-95ae2c9c91d3}" rowspan="4" colspan="1" auto="false">
+                      <cell locklevel="0" id="{115c9ec8-738b-4711-8bcf-95ae2c9c91d3}" rowspan="6" colspan="1" auto="false" showlabel="false">
                         <labels>
-                          <label description="Operation Risk Assessments" languagecode="1033" />
+                          <label description="Legislations" languagecode="1033" />
+                          <label description="Législations" languagecode="1036" />
                         </labels>
-                        <control indicationOfSubgrid="true" id="Subgrid_OperationRiskAssessments" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                        <control indicationOfSubgrid="true" id="Subgrid_OperationRiskAssessments" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" uniqueid="{bbc2b5e5-0764-6e21-74c1-741706ce0a03}">
                           <parameters>
                             <RecordsPerPage>4</RecordsPerPage>
                             <AutoExpand>Fixed</AutoExpand>
@@ -1553,11 +1553,18 @@
                             <TargetEntityType>ts_operationriskassessment</TargetEntityType>
                             <ViewId>{1AED0C50-1C98-40BB-81C5-425CDA9C5611}</ViewId>
                             <ViewIds>{1AED0C50-1C98-40BB-81C5-425CDA9C5611}</ViewIds>
-                            <RelationshipName></RelationshipName>
+                            <RelationshipName />
+                            <HeaderColorCode>#F3F3F3</HeaderColorCode>
+                            <IsUserView>false</IsUserView>
+                            <EnableJumpBar>false</EnableJumpBar>
+                            <VisualizationId />
+                            <IsUserChart>false</IsUserChart>
                           </parameters>
                         </control>
                       </cell>
                     </row>
+                    <row />
+                    <row />
                     <row />
                     <row />
                     <row />
@@ -1566,6 +1573,13 @@
               </sections>
             </column>
           </columns>
+          <events>
+            <event name="tabstatechange" application="false" active="false">
+              <Handlers>
+                <Handler functionName="ROM.WorkOrderServiceTask.SubGridFilterExecution" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{632499c6-7604-4eb7-a894-a3b45a596268}" enabled="true" parameters="" passExecutionContext="true" />
+              </Handlers>
+            </event>
+          </events>
         </tab>
       </tabs>
       <footer id="{960bc2cb-aa47-432c-87cf-5427adc54d41}">

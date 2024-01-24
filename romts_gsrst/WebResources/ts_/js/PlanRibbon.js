@@ -106,6 +106,7 @@
         "    <attribute name='ts_trip' />",
         "    <filter>",
         "      <condition attribute='ts_plan' operator='eq' value='", planId, "' uitype='ts_plan'/>",
+        "      <condition attribute='statecode' operator='eq' value='0'/>",
         "    </filter>",
         "    <link-entity name='ts_trip' from='ts_tripid' to='ts_trip' visible='false' link-type='outer' alias='plantrip'>",
         "    <attribute name='ts_estimatedtraveltime' />",
@@ -410,14 +411,13 @@ async function createWorkOrders(formContext) {
                 workOrderCreatedFetchXml = "?fetchXml=" + encodeURIComponent(workOrderCreatedFetchXml);
                 //Array of Work Order creation promises. When all promises return, the Progress Indicator is closed.
                 const tripInspectionCreationPromises = [];
-             
-               // let currentWorkOrders = 0
+
                 //Iterate through each WO
                 await Xrm.WebApi.retrieveMultipleRecords("msdyn_workorder", workOrderCreatedFetchXml).then(async function (result) {
                     const workOrders = result.entities;
                     for (const workOrder of workOrders) {
                         let tripInspectionData = {}
-                        tripInspectionData["ts_inspection@odata.blind"] = "/msdyn_workorders(" + workOrder.msdyn_workorderid + ")";
+                        tripInspectionData["ts_inspection@odata.bind"] = "/msdyn_workorders(" + workOrder.msdyn_workorderid + ")";
                         tripInspectionData["ts_trip@odata.bind"] = "/ts_trips(" + workOrder._ts_trip_value + ")";
                         tripInspectionCreationPromises.push(Xrm.WebApi.createRecord("ts_tripinspection", tripInspectionData));
                     }
