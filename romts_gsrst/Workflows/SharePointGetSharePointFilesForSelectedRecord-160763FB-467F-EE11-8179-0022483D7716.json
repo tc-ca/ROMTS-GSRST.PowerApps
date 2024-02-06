@@ -161,7 +161,7 @@
         },
         "Switch_-_Who_is_the_Record_Owner": {
           "runAfter": {
-            "Condition_-_ISSO_Dev_Check": [
+            "Condition_-_ISSO_Check": [
               "Succeeded"
             ]
           },
@@ -427,6 +427,36 @@
           },
           "metadata": {
             "operationMetadataId": "fd40c6cf-b69c-4b16-bf4e-cdd7f1ce3d55"
+          },
+          "type": "If"
+        },
+        "Condition_-_ISSO_Check": {
+          "actions": {
+            "Set_variable_-_Table_Record_Owner_to_ISSO": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "469b4dd1-d023-44cb-a5fd-dee3759a6b1a"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "TableRecordOwner",
+                "value": "Intermodal Surface Security Oversight"
+              }
+            }
+          },
+          "runAfter": {
+            "Condition_-_ISSO_Dev_Check": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@variables('TableRecordOwner')",
+              "Intermodal Surface Security Oversight (ISSO)"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "68966b6e-76d5-4004-a9a1-730201bc9d51"
           },
           "type": "If"
         }

@@ -9,14 +9,19 @@
     <layoutxml>
       <grid name="resultset" jump="name" select="1" icon="1" preview="1">
         <row name="result" id="accountid">
-          <cell name="name" width="300" />
+          <cell name="name" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="ovs_legalname" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="ts_principaloperationtype" width="198" />
           <cell name="accountnumber" width="100" />
           <cell name="primarycontactid" width="150" />
           <cell name="address1_city" width="100" />
           <cell name="telephone1" width="100" />
-          <cell name="emailaddress1" width="200" />
+          <cell name="emailaddress1" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_alias1" width="100" />
+          <cell name="ts_alias2" width="100" />
+          <cell name="ts_alias3" width="100" />
+          <cell name="ts_alias4" width="100" />
+          <cell name="ts_alias5" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -35,17 +40,27 @@
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <filter type="or" isquickfindfields="1">
+            <condition attribute="ts_principaloperationtype" operator="like" value="{0}" />
             <condition attribute="telephone2" operator="like" value="{0}" />
             <condition attribute="telephone1" operator="like" value="{0}" />
             <condition attribute="ovs_legalname" operator="like" value="{0}" />
             <condition attribute="emailaddress1" operator="like" value="{0}" />
+            <condition attribute="ts_alias5" operator="like" value="{0}" />
+            <condition attribute="ts_alias4" operator="like" value="{0}" />
+            <condition attribute="ts_alias3" operator="like" value="{0}" />
+            <condition attribute="ts_alias2" operator="like" value="{0}" />
+            <condition attribute="ts_alias1" operator="like" value="{0}" />
             <condition attribute="accountnumber" operator="like" value="{0}" />
             <condition attribute="name" operator="like" value="{0}" />
-            <condition attribute="ts_principaloperationtype" operator="like" value="{0}" />
           </filter>
           <attribute name="ovs_legalname" />
-          <attribute name="accountid" />
           <attribute name="ts_principaloperationtype" />
+          <attribute name="ts_alias5" />
+          <attribute name="ts_alias4" />
+          <attribute name="ts_alias3" />
+          <attribute name="ts_alias2" />
+          <attribute name="ts_alias1" />
+          <attribute name="accountid" />
         </entity>
       </fetch>
     </fetchxml>

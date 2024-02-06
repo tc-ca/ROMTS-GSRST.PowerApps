@@ -2,7 +2,6 @@
   "properties": {
     "connectionReferences": {
       "shared_commondataserviceforapps": {
-        "impersonation": {},
         "runtimeSource": "embedded",
         "connection": {
           "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_4a7e9"
@@ -25,13 +24,13 @@
       "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
       "contentVersion": "1.0.0.0",
       "parameters": {
-        "$authentication": {
-          "defaultValue": {},
-          "type": "SecureObject"
-        },
         "$connections": {
           "defaultValue": {},
           "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
         }
       },
       "triggers": {
@@ -128,14 +127,14 @@
           },
           "type": "OpenApiConnection",
           "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
             "parameters": {
               "entityName": "ts_sharepointfiles",
               "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"ts_sharepointfile\">\n    <attribute name=\"ts_sharepointfileid\" />\n    <attribute name=\"ts_tablerecordowner\" />\n    <attribute name=\"ts_sharepointfilegroup\" />\n    <filter>\n      <condition attribute=\"ts_tablerecordid\" operator=\"eq\" value=\"@{triggerBody()['text']}\" />\n    </filter>\n  </entity>\n</fetch>"
-            },
-            "host": {
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
-              "connectionName": "shared_commondataserviceforapps",
-              "operationId": "ListRecords"
             },
             "authentication": "@parameters('$authentication')"
           }
@@ -144,6 +143,7 @@
           "foreach": "@outputs('List_rows_-_Get_SharePoint_File_ID')?['body/value']",
           "actions": {
             "Set_variable_-_SharePointFileId": {
+              "runAfter": {},
               "metadata": {
                 "operationMetadataId": "48346149-4643-454b-8abf-64c5af933ef2"
               },
@@ -217,19 +217,20 @@
         "Condition_-_SharePointFileGroupId_is_not_null": {
           "actions": {
             "List_rows_-_Get_SharePoint_File_Id_List": {
+              "runAfter": {},
               "metadata": {
                 "operationMetadataId": "069e969f-dd19-484c-adc9-c7cf24c84488"
               },
               "type": "OpenApiConnection",
               "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
                 "parameters": {
                   "entityName": "ts_sharepointfiles",
                   "fetchXml": "<fetch>\n  <entity name=\"ts_sharepointfile\">\n    <attribute name=\"ts_sharepointfileid\" />\n    <filter>\n      <condition attribute=\"ts_sharepointfilegroup\" operator=\"eq\" value=\"@{variables('SharePointFileGroupId')}\" />\n      <condition attribute=\"ts_tablerecordid\" operator=\"ne\" value=\"@{triggerBody()['text']}\" />\n      <condition attribute=\"ts_tablerecordid\" operator=\"not-null\" />\n    </filter>\n  </entity>\n</fetch>"
-                },
-                "host": {
-                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
-                  "connectionName": "shared_commondataserviceforapps",
-                  "operationId": "ListRecords"
                 },
                 "authentication": "@parameters('$authentication')"
               }
@@ -238,6 +239,7 @@
               "foreach": "@outputs('List_rows_-_Get_SharePoint_File_Id_List')?['body/value']",
               "actions": {
                 "Append_to_array_variable_-_SharePointFileList": {
+                  "runAfter": {},
                   "metadata": {
                     "operationMetadataId": "07f0d2ab-430f-4789-887e-015a7979958f"
                   },
@@ -262,6 +264,7 @@
               "foreach": "@variables('SharePointFileIdList')",
               "actions": {
                 "Append_to_string_variable_-_SharePointQuery": {
+                  "runAfter": {},
                   "metadata": {
                     "operationMetadataId": "731d1bef-cf56-455d-9cf8-079b8be427d1"
                   },
@@ -293,26 +296,24 @@
                   "case": "Aviation Security",
                   "actions": {
                     "Get_items_-_AvSec_Individual_Inspections": {
+                      "runAfter": {},
                       "metadata": {
                         "operationMetadataId": "2dbc7880-d37d-419b-929a-01ef71eb260a"
                       },
                       "type": "OpenApiConnection",
                       "inputs": {
+                        "host": {
+                          "connectionName": "shared_sharepointonline-2",
+                          "operationId": "GetItems",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                        },
                         "parameters": {
                           "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
                           "table": "Individual Inspections - Inspections individuelles",
                           "$filter": "ROMSharePointFileID eq @{substring(variables('SharePointQuery'),0,lastIndexOf(variables('SharePointQuery'),'or ROMSharePointFileID eq'))}",
                           "$orderby": "DocumentType_x002d_TypedeDocument,DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument,Title"
                         },
-                        "host": {
-                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
-                          "connectionName": "shared_sharepointonline-2",
-                          "operationId": "GetItems"
-                        },
-                        "authentication": {
-                          "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
-                          "type": "Raw"
-                        }
+                        "authentication": "@parameters('$authentication')"
                       },
                       "runtimeConfiguration": {
                         "paginationPolicy": {
@@ -366,26 +367,24 @@
                   "case": "Intermodal Surface Security Oversight",
                   "actions": {
                     "Get_items_-_ISSO_Individual_Inspections": {
+                      "runAfter": {},
                       "metadata": {
                         "operationMetadataId": "881aaf15-cb6e-433d-9d88-3840bb6de867"
                       },
                       "type": "OpenApiConnection",
                       "inputs": {
+                        "host": {
+                          "connectionName": "shared_sharepointonline-2",
+                          "operationId": "GetItems",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                        },
                         "parameters": {
                           "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
                           "table": "Individual Inspections - Inspections individuelles",
                           "$filter": "ROMSharePointFileID eq @{substring(variables('SharePointQuery'),0,lastIndexOf(variables('SharePointQuery'),'or ROMSharePointFileID eq'))}",
                           "$orderby": "DocumentType_x002d_TypedeDocument,DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument,Title"
                         },
-                        "host": {
-                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
-                          "connectionName": "shared_sharepointonline-2",
-                          "operationId": "GetItems"
-                        },
-                        "authentication": {
-                          "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
-                          "type": "Raw"
-                        }
+                        "authentication": "@parameters('$authentication')"
                       },
                       "runtimeConfiguration": {
                         "paginationPolicy": {
@@ -447,12 +446,9 @@
             }
           },
           "runAfter": {
-            "Apply_to_each": [
+            "Condition_-_ISSO_Check": [
               "Succeeded"
             ]
-          },
-          "else": {
-            "actions": {}
           },
           "expression": {
             "not": {
@@ -567,10 +563,70 @@
               }
             }
           }
+        },
+        "Condition_-_ISSO_Dev_Check": {
+          "actions": {
+            "Set_variable_-_Table_Record_Owner": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "469b4dd1-d023-44cb-a5fd-dee3759a6b1a"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "TableRecordOwner",
+                "value": "Intermodal Surface Security Oversight"
+              }
+            }
+          },
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@variables('TableRecordOwner')",
+              "Intermodal Surface Security Oversight (ISSO) (dev)"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fd40c6cf-b69c-4b16-bf4e-cdd7f1ce3d55"
+          },
+          "type": "If"
+        },
+        "Condition_-_ISSO_Check": {
+          "actions": {
+            "Set_variable_-_Table_Record_Owner_to_ISSO": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "469b4dd1-d023-44cb-a5fd-dee3759a6b1a"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "TableRecordOwner",
+                "value": "Intermodal Surface Security Oversight"
+              }
+            }
+          },
+          "runAfter": {
+            "Condition_-_ISSO_Dev_Check": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@variables('TableRecordOwner')",
+              "Intermodal Surface Security Oversight (ISSO)"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "68966b6e-76d5-4004-a9a1-730201bc9d51"
+          },
+          "type": "If"
         }
       }
     },
-    "templateName": null
+    "templateName": ""
   },
   "schemaVersion": "1.0.0.0"
 }
