@@ -113,7 +113,7 @@
         <EnableRule Id="Mscrm.EntityFormIsEnabled" />
         <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
         <EnableRule Id="ts.msdyn_workorderservicetask.isEntityWorkOrder" />
-        <EnableRule Id="ts.msdyn_workorderservicetask.EnableRule.isAdmin" />
+        <EnableRule Id="ts.msdyn_workorderservicetask.EnableRule.isAdminsManagerOrPlanner" />
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="Mscrm.ShowForOneToManyGrids" />
@@ -792,6 +792,11 @@
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorderservicetask.EnableRule.isAdmin">
         <CustomRule FunctionName="isSystemAdministrator" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false" InvertResult="false" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorderservicetask.EnableRule.isAdminsManagerOrPlanner">
+        <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+          <StringParameter Value="System Administrator|ROM - Business Admin|ROM - Manager|ROM - AvSec Planner|ROM - Planner|ROM - ISSO Planner" />
+        </CustomRule>
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorderservicetask.IsCompleted">
         <ValueRule Field="statuscode" Value="918640002" />

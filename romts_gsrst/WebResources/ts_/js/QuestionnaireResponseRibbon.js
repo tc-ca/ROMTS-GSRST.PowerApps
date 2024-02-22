@@ -1,9 +1,11 @@
-﻿function appendToWOST(formContext) {
+﻿var lang = parent.Xrm.Utility.getGlobalContext().userSettings.languageId;
+
+function appendToWOST(formContext) {
     const questionnaireResponseGuid = formContext.data.entity.getId().replace(/({|})/g, '').toLowerCase();
     // Centered Dialog
     var pageInput = {
         pageType: "custom",
-        name: "ts_copyservicetask_50612", //Unique name of Custom page
+        name: "ts_appendquestionnaireresponsetoservicetask_6789e", //Unique name of Custom page
         recordId: questionnaireResponseGuid
     };
     var navigationOptions = {
@@ -11,7 +13,7 @@
         position: 1,
         width: { value: 450, unit: "px" },
         height: { value: 550, unit: "px" },
-        title: (workorderRibbon_lang == 1036) ? "Ajouter à la tâche de service" : "Append to Work Order Service Task"
+        title: (lang == 1036) ? "Ajouter à la tâche de service" : "Append Questionnaire to Work Order Service Task"
     };
     Xrm.Navigation.navigateTo(pageInput, navigationOptions)
         .then(
