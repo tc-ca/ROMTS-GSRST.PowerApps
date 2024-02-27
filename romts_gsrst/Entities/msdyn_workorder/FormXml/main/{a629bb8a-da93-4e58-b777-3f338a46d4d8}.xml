@@ -858,13 +858,13 @@
                     <label description="TÂCHES DE SERVICE" languagecode="1036" />
                   </labels>
                   <rows>
-                    <row height="auto">
-                      <cell id="{8a4bb59b-9259-b521-a154-dc22b8d04889}" labelid="{3a88402a-1be2-47fe-bb9f-7acbfa241806}" showlabel="true" auto="true" rowspan="1" colspan="1">
+                    <row>
+                      <cell id="{8a4bb59b-9259-b521-a154-dc22b8d04889}" labelid="{3a88402a-1be2-47fe-bb9f-7acbfa241806}" showlabel="true" auto="true" rowspan="5" colspan="1">
                         <labels>
                           <label description="SERVICE TASKS" languagecode="1033" />
                           <label description="TÂCHES DE SERVICE" languagecode="1036" />
                         </labels>
-                        <control id="workorderservicetasksgrid" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" uniqueid="{d32a5549-55e8-bc58-5127-15a71a0194a7}" indicationOfSubgrid="true">
+                        <control id="workorderservicetasksgrid" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{d32a5549-55e8-bc58-5127-15a71a0194a7}" indicationOfSubgrid="true">
                           <parameters>
                             <ViewId>{C9FD8F4D-8184-4DDB-A31A-89E66E8E710E}</ViewId>
                             <IsUserView>false</IsUserView>
@@ -885,6 +885,10 @@
                         </control>
                       </cell>
                     </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row height="auto" />
                     <row>
                       <cell id="{f227c143-f4cc-48fe-b29f-1b42a1977599}" locklevel="0" colspan="1" rowspan="1" labelid="{5334786f-afe6-4867-9eae-a3d50615edf4}" showlabel="true" visible="false">
                         <labels>
@@ -896,7 +900,7 @@
                     </row>
                   </rows>
                 </section>
-                <section name="tab_10_section_2" id="676e533e-4633-4a8b-a4a1-a74644025c90" IsUserDefined="0" locklevel="0" showlabel="true" showbar="true" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{1af7621c-d08d-45f6-8898-9e25cceca880}">
+                <section name="contacts_section" id="676e533e-4633-4a8b-a4a1-a74644025c90" IsUserDefined="0" locklevel="0" showlabel="true" showbar="true" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{1af7621c-d08d-45f6-8898-9e25cceca880}">
                   <labels>
                     <label description="Contacts" languagecode="1033" />
                     <label description="Contacts" languagecode="1036" />
@@ -908,7 +912,7 @@
                           <label description="Contacts" languagecode="1033" />
                           <label description="Contacts" languagecode="1036" />
                         </labels>
-                        <control id="Subgrid_operation_contacts" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{9653949d-ae81-d3c6-9294-3732433be558}">
+                        <control id="Subgrid_operation_contacts" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" indicationOfSubgrid="true" uniqueid="{9653949d-ae81-d3c6-9294-3732433be558}">
                           <parameters>
                             <RecordsPerPage>4</RecordsPerPage>
                             <AutoExpand>Fixed</AutoExpand>
@@ -3884,6 +3888,135 @@
             </parameters>
           </customControl>
         </controlDescription>
+        <controlDescription forControl="{9653949d-ae81-d3c6-9294-3732433be558}">
+          <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" formFactor="0">
+            <parameters>
+              <RecordsPerPage>4</RecordsPerPage>
+              <AutoExpand>Fixed</AutoExpand>
+              <TargetEntityType>contact</TargetEntityType>
+              <ViewId>{DC1100E2-66A6-EE11-A568-6045BD60D367}</ViewId>
+              <ViewIds>{00000000-0000-0000-00AA-000010001004},{129A42C8-1501-ED11-82E6-002248AE429C},{DC1100E2-66A6-EE11-A568-6045BD60D367}</ViewIds>
+              <EnableViewPicker>false</EnableViewPicker>
+              <RelationshipName>ts_Contact_msdyn_workorder_msdyn_workorder</RelationshipName>
+              <VisualizationId>{E365462F-1DB9-46A8-928D-BEAB1A7A2375}</VisualizationId>
+              <HeaderColorCode>#F3F3F3</HeaderColorCode>
+              <IsUserView>false</IsUserView>
+              <EnableQuickFind>false</EnableQuickFind>
+              <EnableJumpBar>false</EnableJumpBar>
+              <ChartGridMode>All</ChartGridMode>
+              <IsUserChart>false</IsUserChart>
+              <EnableChartPicker>true</EnableChartPicker>
+              <RelationshipRoleOrdinal>1</RelationshipRoleOrdinal>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{DC1100E2-66A6-EE11-A568-6045BD60D367}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_Contact_msdyn_workorder_msdyn_workorder</RelationshipName>
+                <RelationshipRoleOrdinal>1</RelationshipRoleOrdinal>
+                <TargetEntityType>contact</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{00000000-0000-0000-00AA-000010001004},{129A42C8-1501-ED11-82E6-002248AE429C},{DC1100E2-66A6-EE11-A568-6045BD60D367}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{DC1100E2-66A6-EE11-A568-6045BD60D367}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_Contact_msdyn_workorder_msdyn_workorder</RelationshipName>
+                <RelationshipRoleOrdinal>1</RelationshipRoleOrdinal>
+                <TargetEntityType>contact</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{00000000-0000-0000-00AA-000010001004},{129A42C8-1501-ED11-82E6-002248AE429C},{DC1100E2-66A6-EE11-A568-6045BD60D367}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{d32a5549-55e8-bc58-5127-15a71a0194a7}">
+          <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" formFactor="0">
+            <parameters>
+              <ViewId>{C9FD8F4D-8184-4DDB-A31A-89E66E8E710E}</ViewId>
+              <IsUserView>false</IsUserView>
+              <RelationshipName>msdyn_msdyn_workorder_msdyn_workorderservicetask_WorkOrder</RelationshipName>
+              <TargetEntityType>msdyn_workorderservicetask</TargetEntityType>
+              <AutoExpand>Auto</AutoExpand>
+              <EnableQuickFind>false</EnableQuickFind>
+              <EnableViewPicker>true</EnableViewPicker>
+              <ViewIds>{C9FD8F4D-8184-4DDB-A31A-89E66E8E710E},{2F145106-BCB3-4F0F-9D02-E8C3B6BB25E8}</ViewIds>
+              <EnableJumpBar>false</EnableJumpBar>
+              <ChartGridMode>All</ChartGridMode>
+              <VisualizationId />
+              <IsUserChart>false</IsUserChart>
+              <EnableChartPicker>true</EnableChartPicker>
+              <RecordsPerPage>5</RecordsPerPage>
+              <HeaderColorCode>#F3F3F3</HeaderColorCode>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{C9FD8F4D-8184-4DDB-A31A-89E66E8E710E}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>msdyn_msdyn_workorder_msdyn_workorderservicetask_WorkOrder</RelationshipName>
+                <TargetEntityType>msdyn_workorderservicetask</TargetEntityType>
+                <EnableViewPicker>true</EnableViewPicker>
+                <FilteredViewIds>{C9FD8F4D-8184-4DDB-A31A-89E66E8E710E},{2F145106-BCB3-4F0F-9D02-E8C3B6BB25E8}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+            <parameters>
+              <data-set name="Grid">
+                <ViewId>{C9FD8F4D-8184-4DDB-A31A-89E66E8E710E}</ViewId>
+                <columnsDefaultView />
+                <IsUserView>false</IsUserView>
+                <RelationshipName>msdyn_msdyn_workorder_msdyn_workorderservicetask_WorkOrder</RelationshipName>
+                <TargetEntityType>msdyn_workorderservicetask</TargetEntityType>
+                <EnableViewPicker>true</EnableViewPicker>
+                <FilteredViewIds>{C9FD8F4D-8184-4DDB-A31A-89E66E8E710E},{2F145106-BCB3-4F0F-9D02-E8C3B6BB25E8}</FilteredViewIds>
+              </data-set>
+              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
+              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
+              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
+              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+        </controlDescription>
       </controlDescriptions>
       <formLibraries>
         <Library name="msdyn_/WorkOrder/WorkOrder.Library.js" libraryUniqueId="{17dd260c-4613-be64-6de8-3e20e7931c70}" />
@@ -4008,6 +4141,16 @@
         <event name="onchange" application="false" active="false" attribute="ovs_revisedquarterid">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.scheduledQuarterOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{e58ac9d2-2144-e473-24d2-5c7b9c426d3a}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onrecordselect" application="false" active="false" relationship="" control="Subgrid_operation_contacts">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.RunOnRowSelected" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{3bb365e9-1a7d-a779-e290-83cab31c3d60}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onrecordselect" application="false" active="false" relationship="" control="workorderservicetasksgrid">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.RunOnRowSelected" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{8012edc7-0a10-9c74-8d67-72c1077dccb4}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

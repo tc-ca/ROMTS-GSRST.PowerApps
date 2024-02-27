@@ -2,6 +2,7 @@
   "properties": {
     "connectionReferences": {
       "shared_commondataserviceforapps_1": {
+        "impersonation": {},
         "runtimeSource": "embedded",
         "connection": {
           "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_4a7e9"
@@ -128,9 +129,9 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
               "connectionName": "shared_commondataserviceforapps_1",
-              "operationId": "ListRecords",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+              "operationId": "ListRecords"
             },
             "parameters": {
               "entityName": "ts_sharepointfiles",
@@ -213,9 +214,9 @@
                 "type": "OpenApiConnection",
                 "inputs": {
                   "host": {
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
                     "connectionName": "shared_commondataserviceforapps_1",
-                    "operationId": "CreateRecord",
-                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    "operationId": "CreateRecord"
                   },
                   "parameters": {
                     "entityName": "ts_sharepointfiles",
@@ -251,9 +252,9 @@
                                 "type": "OpenApiConnection",
                                 "inputs": {
                                   "host": {
+                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
                                     "connectionName": "shared_sharepointonline",
-                                    "operationId": "CreateFile",
-                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                                    "operationId": "CreateFile"
                                   },
                                   "parameters": {
                                     "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
@@ -261,7 +262,10 @@
                                     "name": "@items('Apply_to_each_attachment')['Name']",
                                     "body": "@base64ToBinary(items('Apply_to_each_attachment')['base64'])"
                                   },
-                                  "authentication": "@parameters('$authentication')"
+                                  "authentication": {
+                                    "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+                                    "type": "Raw"
+                                  }
                                 },
                                 "runtimeConfiguration": {
                                   "contentTransfer": {
@@ -281,9 +285,9 @@
                                 "type": "OpenApiConnection",
                                 "inputs": {
                                   "host": {
+                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
                                     "connectionName": "shared_sharepointonline",
-                                    "operationId": "PatchFileItem",
-                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                                    "operationId": "PatchFileItem"
                                   },
                                   "parameters": {
                                     "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
@@ -294,7 +298,10 @@
                                     "item/OPI/Value": "ABAC|740b6c8f-9f0e-463d-bdd9-3a74988c2e27",
                                     "item/OData__ExtendedDescription": "@triggerBody()['text_5']"
                                   },
-                                  "authentication": "@parameters('$authentication')"
+                                  "authentication": {
+                                    "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+                                    "type": "Raw"
+                                  }
                                 }
                               }
                             },
@@ -459,7 +466,7 @@
         }
       }
     },
-    "templateName": ""
+    "templateName": null
   },
   "schemaVersion": "1.0.0.0"
 }
