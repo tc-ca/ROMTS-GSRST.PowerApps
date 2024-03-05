@@ -19,7 +19,6 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ts_exemption">
-          <attribute name="ts_exemptionid" />
           <attribute name="ts_name" />
           <attribute name="createdon" />
           <order attribute="ts_name" descending="false" />
@@ -27,8 +26,10 @@
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <filter type="or" isquickfindfields="1">
+            <condition attribute="ts_exemptionnumber" operator="like" value="{0}" />
             <condition attribute="ts_name" operator="like" value="{0}" />
           </filter>
+          <attribute name="ts_exemptionid" />
         </entity>
       </fetch>
     </fetchxml>

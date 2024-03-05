@@ -230,41 +230,23 @@
                     <row>
                       <cell id="{2e6ded2e-5ccb-e89b-c4d3-693e46091660}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Incident Date / Time" languagecode="1033" />
-                          <label description="Heure de l'incident" languagecode="1036" />
+                          <label description="Incident Date / Time (UTC)" languagecode="1033" />
+                          <label description="Heure de l'incident (UTC)" languagecode="1036" />
                         </labels>
                         <control id="ts_incidentdatetime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_incidentdatetime" disabled="false" uniqueid="{c809b900-a8ba-b476-936e-71d9ee08e899}" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{1b025303-0d31-3b6e-8e37-99b05c9dc1e6}" showlabel="true" locklevel="0" visible="false">
-                        <labels>
-                          <label description="Incident Date / Time" languagecode="1033" />
-                          <label description="Incident Date / Time" languagecode="1036" />
-                        </labels>
-                        <control id="ts_incidentdatetimeadjust" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_incidentdatetimeadjust" disabled="true" uniqueid="{79902e24-c562-4b15-92aa-1c20c7d8e9dd}" />
-                      </cell>
-                    </row>
-                    <row>
                       <cell id="{34a9e5c3-da49-6285-bdbb-3701aab2c243}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Reported Date / Time" languagecode="1033" />
-                          <label description="Heure signalée" languagecode="1036" />
+                          <label description="Reported Date / Time (UTC)" languagecode="1033" />
+                          <label description="Heure signalée (UTC)" languagecode="1036" />
                         </labels>
                         <control id="ts_reporteddatetime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_reporteddatetime" disabled="false" uniqueid="{270da99d-78ba-4644-41e6-ee7b9b877607}" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{ebe2bdda-bba1-65eb-5310-e1b07e475d6e}" showlabel="true" locklevel="0" visible="false">
-                        <labels>
-                          <label description="Reported Date / Time" languagecode="1033" />
-                          <label description="Reported Date / Time" languagecode="1036" />
-                        </labels>
-                        <control id="ts_reporteddatetimeadjust" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_reporteddatetimeadjust" disabled="true" uniqueid="{da9e98ce-4645-40d6-da88-e024bc05515b}" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{85aa002d-bdea-23b5-7840-a09088a13e82}" showlabel="true" locklevel="0">
+                      <cell id="{85aa002d-bdea-23b5-7840-a09088a13e82}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Time zone" languagecode="1033" />
                           <label description="fuseau horaire" languagecode="1036" />
@@ -1441,11 +1423,6 @@
         <event name="onchange" application="false" active="false" attribute="ts_stakeholder">
           <Handlers>
             <Handler functionName="ROM.SecurityIncident.stakeholderCompanyOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{de5671f2-2543-4c45-8835-85951d9d1aed}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
-        <event name="onchange" application="false" active="false" attribute="ts_timezone">
-          <Handlers>
-            <Handler functionName="ROM.SecurityIncident.TimeZoneOnChange" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{04aa832a-bcca-20c2-c98b-3aa08769702d}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="false" active="false" attribute="ts_site">

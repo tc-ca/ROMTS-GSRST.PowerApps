@@ -103,7 +103,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{0d35df8f-5ad4-412c-875b-887d67e107a0}" showlabel="true" locklevel="0" ordinalvalue="20003">
+                      <cell id="{0d35df8f-5ad4-412c-875b-887d67e107a0}" showlabel="true" locklevel="0" ordinalvalue="20005" solutionaction="Modified">
                         <labels>
                           <label description="Suggested Duration" languagecode="1033" solutionaction="Added" />
                           <label description="Durée suggérée" languagecode="1036" solutionaction="Added" />
@@ -112,12 +112,20 @@
                     </row>
                     <row>
                       <cell id="{a865abae-a52b-b0e3-6523-c26cda145742}" showlabel="true" locklevel="0" ordinalvalue="10008" solutionaction="Modified" />
-                      <cell id="{ecac25d2-6ce6-1335-e208-ba06c350bc72}" showlabel="true" locklevel="0" ordinalvalue="20005">
+                      <cell id="{ecac25d2-6ce6-1335-e208-ba06c350bc72}" showlabel="true" locklevel="0" ordinalvalue="20007" solutionaction="Modified">
                         <labels>
                           <label description="Last Calculated Time" languagecode="1033" solutionaction="Added" />
                           <label description="Heure du dernier calcul" languagecode="1036" solutionaction="Added" />
                         </labels>
                         <control id="msdyn_lastcalculatedtime" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="msdyn_lastcalculatedtime" disabled="true" uniqueid="{c8c19e2c-c46d-ebe2-347b-38e19017c16d}" solutionaction="Modified" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{75609de4-dd2d-db3b-aea2-cb60981dca56}" showlabel="true" locklevel="0" ordinalvalue="20003" solutionaction="Added">
+                        <labels>
+                          <label description="Estimated Duration (In Hours)" languagecode="1033" />
+                        </labels>
+                        <control id="ts_estimateddurationinhours" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_estimateddurationinhours" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -137,21 +145,14 @@
                         </labels>
                         <control id="ts_includeinplanning" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="ts_includeinplanning" disabled="false" />
                       </cell>
-                      <cell id="{28d7a70a-cddb-2509-da64-69add352b4e8}" showlabel="true" locklevel="0" ordinalvalue="20007" solutionaction="Added">
+                    </row>
+                    <row>
+                      <cell id="{28d7a70a-cddb-2509-da64-69add352b4e8}" showlabel="true" locklevel="0" ordinalvalue="20009" solutionaction="Added">
                         <labels>
                           <label description="WO Preparation Time" languagecode="1033" />
                           <label description="Temps de préparation de l'ordre de travail" languagecode="1036" />
                         </labels>
                         <control id="ts_preparationtime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_preparationtime" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{821a65b3-1a49-3823-3442-4e4ac4b17be5}" showlabel="true" locklevel="0" ordinalvalue="20009" solutionaction="Added">
-                        <labels>
-                          <label description="WO Conducting Oversight" languagecode="1033" />
-                          <label description="Temps lié à la surveillance de l'ordre de travail" languagecode="1036" />
-                        </labels>
-                        <control id="ts_conductingoversight" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_conductingoversight" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -162,12 +163,12 @@
                         </labels>
                         <control id="ts_reportingcategory" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_reportingcategory" disabled="false" />
                       </cell>
-                      <cell id="{7ea59baa-b767-7e85-e205-0bba9b93b57c}" showlabel="true" locklevel="0" ordinalvalue="20011" solutionaction="Added">
+                      <cell id="{821a65b3-1a49-3823-3442-4e4ac4b17be5}" showlabel="true" locklevel="0" ordinalvalue="20011" solutionaction="Added">
                         <labels>
-                          <label description="WO Reporting and Documentation" languagecode="1033" />
-                          <label description="Rapport et documentation de l'ordre de travail" languagecode="1036" />
+                          <label description="WO Conducting Oversight" languagecode="1033" />
+                          <label description="Temps lié à la surveillance de l'ordre de travail" languagecode="1036" />
                         </labels>
-                        <control id="ts_reportinganddocumentation" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_reportinganddocumentation" disabled="false" />
+                        <control id="ts_conductingoversight" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_conductingoversight" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -178,10 +179,12 @@
                         </labels>
                         <control id="ts_international" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_international" disabled="false" uniqueid="{ed3cadfd-1fbd-4af0-968a-6d32e4dc3708}" />
                       </cell>
-                      <cell locklevel="0" id="{4a39a14b-35eb-41eb-8e6a-93a111ca97d0}" showlabel="false" ordinalvalue="20013" solutionaction="Added">
+                      <cell id="{7ea59baa-b767-7e85-e205-0bba9b93b57c}" showlabel="true" locklevel="0" ordinalvalue="20013" solutionaction="Added">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="WO Reporting and Documentation" languagecode="1033" />
+                          <label description="Rapport et documentation de l'ordre de travail" languagecode="1036" />
                         </labels>
+                        <control id="ts_reportinganddocumentation" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_reportinganddocumentation" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -192,7 +195,7 @@
                         </labels>
                         <control id="ts_domestic" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_domestic" disabled="false" uniqueid="{8214306e-ed83-4207-9ae3-60b173030ab9}" />
                       </cell>
-                      <cell locklevel="0" id="{ea4270d3-a525-4b50-bf52-84fa44749cdf}" showlabel="false" ordinalvalue="20015" solutionaction="Added">
+                      <cell locklevel="0" id="{4a39a14b-35eb-41eb-8e6a-93a111ca97d0}" showlabel="false" ordinalvalue="20015" solutionaction="Added">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -405,17 +408,17 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{a6c3179c-cba9-4805-bf05-32941c501c92}" ordinalvalue="10000">
+                      <cell id="{a6c3179c-cba9-4805-bf05-32941c501c92}" showlabel="false" ordinalvalue="10000">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                      <cell id="{89ec974a-5ba6-4316-93b0-671f79481f13}" ordinalvalue="20001">
+                      <cell id="{89ec974a-5ba6-4316-93b0-671f79481f13}" showlabel="false" ordinalvalue="20001">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                      <cell id="{2a131522-4105-4ad8-9fbe-bee73099b3ca}" ordinalvalue="30002">
+                      <cell id="{2a131522-4105-4ad8-9fbe-bee73099b3ca}" showlabel="false" ordinalvalue="30002">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -1886,17 +1889,17 @@
       <header id="{d6d4dd2f-cc5a-4581-89f9-a6731626d5cb}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
         <rows>
           <row>
-            <cell id="{8816f354-c355-4a5b-a0e1-ac133d217e51}" ordinalvalue="10000">
+            <cell id="{8816f354-c355-4a5b-a0e1-ac133d217e51}" showlabel="false" ordinalvalue="10000">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
             </cell>
-            <cell id="{11c73fc7-164d-462b-bc0d-49b3f9cfcb13}" ordinalvalue="20001">
+            <cell id="{11c73fc7-164d-462b-bc0d-49b3f9cfcb13}" showlabel="false" ordinalvalue="20001">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
             </cell>
-            <cell id="{abe975ab-3fb9-460d-bf46-ca22ad0bf4c2}" ordinalvalue="30002">
+            <cell id="{abe975ab-3fb9-460d-bf46-ca22ad0bf4c2}" showlabel="false" ordinalvalue="30002">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>

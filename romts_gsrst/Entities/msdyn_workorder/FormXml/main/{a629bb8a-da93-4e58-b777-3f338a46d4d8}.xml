@@ -104,6 +104,14 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{750e1da0-1105-17e2-d876-4b4b60ab2998}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Cargo Only Flight" languagecode="1033" />
+                        </labels>
+                        <control id="ts_cargoonlyflight" classid="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}" datafieldname="ts_cargoonlyflight" disabled="false" uniqueid="{12026d76-a800-ec02-95da-768c4d06aa67}" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{c704ded1-86a9-207b-23a3-9d696566820d}" showlabel="true" locklevel="0" visible="false" labelid="{90293159-4b1e-4ebf-b629-5f42f75d6a3e}">
                         <labels>
                           <label description="Aircraft Classification" languagecode="1033" />
@@ -304,12 +312,28 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{bdcd38b9-bb31-8927-e423-ac19ae61311b}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Overtime Required?" languagecode="1033" />
+                        </labels>
+                        <control id="ts_overtimerequired" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_overtimerequired" disabled="false" uniqueid="{1412a66b-6187-9377-ca54-97732022d041}" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{567ac3e0-52ea-ce18-bd8b-125ee12316b4}" showlabel="true" locklevel="0" labelid="{639275f1-a981-4ac1-8781-d8f7258eb238}">
                         <labels>
                           <label description="State" languagecode="1033" />
                           <label description="État" languagecode="1036" />
                         </labels>
                         <control id="ts_state" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_state" disabled="true" uniqueid="{46791791-2591-4c01-a20d-86b6b080bedc}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{3d1a8137-d9c4-6ded-0d1b-b706be52352c}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Reason" languagecode="1033" />
+                        </labels>
+                        <control id="ts_reasontext" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_reasontext" disabled="false" uniqueid="{ac28c3aa-b3a1-6666-bc51-412bd49b360b}" />
                       </cell>
                     </row>
                     <row>
@@ -4014,6 +4038,28 @@
               <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
               <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
               <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+            </parameters>
+          </customControl>
+        </controlDescription>
+        <controlDescription forControl="{1412a66b-6187-9377-ca54-97732022d041}">
+          <customControl id="{67FAC785-CD58-4f9f-ABB3-4B7DDC6ED5ED}">
+            <parameters>
+              <datafieldname>ts_overtimerequired</datafieldname>
+            </parameters>
+          </customControl>
+          <customControl formFactor="0" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_overtimerequired</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_overtimerequired</value>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="MscrmControls.FieldControls.ToggleControl">
+            <parameters>
+              <value>ts_overtimerequired</value>
             </parameters>
           </customControl>
         </controlDescription>
