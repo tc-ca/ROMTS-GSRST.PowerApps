@@ -90,6 +90,13 @@
                   "x-ms-dynamically-added": true,
                   "description": "The ID of the selected category",
                   "x-ms-content-hint": "TEXT"
+                },
+                "text_3": {
+                  "title": "SharePoint File ID",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The ts_sharepointfileid of the record that is in the ts_sharepointfile table",
+                  "x-ms-content-hint": "TEXT"
                 }
               },
               "required": [
@@ -100,7 +107,8 @@
                 "text_5",
                 "text_6",
                 "text_7",
-                "text_10"
+                "text_10",
+                "text_3"
               ]
             }
           }
@@ -659,32 +667,9 @@
             ]
           }
         },
-        "Run_a_Child_Flow_-_SharePoint_File_Setup_File": {
-          "runAfter": {
-            "Initialize_variable_-_SharePointFileID": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "1b5dd2e0-c25e-4b50-8f49-7a3f2153e4c7"
-          },
-          "type": "Workflow",
-          "inputs": {
-            "host": {
-              "workflowReferenceName": "f5882698-f969-ee11-9ae7-0022483d7716"
-            },
-            "body": {
-              "text": "@triggerBody()['text']",
-              "text_1": "@triggerBody()['text_1']",
-              "text_2": "@triggerBody()['text_6']",
-              "text_3": "@triggerBody()['text_7']",
-              "text_4": "@triggerBody()['text_2']"
-            }
-          }
-        },
         "Set_variable_-_SharePointFileID": {
           "runAfter": {
-            "Run_a_Child_Flow_-_SharePoint_File_Setup_File": [
+            "Initialize_variable_-_SharePointFileID": [
               "Succeeded"
             ]
           },
@@ -694,7 +679,7 @@
           "type": "SetVariable",
           "inputs": {
             "name": "SharePointFileID",
-            "value": "@body('Run_a_Child_Flow_-_SharePoint_File_Setup_File')?['romsharepointfileid']"
+            "value": "@triggerBody()['text_3']"
           }
         },
         "Initialize_variable_-_UniqueFileName": {

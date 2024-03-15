@@ -1,4 +1,4 @@
-﻿function FileUploadData() {
+function FileUploadData() {
     this.recordTableNameEnglish = "";
     this.recordTableNameFrench = "";
     this.recordOwner = "";
@@ -7,6 +7,10 @@
     this.mainHeadingFrench = "";
     this.usesGroupFiles = false;
     this.validOwner = false;
+    this.sharePointFileID = "";
+    this.sharePointFileGroupID = "";
+    this.sharePointQuery = "";
+    this.usersManagerEmail = "";
 }
 
 function OpenFileUploadPage(PrimaryControl, PrimaryTypeEntityName, PrimaryControlId) {
@@ -48,8 +52,36 @@ function OpenFileUploadPage(PrimaryControl, PrimaryTypeEntityName, PrimaryContro
                 modifyRecordOwner(PrimaryTypeEntityName, fileUploadData.recordOwner, fileUploadData.recordName, siteNameEnglish, fileUploadData);
 
                 if (fileUploadData.validOwner == true) {
-                    // navigate to the canvas app
-                    navigateToCanvasApp(recordTagId, fileUploadData.recordOwner, lang, fileUploadData.recordTableNameEnglish, fileUploadData.recordTableNameFrench, fileUploadData.recordName, PrimaryTypeEntityName, fileUploadData.mainHeadingFrench, fileUploadData.mainHeadingEnglish, fileUploadData.usesGroupFiles);
+
+                    // get the SharePoint File ID for the record
+                    getSharePointFileId(PrimaryTypeEntityName, fileUploadData, recordTagId)
+                        .then(() => {
+
+                            // if the record uses groups, (Case, WorkOrder, and Work Order Service Task) get the sharePointGroupID
+                            if (fileUploadData.usesGroupFiles == true) {
+                                getSharePointFileGroupId(PrimaryTypeEntityName, fileUploadData, recordTagId)
+                                    .then(() => {
+
+                                        // get the sharePointQuery to use in the canvas app
+                                        getSharePointQuery(PrimaryTypeEntityName, fileUploadData, recordTagId)
+                                            .then(() => { 
+
+                                                // get the users Manager email address
+                                                getUsersManager(fileUploadData)
+                                                    .then(() => {
+
+                                                        // navigate to the canvas app
+                                                        navigateToCanvasApp(recordTagId, fileUploadData.recordOwner, lang, fileUploadData.recordTableNameEnglish, fileUploadData.recordTableNameFrench, fileUploadData.recordName, PrimaryTypeEntityName, fileUploadData.mainHeadingFrench, fileUploadData.mainHeadingEnglish, fileUploadData.usesGroupFiles, fileUploadData.sharePointFileID, fileUploadData.sharePointFileGroupID, fileUploadData.sharePointQuery, fileUploadData.usersManagerEmail);
+                                                });
+                                            });
+                                    });
+                            }
+                            else {
+
+                                // For everything else, navigate to the canvas app
+                                navigateToCanvasApp(recordTagId, fileUploadData.recordOwner, lang, fileUploadData.recordTableNameEnglish, fileUploadData.recordTableNameFrench, fileUploadData.recordName, PrimaryTypeEntityName, fileUploadData.mainHeadingFrench, fileUploadData.mainHeadingEnglish, fileUploadData.usesGroupFiles, fileUploadData.sharePointFileID, fileUploadData.sharePointFileGroupID, fileUploadData.sharePointQuery, fileUploadData.usersManagerEmail);
+                            }
+                    });
                 }
                 else {
                     // display the error message
@@ -85,7 +117,7 @@ function OpenFileUploadPage(PrimaryControl, PrimaryTypeEntityName, PrimaryContro
 }
 
 // Separate method to navigate to the canvas app
-function navigateToCanvasApp(recordTagId, recordOwner, lang, recordTableNameEnglish, recordTableNameFrench, recordName, PrimaryTypeEntityName,mainHeadingFrench,mainHeadingEnglish,usesGroupFiles) {
+function navigateToCanvasApp(recordTagId, recordOwner, lang, recordTableNameEnglish, recordTableNameFrench, recordName, PrimaryTypeEntityName, mainHeadingFrench, mainHeadingEnglish, usesGroupFiles, relatedSharePointFileID, relatedSharePointFileGroupID, relatedSharePointQuery, relatedManagerEmail) {
 
     var jsonData = {
         recordId: recordTagId,
@@ -95,7 +127,11 @@ function navigateToCanvasApp(recordTagId, recordOwner, lang, recordTableNameEngl
         tableNameFrench: recordTableNameFrench,
         tableRecordName: recordName,
         tableSchemaName: PrimaryTypeEntityName,
-        useGroupFiles: usesGroupFiles
+        useGroupFiles: usesGroupFiles,
+        sharePointFileID: relatedSharePointFileID,
+        sharePointFileGroupID: relatedSharePointFileGroupID,
+        sharePointQuery: relatedSharePointQuery,
+        usersManagerEmail: relatedManagerEmail
     };
 
     var jsonString = JSON.stringify(jsonData).toString();
@@ -426,4 +462,217 @@ function modifyRecordOwner(entityName, myRecordOwner, myRecordName, mySiteNameEn
     if (fileUploadData.recordOwner == avsecOwner || fileUploadData.recordOwner == issoOwner) {
         fileUploadData.validOwner = true;
     }
+}
+
+function getSharePointFileId(PrimaryTypeEntityName, fileUploadData, recordTagId) {
+
+    let sharePointFileFetchXML = `
+                <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+                  <entity name="ts_sharepointfile">
+                    <attribute name="ts_sharepointfileid" />
+                    <attribute name="ts_sharepointfilegroup" />
+                    <filter>
+                      <condition attribute="ts_tablerecordid" operator="eq" value="${recordTagId}" />
+                    </filter>
+                  </entity>
+                </fetch>
+    `;
+
+    let encodedSharePointFetchXML = encodeURIComponent(sharePointFileFetchXML);
+
+    // Get the SharePoint File ID for the record
+    return parent.Xrm.WebApi.retrieveMultipleRecords("ts_sharepointfile", "?fetchXml=" + encodedSharePointFetchXML).then(
+        function success(result) {
+            if (result.entities[0] != undefined) {
+                // if a ts_sharepointfile record exists for the record, get the ID
+                fileUploadData.sharePointFileID = result.entities[0].ts_sharepointfileid;
+
+                // get the SharePoint File Group ID for the record
+                if (result.entities[0]._ts_sharepointfilegroup_value != null) {
+                    fileUploadData.sharePointFileGroupID = result.entities[0]._ts_sharepointfilegroup_value
+                }
+            }
+            else {
+                // if no ts_sharepointfile record exists for the record, create one
+                return createSharePointFileRecord(fileUploadData, recordTagId);
+            }
+        },
+        function (error) {
+            // handle error conditions
+            console.log(`Error retrieving the ts_sharepointfile of ${PrimaryTypeEntityName}: ` + error.message);
+        }
+    );
+}
+
+function getSharePointFileGroupId(PrimaryTypeEntityName, fileUploadData, recordTagId) {
+
+    return new Promise((resolve, reject) => {
+        let sharePointFileFetchXML = `
+                <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
+                  <entity name="ts_sharepointfile">
+                    <attribute name="ts_sharepointfilegroup" />
+                    <filter>
+                      <condition attribute="ts_tablerecordid" operator="eq" value="${recordTagId}" />
+                    </filter>
+                  </entity>
+                </fetch>`;
+
+        let encodedSharePointFetchXML = encodeURIComponent(sharePointFileFetchXML);
+
+        // Get the SharePoint File Group ID for the record
+        let intervalId = setInterval(function () {
+            return parent.Xrm.WebApi.retrieveMultipleRecords("ts_sharepointfile", "?fetchXml=" + encodedSharePointFetchXML).then(
+                function success(result) {
+                    if (result.entities[0] != undefined) {
+
+                        // get the SharePoint File Group ID for the record
+                        if (result.entities[0]._ts_sharepointfilegroup_value != null) {
+                            fileUploadData.sharePointFileGroupID = result.entities[0]._ts_sharepointfilegroup_value;
+                            clearInterval(intervalId); // clear the interval once we have the result
+                            resolve(); // resolve the promise
+                        }
+                    }
+                },
+                function (error) {
+                    // handle error conditions
+                    console.log(`Error retrieving the ts_sharepointfileGroup of ${PrimaryTypeEntityName}: ` + error.message);
+                    clearInterval(intervalId); // clear the interval in case of error
+                    reject(error); // reject the promise
+                }
+            );
+        }, 1000); // try every x seconds - we do this because we are waiting for the sharePointFileGroup to be created in the backend Plugin
+    });
+
+}
+
+function getSharePointQuery(PrimaryTypeEntityName, fileUploadData, recordTagId) {
+
+    let sharePointFileFetchXML = `
+        <fetch>
+          <entity name="ts_sharepointfile">
+            <attribute name="ts_sharepointfileid" />
+            <filter>
+              <condition attribute="ts_sharepointfilegroup" operator="eq" value="${fileUploadData.sharePointFileGroupID}" />
+              <condition attribute="ts_tablerecordid" operator="ne" value="${recordTagId}" />
+              <condition attribute="ts_tablerecordid" operator="not-null" />
+              <filter />
+            </filter>
+          </entity>
+        </fetch>
+    `;
+
+    let encodedSharePointFetchXML = encodeURIComponent(sharePointFileFetchXML);
+
+    // Get the related SharePoint File ID's for the record
+    return parent.Xrm.WebApi.retrieveMultipleRecords("ts_sharepointfile", "?fetchXml=" + encodedSharePointFetchXML).then(
+        function success(result) {
+
+            // loop through results and add to the sharePointQuery
+            for (let i = 0; i < result.entities.length; i++) {
+                let entity = result.entities[i];
+
+                if (entity !== null) {
+                    fileUploadData.sharePointQuery += "ROMSharePointFileID eq '" + entity.ts_sharepointfileid + "'";
+
+                    // if not the last entity, add an "or"
+                    if (i !== result.entities.length - 1) {
+                        fileUploadData.sharePointQuery += " or ";
+                    }
+                }
+            }
+        },
+        function (error) {
+            // handle error conditions
+            console.log(`Error retrieving in getSharePointQuery using ${PrimaryTypeEntityName}: ` + error.message);
+        }
+    );
+}
+
+function getUsersManager(fileUploadData) {
+
+    return new Promise((resolve, reject) => {
+        let userId = Xrm.Utility.getGlobalContext().userSettings.userId;
+
+        userId = userId.replace(/[{}]/g, '');
+
+        let managerFetchXML = `
+        <fetch xmlns:generator="MarkMpn.SQL4CDS" distinct="true">
+          <entity name="systemuser">
+            <attribute name="internalemailaddress" />
+            <filter>
+              <condition attribute="systemuserid" operator="ne" value="c5cbed71-2e26-ec11-b6e6-000d3af4f643"  />
+            </filter>
+            <link-entity name="team" from="administratorid" to="systemuserid">
+              <filter>
+                <condition attribute="name" operator="ne" value="Transport Canada" />
+                <condition attribute="name" operator="not-like" value="%msdyn_workorder%" />
+                <condition attribute="name" operator="not-like" value="%ROMTS-GSRST-USERLIST%" />
+                <condition attribute="name" operator="not-like" value="%POWER BI SERVICE%" />
+                <condition attribute="name" operator="not-like" value="%Aviation Security%" />
+                <condition attribute="name" operator="not-like" value="%Intermodal Surface Security Oversight (ISSO)%" />
+                <condition attribute="name" operator="not-like" value="%PPP Analyst%" />
+                <condition attribute="name" operator="not-like" value="%TCOMS%" />
+                <condition attribute="name" operator="not-like" value="%ISSO Business Admins%" />
+                <condition attribute="name" operator="not-like" value="%ISSO Inspectors%" />
+                <condition attribute="name" operator="not-like" value="%ISSO Managers%" />
+                <condition attribute="name" operator="not-like" value="%ISSO Planners%" />
+                <condition attribute="name" operator="not-like" value="%ISSO Questionnaire Admins%" />
+                <condition attribute="name" operator="not-like" value="%ISSO Questionnaire Admins%" />
+              </filter>
+              <link-entity name="teammembership" from="teamid" to="teamid">
+                <link-entity name="systemuser" alias="systemuser_childuser" from="systemuserid" to="systemuserid">
+                  <filter>
+                    <condition attribute="systemuserid" operator="eq" value="${userId}" />
+                  </filter>
+                </link-entity>
+              </link-entity>
+            </link-entity>
+          </entity>
+        </fetch>
+    `;
+
+        let encodedSharePointFetchXML = encodeURIComponent(managerFetchXML);
+
+        // Get the manager
+        return parent.Xrm.WebApi.retrieveMultipleRecords("systemuser", "?fetchXml=" + encodedSharePointFetchXML).then(
+            function success(result) {
+                if (result.entities[0] != undefined) {
+
+                    // get the SharePoint File Group ID for the record
+                    if (result.entities[0].internalemailaddress != null) {
+                        fileUploadData.usersManagerEmail = result.entities[0].internalemailaddress;
+                    }
+                }
+                resolve(); // resolve the promise
+            },
+            function (error) {
+                // handle error conditions
+                console.log(`Error retrieving the users Manager: ${PrimaryTypeEntityName}: ` + error.message);
+                reject(error); // reject the promise
+            }
+        );
+    });
+}
+
+function createSharePointFileRecord(fileUploadData, recordTagId) {
+    let entity = {};
+
+    entity.ts_name = fileUploadData.recordName;
+    entity.ts_tablename = fileUploadData.recordTableNameEnglish;
+    entity.ts_tablenamefrench = fileUploadData.recordTableNameFrench;
+    entity.ts_tablerecordid = recordTagId;
+    entity.ts_tablerecordname = fileUploadData.recordName;
+    entity.ts_tablerecordowner = fileUploadData.recordOwner;
+
+    return parent.Xrm.WebApi.createRecord("ts_sharepointfile", entity).then(
+        function success(result) {
+            fileUploadData.sharePointFileID = result.id;
+            return result;
+        },
+        function (error) {
+            // handle error conditions
+            console.log(`Error creating the ts_sharepointfile record for ${entity.ts_tablename}: ` + error.message);
+            throw error;
+        }
+    );
 }

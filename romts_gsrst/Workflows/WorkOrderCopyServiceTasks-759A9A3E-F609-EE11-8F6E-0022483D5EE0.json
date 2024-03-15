@@ -1,10 +1,10 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_commondataserviceforapps": {
+      "shared_commondataserviceforapps_1": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_2d435"
+          "connectionReferenceLogicalName": "ts_DataverseROMTSGSRST"
         },
         "api": {
           "name": "shared_commondataserviceforapps"
@@ -169,9 +169,9 @@
                           "type": "OpenApiConnection",
                           "inputs": {
                             "host": {
-                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
-                              "connectionName": "shared_commondataserviceforapps",
-                              "operationId": "PerformBoundAction"
+                              "connectionName": "shared_commondataserviceforapps_1",
+                              "operationId": "PerformBoundAction",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                             },
                             "parameters": {
                               "entityName": "systemusers",
@@ -180,7 +180,10 @@
                               "item/Record": "/msdyn_workorders(@{variables('Current Work Order')['Value']})",
                               "item/TeamTemplate/teamtemplateid": "bddf1d45-706d-ec11-8f8e-0022483da5aa"
                             },
-                            "authentication": "@parameters('$authentication')"
+                            "authentication": {
+                              "type": "Raw",
+                              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                            }
                           }
                         }
                       },
@@ -434,7 +437,7 @@
         }
       }
     },
-    "templateName": null
+    "templateName": ""
   },
   "schemaVersion": "1.0.0.0"
 }

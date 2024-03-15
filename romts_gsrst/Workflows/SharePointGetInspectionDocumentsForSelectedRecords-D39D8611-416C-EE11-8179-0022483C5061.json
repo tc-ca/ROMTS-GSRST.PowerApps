@@ -1,15 +1,6 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_commondataserviceforapps_1": {
-        "runtimeSource": "embedded",
-        "connection": {
-          "connectionReferenceLogicalName": "ts_DataverseROMTSGSRST"
-        },
-        "api": {
-          "name": "shared_commondataserviceforapps"
-        }
-      },
       "shared_sharepointonline": {
         "runtimeSource": "invoker",
         "connection": {
@@ -50,10 +41,42 @@
                   "x-ms-dynamically-added": true,
                   "description": "The guid ID of the record (Example: msdyn_workorderid)",
                   "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "SharePoint File Id",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The ts_sharepointfileid of the record that is in the ts_sharepointfile table",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "Record Owner",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The business owner of the record",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_3": {
+                  "title": "SharePoint File Group Id",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The ts_sharepointfilegroup of the record that is in the ts_sharepointfile table",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_4": {
+                  "title": "SharePoint Query",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The query that will be used to filter the SharePoint document library",
+                  "x-ms-content-hint": "TEXT"
                 }
               },
               "required": [
-                "text"
+                "text",
+                "text_1",
+                "text_2",
+                "text_3",
+                "text_4"
               ]
             }
           }
@@ -71,7 +94,7 @@
               {
                 "name": "SharePointFileId",
                 "type": "string",
-                "value": "@{null}"
+                "value": "@triggerBody()['text_1']"
               }
             ]
           }
@@ -91,7 +114,7 @@
               {
                 "name": "TableRecordOwner",
                 "type": "string",
-                "value": "@{null}"
+                "value": "@triggerBody()['text_2']"
               }
             ]
           }
@@ -116,84 +139,6 @@
             ]
           }
         },
-        "List_rows_-_Get_SharePoint_File_ID": {
-          "runAfter": {
-            "Initialize_variable_-_SharePointFileGroupId": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "faf4cabd-3655-45e8-9815-8de990e16009"
-          },
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_commondataserviceforapps_1",
-              "operationId": "ListRecords",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-            },
-            "parameters": {
-              "entityName": "ts_sharepointfiles",
-              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"ts_sharepointfile\">\n    <attribute name=\"ts_sharepointfileid\" />\n    <attribute name=\"ts_tablerecordowner\" />\n    <attribute name=\"ts_sharepointfilegroup\" />\n    <filter>\n      <condition attribute=\"ts_tablerecordid\" operator=\"eq\" value=\"@{triggerBody()['text']}\" />\n    </filter>\n  </entity>\n</fetch>"
-            },
-            "authentication": "@parameters('$authentication')"
-          }
-        },
-        "Apply_to_each": {
-          "foreach": "@outputs('List_rows_-_Get_SharePoint_File_ID')?['body/value']",
-          "actions": {
-            "Set_variable_-_SharePointFileId": {
-              "runAfter": {},
-              "metadata": {
-                "operationMetadataId": "48346149-4643-454b-8abf-64c5af933ef2"
-              },
-              "type": "SetVariable",
-              "inputs": {
-                "name": "SharePointFileId",
-                "value": "@items('Apply_to_each')?['ts_sharepointfileid']"
-              }
-            },
-            "Set_variable_-_TableRecordOwner": {
-              "runAfter": {
-                "Set_variable_-_SharePointFileId": [
-                  "Succeeded"
-                ]
-              },
-              "metadata": {
-                "operationMetadataId": "528284e0-be85-4517-8581-cff109e32b6d"
-              },
-              "type": "SetVariable",
-              "inputs": {
-                "name": "TableRecordOwner",
-                "value": "@items('Apply_to_each')?['ts_tablerecordowner']"
-              }
-            },
-            "Set_variable_-_SharePointFileGroupId": {
-              "runAfter": {
-                "Set_variable_-_TableRecordOwner": [
-                  "Succeeded"
-                ]
-              },
-              "metadata": {
-                "operationMetadataId": "3fa0b217-c51d-490e-b195-183e1d260b75"
-              },
-              "type": "SetVariable",
-              "inputs": {
-                "name": "SharePointFileGroupId",
-                "value": "@items('Apply_to_each')?['_ts_sharepointfilegroup_value']"
-              }
-            }
-          },
-          "runAfter": {
-            "List_rows_-_Get_SharePoint_File_ID": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "6d0d7fbb-1071-4707-8dba-fae670e2ddb5"
-          },
-          "type": "Foreach"
-        },
         "Initialize_variable_-_SharePointFileGroupId": {
           "runAfter": {
             "Initialize_variable_-_RecordsList": [
@@ -209,240 +154,184 @@
               {
                 "name": "SharePointFileGroupId",
                 "type": "string",
-                "value": "@{null}"
+                "value": "@triggerBody()['text_3']"
               }
             ]
           }
         },
         "Condition_-_SharePointFileGroupId_is_not_null": {
           "actions": {
-            "List_rows_-_Get_SharePoint_File_Id_List": {
+            "Condition_-_Is_SharePointQuery_not_empty": {
+              "actions": {
+                "Switch": {
+                  "runAfter": {},
+                  "cases": {
+                    "Case_-_AvSec": {
+                      "case": "Aviation Security",
+                      "actions": {
+                        "Get_items_-_AvSec_Individual_Inspections": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "2dbc7880-d37d-419b-929a-01ef71eb260a"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_sharepointonline",
+                              "operationId": "GetItems",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                            },
+                            "parameters": {
+                              "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
+                              "table": "Individual Inspections - Inspections individuelles",
+                              "$filter": "@variables('SharePointQuery')",
+                              "$orderby": "DocumentType_x002d_TypedeDocument,DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument,Title"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          },
+                          "runtimeConfiguration": {
+                            "paginationPolicy": {
+                              "minimumItemCount": 100000
+                            }
+                          }
+                        },
+                        "Select_-_AvSec_SharePoint_Files": {
+                          "runAfter": {
+                            "Get_items_-_AvSec_Individual_Inspections": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "98a1cf2a-0e1a-4da4-ae40-4e42c90d2a9f"
+                          },
+                          "type": "Select",
+                          "inputs": {
+                            "from": "@outputs('Get_items_-_AvSec_Individual_Inspections')?['body/value']",
+                            "select": {
+                              "Title": "@{item()?['Title']}",
+                              "Created": "@{item()?['Created']}",
+                              "CategoryEnglish": "@{item()?['Category_x002d_Cat_x00e9_gorie/Value']}",
+                              "CategoryFrench": "@{item()?['Category_x0020__x002d__x0020_Cat_x00e9_gorie_x003a__x0020_Cat_x00e9_gorie/Value']}",
+                              "Description": "@{item()?['FileDescription_x002d_descriptiondufichier']}",
+                              "DocumentLink": "@{item()?['{Link}']}",
+                              "DocumentType": "@{item()?['DocumentType_x002d_TypedeDocument']}",
+                              "DocumentReferenceID": "@{item()?['DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument']}",
+                              "FileIdentifier": "@{item()?['{Identifier}']}"
+                            }
+                          }
+                        },
+                        "Set_variable_-_AvSec_Record_List": {
+                          "runAfter": {
+                            "Select_-_AvSec_SharePoint_Files": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "e54a3367-48da-479e-b88f-84a471f3e845"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "RecordsList",
+                            "value": "@{body('Select_-_AvSec_SharePoint_Files')}"
+                          }
+                        }
+                      }
+                    },
+                    "Case_-_ISSO": {
+                      "case": "Intermodal Surface Security Oversight",
+                      "actions": {
+                        "Get_items_-_ISSO_Individual_Inspections": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "881aaf15-cb6e-433d-9d88-3840bb6de867"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_sharepointonline",
+                              "operationId": "GetItems",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                            },
+                            "parameters": {
+                              "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
+                              "table": "Individual Inspections - Inspections individuelles",
+                              "$filter": "@variables('SharePointQuery')",
+                              "$orderby": "DocumentType_x002d_TypedeDocument,DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument,Title"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          },
+                          "runtimeConfiguration": {
+                            "paginationPolicy": {
+                              "minimumItemCount": 100000
+                            }
+                          }
+                        },
+                        "Select_-_ISSO_SharePoint_Files": {
+                          "runAfter": {
+                            "Get_items_-_ISSO_Individual_Inspections": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "1b4fea44-a2df-4e5f-aaa8-ec373e7a4ddf"
+                          },
+                          "type": "Select",
+                          "inputs": {
+                            "from": "@outputs('Get_items_-_ISSO_Individual_Inspections')?['body/value']",
+                            "select": {
+                              "Title": "@{item()?['Title']}",
+                              "Created": "@{item()?['Created']}",
+                              "CategoryEnglish": "@{item()?['Category_x002d_Cat_x00e9_gorie']?['Value']}",
+                              "CategoryFrench": "@{item()?['Category_x0020__x002d__x0020_Cat_x00e9_gorie_x003a__x0020_Cat_x00e9_gorie']?['Value']}",
+                              "Description": "@{item()?['FileDescription_x002d_descriptiondufichier']}",
+                              "DocumentLink": "@{item()?['{Link}']}",
+                              "DocumentType": "@{item()?['DocumentType_x002d_TypedeDocument']}",
+                              "DocumentReferenceID": "@{item()?['DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument']}",
+                              "FileIdentifier": "@{item()?['{Identifier}']}"
+                            }
+                          }
+                        },
+                        "Set_variable": {
+                          "runAfter": {
+                            "Select_-_ISSO_SharePoint_Files": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "c242ad0b-c257-4b53-8557-815719863ae4"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "RecordsList",
+                            "value": "@{body('Select_-_ISSO_SharePoint_Files')}"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "default": {
+                    "actions": {}
+                  },
+                  "expression": "@variables('TableRecordOwner')",
+                  "metadata": {
+                    "operationMetadataId": "f6d8b269-c0d6-4b89-9ada-0195c2a7abf6"
+                  },
+                  "type": "Switch"
+                }
+              },
               "runAfter": {},
-              "metadata": {
-                "operationMetadataId": "069e969f-dd19-484c-adc9-c7cf24c84488"
-              },
-              "type": "OpenApiConnection",
-              "inputs": {
-                "host": {
-                  "connectionName": "shared_commondataserviceforapps_1",
-                  "operationId": "ListRecords",
-                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                },
-                "parameters": {
-                  "entityName": "ts_sharepointfiles",
-                  "fetchXml": "<fetch>\n  <entity name=\"ts_sharepointfile\">\n    <attribute name=\"ts_sharepointfileid\" />\n    <filter>\n      <condition attribute=\"ts_sharepointfilegroup\" operator=\"eq\" value=\"@{variables('SharePointFileGroupId')}\" />\n      <condition attribute=\"ts_tablerecordid\" operator=\"ne\" value=\"@{triggerBody()['text']}\" />\n      <condition attribute=\"ts_tablerecordid\" operator=\"not-null\" />\n    </filter>\n  </entity>\n</fetch>"
-                },
-                "authentication": "@parameters('$authentication')"
-              }
-            },
-            "Apply_to_each_-_SharePoint_File_Id": {
-              "foreach": "@outputs('List_rows_-_Get_SharePoint_File_Id_List')?['body/value']",
-              "actions": {
-                "Append_to_array_variable_-_SharePointFileList": {
-                  "runAfter": {},
-                  "metadata": {
-                    "operationMetadataId": "07f0d2ab-430f-4789-887e-015a7979958f"
-                  },
-                  "type": "AppendToArrayVariable",
-                  "inputs": {
-                    "name": "SharePointFileIdList",
-                    "value": "@items('Apply_to_each_-_SharePoint_File_Id')?['ts_sharepointfileid']"
-                  }
+              "expression": {
+                "not": {
+                  "equals": [
+                    "@variables('SharePointQuery')",
+                    ""
+                  ]
                 }
               },
-              "runAfter": {
-                "List_rows_-_Get_SharePoint_File_Id_List": [
-                  "Succeeded"
-                ]
-              },
               "metadata": {
-                "operationMetadataId": "fc6c0cd8-2252-4951-a4ab-5ad9c9626f17"
+                "operationMetadataId": "cd87b8cd-568c-44a7-8863-cf940bb2834c"
               },
-              "type": "Foreach"
-            },
-            "Apply_to_each_-_Create_SharePointQuery": {
-              "foreach": "@variables('SharePointFileIdList')",
-              "actions": {
-                "Append_to_string_variable_-_SharePointQuery": {
-                  "runAfter": {},
-                  "metadata": {
-                    "operationMetadataId": "731d1bef-cf56-455d-9cf8-079b8be427d1"
-                  },
-                  "type": "AppendToStringVariable",
-                  "inputs": {
-                    "name": "SharePointQuery",
-                    "value": "'@{items('Apply_to_each_-_Create_SharePointQuery')}' or ROMSharePointFileID eq"
-                  }
-                }
-              },
-              "runAfter": {
-                "Apply_to_each_-_SharePoint_File_Id": [
-                  "Succeeded"
-                ]
-              },
-              "metadata": {
-                "operationMetadataId": "1ee0fd80-dbb1-4d92-baeb-5edace36aa29"
-              },
-              "type": "Foreach"
-            },
-            "Switch": {
-              "runAfter": {
-                "Apply_to_each_-_Create_SharePointQuery": [
-                  "Succeeded"
-                ]
-              },
-              "cases": {
-                "Case_-_AvSec": {
-                  "case": "Aviation Security",
-                  "actions": {
-                    "Get_items_-_AvSec_Individual_Inspections": {
-                      "runAfter": {},
-                      "metadata": {
-                        "operationMetadataId": "2dbc7880-d37d-419b-929a-01ef71eb260a"
-                      },
-                      "type": "OpenApiConnection",
-                      "inputs": {
-                        "host": {
-                          "connectionName": "shared_sharepointonline",
-                          "operationId": "GetItems",
-                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
-                        },
-                        "parameters": {
-                          "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
-                          "table": "Individual Inspections - Inspections individuelles",
-                          "$filter": "ROMSharePointFileID eq @{substring(variables('SharePointQuery'),0,lastIndexOf(variables('SharePointQuery'),'or ROMSharePointFileID eq'))}",
-                          "$orderby": "DocumentType_x002d_TypedeDocument,DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument,Title"
-                        },
-                        "authentication": "@parameters('$authentication')"
-                      },
-                      "runtimeConfiguration": {
-                        "paginationPolicy": {
-                          "minimumItemCount": 100000
-                        }
-                      }
-                    },
-                    "Select_-_AvSec_SharePoint_Files": {
-                      "runAfter": {
-                        "Get_items_-_AvSec_Individual_Inspections": [
-                          "Succeeded"
-                        ]
-                      },
-                      "metadata": {
-                        "operationMetadataId": "98a1cf2a-0e1a-4da4-ae40-4e42c90d2a9f"
-                      },
-                      "type": "Select",
-                      "inputs": {
-                        "from": "@outputs('Get_items_-_AvSec_Individual_Inspections')?['body/value']",
-                        "select": {
-                          "Title": "@{item()?['Title']}",
-                          "Created": "@{item()?['Created']}",
-                          "CategoryEnglish": "@{item()?['Category_x002d_Cat_x00e9_gorie/Value']}",
-                          "CategoryFrench": "@{item()?['Category_x0020__x002d__x0020_Cat_x00e9_gorie_x003a__x0020_Cat_x00e9_gorie/Value']}",
-                          "Description": "@{item()?['FileDescription_x002d_descriptiondufichier']}",
-                          "DocumentLink": "@{item()?['{Link}']}",
-                          "DocumentType": "@{item()?['DocumentType_x002d_TypedeDocument']}",
-                          "DocumentReferenceID": "@{item()?['DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument']}",
-                          "FileIdentifier": "@{item()?['{Identifier}']}"
-                        }
-                      }
-                    },
-                    "Set_variable_-_AvSec_Record_List": {
-                      "runAfter": {
-                        "Select_-_AvSec_SharePoint_Files": [
-                          "Succeeded"
-                        ]
-                      },
-                      "metadata": {
-                        "operationMetadataId": "e54a3367-48da-479e-b88f-84a471f3e845"
-                      },
-                      "type": "SetVariable",
-                      "inputs": {
-                        "name": "RecordsList",
-                        "value": "@{body('Select_-_AvSec_SharePoint_Files')}"
-                      }
-                    }
-                  }
-                },
-                "Case_-_ISSO": {
-                  "case": "Intermodal Surface Security Oversight",
-                  "actions": {
-                    "Get_items_-_ISSO_Individual_Inspections": {
-                      "runAfter": {},
-                      "metadata": {
-                        "operationMetadataId": "881aaf15-cb6e-433d-9d88-3840bb6de867"
-                      },
-                      "type": "OpenApiConnection",
-                      "inputs": {
-                        "host": {
-                          "connectionName": "shared_sharepointonline",
-                          "operationId": "GetItems",
-                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
-                        },
-                        "parameters": {
-                          "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
-                          "table": "Individual Inspections - Inspections individuelles",
-                          "$filter": "ROMSharePointFileID eq @{substring(variables('SharePointQuery'),0,lastIndexOf(variables('SharePointQuery'),'or ROMSharePointFileID eq'))}",
-                          "$orderby": "DocumentType_x002d_TypedeDocument,DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument,Title"
-                        },
-                        "authentication": "@parameters('$authentication')"
-                      },
-                      "runtimeConfiguration": {
-                        "paginationPolicy": {
-                          "minimumItemCount": 100000
-                        }
-                      }
-                    },
-                    "Select_-_ISSO_SharePoint_Files": {
-                      "runAfter": {
-                        "Get_items_-_ISSO_Individual_Inspections": [
-                          "Succeeded"
-                        ]
-                      },
-                      "metadata": {
-                        "operationMetadataId": "1b4fea44-a2df-4e5f-aaa8-ec373e7a4ddf"
-                      },
-                      "type": "Select",
-                      "inputs": {
-                        "from": "@outputs('Get_items_-_ISSO_Individual_Inspections')?['body/value']",
-                        "select": {
-                          "Title": "@{item()?['Title']}",
-                          "Created": "@{item()?['Created']}",
-                          "CategoryEnglish": "@{item()?['Category_x002d_Cat_x00e9_gorie']?['Value']}",
-                          "CategoryFrench": "@{item()?['Category_x0020__x002d__x0020_Cat_x00e9_gorie_x003a__x0020_Cat_x00e9_gorie']?['Value']}",
-                          "Description": "@{item()?['FileDescription_x002d_descriptiondufichier']}",
-                          "DocumentLink": "@{item()?['{Link}']}",
-                          "DocumentType": "@{item()?['DocumentType_x002d_TypedeDocument']}",
-                          "DocumentReferenceID": "@{item()?['DocumentReferenceIdentifier_x002d_IdentifiantdeR_x00e9_f_x00e9_renceduDocument']}",
-                          "FileIdentifier": "@{item()?['{Identifier}']}"
-                        }
-                      }
-                    },
-                    "Set_variable": {
-                      "runAfter": {
-                        "Select_-_ISSO_SharePoint_Files": [
-                          "Succeeded"
-                        ]
-                      },
-                      "metadata": {
-                        "operationMetadataId": "c242ad0b-c257-4b53-8557-815719863ae4"
-                      },
-                      "type": "SetVariable",
-                      "inputs": {
-                        "name": "RecordsList",
-                        "value": "@{body('Select_-_ISSO_SharePoint_Files')}"
-                      }
-                    }
-                  }
-                }
-              },
-              "default": {
-                "actions": {}
-              },
-              "expression": "@variables('TableRecordOwner')",
-              "metadata": {
-                "operationMetadataId": "f6d8b269-c0d6-4b89-9ada-0195c2a7abf6"
-              },
-              "type": "Switch"
+              "type": "If"
             }
           },
           "runAfter": {
@@ -497,7 +386,7 @@
               {
                 "name": "SharePointQuery",
                 "type": "string",
-                "value": "@{null}"
+                "value": "@triggerBody()['text_4']"
               }
             ]
           }
@@ -579,7 +468,7 @@
             }
           },
           "runAfter": {
-            "Apply_to_each": [
+            "Initialize_variable_-_SharePointFileGroupId": [
               "Succeeded"
             ]
           },

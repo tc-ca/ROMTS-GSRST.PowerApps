@@ -1,15 +1,6 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_commondataserviceforapps_1": {
-        "runtimeSource": "embedded",
-        "connection": {
-          "connectionReferenceLogicalName": "ts_DataverseROMTSGSRST"
-        },
-        "api": {
-          "name": "shared_commondataserviceforapps"
-        }
-      },
       "shared_sharepointonline": {
         "runtimeSource": "invoker",
         "connection": {
@@ -50,39 +41,32 @@
                   "x-ms-dynamically-added": true,
                   "description": "The guid ID of the record (Example: msdyn_workorderid)",
                   "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "SharePoint File Id",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The ts_sharepointfileid of the record that is in the ts_sharepointfile table",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "Record Owner",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The business owner of the record",
+                  "x-ms-content-hint": "TEXT"
                 }
               },
               "required": [
-                "text"
+                "text",
+                "text_1",
+                "text_2"
               ]
             }
           }
         }
       },
       "actions": {
-        "List_rows_-_Get_SharePoint_File_ID": {
-          "runAfter": {
-            "Initialize_variable_-_RecordsList": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "faf4cabd-3655-45e8-9815-8de990e16009"
-          },
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_commondataserviceforapps_1",
-              "operationId": "ListRecords",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-            },
-            "parameters": {
-              "entityName": "ts_sharepointfiles",
-              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n  <entity name=\"ts_sharepointfile\">\n    <attribute name=\"ts_sharepointfileid\" />\n    <attribute name=\"ts_tablerecordowner\" />\n    <filter>\n      <condition attribute=\"ts_tablerecordid\" operator=\"eq\" value=\"@{triggerBody()['text']}\" />\n    </filter>\n  </entity>\n</fetch>"
-            },
-            "authentication": "@parameters('$authentication')"
-          }
-        },
         "Initialize_variable_-_SharePointFileId": {
           "runAfter": {},
           "metadata": {
@@ -94,50 +78,10 @@
               {
                 "name": "SharePointFileId",
                 "type": "string",
-                "value": "@{null}"
+                "value": "@triggerBody()['text_1']"
               }
             ]
           }
-        },
-        "Apply_to_each": {
-          "foreach": "@outputs('List_rows_-_Get_SharePoint_File_ID')?['body/value']",
-          "actions": {
-            "Set_variable_-_SharePointFileId": {
-              "runAfter": {},
-              "metadata": {
-                "operationMetadataId": "5e77419b-aa88-4503-8d73-5293bd37942e"
-              },
-              "type": "SetVariable",
-              "inputs": {
-                "name": "SharePointFileId",
-                "value": "@items('Apply_to_each')?['ts_sharepointfileid']"
-              }
-            },
-            "Set_variable_-_TableRecordOwner": {
-              "runAfter": {
-                "Set_variable_-_SharePointFileId": [
-                  "Succeeded"
-                ]
-              },
-              "metadata": {
-                "operationMetadataId": "b63400cd-d95c-46ac-8d5d-a36d00133ab8"
-              },
-              "type": "SetVariable",
-              "inputs": {
-                "name": "TableRecordOwner",
-                "value": "@items('Apply_to_each')?['ts_tablerecordowner']"
-              }
-            }
-          },
-          "runAfter": {
-            "List_rows_-_Get_SharePoint_File_ID": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "f02fcfa9-f5c3-4c49-93ed-642f570907d4"
-          },
-          "type": "Foreach"
         },
         "Initialize_variable_-_TableRecordOwner": {
           "runAfter": {
@@ -154,7 +98,7 @@
               {
                 "name": "TableRecordOwner",
                 "type": "string",
-                "value": "@{null}"
+                "value": "@triggerBody()['text_2']"
               }
             ]
           }
@@ -415,7 +359,7 @@
             }
           },
           "runAfter": {
-            "Apply_to_each": [
+            "Initialize_variable_-_RecordsList": [
               "Succeeded"
             ]
           },
