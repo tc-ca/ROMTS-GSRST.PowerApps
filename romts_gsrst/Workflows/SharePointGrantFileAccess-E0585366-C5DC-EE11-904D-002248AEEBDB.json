@@ -2,21 +2,12 @@
   "properties": {
     "connectionReferences": {
       "shared_sharepointonline_1": {
-        "runtimeSource": "invoker",
+        "runtimeSource": "embedded",
         "connection": {
           "connectionReferenceLogicalName": "ts_SharePointROMTSGSRST"
         },
         "api": {
           "name": "shared_sharepointonline"
-        }
-      },
-      "shared_commondataserviceforapps": {
-        "runtimeSource": "embedded",
-        "connection": {
-          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_4a7e9"
-        },
-        "api": {
-          "name": "shared_commondataserviceforapps"
         }
       }
     },
@@ -64,12 +55,20 @@
                   "x-ms-dynamically-added": true,
                   "description": "The ItemId of the SharePoint file you want to grant Can Edit access too",
                   "x-ms-content-hint": "TEXT"
+                },
+                "text_3": {
+                  "title": "Manager Email",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The email of the users manager, set to 'no manager' if none",
+                  "x-ms-content-hint": "TEXT"
                 }
               },
               "required": [
                 "text",
                 "text_1",
-                "text_2"
+                "text_2",
+                "text_3"
               ]
             }
           }
@@ -78,7 +77,7 @@
       "actions": {
         "Switch_-_Who_is_the_Record_Owner": {
           "runAfter": {
-            "Apply_to_each": [
+            "Condition_-_Manager_email_is_not_equal_to_no_manager": [
               "Succeeded"
             ]
           },
@@ -103,8 +102,8 @@
                         "parameters": {
                           "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
                           "table": "2ce0827f-419c-4446-9d01-2770297b31a5",
-                          "id": "@triggerBody()['text_2']",
-                          "parameter/recipients": " @{triggerBody()['text']}@{variables('ManagerEmail')}",
+                          "id": "@variables('CreatedSharePointFileID')",
+                          "parameter/recipients": " @{variables('Users List')}",
                           "parameter/roleValue": "role:1073741827",
                           "parameter/sendEmail": false
                         },
@@ -165,8 +164,8 @@
                         "parameters": {
                           "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
                           "table": "57ae4d14-3c61-41be-a2b2-9e42b6346322",
-                          "id": "@triggerBody()['text_2']",
-                          "parameter/recipients": "@{triggerBody()['text']}@{variables('ManagerEmail')}",
+                          "id": "@variables('CreatedSharePointFileID')",
+                          "parameter/recipients": "@variables('Users List')",
                           "parameter/roleValue": "role:1073741827",
                           "parameter/sendEmail": false
                         },
@@ -223,7 +222,7 @@
               }
             }
           },
-          "expression": "@variables('ManagerEmail')",
+          "expression": "@triggerBody()['text_1']",
           "metadata": {
             "operationMetadataId": "4c338975-3376-4eba-a37b-70ff6951f6c1"
           },
@@ -273,73 +272,97 @@
             ]
           }
         },
-        "Initialize_variable_-_Manager_Email": {
+        "Initialize_variable_-_Users_List": {
           "runAfter": {
             "Initialize_variable_-_Result": [
               "Succeeded"
             ]
           },
           "metadata": {
-            "operationMetadataId": "8c4ba781-80ea-4eac-bad1-0b74c7e29ab1"
+            "operationMetadataId": "6cea3191-5a0a-4c28-9294-4290e5ebb099"
           },
           "type": "InitializeVariable",
           "inputs": {
             "variables": [
               {
-                "name": "ManagerEmail",
+                "name": "Users List",
                 "type": "string",
-                "value": "@{null}"
+                "value": "@triggerBody()['text']"
               }
             ]
           }
         },
-        "List_rows_-_Manager_Email": {
-          "runAfter": {
-            "Initialize_variable_-_Manager_Email": [
-              "Succeeded"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "2bd6e1f0-f72d-466f-9a43-e3b108633a80"
-          },
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_commondataserviceforapps",
-              "operationId": "ListRecords",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-            },
-            "parameters": {
-              "entityName": "systemusers",
-              "fetchXml": "<fetch xmlns:generator=\"MarkMpn.SQL4CDS\" distinct=\"true\">\n  <entity name=\"systemuser\">\n    <attribute name=\"internalemailaddress\" />\n    <filter>\n      <condition attribute=\"internalemailaddress\" operator=\"ne\" value=\"Derek.Burney@tc.gc.ca\" />\n    </filter>\n    <link-entity name=\"team\" from=\"administratorid\" to=\"systemuserid\">\n      <filter>\n        <condition attribute=\"name\" operator=\"ne\" value=\"Transport Canada\" />\n        <condition attribute=\"name\" operator=\"not-like\" value=\"%msdyn_workorder%\" />\n        <condition attribute=\"name\" operator=\"not-like\" value=\"%ROMTS-GSRST-USERLIST%\" />\n        <condition attribute=\"name\" operator=\"not-like\" value=\"%POWER BI SERVICE%\" />\n        <condition attribute=\"name\" operator=\"not-like\" value=\"%Aviation Security%\" />\n        <condition attribute=\"name\" operator=\"not-like\" value=\"%Intermodal Surface Security Oversight (ISSO)%\" />\n        <condition attribute=\"name\" operator=\"not-like\" value=\"%PPP Analyst%\" />\n        <condition attribute=\"name\" operator=\"not-like\" value=\"%TCOMS%\" />\n        <condition attribute=\"name\" operator=\"not-like\" value=\"%ISSO Business Admins%\" />\n        <condition attribute=\"name\" operator=\"not-like\" value=\"%ISSO Inspectors%\" />\n        <condition attribute=\"name\" operator=\"not-like\" value=\"%ISSO Managers%\" />\n        <condition attribute=\"name\" operator=\"not-like\" value=\"%ISSO Planners%\" />\n        <condition attribute=\"name\" operator=\"not-like\" value=\"%ISSO Questionnaire Admins%\" />\n        <condition attribute=\"name\" operator=\"not-like\" value=\"%ISSO Questionnaire Admins%\" />\n      </filter>\n      <link-entity name=\"teammembership\" from=\"teamid\" to=\"teamid\">\n        <link-entity name=\"systemuser\" alias=\"systemuser_childuser\" from=\"systemuserid\" to=\"systemuserid\">\n          <filter>\n            <condition attribute=\"internalemailaddress\" operator=\"eq\" value=\"christina.bourque@tc.gc.ca\" />\n          </filter>\n        </link-entity>\n      </link-entity>\n    </link-entity>\n  </entity>\n</fetch>"
-            },
-            "authentication": "@parameters('$authentication')"
-          }
-        },
-        "Apply_to_each": {
-          "foreach": "@outputs('List_rows_-_Manager_Email')?['body/value']",
+        "Condition_-_Manager_email_is_not_equal_to_no_manager": {
           "actions": {
-            "Set_variable": {
+            "Append_to_-_Users_List": {
               "runAfter": {},
               "metadata": {
-                "operationMetadataId": "f9ea75cc-5743-4a48-b7f0-4956f6e2cc4c"
+                "operationMetadataId": "277efbd3-a776-459b-8bc3-3cc2a494219a"
               },
-              "type": "SetVariable",
+              "type": "AppendToStringVariable",
               "inputs": {
-                "name": "ManagerEmail",
-                "value": "@items('Apply_to_each')?['internalemailaddress']"
+                "name": "Users List",
+                "value": "; @{triggerBody()['text_3']};"
               }
             }
           },
           "runAfter": {
-            "List_rows_-_Manager_Email": [
+            "Initialize_variable_-_CreatedSharePointFileID": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@triggerBody()['text_3']",
+                "@variables('NoManager')"
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "17a03c40-ba93-4565-a93b-84704810d538"
+          },
+          "type": "If"
+        },
+        "Initialize_variable_-_NoManager": {
+          "runAfter": {
+            "Initialize_variable_-_Users_List": [
               "Succeeded"
             ]
           },
           "metadata": {
-            "operationMetadataId": "6aac9722-634c-4049-b69c-82ab8701763c"
+            "operationMetadataId": "19faf44d-192f-49c5-af9e-269d5d0247db"
           },
-          "type": "Foreach"
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "NoManager",
+                "type": "string",
+                "value": "no manager"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_CreatedSharePointFileID": {
+          "runAfter": {
+            "Initialize_variable_-_NoManager": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4d26d7a8-631b-4d4d-b4a8-2d7cc55018fa"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "CreatedSharePointFileID",
+                "type": "integer",
+                "value": "@int(triggerBody()['text_2'])"
+              }
+            ]
+          }
         }
       }
     },

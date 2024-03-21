@@ -47,6 +47,11 @@
         <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.Button2.Button.Alt" Command="ts.msdyn_workorderservicetask.AttachFile" Id="ts.msdyn_workorderservicetask.Button2.Button" LabelText="$LocLabels:ts.msdyn_workorderservicetask.Button2.Button.LabelText" Sequence="10" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.Button2.Button.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.Button2.Button.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorderservicetask.CreateQualityControl.CustomAction" Location="Mscrm.SubGrid.msdyn_workorderservicetask.MainTab.Management.Controls._children" Sequence="115">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.CreateQualityControl.Alt" Command="ts.msdyn_workorderservicetask.CreateQualityControl" Id="ts.msdyn_workorderservicetask.CreateQualityControl" LabelText="$LocLabels:ts.msdyn_workorderservicetask.CreateQualityControl.LabelText" Sequence="115" TemplateAlias="isv" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.CreateQualityControl.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.CreateQualityControl.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorderservicetask.Documents.Button.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="16">
       <CommandUIDefinition>
         <Button Command="ts.msdyn_workorderservicetask.Documents.Command" Id="ts.msdyn_workorderservicetask.Documents.Button" LabelText="$LocLabels:ts.msdyn_workorderservicetask.Documents.Button.LabelText" Sequence="16" TemplateAlias="o1" />
@@ -516,6 +521,18 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorderservicetask.CreateQualityControl">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorderservicetask.isManagerOrBusinessAdminOrSystemAdmin" />
+        <EnableRule Id="ts.msdyn_workorderservicetask.isOnWorkOrderForm" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="createQualityControlServiceTask" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorderservicetask.Documents.Command">
       <EnableRules />
       <DisplayRules />
@@ -804,8 +821,16 @@
       <EnableRule Id="ts.msdyn_workorderservicetask.isEntityWorkOrder">
         <EntityRule EntityName="msdyn_workorder" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="false" />
       </EnableRule>
+      <EnableRule Id="ts.msdyn_workorderservicetask.isManagerOrBusinessAdminOrSystemAdmin">
+        <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+          <StringParameter Value="System Administrator|ROM - Business Admin|ROM - Manager" />
+        </CustomRule>
+      </EnableRule>
       <EnableRule Id="ts.msdyn_workorderservicetask.IsNotCompleted">
         <ValueRule Field="statuscode" Value="918640002" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorderservicetask.isOnWorkOrderForm">
+        <EntityRule EntityName="msdyn_workorder" AppliesTo="PrimaryEntity" Default="false" />
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorderservicetask.isSystemOrBusinessAdmins">
         <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
@@ -1000,46 +1025,79 @@
     <LocLabel Id="ts.msdyn_workorderservicetask.Button2.Button.Alt">
       <Titles>
         <Title description="Attach File" languagecode="1033" />
+        <Title description="Attach File" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.Button2.Button.LabelText">
       <Titles>
         <Title description="Attach File" languagecode="1033" />
+        <Title description="Attach File" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.Button2.Button.ToolTipDescription">
       <Titles>
         <Title description="Attach File" languagecode="1033" />
+        <Title description="Attach File" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.Button2.Button.ToolTipTitle">
       <Titles>
         <Title description="Attach File" languagecode="1033" />
+        <Title description="Attach File" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.CreateQualityControl.Alt">
+      <Titles>
+        <Title description="Create Quality Control" languagecode="1033" />
+        <Title description="Créer liste de contrôle" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.CreateQualityControl.LabelText">
+      <Titles>
+        <Title description="Create Quality Control" languagecode="1033" />
+        <Title description="Créer liste de contrôle" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.CreateQualityControl.ToolTipDescription">
+      <Titles>
+        <Title description="Create Quality Control" languagecode="1033" />
+        <Title description="Créer liste de contrôle" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.CreateQualityControl.ToolTipTitle">
+      <Titles>
+        <Title description="Create Quality Control" languagecode="1033" />
+        <Title description="Créer liste de contrôle" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.Documents.Button.LabelText">
       <Titles>
         <Title description="Documents" languagecode="1033" />
+        <Title description="Documents" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.TSIS.SendReportButton.Alt">
       <Titles>
         <Title description="Send Report" languagecode="1033" />
+        <Title description="Send Report" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.TSIS.SendReportButton.LabelText">
       <Titles>
         <Title description="Send Report" languagecode="1033" />
+        <Title description="Send Report" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.TSIS.SendReportButton.ToolTipDescription">
       <Titles>
         <Title description="Send a report" languagecode="1033" />
+        <Title description="Send a report" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.TSIS.SendReportButton.ToolTipTitle">
       <Titles>
         <Title description="Send Report" languagecode="1033" />
+        <Title description="Send Report" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.TSISPrintSurvey.Form.Alt">

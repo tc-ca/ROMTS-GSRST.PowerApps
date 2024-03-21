@@ -2,7 +2,7 @@
   "properties": {
     "connectionReferences": {
       "shared_sharepointonline": {
-        "runtimeSource": "invoker",
+        "runtimeSource": "embedded",
         "connection": {
           "connectionReferenceLogicalName": "ts_SharePointROMTSGSRST"
         },
@@ -97,6 +97,20 @@
                   "x-ms-dynamically-added": true,
                   "description": "The ts_sharepointfileid of the record that is in the ts_sharepointfile table",
                   "x-ms-content-hint": "TEXT"
+                },
+                "text_8": {
+                  "title": "Manager Email",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The email of the users manager",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_9": {
+                  "title": "User Email",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "The email of the user who is uploading the file",
+                  "x-ms-content-hint": "TEXT"
                 }
               },
               "required": [
@@ -108,7 +122,9 @@
                 "text_6",
                 "text_7",
                 "text_10",
-                "text_3"
+                "text_3",
+                "text_8",
+                "text_9"
               ]
             }
           }
@@ -149,7 +165,7 @@
         },
         "Switch_-_Who_is_the_Record_Owner": {
           "runAfter": {
-            "Initialize_variable_-_UniqueFileName": [
+            "Initialize_variable_-_CreatedSharePointFileID": [
               "Succeeded"
             ]
           },
@@ -170,16 +186,19 @@
                           "type": "OpenApiConnection",
                           "inputs": {
                             "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
                               "connectionName": "shared_sharepointonline",
-                              "operationId": "GetItems",
-                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                              "operationId": "GetItems"
                             },
                             "parameters": {
                               "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
                               "table": "ba3041d4-952c-4bde-af08-41b68e7428b6",
                               "$filter": "ID eq '@{triggerBody()['text_10']}' "
                             },
-                            "authentication": "@parameters('$authentication')"
+                            "authentication": {
+                              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+                              "type": "Raw"
+                            }
                           }
                         },
                         "Create_file": {
@@ -194,9 +213,9 @@
                           "type": "OpenApiConnection",
                           "inputs": {
                             "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
                               "connectionName": "shared_sharepointonline",
-                              "operationId": "CreateFile",
-                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                              "operationId": "CreateFile"
                             },
                             "parameters": {
                               "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
@@ -204,7 +223,10 @@
                               "name": "@{variables('UniqueFileName')}-@{items('Apply_to_each_AvSec')['Name']}",
                               "body": "@base64ToBinary(items('Apply_to_each_AvSec')['base64'])"
                             },
-                            "authentication": "@parameters('$authentication')"
+                            "authentication": {
+                              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+                              "type": "Raw"
+                            }
                           },
                           "runtimeConfiguration": {
                             "contentTransfer": {
@@ -223,9 +245,9 @@
                               "type": "OpenApiConnection",
                               "inputs": {
                                 "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
                                   "connectionName": "shared_sharepointonline",
-                                  "operationId": "PatchFileItem",
-                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                                  "operationId": "PatchFileItem"
                                 },
                                 "parameters": {
                                   "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
@@ -241,7 +263,10 @@
                                   "item/OPI/Value": "ABAC|740b6c8f-9f0e-463d-bdd9-3a74988c2e27",
                                   "item/OData__ExtendedDescription": "@triggerBody()['text_4']"
                                 },
-                                "authentication": "@parameters('$authentication')"
+                                "authentication": {
+                                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+                                  "type": "Raw"
+                                }
                               }
                             }
                           },
@@ -254,6 +279,43 @@
                             "operationMetadataId": "cb63a438-8500-4d82-b106-91777360e82e"
                           },
                           "type": "Foreach"
+                        },
+                        "Run_a_Child_Flow": {
+                          "runAfter": {
+                            "Set_variable_-_CreatedSharePointFileID": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "51779a3f-6511-4a77-8efc-4598d13b9a3d"
+                          },
+                          "type": "Workflow",
+                          "inputs": {
+                            "host": {
+                              "workflowReferenceName": "e0585366-c5dc-ee11-904d-002248aeebdb"
+                            },
+                            "body": {
+                              "text": "@triggerBody()['text_9']",
+                              "text_1": "@triggerBody()['text_1']",
+                              "text_2": "@variables('CreatedSharePointFileID')",
+                              "text_3": "@triggerBody()['text_8']"
+                            }
+                          }
+                        },
+                        "Set_variable_-_CreatedSharePointFileID": {
+                          "runAfter": {
+                            "Apply_to_each": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "d9ca2861-1a11-4793-872d-c3187993ca84"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "CreatedSharePointFileID",
+                            "value": "@{outputs('Create_file')?['body/ItemId']}"
+                          }
                         }
                       },
                       "runAfter": {},
@@ -361,16 +423,19 @@
                           "type": "OpenApiConnection",
                           "inputs": {
                             "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
                               "connectionName": "shared_sharepointonline",
-                              "operationId": "GetItems",
-                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                              "operationId": "GetItems"
                             },
                             "parameters": {
                               "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
                               "table": "18d088f0-3918-4b3b-9e65-fd31ce962342",
                               "$filter": "ID eq '@{triggerBody()['text_10']}' "
                             },
-                            "authentication": "@parameters('$authentication')"
+                            "authentication": {
+                              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+                              "type": "Raw"
+                            }
                           }
                         },
                         "Create_file_-_ISSO_File": {
@@ -385,9 +450,9 @@
                           "type": "OpenApiConnection",
                           "inputs": {
                             "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
                               "connectionName": "shared_sharepointonline",
-                              "operationId": "CreateFile",
-                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                              "operationId": "CreateFile"
                             },
                             "parameters": {
                               "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
@@ -395,7 +460,10 @@
                               "name": "@{variables('UniqueFileName')}-@{items('Apply_to_each_ISSO')['Name']}",
                               "body": "@base64ToBinary(items('Apply_to_each_ISSO')['base64'])"
                             },
-                            "authentication": "@parameters('$authentication')"
+                            "authentication": {
+                              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+                              "type": "Raw"
+                            }
                           },
                           "runtimeConfiguration": {
                             "contentTransfer": {
@@ -414,9 +482,9 @@
                               "type": "OpenApiConnection",
                               "inputs": {
                                 "host": {
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline",
                                   "connectionName": "shared_sharepointonline",
-                                  "operationId": "PatchFileItem",
-                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                                  "operationId": "PatchFileItem"
                                 },
                                 "parameters": {
                                   "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
@@ -432,7 +500,10 @@
                                   "item/Lang/Value": "ENG|ea6cfe94-b62a-4502-b387-6430cecaac66",
                                   "item/OPI/Value": "AFCCA|bcd39dd2-c1ff-4862-b346-31e5429ef8d3"
                                 },
-                                "authentication": "@parameters('$authentication')"
+                                "authentication": {
+                                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']",
+                                  "type": "Raw"
+                                }
                               }
                             }
                           },
@@ -445,6 +516,43 @@
                             "operationMetadataId": "229eef5b-ae22-46c7-a255-6a9aa87cf4f4"
                           },
                           "type": "Foreach"
+                        },
+                        "Run_a_Child_Flow_2": {
+                          "runAfter": {
+                            "Set_variable_-_CreatedSharePointFileID_-_ISSO": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "81b0916f-e6a4-4b30-acb5-08cb8c07e5f9"
+                          },
+                          "type": "Workflow",
+                          "inputs": {
+                            "host": {
+                              "workflowReferenceName": "e0585366-c5dc-ee11-904d-002248aeebdb"
+                            },
+                            "body": {
+                              "text": "@triggerBody()['text_9']",
+                              "text_1": "@triggerBody()['text_1']",
+                              "text_2": "@variables('CreatedSharePointFileID')",
+                              "text_3": "@triggerBody()?['text_8']"
+                            }
+                          }
+                        },
+                        "Set_variable_-_CreatedSharePointFileID_-_ISSO": {
+                          "runAfter": {
+                            "Apply_to_each_2": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "80ecb95e-d43c-4b8c-bcf9-74da89152954"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "CreatedSharePointFileID",
+                            "value": "@{outputs('Create_file_-_ISSO_File')?['body/ItemId']}"
+                          }
                         }
                       },
                       "runAfter": {},
@@ -701,10 +809,30 @@
               }
             ]
           }
+        },
+        "Initialize_variable_-_CreatedSharePointFileID": {
+          "runAfter": {
+            "Initialize_variable_-_UniqueFileName": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "739a80a3-43d8-4f54-86f6-b55f894db2da"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "CreatedSharePointFileID",
+                "type": "string",
+                "value": "none"
+              }
+            ]
+          }
         }
       }
     },
-    "templateName": ""
+    "templateName": null
   },
   "schemaVersion": "1.0.0.0"
 }

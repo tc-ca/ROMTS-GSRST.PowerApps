@@ -1,4 +1,4 @@
-function FileUploadData() {
+﻿function FileUploadData() {
     this.recordTableNameEnglish = "";
     this.recordTableNameFrench = "";
     this.recordOwner = "";
@@ -601,6 +601,7 @@ function getUsersManager(fileUploadData) {
             <attribute name="internalemailaddress" />
             <filter>
               <condition attribute="systemuserid" operator="ne" value="c5cbed71-2e26-ec11-b6e6-000d3af4f643"  />
+              <condition attribute="internalemailaddress" operator="not-null" />
             </filter>
             <link-entity name="team" from="administratorid" to="systemuserid">
               <filter>
@@ -638,7 +639,7 @@ function getUsersManager(fileUploadData) {
             function success(result) {
                 if (result.entities[0] != undefined) {
 
-                    // get the SharePoint File Group ID for the record
+                    // get the Manager
                     if (result.entities[0].internalemailaddress != null) {
                         fileUploadData.usersManagerEmail = result.entities[0].internalemailaddress;
                     }
