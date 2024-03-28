@@ -525,6 +525,7 @@
       <EnableRules>
         <EnableRule Id="ts.msdyn_workorderservicetask.isManagerOrBusinessAdminOrSystemAdmin" />
         <EnableRule Id="ts.msdyn_workorderservicetask.isOnWorkOrderForm" />
+        <EnableRule Id="ts.msdyn_workorderservicetask.isAvSecWorkOrder" />
       </EnableRules>
       <DisplayRules />
       <Actions>
@@ -813,6 +814,11 @@
       <EnableRule Id="ts.msdyn_workorderservicetask.EnableRule.isAdminsManagerOrPlanner">
         <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
           <StringParameter Value="System Administrator|ROM - Business Admin|ROM - Manager|ROM - AvSec Planner|ROM - Planner|ROM - ISSO Planner" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorderservicetask.isAvSecWorkOrder">
+        <CustomRule FunctionName="isAvSecWorkOrder" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
         </CustomRule>
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorderservicetask.IsCompleted">
