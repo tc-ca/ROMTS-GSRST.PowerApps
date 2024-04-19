@@ -174,7 +174,7 @@
                           <label description="Site" languagecode="1033" />
                           <label description="Site" languagecode="1036" />
                         </labels>
-                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="false">
+                        <control id="ts_site" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_site" disabled="false" uniqueid="{e077d47e-82ee-3b1b-57a8-7956c7a36716}">
                           <parameters>
                             <DisableMru>true</DisableMru>
                             <DisableViewPicker>true</DisableViewPicker>
@@ -200,6 +200,23 @@
                             <DependentAttributeType>msdyn_functionallocation</DependentAttributeType>
                             <AllowFilterOff>true</AllowFilterOff>
                             <AvailableViewIds>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{42074ca1-2685-9626-a753-4e93e9974374}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Sub subsite" languagecode="1033" />
+                        </labels>
+                        <control id="ts_subsubsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subsubsite" disabled="false" uniqueid="{822a172e-ce29-b1c5-26a9-795161cb0a2b}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
                           </parameters>
                         </control>
                       </cell>
@@ -4111,6 +4128,16 @@
         <event name="onchange" application="false" active="false" attribute="ovs_revisedquarterid">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.scheduledQuarterOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{e58ac9d2-2144-e473-24d2-5c7b9c426d3a}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="msdyn_functionallocation">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.subSiteOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{b580a5a8-a874-3ece-ad59-46de127ca914}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_subsubsite">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.subSubSiteOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{ed20a458-4346-3ae6-4293-c63cea0292d6}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

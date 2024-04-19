@@ -49,6 +49,10 @@
               <condition attribute="ts_operationactivityisoperational" operator="eq" value="1" />
               <condition attribute="ts_operationactivity" operator="null" />
             </filter>
+            <filter type="or">
+              <condition attribute="ts_keephidden" operator="eq" value="0" />
+              <condition attribute="ts_keephidden" operator="null" />
+            </filter>
           </filter>
           <link-entity alias="a_bac7198b333e4c7c87f259827ab829f0" name="ovs_operation" to="ts_operation" from="ovs_operationid" link-type="outer" visible="false">
             <attribute name="ts_subsite" />

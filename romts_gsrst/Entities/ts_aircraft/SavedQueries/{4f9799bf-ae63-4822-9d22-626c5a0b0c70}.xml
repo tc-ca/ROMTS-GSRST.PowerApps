@@ -11,7 +11,11 @@
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_aircraftid">
           <cell name="ts_name" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="createdon" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_fieldname" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_mark" width="100" />
+          <cell name="ts_manufacturer" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="ts_model" width="100" />
+          <cell name="ts_registeredowner" width="100" />
         </row>
       </grid>
     </layoutxml>
@@ -20,11 +24,15 @@
       <fetch version="1.0" mapping="logical">
         <entity name="ts_aircraft">
           <attribute name="ts_name" />
-          <attribute name="createdon" />
           <order attribute="ts_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="ts_registeredowner" />
+          <attribute name="ts_model" />
+          <attribute name="ts_mark" />
+          <attribute name="ts_manufacturer" />
+          <attribute name="ts_fieldname" />
           <attribute name="ts_aircraftid" />
         </entity>
       </fetch>
