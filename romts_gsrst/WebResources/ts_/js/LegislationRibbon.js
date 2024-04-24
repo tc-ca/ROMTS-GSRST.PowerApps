@@ -1,7 +1,9 @@
+﻿
 
-
-function addExistingLegislationsToEntity(primaryControl, selectedControl) {
+async function addExistingLegislationsToEntity(primaryControl, selectedControl) {
     const formContext = primaryControl;
+    debugger;
+    var workOrderCondition = await filterOperationTypeLegislations(formContext);
     Xrm.Utility.getEntityMetadata(primaryControl._entityName).then(function (primaryEntityData) {
         const entityName = Xrm.Page.data.entity.getEntityName();
         const entitySetName = primaryEntityData.EntitySetName; //name that is used in api calls, it's normally the entity name in plural (qm_rclegislation -> qm_rclegislations)
@@ -9,7 +11,6 @@ function addExistingLegislationsToEntity(primaryControl, selectedControl) {
 
         var defaultViewId = "";
         var viewIds = "";
-
         var legislationsAlreadyAssociatedCondition = filterExistingLegislations(formContext, entitySetName, recordId, selectedControl);
 
         if (entityName == "msdyn_workorderservicetask") { //work order service task form
@@ -148,14 +149,55 @@ function setLegislationLookupControl(formContext, selectedControl, entitySetName
         });
 }
 
+async function filterOperationTypeLegislations(formContext) {
+    var operationTypeCondition = "";
+
+    if (formContext.getAttribute("msdyn_workorder") != null) {
+        const workOrderValue = formContext.getAttribute("msdyn_workorder").getValue();
+        const workOrderId = workOrderValue ? workOrderValue[0].id : "";
+
+        var workOrder = await Xrm.WebApi.retrieveRecord("msdyn_workorder", workOrderId, "?$select=ovs_operationtypeid&$expand=ovs_operationtypeid($expand=owningbusinessunit($select=name))");
+        if (workOrder != null && workOrder.ovs_operationtypeid != null) {
+            var operationTypeId = workOrder.ovs_operationtypeid.ovs_operationtypeid;
+
+            var fetchXML = [
+                "<fetch version='1.0' mapping='logical' returntotalrecordcount='true' no-lock='false'>",
+                "  <entity name='ts_ovs_operationtype_qm_rclegislation'>",
+                "    <attribute name='qm_rclegislationid' />",
+                "     <filter>",
+                "       <condition attribute='ovs_operationtypeid' operator='eq' value='", operationTypeId, "'/>",
+                "     </filter>",
+                "  </entity>",
+                "</fetch>"
+            ].join("");
+
+            fetchXML = "?fetchXml=" + encodeURIComponent(fetchXML);
+            var operationtypeLegislation = await Xrm.WebApi.retrieveMultipleRecords('ts_ovs_operationtype_qm_rclegislation', fetchXML);
+            debugger;
+            if (operationtypeLegislation.entities.length > 0) {
+
+            }
+        }
+    }
+    return operationTypeCondition;
+}
+
 function setWorkOrderServiceTaskLookupControl(formContext, selectedControl, entitySetName, recordId, defaultViewId, viewIds, legislationsAlreadyAssociatedCondition) {
-    //var operationTypeFilterValue = formContext.getAttribute("ts_operationtypefilter").getValue();
-    //var operationTypeLegislations = operationTypeFilterValue != null ? `<condition attribute='ts_operationtype' operator='eq' value='${operationTypeFilterValue[0].id}' />` : "";
     var legislationSourceFilterValue = formContext.getAttribute("ts_legislationsourcefilter").getValue();
     var legislationSourceLegislations = legislationSourceFilterValue != null ? `<condition attribute='qm_tylegislationsourceid' operator='eq' value='${legislationSourceFilterValue[0].id}' />` : "";
 
     var legislationTypeFilterValue = formContext.getAttribute("ts_legislationtypefilter").getValue();
     var legislationTypeLegislations = legislationTypeFilterValue != null ? `<condition attribute='qm_tylegislationtypeid' operator='eq' value='${legislationTypeFilterValue[0].id}' />` : "";
+
+    var operationTypeLegislations = `<link-entity name='ts_ovs_operationtype_qm_rclegislation' intersect='true' visible='false' from='qm_rclegislationid' to='qm_rclegislationid'>
+			<link-entity name='ovs_operationtype' alias='ab' from='ovs_operationtypeid' to='ovs_operationtypeid'>
+				<filter type='and'>
+					<condition attribute='ovs_operationtypeid' operator='eq' value='{8b614ef0-c651-eb11-a812-000d3af3ac0d}' uitype='ovs_operationtype'/>
+				</filter>
+			</link-entity>
+		</link-entity>`;
+
+
 
     var lookupOptions =
     {
@@ -170,6 +212,7 @@ function setWorkOrderServiceTaskLookupControl(formContext, selectedControl, enti
                     `${legislationsAlreadyAssociatedCondition}` +
                     `${legislationSourceLegislations}` +
                     `${legislationTypeLegislations}` +
+                    `<condition attribute="ts_provisioncategory" operator="ne" value="{18ADFA7F-33F5-EB11-94EF-000D3AF36036}" />` + //Filter out Non-Imperative Legislations
                     `</filter> `,
                 entityLogicalName: "qm_rclegislation"
             }

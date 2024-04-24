@@ -33,7 +33,8 @@
                     <row>
                       <cell id="{466554a1-d394-4822-a0be-9ca6286cd292}" showlabel="true" locklevel="0">
                         <labels>
-                          <label description="Field Name" languagecode="1033" />
+                          <label description="Field Name (E)" languagecode="1033" />
+                          <label description="Field Name (F)" languagecode="1036" />
                         </labels>
                         <control id="ts_fieldname" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_fieldname" disabled="false" />
                       </cell>
@@ -42,6 +43,7 @@
                       <cell id="{85e457e7-9b42-041c-2bb0-a79e90ae8d5e}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Mark" languagecode="1033" />
+                          <label description="Marque" languagecode="1036" />
                         </labels>
                         <control id="ts_mark" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_mark" disabled="false" />
                       </cell>
@@ -50,14 +52,16 @@
                       <cell id="{aea14727-3366-c17c-7a3a-955261ab12c1}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Manufacturer" languagecode="1033" />
+                          <label description="Constructeur" languagecode="1036" />
                         </labels>
-                        <control id="ts_manufacturer" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_manufacturer" disabled="false" />
+                        <control id="ts_manufacturer" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_manufacturer" disabled="false" uniqueid="{a68d4c10-343c-2d5b-56e6-1767e6b65b90}" />
                       </cell>
                     </row>
                     <row>
                       <cell id="{35d61107-80e4-2e62-30c4-41c430ce8771}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Model" languagecode="1033" />
+                          <label description="&#x9;&#xA;Modèle" languagecode="1036" />
                         </labels>
                         <control id="ts_model" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_model" disabled="false" />
                       </cell>
@@ -66,6 +70,7 @@
                       <cell id="{83048757-425e-bc16-8ccd-ebc2cc499d24}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Registered Owner" languagecode="1033" />
+                          <label description="Propriétere immatriculé" languagecode="1036" />
                         </labels>
                         <control id="ts_registeredowner" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_registeredowner" disabled="false" />
                       </cell>
@@ -138,6 +143,21 @@
         </NavBarAreas>
       </Navigation>
       <controlDescriptions />
+      <formLibraries>
+        <Library name="ts_/js/aircraft.js" libraryUniqueId="{891c5147-44a1-e9d9-261a-48cb20d32917}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.Aircraft.onLoad" libraryName="ts_/js/aircraft.js" handlerUniqueId="{739eb8aa-788c-48d3-4892-135ab8d9cee6}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_manufacturer">
+          <Handlers>
+            <Handler functionName="ROM.Aircraft.aircraftManufacturerOnChange" libraryName="ts_/js/aircraft.js" handlerUniqueId="{79c815e8-4160-2b9c-8795-a61e9e49c4c2}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
       <DisplayConditions Order="1">
         <Role Id="{EED78BB6-BCA5-EE11-A568-002248AEEBDB}" />
         <Role Id="{8281365B-0A40-ED11-BBA2-0022483D5EE0}" />

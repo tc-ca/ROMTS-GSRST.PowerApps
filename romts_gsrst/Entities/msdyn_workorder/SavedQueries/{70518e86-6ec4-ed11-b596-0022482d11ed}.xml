@@ -3,7 +3,7 @@
   <savedquery>
     <isquickfindquery>0</isquickfindquery>
     <isprivate>0</isprivate>
-    <isdefault>0</isdefault>
+    <isdefault>1</isdefault>
     <savedqueryid>{70518e86-6ec4-ed11-b596-0022482d11ed}</savedqueryid>
     <layoutxml>
       <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
@@ -14,6 +14,7 @@
           <cell name="msdyn_systemstatus" width="240" />
           <cell name="msdyn_substatus" width="100" />
           <cell name="msdyn_priority" width="130" />
+          <cell name="msdyn_bookingsummary" width="145" />
           <cell name="createdon" width="200" />
         </row>
       </grid>
@@ -30,7 +31,11 @@
           <attribute name="msdyn_primaryincidenttype" />
           <attribute name="msdyn_name" />
           <attribute name="msdyn_workorderid" />
+          <attribute name="msdyn_bookingsummary" />
           <order attribute="createdon" descending="true" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
         </entity>
       </fetch>
     </fetchxml>
