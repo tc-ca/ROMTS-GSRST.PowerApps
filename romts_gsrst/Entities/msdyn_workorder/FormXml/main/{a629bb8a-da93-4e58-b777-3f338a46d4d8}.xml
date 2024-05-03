@@ -205,6 +205,14 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{8e25ba7e-954a-6484-611d-34a1a90b1b33}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Sub subsite" languagecode="1033" />
+                        </labels>
+                        <control id="ts_subsubsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_subsubsite" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{a2f1ae0b-4e24-4851-8749-37abfd3f460f}" locklevel="0" visible="false" labelid="{6ddea87c-9424-418c-9540-4471e2d79b01}">
                         <labels>
                           <label description="Work Order Start Date" languagecode="1033" />
@@ -307,7 +315,7 @@
                       <cell id="{bdcd38b9-bb31-8927-e423-ac19ae61311b}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Overtime Required?" languagecode="1033" />
-                          <label description="Overtime Required?" languagecode="1036" />
+                          <label description="Heures supplémentaires nécessaires" languagecode="1036" />
                         </labels>
                         <control id="ts_overtimerequired" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" datafieldname="ts_overtimerequired" disabled="false" uniqueid="{1412a66b-6187-9377-ca54-97732022d041}" />
                       </cell>
@@ -1503,6 +1511,26 @@
                             <DisableViewPicker>true</DisableViewPicker>
                             <DefaultViewId>{D06D7B47-80BF-ED11-83FF-0022483C5061}</DefaultViewId>
                             <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{83c23041-2207-25b1-2487-4dc82123b07e}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Operating Carrier Operation" languagecode="1033" />
+                        </labels>
+                        <control id="ts_operatingcarrieroperation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operatingcarrieroperation" disabled="false" uniqueid="{db4011be-c073-0d26-1c70-2e3678dc1171}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{DFCAC278-14E6-45D1-8E67-289F2C7082A1}</DefaultViewId>
+                            <FilterRelationshipName>ts_ovs_operation_stakeholder_account</FilterRelationshipName>
+                            <DependentAttributeName>msdyn_workorder.ts_operatingcarrier</DependentAttributeName>
+                            <DependentAttributeType>account</DependentAttributeType>
+                            <AllowFilterOff>true</AllowFilterOff>
                           </parameters>
                         </control>
                       </cell>
