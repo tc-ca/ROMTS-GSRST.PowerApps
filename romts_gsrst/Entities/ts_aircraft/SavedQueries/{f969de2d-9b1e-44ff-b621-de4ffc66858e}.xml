@@ -11,6 +11,7 @@
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_aircraftid">
           <cell name="ts_name" width="300" />
+          <cell name="ts_manufacturer" width="100" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -19,7 +20,6 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ts_aircraft">
-          <attribute name="ts_aircraftid" />
           <attribute name="ts_name" />
           <attribute name="createdon" />
           <order attribute="ts_name" descending="false" />
@@ -28,7 +28,10 @@
           </filter>
           <filter type="or" isquickfindfields="1">
             <condition attribute="ts_name" operator="like" value="{0}" />
+            <condition attribute="ts_manufacturer" operator="like" value="{0}" />
           </filter>
+          <attribute name="ts_manufacturer" />
+          <attribute name="ts_aircraftid" />
         </entity>
       </fetch>
     </fetchxml>
