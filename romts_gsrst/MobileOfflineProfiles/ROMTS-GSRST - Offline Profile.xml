@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MobileOfflineProfile MobileOfflineProfileId="8ce77666-a132-ec11-b6e6-0022483ccc0c" Name="ROMTS-GSRST - Offline Profile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <MobileOfflineProfileItems>
+    <MobileOfflineProfileItem MobileOfflineProfileItemId="2270ac12-6f02-ef11-9f89-002248ae8a6b" Name="Account">
+      <MobileOfflineProfileItemAssociations>
+        <MobileOfflineProfileItemAssociation MobileOfflineProfileItemAssociationId="402a50ca-8302-ef11-9f89-002248adf889" Name="lk_accountbase_createdby">
+          <MobileOfflineProfileItemAssociationId>{402A50CA-8302-EF11-9F89-002248ADF889}</MobileOfflineProfileItemAssociationId>
+          <MobileOfflineProfileItemId>{2270AC12-6F02-EF11-9F89-002248AE8A6B}</MobileOfflineProfileItemId>
+          <Name>lk_accountbase_createdby</Name>
+          <RelationshipDisplayName>lk_accountbase_createdby</RelationshipDisplayName>
+          <ProfileItemAssociationEntityFilter></ProfileItemAssociationEntityFilter>
+        </MobileOfflineProfileItemAssociation>
+        <MobileOfflineProfileItemAssociation MobileOfflineProfileItemAssociationId="3b2a50ca-8302-ef11-9f89-002248adf889" Name="lk_accountbase_modifiedby">
+          <MobileOfflineProfileItemAssociationId>{3B2A50CA-8302-EF11-9F89-002248ADF889}</MobileOfflineProfileItemAssociationId>
+          <MobileOfflineProfileItemId>{2270AC12-6F02-EF11-9F89-002248AE8A6B}</MobileOfflineProfileItemId>
+          <Name>lk_accountbase_modifiedby</Name>
+          <RelationshipDisplayName>lk_accountbase_modifiedby</RelationshipDisplayName>
+          <ProfileItemAssociationEntityFilter></ProfileItemAssociationEntityFilter>
+        </MobileOfflineProfileItemAssociation>
+      </MobileOfflineProfileItemAssociations>
+      <MobileOfflineProfileItemId>{2270AC12-6F02-EF11-9F89-002248AE8A6B}</MobileOfflineProfileItemId>
+      <RegardingObjectId>{8CE77666-A132-EC11-B6E6-0022483CCC0C}</RegardingObjectId>
+      <Name>Account</Name>
+      <RecordDistributionCriteria>2</RecordDistributionCriteria>
+      <RecordsOwnedByMe>0</RecordsOwnedByMe>
+      <RecordsOwnedByMyTeam>0</RecordsOwnedByMyTeam>
+      <RecordsOwnedByMyBusinessUnit>1</RecordsOwnedByMyBusinessUnit>
+      <SyncIntervalInMinutes>10</SyncIntervalInMinutes>
+      <ProfileItemEntityFilter></ProfileItemEntityFilter>
+      <EntitySchemaName>Account</EntitySchemaName>
+    </MobileOfflineProfileItem>
+    <MobileOfflineProfileItem MobileOfflineProfileItemId="9d082ac8-8302-ef11-9f89-000d3aff1ae5" Name="User">
+      <MobileOfflineProfileItemAssociations />
+      <MobileOfflineProfileItemId>{9D082AC8-8302-EF11-9F89-000D3AFF1AE5}</MobileOfflineProfileItemId>
+      <RegardingObjectId>{8CE77666-A132-EC11-B6E6-0022483CCC0C}</RegardingObjectId>
+      <Name>User</Name>
+      <RecordDistributionCriteria>3</RecordDistributionCriteria>
+      <RecordsOwnedByMe>0</RecordsOwnedByMe>
+      <RecordsOwnedByMyTeam>0</RecordsOwnedByMyTeam>
+      <RecordsOwnedByMyBusinessUnit>0</RecordsOwnedByMyBusinessUnit>
+      <SyncIntervalInMinutes>10</SyncIntervalInMinutes>
+      <ProfileItemEntityFilter>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+    &lt;entity name="systemuser"&gt;
+        &lt;all-attributes/&gt;
+        &lt;filter type="and"&gt;
+            &lt;condition attribute="isdisabled" operator="eq" value="0"/&gt;
+            &lt;link-entity name="businessunit" link-type="any" from="businessunitid" to="businessunitid"&gt;
+                &lt;filter type="or"&gt;
+                    &lt;condition attribute="businessunitid" operator="eq-businessid"/&gt;
+                    &lt;condition attribute="parentbusinessunitid" operator="eq-businessid"/&gt;
+                &lt;/filter&gt;
+            &lt;/link-entity&gt;
+        &lt;/filter&gt;
+    &lt;/entity&gt;
+&lt;/fetch&gt;</ProfileItemEntityFilter>
+      <EntitySchemaName>SystemUser</EntitySchemaName>
+    </MobileOfflineProfileItem>
+    <MobileOfflineProfileItem MobileOfflineProfileItemId="1e5d5a0c-8402-ef11-9f89-000d3aff1ae5" Name="Team">
+      <MobileOfflineProfileItemAssociations />
+      <MobileOfflineProfileItemId>{1E5D5A0C-8402-EF11-9F89-000D3AFF1AE5}</MobileOfflineProfileItemId>
+      <RegardingObjectId>{8CE77666-A132-EC11-B6E6-0022483CCC0C}</RegardingObjectId>
+      <Name>Team</Name>
+      <RecordDistributionCriteria>3</RecordDistributionCriteria>
+      <RecordsOwnedByMe>0</RecordsOwnedByMe>
+      <RecordsOwnedByMyTeam>0</RecordsOwnedByMyTeam>
+      <RecordsOwnedByMyBusinessUnit>0</RecordsOwnedByMyBusinessUnit>
+      <SyncIntervalInMinutes>10</SyncIntervalInMinutes>
+      <ProfileItemEntityFilter>&lt;fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"&gt;
+    &lt;entity name="team"&gt;
+        &lt;all-attributes/&gt;
+        &lt;filter type="and"&gt;
+            &lt;condition attribute="teamtype" operator="eq" value="0"/&gt;
+            &lt;condition attribute="ts_territory" operator="not-null"/&gt;
+        &lt;/filter&gt;
+    &lt;/entity&gt;
+&lt;/fetch&gt;</ProfileItemEntityFilter>
+      <EntitySchemaName>Team</EntitySchemaName>
+    </MobileOfflineProfileItem>
+    <MobileOfflineProfileItem MobileOfflineProfileItemId="be72c117-8402-ef11-9f89-002248adf889" Name="Business Unit">
+      <MobileOfflineProfileItemAssociations />
+      <MobileOfflineProfileItemId>{BE72C117-8402-EF11-9F89-002248ADF889}</MobileOfflineProfileItemId>
+      <RegardingObjectId>{8CE77666-A132-EC11-B6E6-0022483CCC0C}</RegardingObjectId>
+      <Name>Business Unit</Name>
+      <RecordDistributionCriteria>1</RecordDistributionCriteria>
+      <RecordsOwnedByMe>0</RecordsOwnedByMe>
+      <RecordsOwnedByMyTeam>0</RecordsOwnedByMyTeam>
+      <RecordsOwnedByMyBusinessUnit>0</RecordsOwnedByMyBusinessUnit>
+      <SyncIntervalInMinutes>10</SyncIntervalInMinutes>
+      <ProfileItemEntityFilter></ProfileItemEntityFilter>
+      <EntitySchemaName>BusinessUnit</EntitySchemaName>
+    </MobileOfflineProfileItem>
+    <MobileOfflineProfileItem MobileOfflineProfileItemId="54fb7307-6f02-ef11-9f89-002248b31aa4" Name="Functional Location">
+      <MobileOfflineProfileItemAssociations>
+        <MobileOfflineProfileItemAssociation MobileOfflineProfileItemAssociationId="412a50ca-8302-ef11-9f89-002248adf889" Name="lk_msdyn_functionallocation_createdby">
+          <MobileOfflineProfileItemAssociationId>{412A50CA-8302-EF11-9F89-002248ADF889}</MobileOfflineProfileItemAssociationId>
+          <MobileOfflineProfileItemId>{54FB7307-6F02-EF11-9F89-002248B31AA4}</MobileOfflineProfileItemId>
+          <Name>lk_msdyn_functionallocation_createdby</Name>
+          <RelationshipDisplayName>lk_msdyn_functionallocation_createdby</RelationshipDisplayName>
+          <ProfileItemAssociationEntityFilter></ProfileItemAssociationEntityFilter>
+        </MobileOfflineProfileItemAssociation>
+        <MobileOfflineProfileItemAssociation MobileOfflineProfileItemAssociationId="452a50ca-8302-ef11-9f89-002248adf889" Name="lk_msdyn_functionallocation_modifiedby">
+          <MobileOfflineProfileItemAssociationId>{452A50CA-8302-EF11-9F89-002248ADF889}</MobileOfflineProfileItemAssociationId>
+          <MobileOfflineProfileItemId>{54FB7307-6F02-EF11-9F89-002248B31AA4}</MobileOfflineProfileItemId>
+          <Name>lk_msdyn_functionallocation_modifiedby</Name>
+          <RelationshipDisplayName>lk_msdyn_functionallocation_modifiedby</RelationshipDisplayName>
+          <ProfileItemAssociationEntityFilter></ProfileItemAssociationEntityFilter>
+        </MobileOfflineProfileItemAssociation>
+      </MobileOfflineProfileItemAssociations>
+      <MobileOfflineProfileItemId>{54FB7307-6F02-EF11-9F89-002248B31AA4}</MobileOfflineProfileItemId>
+      <RegardingObjectId>{8CE77666-A132-EC11-B6E6-0022483CCC0C}</RegardingObjectId>
+      <Name>Functional Location</Name>
+      <RecordDistributionCriteria>2</RecordDistributionCriteria>
+      <RecordsOwnedByMe>0</RecordsOwnedByMe>
+      <RecordsOwnedByMyTeam>0</RecordsOwnedByMyTeam>
+      <RecordsOwnedByMyBusinessUnit>1</RecordsOwnedByMyBusinessUnit>
+      <SyncIntervalInMinutes>10</SyncIntervalInMinutes>
+      <ProfileItemEntityFilter></ProfileItemEntityFilter>
+      <EntitySchemaName>msdyn_FunctionalLocation</EntitySchemaName>
+    </MobileOfflineProfileItem>
+    <MobileOfflineProfileItem MobileOfflineProfileItemId="ad8d3f10-180c-ef11-9f8a-002248b31aa4" Name="Field Service Setting">
+      <MobileOfflineProfileItemAssociations />
+      <MobileOfflineProfileItemId>{AD8D3F10-180C-EF11-9F8A-002248B31AA4}</MobileOfflineProfileItemId>
+      <RegardingObjectId>{8CE77666-A132-EC11-B6E6-0022483CCC0C}</RegardingObjectId>
+      <Name>Field Service Setting</Name>
+      <RecordDistributionCriteria>1</RecordDistributionCriteria>
+      <RecordsOwnedByMe>0</RecordsOwnedByMe>
+      <RecordsOwnedByMyTeam>0</RecordsOwnedByMyTeam>
+      <RecordsOwnedByMyBusinessUnit>0</RecordsOwnedByMyBusinessUnit>
+      <SyncIntervalInMinutes>10</SyncIntervalInMinutes>
+      <ProfileItemEntityFilter></ProfileItemEntityFilter>
+      <EntitySchemaName>msdyn_fieldservicesetting</EntitySchemaName>
+    </MobileOfflineProfileItem>
+    <MobileOfflineProfileItem MobileOfflineProfileItemId="657d5ee4-2562-ee11-8df0-0022483d7716" Name="Work Order">
+      <MobileOfflineProfileItemAssociations />
+      <MobileOfflineProfileItemId>{657D5EE4-2562-EE11-8DF0-0022483D7716}</MobileOfflineProfileItemId>
+      <RegardingObjectId>{8CE77666-A132-EC11-B6E6-0022483CCC0C}</RegardingObjectId>
+      <Name>Work Order</Name>
+      <RecordDistributionCriteria>1</RecordDistributionCriteria>
+      <RecordsOwnedByMe>0</RecordsOwnedByMe>
+      <RecordsOwnedByMyTeam>0</RecordsOwnedByMyTeam>
+      <RecordsOwnedByMyBusinessUnit>0</RecordsOwnedByMyBusinessUnit>
+      <SyncIntervalInMinutes>10</SyncIntervalInMinutes>
+      <ProfileItemEntityFilter></ProfileItemEntityFilter>
+      <EntitySchemaName>msdyn_workorder</EntitySchemaName>
+    </MobileOfflineProfileItem>
+    <MobileOfflineProfileItem MobileOfflineProfileItemId="aa47ac2b-6f02-ef11-9f89-002248b31aa4" Name="Operation">
+      <MobileOfflineProfileItemAssociations />
+      <MobileOfflineProfileItemId>{AA47AC2B-6F02-EF11-9F89-002248B31AA4}</MobileOfflineProfileItemId>
+      <RegardingObjectId>{8CE77666-A132-EC11-B6E6-0022483CCC0C}</RegardingObjectId>
+      <Name>Operation</Name>
+      <RecordDistributionCriteria>2</RecordDistributionCriteria>
+      <RecordsOwnedByMe>0</RecordsOwnedByMe>
+      <RecordsOwnedByMyTeam>1</RecordsOwnedByMyTeam>
+      <RecordsOwnedByMyBusinessUnit>1</RecordsOwnedByMyBusinessUnit>
+      <SyncIntervalInMinutes>10</SyncIntervalInMinutes>
+      <ProfileItemEntityFilter></ProfileItemEntityFilter>
+      <EntitySchemaName>ovs_operation</EntitySchemaName>
+    </MobileOfflineProfileItem>
+  </MobileOfflineProfileItems>
+  <MobileOfflineProfileId>{8ce77666-a132-ec11-b6e6-0022483ccc0c}</MobileOfflineProfileId>
+  <Name>ROMTS-GSRST - Offline Profile</Name>
+</MobileOfflineProfile>
