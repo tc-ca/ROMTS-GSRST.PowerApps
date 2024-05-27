@@ -123,6 +123,10 @@ var ROM;
                                         setPostNCATRecommendationSelectionFieldsVisibility(eContext);
                                         NCATManagerDecisionOnChange(eContext);
                                     }
+                                    else {
+                                        formContext.ui.tabs.get("tab_NCAT").sections.get("NCAT_proposed_section").setVisible(true);
+                                        setPostNCATRecommendationSelectionFieldsVisibility(eContext);
+                                    }
                                 }
                                 //Show RATE Sections and fields when the operation type owning business unit is Aviation Security or if the user business unit is Transport Canada
                                 else {

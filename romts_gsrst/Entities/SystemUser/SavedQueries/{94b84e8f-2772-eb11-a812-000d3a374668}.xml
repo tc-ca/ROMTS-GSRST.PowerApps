@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{94b84e8f-2772-eb11-a812-000d3a374668}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="fullname" select="1" preview="1" icon="1">
+        <row name="result" id="systemuserid">
+          <cell name="fullname" width="150" />
+          <cell name="msdyn_capacity" width="100" />
+          <cell name="businessunitid" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="systemuser">
+          <attribute name="fullname" />
+          <order attribute="fullname" descending="false" />
+          <attribute name="msdyn_capacity" />
+          <attribute name="businessunitid" />
+          <attribute name="systemuserid" />
+          <link-entity name="systemuserroles" to="systemuserid" from="systemuserid" link-type="inner" alias="systemUserRoles">
+            <link-entity name="role" to="roleid" from="roleid" link-type="inner" alias="roleNames">
+              <link-entity name="role" to="parentrootroleid" from="roleid" link-type="inner">
+                <link-entity name="msdyn_personasecurityrolemapping" to="roleid" from="msdyn_securityroleid" link-type="inner" alias="personaMappings">
+                  <attribute name="msdyn_personatype" />
+                  <filter type="and">
+                    <condition attribute="msdyn_personatype" operator="eq" value="3" />
+                  </filter>
+                </link-entity>
+              </link-entity>
+            </link-entity>
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Agents" languagecode="1033" />
+      <LocalizedName description="Agents" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

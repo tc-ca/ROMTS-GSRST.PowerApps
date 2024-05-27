@@ -1001,15 +1001,20 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{5d8ed446-6af7-45eb-80cc-aa5f3c9339d9}" locklevel="0" colspan="1" rowspan="1" visible="true" labelid="{814e17e4-ecbe-4ae8-8754-f7661ba87453}">
+                      <cell id="{5d8ed446-6af7-45eb-80cc-aa5f3c9339d9}" locklevel="0" colspan="1" rowspan="1" labelid="{814e17e4-ecbe-4ae8-8754-f7661ba87453}" showlabel="true">
                         <labels>
-                          <label description="Cancelled Inspection Justification" languagecode="1033" />
+                          <label description="Cancelled Justification" languagecode="1033" />
                           <label description="Justification de l'inspection annulée" languagecode="1036" />
                         </labels>
-                        <control id="ts_canceledinspectionjustification" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_canceledinspectionjustification" disabled="false">
+                        <control id="ts_canceledinspectionjustification" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_canceledinspectionjustification" disabled="false" uniqueid="{386a1435-d005-7002-5034-e9054c668e4a}">
                           <parameters>
                             <DefaultViewId>{1B11C9E4-E0D5-4D65-A708-2CB032571CA7}</DefaultViewId>
                             <AvailableViewIds>{1B11C9E4-E0D5-4D65-A708-2CB032571CA7}</AvailableViewIds>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <AllowFilterOff>false</AllowFilterOff>
                           </parameters>
                         </control>
                       </cell>
@@ -3096,7 +3101,7 @@
         </event>
         <event name="onchange" application="false" active="false" attribute="ts_canceledinspectionjustification">
           <Handlers>
-            <Handler functionName="ROM.WorkOrder.canceledWorkOrderReasonOnChange" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{f0840c01-f74d-4dff-befa-36b7fc95b1af}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.WorkOrder.canceledWorkOrderReasonOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{f0840c01-f74d-4dff-befa-36b7fc95b1af}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
