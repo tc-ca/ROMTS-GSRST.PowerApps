@@ -11,6 +11,7 @@
       <grid name="ts_canceledinspectionjustifications" jump="ts_name" select="1" icon="1" preview="0">
         <row name="ts_canceledinspectionjustification" id="ts_canceledinspectionjustificationid">
           <cell name="ts_name" width="300" />
+          <cell name="ownerid" width="100" />
           <cell name="createdon" width="100" />
         </row>
       </grid>
@@ -25,6 +26,8 @@
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <attribute name="createdon" />
+          <order attribute="ts_name" descending="false" />
+          <attribute name="ownerid" />
         </entity>
       </fetch>
     </fetchxml>

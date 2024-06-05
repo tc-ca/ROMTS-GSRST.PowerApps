@@ -853,7 +853,16 @@
                           <label description="Task Type" languagecode="1033" />
                           <label description="Type de tâche" languagecode="1036" />
                         </labels>
-                        <control id="msdyn_tasktype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_tasktype" disabled="false" uniqueid="{37a7a5d3-5b61-3c29-7303-04790d581756}" />
+                        <control id="msdyn_tasktype" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="msdyn_tasktype" disabled="false" uniqueid="{37a7a5d3-5b61-3c29-7303-04790d581756}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{D7D451C8-8656-4BF5-98BE-66263F412592}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
                       </cell>
                       <cell id="{0788da0e-deda-9126-9931-4b38b0ed6707}" showlabel="true" locklevel="0" visible="false" labelid="{8453118d-e519-4efa-af09-6de444c230e3}" colspan="1" rowspan="1">
                         <labels>
@@ -2068,7 +2077,7 @@
         </event>
         <event name="onchange" application="true" active="true" attribute="msdyn_tasktype">
           <Handlers>
-            <Handler functionName="ROM.WorkOrderServiceTask.taskTypeOnChange" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{cc232d73-2a36-499e-aa90-39ddd50c849e}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.WorkOrderServiceTask.taskTypeOnChange" libraryName="ovs_/js/WorkOrderServiceTask.js" handlerUniqueId="{cc232d73-2a36-499e-aa90-39ddd50c849e}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="false" active="false" attribute="ts_aircraftmanufacturer">
