@@ -1823,6 +1823,100 @@
             <Description description="Identificateur unique de l'utilisateur délégué ayant modifié l'enregistrement." languagecode="1036" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="msdyn_CaseSurveyInviteUrl">
+          <Type>nvarchar</Type>
+          <Name>msdyn_casesurveyinviteurl</Name>
+          <LogicalName>msdyn_casesurveyinviteurl</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>500</MaxLength>
+          <Length>500</Length>
+          <displaynames>
+            <displayname description="Survey Invite" languagecode="1033" />
+            <displayname description="Invitation à une enquête" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Survey invite url for customer feedback." languagecode="1033" />
+            <Description description="URL d’invitation à une enquête pour les commentaires des clients." languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_copilotengaged">
+          <Type>bit</Type>
+          <Name>msdyn_copilotengaged</Name>
+          <LogicalName>msdyn_copilotengaged</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.0.1</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="msdyn_incident_msdyn_copilotengaged">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>1.0.0.1</IntroducedVersion>
+            <displaynames>
+              <displayname description="Copilot Engaged" languagecode="1033" />
+              <displayname description="Interaction avec Copilot" languagecode="1036" />
+            </displaynames>
+            <Descriptions>
+              <Description description="" languagecode="1033" />
+              <Description description="" languagecode="1036" />
+            </Descriptions>
+            <options>
+              <option value="0" Color="#0000ff">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
+                </labels>
+              </option>
+              <option value="1" Color="#0000ff">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Copilot Engaged" languagecode="1033" />
+            <displayname description="Interaction avec Copilot" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="msdyn_FunctionalLocation">
           <Type>lookup</Type>
           <Name>msdyn_functionallocation</Name>
@@ -1923,6 +2017,76 @@
           <Descriptions>
             <Description description="The iot alert that initiated this case" languagecode="1033" />
             <Description description="Alerte IoT ayant initié cet incident" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_precreateattachmentsid">
+          <Type>nvarchar</Type>
+          <Name>msdyn_precreateattachmentsid</Name>
+          <LogicalName>msdyn_precreateattachmentsid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>400</MaxLength>
+          <Length>800</Length>
+          <displaynames>
+            <displayname description="Pre Create Entity Attachments Id" languagecode="1033" />
+            <displayname description="Pré-créer l’ID de pièces jointes à l’entité" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Entity Attachments Id before the case record is created" languagecode="1033" />
+            <Description description="ID de pièces jointes à l’entité avant la création de l’enregistrement de cas" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="msdyn_precreatenotesid">
+          <Type>nvarchar</Type>
+          <Name>msdyn_precreatenotesid</Name>
+          <LogicalName>msdyn_precreatenotesid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>100</MaxLength>
+          <Length>200</Length>
+          <displaynames>
+            <displayname description="Pre Create Notes Id" languagecode="1033" />
+            <displayname description="Pré-créer l’ID de notes" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Notes Id before the case record is created" languagecode="1033" />
+            <Description description="ID de notes avant la création de l’enregistrement de cas" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="OnHoldTime">
@@ -2982,10 +3146,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Additional Inspectors #1" languagecode="1033" />
-            <displayname description="Inspecteur additionnelle #1" languagecode="1036" />
+            <displayname description="Inspecteur supplémentaire #1" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_AdditionalInspectors2">
@@ -3022,10 +3187,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Additional Inspectors #2" languagecode="1033" />
-            <displayname description="Inspecteur additionnelle #2" languagecode="1036" />
+            <displayname description="Inspecteur supplémentaire #2" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_CanvasAppNumber">
@@ -3063,9 +3229,11 @@
           <Length>200</Length>
           <displaynames>
             <displayname description="CanvasApp Number" languagecode="1033" />
+            <displayname description="CanvasApp Number" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_CaseReportingandDocumentation">
@@ -3107,6 +3275,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_Comments">
@@ -3147,6 +3316,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_Country">
@@ -3229,6 +3399,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_DateofInspection2">
@@ -3270,6 +3441,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_incident">
@@ -3306,9 +3478,11 @@
           <OptionSetName>ts_yesno</OptionSetName>
           <displaynames>
             <displayname description="Incident" languagecode="1033" />
+            <displayname description="Incident" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Security Incident" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_InspectionType1">
@@ -3349,6 +3523,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_InspectionType2">
@@ -3389,6 +3564,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_Notes">
@@ -3425,9 +3601,11 @@
           <MaxLength>5000</MaxLength>
           <displaynames>
             <displayname description="Notes" languagecode="1033" />
+            <displayname description="Notes" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_numberoffindings">
@@ -3511,6 +3689,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_overtime">
@@ -3545,12 +3724,14 @@
           <IsLocalizable>0</IsLocalizable>
           <MinValue>0</MinValue>
           <MaxValue>100000000000</MaxValue>
+          <Accuracy>2</Accuracy>
           <displaynames>
             <displayname description="Overtime" languagecode="1033" />
             <displayname description="Heures supplémentaires" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_quarterofreportinganddocumentation">
@@ -3587,9 +3768,11 @@
           <OptionSetName>ts_quarter</OptionSetName>
           <displaynames>
             <displayname description="Quarter of Reporting and Documentation" languagecode="1033" />
+            <displayname description="Trimestre des rapports et de la documentation" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Quarter of Reporting and Documentation" languagecode="1033" />
+            <Description description="Trimestre des rapports et de la documentation" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_quarteroftraveltime">
@@ -3626,9 +3809,11 @@
           <OptionSetName>ts_quarter</OptionSetName>
           <displaynames>
             <displayname description="Quarter of Travel Time" languagecode="1033" />
+            <displayname description="Quart du temps de déplacement" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Quarter of Travel Time" languagecode="1033" />
+            <Description description="Quart du temps de déplacement" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_TradeNameId">
@@ -3711,6 +3896,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_WorkOrder1">
@@ -3751,6 +3937,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_WorkOrder2">
@@ -3791,6 +3978,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_WorkOrderServiceTask1">
@@ -3831,6 +4019,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_WorkOrderServiceTask2">
@@ -3871,6 +4060,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
       </attributes>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{6390e7f6-4528-ed11-9db1-000d3a8d107a}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="1">
+        <row name="result" id="incidentid">
+          <cell name="title" width="100" />
+          <cell name="ticketnumber" width="100" />
+          <cell name="prioritycode" width="100" />
+          <cell name="statuscode" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="incident">
+          <attribute name="incidentid" />
+          <attribute name="ticketnumber" />
+          <attribute name="prioritycode" />
+          <attribute name="statuscode" />
+          <attribute name="title" />
+          <filter>
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>9.1.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Cases for Recent Records" languagecode="1033" />
+      <LocalizedName description="Incidents pour les enregistrements récents" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="Cases for Recent Records" languagecode="1033" />
+      <Description description="Incidents pour les enregistrements récents" languagecode="1036" />
+    </Descriptions>
+  </savedquery>
+</savedqueries>

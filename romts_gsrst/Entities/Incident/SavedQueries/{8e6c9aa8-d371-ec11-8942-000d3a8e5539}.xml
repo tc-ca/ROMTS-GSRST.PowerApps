@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{8e6c9aa8-d371-ec11-8942-000d3a8e5539}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="title" select="1" icon="1" preview="1">
+        <row name="result" id="incidentid">
+          <cell name="title" width="300" />
+          <cell name="ticketnumber" width="160" />
+          <cell name="prioritycode" width="150" />
+          <cell name="caseorigincode" width="150" />
+          <cell name="subjectid" width="150" />
+          <cell name="customerid" width="170" />
+          <cell name="ownerid" width="180" />
+          <cell name="statuscode" width="150" />
+          <cell name="nextsla" width="180" />
+          <cell name="lastinteraction" width="190" disableSorting="1" />
+          <cell name="isescalated" width="120" />
+          <cell name="caseage" width="120" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="incident">
+          <attribute name="incidentid" />
+          <attribute name="title" />
+          <attribute name="ticketnumber" />
+          <attribute name="prioritycode" />
+          <attribute name="caseorigincode" />
+          <attribute name="subjectid" />
+          <attribute name="customerid" />
+          <attribute name="ownerid" />
+          <attribute name="statuscode" />
+          <attribute name="nextsla" />
+          <attribute name="lastinteraction" />
+          <attribute name="isescalated" />
+          <attribute name="caseage" />
+          <order attribute="title" descending="false" />
+          <filter>
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>9.1.0.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Enhanced Active Cases" languagecode="1033" />
+      <LocalizedName description="Incidents actifs améliorés" languagecode="1036" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

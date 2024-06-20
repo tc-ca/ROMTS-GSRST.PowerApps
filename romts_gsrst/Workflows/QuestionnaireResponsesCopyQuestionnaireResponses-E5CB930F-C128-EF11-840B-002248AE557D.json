@@ -147,7 +147,7 @@
                 },
                 "Add_a_new_Work_Order_Service_Task": {
                   "runAfter": {
-                    "Get_a_row_by_ID": [
+                    "Set_variable": [
                       "Succeeded"
                     ]
                   },
@@ -165,7 +165,7 @@
                       "entityName": "msdyn_workorderservicetasks",
                       "item/msdyn_tasktype@odata.bind": "msdyn_servicetasktypes(@{outputs('Service_Task_Type')?['body/msdyn_servicetasktypeid']})",
                       "item/msdyn_workorder@odata.bind": "msdyn_workorders(@{items('Apply_to_each_4')['ID']})",
-                      "item/msdyn_percentcomplete": 100,
+                      "item/msdyn_name": "@variables('Service Task Name')",
                       "item/ovs_Questionnaire@odata.bind": "ovs_questionnaires(@{outputs('Questionnaire')?['body/ovs_questionnaireid']})",
                       "item/ovs_questionnairedefinition": "@outputs('Questionnaire')?['body/ovs_questionnairedefinition']",
                       "item/ovs_questionnaireresponse": "@outputs('Questionnaire_Responses')?['body/ts_questionnaireanswers']",
@@ -176,6 +176,92 @@
                       "type": "Raw",
                       "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
                     }
+                  }
+                },
+                "Set_WO_Name": {
+                  "runAfter": {
+                    "List_rows": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "06a2bdbd-3c7c-448e-8dc5-465a233511b0"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "WO Name",
+                    "value": "@{replace(outputs('Get_a_row_by_ID')?['body/msdyn_name'],'300-', '200-')}"
+                  }
+                },
+                "List_rows": {
+                  "runAfter": {
+                    "Get_a_row_by_ID": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "cecad64b-1c48-4f65-922f-d39c8183af82"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "ListRecords",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "msdyn_workorderservicetasks",
+                      "fetchXml": "        <fetch>\n            <entity name='msdyn_workorderservicetask'>\n              <filter>\n              <condition attribute='msdyn_workorder' operator='eq' value='@{items('Apply_to_each_4')['ID']}'/>\n            </filter>\n            </entity>\n            </fetch>"
+                    },
+                    "authentication": {
+                      "type": "Raw",
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                    }
+                  }
+                },
+                "Set_Number_of_WO_Service_Task": {
+                  "runAfter": {
+                    "Set_WO_Name": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "fde2e8b9-8d07-4f66-9679-d95bcb74867f"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Number of WO Service Task",
+                    "value": "@length(outputs('List_rows')?['body/value'])"
+                  }
+                },
+                "Set_variable": {
+                  "runAfter": {
+                    "Increment_variable": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "998cd09e-5e7b-48a7-9b3c-70db969b91cf"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "Service Task Name",
+                    "value": "@{concat(variables('WO Name'),'-',string(variables('Number of WO Service Task')))}"
+                  }
+                },
+                "Increment_variable": {
+                  "runAfter": {
+                    "Set_Number_of_WO_Service_Task": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "737c6f25-f7c9-4673-8d33-9bc2c257ee5c"
+                  },
+                  "type": "IncrementVariable",
+                  "inputs": {
+                    "name": "Number of WO Service Task",
+                    "value": 1
                   }
                 }
               },
@@ -243,7 +329,7 @@
             }
           },
           "runAfter": {
-            "Parse_JSON": [
+            "Initialize_Service_Task_Name": [
               "Succeeded"
             ]
           },
@@ -251,6 +337,63 @@
             "operationMetadataId": "9456d2bb-b708-4ba6-88db-167216302f80"
           },
           "type": "Foreach"
+        },
+        "WO_Name": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "dd491625-9787-4420-8e76-4abd1a139e68"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "WO Name",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "WO_Name": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5b673ae7-8633-486e-9289-540f08dc9f84"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Number of WO Service Task",
+                "type": "integer"
+              }
+            ]
+          }
+        },
+        "Initialize_Service_Task_Name": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fd81447a-6d21-44d3-b0d2-07b25701ecb9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Service Task Name",
+                "type": "string"
+              }
+            ]
+          }
         }
       }
     },
