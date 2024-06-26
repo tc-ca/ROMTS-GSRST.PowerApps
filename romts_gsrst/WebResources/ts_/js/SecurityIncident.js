@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 var ROM;
 (function (ROM) {
     var SecurityIncident;
@@ -97,6 +97,22 @@ var ROM;
             }
             else {
                 form.getControl("ts_tamperingsubcategory").setVisible(false);
+            }
+            //Filter Target Element by selected Security Incident Type - for ISSO
+            {
+                //Make sure we have something selected for Program (ts_mode) that doesn't belong to AvSec
+                var selectedProgram = form.getAttribute("ts_mode").getValue();
+                if (selectedProgram != null && selectedProgram != 717750002 && securityincidentTypeValue != null) {
+                    var viewId = '{ED060213-FECE-44EA-A811-56CB4920068B}';
+                    var entityName = "ts_targetelement";
+                    var viewDisplayName = "FilteredTargetElements";
+                    var fetchXml = '<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true" returntotalrecordcount="true" page="1" no-lock="false"><entity name="ts_targetelement_ts_securityincidenttyp"><link-entity name="ts_securityincidenttype" to="ts_securityincidenttypeid" from="ts_securityincidenttypeid" alias="ts_securityincidenttype" link-type="inner"><filter><condition attribute="ts_securityincidenttypeid" operator="eq" value="' + securityincidentTypeValue[0].id + '"/></filter></link-entity><link-entity name="ts_targetelement" to="ts_targetelementid" from="ts_targetelementid" alias="ts_targetelement" link-type="inner"><attribute name="ts_targetelementid" /><attribute name="ts_name" /></link-entity></entity></fetch>';
+                    var layoutXml = '<grid name="resultset" object="11075" jump="ts_name" select="1" icon="1" preview="1"><row name="result" id="ts_targetelementid"><cell name="ts_name" width="200" /></row></grid>';
+                    form.getControl("ts_targetelement").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
+                }
+            }
+            if (securityincidentTypeValue != null && securityincidentTypeValue != undefined && securityincidentTypeValue[0].id.toLowerCase() == "{d5ff32e6-4a6b-ed11-81ae-0022483c536f}") {
+                form.getControl("ts_tamperingsubcategory").setVisible(true);
             }
         }
         SecurityIncident.securityIncidentTypeOnChange = securityIncidentTypeOnChange;

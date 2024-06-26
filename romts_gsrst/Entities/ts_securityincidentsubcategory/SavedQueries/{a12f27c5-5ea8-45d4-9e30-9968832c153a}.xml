@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{a12f27c5-5ea8-45d4-9e30-9968832c153a}</savedqueryid>
+    <layoutxml>
+      <grid name="ts_securityincidentsubcategories" jump="ts_name" select="1" icon="1" preview="0">
+        <row name="ts_securityincidentsubcategory" id="ts_securityincidentsubcategoryid">
+          <cell name="ts_name" width="300" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>64</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_securityincidentsubcategory">
+          <attribute name="ts_securityincidentsubcategoryid" />
+          <attribute name="ts_name" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <order attribute="ts_name" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20240620.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Security Incident Subcategory Lookup View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
