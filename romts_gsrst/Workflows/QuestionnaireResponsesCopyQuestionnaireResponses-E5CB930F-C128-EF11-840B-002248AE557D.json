@@ -1,10 +1,10 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_commondataserviceforapps_1": {
+      "shared_commondataserviceforapps_2": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_2d435"
+          "connectionReferenceLogicalName": "ts_DataverseROMTSGSRST"
         },
         "api": {
           "name": "shared_commondataserviceforapps"
@@ -106,7 +106,7 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps_1",
+                  "connectionName": "shared_commondataserviceforapps_2",
                   "operationId": "GetItem",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
@@ -131,7 +131,7 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_commondataserviceforapps_1",
+                      "connectionName": "shared_commondataserviceforapps_2",
                       "operationId": "GetItem",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                     },
@@ -157,7 +157,7 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_commondataserviceforapps_1",
+                      "connectionName": "shared_commondataserviceforapps_2",
                       "operationId": "CreateRecord",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                     },
@@ -205,7 +205,7 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_commondataserviceforapps_1",
+                      "connectionName": "shared_commondataserviceforapps_2",
                       "operationId": "ListRecords",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                     },
@@ -263,6 +263,33 @@
                     "name": "Number of WO Service Task",
                     "value": 1
                   }
+                },
+                "Update_a_row_-_Questionnaire_Response_-_Work_Order": {
+                  "runAfter": {
+                    "Add_a_new_Work_Order_Service_Task": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "764bca90-71d0-454c-b4d3-12b5272344bf"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_2",
+                      "operationId": "UpdateRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_questionnaireresponses",
+                      "recordId": "@items('Apply_to_each_3')['QuestionnaireResponseID']",
+                      "item/ts_WorkOrder@odata.bind": "msdyn_workorders(@{items('Apply_to_each_4')['ID']})"
+                    },
+                    "authentication": {
+                      "type": "Raw",
+                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                    }
+                  }
                 }
               },
               "runAfter": {
@@ -287,7 +314,7 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps_1",
+                  "connectionName": "shared_commondataserviceforapps_2",
                   "operationId": "GetItem",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
@@ -313,7 +340,7 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps_1",
+                  "connectionName": "shared_commondataserviceforapps_2",
                   "operationId": "GetItem",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
