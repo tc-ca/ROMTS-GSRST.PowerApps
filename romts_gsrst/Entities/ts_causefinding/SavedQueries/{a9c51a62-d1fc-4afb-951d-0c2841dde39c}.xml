@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{a9c51a62-d1fc-4afb-951d-0c2841dde39c}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_causefindingid">
+          <cell name="ts_cause" width="150" />
+          <cell name="ts_causetype" width="106" />
+          <cell name="ts_comments" width="200" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_causefinding">
+          <attribute name="ts_causefindingid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_cause" />
+          <attribute name="ts_causetype" />
+          <attribute name="ts_comments" />
+          <order attribute="ts_cause" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20240708.2</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Cause Findings" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
