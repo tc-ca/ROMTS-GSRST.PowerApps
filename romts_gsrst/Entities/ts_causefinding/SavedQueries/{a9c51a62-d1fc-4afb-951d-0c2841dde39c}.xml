@@ -10,7 +10,7 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_causefindingid">
-          <cell name="ts_cause" width="150" />
+          <cell name="ts_provision" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="ts_causetype" width="106" />
           <cell name="ts_comments" width="200" />
         </row>
@@ -20,14 +20,14 @@
     <fetchxml>
       <fetch version="1.0" mapping="logical">
         <entity name="ts_causefinding">
-          <attribute name="ts_causefindingid" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <attribute name="ts_cause" />
           <attribute name="ts_causetype" />
           <attribute name="ts_comments" />
-          <order attribute="ts_cause" descending="false" />
+          <order attribute="ts_provision" descending="false" />
+          <attribute name="ts_provision" />
+          <attribute name="ts_causefindingid" />
         </entity>
       </fetch>
     </fetchxml>

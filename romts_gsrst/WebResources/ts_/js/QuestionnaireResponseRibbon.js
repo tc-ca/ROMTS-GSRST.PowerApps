@@ -1,29 +1,44 @@
-ï»¿var lang = parent.Xrm.Utility.getGlobalContext().userSettings.languageId;
+var lang = parent.Xrm.Utility.getGlobalContext().userSettings.languageId;
 
 function appendToWOST(formContext) {
     const questionnaireResponseGuid = formContext.data.entity.getId().replace(/({|})/g, '').toLowerCase();
+    const userId = Xrm.Utility.getGlobalContext().userSettings.userId;
+    //let isAdminOrManager;
     // Centered Dialog
     var pageInput = {
         pageType: "custom",
         name: "ts_appendquestionnaireresponsetoservicetask_6789e", //Unique name of Custom page
-        recordId: questionnaireResponseGuid
+        record: JSON.stringify({ recordId: questionnaireResponseGuid, userId: userId, isAdminOrManager: isAdminOrManager()})
     };
+
     var navigationOptions = {
         target: 2,
         position: 1,
         width: { value: 450, unit: "px" },
         height: { value: 550, unit: "px" },
-        title: (lang == 1036) ? "Ajouter Ã  la tÃ¢che de service" : "Append Questionnaire to Work Order Service Task"
+        title: (lang == 1036) ? "Ajouter à la tâche de service" : "Append Questionnaire to Work Order Service Task"
     };
     Xrm.Navigation.navigateTo(pageInput, navigationOptions)
         .then(
-            //function () {
-            //    // Called when the dialog closes
-            //    formContext.data.refresh();
-            //}
-        ).catch(
-            function (error) {
-                // Handle error
-            }
-        );
+        //function () {
+        //    // Called when the dialog closes
+        //    formContext.data.refresh();
+        //}
+    ).catch(
+        function (error) {
+            // Handle error
+        }
+    );
+}
+
+function isAdminOrManager(){
+    const userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
+    //If the user is a system admin or ROM - Manager, show the RATE manager review section
+    let isAdminOrManager = false;
+    userRoles.forEach(role => {
+        if (role.name == "System Administrator" || role.name == "ROM - Manager") {
+            isAdminOrManager = true;
+        }
+    });
+    return isAdminOrManager;
 }

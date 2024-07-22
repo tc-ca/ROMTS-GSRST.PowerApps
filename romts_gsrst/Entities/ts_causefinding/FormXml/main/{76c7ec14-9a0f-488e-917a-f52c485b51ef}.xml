@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0.20240708.2</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab verticallayout="true" id="{88580c4d-7963-40ca-a663-d99abd8251cf}" IsUserDefined="1">
           <labels>
@@ -25,6 +25,7 @@
                       <cell id="{f78ae268-2587-4f6a-baa7-664207a09080}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Name" languagecode="1033" />
+                          <label description="Name" languagecode="1036" />
                         </labels>
                         <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" uniqueid="{6d66819e-b380-397e-9988-627748da5c6a}" disabled="false" />
                       </cell>
@@ -33,22 +34,33 @@
                       <cell id="{1ab8ba4c-c6c8-609a-9db5-a04a2e67b66c}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Finding" languagecode="1033" />
+                          <label description="Constatation" languagecode="1036" />
                         </labels>
                         <control id="ts_finding" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_finding" disabled="false" />
                       </cell>
                     </row>
                     <row>
-                      <cell id="{87164221-90a0-22b8-5beb-37d4c72354e9}" showlabel="true" locklevel="0">
+                      <cell id="{7245d83c-9d00-eb5d-64b8-494a2bdeba71}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Cause" languagecode="1033" />
                         </labels>
-                        <control id="ts_cause" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_cause" disabled="false" uniqueid="{c9782897-c986-c789-4c52-2d32b4b86291}" />
+                        <control id="ts_provision" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_provision" disabled="false" uniqueid="{4d560b16-a24e-3212-70dd-32778b9b4874}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{3544CA89-0B3B-4456-8918-494DF3B1CD1C}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
                       <cell id="{58e6542d-9ec8-1864-6709-4512cc6e1ca1}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Cause Type" languagecode="1033" />
+                          <label description="Type de cause" languagecode="1036" />
                         </labels>
                         <control id="ts_causetype" classid="{3EF39988-22BB-4f0b-BBBE-64B5A3748AEE}" datafieldname="ts_causetype" disabled="false" />
                       </cell>
@@ -57,20 +69,26 @@
                       <cell id="{95a03540-921d-a099-a155-4685be3355b4}" showlabel="true" locklevel="0" rowspan="4">
                         <labels>
                           <label description="Comments" languagecode="1033" />
+                          <label description="commentaires" languagecode="1036" />
                         </labels>
                         <control id="ts_comments" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_comments" disabled="false" uniqueid="{6e695b41-c957-2baa-50a6-bae7b2800e1d}" />
                       </cell>
                     </row>
-                    <row />
+                    <row></row>
                     <row />
                     <row />
                     <row>
-                      <cell id="{7f7aae6f-b3af-43eb-abd7-f5f5b98c55d1}">
+                      <cell id="{7f7aae6f-b3af-43eb-abd7-f5f5b98c55d1}" showlabel="true" locklevel="1" visible="false">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                           <label description="Propriétaire" languagecode="1036" />
                         </labels>
-                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" uniqueid="{d1e6e05d-5914-5672-8c03-b33e14a194ed}" disabled="false">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                   </rows>
@@ -111,6 +129,16 @@
         </NavBarAreas>
       </Navigation>
       <controlDescriptions />
+      <formLibraries>
+        <Library name="ts_/js/CauseFinding.js" libraryUniqueId="{cad5d01d-b221-eaa1-2315-6b08a858c783}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.CauseFinding.onLoad" libraryName="ts_/js/CauseFinding.js" handlerUniqueId="{0e45dc2a-5618-a284-8894-c0e4a64be603}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
