@@ -2,13 +2,19 @@ var lang = parent.Xrm.Utility.getGlobalContext().userSettings.languageId;
 
 function appendToWOST(formContext) {
     const questionnaireResponseGuid = formContext.data.entity.getId().replace(/({|})/g, '').toLowerCase();
-    const userId = Xrm.Utility.getGlobalContext().userSettings.userId;
-    //let isAdminOrManager;
+    const userId = Xrm.Utility.getGlobalContext().userSettings.userId.replace(/({|})/g, '').toLowerCase();;
+    var jsonData = {
+        recordId: questionnaireResponseGuid,
+        userId: userId,
+        isAdminOrManager: isAdminOrManager()
+    };
+    var jsonString = JSON.stringify(jsonData).toString();
     // Centered Dialog
     var pageInput = {
         pageType: "custom",
         name: "ts_appendquestionnaireresponsetoservicetask_6789e", //Unique name of Custom page
-        record: JSON.stringify({ recordId: questionnaireResponseGuid, userId: userId, isAdminOrManager: isAdminOrManager()})
+        recordId: jsonString
+           
     };
 
     var navigationOptions = {

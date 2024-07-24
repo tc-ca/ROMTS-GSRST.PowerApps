@@ -13,7 +13,9 @@
   <CommandDefinitions>
     <CommandDefinition Id="ts.ts_questionnaireresponse.AppendToServiceTask">
       <EnableRules />
-      <DisplayRules />
+      <DisplayRules>
+        <DisplayRule Id="ts.ts_questionnaireresponse.DisplayRule0.DisplayRule" />
+      </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="appendToWOST" Library="$webresource:ts_/js/QuestionnaireResponseRibbon.js">
           <CrmParameter Value="PrimaryControl" />
@@ -23,7 +25,11 @@
   </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
-    <DisplayRules />
+    <DisplayRules>
+      <DisplayRule Id="ts.ts_questionnaireresponse.DisplayRule0.DisplayRule">
+        <ValueRule Field="ts_workorder" Value="" Default="true" />
+      </DisplayRule>
+    </DisplayRules>
     <EnableRules />
   </RuleDefinitions>
   <LocLabels>
