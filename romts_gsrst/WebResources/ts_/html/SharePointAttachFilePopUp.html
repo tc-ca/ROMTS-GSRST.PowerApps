@@ -1,39 +1,11 @@
-<html><head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
-    <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
-    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet">
-    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
-
-    <!-- Package used for the table - Tabulator -->
-    <!-- http://tabulator.info/ -->
-    <!-- Package used for uploading -->
-    <!-- https://pqina.nl/filepond/-->
-<meta></head>
-<body onload="loadForm()">
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>The New SharePoint App</title>
+</head>
+<body onload="loadTable()">
     <h1>The New SharePoint App</h1>
-
-    <button id="clearAttachments" class="btn btn-default" style="margin-left: 10px; margin-top:10px" onclick="clearAttachments()"></button>
-
-    <input id="my-filepond" type="file" class="filepond" name="filepond" multiple="">
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <button id="uploadAttachments" class="btn btn-default" style="margin-left: 10px; margin-top:10px" onclick="uploadAttachments()">Upload files</button>
-
-
-    <!-- JavaScript Code-->
     <script type="text/javascript">
         let recordId = "";
         let recordOwnerName = "";
@@ -48,15 +20,7 @@
         let userLanguage = 1033;
         let usersManagerEmail = "";
 
-        // Label Text
-        let noFilesText = "";
-        let clearAttachmentsButtonText = "";
-
-        // Define FilePond globally
-        let pond;
-
-        function loadForm() {
-
+        function loadTable() {
             // Parse the query string
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
@@ -64,11 +28,8 @@
             // Access the 'data' parameter
             const jsonString = urlParams.get('data');
 
-            try {
-
-                // Make sure the JSON string is not empty
-                if (jsonString) {
-
+            if (jsonString) {
+                try {
                     // Parse the JSON string to an object
                     const jsonData = JSON.parse(jsonString);
 
@@ -85,138 +46,13 @@
                     useGroupFiles = jsonData.useGroupFiles;
                     userLanguage = jsonData.userLanguage;
                     usersManagerEmail = jsonData.usersManagerEmail;
-
-                    // Set the language for all the labels
-                    setLanguage();
-
-                    // Initialize File Pond
-                    initializeFilePond();
+                } catch (error) {
+                    console.error("Error parsing JSON data:", error);
                 }
-                else {
-                    console.error("The JSON string is empty");
-                    alert("There is an error populating variables for the JSON string - the JSON string is empty");
-                }
-            } catch (error) {
-                console.error("ROM Error:", error);
-                alert("ROM Error:" + " " + error);
-            }
-        }
-
-        function setLanguage() {
-
-            // Set French labels
-            if (userLanguage == 1036) {
-                noFilesText = "Faites glisser les fichiers ici ou cliquez pour les joindre.";
-                clearAttachmentsButtonText = "Effacer les pièces jointes";
-            }
-            // Set English labels by default
-            else {
-                noFilesText = "Drag file(s) here or click to attach.";
-                clearAttachmentsButtonText = "Clear Attachments";
-            }
-
-            // Set the button text
-            document.getElementById('clearAttachments').innerHTML = clearAttachmentsButtonText;
-
-            // Add accessibility label and tooltip
-            document.getElementById('clearAttachments').setAttribute('title', clearAttachmentsButtonText);
-            document.getElementById('clearAttachments').setAttribute('aria-label', clearAttachmentsButtonText);
-        }
-
-        function initializeFilePond() {
-            const inputElement = document.querySelector('input[type="file"]');
-
-            pond = FilePond.create(inputElement, {
-                labelIdle: `${noFilesText}`,
-                maxFiles: 5
-            });
-        }
-
-        function clearAttachments() {
-
-            // To clear all files from FilePond
-            if (pond) {
-                pond.removeFiles();
             } else {
-                console.error("FilePond is not initialized");
+                console.error("Data parameter is undefined");
             }
         }
-
-        function uploadAttachments() {
-
-            // Upload attachments
-            if (pond) {
-
-                const files = pond.getFiles();
-                const colFiles = [];
-
-                files.forEach(fileItem => {
-                    const file = fileItem.file;
-                    const reader = new FileReader();
-                    reader.onload = function (event) {
-                        const fileContent = event.target.result;
-                        const base64Content = btoa(fileContent); // Convert to base64
-                        const fileJson = {
-                            base64: base64Content,
-                            Name: file.name,
-                            tags: "your_tags_here" // Add your tags here
-                        };
-                        colFiles.push(fileJson);
-
-                        // If all files are read, call the Power Automate flow
-                        if (colFiles.length === files.length) {
-                            //callPowerAutomateFlow(colFiles);
-                        }
-                    };
-                    reader.readAsBinaryString(file);
-                });
-
-            } else { 
-                console.error("FilePond is not initialized");
-            }
-
-            uploadFilesToDocumentLibrary();
-        }
-
-        function getEnvironmentVariableByName(variableName) {
-
-            var variableValue = "";
-
-            var fetchXML = `
-                            <fetch>
-                              <entity name="environmentvariablevalue">
-                                <attribute name="value" />
-                                <link-entity name="environmentvariabledefinition" to="environmentvariabledefinitionid" from="environmentvariabledefinitionid" alias="environmentvariabledefinition" link-type="inner">
-                                  <filter>
-                                    <condition attribute="schemaname" operator="eq" value="${variableName}" />
-                                  </filter>
-                                </link-entity>
-                              </entity>
-                            </fetch>
-            `;
-
-            var encodedFetchXml = encodeURIComponent(fetchXML);
-
-            parent.Xrm.WebApi.retrieveMultipleRecords("environmentvariablevalue", "?fetchXml=" + encodedFetchXml).then(
-                function success(result) {
-
-                    if (result.entities.length > 0) {
-                        variableValue = result.entities[0].value;
-                    } else {
-                        console.log(`Environment variable ${variableName} not found.`);
-                    }
-                },
-                function (error) {
-                    // handle error conditions
-                    console.log("Error retrieving environment variable: " + error.message);
-                }
-            );
-        }
-
-        function uploadFilesToDocumentLibrary() {
-            var flowSecret = getEnvironmentVariableByName("ts_SharePointUploadFilesToDocumentLibraryKey");
-        }
-
     </script>
-
-</body></html>
+</body>
+</html>
