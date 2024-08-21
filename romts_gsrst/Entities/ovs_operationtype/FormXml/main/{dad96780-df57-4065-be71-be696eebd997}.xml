@@ -111,6 +111,7 @@
                     <row />
                     <row />
                     <row />
+                    <row height="auto" />
                   </rows>
                 </section>
               </sections>
@@ -129,7 +130,13 @@
                     <label description="Risk Criteria" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row />
+                    <row>
+                      <cell id="{f1ca4d1e-1794-4096-8e83-8066894710a2}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                     <row>
                       <cell locklevel="0" id="{d6c2cbc9-4923-4142-b7f4-32c1ba6c853b}" rowspan="4" colspan="1" auto="false" showlabel="false">
                         <labels>
@@ -158,7 +165,8 @@
                     <row>
                       <cell locklevel="0" id="{0062a0d1-9ac6-422d-b68f-f979b020250a}" rowspan="4" colspan="1" auto="false">
                         <labels>
-                          <label description="Discretionary Factor Groupings" languagecode="1033" />
+                          <label description="Operations" languagecode="1033" />
+                          <label description="Opérations" languagecode="1036" />
                         </labels>
                         <control indicationOfSubgrid="true" id="Subgrid_DiscretionaryFactorGroupings" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
                           <parameters>
@@ -179,6 +187,14 @@
                     <row />
                     <row />
                     <row />
+                    <row>
+                      <cell id="{40999c92-8a1c-b7b8-c5a3-eb26ab232156}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Operation Type Risk Rating" languagecode="1033" />
+                        </labels>
+                        <control id="ts_operationtyperiskrating" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_operationtyperiskrating" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -288,9 +304,6 @@
           </NavBarArea>
         </NavBarAreas>
       </Navigation>
-      <DisplayConditions Order="0" FallbackForm="true">
-        <Everyone />
-      </DisplayConditions>
       <formLibraries>
         <Library name="ts_/js/OperationType.js" libraryUniqueId="{aaee469b-bca2-45d3-9adb-757a77ae904e}" />
         <Library name="ts_/js/Common.js" libraryUniqueId="{7ec3dba8-09d2-4af9-9328-23a90b218e53}" />
@@ -312,6 +325,9 @@
           </Handlers>
         </event>
       </events>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

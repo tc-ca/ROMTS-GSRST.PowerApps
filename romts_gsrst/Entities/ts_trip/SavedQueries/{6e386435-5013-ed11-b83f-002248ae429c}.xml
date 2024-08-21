@@ -30,12 +30,8 @@
           <order attribute="ts_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
+            <condition attribute="ts_region" operator="eq" value="{fcb76e9e-1707-eb11-a813-000d3af3a0d7}" uiname="Quebec Region" uitype="territory" />
           </filter>
-          <link-entity name="systemuser" from="systemuserid" to="createdby" alias="aa">
-            <filter type="and">
-              <condition attribute="territoryid" operator="eq" uiname="Quebec Region" uitype="territory" value="{FCB76E9E-1707-EB11-A813-000D3AF3A0D7}" />
-            </filter>
-          </link-entity>
           <attribute name="ts_tripid" />
         </entity>
       </fetch>

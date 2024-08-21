@@ -2,9 +2,11 @@ var lang = parent.Xrm.Utility.getGlobalContext().userSettings.languageId;
 
 function appendToWOST(formContext) {
     const questionnaireResponseGuid = formContext.data.entity.getId().replace(/({|})/g, '').toLowerCase();
-    const userId = Xrm.Utility.getGlobalContext().userSettings.userId.replace(/({|})/g, '').toLowerCase();;
+    const activityTypeId = formContext.getAttribute("ts_activitytype")?.getValue()?.[0]?.id.replace(/({|})/g, '')?.toLowerCase() ?? '';
+    const userId = Xrm.Utility.getGlobalContext().userSettings.userId.replace(/({|})/g, '').toLowerCase();
     var jsonData = {
         recordId: questionnaireResponseGuid,
+        activityTypeId: activityTypeId ? activityTypeId : "",
         userId: userId,
         isAdminOrManager: isAdminOrManager()
     };
@@ -22,7 +24,7 @@ function appendToWOST(formContext) {
         position: 1,
         width: { value: 450, unit: "px" },
         height: { value: 550, unit: "px" },
-        title: (lang == 1036) ? "Ajouter à la tâche de service" : "Append Questionnaire to Work Order Service Task"
+        title: (lang == 1036) ? "Ajouter ï¿½ la tï¿½che de service" : "Append Questionnaire to Work Order Service Task"
     };
     Xrm.Navigation.navigateTo(pageInput, navigationOptions)
         .then(
@@ -48,3 +50,42 @@ function isAdminOrManager(){
     });
     return isAdminOrManager;
 }
+
+
+// ###
+// If(
+//     IsAdminOrManager,
+//     Filter(
+//         'Work Orders',
+//         Status = 'Status (Work Orders)'.Active  && 'Activity Type'.'Incident Type' = GUID(ActivityTypeId)
+//     ),
+//     Filter(
+//         'Work Orders',
+//         Status = 'Status (Work Orders)'.Active && Owner = UserGUID && 'Activity Type'.'Incident Type' = GUID(ActivityTypeId)
+//     )
+
+    
+//     If(
+//         IsAdminOrManager,
+//         Filter(
+//             'Work Orders',
+//             Status = 'Status (Work Orders)'.Active &&
+//             If(
+//                 Not(IsBlank(ActivityTypeId)),
+//                 'Activity Type'.'Incident Type' = GUID(ActivityTypeId),
+//                 true
+//             )
+//         ),
+//         Filter(
+//             'Work Orders',
+//             Status = 'Status (Work Orders)'.Active && 
+//             Owner = UserGUID &&
+//             If(
+//                 Not(IsBlank(ActivityTypeId)),
+//                 'Activity Type'.'Incident Type' = GUID(ActivityTypeId),
+//                 true
+//             )
+//         )
+//     )
+
+//     The argument '{2BC59AA0-511A-EC11-B6E7-000D3A09CE95}' to 'GUID' function is not in a valid GUID format.
