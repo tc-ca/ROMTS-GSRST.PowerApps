@@ -11,7 +11,7 @@
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_riskratingid">
           <cell name="ts_name" width="300" />
-          <cell name="createdon" width="125" />
+          <cell name="ts_riskscore" width="102" />
         </row>
       </grid>
     </layoutxml>
@@ -21,11 +21,11 @@
         <entity name="ts_riskrating">
           <attribute name="ts_riskratingid" />
           <attribute name="ts_name" />
-          <attribute name="createdon" />
-          <order attribute="ts_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="ts_riskscore" />
+          <order attribute="ts_riskscore" descending="true" />
         </entity>
       </fetch>
     </fetchxml>

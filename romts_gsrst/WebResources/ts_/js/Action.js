@@ -179,7 +179,7 @@ var ROM;
             }
         }
         function clearNonActionFields(form) {
-            form.getAttribute("ts_stakeholder").setValue(null);
+            //form.getAttribute("ts_stakeholder").setValue(null);
             form.getAttribute("ts_contact").setValue(null);
             form.getAttribute("ts_deliverymethod").setValue(null);
             form.getAttribute("ts_location").setValue(null);

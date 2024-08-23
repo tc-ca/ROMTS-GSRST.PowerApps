@@ -54,6 +54,7 @@ var ROM;
                 //clear banner if the field is null
                 form.ui.clearFormNotification("1");
             }
+            setActivityTypeFilteredView(form);
         }
         QuestionnaireResponse.onLoad = onLoad;
         function ToggleQuestionnaire(eContext) {
@@ -103,5 +104,22 @@ var ROM;
             return surveyLocale;
         }
         QuestionnaireResponse.getSurveyLocal = getSurveyLocal;
+        // Filter the lookup for Activity Type (ts_activitytype)
+        function setActivityTypeFilteredView(form) {
+            //let selectedQuestionnaireResponseId = form.data.entity.getId();
+            var selectedQuestionnaireId = form.getAttribute("ts_questionnaire").getValue();
+            if (selectedQuestionnaireId != null && selectedQuestionnaireId != undefined) {
+                // remove the curly braces from the GUID
+                var selectedQuestionnaireIdGUID = selectedQuestionnaireId[0].id.replace(/[{}]/g, '');
+                // get the Activity Types
+                var activityTypeFetchXML = "\n                <fetch xmlns:generator=\"MarkMpn.SQL4CDS\" distinct=\"true\">\n                  <entity name=\"msdyn_incidenttype\">\n                    <attribute name=\"msdyn_incidenttypeid\" />\n                    <attribute name=\"msdyn_name\" />\n                    <link-entity name=\"msdyn_incidenttypeservicetask\" to=\"msdyn_incidenttypeid\" from=\"msdyn_incidenttype\" alias=\"msdyn_incidenttypeservicetask\" link-type=\"inner\">\n                      <link-entity name=\"msdyn_servicetasktype\" to=\"msdyn_tasktype\" from=\"msdyn_servicetasktypeid\" alias=\"msdyn_servicetasktype\" link-type=\"inner\">\n                        <link-entity name=\"ovs_questionnaire\" to=\"ovs_questionnaire\" from=\"ovs_questionnaireid\" alias=\"ovs_questionnaire\" link-type=\"inner\">\n                          <attribute name=\"ovs_questionnaireid\" />\n                          <filter>\n                            <condition attribute=\"ovs_questionnaireid\" operator=\"eq\" value=\"" + selectedQuestionnaireIdGUID + "\" />\n                          </filter>\n                        </link-entity>\n                      </link-entity>\n                    </link-entity>\n                  </entity>\n                </fetch>\n            ";
+                //Now filter the lookup
+                var viewId = '{5D6A532B-172B-469E-993F-F6C6CF8C2E9F}';
+                var entityName = "msdyn_incidenttype";
+                var viewDisplayName = Xrm.Utility.getResourceString("ovs_/resx/QuestionnaireResponse", "FilteredActivityTypes");
+                var layoutXml = "\n                <grid name=\"resultset\" object=\"10010\" jump=\"msdyn_name\" select=\"1\" icon=\"1\" preview=\"1\">\n\t                <row name=\"result\" id=\"msdyn_incidenttypeid\">\n\t\t                <cell name=\"msdyn_name\" width=\"200\" />\n\t                </row>\n                </grid>\n            ";
+                form.getControl("ts_activitytype").addCustomView(viewId, entityName, viewDisplayName, activityTypeFetchXML, layoutXml, true);
+            }
+        }
     })(QuestionnaireResponse = ROM.QuestionnaireResponse || (ROM.QuestionnaireResponse = {}));
 })(ROM || (ROM = {}));
