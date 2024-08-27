@@ -79,23 +79,6 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell locklevel="0" id="{63e71bca-6cd6-4b29-8fd9-9624fd9b2da8}" showlabel="false">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                      <cell locklevel="0" id="{cee7b373-b631-4e34-b4f8-2293c7127e8b}" showlabel="false">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                      <cell locklevel="0" id="{dde38ca3-aa31-4f16-aa4e-59dec4e39739}" showlabel="false">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
                       <cell id="{11e0922a-c7e2-488a-92ea-e8282263f22a}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Total Planned Activities" languagecode="1033" />
@@ -116,6 +99,24 @@
                           <label description="Coût estimé totale" languagecode="1036" />
                         </labels>
                         <control id="ts_totalestimatedcost" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ts_totalestimatedcost" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{34260602-6d8a-7453-545d-c01295c82322}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Total Unplanned Activity" languagecode="1033" />
+                        </labels>
+                        <control id="ts_unplannedactivityfiscalyear" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_unplannedactivityfiscalyear" disabled="true" uniqueid="{0886a83b-5a87-4d00-9c5d-0a9190ea201d}" />
+                      </cell>
+                      <cell id="{19ab2282-0449-e61a-87e7-a33038556036}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{9e8820e6-c54b-a2e9-adc8-c5beb73da9d2}" showlabel="false">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
                       </cell>
                     </row>
                   </rows>
@@ -310,6 +311,32 @@
                         <control id="ts_estimateddurationq4" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_estimateddurationq4" disabled="true" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{4cba1b30-0920-055c-eaee-89ee29ddb125}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Unplanned Activity Q1" languagecode="1033" />
+                        </labels>
+                        <control id="ts_unplannedactivityq1" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_unplannedactivityq1" disabled="false" uniqueid="{b863b664-be7a-4a9c-99b7-2ae9c3bd3b32}" />
+                      </cell>
+                      <cell id="{0701c1be-3737-bb27-b6ed-70a266a6317b}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Unplanned Activity Q2" languagecode="1033" />
+                        </labels>
+                        <control id="ts_unplannedactivityq2" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_unplannedactivityq2" disabled="false" uniqueid="{b19c5a2a-0c0b-b178-26e5-49b2965d1ac4}" />
+                      </cell>
+                      <cell id="{2293dbc5-d799-0d4a-d1ba-be07ecc81d1b}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Unplanned Activity Q3" languagecode="1033" />
+                        </labels>
+                        <control id="ts_unplannedactivityq3" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_unplannedactivityq3" disabled="false" uniqueid="{b0a55e37-0e92-c8d7-4bbc-2e22c0324a66}" />
+                      </cell>
+                      <cell id="{637c343c-6d2c-3e70-431d-979dd16a1555}" showlabel="true" locklevel="0" visible="false">
+                        <labels>
+                          <label description="Unplanned Activity Q4" languagecode="1033" />
+                        </labels>
+                        <control id="ts_unplannedactivityq4" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_unplannedactivityq4" disabled="false" uniqueid="{558a1871-6e91-76c2-4258-a56178e71a4d}" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -355,7 +382,7 @@
                         </control>
                       </cell>
                     </row>
-                    <row></row>
+                    <row />
                     <row />
                     <row />
                     <row />
@@ -612,6 +639,26 @@
         <event name="onrecordselect" application="false" active="false" relationship="" control="suggested_inspections_grid">
           <Handlers>
             <Handler functionName="ROM.Plan.lockSuggestedInspectionEditableGridFields" libraryName="ts_/js/Plan.js" handlerUniqueId="{3d101559-6a91-3253-cba3-21553dceedc8}" enabled="true" parameters="[&quot;ts_stakeholder&quot;, &quot;ts_operationtype&quot;, &quot;ts_site&quot;, &quot;ts_activitytype&quot;, &quot;ts_riskthreshold&quot;]" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_unplannedactivityq1">
+          <Handlers>
+            <Handler functionName="ROM.Plan.unplannedActivityOnChange" libraryName="ts_/js/Plan.js" handlerUniqueId="{05d22068-232b-1889-a2d7-b20a7a5375ed}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_unplannedactivityq2">
+          <Handlers>
+            <Handler functionName="ROM.Plan.unplannedActivityOnChange" libraryName="ts_/js/Plan.js" handlerUniqueId="{c8107b79-956a-37de-54ad-240936070b0e}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_unplannedactivityq3">
+          <Handlers>
+            <Handler functionName="ROM.Plan.unplannedActivityOnChange" libraryName="ts_/js/Plan.js" handlerUniqueId="{91b635b2-014d-861a-391d-a0663c994255}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_unplannedactivityq4">
+          <Handlers>
+            <Handler functionName="ROM.Plan.unplannedActivityOnChange" libraryName="ts_/js/Plan.js" handlerUniqueId="{c594997b-e666-2c6e-42b9-1c240c3582a0}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
