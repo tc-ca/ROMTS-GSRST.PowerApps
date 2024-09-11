@@ -429,7 +429,7 @@
                           <label description="Plan Inspector Hours" languagecode="1033" />
                           <label description="Plan Inspection Support Regions" languagecode="1036" />
                         </labels>
-                        <control id="subgrid_supporting_inspections" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true">
+                        <control id="subgrid_supporting_inspections" classid="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" indicationOfSubgrid="true" uniqueid="{68b85a3e-9259-c6c5-390e-92e7b591a120}">
                           <parameters>
                             <ViewId>{E95A3BDF-6A94-EE11-BE37-0022483C5061}</ViewId>
                             <IsUserView>false</IsUserView>
@@ -531,6 +531,12 @@
                     <AllowFilterOff>false</AllowFilterOff>
                     <DisableQuickFind>true</DisableQuickFind>
                   </cell>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_trip">
+                    <DefaultViewId>{60E375E4-E57F-4E62-A11A-A5551B9BC36C}</DefaultViewId>
+                    <DependentAttributeType>territory</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
                 </columnsDefaultView>
                 <IsUserView>false</IsUserView>
                 <RelationshipName>ts_suggestedinspection_ts_plan</RelationshipName>
@@ -558,6 +564,12 @@
                     <DependentAttributeType>msdyn_incidenttype</DependentAttributeType>
                     <AllowFilterOff>false</AllowFilterOff>
                     <DisableQuickFind>true</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_trip">
+                    <DefaultViewId>{60E375E4-E57F-4E62-A11A-A5551B9BC36C}</DefaultViewId>
+                    <DependentAttributeType>territory</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
                   </cell>
                 </columnsDefaultView>
                 <IsUserView>false</IsUserView>
@@ -659,6 +671,11 @@
         <event name="onchange" application="false" active="false" attribute="ts_unplannedactivityq4">
           <Handlers>
             <Handler functionName="ROM.Plan.unplannedActivityOnChange" libraryName="ts_/js/Plan.js" handlerUniqueId="{c594997b-e666-2c6e-42b9-1c240c3582a0}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_trip" relationship="" control="suggested_inspections_grid">
+          <Handlers>
+            <Handler functionName="ROM.Plan.validateTripOnChange" libraryName="ts_/js/Plan.js" handlerUniqueId="{87831c6c-c768-02bb-6c10-1a0b493a0e99}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

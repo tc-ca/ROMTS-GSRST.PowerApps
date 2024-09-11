@@ -45,6 +45,7 @@ var ROM;
             setStakeholderFilteredView(form);
             setSiteFilteredView(form);
             setActivityTypeFilteredView(form);
+            filterTrips(form);
             var operationTypeValue = form.getAttribute("ts_operationtype").getValue();
             var stakeholderValue = form.getAttribute("ts_stakeholder").getValue();
             var siteValue = form.getAttribute("ts_site").getValue();
@@ -365,6 +366,22 @@ var ROM;
             ].join("");
             var layoutXml = '<grid name="resultset" object="10010" jump="name" select="1" icon="1" preview="1"><row name="result" id="msdyn_incidenttypeid"><cell name="msdyn_name" width="200" /></row></grid>';
             form.getControl("ts_activitytype").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
+        }
+        function filterTrips(form) {
+            var plan = form.getAttribute("ts_plan").getValue();
+            if (plan !== null) {
+                Xrm.WebApi.retrieveRecord("ts_plan", plan[0].id, "?$select=_ts_fiscalyear_value,ts_name&$expand=ts_team($select=_ts_territory_value)").then(function success(result) {
+                    if (result["ts_team"] != null && result["ts_team"]["_ts_territory_value"] != null) {
+                        console.log("Retrieved _ts_fiscalyear_value: " + result._ts_fiscalyear_value + "  Region: " + result["ts_team"]["_ts_territory_value"]);
+                        var yearId = result._ts_fiscalyear_value;
+                        var tripFilter = "<filter type='and'><condition attribute='statecode' operator='eq' value='0'/><condition attribute='ts_fiscalyear' operator='eq'  value='" + yearId + "' /><filter type='or'>" +
+                            "<condition attribute='ts_region' operator='eq' value='{" + result["ts_team"]["_ts_territory_value"] + "}' /><condition attribute='ts_region' operator='null' /></filter></filter>";
+                        form.getControl("ts_trip").addPreSearch(function () {
+                            form.getControl("ts_trip").addCustomFilter(tripFilter, "ts_trip");
+                        });
+                    }
+                });
+            }
         }
         function q1OnChange(eContext) {
             var form = eContext.getFormContext();

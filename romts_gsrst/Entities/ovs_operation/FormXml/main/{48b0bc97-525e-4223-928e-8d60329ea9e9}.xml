@@ -7,7 +7,7 @@
     <FormActivationState>1</FormActivationState>
     <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
-        <tab verticallayout="true" id="{bb4b118e-a1c9-4e04-ae4d-8c6a177ee56c}" IsUserDefined="1" name="{bb4b118e-a1c9-4e04-ae4d-8c6a177ee56c}" expanded="true" locklevel="0" showlabel="true">
+        <tab verticallayout="true" id="{bb4b118e-a1c9-4e04-ae4d-8c6a177ee56c}" IsUserDefined="1" name="tab_general" expanded="true" locklevel="0" showlabel="true">
           <labels>
             <label description="Summary" languagecode="1033" />
             <label description="Résumé" languagecode="1036" />
@@ -320,12 +320,34 @@
                         <control id="ts_dateoflastriskbasedinspection" classid="{5B773807-9FB2-42db-97C3-7A91EFF8ADFF}" datafieldname="ts_dateoflastriskbasedinspection" disabled="true" uniqueid="{84896445-d217-c7e2-9467-a92173c946da}" />
                       </cell>
                     </row>
+                  </rows>
+                </section>
+                <section name="section_riskrating" showlabel="false" showbar="false" locklevel="0" id="{bca3a1a5-712d-35d1-5060-ece14e13b585}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                  <labels>
+                    <label description="Risk Rating" languagecode="1033" />
+                  </labels>
+                  <rows>
                     <row>
                       <cell id="{caca234b-604d-e125-b01a-c5b090922a9a}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="Regulated Entity Risk Rating" languagecode="1033" />
                         </labels>
                         <control id="ts_regulatedentityriskrating" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_regulatedentityriskrating" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7329dc59-5e75-1888-3007-a93e125d6bb6}" showlabel="false" colspan="1" auto="false">
+                        <labels>
+                          <label description="Operation Type Risk" languagecode="1033" />
+                          <label description="Type d'opération" languagecode="1036" />
+                        </labels>
+                        <control id="OperationTypeRisk" classid="{5C5600E0-1D6E-4205-A272-BE80DA87FD42}" datafieldname="ovs_operationtypeid" disabled="false">
+                          <parameters>
+                            <QuickForms>&lt;QuickFormIds&gt;&lt;QuickFormId entityname="ovs_operationtype"&gt;792514c6-b79e-43d2-b3bd-7cd1f941f811&lt;/QuickFormId&gt;&lt;/QuickFormIds&gt;</QuickForms>
+                            <ControlMode>Edit</ControlMode>
+                            <DisplayAsCustomer360Tile>false</DisplayAsCustomer360Tile>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                   </rows>

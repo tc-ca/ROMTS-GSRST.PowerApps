@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0.20220711.1</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form headerdensity="HighWithControls">
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab verticallayout="true" id="{6149c9cd-3d20-407b-afa7-f39428d1ceb0}" IsUserDefined="1">
           <labels>
@@ -87,6 +87,14 @@
                             <AllowFilterOff>false</AllowFilterOff>
                           </parameters>
                         </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{dab9d578-0c88-850c-3295-9ca9e8838333}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Planned Fiscal Year" languagecode="1033" />
+                        </labels>
+                        <control id="ts_fiscalyear" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalyear" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -226,7 +234,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -298,6 +306,16 @@
           </row>
         </rows>
       </footer>
+      <formLibraries>
+        <Library name="ts_/js/Trip.js" libraryUniqueId="{98082915-db41-42ec-4080-6d8d39dc8c9a}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.Trip.onLoad" libraryName="ts_/js/Trip.js" handlerUniqueId="{b7964ba0-a778-d9ec-3930-452c330869cd}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>
