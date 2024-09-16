@@ -138,6 +138,7 @@
                 parameters.actionName = "GetOperationActivityWO";
                 parameters.recordId = opActivityId;// opValue[0].id.replace("{", "").replace("}", "");
 
+                console.log("param: " + JSON.stringify(parameters));
 
                 var req = new XMLHttpRequest();
                 req.open("POST", parent.Xrm.Utility.getGlobalContext().getClientUrl() + "/api/data/v9.1/ts_TSGlobalAction", true);
@@ -153,7 +154,7 @@
                             var results = JSON.parse(this.response);
                             //debugger;
                             var tableHtml = results.result;
-
+                            console.log("tableHtml: " + tableHtml);
                             var dvInfo = document.getElementById("dvTripInfo");
                             dvInfo.innerHTML = results.result2;
 
