@@ -23,7 +23,7 @@
     </layoutxml>
     <querytype>0</querytype>
     <fetchxml>
-      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">
         <entity name="msdyn_workorder">
           <attribute name="msdyn_name" />
           <attribute name="msdyn_serviceaccount" />
@@ -32,16 +32,16 @@
           <attribute name="msdyn_primaryincidenttype" />
           <attribute name="ownerid" />
           <attribute name="ts_region" />
-          <order attribute="msdyn_name" descending="true" />
           <attribute name="ts_numberoffindings" />
+          <attribute name="msdyn_timeclosed" />
+          <order attribute="msdyn_name" descending="true" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
             <condition attribute="msdyn_workordersummary" operator="not-like" value="%@Active Work Orders@%" />
           </filter>
-          <link-entity alias="a_6c13ce15b9a3eb11b1ac000d3ae8bbe0" name="tc_tcfiscalquarter" from="tc_tcfiscalquarterid" to="ovs_fiscalquarter" link-type="outer" visible="false">
+          <link-entity name="tc_tcfiscalquarter" from="tc_tcfiscalquarterid" to="ovs_fiscalquarter" visible="false" link-type="outer" alias="a_6c13ce15b9a3eb11b1ac000d3ae8bbe0">
             <attribute name="ts_englishname" />
           </link-entity>
-          <attribute name="msdyn_timeclosed" />
           <attribute name="msdyn_workorderid" />
         </entity>
       </fetch>

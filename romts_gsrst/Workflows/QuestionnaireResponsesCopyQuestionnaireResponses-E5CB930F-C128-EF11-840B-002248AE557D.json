@@ -165,6 +165,7 @@
                       "entityName": "msdyn_workorderservicetasks",
                       "item/msdyn_tasktype@odata.bind": "msdyn_servicetasktypes(@{outputs('Service_Task_Type')?['body/msdyn_servicetasktypeid']})",
                       "item/msdyn_workorder@odata.bind": "msdyn_workorders(@{items('Apply_to_each_4')['ID']})",
+                      "item/ts_fromoffline": true,
                       "item/msdyn_name": "@variables('Service Task Name')",
                       "item/ovs_Questionnaire@odata.bind": "ovs_questionnaires(@{outputs('Questionnaire')?['body/ovs_questionnaireid']})",
                       "item/ovs_questionnairedefinition": "@outputs('Questionnaire')?['body/ovs_questionnairedefinition']",
