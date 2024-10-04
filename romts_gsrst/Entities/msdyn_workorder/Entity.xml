@@ -5,15 +5,12 @@
     <entity Name="msdyn_workorder">
       <LocalizedNames>
         <LocalizedName description="Work Order" languagecode="1033" />
-        <LocalizedName description="Ordre de travail" languagecode="1036" />
       </LocalizedNames>
       <LocalizedCollectionNames>
         <LocalizedCollectionName description="Work Orders" languagecode="1033" />
-        <LocalizedCollectionName description="Ordres de travail" languagecode="1036" />
       </LocalizedCollectionNames>
       <Descriptions>
         <Description description="Work orders store all information about the job performed for an account. Stores incident details, resource, expenses, tasks, communications, billing and more" languagecode="1033" />
-        <Description description="Les ordres de travail stockent toutes les informations sur le travail exécuté pour un compte. Stocke les détails des incidents, les ressources, les dépenses, les tâches, les communications, la facturation et plus encore" languagecode="1036" />
       </Descriptions>
       <attributes>
         <attribute PhysicalName="CreatedBy">
@@ -6059,6 +6056,68 @@
             <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="ts_IgnoreUpdate">
+          <Type>bit</Type>
+          <Name>ts_ignoreupdate</Name>
+          <LogicalName>ts_ignoreupdate</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20240924.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="ts_msdyn_workorder_ts_ignoreupdate">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>1.0.20240924.1</IntroducedVersion>
+            <IsCustomizable>1</IsCustomizable>
+            <ExternalTypeName></ExternalTypeName>
+            <displaynames>
+              <displayname description="IgnoreUpdate" languagecode="1033" />
+            </displaynames>
+            <Descriptions>
+              <Description description="" languagecode="1033" />
+            </Descriptions>
+            <options>
+              <option value="1" ExternalValue="">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="0" ExternalValue="">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="IgnoreUpdate" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="ts_incident">
           <Type>picklist</Type>
           <Name>ts_incident</Name>
@@ -8411,7 +8470,7 @@
       <IsRequiredOffline>0</IsRequiredOffline>
       <IsInteractionCentricEnabled>0</IsInteractionCentricEnabled>
       <IsCollaboration>1</IsCollaboration>
-      <AutoRouteToOwnerQueue>0</AutoRouteToOwnerQueue>
+      <AutoRouteToOwnerQueue>1</AutoRouteToOwnerQueue>
       <IsConnectionsEnabled>1</IsConnectionsEnabled>
       <EntityColor>#660033</EntityColor>
       <IsDocumentManagementEnabled>0</IsDocumentManagementEnabled>
@@ -8461,4 +8520,27 @@
   <SavedQueries />
   <Visualizations />
   <RibbonDiffXml />
+  <CustomControlDefaultConfigs>
+    <CustomControlDefaultConfig>
+      <ControlDescriptionXML>
+        <controlDescriptions>
+          <controlDescription>
+            <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" formFactor="0">
+              <parameters />
+            </customControl>
+            <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" formFactor="1">
+              <parameters />
+            </customControl>
+            <customControl formFactor="2" name="msdyn_FieldService.WorkOrderList">
+              <parameters>
+                <data-set name="records" />
+                <AllEntityColumnsLinkable static="true" type="Enum">disable</AllEntityColumnsLinkable>
+              </parameters>
+            </customControl>
+          </controlDescription>
+        </controlDescriptions>
+      </ControlDescriptionXML>
+      <IntroducedVersion>6.0.0.0</IntroducedVersion>
+    </CustomControlDefaultConfig>
+  </CustomControlDefaultConfigs>
 </Entity>
