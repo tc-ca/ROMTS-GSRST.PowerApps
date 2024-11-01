@@ -22,9 +22,17 @@
                   </labels>
                   <rows>
                     <row>
+                      <cell id="{a386d6c5-e1dc-4b3d-a90d-45960698b78a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Security Incident" languagecode="1033" />
+                        </labels>
+                        <control id="ts_securityincident" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_securityincident" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{fc9ebe03-5c0b-4a2e-a157-8fb3b0d92d74}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
-                          <label description="Date Time Received" languagecode="1033" />
+                          <label description="Date Time Received (UTC)" languagecode="1033" />
                         </labels>
                         <control id="ts_datetimereceived" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_datetimereceived" disabled="true" />
                       </cell>
@@ -34,7 +42,7 @@
                         <labels>
                           <label description="TCOMs ID" languagecode="1033" />
                         </labels>
-                        <control id="ts_tcomsid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_tcomsid" disabled="false" />
+                        <control id="ts_tcomsid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_tcomsid" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -42,7 +50,7 @@
                         <labels>
                           <label description="TCOMs Officer" languagecode="1033" />
                         </labels>
-                        <control id="ts_tcomsofficer" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_tcomsofficer" disabled="false" />
+                        <control id="ts_tcomsofficer" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_tcomsofficer" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -63,13 +71,39 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{a619d4b9-f330-4c87-80c6-c8053dbee23b}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{a619d4b9-f330-4c87-80c6-c8053dbee23b}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
                           <label description="Incident Details Attachment" languagecode="1033" />
                         </labels>
                         <control id="ts_incidentdetailsattachment" classid="{0A7FF475-B016-4687-9CE5-042BFDBD6519}" datafieldname="ts_incidentdetailsattachment" disabled="false" />
                       </cell>
                     </row>
+                    <row>
+                      <cell rowspan="6" id="{f8234b9b-1e8d-4fc8-8799-2a6316869c90}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="SecurityIncidentAdditionalDetailsDisplay" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_SecurityIncidentAdditionalDetailsDisplay" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/SecurityIncidentAdditionalDetailsDisplay</Url>
+                            <PassParameters>true</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{381f29b8-ad8c-ef11-8a6a-000d3ae8438a}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>

@@ -69,11 +69,18 @@
                     <label description="Work Order" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row />
+                    <row>
+                      <cell id="{ef9fef93-9407-4f47-9136-743e5285b72a}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{b69d7abf-3284-44bc-9d55-546e79996ce9}" locklevel="1" colspan="1" rowspan="1">
                         <labels>
-                          <label description="Closed On Date of Last Work Order" languagecode="1033" />
+                          <label description="Most recent WO Closed on Date" languagecode="1033" />
+                          <label description="Date de fermeture de l'ordre de travail le plus récente" languagecode="1036" />
                         </labels>
                         <control id="ts_closedondateoflastworkorder" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_closedondateoflastworkorder" disabled="true" />
                       </cell>
@@ -213,6 +220,15 @@
                         </control>
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{2d323672-beb3-e107-7103-0651568bede6}" showlabel="true" locklevel="0">
+                        <labels>
+                          <label description="Risk Score" languagecode="1033" />
+                          <label description="Risk Score" languagecode="1036" />
+                        </labels>
+                        <control id="ts_riskscore" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_riskscore" disabled="true" uniqueid="{95379cc3-9c7e-c3e0-0ee0-d38141e05d95}" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -347,7 +363,7 @@
         </event>
       </events>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>

@@ -187,7 +187,7 @@
                     },
                     "parameters": {
                       "entityName": "msdyn_workorderservicetasks",
-                      "$filter": "statuscode eq 918640005",
+                      "$filter": "statuscode ne 918640002 and statecode eq 0",
                       "fetchXml": "        <fetch>\n            <entity name='msdyn_workorderservicetask'>\n<order attribute='createdon' />\n              <filter>\n              <condition attribute='msdyn_workorder' operator='eq' value='@{items('Apply_to_each_4')['ID']}'/>\n            </filter>\n            </entity>\n            </fetch>",
                       "$top": 1
                     },
@@ -244,7 +244,7 @@
                 },
                 "Update_a_row_-_Questionnaire_Response_-_Work_Order": {
                   "runAfter": {
-                    "Update_a_row_-_Work_Order_Service_Task": [
+                    "Apply_to_each_2": [
                       "Succeeded"
                     ]
                   },
@@ -272,15 +272,32 @@
                 "Apply_to_each_2": {
                   "foreach": "@outputs('List_rows')?['body/value']",
                   "actions": {
-                    "Set_variable_2": {
+                    "Update_a_row_-_Work_Order_Service_Task_2": {
                       "runAfter": {},
                       "metadata": {
-                        "operationMetadataId": "00341de8-a25c-4e01-a36d-8c52ad3b373a"
+                        "operationMetadataId": "ff566f89-2e61-4e8f-8e78-fe2c117fb686"
                       },
-                      "type": "SetVariable",
+                      "type": "OpenApiConnection",
                       "inputs": {
-                        "name": "WOST ID",
-                        "value": "@items('Apply_to_each_2')?['msdyn_workorderservicetaskid']"
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "UpdateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "msdyn_workorderservicetasks",
+                          "recordId": "@items('Apply_to_each_2')?['msdyn_workorderservicetaskid']",
+                          "item/msdyn_tasktype@odata.bind": "msdyn_servicetasktypes(@{outputs('Service_Task_Type')?['body/msdyn_servicetasktypeid']})",
+                          "item/ts_fromoffline": true,
+                          "item/ovs_Questionnaire@odata.bind": "ovs_questionnaires(@{outputs('Questionnaire')?['body/ovs_questionnaireid']})",
+                          "item/ovs_questionnaireresponse": "@outputs('Questionnaire_Responses')?['body/ts_questionnaireanswers']",
+                          "item/ovs_questionnaireresultjson": "@outputs('Service_Task_Type')?['body/ovs_questionnaireresultjson']",
+                          "item/ts_servicetaskstartdate": "@formatDateTime(utcNow(), 'MM-dd-yyyy')"
+                        },
+                        "authentication": {
+                          "type": "Raw",
+                          "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                        }
                       }
                     }
                   },
@@ -293,40 +310,6 @@
                     "operationMetadataId": "92d26667-4d32-4713-b3e8-9f299a96d1ba"
                   },
                   "type": "Foreach"
-                },
-                "Update_a_row_-_Work_Order_Service_Task": {
-                  "runAfter": {
-                    "Apply_to_each_2": [
-                      "Succeeded"
-                    ]
-                  },
-                  "metadata": {
-                    "operationMetadataId": "ff566f89-2e61-4e8f-8e78-fe2c117fb686"
-                  },
-                  "type": "OpenApiConnection",
-                  "inputs": {
-                    "host": {
-                      "connectionName": "shared_commondataserviceforapps",
-                      "operationId": "UpdateRecord",
-                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                    },
-                    "parameters": {
-                      "entityName": "msdyn_workorderservicetasks",
-                      "recordId": "@variables('WOST ID')",
-                      "item/msdyn_tasktype@odata.bind": "msdyn_servicetasktypes(@{outputs('Service_Task_Type')?['body/msdyn_servicetasktypeid']})",
-                      "item/ts_fromoffline": true,
-                      "item/ovs_Questionnaire@odata.bind": "ovs_questionnaires(@{outputs('Questionnaire')?['body/ovs_questionnaireid']})",
-                      "item/ovs_questionnairedefinition": "@outputs('Questionnaire')?['body/ovs_questionnairedefinition']",
-                      "item/ovs_questionnaireresponse": "@outputs('Questionnaire_Responses')?['body/ts_questionnaireanswers']",
-                      "item/ovs_questionnaireresultjson": "@outputs('Service_Task_Type')?['body/ovs_questionnaireresultjson']",
-                      "item/ts_servicetaskstartdate": "@formatDateTime(utcNow(), 'MM-dd-yyyy')",
-                      "item/statuscode": 918640005
-                    },
-                    "authentication": {
-                      "type": "Raw",
-                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
-                    }
-                  }
                 }
               },
               "runAfter": {
