@@ -180,10 +180,7 @@
                               "item/Record": "/msdyn_workorders(@{variables('Current Work Order')['Value']})",
                               "item/TeamTemplate/teamtemplateid": "bddf1d45-706d-ec11-8f8e-0022483da5aa"
                             },
-                            "authentication": {
-                              "type": "Raw",
-                              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
-                            }
+                            "authentication": "@parameters('$authentication')"
                           }
                         }
                       },

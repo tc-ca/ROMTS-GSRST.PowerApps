@@ -272,33 +272,68 @@
                 "Apply_to_each_2": {
                   "foreach": "@outputs('List_rows')?['body/value']",
                   "actions": {
-                    "Update_a_row_-_Work_Order_Service_Task_2": {
+                    "Try": {
+                      "actions": {
+                        "Update_a_row_-_Work_Order_Service_Task_2": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "ff566f89-2e61-4e8f-8e78-fe2c117fb686"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "UpdateRecord",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "msdyn_workorderservicetasks",
+                              "recordId": "@items('Apply_to_each_2')?['msdyn_workorderservicetaskid']",
+                              "item/msdyn_tasktype@odata.bind": "msdyn_servicetasktypes(@{outputs('Service_Task_Type')?['body/msdyn_servicetasktypeid']})",
+                              "item/ts_fromoffline": true,
+                              "item/ovs_Questionnaire@odata.bind": "ovs_questionnaires(@{outputs('Questionnaire')?['body/ovs_questionnaireid']})",
+                              "item/ovs_questionnaireresponse": "@outputs('Questionnaire_Responses')?['body/ts_questionnaireanswers']",
+                              "item/ovs_questionnaireresultjson": "@outputs('Service_Task_Type')?['body/ovs_questionnaireresultjson']",
+                              "item/ts_servicetaskstartdate": "@formatDateTime(utcNow(), 'MM-dd-yyyy')"
+                            },
+                            "authentication": {
+                              "type": "Raw",
+                              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                            }
+                          }
+                        }
+                      },
                       "runAfter": {},
                       "metadata": {
-                        "operationMetadataId": "ff566f89-2e61-4e8f-8e78-fe2c117fb686"
+                        "operationMetadataId": "66cba34c-75b5-4750-b80d-9f3c3cb3274c"
                       },
-                      "type": "OpenApiConnection",
-                      "inputs": {
-                        "host": {
-                          "connectionName": "shared_commondataserviceforapps",
-                          "operationId": "UpdateRecord",
-                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                        },
-                        "parameters": {
-                          "entityName": "msdyn_workorderservicetasks",
-                          "recordId": "@items('Apply_to_each_2')?['msdyn_workorderservicetaskid']",
-                          "item/msdyn_tasktype@odata.bind": "msdyn_servicetasktypes(@{outputs('Service_Task_Type')?['body/msdyn_servicetasktypeid']})",
-                          "item/ts_fromoffline": true,
-                          "item/ovs_Questionnaire@odata.bind": "ovs_questionnaires(@{outputs('Questionnaire')?['body/ovs_questionnaireid']})",
-                          "item/ovs_questionnaireresponse": "@outputs('Questionnaire_Responses')?['body/ts_questionnaireanswers']",
-                          "item/ovs_questionnaireresultjson": "@outputs('Service_Task_Type')?['body/ovs_questionnaireresultjson']",
-                          "item/ts_servicetaskstartdate": "@formatDateTime(utcNow(), 'MM-dd-yyyy')"
-                        },
-                        "authentication": {
-                          "type": "Raw",
-                          "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                      "type": "Scope"
+                    },
+                    "Catch": {
+                      "actions": {
+                        "Set_variable_hasError": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "f8defdac-ddfc-4847-bc05-dc72a15bc941"
+                          },
+                          "type": "SetVariable",
+                          "inputs": {
+                            "name": "hasError",
+                            "value": "@true"
+                          }
                         }
-                      }
+                      },
+                      "runAfter": {
+                        "Try": [
+                          "Failed",
+                          "Skipped",
+                          "TimedOut"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "e4345a72-f8ca-4616-b4d5-8e49bd48891d"
+                      },
+                      "type": "Scope"
                     }
                   },
                   "runAfter": {
@@ -376,7 +411,7 @@
             }
           },
           "runAfter": {
-            "Initialize_variable_2": [
+            "Initialize_FlowLog": [
               "Succeeded"
             ]
           },
@@ -459,6 +494,100 @@
                 "type": "string"
               }
             ]
+          }
+        },
+        "Initialize_hasError": {
+          "runAfter": {
+            "Initialize_variable_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "fd077183-db8e-43d9-a191-afc2c270a08d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "hasError",
+                "type": "boolean",
+                "value": "@false"
+              }
+            ]
+          }
+        },
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Join": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "229a8bae-3ee6-4d77-9219-cb625647c0c6"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "hasreturned": "@{true}",
+              "haserror": "@{variables('hasError')}",
+              "errorlog": "@body('Join')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "hasreturned": {
+                  "title": "hasReturned",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "haserror": {
+                  "title": "hasError",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "errorlog": {
+                  "title": "errorLog",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_FlowLog": {
+          "runAfter": {
+            "Initialize_hasError": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c8275f44-798c-40cd-b158-a56d0fa38e99"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "FlowLog",
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "Join": {
+          "runAfter": {
+            "Apply_to_each_3": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "1298eae4-cffc-454b-8d9d-a7af3304e48f"
+          },
+          "type": "Join",
+          "inputs": {
+            "from": "@variables('FlowLog')",
+            "joinWith": "\n"
           }
         }
       }

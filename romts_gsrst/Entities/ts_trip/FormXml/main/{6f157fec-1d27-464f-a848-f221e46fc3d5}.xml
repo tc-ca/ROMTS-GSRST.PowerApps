@@ -83,8 +83,12 @@
                             <DisableMru>false</DisableMru>
                             <DisableQuickFind>false</DisableQuickFind>
                             <DisableViewPicker>false</DisableViewPicker>
-                            <DefaultViewId>{829E958E-9938-EB11-A813-000D3AF3FC19}</DefaultViewId>
+                            <DefaultViewId>{72CCA668-4E5D-4AB1-AFEF-9B00703A5C41}</DefaultViewId>
                             <AllowFilterOff>false</AllowFilterOff>
+                            <DependentAttributeName>ts_trip.ts_fiscalyear</DependentAttributeName>
+                            <DependentAttributeType>tc_tcfiscalyear</DependentAttributeType>
+                            <FilterRelationshipName>tc_TCFiscalQuarter_TCFiscalYear</FilterRelationshipName>
+                            <AvailableViewIds>{D036C837-0C99-4546-A03D-79C69B876CE4},{52C9CBFD-B62E-ED11-9DB0-0022483C5061},{829E958E-9938-EB11-A813-000D3AF3FC19},{3E6CAA4E-67B1-4363-AAD7-09723F312C52},{72CCA668-4E5D-4AB1-AFEF-9B00703A5C41}</AvailableViewIds>
                           </parameters>
                         </control>
                       </cell>
@@ -94,7 +98,13 @@
                         <labels>
                           <label description="Planned Fiscal Year" languagecode="1033" />
                         </labels>
-                        <control id="ts_fiscalyear" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalyear" disabled="false" />
+                        <control id="ts_fiscalyear" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalyear" disabled="false">
+                          <parameters>
+                            <DependentAttributeName>ts_trip.ts_plannedfiscalquarter</DependentAttributeName>
+                            <DependentAttributeType>tc_tcfiscalquarter</DependentAttributeType>
+                            <FilterRelationshipName>tc_TCFiscalQuarter_TCFiscalYear</FilterRelationshipName>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -305,7 +315,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
