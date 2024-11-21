@@ -92,6 +92,8 @@
   <EntityRelationship Name="business_unit_ts_discretionaryfactorgrouping" />
   <EntityRelationship Name="business_unit_ts_discretionaryfactoroption" />
   <EntityRelationship Name="business_unit_ts_discretionaryfactorresponse" />
+  <EntityRelationship Name="business_unit_ts_entityrisk" />
+  <EntityRelationship Name="business_unit_ts_entityriskhistory" />
   <EntityRelationship Name="business_unit_ts_evidence" />
   <EntityRelationship Name="business_unit_ts_exemption" />
   <EntityRelationship Name="business_unit_ts_exemptionfilter" />
@@ -126,6 +128,7 @@
   <EntityRelationship Name="business_unit_ts_riskcriteriaoption" />
   <EntityRelationship Name="business_unit_ts_riskcriteriaresponse" />
   <EntityRelationship Name="business_unit_ts_riskfrequency" />
+  <EntityRelationship Name="business_unit_ts_riskrange" />
   <EntityRelationship Name="business_unit_ts_riskrating" />
   <EntityRelationship Name="business_unit_ts_role" />
   <EntityRelationship Name="business_unit_ts_securityincident" />
@@ -415,6 +418,10 @@
   <EntityRelationship Name="lk_ts_discretionaryfactoroption_modifiedby" />
   <EntityRelationship Name="lk_ts_discretionaryfactorresponse_createdby" />
   <EntityRelationship Name="lk_ts_discretionaryfactorresponse_modifiedby" />
+  <EntityRelationship Name="lk_ts_entityrisk_createdby" />
+  <EntityRelationship Name="lk_ts_entityrisk_modifiedby" />
+  <EntityRelationship Name="lk_ts_entityriskhistory_createdby" />
+  <EntityRelationship Name="lk_ts_entityriskhistory_modifiedby" />
   <EntityRelationship Name="lk_ts_evidence_createdby" />
   <EntityRelationship Name="lk_ts_evidence_modifiedby" />
   <EntityRelationship Name="lk_ts_exemption_createdby" />
@@ -483,6 +490,8 @@
   <EntityRelationship Name="lk_ts_riskcriteriaresponse_modifiedby" />
   <EntityRelationship Name="lk_ts_riskfrequency_createdby" />
   <EntityRelationship Name="lk_ts_riskfrequency_modifiedby" />
+  <EntityRelationship Name="lk_ts_riskrange_createdby" />
+  <EntityRelationship Name="lk_ts_riskrange_modifiedby" />
   <EntityRelationship Name="lk_ts_riskrating_createdby" />
   <EntityRelationship Name="lk_ts_riskrating_modifiedby" />
   <EntityRelationship Name="lk_ts_role_createdby" />
@@ -1486,6 +1495,8 @@
   <EntityRelationship Name="owner_ts_discretionaryfactorgrouping" />
   <EntityRelationship Name="owner_ts_discretionaryfactoroption" />
   <EntityRelationship Name="owner_ts_discretionaryfactorresponse" />
+  <EntityRelationship Name="owner_ts_entityrisk" />
+  <EntityRelationship Name="owner_ts_entityriskhistory" />
   <EntityRelationship Name="owner_ts_evidence" />
   <EntityRelationship Name="owner_ts_exemption" />
   <EntityRelationship Name="owner_ts_exemptionfilter" />
@@ -1520,6 +1531,7 @@
   <EntityRelationship Name="owner_ts_riskcriteriaoption" />
   <EntityRelationship Name="owner_ts_riskcriteriaresponse" />
   <EntityRelationship Name="owner_ts_riskfrequency" />
+  <EntityRelationship Name="owner_ts_riskrange" />
   <EntityRelationship Name="owner_ts_riskrating" />
   <EntityRelationship Name="owner_ts_role" />
   <EntityRelationship Name="owner_ts_securityincident" />
@@ -1688,6 +1700,8 @@
   <EntityRelationship Name="team_ts_discretionaryfactorgrouping" />
   <EntityRelationship Name="team_ts_discretionaryfactoroption" />
   <EntityRelationship Name="team_ts_discretionaryfactorresponse" />
+  <EntityRelationship Name="team_ts_entityrisk" />
+  <EntityRelationship Name="team_ts_entityriskhistory" />
   <EntityRelationship Name="team_ts_evidence" />
   <EntityRelationship Name="team_ts_exemption" />
   <EntityRelationship Name="team_ts_exemptionfilter" />
@@ -1722,6 +1736,7 @@
   <EntityRelationship Name="team_ts_riskcriteriaoption" />
   <EntityRelationship Name="team_ts_riskcriteriaresponse" />
   <EntityRelationship Name="team_ts_riskfrequency" />
+  <EntityRelationship Name="team_ts_riskrange" />
   <EntityRelationship Name="team_ts_riskrating" />
   <EntityRelationship Name="team_ts_role" />
   <EntityRelationship Name="team_ts_securityincident" />
@@ -1833,6 +1848,18 @@
   <EntityRelationship Name="ts_enforcementaction_systemuser_owninguser" />
   <EntityRelationship Name="ts_enforcementaction_team_owningteam" />
   <EntityRelationship Name="ts_enforcementaction_ts_enforcementaction" />
+  <EntityRelationship Name="ts_EntityRisk_Account_Account" />
+  <EntityRelationship Name="ts_EntityRisk_msdyn_FunctionalLocation_msdyn_FunctionalLocation" />
+  <EntityRelationship Name="ts_EntityRisk_msdyn_incidenttype_msdyn_incidenttype" />
+  <EntityRelationship Name="ts_EntityRisk_ovs_operation_ovs_operation" />
+  <EntityRelationship Name="ts_EntityRisk_ovs_operationtype_ovs_operationtype" />
+  <EntityRelationship Name="ts_entityrisk_RiskFrequency_ts_riskfrequency" />
+  <EntityRelationship Name="ts_entityrisk_RiskRating_ts_riskrating" />
+  <EntityRelationship Name="ts_EntityRisk_ts_programarea_ts_programarea" />
+  <EntityRelationship Name="ts_entityriskhistory_EntityRisk_ts_entityrisk" />
+  <EntityRelationship Name="ts_entityriskhistory_RiskFrequency_ts_riskfrequency" />
+  <EntityRelationship Name="ts_entityriskhistory_RiskRange_ts_riskrange" />
+  <EntityRelationship Name="ts_entityriskhistory_RiskRating_ts_riskrating" />
   <EntityRelationship Name="ts_Evidence_WorkOrder_msdyn_workorder" />
   <EntityRelationship Name="ts_Evidence_WorkOrderServiceTask" />
   <EntityRelationship Name="ts_exemption_Account" />
@@ -2070,10 +2097,12 @@
   <EntityRelationship Name="ts_riskcriteriaresponse_operationriskassessm" />
   <EntityRelationship Name="ts_riskcriteriaresponse_riskcriteria" />
   <EntityRelationship Name="ts_riskcriteriaresponse_riskcriteriaoption" />
+  <EntityRelationship Name="ts_RiskFrequency_ts_RiskRating_ts_RiskRating" />
   <EntityRelationship Name="ts_riskrating_msdyn_functionallocation_SiteRiskRating" />
   <EntityRelationship Name="ts_riskrating_msdyn_incidenttype_ProgramActivityRiskRating" />
   <EntityRelationship Name="ts_riskrating_ovs_operation_RegulatedEntityRiskRating" />
   <EntityRelationship Name="ts_riskrating_ovs_operationtype_OperationTypeRiskRating" />
+  <EntityRelationship Name="ts_riskrating_RiskRange_ts_riskrange" />
   <EntityRelationship Name="ts_role_ts_operationcontact_connectionrole" />
   <EntityRelationship Name="ts_securityincident_ActivityPointers" />
   <EntityRelationship Name="ts_securityincident_Annotations" />
@@ -2284,6 +2313,8 @@
   <EntityRelationship Name="user_ts_discretionaryfactorgrouping" />
   <EntityRelationship Name="user_ts_discretionaryfactoroption" />
   <EntityRelationship Name="user_ts_discretionaryfactorresponse" />
+  <EntityRelationship Name="user_ts_entityrisk" />
+  <EntityRelationship Name="user_ts_entityriskhistory" />
   <EntityRelationship Name="user_ts_evidence" />
   <EntityRelationship Name="user_ts_exemption" />
   <EntityRelationship Name="user_ts_exemptionfilter" />
@@ -2318,6 +2349,7 @@
   <EntityRelationship Name="user_ts_riskcriteriaoption" />
   <EntityRelationship Name="user_ts_riskcriteriaresponse" />
   <EntityRelationship Name="user_ts_riskfrequency" />
+  <EntityRelationship Name="user_ts_riskrange" />
   <EntityRelationship Name="user_ts_riskrating" />
   <EntityRelationship Name="user_ts_role" />
   <EntityRelationship Name="user_ts_securityincident" />
