@@ -10,8 +10,11 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_entityriskid">
-          <cell name="ts_name" width="300" />
-          <cell name="createdon" width="125" />
+          <cell name="ts_year" width="100" />
+          <cell name="ts_riskrating" width="107" />
+          <cell name="ts_riskfrequency" width="129" />
+          <cell name="ts_weightedriskscore" width="158" />
+          <cell name="ts_entityname" width="112" />
         </row>
       </grid>
     </layoutxml>
@@ -20,12 +23,15 @@
       <fetch version="1.0" mapping="logical">
         <entity name="ts_entityrisk">
           <attribute name="ts_entityriskid" />
-          <attribute name="ts_name" />
-          <attribute name="createdon" />
-          <order attribute="ts_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="ts_riskrating" />
+          <attribute name="ts_riskfrequency" />
+          <attribute name="ts_weightedriskscore" />
+          <attribute name="ts_entityname" />
+          <attribute name="ts_year" />
+          <order attribute="ts_year" descending="true" />
         </entity>
       </fetch>
     </fetchxml>

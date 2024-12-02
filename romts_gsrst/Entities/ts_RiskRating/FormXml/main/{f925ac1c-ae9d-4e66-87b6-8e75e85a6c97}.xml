@@ -69,7 +69,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{e0c6710b-f2fc-4cd9-8a61-065551f3b3af}">
+                      <cell id="{e0c6710b-f2fc-4cd9-8a61-065551f3b3af}" visible="false">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                           <label description="Propriétaire" languagecode="1036" />
@@ -82,6 +82,88 @@
                         </labels>
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{4f386795-9425-4301-884d-c43bf21d598e}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Risk Weight" languagecode="1033" />
+                        </labels>
+                        <control id="ts_riskweight" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_riskweight" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{825556cc-70fb-411c-bf49-7d3d013ee254}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{556ec043-3ad9-40ca-b0e1-2e248576d7b3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Calculated Risk Score" languagecode="1033" />
+                        </labels>
+                        <control id="ts_calculatedriskscore" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_calculatedriskscore" disabled="true" />
+                      </cell>
+                      <cell locklevel="0" id="{f1ed96fd-54da-4f4e-b69e-8a45ed83ef2d}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{69489ac3-f555-4ac7-b35d-4af2e46c501a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Risk Range" languagecode="1033" />
+                        </labels>
+                        <control id="ts_riskrange" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_riskrange" disabled="false" />
+                      </cell>
+                      <cell locklevel="0" id="{88286a78-93cb-4a90-8645-d859aa1c5963}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+        <tab name="tab_riskfrequency" id="bb66df74-af1e-4239-ae0a-baa1409ae480" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Risk Frequency" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" id="fa7fc8b5-a228-467f-b823-5cdc935b52a6" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{10ac8892-06ce-4b16-907d-dbbd0be67855}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1732553856780" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_riskfrequency</TargetEntityType>
+                            <ViewId>{FFD09313-86A4-4121-957E-0DAB4020BAF2}</ViewId>
+                            <ViewIds>{FFD09313-86A4-4121-957E-0DAB4020BAF2}</ViewIds>
+                            <RelationshipName>ts_RiskFrequency_ts_RiskRating_ts_RiskRating</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>
@@ -106,6 +188,20 @@
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
+            </cell>
+            <cell id="{730488f2-3bdf-4726-8cf3-118a19a73e49}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+            </cell>
+            <cell id="{4b6b6be7-c81b-4e08-be81-4d029990e07f}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Status" languagecode="1033" />
+                <label description="Statut" languagecode="1036" />
+              </labels>
+              <control id="header_statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
             </cell>
           </row>
         </rows>

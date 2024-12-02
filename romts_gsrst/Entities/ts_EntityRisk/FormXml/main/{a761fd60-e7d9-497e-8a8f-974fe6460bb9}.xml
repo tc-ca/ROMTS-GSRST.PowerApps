@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form headerdensity="HighWithControls">
       <tabs>
         <tab verticallayout="true" id="{f6045db8-365f-4d5d-971f-9eb098ed0131}" IsUserDefined="1">
           <labels>
@@ -22,7 +22,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{b5ec9963-a4c3-4e21-9e2d-a422f97a75fd}">
+                      <cell id="{b5ec9963-a4c3-4e21-9e2d-a422f97a75fd}" visible="false" showlabel="true">
                         <labels>
                           <label description="Name" languagecode="1033" />
                         </labels>
@@ -30,12 +30,60 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{223bd321-c81b-4823-bd4f-ff20c1bc617f}">
+                      <cell id="{223bd321-c81b-4823-bd4f-ff20c1bc617f}" visible="false">
                         <labels>
                           <label description="Owner" languagecode="1033" />
                           <label description="Propriétaire" languagecode="1036" />
                         </labels>
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{531ba277-a21b-48ad-8719-939b8c9050de}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Year" languagecode="1033" />
+                        </labels>
+                        <control id="ts_year" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_year" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7c5e62f6-f75d-4872-8194-76757a3c896b}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Risk Rating" languagecode="1033" />
+                        </labels>
+                        <control id="ts_riskrating" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_riskrating" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4ebf6d3c-8018-4304-a742-c27a4340be31}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Risk Frequency" languagecode="1033" />
+                        </labels>
+                        <control id="ts_riskfrequency" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_riskfrequency" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{56ad6ffe-4834-4a1c-b30b-3dfd5f878bce}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Weighted Risk Score" languagecode="1033" />
+                        </labels>
+                        <control id="ts_weightedriskscore" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_weightedriskscore" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f00b75a3-02a1-4efe-924b-11167aec60a7}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Entity Name" languagecode="1033" />
+                        </labels>
+                        <control id="ts_entityname" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_entityname" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{76fa396b-ebcd-4cd1-9f54-32a05237ab5a}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Entity ID" languagecode="1033" />
+                        </labels>
+                        <control id="ts_entityid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_entityid" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -45,6 +93,80 @@
           </columns>
         </tab>
       </tabs>
+      <header id="{c0257f4b-d348-4853-a611-319668c92a1d}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{ee3033cb-7a73-4f0a-8aad-be402635787b}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{7c22a00a-71e9-4662-b52d-2f4474146ce0}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{f8b4297c-dba4-48f9-a12f-939c12d9239c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{9cedd8fd-5cee-45ae-8e95-c3c82c85c318}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+            </cell>
+            <cell id="{679f6aac-ccc2-45b0-a98b-3dcef8a06f1e}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Status" languagecode="1033" />
+                <label description="Statut" languagecode="1036" />
+              </labels>
+              <control id="header_statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{a10be082-e895-4c7c-986c-251dd2538ce8}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{f1d86ea6-73c2-4431-8c8d-416d99bc278c}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{6a901297-473a-430b-9a54-078b8b9c8c8e}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{bb4dcd4c-5a58-4e76-8764-dc5bfb924c30}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+      <formLibraries>
+        <Library name="ts_/js/EntityRisk.js" libraryUniqueId="{ba6ddf4c-03e3-41bb-bdc0-c8def1e5f670}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.EntityRisk.onLoad" libraryName="ts_/js/EntityRisk.js" handlerUniqueId="{5c131190-53dc-4462-bb6f-f3f6c5be7c3d}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.EntityRisk.onSave" libraryName="ts_/js/EntityRisk.js" handlerUniqueId="{80ffa413-0392-4a0f-8967-5996e2758f74}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

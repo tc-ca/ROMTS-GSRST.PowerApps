@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{e2a715da-f6ab-ef11-8a69-6045bd60ca8a}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="msdyn_name" select="1" icon="1" preview="1">
+        <row name="result" id="msdyn_workorderid">
+          <cell name="msdyn_name" width="200" />
+          <cell name="ovs_rational" width="100" />
+          <cell name="msdyn_primaryincidenttype" width="118" />
+          <cell name="msdyn_serviceaccount" width="107" />
+          <cell name="ts_site" width="100" />
+          <cell name="ts_region" width="100" />
+          <cell name="ovs_fiscalquarter" width="169" />
+          <cell name="createdon" width="105" />
+          <cell name="statuscode" width="119" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
+        <entity name="msdyn_workorder">
+          <attribute name="msdyn_name" />
+          <attribute name="msdyn_workorderid" />
+          <attribute name="ovs_rational" />
+          <attribute name="msdyn_primaryincidenttype" />
+          <attribute name="msdyn_serviceaccount" />
+          <attribute name="ts_site" />
+          <attribute name="ts_region" />
+          <attribute name="ovs_fiscalquarter" />
+          <attribute name="createdon" />
+          <attribute name="statuscode" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20241125.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Work Order for Case" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

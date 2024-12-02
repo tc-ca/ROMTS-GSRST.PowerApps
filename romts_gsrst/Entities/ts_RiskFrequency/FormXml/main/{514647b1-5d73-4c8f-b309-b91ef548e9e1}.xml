@@ -22,7 +22,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{072a000c-583d-4db3-813f-ffe859fcf1f8}" showlabel="true" visible="true">
+                      <cell id="{072a000c-583d-4db3-813f-ffe859fcf1f8}" showlabel="true" visible="false">
                         <labels>
                           <label description="Name" languagecode="1033" />
                         </labels>
@@ -68,6 +68,49 @@
             </column>
           </columns>
         </tab>
+        <tab name="tab_RiskRating" id="970b93f1-e9c4-4bf7-82f8-060f4db8b012" IsUserDefined="0" locklevel="0" showlabel="true">
+          <labels>
+            <label description="Risk Ratings" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section name="tab_2_section_1" id="b7d1e3d9-3fe4-40b4-96fe-177a8ac84e42" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="New Section" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{51f8687e-980d-4cda-beed-7da8eaa8e31d}" rowspan="4" colspan="1" auto="false" showlabel="false">
+                        <labels>
+                          <label description="New SG control 1732733500789" languagecode="1033" />
+                        </labels>
+                        <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <TargetEntityType>ts_riskrating</TargetEntityType>
+                            <ViewId>{75395685-9BCD-4A75-8AA9-939FED8B4022}</ViewId>
+                            <ViewIds>{75395685-9BCD-4A75-8AA9-939FED8B4022}</ViewIds>
+                            <RelationshipName>ts_RiskFrequency_ts_RiskRating_ts_RiskRating</RelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
       </tabs>
       <header id="{05f7662f-92bb-4e65-8218-0958b5fc7a0b}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
         <rows>
@@ -86,6 +129,20 @@
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
+            </cell>
+            <cell id="{844d32aa-1196-49e7-83f6-827629ba4b2e}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" disabled="false" />
+            </cell>
+            <cell id="{9126d933-de5b-4994-9727-e85c622a8a7b}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Status" languagecode="1033" />
+                <label description="Statut" languagecode="1036" />
+              </labels>
+              <control id="header_statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
             </cell>
           </row>
         </rows>
