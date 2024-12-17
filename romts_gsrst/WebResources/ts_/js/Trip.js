@@ -1,4 +1,4 @@
-"use strict";
+﻿"use strict";
 /* eslint-disable @typescript-eslint/triple-slash-reference */
 var ROM;
 (function (ROM) {
@@ -9,11 +9,14 @@ var ROM;
             var form = eContext.getFormContext();
             if (userHasRole("System Administrator|ROM - Business Admin|ROM - Planner|ROM - Manager")) {
                 form.getControl("ts_fiscalyear").setDisabled(false);
+                //form.getAttribute("ts_fiscalyear").setRequiredLevel("required");
                 console.log("Enable role");
             }
             else {
                 form.getControl("ts_fiscalyear").setDisabled(true);
             }
+            //form.getAttribute("ts_plannedfiscalquarter").setRequiredLevel("required");
+            //form.getAttribute("ts_region").setRequiredLevel("required");
         }
         Trip.onLoad = onLoad;
         function userHasRole(rolesName) {
