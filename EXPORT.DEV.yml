@@ -46,8 +46,27 @@ steps:
   displayName: 'Install Power Platform Build Tools'
   inputs:
     DefaultVersion: true
+
+# -Start of Power Platform Checker-
+- task: PowerPlatformChecker@0
+  displayName: 'Run Solution Checker'
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+    SolutionName: '$(SolutionName)'
+    RuleSet: 'CriticalBusinessImpact' # Options: 'All', 'CriticalBusinessImpact', 'UpgradeReadiness'
+    SaveResults: true
+    OutputPath: '$(Build.ArtifactStagingDirectory)/SolutionCheckerResults'
+
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Solution Checker Results'
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/SolutionCheckerResults'
+    artifact: 'SolutionCheckerResults'
+    publishLocation: 'pipeline'
+# -End of Power Platform Checker-
 - task: PowerPlatformSetSolutionVersion@0
-  # Update the PowerApps solution using this build number
+# Update the PowerApps solution using this build number
   displayName: 'Update Solution Version'
   inputs:
     authenticationType: 'PowerPlatformSPN'
