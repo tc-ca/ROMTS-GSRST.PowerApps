@@ -14,7 +14,15 @@
                 <section name="recipient information" showlabel="false" showbar="false" locklevel="0" id="{06EADC35-1283-43E0-9EC1-FCEF0A9B9735}" IsUserDefined="0" layout="varwidth" columns="11" labelid="{887cea60-f6e3-4d11-a1de-0c8a41f64500}" ordinalvalue="0">
                   <rows>
                     <row>
-                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="2" id="{9257B3A4-703D-4810-B5E1-850CC98EDB99}" labelid="{92036837-5d79-4221-9e14-418402a7c174}" ordinalvalue="10000">
+                      <cell id="{da2b7262-4a87-4833-8aa8-692e64f80791}" locklevel="0" colspan="1" rowspan="1" showlabel="false" visible="false" ordinalvalue="10000">
+                        <labels>
+                          <label description="Sentiment" languagecode="1033" solutionaction="Modified" />
+                          <label description="Sentiment" languagecode="1036" solutionaction="Added" />
+                        </labels>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="2" id="{9257B3A4-703D-4810-B5E1-850CC98EDB99}" labelid="{92036837-5d79-4221-9e14-418402a7c174}" ordinalvalue="10002">
                         <labels>
                           <label description="From" languagecode="1033" solutionaction="Added" />
                           <label description="De" languagecode="1036" solutionaction="Added" />
@@ -22,7 +30,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="2" id="{789EB1FB-707A-4EE4-8703-00D497EAB254}" labelid="{25d2432b-9948-4872-9ed3-abf8805ed597}" ordinalvalue="10001">
+                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="2" id="{789EB1FB-707A-4EE4-8703-00D497EAB254}" labelid="{25d2432b-9948-4872-9ed3-abf8805ed597}" ordinalvalue="10003">
                         <labels>
                           <label description="To" languagecode="1033" solutionaction="Added" />
                           <label description="À" languagecode="1036" solutionaction="Added" />
@@ -36,7 +44,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="2" id="{F8685CC5-23A6-40A1-976A-8231FEDED19C}" labelid="{407162fe-f268-45f0-bec3-d75e3dd73d2f}" ordinalvalue="10002">
+                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="2" id="{F8685CC5-23A6-40A1-976A-8231FEDED19C}" labelid="{407162fe-f268-45f0-bec3-d75e3dd73d2f}" ordinalvalue="10004">
                         <labels>
                           <label description="Cc" languagecode="1033" solutionaction="Added" />
                           <label description="Cc" languagecode="1036" solutionaction="Added" />
@@ -50,7 +58,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="2" id="{BD2B7462-E3A4-4343-B594-B64885E4025B}" labelid="{3c88731d-6445-4ecc-bea4-93643103d1c6}" ordinalvalue="10003">
+                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="2" id="{BD2B7462-E3A4-4343-B594-B64885E4025B}" labelid="{3c88731d-6445-4ecc-bea4-93643103d1c6}" ordinalvalue="10007" solutionaction="Modified">
                         <labels>
                           <label description="Bcc" languagecode="1033" solutionaction="Added" />
                           <label description="Cci" languagecode="1036" solutionaction="Added" />
@@ -64,7 +72,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="2" id="{0F309E61-AC65-4D7B-9A30-0D12B7FA9B9D}" labelid="{ff641871-ca1c-4c26-9089-176ba474446a}" ordinalvalue="10004">
+                      <cell auto="false" showlabel="true" locklevel="0" rowspan="1" colspan="2" id="{0F309E61-AC65-4D7B-9A30-0D12B7FA9B9D}" labelid="{ff641871-ca1c-4c26-9089-176ba474446a}" ordinalvalue="10008" solutionaction="Modified">
                         <labels>
                           <label description="Subject" languagecode="1033" solutionaction="Added" />
                           <label description="Objet" languagecode="1036" solutionaction="Added" />
@@ -186,8 +194,9 @@
           <Handlers>
             <Handler functionName="emailAssistFormHandler" libraryName="msdyn_CopilotEmailAssist.js" handlerUniqueId="{cfabbf62-8f72-4daf-8afc-94e051a32efb}" enabled="true" parameters="" passExecutionContext="false" ordinalvalue="2" solutionaction="Modified" />
             <Handler functionName="SalesCopilot.Copilot.copilotHelper.loadCopilotControlInSidePane" libraryName="$webresource:msdyn_SalesCopilot/Copilot.Library.js" handlerUniqueId="{d5c3610c-9761-4ce9-afb7-1f62f61f753c}" passExecutionContext="false" enabled="true" parameters="" ordinalvalue="3" solutionaction="Modified" />
+            <Handler functionName="EmailIntelligence.EmailSentimentLibrary.onLoad" libraryName="EmailIntelligence/EmailSentiment/msdyn_EmailSentiment.js" handlerUniqueId="{a29265eb-cf9a-49e6-b203-8edf38bfa178}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="4" solutionaction="Modified" />
             <Handler functionName="ROM.Email.onLoad" libraryName="ts_/js/Email.js" handlerUniqueId="{b30d7f1b-4013-4bf3-9be9-21ca95cf198a}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="1" solutionaction="Added" />
-            <Handler functionName="openLookupModalDialogEmailForm" libraryName="msdyn_/FollowAttachments/Scripts/Email_Engagement_Attachments.js" handlerUniqueId="{14ac04e0-e509-a84a-0e90-691825e608ca}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="4" solutionaction="Added" />
+            <Handler functionName="openLookupModalDialogEmailForm" libraryName="msdyn_/FollowAttachments/Scripts/Email_Engagement_Attachments.js" handlerUniqueId="{14ac04e0-e509-a84a-0e90-691825e608ca}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="5" solutionaction="Added" />
           </Handlers>
         </event>
       </events>

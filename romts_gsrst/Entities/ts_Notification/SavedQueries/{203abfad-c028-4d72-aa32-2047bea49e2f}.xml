@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{203abfad-c028-4d72-aa32-2047bea49e2f}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_notificationid">
+          <cell name="ts_messageenglish" width="145" />
+          <cell name="ts_messagefrench" width="142" />
+          <cell name="ts_level" width="100" />
+          <cell name="ts_environment" width="114" />
+          <cell name="ts_startdate" width="100" />
+          <cell name="ts_enddate" width="100" />
+          <cell name="ts_closebutton" width="114" />
+          <cell name="ts_information" width="108" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_notification">
+          <attribute name="ts_notificationid" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_level" />
+          <attribute name="ts_startdate" />
+          <attribute name="ts_enddate" />
+          <attribute name="ts_information" />
+          <attribute name="ts_closebutton" />
+          <attribute name="ts_messageenglish" />
+          <attribute name="ts_messagefrench" />
+          <attribute name="ts_environment" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Notifications" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
