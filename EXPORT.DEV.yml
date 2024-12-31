@@ -57,7 +57,7 @@ steps:
     RuleSet: '0ad12346-e108-40b8-a956-9a8f95ea18c9' # https://learn.microsoft.com/en-us/power-platform/alm/checker-api/retrieve-rulesets
     SaveResults: true
     OutputPath: '$(Build.ArtifactStagingDirectory)/SolutionCheckerResults'
-    continueOnError: true  # Allow the pipeline to continue even if this task fails
+    condition: always()  # Ensures the pipeline proceeds regardless of task outcome
 
 - task: PublishPipelineArtifact@1
   displayName: 'Publish Solution Checker Results'
