@@ -58,7 +58,7 @@ steps:
     SaveResults: true
     OutputPath: '$(Build.ArtifactStagingDirectory)'
     ErrorLevel: 'Low'  # Ensures the pipeline proceeds regardless of task outcome
-    FailOnAnalysisResultError: false
+    ErrorThreshold: 6000
   condition: always()
   continueOnError: true
 
