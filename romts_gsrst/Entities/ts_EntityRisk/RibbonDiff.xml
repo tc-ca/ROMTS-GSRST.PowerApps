@@ -1,14 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
+  <CustomActions>
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_entityrisk.AddExistingAssoc.Hide" Location="Mscrm.SubGrid.ts_entityrisk.AddExistingAssoc" />
+    <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_entityrisk.AddExistingStandard.Hide" Location="Mscrm.SubGrid.ts_entityrisk.AddExistingStandard" />
+    <CustomAction Id="ts.ts_entityrisk.AddEntityRisk.Button.CustomAction" Location="Mscrm.SubGrid.ts_entityrisk.MainTab.Management.Controls._children" Sequence="0">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_entityrisk.AddEntityRisk.Button.Alt" Command="ts.ts_entityrisk.Command0.Command" Id="ts.ts_entityrisk.AddEntityRisk.Button" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.ts_entityrisk.AddEntityRisk.Button.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_entityrisk.AddEntityRisk.Button.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_entityrisk.AddEntityRisk.Button.ToolTipDescription" ModernImage="New" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="ts.ts_entityrisk.Command0.Command">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="openAddNewEntityRiskFromRibbon" Library="$webresource:ts_/js/EntityRiskRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="PrimaryControlId" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
     <EnableRules />
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="ts.ts_entityrisk.AddEntityRisk.Button.Alt">
+      <Titles>
+        <Title description="Add New {0}" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_entityrisk.AddEntityRisk.Button.LabelText">
+      <Titles>
+        <Title description="Add Entity Risk" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_entityrisk.AddEntityRisk.Button.ToolTipDescription">
+      <Titles>
+        <Title description="Add a related {0} to this record." languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_entityrisk.AddEntityRisk.Button.ToolTipTitle">
+      <Titles>
+        <Title description="Add New {0}" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>
