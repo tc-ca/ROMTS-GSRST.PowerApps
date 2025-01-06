@@ -79,9 +79,13 @@ steps:
     SolutionVersionNumber: '$(Build.BuildNumber)'
 - task: PowerPlatformPublishCustomizations@0
   displayName: 'Publish All Customizations'
+  dependsOn: PowerPlatformSetSolutionVersion
   inputs:
     authenticationType: 'PowerPlatformSPN'
     PowerPlatformSPN: 'ROMTS-GSRST DEV'
+  retry:
+    maxAttempts: 3
+    delay: 360
 - task: MSCRMToolInstaller@12
   # We previously used Wael Hamze's Power DevOps Tools to do export of both solution types in the same task
   # Now we only export unmanaged so we can look into switching this back to the MS Power Platform Tools
