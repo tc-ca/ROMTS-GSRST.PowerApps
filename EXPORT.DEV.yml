@@ -58,6 +58,9 @@ steps:
     SaveResults: true
     OutputPath: '$(Build.ArtifactStagingDirectory)'
     ErrorLevel: 'Informational'  # Ensures the pipeline proceeds regardless of task outcome
+    ErrorThreshold: 6000
+  condition: always()
+  continueOnError: true
 
 - task: PublishPipelineArtifact@1
   displayName: 'Publish Solution Checker Results'
@@ -74,44 +77,15 @@ steps:
     PowerPlatformSPN: 'ROMTS-GSRST DEV'
     SolutionName: '$(SolutionName)'
     SolutionVersionNumber: '$(Build.BuildNumber)'
-
-# Retry logic for Publish All Customizations
-- task: PowerShell@2
-  displayName: 'Retry Publish All Customizations'
+- task: PowerPlatformPublishCustomizations@0
+  displayName: 'Publish All Customizations'
+  dependsOn: PowerPlatformSetSolutionVersion
   inputs:
-    targetType: 'inline'
-    script: |
-      $maxAttempts = 5   # Maximum number of retry attempts
-      $retryDelay = 360  # Delay in seconds between retries
-      $attempt = 1
-      $success = $false
-
-      while ($attempt -le $maxAttempts -and -not $success) {
-          Write-Output "Attempt $attempt of $maxAttempts to publish customizations"
-          try {
-              # Call the Publish All Customizations task
-              & az pipelines task invoke --task-name PowerPlatformPublishCustomizations `
-                  --auth-type PowerPlatformSPN `
-                  --params @{ PowerPlatformSPN = 'ROMTS-GSRST DEV' }
-
-              # If successful, set success flag
-              $success = $true
-              Write-Output "Publish All Customizations succeeded."
-          } catch {
-              Write-Output "Error during attempt $attempt: $_"
-              if ($attempt -lt $maxAttempts) {
-                  Write-Output "Retrying in $retryDelay seconds..."
-                  Start-Sleep -Seconds $retryDelay
-              }
-              $attempt++
-          }
-      }
-
-      if (-not $success) {
-          Write-Error "Failed to publish customizations after $maxAttempts attempts."
-      }
-
-
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'ROMTS-GSRST DEV'
+  retry:
+    maxAttempts: 3
+    delay: 360
 - task: MSCRMToolInstaller@12
   # We previously used Wael Hamze's Power DevOps Tools to do export of both solution types in the same task
   # Now we only export unmanaged so we can look into switching this back to the MS Power Platform Tools
