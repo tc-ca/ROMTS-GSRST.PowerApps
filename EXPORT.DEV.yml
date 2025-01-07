@@ -58,6 +58,8 @@ steps:
     SaveResults: true
     OutputPath: '$(Build.ArtifactStagingDirectory)'
     ErrorLevel: 'Informational'  # Ensures the pipeline proceeds regardless of task outcome
+  condition: always()
+  continueOnError: true
 
 - task: PublishPipelineArtifact@1
   displayName: 'Publish Solution Checker Results'
