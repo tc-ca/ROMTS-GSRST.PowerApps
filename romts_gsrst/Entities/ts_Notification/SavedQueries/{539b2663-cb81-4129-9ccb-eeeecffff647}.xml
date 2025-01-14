@@ -13,23 +13,21 @@
           <cell name="ts_messageenglish" width="145" />
           <cell name="ts_messagefrench" width="142" />
           <cell name="ts_level" width="100" />
+          <cell name="ts_environment" width="114" />
+          <cell name="ts_scopeteam" width="119" />
           <cell name="ts_startdate" width="100" />
           <cell name="ts_enddate" width="100" />
           <cell name="ts_closebutton" width="114" />
           <cell name="ts_information" width="108" />
-          <cell name="createdon" width="125" />
+          <cell name="createdon" width="105" />
         </row>
       </grid>
     </layoutxml>
     <querytype>0</querytype>
     <fetchxml>
-      <fetch version="1.0" mapping="logical">
+      <fetch version="1.0" mapping="logical" distinct="true">
         <entity name="ts_notification">
           <attribute name="ts_notificationid" />
-          <attribute name="createdon" />
-          <filter type="and">
-            <condition attribute="statecode" operator="eq" value="1" />
-          </filter>
           <attribute name="ts_level" />
           <attribute name="ts_startdate" />
           <attribute name="ts_enddate" />
@@ -37,6 +35,13 @@
           <attribute name="ts_information" />
           <attribute name="ts_messagefrench" />
           <attribute name="ts_messageenglish" />
+          <attribute name="ts_scopeteam" />
+          <attribute name="ts_environment" />
+          <attribute name="createdon" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="1" />
+            <condition attribute="ts_active" operator="eq" value="0" />
+          </filter>
         </entity>
       </fetch>
     </fetchxml>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{6b480abc-bb22-4d39-a755-3c7123e7093a}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_operationactivityriskscoresid">
+          <cell name="ts_fiscalyear" width="103" />
+          <cell name="ts_calculatedriskscore" width="165" />
+          <cell name="ts_programareaentityrisk" width="149" />
+          <cell name="ts_activitytypeentityrisk" width="185" />
+          <cell name="ts_operationentityrisk" width="126" />
+          <cell name="ts_operationtypeentityrisk" width="157" />
+          <cell name="ts_siteentityrisk" width="100" />
+          <cell name="ts_stakeholderentityrisk" width="137" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_operationactivityriskscores">
+          <attribute name="ts_operationactivityriskscoresid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_fiscalyear" />
+          <order attribute="ts_fiscalyear" descending="false" />
+          <attribute name="ts_programareaentityrisk" />
+          <attribute name="ts_activitytypeentityrisk" />
+          <attribute name="ts_operationentityrisk" />
+          <attribute name="ts_operationtypeentityrisk" />
+          <attribute name="ts_siteentityrisk" />
+          <attribute name="ts_stakeholderentityrisk" />
+          <attribute name="ts_calculatedriskscore" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Operation Activity Risk Scores" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

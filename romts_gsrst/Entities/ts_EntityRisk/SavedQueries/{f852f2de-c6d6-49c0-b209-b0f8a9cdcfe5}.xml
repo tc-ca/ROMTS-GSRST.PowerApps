@@ -10,11 +10,9 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_entityriskid">
-          <cell name="ts_year" width="100" />
+          <cell name="ts_fiscalyear" width="103" />
           <cell name="ts_riskrating" width="107" />
-          <cell name="ts_riskfrequency" width="129" />
-          <cell name="ts_weightedriskscore" width="158" />
-          <cell name="ts_entityname" width="112" />
+          <cell name="ts_riskscore" width="102" />
         </row>
       </grid>
     </layoutxml>
@@ -27,11 +25,9 @@
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <attribute name="ts_riskrating" />
-          <attribute name="ts_riskfrequency" />
-          <attribute name="ts_weightedriskscore" />
-          <attribute name="ts_entityname" />
-          <attribute name="ts_year" />
-          <order attribute="ts_year" descending="true" />
+          <attribute name="ts_riskscore" />
+          <attribute name="ts_fiscalyear" />
+          <order attribute="ts_fiscalyear" descending="true" />
         </entity>
       </fetch>
     </fetchxml>
