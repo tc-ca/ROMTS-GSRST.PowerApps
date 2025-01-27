@@ -25,6 +25,7 @@
                       <cell id="{b5ec9963-a4c3-4e21-9e2d-a422f97a75fd}" visible="false" showlabel="true">
                         <labels>
                           <label description="Name" languagecode="1033" />
+                          <label description="Nom" languagecode="1036" />
                         </labels>
                         <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
                       </cell>
@@ -39,33 +40,37 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{2718e76e-e013-4c66-8e49-9514bf8a9242}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{2718e76e-e013-4c66-8e49-9514bf8a9242}" locklevel="0" colspan="1" rowspan="1" showlabel="true">
                         <labels>
                           <label description="Fiscal Year" languagecode="1033" />
+                          <label description="Année fiscale" languagecode="1036" />
                         </labels>
-                        <control id="ts_fiscalyear" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalyear" disabled="false" />
+                        <control id="ts_fiscalyear" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalyear" disabled="false" uniqueid="{79354946-c074-c78b-6718-d94b21c80e1e}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>true</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{C2B848E9-8D49-4972-8E80-06A8B98802A1}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
                       <cell id="{7c5e62f6-f75d-4872-8194-76757a3c896b}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Risk Rating" languagecode="1033" />
+                          <label description="Évaluation du risque" languagecode="1036" />
                         </labels>
                         <control id="ts_riskrating" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_riskrating" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{4ebf6d3c-8018-4304-a742-c27a4340be31}" locklevel="0" colspan="1" rowspan="1">
-                        <labels>
-                          <label description="Risk Frequency" languagecode="1033" />
-                        </labels>
-                        <control id="ts_riskfrequency" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_riskfrequency" disabled="false" />
                       </cell>
                     </row>
                     <row>
                       <cell id="{a09f6932-c7df-4e65-b947-8a0a7faeea9c}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Risk Score" languagecode="1033" />
+                          <label description="Score de risque" languagecode="1036" />
                         </labels>
                         <control id="ts_riskscore" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_riskscore" disabled="false" />
                       </cell>
@@ -74,6 +79,7 @@
                       <cell id="{56ad6ffe-4834-4a1c-b30b-3dfd5f878bce}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Weighted Risk Score" languagecode="1033" />
+                          <label description="Score de risque pondéré" languagecode="1036" />
                         </labels>
                         <control id="ts_weightedriskscore" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_weightedriskscore" disabled="false" />
                       </cell>
@@ -82,6 +88,7 @@
                       <cell id="{738363a4-4c15-460a-a623-bd0c54533431}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Calculated Risk Score" languagecode="1033" />
+                          <label description="Score de risque calculé" languagecode="1036" />
                         </labels>
                         <control id="ts_calculatedriskscore" classid="{C3EFE0C3-0EC6-42BE-8349-CBD9079DFD8E}" datafieldname="ts_calculatedriskscore" disabled="false" />
                       </cell>
@@ -90,6 +97,7 @@
                       <cell id="{f00b75a3-02a1-4efe-924b-11167aec60a7}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Entity Name" languagecode="1033" />
+                          <label description="Nom de l'entité" languagecode="1036" />
                         </labels>
                         <control id="ts_entityname" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_entityname" disabled="true" />
                       </cell>
@@ -98,6 +106,7 @@
                       <cell id="{76fa396b-ebcd-4cd1-9f54-32a05237ab5a}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
                           <label description="Entity ID" languagecode="1033" />
+                          <label description="ID de l'entité" languagecode="1036" />
                         </labels>
                         <control id="ts_entityid" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_entityid" disabled="false" />
                       </cell>
@@ -165,9 +174,6 @@
           </row>
         </rows>
       </footer>
-      <DisplayConditions Order="0" FallbackForm="true">
-        <Everyone />
-      </DisplayConditions>
       <formLibraries>
         <Library name="ts_/js/EntityRisk.js" libraryUniqueId="{ba6ddf4c-03e3-41bb-bdc0-c8def1e5f670}" />
       </formLibraries>
@@ -182,7 +188,56 @@
             <Handler functionName="ROM.EntityRisk.onSave" libraryName="ts_/js/EntityRisk.js" handlerUniqueId="{80ffa413-0392-4a0f-8967-5996e2758f74}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
+        <event name="onchange" application="false" active="false" attribute="ts_riskrating">
+          <Handlers>
+            <Handler functionName="ROM.EntityRisk.riskRatingOnChange" libraryName="ts_/js/EntityRisk.js" handlerUniqueId="{6f9d7d24-9a1d-4337-aa94-f47734568625}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_riskscore">
+          <Handlers>
+            <Handler functionName="ROM.EntityRisk.riskScoreOnChange" libraryName="ts_/js/EntityRisk.js" handlerUniqueId="{570b93ad-0837-4aa4-b2ba-6874cf0f548c}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_fiscalyear">
+          <Handlers>
+            <Handler functionName="ROM.EntityRisk.fiscalYearOnChange" libraryName="ts_/js/EntityRisk.js" handlerUniqueId="{ddc4095d-d538-4634-8e51-3000f3743c1b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
       </events>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
+      <controlDescriptions />
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

@@ -199,6 +199,7 @@
                       <cell locklevel="0" id="{2d22c3bd-0369-45f1-be97-bd7321a4cb47}" rowspan="4" colspan="1" auto="false" showlabel="true">
                         <labels>
                           <label description="Entity Risk" languagecode="1033" />
+                          <label description="Opérations" languagecode="1036" />
                         </labels>
                         <control indicationOfSubgrid="true" id="Subgrid_EntityRisk" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
                           <parameters>
@@ -346,6 +347,16 @@
         <event name="onchange" application="false" active="false" attribute="ovs_operationtypenamefrench">
           <Handlers>
             <Handler functionName="ROM.OperationType.frenchNameOnChange" libraryName="ts_/js/OperationType.js" handlerUniqueId="{13ef10b6-40b8-410d-b028-b23114fa2786}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onsave" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.OperationType.onSave" libraryName="ts_/js/OperationType.js" handlerUniqueId="{35744b96-93fb-45a6-a60b-88807970ddf1}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.OperationType.onLoad" libraryName="ts_/js/OperationType.js" handlerUniqueId="{dbb89bb5-064b-4cc3-913b-3dd461aa08f2}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
