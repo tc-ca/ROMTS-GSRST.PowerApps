@@ -54,6 +54,14 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{049ce221-64df-4c1e-9ab6-0584af8d6ca8}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Risk Rating" languagecode="1033" />
+                        </labels>
+                        <control id="ts_riskrating" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_riskrating" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{af98ccb5-a342-4e23-afa5-ac1262bfddd2}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Program Area Risk" languagecode="1033" />
@@ -167,6 +175,21 @@
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>
+      <formLibraries>
+        <Library name="ts_/js/OperationActivityRiskScores.js" libraryUniqueId="{36b32111-2497-4610-825e-300acbf9f7c0}" />
+      </formLibraries>
+      <events>
+        <event name="onsave" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.OperationActivityRiskScores.onSave" libraryName="ts_/js/OperationActivityRiskScores.js" handlerUniqueId="{363130e3-bdc7-41b6-956c-df98d2d3e1b8}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.OperationActivityRiskScores.onLoad" libraryName="ts_/js/OperationActivityRiskScores.js" handlerUniqueId="{f7284816-f405-4869-a4a0-5e2c5b9c7040}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
