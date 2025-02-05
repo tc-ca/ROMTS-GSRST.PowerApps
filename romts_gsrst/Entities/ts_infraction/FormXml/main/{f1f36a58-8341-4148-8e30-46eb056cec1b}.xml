@@ -48,6 +48,14 @@
                         <control id="ts_infractiontype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_infractiontype" disabled="false" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{1a06017f-8618-4590-8c75-0f35d2e31718}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Final Enforcement Action" languagecode="1033" />
+                        </labels>
+                        <control id="ts_finalenforcementaction" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_finalenforcementaction" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -66,7 +74,13 @@
                     <label description="New Section" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row />
+                    <row>
+                      <cell id="{f5a0a893-809b-4263-a270-2d728420b0cb}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                     <row>
                       <cell locklevel="0" id="{c3da92f3-a2e5-431c-a467-03ba1fa44c19}" rowspan="4" colspan="1" auto="false" showlabel="false">
                         <labels>
@@ -98,28 +112,44 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_3" id="bbaba8b3-51d1-4639-a6cd-4825b455da43" IsUserDefined="0" locklevel="0" showlabel="true">
+        <tab name="tab_RATE" id="bbaba8b3-51d1-4639-a6cd-4825b455da43" IsUserDefined="0" locklevel="0" showlabel="true">
           <labels>
             <label description="RATE" languagecode="1033" />
           </labels>
           <columns>
-            <column width="80%">
+            <column width="90%">
               <sections>
-                <section name="tab_3_section_1" id="9aafefa6-8b44-44ce-90d6-41ecd68af486" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="11" labelwidth="115">
+                <section name="tab_3_section_1" id="9aafefa6-8b44-44ce-90d6-41ecd68af486" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Top" columns="11" labelwidth="115" height="auto">
                   <labels>
                     <label description="RATE" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row>
-                      <cell locklevel="0" id="{0b765b58-6b57-4da1-abae-ba914e11e184}">
+                    <row height="auto">
+                      <cell locklevel="0" id="{0b765b58-6b57-4da1-abae-ba914e11e184}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                      <cell locklevel="0" id="{60ea76aa-df4d-4023-9f40-30232b16bc0b}">
+                      <cell id="{4dcbbaed-08a4-3291-ee3b-ce8edb30164e}" showlabel="false" colspan="1" auto="true" rowspan="1">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="RATEFactorGuide_SpecificNonComplianceHistory" languagecode="1033" />
                         </labels>
+                        <control id="WebResource_RATEFactorGuide_SpecificNonComplianceHistory" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_SpecificNonComplianceHistory.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{47D8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
                       </cell>
                     </row>
                     <row>
@@ -129,10 +159,26 @@
                         </labels>
                         <control id="ts_ratespecificnoncompliancehistory" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_ratespecificnoncompliancehistory" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{ab1932ab-d813-4657-88b5-204340322b2c}">
+                      <cell id="{e2a08618-1009-a174-dde6-b4d9b8ab15ab}" showlabel="false" colspan="1" auto="false" rowspan="1">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="RATEFactorGuide_GeneralNonComplianceHistory" languagecode="1033" />
                         </labels>
+                        <control id="WebResource_RATEFactorGuide_GeneralNonComplianceHistory" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_GeneralNonComplianceHistory.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{28D8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
                       </cell>
                     </row>
                     <row>
@@ -142,10 +188,26 @@
                         </labels>
                         <control id="ts_rategeneralnoncompliancehistory" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_rategeneralnoncompliancehistory" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{efd40107-3cba-40b2-bca4-6bc3a20e0a10}">
+                      <cell id="{11d29978-5a98-6cac-a199-5e879b49e969}" showlabel="false" colspan="1" auto="false" rowspan="1">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="RATEFactorGuide_ActualPotentialHarmVulnerability" languagecode="1033" />
                         </labels>
+                        <control id="WebResource_RATEFactorGuide_ActualPotentialHarmVulnerability" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_ActualPotentialHarmVulnerability.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{16D8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
                       </cell>
                     </row>
                     <row>
@@ -155,10 +217,26 @@
                         </labels>
                         <control id="ts_rateactualorpotentialharm" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_rateactualorpotentialharm" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{62c8e341-ecd8-45e5-aed0-af8c1e443caa}">
+                      <cell id="{36b31ddc-2900-de0e-1dab-27b40d0e7dbb}" showlabel="false" colspan="1" auto="false" rowspan="1">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="RATEFactorGuide_Intentionality" languagecode="1033" />
                         </labels>
+                        <control id="WebResource_RATEFactorGuide_Intentionality" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_Intentionality.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{2ED8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
                       </cell>
                     </row>
                     <row>
@@ -168,10 +246,26 @@
                         </labels>
                         <control id="ts_rateintentionality" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_rateintentionality" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{e4cd49e4-c2e0-4875-b941-518b72efdc7f}">
+                      <cell id="{48b2aa65-9ce9-1109-7ddd-c5a9c55d4b3e}" showlabel="false" colspan="1" auto="false" rowspan="1">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="RATEFactorGuide_EconomicBenefit" languagecode="1033" />
                         </labels>
+                        <control id="WebResource_RATEFactorGuide_EconomicBenefit" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_EconomicBenefit.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{22D8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
                       </cell>
                     </row>
                     <row>
@@ -181,10 +275,26 @@
                         </labels>
                         <control id="ts_rateeconomicbenefit" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_rateeconomicbenefit" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{aa93f13a-b0d2-460a-9743-e3688b29e2af}">
+                      <cell id="{46c9719d-32aa-009e-d771-808648038326}" showlabel="false" colspan="1" auto="false" rowspan="1">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="RATEFactorGuide_AcceptanceOfResponsibility" languagecode="1033" />
                         </labels>
+                        <control id="WebResource_RATEFactorGuide_AcceptanceOfResponsibility" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_AcceptanceOfResponsibility.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{54F3CDD3-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
                       </cell>
                     </row>
                     <row>
@@ -194,10 +304,26 @@
                         </labels>
                         <control id="ts_rateresponsibility" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_rateresponsibility" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{4e5a1ff5-fff8-4aea-b59f-c64093bf71d3}">
+                      <cell id="{7b18a8a4-5ba2-cbda-6147-b7366150ead4}" showlabel="false" colspan="1" auto="false" rowspan="1">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="RATEFactorGuide_MitigationOfHarm" languagecode="1033" />
                         </labels>
+                        <control id="WebResource_RATEFactorGuide_MitigationOfHarm" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_MitigationOfHarm.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{38D8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
                       </cell>
                     </row>
                     <row>
@@ -207,10 +333,26 @@
                         </labels>
                         <control id="ts_ratemitigationofharm" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_ratemitigationofharm" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{2e8a4599-52ad-4e7d-b7a7-8d412935deb0}">
+                      <cell id="{67b8c736-4a6a-72c7-c1d0-0352b5443392}" showlabel="false" colspan="1" auto="false" rowspan="1">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="RATEFactorGuide_PreventionOfRecurrence" languagecode="1033" />
                         </labels>
+                        <control id="WebResource_RATEFactorGuide_PreventionOfRecurrence" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_PreventionOfRecurrence.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{3FD8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
                       </cell>
                     </row>
                     <row>
@@ -220,10 +362,26 @@
                         </labels>
                         <control id="ts_ratepreventingrecurrence" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_ratepreventingrecurrence" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{56bfbbaf-f2ab-4f24-84d5-6cc8c32fa318}">
+                      <cell id="{60671a7a-8572-65c3-2168-ce731b132991}" showlabel="false" colspan="1" auto="false" rowspan="1">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="RATEFactorGuide_Cooperation" languagecode="1033" />
                         </labels>
+                        <control id="WebResource_RATEFactorGuide_Cooperation" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/RATEFactorGuide_Cooperation.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>no</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{1CD8CFD9-0120-EE11-9966-0022483C51F4}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
                       </cell>
                     </row>
                     <row>
@@ -233,236 +391,7 @@
                         </labels>
                         <control id="ts_ratecooperation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_ratecooperation" disabled="false" />
                       </cell>
-                      <cell locklevel="0" id="{d3256302-8ce2-4a0a-9d0f-8c704c05c532}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell rowspan="1" id="{84c94d3a-421b-4cd2-b35c-c73b7b128415}" showlabel="false" colspan="1" auto="true">
-                        <labels>
-                          <label description="RATEFactorGuide_SpecificNonComplianceHistory" languagecode="1033" />
-                        </labels>
-                        <control id="WebResource_RATEFactorGuide_SpecificNonComplianceHistory" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
-                          <parameters>
-                            <Url>ts_/html/RATEFactorGuide_SpecificNonComplianceHistory.html</Url>
-                            <PassParameters>false</PassParameters>
-                            <Security>false</Security>
-                            <Scrolling>no</Scrolling>
-                            <Border>false</Border>
-                            <ShowOnMobileClient>false</ShowOnMobileClient>
-                            <WebResourceId>{47d8cfd9-0120-ee11-9966-0022483c51f4}</WebResourceId>
-                          </parameters>
-                        </control>
-                        <events>
-                          <event name="onload" application="false" active="false" />
-                        </events>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell rowspan="1" id="{f8069927-3df9-4ca2-aa99-dd75ff67eefd}" showlabel="false" colspan="1" auto="true">
-                        <labels>
-                          <label description="RATEFactorGuide_GeneralNonComplianceHistory" languagecode="1033" />
-                        </labels>
-                        <control id="WebResource_RATEFactorGuide_GeneralNonComplianceHistory" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
-                          <parameters>
-                            <Url>ts_/html/RATEFactorGuide_GeneralNonComplianceHistory.html</Url>
-                            <PassParameters>false</PassParameters>
-                            <Security>false</Security>
-                            <Scrolling>no</Scrolling>
-                            <Border>false</Border>
-                            <ShowOnMobileClient>false</ShowOnMobileClient>
-                            <WebResourceId>{28d8cfd9-0120-ee11-9966-0022483c51f4}</WebResourceId>
-                          </parameters>
-                        </control>
-                        <events>
-                          <event name="onload" application="false" active="false" />
-                        </events>
-                      </cell>
-                      <cell locklevel="0" id="{848bb5e9-05fe-4d8f-baac-264d365d8b45}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell rowspan="1" id="{b8218ecf-dece-4b4a-80f6-6ad16858d086}" showlabel="false" colspan="1" auto="true">
-                        <labels>
-                          <label description="RATEFactorGuide_ActualPotentialHarmVulnerability" languagecode="1033" />
-                        </labels>
-                        <control id="WebResource_RATEFactorGuide_ActualPotentialHarmVulnerability" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
-                          <parameters>
-                            <Url>ts_/html/RATEFactorGuide_ActualPotentialHarmVulnerability.html</Url>
-                            <PassParameters>false</PassParameters>
-                            <Security>false</Security>
-                            <Scrolling>no</Scrolling>
-                            <Border>false</Border>
-                            <ShowOnMobileClient>false</ShowOnMobileClient>
-                            <WebResourceId>{16d8cfd9-0120-ee11-9966-0022483c51f4}</WebResourceId>
-                          </parameters>
-                        </control>
-                        <events>
-                          <event name="onload" application="false" active="false" />
-                        </events>
-                      </cell>
-                      <cell locklevel="0" id="{b909d9ec-bb49-4bc6-b603-ab523f502bb9}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell rowspan="1" id="{9fb2637c-3a39-412f-af07-5c76f37c6085}" showlabel="false" colspan="1" auto="true">
-                        <labels>
-                          <label description="RATEFactorGuide_Intentionality" languagecode="1033" />
-                        </labels>
-                        <control id="WebResource_RATEFactorGuide_Intentionality" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
-                          <parameters>
-                            <Url>ts_/html/RATEFactorGuide_Intentionality.html</Url>
-                            <PassParameters>false</PassParameters>
-                            <Security>false</Security>
-                            <Scrolling>no</Scrolling>
-                            <Border>false</Border>
-                            <ShowOnMobileClient>false</ShowOnMobileClient>
-                            <WebResourceId>{2ed8cfd9-0120-ee11-9966-0022483c51f4}</WebResourceId>
-                          </parameters>
-                        </control>
-                        <events>
-                          <event name="onload" application="false" active="false" />
-                        </events>
-                      </cell>
-                      <cell locklevel="0" id="{21c89062-f539-4b83-af49-ee117174b89a}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell rowspan="1" id="{6c8bab22-f5f9-4585-bd56-627566146b05}" showlabel="false" colspan="1" auto="true">
-                        <labels>
-                          <label description="RATEFactorGuide_EconomicBenefit" languagecode="1033" />
-                        </labels>
-                        <control id="WebResource_RATEFactorGuide_EconomicBenefit" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
-                          <parameters>
-                            <Url>ts_/html/RATEFactorGuide_EconomicBenefit.html</Url>
-                            <PassParameters>false</PassParameters>
-                            <Security>false</Security>
-                            <Scrolling>no</Scrolling>
-                            <Border>false</Border>
-                            <ShowOnMobileClient>false</ShowOnMobileClient>
-                            <WebResourceId>{22d8cfd9-0120-ee11-9966-0022483c51f4}</WebResourceId>
-                          </parameters>
-                        </control>
-                        <events>
-                          <event name="onload" application="false" active="false" />
-                        </events>
-                      </cell>
-                      <cell locklevel="0" id="{b2242021-a842-43d6-8b7b-04fbe57efd9f}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell rowspan="1" id="{060655a9-262a-45f6-b4c4-5feef588eaae}" showlabel="false" colspan="1" auto="true">
-                        <labels>
-                          <label description="RATEFactorGuide_AcceptanceOfResponsibility" languagecode="1033" />
-                        </labels>
-                        <control id="WebResource_RATEFactorGuide_AcceptanceOfResponsibility" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
-                          <parameters>
-                            <Url>ts_/html/RATEFactorGuide_AcceptanceOfResponsibility.html</Url>
-                            <PassParameters>false</PassParameters>
-                            <Security>false</Security>
-                            <Scrolling>no</Scrolling>
-                            <Border>false</Border>
-                            <ShowOnMobileClient>false</ShowOnMobileClient>
-                            <WebResourceId>{54f3cdd3-0120-ee11-9966-0022483c51f4}</WebResourceId>
-                          </parameters>
-                        </control>
-                        <events>
-                          <event name="onload" application="false" active="false" />
-                        </events>
-                      </cell>
-                      <cell locklevel="0" id="{ffd58838-d8f1-4f2f-8bbf-66a1c11befbc}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell rowspan="1" id="{e881a79a-7692-4e8a-bc14-f63dc727087d}" showlabel="false" colspan="1" auto="true">
-                        <labels>
-                          <label description="RATEFactorGuide_MitigationOfHarm" languagecode="1033" />
-                        </labels>
-                        <control id="WebResource_RATEFactorGuide_MitigationOfHarm" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
-                          <parameters>
-                            <Url>ts_/html/RATEFactorGuide_MitigationOfHarm.html</Url>
-                            <PassParameters>false</PassParameters>
-                            <Security>false</Security>
-                            <Scrolling>no</Scrolling>
-                            <Border>false</Border>
-                            <ShowOnMobileClient>false</ShowOnMobileClient>
-                            <WebResourceId>{38d8cfd9-0120-ee11-9966-0022483c51f4}</WebResourceId>
-                          </parameters>
-                        </control>
-                        <events>
-                          <event name="onload" application="false" active="false" />
-                        </events>
-                      </cell>
-                      <cell locklevel="0" id="{50123799-5f14-4f96-8420-41019489bb73}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell rowspan="1" id="{ca60146c-8a69-470f-9727-09c34593a48a}" showlabel="false" colspan="1" auto="true">
-                        <labels>
-                          <label description="RATEFactorGuide_PreventionOfRecurrence" languagecode="1033" />
-                        </labels>
-                        <control id="WebResource_RATEFactorGuide_PreventionOfRecurrence" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
-                          <parameters>
-                            <Url>ts_/html/RATEFactorGuide_PreventionOfRecurrence.html</Url>
-                            <PassParameters>false</PassParameters>
-                            <Security>false</Security>
-                            <Scrolling>no</Scrolling>
-                            <Border>false</Border>
-                            <ShowOnMobileClient>false</ShowOnMobileClient>
-                            <WebResourceId>{3fd8cfd9-0120-ee11-9966-0022483c51f4}</WebResourceId>
-                          </parameters>
-                        </control>
-                        <events>
-                          <event name="onload" application="false" active="false" />
-                        </events>
-                      </cell>
-                      <cell locklevel="0" id="{8541d624-8ba8-4441-8522-5b2fd7e8fc5b}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell rowspan="1" id="{9d269c35-ef5d-48b2-b685-fa6bbde0f777}" showlabel="false" colspan="1" auto="true">
-                        <labels>
-                          <label description="RATEFactorGuide_Cooperation" languagecode="1033" />
-                        </labels>
-                        <control id="WebResource_RATEFactorGuide_Cooperation" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
-                          <parameters>
-                            <Url>ts_/html/RATEFactorGuide_Cooperation.html</Url>
-                            <PassParameters>false</PassParameters>
-                            <Security>false</Security>
-                            <Scrolling>no</Scrolling>
-                            <Border>false</Border>
-                            <ShowOnMobileClient>false</ShowOnMobileClient>
-                            <WebResourceId>{1cd8cfd9-0120-ee11-9966-0022483c51f4}</WebResourceId>
-                          </parameters>
-                        </control>
-                        <events>
-                          <event name="onload" application="false" active="false" />
-                        </events>
-                      </cell>
-                      <cell locklevel="0" id="{644e5f1f-97e1-4f64-99e3-9fef108c7a2a}">
+                      <cell id="{2022d41e-b29c-daed-4a42-8d4b690565d8}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -475,7 +404,13 @@
                     <label description="New Section" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row />
+                    <row>
+                      <cell id="{e596b9dc-161d-454e-8660-bc2a929bd43a}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{409e001c-fa60-4012-8fe7-7fee6841f2f0}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
@@ -491,7 +426,13 @@
                     <label description="New Section" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row />
+                    <row>
+                      <cell id="{92b3e482-ee71-4c6b-8b13-b9715e82e59c}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{6495f848-96c7-4bcf-884b-bdc573cea7be}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
@@ -510,12 +451,18 @@
                     </row>
                   </rows>
                 </section>
-                <section name="tab_3_section_5" id="21ad807b-c0de-4ad9-83d3-a82f9cdb4f44" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
+                <section name="RATE_proposed_section" id="21ad807b-c0de-4ad9-83d3-a82f9cdb4f44" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
                   <labels>
                     <label description="New Section" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row />
+                    <row>
+                      <cell id="{3ecad18c-ef38-43eb-840c-9bb3e6c54dd4}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{9590a343-1238-4790-bb31-7fcf32d86cea}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
@@ -550,12 +497,18 @@
                     </row>
                   </rows>
                 </section>
-                <section name="tab_3_section_6" id="2dd106b0-dcdf-4ea1-82b9-152ab188c428" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
+                <section name="RATE_manager_review" id="2dd106b0-dcdf-4ea1-82b9-152ab188c428" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
                   <labels>
                     <label description="RATE Manager Review" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row />
+                    <row>
+                      <cell id="{395a8f6f-2286-4484-8da4-5eb037aaed55}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{a2e92826-434b-42df-aff0-b3d79b84b7b4}" locklevel="0" colspan="1" rowspan="1" visible="true">
                         <labels>
@@ -584,7 +537,7 @@
                 </section>
               </sections>
             </column>
-            <column width="20%">
+            <column width="10%">
               <sections>
                 <section name="_section_144" id="c8eb61cc-5760-4866-9e16-5a9e0a6f3e7c" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="11" labelwidth="115">
                   <labels>
@@ -592,12 +545,12 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell locklevel="0" id="{ba5e0f0b-e200-478b-9a3d-2420181f20ff}">
+                      <cell locklevel="0" id="{ba5e0f0b-e200-478b-9a3d-2420181f20ff}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
                       </cell>
-                      <cell locklevel="0" id="{2fd23acf-7882-447d-bfe3-332606c37883}">
+                      <cell locklevel="0" id="{2fd23acf-7882-447d-bfe3-332606c37883}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -634,6 +587,13 @@
               </labels>
               <control id="header_ts_rateenforcementrecommendation" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_rateenforcementrecommendation" disabled="false" />
             </cell>
+            <cell id="{86f7f4c1-3ab7-4f77-b957-3f8ecbc2e3e6}" locklevel="0" colspan="1" rowspan="1">
+              <labels>
+                <label description="Status Reason" languagecode="1033" />
+                <label description="Raison du statut" languagecode="1036" />
+              </labels>
+              <control id="header_statuscode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statuscode" disabled="false" />
+            </cell>
             <cell id="{5d86dce0-28bd-4dc5-97be-1687684201a0}" locklevel="0" colspan="1" rowspan="1">
               <labels>
                 <label description="Owner" languagecode="1033" />
@@ -665,6 +625,117 @@
           </row>
         </rows>
       </footer>
+      <formLibraries>
+        <Library name="ts_/js/Infraction.js" libraryUniqueId="{d6c02ed9-5c2b-444e-a7ea-0825238e0a8e}" />
+      </formLibraries>
+      <events>
+        <event name="onchange" application="false" active="false" attribute="ts_ratespecificnoncompliancehistory">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATESpecificComplianceHistoryOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{8efe8ad7-7628-472c-82fb-d697d8b718ea}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{fdc8224d-c11f-4b3e-8517-796d19542e08}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_rategeneralnoncompliancehistory">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{6b2baf62-b32b-4608-8381-017a827011ae}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_rateactualorpotentialharm">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{0699041b-6ffa-41e5-a29a-9c03e684ff04}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_rateintentionality">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{3d9f4e65-c69b-4f93-a676-85e807d760dc}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_rateeconomicbenefit">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{f7c8dd85-4b86-4478-8002-0264da23d06b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_rateresponsibility">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{66715b12-b12e-4f3c-960d-34d18187db8b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_ratemitigationofharm">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{63d2fb4d-c0e9-4168-84e0-4257dc362d92}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_ratepreventingrecurrence">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{baffaf58-5cce-4592-8b51-3c48176a033d}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_ratecooperation">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{47e70796-936d-4265-a34c-1108a87b8312}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_ratepreviousenforcementmechanism">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEFieldOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{48998ddb-3aae-426d-bca7-13a0e39375fe}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_acceptraterecommendation">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.AcceptRATERecommendationOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{648246f5-759f-4074-8547-48f3d87a0679}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_rateapprovingteam">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.approvingRATETeamsOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{1a49c807-27dd-4e1a-8ce6-aa773dcbacab}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_rateinspectorrecommendation">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEInspectorRecommendationOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{824d6432-a3c1-4739-b4c1-b9450d349457}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_ratemanagerdecision">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEManagerDecisionOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{a2c5b281-ae8c-4848-8c60-fd2acb357c81}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_ratemanageralternativerecommendation">
+          <Handlers>
+            <Handler functionName="ROM.Infraction.RATEManagerAlternativeRecommendationOnChange" libraryName="ts_/js/Infraction.js" handlerUniqueId="{7ced6aaf-3a60-41ca-8aac-a97b08c398bf}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+      <Navigation>
+        <NavBar />
+        <NavBarAreas>
+          <NavBarArea Id="Info">
+            <Titles>
+              <Title LCID="1033" Text="Common" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Sales">
+            <Titles>
+              <Title LCID="1033" Text="Sales" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Service">
+            <Titles>
+              <Title LCID="1033" Text="Service" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="Marketing">
+            <Titles>
+              <Title LCID="1033" Text="Marketing" />
+            </Titles>
+          </NavBarArea>
+          <NavBarArea Id="ProcessCenter">
+            <Titles>
+              <Title LCID="1033" Text="Process Sessions" />
+            </Titles>
+          </NavBarArea>
+        </NavBarAreas>
+      </Navigation>
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>
