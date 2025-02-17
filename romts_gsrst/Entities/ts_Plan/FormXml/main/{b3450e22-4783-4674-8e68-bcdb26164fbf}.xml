@@ -527,7 +527,7 @@
       </Navigation>
       <controlDescriptions>
         <controlDescription forControl="{85954262-821e-a6e0-393e-59b0e692cde5}">
-          <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}" formFactor="0">
+          <customControl id="{E7A81278-8635-4d9e-8D4D-59480B391C5B}">
             <parameters>
               <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
               <IsUserView>false</IsUserView>
@@ -546,7 +546,7 @@
               <HeaderColorCode>#F3F3F3</HeaderColorCode>
             </parameters>
           </customControl>
-          <customControl formFactor="1" name="MscrmControls.Grid.GridControl">
+          <customControl name="MscrmControls.Grid.GridControl" formFactor="-1">
             <parameters>
               <data-set name="Grid">
                 <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
@@ -580,9 +580,9 @@
               <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
             </parameters>
           </customControl>
-          <customControl formFactor="2" name="MscrmControls.Grid.GridControl">
+          <customControl formFactor="0" name="Microsoft.PowerApps.PowerAppsOneGrid">
             <parameters>
-              <data-set name="Grid">
+              <data-set name="Items">
                 <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
                 <columnsDefaultView>
                   <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_inspector">
@@ -593,7 +593,7 @@
                   </cell>
                   <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_trip">
                     <DefaultViewId>{60E375E4-E57F-4E62-A11A-A5551B9BC36C}</DefaultViewId>
-                    <DependentAttributeType>territory</DependentAttributeType>
+                    <DependentAttributeType>systemuser</DependentAttributeType>
                     <AllowFilterOff>false</AllowFilterOff>
                     <DisableQuickFind>false</DisableQuickFind>
                   </cell>
@@ -604,14 +604,130 @@
                 <EnableViewPicker>false</EnableViewPicker>
                 <FilteredViewIds>{755FB6BC-1126-435E-BBD7-1CC791902745}</FilteredViewIds>
               </data-set>
-              <EnableGroupBy static="true" type="Enum">yes</EnableGroupBy>
               <EnableEditing static="true" type="Enum">yes</EnableEditing>
-              <ReflowBehavior static="true" type="Enum">GridOnly</ReflowBehavior>
-              <ListLayoutDirection static="true" type="Enum">Vertical</ListLayoutDirection>
-              <EnableSubGridAutoCollapse static="true" type="Enum">false</EnableSubGridAutoCollapse>
+              <DisableChildItemsEditing static="true" type="Enum">no</DisableChildItemsEditing>
               <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
-              <HideNestedGridColumnHeader static="true" type="Enum">no</HideNestedGridColumnHeader>
-              <EnableJumpBar static="true" type="Enum">yes</EnableJumpBar>
+              <EnableSorting static="true" type="Enum">yes</EnableSorting>
+              <EnableGrouping static="true" type="Enum">yes</EnableGrouping>
+              <EnableAggregation static="true" type="Enum">yes</EnableAggregation>
+              <EnableColumnMoving static="true" type="Enum">no</EnableColumnMoving>
+              <EnableMultipleSelection static="true" type="Enum">yes</EnableMultipleSelection>
+              <EnableRangeSelection static="true" type="Enum">yes</EnableRangeSelection>
+              <EnableJumpBar static="true" type="Enum">no</EnableJumpBar>
+              <EnablePagination static="true" type="Enum">no</EnablePagination>
+              <EnableDropdownColor static="true" type="Enum">no</EnableDropdownColor>
+              <EnableStatusIcons static="true" type="Enum">yes</EnableStatusIcons>
+              <EnableTypeIcons static="true" type="Enum">no</EnableTypeIcons>
+              <NavigationTypesAllowed static="true" type="Enum">all</NavigationTypesAllowed>
+              <ReflowBehavior static="true" type="Enum">Reflow</ReflowBehavior>
+              <ShowAvatar static="true" type="Enum">yes</ShowAvatar>
+              <ShowFooter static="true" type="Enum">yes</ShowFooter>
+              <ShowColumnHeaders static="true" type="Enum">yes</ShowColumnHeaders>
+              <ContextualLookupColumnFilters static="true" type="Enum">yes</ContextualLookupColumnFilters>
+              <LookupFilterBeginsWith static="true" type="Enum">no</LookupFilterBeginsWith>
+              <DateTimeFormat static="true" type="Enum">none</DateTimeFormat>
+              <DateOnlyFormat static="true" type="Enum">none</DateOnlyFormat>
+              <EnableStatusColumn static="true" type="Enum">yes</EnableStatusColumn>
+            </parameters>
+          </customControl>
+          <customControl formFactor="1" name="Microsoft.PowerApps.PowerAppsOneGrid">
+            <parameters>
+              <data-set name="Items">
+                <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_inspector">
+                    <DefaultViewId>{E88CA999-0B16-4AE9-B6A9-9EDC840D42D8}</DefaultViewId>
+                    <DependentAttributeType>msdyn_incidenttype</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>true</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_trip">
+                    <DefaultViewId>{60E375E4-E57F-4E62-A11A-A5551B9BC36C}</DefaultViewId>
+                    <DependentAttributeType>systemuser</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_suggestedinspection_ts_plan</RelationshipName>
+                <TargetEntityType>ts_suggestedinspection</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{755FB6BC-1126-435E-BBD7-1CC791902745}</FilteredViewIds>
+              </data-set>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <DisableChildItemsEditing static="true" type="Enum">no</DisableChildItemsEditing>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <EnableSorting static="true" type="Enum">yes</EnableSorting>
+              <EnableGrouping static="true" type="Enum">yes</EnableGrouping>
+              <EnableAggregation static="true" type="Enum">yes</EnableAggregation>
+              <EnableColumnMoving static="true" type="Enum">no</EnableColumnMoving>
+              <EnableMultipleSelection static="true" type="Enum">yes</EnableMultipleSelection>
+              <EnableRangeSelection static="true" type="Enum">yes</EnableRangeSelection>
+              <EnableJumpBar static="true" type="Enum">no</EnableJumpBar>
+              <EnablePagination static="true" type="Enum">no</EnablePagination>
+              <EnableDropdownColor static="true" type="Enum">no</EnableDropdownColor>
+              <EnableStatusIcons static="true" type="Enum">yes</EnableStatusIcons>
+              <EnableTypeIcons static="true" type="Enum">no</EnableTypeIcons>
+              <NavigationTypesAllowed static="true" type="Enum">all</NavigationTypesAllowed>
+              <ReflowBehavior static="true" type="Enum">Reflow</ReflowBehavior>
+              <ShowAvatar static="true" type="Enum">yes</ShowAvatar>
+              <ShowFooter static="true" type="Enum">yes</ShowFooter>
+              <ShowColumnHeaders static="true" type="Enum">yes</ShowColumnHeaders>
+              <ContextualLookupColumnFilters static="true" type="Enum">yes</ContextualLookupColumnFilters>
+              <LookupFilterBeginsWith static="true" type="Enum">no</LookupFilterBeginsWith>
+              <DateTimeFormat static="true" type="Enum">none</DateTimeFormat>
+              <DateOnlyFormat static="true" type="Enum">none</DateOnlyFormat>
+              <EnableStatusColumn static="true" type="Enum">yes</EnableStatusColumn>
+            </parameters>
+          </customControl>
+          <customControl formFactor="2" name="Microsoft.PowerApps.PowerAppsOneGrid">
+            <parameters>
+              <data-set name="Items">
+                <ViewId>{755FB6BC-1126-435E-BBD7-1CC791902745}</ViewId>
+                <columnsDefaultView>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_inspector">
+                    <DefaultViewId>{E88CA999-0B16-4AE9-B6A9-9EDC840D42D8}</DefaultViewId>
+                    <DependentAttributeType>msdyn_incidenttype</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>true</DisableQuickFind>
+                  </cell>
+                  <cell entityName="ts_suggestedinspection" viewId="{755FB6BC-1126-435E-BBD7-1CC791902745}" attributeName="ts_trip">
+                    <DefaultViewId>{60E375E4-E57F-4E62-A11A-A5551B9BC36C}</DefaultViewId>
+                    <DependentAttributeType>systemuser</DependentAttributeType>
+                    <AllowFilterOff>false</AllowFilterOff>
+                    <DisableQuickFind>false</DisableQuickFind>
+                  </cell>
+                </columnsDefaultView>
+                <IsUserView>false</IsUserView>
+                <RelationshipName>ts_suggestedinspection_ts_plan</RelationshipName>
+                <TargetEntityType>ts_suggestedinspection</TargetEntityType>
+                <EnableViewPicker>false</EnableViewPicker>
+                <FilteredViewIds>{755FB6BC-1126-435E-BBD7-1CC791902745}</FilteredViewIds>
+              </data-set>
+              <EnableEditing static="true" type="Enum">yes</EnableEditing>
+              <DisableChildItemsEditing static="true" type="Enum">no</DisableChildItemsEditing>
+              <EnableFiltering static="true" type="Enum">yes</EnableFiltering>
+              <EnableSorting static="true" type="Enum">yes</EnableSorting>
+              <EnableGrouping static="true" type="Enum">yes</EnableGrouping>
+              <EnableAggregation static="true" type="Enum">yes</EnableAggregation>
+              <EnableColumnMoving static="true" type="Enum">no</EnableColumnMoving>
+              <EnableMultipleSelection static="true" type="Enum">yes</EnableMultipleSelection>
+              <EnableRangeSelection static="true" type="Enum">yes</EnableRangeSelection>
+              <EnableJumpBar static="true" type="Enum">no</EnableJumpBar>
+              <EnablePagination static="true" type="Enum">no</EnablePagination>
+              <EnableDropdownColor static="true" type="Enum">no</EnableDropdownColor>
+              <EnableStatusIcons static="true" type="Enum">yes</EnableStatusIcons>
+              <EnableTypeIcons static="true" type="Enum">no</EnableTypeIcons>
+              <NavigationTypesAllowed static="true" type="Enum">all</NavigationTypesAllowed>
+              <ReflowBehavior static="true" type="Enum">Reflow</ReflowBehavior>
+              <ShowAvatar static="true" type="Enum">yes</ShowAvatar>
+              <ShowFooter static="true" type="Enum">yes</ShowFooter>
+              <ShowColumnHeaders static="true" type="Enum">yes</ShowColumnHeaders>
+              <ContextualLookupColumnFilters static="true" type="Enum">yes</ContextualLookupColumnFilters>
+              <LookupFilterBeginsWith static="true" type="Enum">no</LookupFilterBeginsWith>
+              <DateTimeFormat static="true" type="Enum">none</DateTimeFormat>
+              <DateOnlyFormat static="true" type="Enum">none</DateOnlyFormat>
+              <EnableStatusColumn static="true" type="Enum">yes</EnableStatusColumn>
             </parameters>
           </customControl>
         </controlDescription>

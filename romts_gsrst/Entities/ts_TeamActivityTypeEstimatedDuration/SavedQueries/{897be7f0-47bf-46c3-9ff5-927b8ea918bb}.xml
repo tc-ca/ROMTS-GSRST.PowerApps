@@ -11,7 +11,9 @@
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_teamactivitytypeestimateddurationid">
           <cell name="ts_name" width="300" />
-          <cell name="createdon" width="125" />
+          <cell name="createdon" width="105" />
+          <cell name="ts_estimatedduration" width="184" />
+          <cell name="ts_teamestimateddurationinhours" width="246" />
         </row>
       </grid>
     </layoutxml>
@@ -21,14 +23,15 @@
         <entity name="ts_teamactivitytypeestimatedduration">
           <attribute name="ts_teamactivitytypeestimateddurationid" />
           <attribute name="ts_name" />
-          <attribute name="createdon" />
           <order attribute="ts_name" descending="false" />
-          <filter type="and">
-            <condition attribute="statecode" operator="eq" value="0" />
-          </filter>
           <filter type="or" isquickfindfields="1">
             <condition attribute="ts_name" operator="like" value="{0}" />
+            <condition attribute="ts_estimatedduration" operator="eq" value="{1}" />
+            <condition attribute="ts_activitytype" operator="like" value="{0}" />
           </filter>
+          <attribute name="createdon" />
+          <attribute name="ts_estimatedduration" />
+          <attribute name="ts_teamestimateddurationinhours" />
         </entity>
       </fetch>
     </fetchxml>

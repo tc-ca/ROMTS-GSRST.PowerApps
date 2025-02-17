@@ -1,14 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
+  <CustomActions>
+    <CustomAction Id="ts.ts_infraction.UnlockRATE.CustomAction" Location="Mscrm.Form.ts_infraction.MainTab.Save.Controls._children" Sequence="4">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_infraction.UnlockRATE.Alt" Command="ts.ts_infraction.UnlockRATE" CommandValueId="ts.ts_infraction.UnlockRATE" Id="ts.ts_infraction.UnlockRATE" LabelText="$LocLabels:ts.ts_infraction.UnlockRATE.LabelText" Sequence="4" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_infraction.UnlockRATE.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_infraction.UnlockRATE.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="ts.ts_infraction.UnlockRATE">
+      <EnableRules>
+        <EnableRule Id="ts.ts_infraction.isSystemAdmin" />
+        <EnableRule Id="ts.ts_infraction.acceptRATERecommendationIsNotNull" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="unlockRATE" Library="$webresource:ts_/js/InfractionRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
-    <EnableRules />
+    <EnableRules>
+      <EnableRule Id="ts.ts_infraction.acceptRATERecommendationIsNotNull">
+        <CustomRule FunctionName="acceptRATERecommendationIsNotNull" Library="$webresource:ts_/js/InfractionRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.ts_infraction.isSystemAdmin">
+        <CustomRule FunctionName="isSystemAdministrator" Library="$webresource:ts_/js/InfractionRibbon.js" />
+        <OrRule>
+          <Or>
+            <CustomRule FunctionName="isAvSecBusinessUnit" Library="$webresource:ts_/js/InfractionRibbon.js" />
+          </Or>
+          <Or>
+            <CustomRule FunctionName="isTCBusinessUnit" Library="$webresource:ts_/js/InfractionRibbon.js" />
+          </Or>
+        </OrRule>
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="ts.ts_infraction.UnlockRATE.Alt">
+      <Titles>
+        <Title description="Unlock RATE" languagecode="1033" />
+        <Title description="Unlock RATE (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_infraction.UnlockRATE.LabelText">
+      <Titles>
+        <Title description="Unlock RATE" languagecode="1033" />
+        <Title description="Unlock RATE (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_infraction.UnlockRATE.ToolTipDescription">
+      <Titles>
+        <Title description="Unlock RATE" languagecode="1033" />
+        <Title description="Unlock RATE (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_infraction.UnlockRATE.ToolTipTitle">
+      <Titles>
+        <Title description="Unlock RATE" languagecode="1033" />
+        <Title description="Unlock RATE (fr)" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>

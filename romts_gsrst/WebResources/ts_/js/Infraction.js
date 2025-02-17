@@ -46,15 +46,13 @@ var ROM;
             factorLockMessageTitleLocalizedText = "Avertissement";
             factorLockMessageBodyLocalizedText = "Tous les facteurs de l'outil vont \u00EAtre verrouill\u00E9 lorsque vous s\u00E9lectionner \"OK\".";
         }
-        var issoOperationTypeGuids = ["{B27E5003-C751-EB11-A812-000D3AF3AC0D}", "{C97A1A12-D8EB-EB11-BACB-000D3AF4FBEC}", "{21CA416A-431A-EC11-B6E7-000D3A09D067}", "{3B261029-C751-EB11-A812-000D3AF3AC0D}", "{D883B39A-C751-EB11-A812-000D3AF3AC0D}", "{DA56FEA1-C751-EB11-A812-000D3AF3AC0D}", "{199E31AE-C751-EB11-A812-000D3AF3AC0D}"];
         //Air Carrier (Passenger), Air Carrier(All Cargo), Operator of an Aerodrome
         var avSecOperationTypeGuides = ["{8B614EF0-C651-EB11-A812-000D3AF3AC0D}", "{E03381D0-C751-EB11-A812-000D3AF3AC0D}", "{E3238EDD-C651-EB11-A812-000D3AF3AC0D}"];
         var isROM20Form = false;
-        //Toggle visibility of NCAT and RATE sections depending user business unit and rolls
+        //Toggle visibility of  RATE sections depending user business unit and rolls
         //Sets field Controls parameters (required, hidden, disabled, etc) depending on current form state
         function onLoad(eContext) {
             var formContext = eContext.getFormContext();
-            var complianceFindingType = formContext.getAttribute("ts_findingtype").getValue() == 717750002 /* ts_findingtype.Noncompliance */;
             var isDualInspector = false;
             var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
             userRoles.forEach(function (role) {
@@ -64,7 +62,6 @@ var ROM;
             });
             var formItem = formContext.ui.formSelector.getCurrentItem().getId();
             isROM20Form = formItem.toLowerCase() == "c01347bc-d346-447d-b902-4f411a0e9706";
-            formContext.getAttribute("ts_ncatfactorguide").setValue(false);
             var userId = Xrm.Utility.getGlobalContext().userSettings.userId;
             var currentUserBusinessUnitFetchXML = [
                 "<fetch top='50'>",
@@ -82,7 +79,7 @@ var ROM;
             currentUserBusinessUnitFetchXML = "?fetchXml=" + encodeURIComponent(currentUserBusinessUnitFetchXML);
             Xrm.WebApi.retrieveMultipleRecords("businessunit", currentUserBusinessUnitFetchXML).then(function (businessunit) {
                 var userBusinessUnitName = businessunit.entities[0].name;
-                var operationTypeAttributeValue = formContext.getAttribute("ts_ovs_operationtype").getValue();
+                var operationTypeAttributeValue = formContext.getAttribute("ts_operationtype").getValue();
                 var operationTypeOwningBusinessUnit;
                 if (operationTypeAttributeValue != null) {
                     var operationTypeOwningBusinessUnitFetchXML = [
@@ -101,83 +98,60 @@ var ROM;
                     operationTypeOwningBusinessUnitFetchXML = "?fetchXml=" + encodeURIComponent(operationTypeOwningBusinessUnitFetchXML);
                     Xrm.WebApi.retrieveMultipleRecords("businessunit", operationTypeOwningBusinessUnitFetchXML).then(function (operationTypeBusinessUnit) {
                         operationTypeOwningBusinessUnit = operationTypeBusinessUnit.entities[0].name;
-                        if (complianceFindingType) {
-                            if (operationTypeAttributeValue != null) {
-                                //Show NCAT Sections and fields if Operation Type is ISSO specific, else show RATE
-                                if (issoOperationTypeGuids.includes(operationTypeAttributeValue[0].id)) {
-                                    //    formContext.ui.tabs.get("tab_NCAT").setVisible(true);
-                                    //    //If there's a recommended enforcement action and the finding is not complete yet, then the accept ncat recommendation field should be unlocked
-                                    //    const enforcementRecommendation = formContext.getAttribute("ts_ncatenforcementrecommendation").getValue();
-                                    //    const recordStatus = formContext.getAttribute("statuscode").getValue();
-                                    //    if (enforcementRecommendation != null && recordStatus != ovs_finding_statuscode.Complete) {
-                                    //        formContext.getControl("ts_acceptncatrecommendation").setDisabled(false);
-                                    //    }
+                        if (operationTypeAttributeValue != null) {
+                            var infractionID = formContext.data.entity.getId();
+                            var infractionFetchXml = [
+                                "<fetch>",
+                                "  <entity name='ts_infraction'>",
+                                "    <filter type='and'>",
+                                "      <condition attribute='ts_infractionid' operator='eq' value='", infractionID, "'/>",
+                                "    </filter>",
+                                "    <link-entity name='msdyn_functionallocation' from='msdyn_functionallocationid' to='ts_functionallocation' alias='site'>",
+                                "      <attribute name='ts_region'/>",
+                                "    </link-entity>",
+                                "  </entity>",
+                                "</fetch>"
+                            ].join("");
+                            infractionFetchXml = "?fetchXml=" + encodeURIComponent(infractionFetchXml);
+                            Xrm.WebApi.retrieveMultipleRecords("ts_infraction", infractionFetchXml).then(function (result) {
+                                var currentInfraction = result.entities[0];
+                                var regionId = currentInfraction["site.ts_region"];
+                                //If Operation Type is Air Carrier (Passenger) or Air Carrier(All Cargo) or Operator of an Aerodrome and not international
+                                if (avSecOperationTypeGuides.includes(operationTypeAttributeValue[0].id) && regionId != "3bf0fa88-150f-eb11-a813-000d3af3a7a7") { //GUID for International region
+                                    formContext.ui.tabs.get("tab_RATE").setVisible(true);
+                                    formContext.getControl("ts_finalenforcementaction").setDisabled(true);
                                 }
-                                //Show RATE Sections and fields when the operation type owning business unit is Aviation Security or if the user business unit is Transport Canada
                                 else {
-                                    var findingID = formContext.data.entity.getId();
-                                    var findingFetchXml = [
-                                        "<fetch>",
-                                        "  <entity name='ovs_finding'>",
-                                        "    <filter type='and'>",
-                                        "      <condition attribute='ovs_findingid' operator='eq' value='", findingID, "'/>",
-                                        "    </filter>",
-                                        "    <link-entity name='msdyn_functionallocation' from='msdyn_functionallocationid' to='ts_functionallocation' alias='site'>",
-                                        "      <attribute name='ts_region'/>",
-                                        "    </link-entity>",
-                                        "  </entity>",
-                                        "</fetch>"
-                                    ].join("");
-                                    findingFetchXml = "?fetchXml=" + encodeURIComponent(findingFetchXml);
-                                    Xrm.WebApi.retrieveMultipleRecords("ovs_finding", findingFetchXml).then(function (result) {
-                                        var currentFinding = result.entities[0];
-                                        var regionId = currentFinding["site.ts_region"];
-                                        //If Operation Type is Air Carrier (Passenger) or Air Carrier(All Cargo) or Operator of an Aerodrome and not international
-                                        if (avSecOperationTypeGuides.includes(operationTypeAttributeValue[0].id) && regionId != "3bf0fa88-150f-eb11-a813-000d3af3a7a7") { //GUID for International region
-                                            formContext.ui.tabs.get("tab_RATE").setVisible(true);
-                                            formContext.getControl("ts_finalenforcementaction").setDisabled(true);
-                                        }
-                                        else {
-                                            formContext.getControl("ts_finalenforcementaction").setDisabled(false);
-                                            formContext.ui.tabs.get("tab_RATE").setVisible(false);
-                                        }
-                                        formContext.getControl("header_ts_rateenforcementrecommendation").setVisible(true);
-                                        //If there's a recommended enforcement action and the finding is not complete yet, then the accept rate recommendation field should be unlocked
-                                        var enforcementRecommendation = formContext.getAttribute("ts_rateenforcementrecommendation").getValue();
-                                        var recordStatus = formContext.getAttribute("statuscode").getValue();
-                                        if (enforcementRecommendation != null && recordStatus != 717750002 /* ovs_finding_statuscode.Complete */) {
-                                            formContext.getControl("ts_acceptraterecommendation").setDisabled(false);
-                                        }
-                                        //If they have accepted or rejected the RATE recommendation previously, then the RATE factors should be locked.
-                                        var acceptRATERecommendation = formContext.getAttribute("ts_acceptraterecommendation").getValue();
-                                        if (acceptRATERecommendation != null) {
-                                            lockRATEFactors(eContext);
-                                        }
-                                        //If they did not accept the rate recommendation, show proposal sections and fields
-                                        if (formContext.getAttribute("ts_acceptraterecommendation").getValue() == 717750001 /* ts_yesno.No */) {
-                                            formContext.ui.tabs.get("tab_RATE").sections.get("RATE_proposed_section").setVisible(true);
-                                            setPostRATERecommendationSelectionFieldsVisibility(eContext);
-                                            RATEManagerDecisionOnChange(eContext);
-                                        }
-                                    });
+                                    formContext.getControl("ts_finalenforcementaction").setDisabled(false);
+                                    formContext.ui.tabs.get("tab_RATE").setVisible(false);
                                 }
-                            }
-                            // approvingNCATTeamsOnChange(eContext);
-                            RATESpecificComplianceHistoryOnChange(eContext);
-                            setApprovingTeamsViews(formContext);
-                            if (formContext.getAttribute("statuscode").getValue() == 717750002 /* ovs_finding_statuscode.Complete */) {
-                                disableFormFields(formContext);
-                            }
-                            showHideNonComplianceTimeframe(formContext);
+                                formContext.getControl("header_ts_rateenforcementrecommendation").setVisible(true);
+                                //If there's a recommended enforcement action and the finding is not complete yet, then the accept rate recommendation field should be unlocked
+                                var enforcementRecommendation = formContext.getAttribute("ts_rateenforcementrecommendation").getValue();
+                                var recordStatus = formContext.getAttribute("statuscode").getValue();
+                                if (enforcementRecommendation != null && recordStatus != 741130003 /* ts_infraction_statuscode.Complete */) {
+                                    formContext.getControl("ts_acceptraterecommendation").setDisabled(false);
+                                }
+                                //If they have accepted or rejected the RATE recommendation previously, then the RATE factors should be locked.
+                                var acceptRATERecommendation = formContext.getAttribute("ts_acceptraterecommendation").getValue();
+                                if (acceptRATERecommendation != null) {
+                                    lockRATEFactors(eContext);
+                                }
+                                //If they did not accept the rate recommendation, show proposal sections and fields
+                                if (formContext.getAttribute("ts_acceptraterecommendation").getValue() == 717750001 /* ts_yesno.No */) {
+                                    formContext.ui.tabs.get("tab_RATE").sections.get("RATE_proposed_section").setVisible(true);
+                                    setPostRATERecommendationSelectionFieldsVisibility(eContext);
+                                    RATEManagerDecisionOnChange(eContext);
+                                }
+                            });
+                            // }
                         }
-                        else {
-                            formContext.getControl("ts_finalenforcementaction").setVisible(false);
+                        RATESpecificComplianceHistoryOnChange(eContext);
+                        setApprovingTeamsViews(formContext);
+                        if (formContext.getAttribute("statuscode").getValue() == 741130003 /* ts_infraction_statuscode.Complete */) {
+                            disableFormFields(formContext);
                         }
-                        //if (shouldShowISSOOnlyFields(isDualInspector, operationTypeOwningBusinessUnit, userBusinessUnitName)) {
-                        //    formContext.getControl("ts_issueaddressedonsite").setVisible(true);
-                        //    formContext.getControl("ts_notetostakeholder").setVisible(true);
-                        //    formContext.getControl("ts_sensitivitylevel").setVisible(true);
-                        //}
+                        showHideNonComplianceTimeframe(formContext);
                     });
                     if (operationTypeAttributeValue != null && operationTypeAttributeValue[0].id == "{BE8B0910-C751-EB11-A812-000D3AF3AC0D}") { //Person
                         formContext.getControl("ts_contact").setVisible(true);
@@ -188,35 +162,26 @@ var ROM;
                 }
             });
             if (isROM20Form) {
-                SubGridFilterExecution(eContext);
+                //    SubGridFilterExecution(eContext);
             }
         }
         Infraction.onLoad = onLoad;
-        //function shouldShowISSOOnlyFields(isDualInspector: any, operationTypeOwningBusinessUnit: any, userBusinessUnitName: any): boolean {
-        //    if (operationTypeOwningBusinessUnit?.startsWith("Intermodal") || userBusinessUnitName.startsWith("Intermodal")) {
-        //        return true;
-        //    }
-        //    return false;
-        //}
         function onSave(eContext) {
             var formContext = eContext.getFormContext();
             var statusCodeAttribute = formContext.getAttribute("statuscode");
             var statusCodeValue = statusCodeAttribute.getValue();
             onLoad(eContext);
-            if (statusCodeValue == 717750002 /* ovs_finding_statuscode.Complete */)
+            if (statusCodeValue == 741130003 /* ts_infraction_statuscode.Complete */)
                 return;
-            //    const acceptNCATRecommendation = formContext.getAttribute("ts_acceptncatrecommendation").getValue();
             var acceptRATERecommendation = formContext.getAttribute("ts_acceptraterecommendation").getValue();
             var rejectedRecommendation = acceptRATERecommendation == 717750001 /* ts_yesno.No */;
-            //     const NCATManager = formContext.getAttribute("ts_ncatmanager").getValue();
             var RATEManager = formContext.getAttribute("ts_ratemanager").getValue();
-            //        const hasManagerFieldPopulated = (NCATManager != null || RATEManager != null);
             var hasManagerFieldPopulated = RATEManager != null;
             if (rejectedRecommendation && hasManagerFieldPopulated) {
-                statusCodeAttribute.setValue(717750001 /* ovs_finding_statuscode.Pending */);
+                statusCodeAttribute.setValue(741130001 /* ts_infraction_statuscode.Pending */);
             }
             else {
-                statusCodeAttribute.setValue(717750000 /* ovs_finding_statuscode.InProgress */);
+                statusCodeAttribute.setValue(741130002 /* ts_infraction_statuscode.InProgress */);
             }
         }
         Infraction.onSave = onSave;
@@ -245,17 +210,17 @@ var ROM;
                     switch (_a.label) {
                         case 0:
                             formContext = eContext.getFormContext();
-                            rateSpecificComplianceHistory = formContext.getAttribute("ts_ratespecificcompliancehistory").getValue();
-                            factor1Value = formContext.getAttribute("ts_rategeneralcompliancehistory").getValue();
+                            rateSpecificComplianceHistory = formContext.getAttribute("ts_ratespecificnoncompliancehistory").getValue();
+                            factor1Value = formContext.getAttribute("ts_rategeneralnoncompliancehistory").getValue();
                             factor2Value = formContext.getAttribute("ts_rateactualorpotentialharm").getValue();
                             factor3Value = formContext.getAttribute("ts_rateresponsibility").getValue();
-                            factor4Value = formContext.getAttribute("ts_ratemitigationofnoncompliantbehaviors").getValue();
+                            factor4Value = formContext.getAttribute("ts_ratemitigationofharm").getValue();
                             factor5Value = formContext.getAttribute("ts_ratepreventingrecurrence").getValue();
                             factor6Value = formContext.getAttribute("ts_rateintentionality").getValue();
                             factor7Value = formContext.getAttribute("ts_rateeconomicbenefit").getValue();
-                            factor8Value = formContext.getAttribute("ts_ratecooperationwithinspectionorinvestigat").getValue();
-                            complianceHistory = formContext.getAttribute("ts_ratespecificcompliancehistory").getValue();
-                            enforcementHistory = formContext.getAttribute("ts_ratespecificenforcementhistory").getValue();
+                            factor8Value = formContext.getAttribute("ts_ratecooperation").getValue();
+                            complianceHistory = formContext.getAttribute("ts_ratespecificnoncompliancehistory").getValue();
+                            enforcementHistory = formContext.getAttribute("ts_ratepreviousenforcementmechanism").getValue();
                             //If any of the rate factors don't have a value, reset any fields that require an enforcement recommendation
                             if (rateSpecificComplianceHistory == null || factor1Value == null || factor2Value == null || factor3Value == null || factor4Value == null || factor5Value == null || factor6Value == null || factor7Value == null || factor8Value == null || ((complianceHistory != null && complianceHistory != 717750000 /* ts_ratespecificcompliancehistory._0documentedpreviousidenticalorsimilarnoncompliances */) && enforcementHistory == null)) {
                                 formContext.getAttribute("ts_rateenforcementrecommendation").setValue(null);
@@ -321,7 +286,7 @@ var ROM;
                 formContext.getAttribute("ts_finalenforcementaction").setValue(null);
             }
             //If the NCAT factors are all filled
-            if (formContext.getAttribute("ts_rateactualorpotentialharm").getValue() != null && formContext.getAttribute("ts_rateintentionality").getValue() != null && formContext.getAttribute("ts_rateeconomicbenefit").getValue() != null && formContext.getAttribute("ts_rateresponsibility").getValue() != null && formContext.getAttribute("ts_ratemitigationofnoncompliantbehaviors").getValue() != null && formContext.getAttribute("ts_ratepreventingrecurrence").getValue() != null && formContext.getAttribute("ts_ratecooperationwithinspectionorinvestigat").getValue() != null && acceptRATERecommendation != null) {
+            if (formContext.getAttribute("ts_rateactualorpotentialharm").getValue() != null && formContext.getAttribute("ts_rateintentionality").getValue() != null && formContext.getAttribute("ts_rateeconomicbenefit").getValue() != null && formContext.getAttribute("ts_rateresponsibility").getValue() != null && formContext.getAttribute("ts_ratemitigationofharm").getValue() != null && formContext.getAttribute("ts_ratepreventingrecurrence").getValue() != null && formContext.getAttribute("ts_ratecooperation").getValue() != null && acceptRATERecommendation != null) {
                 var confirmStrings = { text: factorLockMessageBodyLocalizedText, title: factorLockMessageTitleLocalizedText };
                 Xrm.Navigation.openConfirmDialog(confirmStrings).then(function (success) {
                     if (success.confirmed) {
@@ -351,7 +316,7 @@ var ROM;
             var formContext = eContext.getFormContext();
             var RATEEnforcementRecommendation = formContext.getAttribute("ts_rateenforcementrecommendation").getValue();
             var status = formContext.getAttribute("statuscode").getValue();
-            if (RATEEnforcementRecommendation != null && status != 717750002 /* ovs_finding_statuscode.Complete */) {
+            if (RATEEnforcementRecommendation != null && status != 741130003 /* ts_infraction_statuscode.Complete */) {
                 //Enable Accept RATE Recommendation
                 formContext.getControl("ts_acceptraterecommendation").setDisabled(false);
             }
@@ -365,13 +330,13 @@ var ROM;
         Infraction.RATEEnforcementRecommendationOnChange = RATEEnforcementRecommendationOnChange;
         function RATESpecificComplianceHistoryOnChange(eContext) {
             var formContext = eContext.getFormContext();
-            var specificComplianceHistory = formContext.getAttribute("ts_ratespecificcompliancehistory").getValue();
+            var specificComplianceHistory = formContext.getAttribute("ts_ratespecificnoncompliancehistory").getValue();
             if (specificComplianceHistory != null && specificComplianceHistory != 717750000 /* ts_ratespecificcompliancehistory._0documentedpreviousidenticalorsimilarnoncompliances */) {
-                formContext.getControl("ts_ratespecificenforcementhistory").setVisible(true);
+                formContext.getControl("ts_ratepreviousenforcementmechanism").setVisible(true);
             }
             else {
-                formContext.getAttribute("ts_ratespecificenforcementhistory").setValue(null);
-                formContext.getControl("ts_ratespecificenforcementhistory").setVisible(false);
+                formContext.getAttribute("ts_ratepreviousenforcementmechanism").setValue(null);
+                formContext.getControl("ts_ratepreviousenforcementmechanism").setVisible(false);
             }
         }
         Infraction.RATESpecificComplianceHistoryOnChange = RATESpecificComplianceHistoryOnChange;
@@ -482,35 +447,24 @@ var ROM;
             }
         }
         Infraction.approvingRATETeamsOnChange = approvingRATETeamsOnChange;
-        //????????????
         function issueAddressedOnSiteOnChange(eContext) {
             var formContext = eContext.getFormContext();
-            var findingType = formContext.getAttribute("ts_findingtype").getValue();
-            var finalEnforcementAction = formContext.getAttribute("ts_finalenforcementaction");
-            if (findingType == 717750001 /* ts_findingtype.Observation */) {
-                finalEnforcementAction.setValue(717750009 /* ts_finalenforcementaction.NotApplicable */);
-            }
-            else {
-                showHideNonComplianceTimeframe(formContext);
-            }
+            showHideNonComplianceTimeframe(formContext);
         }
         Infraction.issueAddressedOnSiteOnChange = issueAddressedOnSiteOnChange;
         function showHideNonComplianceTimeframe(formContext) {
             var addressedOnSiteAttribute = formContext.getAttribute("ts_issueaddressedonsite");
             var nonComplianceTimeframeAttribute = formContext.getAttribute("ts_noncompliancetimeframe");
             var nonComplianceTimeframeControl = formContext.getControl("ts_noncompliancetimeframe");
-            var findingType = formContext.getAttribute("ts_findingtype").getValue();
-            if (findingType == 717750002 /* ts_findingtype.Noncompliance */) {
-                if (addressedOnSiteAttribute != null && nonComplianceTimeframeAttribute != null) {
-                    var addressedOnSiteValue = addressedOnSiteAttribute.getValue();
-                    if (addressedOnSiteValue == 717750001 /* ts_yesno.No */) {
-                        //Show timeframe field
-                        nonComplianceTimeframeControl.setVisible(true);
-                    }
-                    else {
-                        //Hide timeframe field
-                        nonComplianceTimeframeControl.setVisible(false);
-                    }
+            if (addressedOnSiteAttribute != null && nonComplianceTimeframeAttribute != null) {
+                var addressedOnSiteValue = addressedOnSiteAttribute.getValue();
+                if (addressedOnSiteValue == 717750001 /* ts_yesno.No */) {
+                    //Show timeframe field
+                    nonComplianceTimeframeControl.setVisible(true);
+                }
+                else {
+                    //Hide timeframe field
+                    nonComplianceTimeframeControl.setVisible(false);
                 }
             }
         }
@@ -554,7 +508,6 @@ var ROM;
             //Approving managers with the AvSec Business Unit
             var fetchXmlApprovingTeamsRATE = "<fetch output-format=\"xml-platform\" mapping=\"logical\" no-lock=\"false\"><entity name=\"team\"><attribute name=\"name\"/><attribute name=\"businessunitid\"/><attribute name=\"teamid\"/><attribute name=\"teamtype\"/><filter type=\"and\"><condition attribute=\"teamtype\" operator=\"eq\" value=\"0\"/><condition attribute=\"ts_territory\" operator=\"not-null\"/></filter><order attribute=\"name\" descending=\"false\"/><link-entity name=\"businessunit\" from=\"businessunitid\" to=\"businessunitid\"><filter><condition attribute=\"name\" operator=\"like\" value=\"Aviation%\"/></filter></link-entity></entity></fetch>";
             var layoutXmlApprovingTeams = '<grid name="resultset" object="8" jump="name" select="1" icon="1" preview="1"><row name="result" id="businessunitid"><cell name="name" width="300" /></row></grid>';
-            form.getControl("ts_ncatapprovingteam").addCustomView(viewIdApprovingTeamNCAT, entityNameApprovingTeams, viewDisplayNameApprovingTeams, fetchXmlApprovingTeamsNCAT, layoutXmlApprovingTeams, true);
         }
         function setPostRATERecommendationSelectionFieldsVisibility(eContext) {
             var formContext = eContext.getFormContext();
@@ -621,12 +574,12 @@ var ROM;
             formContext.getControl("ts_rateintentionality").setDisabled(true);
             formContext.getControl("ts_rateeconomicbenefit").setDisabled(true);
             formContext.getControl("ts_rateresponsibility").setDisabled(true);
-            formContext.getControl("ts_ratemitigationofnoncompliantbehaviors").setDisabled(true);
+            formContext.getControl("ts_ratemitigationofharm").setDisabled(true);
             formContext.getControl("ts_ratepreventingrecurrence").setDisabled(true);
-            formContext.getControl("ts_ratecooperationwithinspectionorinvestigat").setDisabled(true);
-            formContext.getControl("ts_ratespecificcompliancehistory").setDisabled(true);
-            formContext.getControl("ts_rategeneralcompliancehistory").setDisabled(true);
-            formContext.getControl("ts_ratespecificenforcementhistory").setDisabled(true);
+            formContext.getControl("ts_ratecooperation").setDisabled(true);
+            formContext.getControl("ts_ratespecificnoncompliancehistory").setDisabled(true);
+            formContext.getControl("ts_rategeneralnoncompliancehistory").setDisabled(true);
+            formContext.getControl("ts_ratepreviousenforcementmechanism").setDisabled(true);
         }
         //Disable all form fields except for "note to stakeholder"
         function disableFormFields(form) {
@@ -666,7 +619,7 @@ var ROM;
         function SubGridFilterExecution(eContext) {
             var formContext = eContext.getFormContext();
             var gridControl = formContext.getControl("relatedfinding_grid");
-            var accountobjectid = formContext.getAttribute("ts_accountid").getValue();
+            var accountobjectid = formContext.getAttribute("ts_contact").getValue();
             var findingId = formContext.data.entity.getId();
             var accountId = '';
             if (accountobjectid != null && accountobjectid != undefined) {
