@@ -222,7 +222,8 @@ var ROM;
                             console.log("url: " + globalContextUrl);
                             if (globalContextUrl.indexOf("romts-gsrst-training") != -1 || globalContextUrl.indexOf("romts-gsrst-tcd365") != -1) {
                                 console.log("training or prod url ");
-                                OversightSIPAXIncidentTypeId = "ef0ec777-5bca-ed11-b596-000d3af4f2f8";
+                                // Oversight of Security Inspections (PAX)
+                                OversightSIPAXIncidentTypeId = "75c1830a-e9fe-ec11-82e6-000d3a09d5de";
                             }
                             return [4 /*yield*/, Xrm.WebApi.retrieveRecord("msdyn_incidenttype", siteInspectionTDGIncidentTypeId, "?$select=msdyn_name,msdyn_estimatedduration").then(function success(result) { return result; }, function (error) { console.log(error.message); })];
                         case 3:
