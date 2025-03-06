@@ -1,6 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
+    <CustomAction Id="ts.ts_planningdata.RelatedWorkOrders.CustomAction" Location="Mscrm.SubGrid.ts_planningdata.MainTab.Management.Controls._children" Sequence="43">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_planningdata.RelatedWorkOrders.Alt" Command="ts.ts_planningdata.RelatedWorkOrders" Id="ts.ts_planningdata.RelatedWorkOrders" LabelText="$LocLabels:ts.ts_planningdata.RelatedWorkOrders.LabelText" Sequence="43" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_planningdata.RelatedWorkOrders.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_planningdata.RelatedWorkOrders.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.ts_planningdata.SetNonOperation.CustomAction" Location="Mscrm.SubGrid.ts_planningdata.MainTab.Management.Controls._children" Sequence="45">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.ts_planningdata.SetNonOperation.Alt" Command="ts.ts_planningdata.SetNonOperational" Id="ts.ts_planningdata.SetNonOperation" LabelText="$LocLabels:ts.ts_planningdata.SetNonOperation.LabelText" Sequence="45" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_planningdata.SetNonOperation.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_planningdata.SetNonOperation.ToolTipDescription" />
@@ -32,6 +37,17 @@
           <CrmParameter Value="FirstPrimaryItemId" />
           <CrmParameter Value="PrimaryControl" />
           <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ts_planningdata.RelatedWorkOrders">
+      <EnableRules>
+        <EnableRule Id="ts.ts_planningdata.SingleSelection" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="openOperationActivityFormInModal" Library="$webresource:ts_/js/planningDataRibbon.js">
+          <CrmParameter Value="SelectedControlSelectedItemIds" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -125,9 +141,32 @@
           <CrmParameter Value="PrimaryControl" />
         </CustomRule>
       </EnableRule>
+      <EnableRule Id="ts.ts_planningdata.SingleSelection">
+        <SelectionCountRule AppliesTo="PrimaryEntity" Minimum="1" Maximum="1" Default="false" InvertResult="false" />
+      </EnableRule>
     </EnableRules>
   </RuleDefinitions>
   <LocLabels>
+    <LocLabel Id="ts.ts_planningdata.RelatedWorkOrders.Alt">
+      <Titles>
+        <Title description="Related Work Orders" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_planningdata.RelatedWorkOrders.LabelText">
+      <Titles>
+        <Title description="Related Work Orders" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_planningdata.RelatedWorkOrders.ToolTipDescription">
+      <Titles>
+        <Title description="Related Work Orders" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_planningdata.RelatedWorkOrders.ToolTipTitle">
+      <Titles>
+        <Title description="Related Work Orders" languagecode="1033" />
+      </Titles>
+    </LocLabel>
     <LocLabel Id="ts.ts_planningdata.SetNonOperation.Alt">
       <Titles>
         <Title description="Set Non-Operational" languagecode="1033" />

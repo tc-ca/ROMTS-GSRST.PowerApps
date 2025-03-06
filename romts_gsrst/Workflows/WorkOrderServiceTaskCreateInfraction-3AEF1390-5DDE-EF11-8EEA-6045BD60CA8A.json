@@ -46,11 +46,17 @@
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
             "parameters": {
-              "subscriptionRequest/message": 4,
+              "subscriptionRequest/message": 3,
               "subscriptionRequest/entityname": "msdyn_workorderservicetask",
               "subscriptionRequest/scope": 4
             },
             "authentication": "@parameters('$authentication')"
+          },
+          "conditions": [],
+          "runtimeConfiguration": {
+            "concurrency": {
+              "runs": 1
+            }
           }
         }
       },
@@ -155,6 +161,7 @@
                           "NameEN": "@items('Apply_to_each_2')?['ts_nameenglish']",
                           "InfractionType": "@items('Apply_to_each_2')?['ts_infractiontype']",
                           "Finding": "@items('Apply_to_each')?['ovs_findingid']",
+                          "FindingName": "@items('Apply_to_each')?['ovs_finding']",
                           "Site": "@outputs('Get_a_row_by_ID_-_Site')?['body/msdyn_functionallocationid']",
                           "OperationType": "@outputs('Get_a_row_by_ID_-_Operation_Type')?['body/ovs_operationtypeid']",
                           "Operation": "@outputs('Get_a_row_by_ID_-_Operation')?['body/ovs_operationid']",
@@ -434,7 +441,7 @@
             }
           },
           "runAfter": {
-            "Initialize_variable_RegionId": [
+            "Initialize_variable_infractionCount": [
               "Succeeded"
             ]
           },
@@ -484,183 +491,251 @@
         "Apply_to_each_3": {
           "foreach": "@variables('legislationCausesArray')",
           "actions": {
-            "Apply_to_each_4": {
-              "foreach": "@variables('legislationFindingArray')",
-              "actions": {
-                "Compose_LegislationFinding_2": {
-                  "runAfter": {},
-                  "metadata": {
-                    "operationMetadataId": "117e1c8f-47a2-44ae-b815-ca42e3405ad9"
-                  },
-                  "type": "Compose",
-                  "inputs": "@variables('legislationFindingArray')"
+            "List_rows": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "d710bd43-1ce6-493d-a2f2-e9fea4e3aceb"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_2",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
-                "Condition_2": {
+                "parameters": {
+                  "entityName": "ts_infractions",
+                  "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\">\n  <entity name=\"ts_infraction\">\n    <link-entity name=\"ovs_finding\" from=\"ts_infraction\" to=\"ts_infractionid\" link-type=\"inner\" alias=\"ad\">\n      <filter type=\"and\">\n        <condition attribute=\"ovs_finding\" operator=\"eq\" value=\"@{items('Apply_to_each_3')?['FindingName']}\" />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Condition_6": {
+              "actions": {
+                "Condition_4": {
                   "actions": {
-                    "Condition_5": {
-                      "actions": {
-                        "Update_a_row_2": {
-                          "runAfter": {},
-                          "metadata": {
-                            "operationMetadataId": "024f1d90-99c0-4047-a423-2c86c5fec1d4"
-                          },
-                          "type": "OpenApiConnection",
-                          "inputs": {
-                            "host": {
-                              "connectionName": "shared_commondataserviceforapps_1",
-                              "operationId": "UpdateOnlyRecord",
-                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                            },
-                            "parameters": {
-                              "entityName": "ovs_findings",
-                              "recordId": "@items('apply_to_each_4')?['FindingID']",
-                              "item/ts_infraction@odata.bind": "/ts_infractions(@{outputs('Add_a_new_row')?['body/ts_infractionid']})"
-                            },
-                            "authentication": "@parameters('$authentication')"
-                          }
-                        }
-                      },
+                    "Increment_variable_infractionCount": {
                       "runAfter": {},
-                      "else": {
-                        "actions": {
-                          "Update_a_row_3": {
-                            "runAfter": {},
-                            "metadata": {
-                              "operationMetadataId": "024f1d90-99c0-4047-a423-2c86c5fec1d4"
-                            },
-                            "type": "OpenApiConnection",
-                            "inputs": {
-                              "host": {
-                                "connectionName": "shared_commondataserviceforapps_1",
-                                "operationId": "UpdateOnlyRecord",
-                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                              },
-                              "parameters": {
-                                "entityName": "ovs_findings",
-                                "recordId": "@items('apply_to_each_4')?['FindingID']",
-                                "item/ts_infraction@odata.bind": "/ts_infractions(@{outputs('Add_a_new_row_2')?['body/ts_infractionid']})"
-                              },
-                              "authentication": "@parameters('$authentication')"
-                            }
-                          }
-                        }
+                      "metadata": {
+                        "operationMetadataId": "af7c153d-498a-44df-81ca-f4c5fbf6c6f5"
                       },
-                      "expression": {
-                        "equals": [
-                          "@variables('hasContact')",
-                          "@true"
+                      "type": "IncrementVariable",
+                      "inputs": {
+                        "name": "infractionCount",
+                        "value": 1
+                      }
+                    },
+                    "Add_a_new_row": {
+                      "runAfter": {
+                        "Increment_variable_infractionCount": [
+                          "Succeeded"
                         ]
                       },
                       "metadata": {
-                        "operationMetadataId": "524270be-859a-44b7-ba68-10bf894ccff6"
+                        "operationMetadataId": "b69e6d85-4caf-4ce8-b15d-370eec494500"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_1",
+                          "operationId": "CreateRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ts_infractions",
+                          "item/ts_name": "110-@{substring(items('Apply_to_each_3')?['FindingName'],4,6)}-@{variables('infractionCount')}",
+                          "item/ts_Case@odata.bind": "incidents(@{items('Apply_to_each_3')?['Case']})",
+                          "item/ts_contact@odata.bind": "systemusers(@{items('apply_to_each_3')?['Contact']})",
+                          "item/ts_infractiontype": "@items('Apply_to_each_3')?['InfractionType']",
+                          "item/ts_legislation@odata.bind": "qm_rclegislations(@{items('Apply_to_each_3')?['ID']})",
+                          "item/ts_operation@odata.bind": "ovs_operations(@{items('Apply_to_each_3')?['Operation']})",
+                          "item/ts_operationtype@odata.bind": "ovs_operationtypes(@{items('apply_to_each_3')?['OperationType']})",
+                          "item/ts_infractionprovisiontexten": "@items('Apply_to_each_3')?['ProvisionTextEn']",
+                          "item/ts_infractionprovisiontextfr": "@items('Apply_to_each_3')?['ProvisionTextFr']",
+                          "item/ts_Region@odata.bind": "territories(@{items('Apply_to_each_3')?['Region']})",
+                          "item/ts_functionallocation@odata.bind": "msdyn_functionallocations(@{items('Apply_to_each_3')?['Site']})",
+                          "item/ts_stakeholder@odata.bind": "accounts(@{items('apply_to_each_3')?['Stakeholder']})",
+                          "item/ts_WorkOrder@odata.bind": "msdyn_workorders(@{items('Apply_to_each_3')?['WO']})"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "else": {
+                    "actions": {
+                      "Increment_variable_infractionCount_2": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "dfeef075-bec0-49f2-b1e4-3fa6721ee39f"
+                        },
+                        "type": "IncrementVariable",
+                        "inputs": {
+                          "name": "infractionCount",
+                          "value": 1
+                        }
+                      },
+                      "Add_a_new_row_2": {
+                        "runAfter": {
+                          "Increment_variable_infractionCount_2": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "d9fbbad4-5a2c-4afb-899f-6a07abb84c65"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_commondataserviceforapps_2",
+                            "operationId": "CreateRecord",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                          },
+                          "parameters": {
+                            "entityName": "ts_infractions",
+                            "item/ts_name": "110-@{substring(items('Apply_to_each_3')?['FindingName'],4,6)}-@{variables('infractionCount')}",
+                            "item/ts_Case@odata.bind": "incidents(@{items('Apply_to_each_3')?['Case']})",
+                            "item/ts_infractiontype": "@items('Apply_to_each_3')?['InfractionType']",
+                            "item/ts_legislation@odata.bind": "qm_rclegislations(@{items('Apply_to_each_3')?['ID']})",
+                            "item/ts_operation@odata.bind": "ovs_operations(@{items('apply_to_each_3')?['Operation']})",
+                            "item/ts_operationtype@odata.bind": "ovs_operationtypes(@{items('apply_to_each_3')?['OperationType']})",
+                            "item/ts_infractionprovisiontexten": "@items('Apply_to_each_3')?['ProvisionTextEn']",
+                            "item/ts_infractionprovisiontextfr": "@items('Apply_to_each_3')?['ProvisionTextFr']",
+                            "item/ts_Region@odata.bind": "territories(@{items('Apply_to_each_3')?['Region']})",
+                            "item/ts_functionallocation@odata.bind": "msdyn_functionallocations(@{items('Apply_to_each_3')?['Site']})",
+                            "item/ts_stakeholder@odata.bind": "accounts(@{items('apply_to_each_3')?['Stakeholder']})",
+                            "item/ts_WorkOrder@odata.bind": "msdyn_workorders(@{items('Apply_to_each_3')?['WO']})"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        }
+                      }
+                    }
+                  },
+                  "expression": {
+                    "equals": [
+                      "@variables('hasContact')",
+                      "@true"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "94d5398f-bc0d-4628-a641-a3e90a79b3e8"
+                  },
+                  "type": "If"
+                },
+                "Apply_to_each_4": {
+                  "foreach": "@variables('legislationFindingArray')",
+                  "actions": {
+                    "Compose_LegislationFinding_2": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "117e1c8f-47a2-44ae-b815-ca42e3405ad9"
+                      },
+                      "type": "Compose",
+                      "inputs": "@variables('legislationFindingArray')"
+                    },
+                    "Condition_2": {
+                      "actions": {
+                        "Condition_5": {
+                          "actions": {
+                            "Update_a_row_2": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "024f1d90-99c0-4047-a423-2c86c5fec1d4"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps_1",
+                                  "operationId": "UpdateOnlyRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "ovs_findings",
+                                  "recordId": "@items('apply_to_each_4')?['FindingID']",
+                                  "item/ts_infraction@odata.bind": "/ts_infractions(@{outputs('Add_a_new_row')?['body/ts_infractionid']})"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              }
+                            }
+                          },
+                          "runAfter": {},
+                          "else": {
+                            "actions": {
+                              "Update_a_row_3": {
+                                "runAfter": {},
+                                "metadata": {
+                                  "operationMetadataId": "024f1d90-99c0-4047-a423-2c86c5fec1d4"
+                                },
+                                "type": "OpenApiConnection",
+                                "inputs": {
+                                  "host": {
+                                    "connectionName": "shared_commondataserviceforapps_1",
+                                    "operationId": "UpdateOnlyRecord",
+                                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                  },
+                                  "parameters": {
+                                    "entityName": "ovs_findings",
+                                    "recordId": "@items('apply_to_each_4')?['FindingID']",
+                                    "item/ts_infraction@odata.bind": "/ts_infractions(@{outputs('Add_a_new_row_2')?['body/ts_infractionid']})"
+                                  },
+                                  "authentication": "@parameters('$authentication')"
+                                }
+                              }
+                            }
+                          },
+                          "expression": {
+                            "equals": [
+                              "@variables('hasContact')",
+                              "@true"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "524270be-859a-44b7-ba68-10bf894ccff6"
+                          },
+                          "type": "If"
+                        }
+                      },
+                      "runAfter": {
+                        "Compose_LegislationFinding_2": [
+                          "Succeeded"
+                        ]
+                      },
+                      "expression": {
+                        "equals": [
+                          "@items('Apply_to_each_4')?['ID']",
+                          "@items('Apply_to_each_3')?['ID']"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "2032b7df-2654-4a4f-a71f-d05a164e7ea8"
                       },
                       "type": "If"
                     }
                   },
                   "runAfter": {
-                    "Compose_LegislationFinding_2": [
+                    "Condition_4": [
                       "Succeeded"
                     ]
                   },
-                  "expression": {
-                    "equals": [
-                      "@items('Apply_to_each_4')?['ID']",
-                      "@items('Apply_to_each_3')?['ID']"
-                    ]
-                  },
                   "metadata": {
-                    "operationMetadataId": "2032b7df-2654-4a4f-a71f-d05a164e7ea8"
+                    "operationMetadataId": "d8fe647d-1f90-48f6-80b4-f9f962fa0a4b"
                   },
-                  "type": "If"
+                  "type": "Foreach"
                 }
               },
               "runAfter": {
-                "Condition_4": [
+                "List_rows": [
                   "Succeeded"
                 ]
               },
-              "metadata": {
-                "operationMetadataId": "d8fe647d-1f90-48f6-80b4-f9f962fa0a4b"
-              },
-              "type": "Foreach"
-            },
-            "Condition_4": {
-              "actions": {
-                "Add_a_new_row": {
-                  "runAfter": {},
-                  "metadata": {
-                    "operationMetadataId": "b69e6d85-4caf-4ce8-b15d-370eec494500"
-                  },
-                  "type": "OpenApiConnection",
-                  "inputs": {
-                    "host": {
-                      "connectionName": "shared_commondataserviceforapps_1",
-                      "operationId": "CreateRecord",
-                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                    },
-                    "parameters": {
-                      "entityName": "ts_infractions",
-                      "item/ts_name": "Infraction - @{items('Apply_to_each_3')?['NameEN']}",
-                      "item/ts_Case@odata.bind": "incidents(@{items('Apply_to_each_3')?['Case']})",
-                      "item/ts_contact@odata.bind": "systemusers(@{items('apply_to_each_3')?['Contact']})",
-                      "item/ts_infractiontype": "@items('Apply_to_each_3')?['InfractionType']",
-                      "item/ts_legislation@odata.bind": "qm_rclegislations(@{items('Apply_to_each_3')?['ID']})",
-                      "item/ts_operation@odata.bind": "ovs_operations(@{items('Apply_to_each_3')?['Operation']})",
-                      "item/ts_operationtype@odata.bind": "ovs_operationtypes(@{items('apply_to_each_3')?['OperationType']})",
-                      "item/ts_infractionprovisiontexten": "@items('Apply_to_each_3')?['ProvisionTextEn']",
-                      "item/ts_infractionprovisiontextfr": "@items('Apply_to_each_3')?['ProvisionTextFr']",
-                      "item/ts_Region@odata.bind": "territories(@{items('Apply_to_each_3')?['Region']})",
-                      "item/ts_functionallocation@odata.bind": "msdyn_functionallocations(@{items('Apply_to_each_3')?['Site']})",
-                      "item/ts_stakeholder@odata.bind": "accounts(@{items('apply_to_each_3')?['Stakeholder']})",
-                      "item/ts_WorkOrder@odata.bind": "msdyn_workorders(@{items('Apply_to_each_3')?['WO']})"
-                    },
-                    "authentication": "@parameters('$authentication')"
-                  }
-                }
-              },
-              "runAfter": {},
-              "else": {
-                "actions": {
-                  "Add_a_new_row_2": {
-                    "runAfter": {},
-                    "metadata": {
-                      "operationMetadataId": "d9fbbad4-5a2c-4afb-899f-6a07abb84c65"
-                    },
-                    "type": "OpenApiConnection",
-                    "inputs": {
-                      "host": {
-                        "connectionName": "shared_commondataserviceforapps_2",
-                        "operationId": "CreateRecord",
-                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                      },
-                      "parameters": {
-                        "entityName": "ts_infractions",
-                        "item/ts_name": "Infraction - @{items('Apply_to_each_3')?['NameEN']}",
-                        "item/ts_Case@odata.bind": "incidents(@{items('Apply_to_each_3')?['Case']})",
-                        "item/ts_infractiontype": "@items('Apply_to_each_3')?['InfractionType']",
-                        "item/ts_legislation@odata.bind": "qm_rclegislations(@{items('Apply_to_each_3')?['ID']})",
-                        "item/ts_operation@odata.bind": "ovs_operations(@{items('apply_to_each_3')?['Operation']})",
-                        "item/ts_operationtype@odata.bind": "ovs_operationtypes(@{items('apply_to_each_3')?['OperationType']})",
-                        "item/ts_infractionprovisiontexten": "@items('Apply_to_each_3')?['ProvisionTextEn']",
-                        "item/ts_infractionprovisiontextfr": "@items('Apply_to_each_3')?['ProvisionTextFr']",
-                        "item/ts_Region@odata.bind": "territories(@{items('Apply_to_each_3')?['Region']})",
-                        "item/ts_functionallocation@odata.bind": "msdyn_functionallocations(@{items('Apply_to_each_3')?['Site']})",
-                        "item/ts_stakeholder@odata.bind": "accounts(@{items('apply_to_each_3')?['Stakeholder']})",
-                        "item/ts_WorkOrder@odata.bind": "msdyn_workorders(@{items('Apply_to_each_3')?['WO']})"
-                      },
-                      "authentication": "@parameters('$authentication')"
-                    }
-                  }
-                }
-              },
               "expression": {
                 "equals": [
-                  "@variables('hasContact')",
-                  "@true"
+                  "@length(outputs('List_rows')?['body/value'])",
+                  "@0"
                 ]
               },
               "metadata": {
-                "operationMetadataId": "94d5398f-bc0d-4628-a641-a3e90a79b3e8"
+                "operationMetadataId": "cbb0535e-e347-4041-89ae-c9d27966dc74"
               },
               "type": "If"
             }
@@ -675,7 +750,7 @@
           },
           "type": "Foreach"
         },
-        "Initialize_variable": {
+        "Initialize_variable_hasContact": {
           "runAfter": {
             "Initialize_variable_legislationCausesArray": [
               "Succeeded"
@@ -697,7 +772,7 @@
         },
         "Initialize_variable_RegionId": {
           "runAfter": {
-            "Initialize_variable": [
+            "Initialize_variable_hasContact": [
               "Succeeded"
             ]
           },
@@ -710,6 +785,26 @@
               {
                 "name": "RegionId",
                 "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_infractionCount": {
+          "runAfter": {
+            "Initialize_variable_RegionId": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "024e0d19-84a5-4d1b-af44-47243884765d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "infractionCount",
+                "type": "integer",
+                "value": 0
               }
             ]
           }
