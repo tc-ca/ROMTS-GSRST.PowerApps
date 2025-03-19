@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>0</isdefault>
+    <savedqueryid>{89de5520-e800-f011-bae3-002248b2e1ca}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_actioninfractionid">
+          <cell name="ts_action" width="100" />
+          <cell name="a_90e1f27c86f34fc4ad44375f27ba3b93.ts_actioncategory" width="184" />
+          <cell name="a_90e1f27c86f34fc4ad44375f27ba3b93.ts_actiontype" width="161" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+        <entity name="ts_actioninfraction">
+          <attribute name="ts_actioninfractionid" />
+          <attribute name="ts_action" />
+          <order attribute="ts_action" descending="false" />
+          <link-entity alias="a_90e1f27c86f34fc4ad44375f27ba3b93" name="ts_action" to="ts_action" from="ts_actionid" link-type="outer" visible="false">
+            <attribute name="ts_actioncategory" />
+            <attribute name="ts_actiontype" />
+          </link-entity>
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0.20250312.1</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Infraction Associated Action" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>
