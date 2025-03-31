@@ -37,12 +37,6 @@
                         </labels>
                         <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
                       </cell>
-                      <cell id="{bacfba7c-3831-4274-8bb6-e334e5b68546}" locklevel="0" colspan="1" rowspan="1">
-                        <labels>
-                          <label description="Response" languagecode="1033" />
-                        </labels>
-                        <control id="header_ts_response" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_response" disabled="true" />
-                      </cell>
                     </row>
                     <row>
                       <cell id="{24c361ce-0321-42c3-9733-41aae1003c93}" locklevel="0" colspan="1" rowspan="1">
@@ -51,11 +45,11 @@
                         </labels>
                         <control id="ts_questionname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_questionname" disabled="true" />
                       </cell>
-                      <cell id="{d616e39d-4f5e-4518-9950-be7f0fa2e68c}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{cc469f48-41fd-4e51-b78f-6c7914d1353a}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
-                          <label description="Comments" languagecode="1033" />
+                          <label description="Response" languagecode="1033" />
                         </labels>
-                        <control id="ts_comments" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_comments" disabled="true" />
+                        <control id="ts_response" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_response" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -65,12 +59,17 @@
                         </labels>
                         <control id="ts_questiontextenglish" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_questiontextenglish" disabled="true" />
                       </cell>
-                      <cell locklevel="0" id="{3ef083c5-9246-4e90-9a29-36e4c3ee0ab2}">
+                      <cell id="{708c38a5-d060-431d-8b63-526af6250793}" locklevel="0" colspan="1" rowspan="5">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="Details" languagecode="1033" />
                         </labels>
+                        <control id="ts_details" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_details" disabled="true" />
                       </cell>
                     </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
                     <row>
                       <cell id="{cade9a49-449d-4646-8723-f6a7de5abac3}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
@@ -99,27 +98,27 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{d75677b9-99c9-4e93-951f-658c84849403}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{d75677b9-99c9-4e93-951f-658c84849403}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
                           <label description="Operations" languagecode="1033" />
                         </labels>
                         <control id="ts_operations" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_operations" disabled="true" />
                       </cell>
-                      <cell locklevel="0" id="{e154ab1a-2c5a-4793-a700-c55283cd311f}" rowspan="4" colspan="1" auto="false">
+                      <cell locklevel="0" id="{e154ab1a-2c5a-4793-a700-c55283cd311f}" rowspan="4" colspan="1" auto="true">
                         <labels>
-                          <label description="Related Findings" languagecode="1033" />
+                          <label description="Sub Questions" languagecode="1033" />
                         </labels>
                         <control indicationOfSubgrid="true" id="Subgrid_new_1" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
                           <parameters>
                             <RecordsPerPage>4</RecordsPerPage>
-                            <AutoExpand>Fixed</AutoExpand>
+                            <AutoExpand>Auto</AutoExpand>
                             <EnableQuickFind>false</EnableQuickFind>
                             <EnableViewPicker>false</EnableViewPicker>
                             <EnableChartPicker>true</EnableChartPicker>
                             <ChartGridMode>All</ChartGridMode>
                             <TargetEntityType>ts_questionresponse</TargetEntityType>
-                            <ViewId>{4E0D2F7C-F88D-4CAC-8675-DD818999E051}</ViewId>
-                            <ViewIds>{4E0D2F7C-F88D-4CAC-8675-DD818999E051}</ViewIds>
+                            <ViewId>{11A70B69-9A05-F011-BAE2-002248B2E1CA}</ViewId>
+                            <ViewIds>{4E0D2F7C-F88D-4CAC-8675-DD818999E051},{11A70B69-9A05-F011-BAE2-002248B2E1CA}</ViewIds>
                             <RelationshipName>ts_QuestionResponse_ts_QuestionResponse_ts_QuestionResponse</RelationshipName>
                           </parameters>
                         </control>
@@ -134,19 +133,56 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{21bf5daf-c309-402c-a5b4-4c22dcac8017}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{a5bea785-df42-4a9a-81b6-2705115f129c}" locklevel="0" colspan="1" rowspan="6">
                         <labels>
                           <label description="Provision Text (English)" languagecode="1033" />
                         </labels>
-                        <control id="ts_provisiontextenglish" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_provisiontextenglish" disabled="true" />
+                        <control id="ts_provisiontextenglish" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_provisiontextenglish" disabled="true" />
                       </cell>
                     </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
                     <row>
-                      <cell id="{7a135c58-ba25-4972-ba40-f7aebef00e7b}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{9fa5484b-87ba-464e-821a-c0d8dbb6ad26}" locklevel="0" colspan="1" rowspan="6">
                         <labels>
                           <label description="Provision Text (French)" languagecode="1033" />
                         </labels>
-                        <control id="ts_provisiontextfrench" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_provisiontextfrench" disabled="true" />
+                        <control id="ts_provisiontextfrench" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_provisiontextfrench" disabled="true" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row>
+                      <cell locklevel="0" id="{0f057a6d-759e-4b15-89e8-facecf136b96}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{c8c8fb71-d2ec-4375-b3bf-5c579c5ed590}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Status" languagecode="1033" />
+                          <label description="Statut" languagecode="1036" />
+                        </labels>
+                        <control id="statecode" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="statecode" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell locklevel="0" id="{e6145719-6a8c-45bb-8a4a-e8022d525d79}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                      <cell id="{9efa0a26-02cf-4b80-a730-595ab18aaf2a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Version" languagecode="1033" />
+                        </labels>
+                        <control id="ts_version" classid="{C6D124CA-7EDA-4A60-AEA9-7FB8D318B68F}" datafieldname="ts_version" disabled="true" />
                       </cell>
                     </row>
                   </rows>
@@ -185,6 +221,11 @@
                 <label description="Questionnaire" languagecode="1033" />
               </labels>
               <control id="header_ts_questionnaire" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_questionnaire" disabled="false" />
+            </cell>
+            <cell locklevel="0" id="{4a8221a9-542f-426a-b520-9916ea6d5f88}">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
             </cell>
             <cell locklevel="0" id="{cfd374e7-eb9e-4700-9751-4929716a5476}">
               <labels>

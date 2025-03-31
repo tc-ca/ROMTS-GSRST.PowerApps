@@ -10,9 +10,15 @@
     <layoutxml>
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_questionresponseid">
-          <cell name="ts_name" width="300" />
-          <cell name="ts_questionname" width="128" />
+          <cell name="ts_name" width="126" />
+          <cell name="ts_questiontextenglish" width="300" />
+          <cell name="ts_provisiontextenglish" width="178" />
           <cell name="ts_findingtype" width="116" />
+          <cell name="ts_msdyn_workorderservicetask" width="183" />
+          <cell name="ts_questionnaire" width="119" />
+          <cell name="ts_response" width="100" />
+          <cell name="ts_details" width="100" />
+          <cell name="createdon" width="105" />
         </row>
       </grid>
     </layoutxml>
@@ -22,9 +28,15 @@
         <entity name="ts_questionresponse">
           <attribute name="ts_questionresponseid" />
           <attribute name="ts_name" />
-          <order attribute="ts_name" descending="false" />
           <attribute name="ts_findingtype" />
-          <attribute name="ts_questionname" />
+          <attribute name="ts_questionnaire" />
+          <attribute name="ts_msdyn_workorderservicetask" />
+          <attribute name="ts_questiontextenglish" />
+          <attribute name="ts_provisiontextenglish" />
+          <attribute name="ts_response" />
+          <attribute name="ts_details" />
+          <attribute name="createdon" />
+          <order attribute="createdon" descending="true" />
         </entity>
       </fetch>
     </fetchxml>

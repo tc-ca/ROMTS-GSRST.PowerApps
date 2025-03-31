@@ -22,11 +22,11 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{d3616762-dfb4-406b-b0b2-ffa0f20e72dc}">
+                      <cell id="{d3616762-dfb4-406b-b0b2-ffa0f20e72dc}" locklevel="0">
                         <labels>
                           <label description="Name" languagecode="1033" />
                         </labels>
-                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" />
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -59,7 +59,7 @@
                         <labels>
                           <label description="First Name" languagecode="1033" />
                         </labels>
-                        <control id="ts_firstname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_firstname" disabled="false" />
+                        <control id="ts_firstname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_firstname" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -67,7 +67,7 @@
                         <labels>
                           <label description="Last Name" languagecode="1033" />
                         </labels>
-                        <control id="ts_lastname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_lastname" disabled="false" />
+                        <control id="ts_lastname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_lastname" disabled="true" />
                       </cell>
                     </row>
                   </rows>
@@ -124,11 +124,22 @@
       </DisplayConditions>
       <formLibraries>
         <Library name="ts_UserRegistration.js" libraryUniqueId="{76c32191-68fa-426e-8b57-8d31e361ba65}" />
+        <Library name="ts_/js/UserRegistration.js" libraryUniqueId="{f3268072-db44-4939-9673-6d4e155c8d5e}" />
       </formLibraries>
       <events>
+        <event name="onsave" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.UserRegistration.onSave" libraryName="ts_UserRegistration.js" handlerUniqueId="{5f89cf71-1545-4af1-ad90-93e7876c5cfe}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.UserRegistration.onLoad" libraryName="ts_/js/UserRegistration.js" handlerUniqueId="{6e276430-b8b8-495f-a0de-2afa5eedf19f}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
         <event name="onchange" application="false" active="false" attribute="ts_aaduser">
           <Handlers>
-            <Handler functionName="OnChangeAADUser" libraryName="ts_UserRegistration.js" handlerUniqueId="{8779b657-c30c-4063-8420-76c30942e426}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.UserRegistration.OnChangeAADUser" libraryName="ts_/js/UserRegistration.js" handlerUniqueId="{8779b657-c30c-4063-8420-76c30942e426}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

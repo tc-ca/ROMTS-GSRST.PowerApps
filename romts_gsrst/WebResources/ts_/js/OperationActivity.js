@@ -18,6 +18,16 @@ var ROM;
                     }
                 }
             }
+            //If owner is AvSec make accountable team section visible
+            var ownerAttribute = form.getAttribute("ownerid");
+            if (ownerAttribute != null && ownerAttribute != undefined) {
+                var ownerAttributeValue = ownerAttribute.getValue();
+                if (ownerAttributeValue != null) {
+                    if (ownerAttributeValue[0].name && ownerAttributeValue[0].name.toLowerCase().includes("aviation security".toLowerCase())) {
+                        form.ui.tabs.get("tab_general").sections.get("section_team").setVisible(true);
+                    }
+                }
+            }
             //If not business admin lock all fields
             if (!isAdmin()) {
                 setAllFieldsDisabled(eContext);
