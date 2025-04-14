@@ -94,6 +94,16 @@ var ROM;
                     }
                 }
             });
+            getUserTeam(userId).then(function (userTeams) {
+                if (userTeams != null && userTeams.entities.length > 0) {
+                    for (var i = 0; i < userTeams.entities.length; i++) {
+                        if (userTeams.entities[i]["name"].indexOf("International - Inspectors") > 0) {
+                            form.getControl("ovs_rational").setDisabled(false);
+                            break;
+                        }
+                    }
+                }
+            });
             //Keep track of the current system status, to be used when cancelling a status change.
             currentSystemStatus = form.getAttribute("msdyn_systemstatus").getValue();
             currentStatus = form.getAttribute("ts_state").getValue();
@@ -345,10 +355,42 @@ var ROM;
                     form.getControl("msdyn_systemstatus").removeOption(741130001 /* InProgress */);
                 }
             }
+            //Restrict edit rights for Report Details to WO Owner and Additional Inspectors
+            var subgridAdditionalInspectors = form.getControl("AdditionalInspectors");
+            if (subgridAdditionalInspectors) {
+                subgridAdditionalInspectors.addOnLoad(function () {
+                    restrictEditRightReportDetails(eContext, subgridAdditionalInspectors);
+                });
+            }
             unlockRecordLogFieldsIfUserIsSystemAdmin(form);
             RemoveOptionCancel(eContext);
         }
         WorkOrder.onLoad = onLoad;
+        function restrictEditRightReportDetails(executionContext, subgridAdditionalInspectors) {
+            //Process Additional Inspectors Subgrid
+            var additionalInspectorIds = [];
+            if (subgridAdditionalInspectors && subgridAdditionalInspectors.getGrid()) {
+                var rows = subgridAdditionalInspectors.getGrid().getRows();
+                var length = rows.getLength();
+                rows.forEach(function (row) {
+                    var entity = row.getData().getEntity();
+                    var id = entity.getId();
+                    additionalInspectorIds.push(id);
+                });
+            }
+            else {
+                console.log("Subgrid not loaded or not found.");
+            }
+            //Disabled Report Details if user is not a owner or additional inspector
+            var userId = Xrm.Utility.getGlobalContext().userSettings.userId;
+            var form = executionContext.getFormContext();
+            var ownerAttribute = form.getAttribute("ownerid").getValue();
+            if (ownerAttribute && ownerAttribute[0].id) {
+                if (!(userId == ownerAttribute[0].id || (additionalInspectorIds.includes(userId)))) {
+                    form.getControl("ts_reportdetails").setDisabled(true);
+                }
+            }
+        }
         function RemoveOptionCancel(eContext) {
             var formContext = eContext.getFormContext();
             var userSettings = Xrm.Utility.getGlobalContext().userSettings;
@@ -2274,5 +2316,28 @@ var ROM;
             }
         }
         WorkOrder.populateFlightCategory = populateFlightCategory;
+        function getUserTeam(userId) {
+            var fetchXml = [
+                "<fetch distinct='false' mapping='logical'>",
+                "  <entity name='team'>",
+                "    <attribute name='name' />",
+                "    <attribute name='teamid' />",
+                "    <filter type='and'>",
+                "      <condition attribute='teamtype' operator='ne' value='1' />",
+                "    </filter>",
+                "    <link-entity name='teammembership' intersect='true' visible='false' to='teamid' from='teamid'>",
+                "      <link-entity name='systemuser' from='systemuserid' to='systemuserid' alias='bb'>",
+                "        <filter type='and'>",
+                "          <condition attribute='systemuserid' operator='eq' value='",
+                userId,
+                "' />",
+                "        </filter>",
+                "      </link-entity>",
+                "    </link-entity>",
+                "  </entity>",
+                "</fetch>",
+            ].join("");
+            return Xrm.WebApi.retrieveMultipleRecords("team", "?fetchXml=" + encodeURIComponent(fetchXml));
+        }
     })(WorkOrder = ROM.WorkOrder || (ROM.WorkOrder = {}));
 })(ROM || (ROM = {}));

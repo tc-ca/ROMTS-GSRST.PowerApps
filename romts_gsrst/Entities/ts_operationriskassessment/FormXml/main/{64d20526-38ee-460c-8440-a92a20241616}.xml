@@ -67,6 +67,22 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{b7ea397e-4817-4d3f-9f47-34abc270c3ce}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Risk Threshold" languagecode="1033" />
+                        </labels>
+                        <control id="ts_riskthresholdfrench" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_riskthresholdfrench" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{b0948682-1c23-483c-8711-5556aea41b91}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Risk Threshold" languagecode="1033" />
+                        </labels>
+                        <control id="ts_riskthresholdenglish" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_riskthresholdenglish" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{b9bc0191-91a4-4e9f-bf18-53de01818c4c}" locklevel="0" colspan="1" rowspan="16" visible="false">
                         <labels>
                           <label description="Calculation Log" languagecode="1033" />
@@ -451,7 +467,7 @@
         </controlDescription>
       </controlDescriptions>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -482,6 +498,7 @@
       </Navigation>
       <formLibraries>
         <Library name="ts_/js/OperationRiskAssessmentRibbon.js" libraryUniqueId="{db021818-8b63-5ed6-91a1-0ab8a83be68c}" />
+        <Library name="ts_/js/OperationRiskAssessment.js" libraryUniqueId="{e2b4cff1-a27a-4b6b-a2f2-0ad02becfbc3}" />
       </formLibraries>
       <events>
         <event name="onrecordselect" application="false" active="false" relationship="" control="Subgrid_Risk_Criteria_Responses">
@@ -492,6 +509,11 @@
         <event name="onrecordselect" application="false" active="false" relationship="" control="Subgrid_Discretionary_Factor_Responses">
           <Handlers>
             <Handler functionName="openSubgridRowInSideFormOnRecordSelect" libraryName="ts_/js/OperationRiskAssessmentRibbon.js" handlerUniqueId="{b3c699ad-4d97-5b29-66e6-c34235c437ac}" enabled="false" parameters="&quot;ts_discretionaryfactorresponse&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.OperationRiskAssessment.onLoad" libraryName="ts_/js/OperationRiskAssessment.js" handlerUniqueId="{57b2ea39-f85f-4253-bab8-d39c347ddc94}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

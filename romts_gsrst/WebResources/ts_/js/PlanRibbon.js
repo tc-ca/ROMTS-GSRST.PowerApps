@@ -16,8 +16,13 @@
     //let teamPlanningDataTeamEstimatedTravelTimeTotal = 0;
     let teamPlanningSupportRegionTimeTotal = 0;
     let teamPlanningDataTeamEstimatedCostTotal = 0;
-
+    let supportRegionInspectionActivitiesCount = 0;
+    let supportRegionInspectionQ1Count = 0;
+    let supportRegionInspectionQ2Count = 0;
+    let supportRegionInspectionQ3Count = 0;
+    let supportRegionInspectionQ4Count = 0;
     let estimateDurationIsNull = false;
+
     const teamValue = formContext.data.entity.attributes.get("ts_team").getValue();
     const fiscalyearValue = formContext.data.entity.attributes.get("ts_fiscalyear").getValue();
     if (teamValue != null && fiscalyearValue != null) {
@@ -32,13 +37,14 @@
             <attribute name='ts_hours' />
             <filter type='and'>
               <condition attribute='ts_region' operator='eq' uitype='territory' value='` + teamRegion["_ts_territory_value"] + `' />
+              <condition attribute='ts_suggestedinspection' operator='not-null' />
+              <condition attribute='ts_fiscalyear' operator='eq' uitype='tc_tcfiscalyear' value='` + fiscalyearValue[0].id + `' />
             </filter>
-            <link-entity name='ts_suggestedinspection' from='ts_suggestedinspectionid' to='ts_suggestedinspection' link-type='inner' alias='am'>
-              <link-entity name='ts_plan' from='ts_planid' to='ts_plan' link-type='inner' alias='an'>
-                <filter type='and'>
-                  <condition attribute='ts_fiscalyear' operator='eq' uitype='tc_tcfiscalyear' value='` + fiscalyearValue[0].id + `' />
-                </filter>
-              </link-entity>
+            <link-entity name='ts_suggestedinspection' from='ts_suggestedinspectionid' to='ts_suggestedinspection' link-type='inner' alias='si'>
+			  <attribute name='ts_q1'/>
+			  <attribute name='ts_q2'/>
+			  <attribute name='ts_q3'/>
+			  <attribute name='ts_q4'/>
             </link-entity>
           </entity>
         </fetch>`;
@@ -47,8 +53,21 @@
             return result.entities;
         });
         for (let supportRegionHour of supportRegionHours) {
+            supportRegionInspectionActivitiesCount++;
             if (supportRegionHour["ts_hours"] != null) {
                 teamPlanningSupportRegionTimeTotal += supportRegionHour["ts_hours"];
+            }
+            if (supportRegionHour["si.ts_q1"] != null) {
+                supportRegionInspectionQ1Count += supportRegionHour["si.ts_q1"];
+            }
+            if (supportRegionHour["si.ts_q2"] != null) {
+                supportRegionInspectionQ2Count += supportRegionHour["si.ts_q2"];
+            }
+            if (supportRegionHour["si.ts_q3"] != null) {
+                supportRegionInspectionQ3Count += supportRegionHour["si.ts_q3"];
+            }
+            if (supportRegionHour["si.ts_q4"] != null) {
+                supportRegionInspectionQ4Count += supportRegionHour["si.ts_q4"];
             }
         }
     }
@@ -185,7 +204,7 @@
             teamPlanningDataTeamEstimatedDurationQ2 += inspection.ts_estimatedduration * inspection.ts_q2;
             teamPlanningDataTeamEstimatedDurationQ3 += inspection.ts_estimatedduration * inspection.ts_q3;
             teamPlanningDataTeamEstimatedDurationQ4 += inspection.ts_estimatedduration * inspection.ts_q4;
-            teamPlanningDataTeamEstimatedDurationTotal += inspection.ts_estimatedduration;
+            teamPlanningDataTeamEstimatedDurationTotal = teamPlanningDataTeamEstimatedDurationQ1 + teamPlanningDataTeamEstimatedDurationQ2 + teamPlanningDataTeamEstimatedDurationQ3 + teamPlanningDataTeamEstimatedDurationQ4;
         }
         else {
             console.log("Estimated duration is null");
@@ -212,8 +231,12 @@
     });
 
     let contunueProcess = true;
+    const lang = parent.Xrm.Utility.getGlobalContext().userSettings.languageId;
     if (estimateDurationIsNull) {
-        var confirmStrings = { text: "Value is missing under Suggested Inspection in the Estimated Duration field. Click Ok to continue, or Cancel to stop." };
+        var confirmStrings = { text: "All suggested inspections require an estimated duration." };
+        if (lang == 1036) {
+            confirmStrings = { text: "Toutes les inspections suggérées nécessitent une estimation de la durée." };
+        }
         var confirmOptions = { height: 200, width: 450 };
         await Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
             function (success) {
@@ -236,11 +259,11 @@
         if (formContext.getAttribute("ts_unplannedhoursq4").getValue() != null) {
             teamUnplannedHours += formContext.getAttribute("ts_unplannedhoursq4").getValue();
         }
-        formContext.getAttribute("ts_plannedactivityq1").setValue(teamPlanningDataPlannedQ1);
-        formContext.getAttribute("ts_plannedactivityq2").setValue(teamPlanningDataPlannedQ2);
-        formContext.getAttribute("ts_plannedactivityq3").setValue(teamPlanningDataPlannedQ3);
-        formContext.getAttribute("ts_plannedactivityq4").setValue(teamPlanningDataPlannedQ4);
-        formContext.getAttribute("ts_plannedactivityfiscalyear").setValue(teamPlanningDataPlannedTotal);
+        formContext.getAttribute("ts_plannedactivityq1").setValue(teamPlanningDataPlannedQ1 + supportRegionInspectionQ1Count);
+        formContext.getAttribute("ts_plannedactivityq2").setValue(teamPlanningDataPlannedQ2 + supportRegionInspectionQ2Count);
+        formContext.getAttribute("ts_plannedactivityq3").setValue(teamPlanningDataPlannedQ3 + supportRegionInspectionQ3Count);
+        formContext.getAttribute("ts_plannedactivityq4").setValue(teamPlanningDataPlannedQ4 + supportRegionInspectionQ4Count);
+        formContext.getAttribute("ts_plannedactivityfiscalyear").setValue(teamPlanningDataPlannedTotal + supportRegionInspectionActivitiesCount);
 
         formContext.getAttribute("ts_estimateddurationq1").setValue(teamPlanningDataTeamEstimatedDurationQ1);
         formContext.getAttribute("ts_estimateddurationq2").setValue(teamPlanningDataTeamEstimatedDurationQ2);
@@ -385,10 +408,7 @@ async function createWorkOrders(formContext) {
                             const dataQ1 = { ...workOrderData };
                             dataQ1["ovs_FiscalQuarter@odata.bind"] = "/tc_tcfiscalquarters(" + Q1Id + ")";
                             for (let i = 0; i < workOrdersToCreateInQ1; i++) {
-                                workOrderCreationPromises.push(Xrm.WebApi.createRecord("msdyn_workorder", dataQ1).then(result => {
-                                    // Update ts_state to Committed (717750001) to run flow: [Work Order] Add trip inspectors to access team
-                                    return Xrm.WebApi.updateRecord("msdyn_workorder", result.id, { ts_state: 717750001 });
-                                }).then(() => {
+                                workOrderCreationPromises.push(Xrm.WebApi.createRecord("msdyn_workorder", dataQ1).then(() => {
                                     currentWorkOrders++;
                                     Xrm.Utility.showProgressIndicator(createWorkOrdersProgressIndicator + " (" + currentWorkOrders + " / " + totalWorkOrders + " )");
                                 }));
@@ -401,10 +421,7 @@ async function createWorkOrders(formContext) {
                             const dataQ2 = { ...workOrderData };
                             dataQ2["ovs_FiscalQuarter@odata.bind"] = "/tc_tcfiscalquarters(" + Q2Id + ")";
                             for (let i = 0; i < workOrdersToCreateInQ2; i++) {
-                                workOrderCreationPromises.push(Xrm.WebApi.createRecord("msdyn_workorder", dataQ2).then(result => {
-                                    // Update ts_state to Committed (717750001) to run flow: [Work Order] Add trip inspectors to access team
-                                    return Xrm.WebApi.updateRecord("msdyn_workorder", result.id, { ts_state: 717750001 });
-                                }).then(() => {
+                                workOrderCreationPromises.push(Xrm.WebApi.createRecord("msdyn_workorder", dataQ2).then(() => {
                                     currentWorkOrders++;
                                     Xrm.Utility.showProgressIndicator(createWorkOrdersProgressIndicator + " (" + currentWorkOrders + " / " + totalWorkOrders + " )");
                                 }));
@@ -417,10 +434,7 @@ async function createWorkOrders(formContext) {
                             const dataQ3 = { ...workOrderData };
                             dataQ3["ovs_FiscalQuarter@odata.bind"] = "/tc_tcfiscalquarters(" + Q3Id + ")";
                             for (let i = 0; i < workOrdersToCreateInQ3; i++) {
-                                workOrderCreationPromises.push(Xrm.WebApi.createRecord("msdyn_workorder", dataQ3).then(result => {
-                                    // Update ts_state to Committed (717750001) to run flow: [Work Order] Add trip inspectors to access team
-                                    return Xrm.WebApi.updateRecord("msdyn_workorder", result.id, { ts_state: 717750001 });
-                                }).then(() => {
+                                workOrderCreationPromises.push(Xrm.WebApi.createRecord("msdyn_workorder", dataQ3).then(() => {
                                     currentWorkOrders++;
                                     Xrm.Utility.showProgressIndicator(createWorkOrdersProgressIndicator + " (" + currentWorkOrders + " / " + totalWorkOrders + " )");
                                 }));
@@ -433,10 +447,7 @@ async function createWorkOrders(formContext) {
                             const dataQ4 = { ...workOrderData };
                             dataQ4["ovs_FiscalQuarter@odata.bind"] = "/tc_tcfiscalquarters(" + Q4Id + ")";
                             for (let i = 0; i < workOrdersToCreateInQ4; i++) {
-                                workOrderCreationPromises.push(Xrm.WebApi.createRecord("msdyn_workorder", dataQ4).then(result => {
-                                    // Update ts_state to Committed (717750001) to run flow: [Work Order] Add trip inspectors to access team
-                                    return Xrm.WebApi.updateRecord("msdyn_workorder", result.id, { ts_state: 717750001 });
-                                }).then(() => {
+                                workOrderCreationPromises.push(Xrm.WebApi.createRecord("msdyn_workorder", dataQ4).then(() => {
                                     currentWorkOrders++;
                                     Xrm.Utility.showProgressIndicator(createWorkOrdersProgressIndicator + " (" + currentWorkOrders + " / " + totalWorkOrders + " )");
                                 }));
