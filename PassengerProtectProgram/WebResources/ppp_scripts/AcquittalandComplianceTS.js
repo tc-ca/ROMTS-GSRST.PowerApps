@@ -4,6 +4,13 @@ var TSIS;
     var PPP;
     (function (PPP) {
         var Form;
+        function SaveOnLoadAC(eContext) {
+            Form = eContext.getFormContext();
+            if (Form.ui.getFormType() === 1 && Form.getAttribute('ppp_name').getValue() == null) {
+                Form.data.save();
+            }
+        }
+        PPP.SaveOnLoadAC = SaveOnLoadAC;
         function setDateTimeAC(eContext, dateFieldName, hourFieldName, minuteFieldName, dateTimeField) {
             Form = eContext.getFormContext();
             var dateValue = null;
@@ -112,27 +119,25 @@ var TSIS;
             if (connectionCount == null)
                 connectionCount = 1;
             for (var i = 1; i <= maxConnections; i++) {
-                var connectionControl = Form.getControl('ppp_tsisdescription' + i);
+                var connectionControl = Form.getControl('ppp_tsisnumber' + i);
                 var connectionControl2 = Form.getControl('ppp_noncompliancedescription' + i);
-                if (connectionControl == undefined)
+                if (connectionControl == undefined || connectionControl2 == undefined)
                     continue;
-                if (connectionControl2 == undefined)
-                    continue;
-                var connectionAttr = Form.getAttribute('ppp_tsisdescription' + i);
+                var connectionAttr = Form.getAttribute('ppp_tsisnumber' + i);
                 var connectionAttr2 = Form.getAttribute('ppp_noncompliancedescription' + i);
-                if (connectionAttr == undefined)
-                    continue;
-                if (connectionAttr2 == undefined)
+                if (connectionAttr == undefined || connectionAttr2 == undefined)
                     continue;
                 if (connectionCount >= i) {
                     connectionControl.setVisible(true);
                     connectionControl2.setVisible(true);
+                    connectionAttr.setRequiredLevel('required');
                 }
                 else {
                     connectionControl.setVisible(false);
                     connectionControl2.setVisible(false);
                     connectionAttr.setValue(null);
                     connectionAttr2.setValue(null);
+                    connectionAttr.setRequiredLevel('none');
                 }
             }
         }
@@ -147,29 +152,17 @@ var TSIS;
                 var connectionControl2 = Form.getControl('ppp_ruleid' + i);
                 var connectionControl3 = Form.getControl('ppp_numberofpaxaffected' + i);
                 var connectionControl4 = Form.getControl('ppp_passengernoncompliancedescription' + i);
-                if (connectionControl == undefined)
-                    continue;
-                if (connectionControl2 == undefined)
-                    continue;
-                if (connectionControl3 == undefined)
-                    continue;
-                if (connectionControl4 == undefined)
+                if (connectionControl == undefined || connectionControl2 == undefined || connectionControl3 == undefined || connectionControl4 == undefined)
                     continue;
                 var connectionAttr = Form.getAttribute('ppp_typeofnoncompliance' + i);
                 var connectionAttr2 = Form.getAttribute('ppp_ruleid' + i);
                 var connectionAttr3 = Form.getAttribute('ppp_numberofpaxaffected' + i);
                 var connectionAttr4 = Form.getAttribute('ppp_passengernoncompliancedescription' + i);
-                if (connectionAttr == undefined)
-                    continue;
-                if (connectionAttr2 == undefined)
-                    continue;
-                if (connectionAttr3 == undefined)
-                    continue;
-                if (connectionAttr4 == undefined)
+                if (connectionAttr == undefined || connectionAttr2 == undefined || connectionAttr3 == undefined || connectionAttr4 == undefined)
                     continue;
                 if (connectionCount >= i) {
                     connectionControl.setVisible(true);
-                    connectionControl2.setVisible(true);
+                    //(connectionControl2 as any).setVisible(true);
                     connectionControl3.setVisible(true);
                     connectionControl4.setVisible(true);
                     connectionAttr.setRequiredLevel('required');
@@ -194,7 +187,7 @@ var TSIS;
             var recordType = Form.getAttribute('ppp_recordtype').getValue();
             // Define field lists
             var passengerFields = ["ppp_passengernumberofnoncompliance", "ppp_typeofnoncompliance1", "ppp_ruleid1", "ppp_numberofpaxaffected1", "ppp_passengernoncompliancedescription1", "ppp_typeofnoncompliance2", "ppp_ruleid2", "ppp_numberofpaxaffected2", "ppp_passengernoncompliancedescription2", "ppp_typeofnoncompliance3", "ppp_ruleid3", "ppp_numberofpaxaffected3", "ppp_passengernoncompliancedescription3", "ppp_typeofnoncompliance4", "ppp_ruleid4", "ppp_numberofpaxaffected4", "ppp_passengernoncompliancedescription4", "ppp_typeofnoncompliance5", "ppp_ruleid5", "ppp_numberofpaxaffected5", "ppp_passengernoncompliancedescription5", "ppp_typeofnoncompliance6", "ppp_ruleid6", "ppp_numberofpaxaffected6", "ppp_passengernoncompliancedescription6", "ppp_typeofnoncompliance7", "ppp_ruleid7", "ppp_numberofpaxaffected7", "ppp_passengernoncompliancedescription7", "ppp_typeofnoncompliance8", "ppp_ruleid8", "ppp_numberofpaxaffected8", "ppp_passengernoncompliancedescription8", "ppp_typeofnoncompliance9", "ppp_ruleid9", "ppp_numberofpaxaffected9", "ppp_passengernoncompliancedescription9", "ppp_typeofnoncompliance10", "ppp_ruleid10", "ppp_numberofpaxaffected10", "ppp_passengernoncompliancedescription10"];
-            var flightFields = ["ppp_numberofnoncompliance", "ppp_tsisdescription1", "ppp_noncompliancedescription1", "ppp_tsisdescription2", "ppp_noncompliancedescription2", "ppp_tsisdescription3", "ppp_noncompliancedescription3", "ppp_tsisdescription4", "ppp_noncompliancedescription4", "ppp_tsisdescription5", "ppp_noncompliancedescription5", "ppp_tsisdescription6", "ppp_noncompliancedescription6", "ppp_tsisdescription7", "ppp_noncompliancedescription7", "ppp_tsisdescription8", "ppp_noncompliancedescription8", "ppp_tsisdescription9", "ppp_noncompliancedescription9", "ppp_tsisdescription10", "ppp_noncompliancedescription10"];
+            var flightFields = ["ppp_numberofnoncompliance", "ppp_tsisnumber1", "ppp_noncompliancedescription1", "ppp_tsisnumber2", "ppp_noncompliancedescription2", "ppp_tsisnumber3", "ppp_noncompliancedescription3", "ppp_tsisnumber4", "ppp_noncompliancedescription4", "ppp_tsisnumber5", "ppp_noncompliancedescription5", "ppp_tsisnumber6", "ppp_noncompliancedescription6", "ppp_tsisnumber7", "ppp_noncompliancedescription7", "ppp_tsisnumber8", "ppp_noncompliancedescription8", "ppp_tsisnumber9", "ppp_noncompliancedescription9", "ppp_tsisnumber10", "ppp_noncompliancedescription10"];
             var typeOfNonCompliance = Form.getAttribute('ppp_typeofnoncompliance1');
             if (recordType === 927820000) {
                 // recordType is Flight
@@ -222,14 +215,27 @@ var TSIS;
             }
         }
         PPP.showHideFlightOrPassengerComplianceReviewTab = showHideFlightOrPassengerComplianceReviewTab;
-        function clearAndMakeFieldsOptional(formContext, fieldsNames) {
+        function clearAndMakeFieldsOptional(eContext, fieldsNames) {
             fieldsNames.forEach(function (field) {
-                var attribute = formContext.getAttribute(field);
+                var attribute = eContext.getAttribute(field);
                 if (attribute) {
                     attribute.setValue(null);
                     attribute.setRequiredLevel("none");
                 }
             });
         }
+        function setRequiredFlightFieldsAC(eContext) {
+            Form = eContext.getFormContext();
+            var fieldsToRequire = ["ppp_recordtype", "ppp_aircarrier", "ppp_flightorigindate", "ppp_flightorigin", "ppp_flightdestination"];
+            var refNumber = Form.getAttribute("ppp_name").getValue();
+            var requirementLevel = refNumber ? "required" : "none";
+            fieldsToRequire.forEach(function (fieldName) {
+                var attribute = Form.getAttribute(fieldName);
+                if (attribute) {
+                    attribute.setRequiredLevel(requirementLevel);
+                }
+            });
+        }
+        PPP.setRequiredFlightFieldsAC = setRequiredFlightFieldsAC;
     })(PPP = TSIS.PPP || (TSIS.PPP = {}));
 })(TSIS || (TSIS = {}));

@@ -514,6 +514,46 @@
             <Description description="Identificateur unique de l'utilisateur propriétaire de l'enregistrement." languagecode="1036" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="ppp_AcquittalandComplianceAutoNumber">
+          <Type>nvarchar</Type>
+          <Name>ppp_acquittalandcomplianceautonumber</Name>
+          <LogicalName>ppp_acquittalandcomplianceautonumber</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ReadOnlyInUI|ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat>{DATETIMEUTC:yyyy-MM-dd}-{SEQNUM:4}</AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>100</MaxLength>
+          <Length>200</Length>
+          <displaynames>
+            <displayname description="Acquittal and Compliance Auto Number" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="The unique record number for the Acquittal and Compliance record. " languagecode="1033" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="ppp_AcquittalandComplianceId">
           <Type>primarykey</Type>
           <Name>ppp_acquittalandcomplianceid</Name>
@@ -556,7 +596,7 @@
           <Type>lookup</Type>
           <Name>ppp_aircarrier</Name>
           <LogicalName>ppp_aircarrier</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
+          <RequiredLevel>recommended</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
@@ -1015,7 +1055,7 @@
           <Type>lookup</Type>
           <Name>ppp_flightdestination</Name>
           <LogicalName>ppp_flightdestination</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
+          <RequiredLevel>recommended</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
@@ -1050,11 +1090,51 @@
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="ppp_FlightNumber">
+          <Type>nvarchar</Type>
+          <Name>ppp_flightnumber</Name>
+          <LogicalName>ppp_flightnumber</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>20</MaxLength>
+          <Length>40</Length>
+          <displaynames>
+            <displayname description="Flight Number" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="The Traveller's departure flight number." languagecode="1033" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="ppp_FlightOrigin">
           <Type>lookup</Type>
           <Name>ppp_flightorigin</Name>
           <LogicalName>ppp_flightorigin</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
+          <RequiredLevel>recommended</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
@@ -1253,11 +1333,49 @@
             <Description description="The combination of Flight Origin Date, Flight Origin Hour and Flight Origin Minute associated with the Traveller's intended initial flight departure." languagecode="1033" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="ppp_InspectorName">
+          <Type>lookup</Type>
+          <Name>ppp_inspectorname</Name>
+          <LogicalName>ppp_inspectorname</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20250415.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="Inspector Name" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="ppp_Name">
           <Type>nvarchar</Type>
           <Name>ppp_name</Name>
           <LogicalName>ppp_name</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
+          <RequiredLevel>none</RequiredLevel>
           <DisplayMask>PrimaryName|ValidForAdvancedFind|ValidForForm|ValidForGrid|RequiredForForm</DisplayMask>
           <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
@@ -1287,11 +1405,11 @@
           <MaxLength>850</MaxLength>
           <Length>1700</Length>
           <displaynames>
-            <displayname description="Flight Number" languagecode="1033" />
+            <displayname description="Reference Number" languagecode="1033" />
             <displayname description="Numéro du vol" languagecode="1036" />
           </displaynames>
           <Descriptions>
-            <Description description="" languagecode="1033" />
+            <Description description="The Acquittal and Compliance Reference Number." languagecode="1033" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ppp_NonComplianceDescription1">
@@ -2619,7 +2737,7 @@
           <Type>picklist</Type>
           <Name>ppp_recordtype</Name>
           <LogicalName>ppp_recordtype</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
+          <RequiredLevel>recommended</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
@@ -3046,18 +3164,19 @@
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ppp_SATAReference">
-          <Type>lookup</Type>
+          <Type>nvarchar</Type>
           <Name>ppp_satareference</Name>
           <LogicalName>ppp_satareference</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
           <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20230919.1</IntroducedVersion>
+          <IntroducedVersion>1.0</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -3074,19 +3193,20 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes />
+          <Format>text</Format>
+          <MaxLength>100</MaxLength>
+          <Length>200</Length>
           <displaynames>
             <displayname description="SATA Reference" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="" languagecode="1033" />
+            <Description description="Reference to the Act" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ppp_TSISDescription1">
+        <attribute PhysicalName="ppp_SATRReference">
           <Type>nvarchar</Type>
-          <Name>ppp_tsisdescription1</Name>
-          <LogicalName>ppp_tsisdescription1</LogicalName>
+          <Name>ppp_satrreference</Name>
+          <LogicalName>ppp_satrreference</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -3114,19 +3234,98 @@
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
           <Format>text</Format>
+          <MaxLength>100</MaxLength>
+          <Length>200</Length>
+          <displaynames>
+            <displayname description="SATR Reference" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Reference to the Regulations" languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ppp_SharePointFolderLocation">
+          <Type>nvarchar</Type>
+          <Name>ppp_sharepointfolderlocation</Name>
+          <LogicalName>ppp_sharepointfolderlocation</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>url</Format>
           <MaxLength>1000</MaxLength>
           <Length>2000</Length>
           <displaynames>
-            <displayname description="TSIS Description 1" languagecode="1033" />
+            <displayname description="SharePoint Folder Location" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Location of SharePoint Files" languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ppp_TSISNumber1">
+          <Type>picklist</Type>
+          <Name>ppp_tsisnumber1</Name>
+          <LogicalName>ppp_tsisnumber1</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20250415.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <OptionSetName>ppp_tsisnumber</OptionSetName>
+          <displaynames>
+            <displayname description="TSIS Number 1" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ppp_TSISDescription10">
-          <Type>nvarchar</Type>
-          <Name>ppp_tsisdescription10</Name>
-          <LogicalName>ppp_tsisdescription10</LogicalName>
+        <attribute PhysicalName="ppp_TSISNumber10">
+          <Type>picklist</Type>
+          <Name>ppp_tsisnumber10</Name>
+          <LogicalName>ppp_tsisnumber10</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -3136,7 +3335,7 @@
           <IsCustomField>1</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>1.0.20250415.1</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -3153,20 +3352,19 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>1000</MaxLength>
-          <Length>2000</Length>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <OptionSetName>ppp_tsisnumber</OptionSetName>
           <displaynames>
-            <displayname description="TSIS Description 10" languagecode="1033" />
+            <displayname description="TSIS Number 10" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ppp_TSISDescription2">
-          <Type>nvarchar</Type>
-          <Name>ppp_tsisdescription2</Name>
-          <LogicalName>ppp_tsisdescription2</LogicalName>
+        <attribute PhysicalName="ppp_TSISNumber2">
+          <Type>picklist</Type>
+          <Name>ppp_tsisnumber2</Name>
+          <LogicalName>ppp_tsisnumber2</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -3176,7 +3374,7 @@
           <IsCustomField>1</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>1.0.20250415.1</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -3193,20 +3391,19 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>1000</MaxLength>
-          <Length>2000</Length>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <OptionSetName>ppp_tsisnumber</OptionSetName>
           <displaynames>
-            <displayname description="TSIS Description 2" languagecode="1033" />
+            <displayname description="TSIS Number 2" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ppp_TSISDescription3">
-          <Type>nvarchar</Type>
-          <Name>ppp_tsisdescription3</Name>
-          <LogicalName>ppp_tsisdescription3</LogicalName>
+        <attribute PhysicalName="ppp_TSISNumber3">
+          <Type>picklist</Type>
+          <Name>ppp_tsisnumber3</Name>
+          <LogicalName>ppp_tsisnumber3</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -3216,7 +3413,7 @@
           <IsCustomField>1</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>1.0.20250415.1</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -3233,20 +3430,19 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>1000</MaxLength>
-          <Length>2000</Length>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <OptionSetName>ppp_tsisnumber</OptionSetName>
           <displaynames>
-            <displayname description="TSIS Description 3" languagecode="1033" />
+            <displayname description="TSIS Number 3" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ppp_TSISDescription4">
-          <Type>nvarchar</Type>
-          <Name>ppp_tsisdescription4</Name>
-          <LogicalName>ppp_tsisdescription4</LogicalName>
+        <attribute PhysicalName="ppp_TSISNumber4">
+          <Type>picklist</Type>
+          <Name>ppp_tsisnumber4</Name>
+          <LogicalName>ppp_tsisnumber4</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -3256,7 +3452,7 @@
           <IsCustomField>1</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>1.0.20250415.1</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -3273,20 +3469,19 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>1000</MaxLength>
-          <Length>2000</Length>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <OptionSetName>ppp_tsisnumber</OptionSetName>
           <displaynames>
-            <displayname description="TSIS Description 4" languagecode="1033" />
+            <displayname description="TSIS Number 4" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ppp_TSISDescription5">
-          <Type>nvarchar</Type>
-          <Name>ppp_tsisdescription5</Name>
-          <LogicalName>ppp_tsisdescription5</LogicalName>
+        <attribute PhysicalName="ppp_TSISNumber5">
+          <Type>picklist</Type>
+          <Name>ppp_tsisnumber5</Name>
+          <LogicalName>ppp_tsisnumber5</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -3296,7 +3491,7 @@
           <IsCustomField>1</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>1.0.20250415.1</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -3313,20 +3508,19 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>1000</MaxLength>
-          <Length>2000</Length>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <OptionSetName>ppp_tsisnumber</OptionSetName>
           <displaynames>
-            <displayname description="TSIS Description 5" languagecode="1033" />
+            <displayname description="TSIS Number 5" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ppp_TSISDescription6">
-          <Type>nvarchar</Type>
-          <Name>ppp_tsisdescription6</Name>
-          <LogicalName>ppp_tsisdescription6</LogicalName>
+        <attribute PhysicalName="ppp_TSISNumber6">
+          <Type>picklist</Type>
+          <Name>ppp_tsisnumber6</Name>
+          <LogicalName>ppp_tsisnumber6</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -3336,7 +3530,7 @@
           <IsCustomField>1</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>1.0.20250415.1</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -3353,20 +3547,19 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>1000</MaxLength>
-          <Length>2000</Length>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <OptionSetName>ppp_tsisnumber</OptionSetName>
           <displaynames>
-            <displayname description="TSIS Description 6" languagecode="1033" />
+            <displayname description="TSIS Number 6" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ppp_TSISDescription7">
-          <Type>nvarchar</Type>
-          <Name>ppp_tsisdescription7</Name>
-          <LogicalName>ppp_tsisdescription7</LogicalName>
+        <attribute PhysicalName="ppp_TSISNumber7">
+          <Type>picklist</Type>
+          <Name>ppp_tsisnumber7</Name>
+          <LogicalName>ppp_tsisnumber7</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -3376,7 +3569,7 @@
           <IsCustomField>1</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>1.0.20250415.1</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -3393,20 +3586,19 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>1000</MaxLength>
-          <Length>2000</Length>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <OptionSetName>ppp_tsisnumber</OptionSetName>
           <displaynames>
-            <displayname description="TSIS Description 7" languagecode="1033" />
+            <displayname description="TSIS Number 7" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ppp_TSISDescription8">
-          <Type>nvarchar</Type>
-          <Name>ppp_tsisdescription8</Name>
-          <LogicalName>ppp_tsisdescription8</LogicalName>
+        <attribute PhysicalName="ppp_TSISNumber8">
+          <Type>picklist</Type>
+          <Name>ppp_tsisnumber8</Name>
+          <LogicalName>ppp_tsisnumber8</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -3416,7 +3608,7 @@
           <IsCustomField>1</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>1.0.20250415.1</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -3433,20 +3625,19 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>1000</MaxLength>
-          <Length>2000</Length>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <OptionSetName>ppp_tsisnumber</OptionSetName>
           <displaynames>
-            <displayname description="TSIS Description 8" languagecode="1033" />
+            <displayname description="TSIS Number 8" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ppp_TSISDescription9">
-          <Type>nvarchar</Type>
-          <Name>ppp_tsisdescription9</Name>
-          <LogicalName>ppp_tsisdescription9</LogicalName>
+        <attribute PhysicalName="ppp_TSISNumber9">
+          <Type>picklist</Type>
+          <Name>ppp_tsisnumber9</Name>
+          <LogicalName>ppp_tsisnumber9</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -3456,7 +3647,7 @@
           <IsCustomField>1</IsCustomField>
           <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
+          <IntroducedVersion>1.0.20250415.1</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -3473,11 +3664,10 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>1000</MaxLength>
-          <Length>2000</Length>
+          <AppDefaultValue>-1</AppDefaultValue>
+          <OptionSetName>ppp_tsisnumber</OptionSetName>
           <displaynames>
-            <displayname description="TSIS Description 9" languagecode="1033" />
+            <displayname description="TSIS Number 9" languagecode="1033" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
