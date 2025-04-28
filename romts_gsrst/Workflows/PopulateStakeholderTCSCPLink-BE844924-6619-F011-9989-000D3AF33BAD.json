@@ -1,0 +1,303 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_excelonlinebusiness": {
+        "runtimeSource": "invoker",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedexcelonlinebusiness_2181a"
+        },
+        "api": {
+          "name": "shared_excelonlinebusiness"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_ab028"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "3a8670cf-225c-4866-9961-62a38f8663b9"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Lister_les_lignes_présentes_dans_un_tableau": {
+          "runAfter": {},
+          "metadata": {
+            "01GJVXCVF2Q64Z6ABOFJE337HQ7ZSCFBUA": "/ROM-TS/TCSCP Integration/ProofOfConcept.xlsx",
+            "operationMetadataId": "de1c3ca1-fa0e-4632-b9d0-ce1a8c495233",
+            "tableId": "{BEC6492A-EE44-45E0-AF2A-EC9B9CCA7990}"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_excelonlinebusiness",
+              "operationId": "GetItems",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_excelonlinebusiness"
+            },
+            "parameters": {
+              "source": "me",
+              "drive": "b!MLZShIUzOUy5ZKS91iP8vMBdDNHP9NpNl43AVxAtsli9t_IgI-LeRaYLW0tJXfQm",
+              "file": "01GJVXCVF2Q64Z6ABOFJE337HQ7ZSCFBUA",
+              "table": "{BEC6492A-EE44-45E0-AF2A-EC9B9CCA7990}"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Appliquer_à_chacun": {
+          "foreach": "@outputs('Lister_les_lignes_présentes_dans_un_tableau')?['body/value']",
+          "actions": {
+            "List_rows_-_Operation": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "f8858868-ed09-4f2a-a9cb-e35c70008f2c"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ovs_operations",
+                  "$filter": "ovs_operationid eq @{items('Appliquer_à_chacun')?['ovs_operationid']}"
+                },
+                "authentication": {
+                  "type": "Raw",
+                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                }
+              }
+            },
+            "Condition": {
+              "actions": {
+                "Apply_to_each_2": {
+                  "foreach": "@outputs('List_rows_-_Operation')?['body/value']",
+                  "actions": {
+                    "Update_a_row_-_Operation": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "067f82e6-2c25-48ad-bcb0-8aff7f61e1a6"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "UpdateOnlyRecord",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ovs_operations",
+                          "recordId": "@items('Apply_to_each_2')?['ovs_operationid']"
+                        },
+                        "authentication": {
+                          "type": "Raw",
+                          "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                        }
+                      }
+                    },
+                    "List_rows_-_Work_Orders": {
+                      "runAfter": {
+                        "Update_a_row_-_Operation": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "cdaa8544-35a4-4939-bdec-28c93b941e0c"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps",
+                          "operationId": "ListRecords",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "msdyn_workorders",
+                          "fetchXml": "<fetch>\n  <entity name=\"msdyn_workorder\">\n    <filter type=\"and\">\n      <condition attribute=\"ovs_operationid\" operator=\"eq\" value=\"@{outputs('Update_a_row_-_Operation')?['body/ovs_operationid']}\" />\n    </filter>\n  </entity>\n</fetch>"
+                        },
+                        "authentication": {
+                          "type": "Raw",
+                          "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                        }
+                      }
+                    },
+                    "Condition_2": {
+                      "actions": {
+                        "Apply_to_each_3": {
+                          "foreach": "@outputs('List_rows_-_Work_Orders')?['body/value']",
+                          "actions": {
+                            "Update_a_row_-_Work_Order": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "961cedcf-37c0-4628-9388-db80ba6e5e37"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps",
+                                  "operationId": "UpdateOnlyRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "msdyn_workorders",
+                                  "recordId": "@items('Apply_to_each_3')?['msdyn_workorderid']",
+                                  "item/ts_stakeholdertcscp": "@outputs('Update_a_row_-_Operation')?['body/ts_stakeholdertcscp']"
+                                },
+                                "authentication": {
+                                  "type": "Raw",
+                                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                                }
+                              }
+                            },
+                            "Compose_-_Get_Case_Id": {
+                              "runAfter": {
+                                "Update_a_row_-_Work_Order": [
+                                  "Succeeded"
+                                ]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "51ce26b2-f3de-41a1-874c-7ea02b5497b6"
+                              },
+                              "type": "Compose",
+                              "inputs": "@outputs('Update_a_row_-_Work_Order')?['body/_msdyn_servicerequest_value']"
+                            },
+                            "Condition_3": {
+                              "actions": {
+                                "Update_a_row": {
+                                  "runAfter": {},
+                                  "metadata": {
+                                    "operationMetadataId": "f4e0de5c-0c51-437f-bc64-d82d1efbe952"
+                                  },
+                                  "type": "OpenApiConnection",
+                                  "inputs": {
+                                    "host": {
+                                      "connectionName": "shared_commondataserviceforapps",
+                                      "operationId": "UpdateOnlyRecord",
+                                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                    },
+                                    "parameters": {
+                                      "entityName": "incidents",
+                                      "recordId": "@outputs('Compose_-_Get_Case_Id')",
+                                      "item/ts_stakeholdertcscp": "@outputs('Update_a_row_-_Operation')?['body/ts_stakeholdertcscp']"
+                                    },
+                                    "authentication": {
+                                      "type": "Raw",
+                                      "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                                    }
+                                  }
+                                }
+                              },
+                              "runAfter": {
+                                "Compose_-_Get_Case_Id": [
+                                  "Succeeded"
+                                ]
+                              },
+                              "expression": {
+                                "equals": [
+                                  "@empty(outputs('Compose_-_Get_Case_Id'))",
+                                  "@false"
+                                ]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "831759c9-6888-4dbb-b659-b5698c289858"
+                              },
+                              "type": "If"
+                            }
+                          },
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "948258f2-5b8b-4af9-9e82-896aa697b5da"
+                          },
+                          "type": "Foreach"
+                        }
+                      },
+                      "runAfter": {
+                        "List_rows_-_Work_Orders": [
+                          "Succeeded"
+                        ]
+                      },
+                      "expression": {
+                        "greater": [
+                          "@length(body('List_rows_-_Work_Orders')?['value'])",
+                          0
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "dca387f0-f5f7-41a3-9761-d4096b052224"
+                      },
+                      "type": "If"
+                    }
+                  },
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "ca8a1c47-26e5-45c9-b967-889309dc45b1"
+                  },
+                  "type": "Foreach"
+                }
+              },
+              "runAfter": {
+                "List_rows_-_Operation": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "greater": [
+                  "@length(body('List_rows_-_Operation')?['value'])",
+                  0
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "8b2c25d0-cf14-44e1-9948-052aa064a5b0"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Lister_les_lignes_présentes_dans_un_tableau": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "29b75764-2248-4e5e-b3c1-6bef0e523891"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

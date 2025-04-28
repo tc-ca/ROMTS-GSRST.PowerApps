@@ -93,6 +93,30 @@ var ROM;
             }
         }
         FunctionalLocation.onLoad = onLoad;
+        function IATACodeOnChange(eContext) {
+            var form = eContext.getFormContext();
+            var iataValue = form.getAttribute("ts_iatacode").getValue();
+            form.getControl("ts_iatacode").clearNotification("iata_length_error");
+            if (iataValue != null) {
+                if (iataValue.length !== 3) {
+                    form.getControl("ts_iatacode").setNotification("IATA code must be exactly 3 characters.", "iata_length_error");
+                    eContext.getEventArgs() && eContext.getEventArgs().preventDefault();
+                }
+            }
+        }
+        FunctionalLocation.IATACodeOnChange = IATACodeOnChange;
+        function ICAOCodeOnChange(eContext) {
+            var form = eContext.getFormContext();
+            var icaoValue = form.getAttribute("ts_icaocode").getValue();
+            form.getControl("ts_icaocode").clearNotification("icao_length_error");
+            if (icaoValue != null) {
+                if (icaoValue.length !== 4) {
+                    form.getControl("ts_icaocode").setNotification("ICAO code must be exactly 4 characters.", "icao_length_error");
+                    eContext.getEventArgs() && eContext.getEventArgs().preventDefault();
+                }
+            }
+        }
+        FunctionalLocation.ICAOCodeOnChange = ICAOCodeOnChange;
         function onSave(eContext) {
             var form = eContext.getFormContext();
             var statusStartDateValue = form.getAttribute("ts_statusstartdate").getValue();
