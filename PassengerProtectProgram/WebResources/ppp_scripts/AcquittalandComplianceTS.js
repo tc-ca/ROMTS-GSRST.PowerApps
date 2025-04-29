@@ -162,7 +162,7 @@ var TSIS;
                     continue;
                 if (connectionCount >= i) {
                     connectionControl.setVisible(true);
-                    //(connectionControl2 as any).setVisible(true);
+                    connectionControl2.setVisible(true);
                     connectionControl3.setVisible(true);
                     connectionControl4.setVisible(true);
                     connectionAttr.setRequiredLevel('required');
@@ -237,5 +237,54 @@ var TSIS;
             });
         }
         PPP.setRequiredFlightFieldsAC = setRequiredFlightFieldsAC;
+        function ReadOnlyOnClosedAC(eContext, keepLockedList, keepUnlockedList) {
+            Form = eContext.getFormContext();
+            var recordStatus = Form.getAttribute('ppp_recordstatus').getValue();
+            var recordClosed = recordStatus == 927820002 /* Closed */ ||
+                recordStatus == 927820001 /* Monitor */;
+            PPP.toggleDisabledAllControlsAC(eContext, recordClosed, keepLockedList, keepUnlockedList);
+        }
+        PPP.ReadOnlyOnClosedAC = ReadOnlyOnClosedAC;
+        function statusOnChangeAC(eContext, keepLockedList, keepUnlockedList) {
+            Form = eContext.getFormContext();
+            var recordStatus = Form.getAttribute('ppp_recordstatus').getValue();
+            var recordClosed = recordStatus == 927820002 /* Closed */ ||
+                recordStatus == 927820001 /* Monitor */;
+            if (recordClosed) {
+                Form.data.save();
+            }
+            if (Form.data.isValid()) {
+                toggleDisabledAllControlsAC(eContext, recordClosed, keepLockedList, keepUnlockedList);
+            }
+        }
+        PPP.statusOnChangeAC = statusOnChangeAC;
+        function toggleDisabledAllControlsAC(eContext, disable, keepLockedList, keepUnlockedList) {
+            Form = eContext.getFormContext();
+            //Toggle everything to match record closed status
+            Form.ui.controls.forEach(function (control) {
+                if (control != undefined) {
+                    control.setDisabled(disable);
+                }
+            });
+            //Lock everything in KeepLockedList
+            if (keepLockedList) {
+                keepLockedList.forEach(function (attributeName) {
+                    var control = Form.getControl(attributeName);
+                    if (control != undefined) {
+                        control.setDisabled(true);
+                    }
+                });
+            }
+            //Unlock everything in KeepUnlockedList
+            if (keepUnlockedList) {
+                keepUnlockedList.forEach(function (attributeName) {
+                    var control = Form.getControl(attributeName);
+                    if (control) {
+                        control.setDisabled(false);
+                    }
+                });
+            }
+        }
+        PPP.toggleDisabledAllControlsAC = toggleDisabledAllControlsAC;
     })(PPP = TSIS.PPP || (TSIS.PPP = {}));
 })(TSIS || (TSIS = {}));
