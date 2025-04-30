@@ -242,7 +242,7 @@ var TSIS;
             var recordStatus = Form.getAttribute('ppp_recordstatus').getValue();
             var recordClosed = recordStatus == 927820002 /* Closed */ ||
                 recordStatus == 927820001 /* Monitor */;
-            PPP.toggleDisabledAllControlsAC(eContext, recordClosed, keepLockedList, keepUnlockedList);
+            toggleDisabledAllControlsAC(eContext, recordClosed, keepLockedList, keepUnlockedList);
         }
         PPP.ReadOnlyOnClosedAC = ReadOnlyOnClosedAC;
         function statusOnChangeAC(eContext, keepLockedList, keepUnlockedList) {
@@ -254,7 +254,7 @@ var TSIS;
                 Form.data.save();
             }
             if (Form.data.isValid()) {
-                toggleDisabledAllControlsAC(eContext, recordClosed, keepLockedList, keepUnlockedList);
+                PPP.toggleDisabledAllControlsAC(eContext, recordClosed, keepLockedList, keepUnlockedList);
             }
         }
         PPP.statusOnChangeAC = statusOnChangeAC;
