@@ -89,7 +89,7 @@
         },
         "Initialize_variable": {
           "runAfter": {
-            "Parse_JSON": [
+            "Initialize_variable_4": [
               "Succeeded"
             ]
           },
@@ -199,6 +199,21 @@
                     "operationMetadataId": "3e67c1f8-d698-445d-8688-5e5e5136d298"
                   },
                   "type": "Foreach"
+                },
+                "Append_to_array_variable": {
+                  "runAfter": {
+                    "Apply_to_each_WOST_of_Selected_Work_Order": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "fe5dd551-f99f-46ef-b697-09949d71f3e5"
+                  },
+                  "type": "AppendToArrayVariable",
+                  "inputs": {
+                    "name": "UpdatedWorkOrders",
+                    "value": "@items('For_each_selected_Work_Order')['ID']"
+                  }
                 }
               },
               "runAfter": {
@@ -278,6 +293,26 @@
               {
                 "name": "WOST 2",
                 "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_4": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9c9869e1-b9a4-40f7-9653-dc637acc8adc"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "UpdatedWorkOrders",
+                "type": "array",
+                "value": []
               }
             ]
           }

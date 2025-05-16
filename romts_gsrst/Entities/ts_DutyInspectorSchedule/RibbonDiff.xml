@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <CustomAction Id="ts.ts_dutyinspectorschedule.CreateSchedule.CustomAction" Location="Mscrm.Form.ts_dutyinspectorschedule.MainTab.Save.Controls._children" Sequence="10">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_dutyinspectorschedule.CreateSchedule.Alt" Command="ts.ts_dutyinspectorschedule.CreateSchedule" Id="ts.ts_dutyinspectorschedule.CreateSchedule" LabelText="$LocLabels:ts.ts_dutyinspectorschedule.CreateSchedule.LabelText" Sequence="10" TemplateAlias="o1" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="ts.ts_dutyinspectorschedule.CreateSchedule">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="generateSchedule" Library="$webresource:ts_/js/DutyInspectorScheduleRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules />
+    <EnableRules />
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="ts.ts_dutyinspectorschedule.CreateSchedule.Alt">
+      <Titles>
+        <Title description="Create Schedule" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_dutyinspectorschedule.CreateSchedule.LabelText">
+      <Titles>
+        <Title description="Create Schedule" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>

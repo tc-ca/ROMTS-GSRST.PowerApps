@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{acbdbab2-c6b4-4487-9bc8-0fe48bc4213b}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="result" id="ts_dutyinspectorsid">
+          <cell name="ts_startdate" width="100" />
+          <cell name="ts_enddate" width="100" />
+          <cell name="ts_inspector" width="100" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="ts_dutyinspectors">
+          <attribute name="ts_dutyinspectorsid" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="ts_startdate" />
+          <attribute name="ts_enddate" />
+          <attribute name="ts_inspector" />
+          <order attribute="ts_startdate" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active Duty Inspectors" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

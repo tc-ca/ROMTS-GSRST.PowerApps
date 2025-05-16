@@ -1,0 +1,124 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_2d435"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "f7b6171e-654c-4813-a8d5-90673a68ffdd"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ts_securityincident",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "List_rows_-_Duty_Inspectors": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "171167a7-67c8-4725-ab3d-b9eab572f846"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_dutyinspectorses",
+              "fetchXml": "<fetch>\n  <entity name=\"ts_dutyinspectors\">\n    <filter type=\"and\">\n      <condition attribute=\"ts_startdate\" operator=\"on-or-before\" value=\"@{triggerOutputs()?['body/ts_incidentdatetime']}\" />\n      <condition attribute=\"ts_enddate\" operator=\"on-or-after\" value=\"@{triggerOutputs()?['body/ts_incidentdatetime']}\" />\n    </filter>\n    <link-entity name=\"ts_dutyinspectorschedule\" from=\"ts_dutyinspectorscheduleid\" to=\"ts_dutyinspectorschedule\" link-type=\"inner\" alias=\"ac\">\n      <filter type=\"and\">\n        <condition attribute=\"ts_region\" operator=\"eq\" value=\"{@{triggerOutputs()?['body/_ts_region_value']}}\" />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_rows_-_Duty_Inspectors')?['body/value']",
+          "actions": {
+            "Condition": {
+              "actions": {
+                "Update_a_row_-_Security_Incident": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "dd7981cb-993b-4256-9126-95def59bcf6d"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateOnlyRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_securityincidents",
+                      "recordId": "@triggerOutputs()?['body/ts_securityincidentid']",
+                      "item/ts_DutyInspector@odata.bind": "/ts_dutyinspectorses(@{items('Apply_to_each')?['_ts_inspector_value']})"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "not": {
+                  "equals": [
+                    "@items('Apply_to_each')?['_ts_inspector_value']",
+                    "@null"
+                  ]
+                }
+              },
+              "metadata": {
+                "operationMetadataId": "d82c274c-88f7-4be3-a98a-700dcab35393"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "List_rows_-_Duty_Inspectors": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "688dd3a1-1396-4e07-bc9c-09d3d9da4542"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
