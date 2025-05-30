@@ -41,72 +41,37 @@ var ROM;
     (function (DutyInspectorSchedule) {
         function onSave(eContext) {
             return __awaiter(this, void 0, void 0, function () {
-                var form, dutyInspectorScheduleId, region, fiscalYear, fiscalYearId, regionId, isDuplicate;
+                var form, region, fiscalYear, fiscalYearId, regionId, regionName, fiscalYearName;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
                             form = eContext.getFormContext();
-                            dutyInspectorScheduleId = form.data.entity.getId().slice(1, -1);
                             region = form.getAttribute("ts_region").getValue();
                             fiscalYear = form.getAttribute("ts_fiscalyear").getValue();
-                            if (region != null) {
+                            if (fiscalYear != null && region != null) {
+                                fiscalYearId = fiscalYear[0].id.slice(1, -1);
                                 regionId = region[0].id.slice(1, -1);
                             }
-                            if (fiscalYear != null) {
-                                fiscalYearId = fiscalYear[0].id.slice(1, -1);
-                            }
-                            return [4 /*yield*/, checkDuplicateDutyInspector(regionId, fiscalYearId, dutyInspectorScheduleId)];
+                            // Fetch region name
+                            return [4 /*yield*/, Xrm.WebApi.retrieveRecord("territory", regionId, "?$select=name").then(function success(result) {
+                                    regionName = result.name;
+                                })];
                         case 1:
-                            isDuplicate = _a.sent();
-                            if (isDuplicate) {
-                                showAlertDialog("The schedule for this region and this fiscal year already exists.", "Warning");
-                                eContext.getEventArgs().preventDefault();
-                            }
-                            else {
-                                form.getAttribute("ts_name").setValue(region + "-" + fiscalYear);
-                            }
+                            // Fetch region name
+                            _a.sent();
+                            // Fetch fiscal year name
+                            return [4 /*yield*/, Xrm.WebApi.retrieveRecord("tc_tcfiscalyear", fiscalYearId, "?$select=tc_name").then(function success(result) {
+                                    fiscalYearName = result.tc_name;
+                                })];
+                        case 2:
+                            // Fetch fiscal year name
+                            _a.sent();
+                            form.getAttribute("ts_name").setValue(regionName + " - " + fiscalYearName);
                             return [2 /*return*/];
                     }
                 });
             });
         }
         DutyInspectorSchedule.onSave = onSave;
-        function checkDuplicateDutyInspector(regionId, fiscalYearId, dutyInspectorScheduleId) {
-            return __awaiter(this, void 0, void 0, function () {
-                var duplicate, dutyInspectorScheduleFetch;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            duplicate = false;
-                            dutyInspectorScheduleFetch = [
-                                "<fetch>",
-                                "  <entity name='ts_dutyinspectorschedule'>",
-                                "    <filter type='and'>",
-                                "        <condition attribute='ts_fiscalyear' operator='eq' value='", fiscalYearId, "'/>",
-                                "        <condition attribute='ts_region' operator='eq' value='", regionId, "'/>",
-                                "        <condition attribute='ts_dutyinspectorscheduleid' operator='ne' value='", dutyInspectorScheduleId, "'/>",
-                                "    </filter>",
-                                "  </entity>",
-                                "</fetch>"
-                            ].join("");
-                            dutyInspectorScheduleFetch = "?fetchXml=" + encodeURIComponent(dutyInspectorScheduleFetch);
-                            return [4 /*yield*/, Xrm.WebApi.retrieveMultipleRecords("ts_dutyinspectorschedule", dutyInspectorScheduleFetch).then(function success(result) {
-                                    console.log("result.entities.length " + result.entities.length);
-                                    if (result.entities.length > 0)
-                                        duplicate = true;
-                                })];
-                        case 1:
-                            _a.sent();
-                            console.log(duplicate);
-                            return [2 /*return*/, duplicate];
-                    }
-                });
-            });
-        }
-        function showAlertDialog(text, title) {
-            var alertStrings = { confirmButtonLabel: "OK", text: text, title: title };
-            var alertOptions = { height: 200, width: 300 };
-            Xrm.Navigation.openAlertDialog(alertStrings, alertOptions);
-        }
     })(DutyInspectorSchedule = ROM.DutyInspectorSchedule || (ROM.DutyInspectorSchedule = {}));
 })(ROM || (ROM = {}));

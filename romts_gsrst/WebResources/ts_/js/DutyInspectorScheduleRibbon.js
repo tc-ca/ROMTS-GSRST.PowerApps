@@ -23,6 +23,7 @@ async function generateSchedule(primaryControl) {
     let fiscalYearId = fiscalYear[0].id.slice(1, -1);
     let regionId = region[0].id.slice(1, -1);
     let scheduleEndDate;
+    let regionName, fiscalYearName;
 
     //If record is not saved
     if (dutyInspectorScheduleId == "") {
@@ -43,6 +44,19 @@ async function generateSchedule(primaryControl) {
 
         });
 
+    // Fetch region name
+    await Xrm.WebApi.retrieveRecord("territory", regionId, "?$select=name").then(
+        function success(result) {
+            regionName = result.name;
+        }
+    );
+
+    // Fetch fiscal year name
+    await Xrm.WebApi.retrieveRecord("tc_tcfiscalyear", fiscalYearId, "?$select=tc_name").then(
+        function success(result) {
+            fiscalYearName = result.tc_name;
+        }
+    );
 
     let current = new Date(scheduleStartDate);
     Xrm.Utility.showProgressIndicator(scheduleGenerationProgressText);
@@ -56,7 +70,7 @@ async function generateSchedule(primaryControl) {
             "ts_startdate": weekStart.toISOString(),
             "ts_enddate": weekEnd.toISOString(),
             "ts_DutyInspectorSchedule@odata.bind": `/ts_dutyinspectorschedules(${dutyInspectorScheduleId})`,
-            "ts_name": region[0].name + fiscalYear[0].name
+            "ts_name": regionName + " - " + fiscalYearName
         }
         //Create new Duty Inspectors linked to current Duty Inspector Schedule
         Xrm.WebApi.createRecord("ts_dutyinspectors", data).then(

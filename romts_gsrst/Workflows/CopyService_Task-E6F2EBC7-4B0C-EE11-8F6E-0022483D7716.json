@@ -168,6 +168,21 @@
                                   "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
                                 }
                               }
+                            },
+                            "Append_to_array_variable": {
+                              "runAfter": {
+                                "Update_a_row": [
+                                  "Succeeded"
+                                ]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "fe5dd551-f99f-46ef-b697-09949d71f3e5"
+                              },
+                              "type": "AppendToArrayVariable",
+                              "inputs": {
+                                "name": "UpdatedWorkOrders",
+                                "value": "@body('Update_a_row')?['_msdyn_workorder_value@OData.Community.Display.V1.FormattedValue']"
+                              }
                             }
                           },
                           "runAfter": {},
@@ -199,21 +214,6 @@
                     "operationMetadataId": "3e67c1f8-d698-445d-8688-5e5e5136d298"
                   },
                   "type": "Foreach"
-                },
-                "Append_to_array_variable": {
-                  "runAfter": {
-                    "Apply_to_each_WOST_of_Selected_Work_Order": [
-                      "Succeeded"
-                    ]
-                  },
-                  "metadata": {
-                    "operationMetadataId": "fe5dd551-f99f-46ef-b697-09949d71f3e5"
-                  },
-                  "type": "AppendToArrayVariable",
-                  "inputs": {
-                    "name": "UpdatedWorkOrders",
-                    "value": "@items('For_each_selected_Work_Order')['ID']"
-                  }
                 }
               },
               "runAfter": {
@@ -315,6 +315,34 @@
                 "value": []
               }
             ]
+          }
+        },
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "32572400-0a8a-4fe4-bd38-0cc5f09a402d"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "updatedworkorders": "@{join(variables('UpdatedWorkOrders'), ',')}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "updatedworkorders": {
+                  "title": "UpdatedWorkOrders",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }

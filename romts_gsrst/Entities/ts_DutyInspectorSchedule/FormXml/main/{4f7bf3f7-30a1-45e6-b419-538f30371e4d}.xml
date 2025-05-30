@@ -61,7 +61,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell locklevel="0" id="{4f0fc715-784f-4142-b9ab-7dcff85201f3}" colspan="1" rowspan="6" showlabel="true" auto="false">
+                      <cell locklevel="0" id="{4f0fc715-784f-4142-b9ab-7dcff85201f3}" colspan="1" rowspan="7" showlabel="true" auto="false">
                         <labels>
                           <label description="Duty Inspectors" languagecode="1033" />
                         </labels>
@@ -86,6 +86,7 @@
                         </control>
                       </cell>
                     </row>
+                    <row />
                     <row />
                     <row />
                     <row />
@@ -233,7 +234,7 @@
         </controlDescription>
       </controlDescriptions>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -267,6 +268,18 @@
         <Library name="ts_/js/DutyInspectorScheduleRibbon.js" libraryUniqueId="{f8a3ea40-520b-49ce-8d5c-a29b636e79d9}" />
         <Library name="ts_/js/DutyInspectorSchedule.js" libraryUniqueId="{e7bf995d-c6d1-453a-aee0-5333d40e7ef8}" />
       </formLibraries>
+      <events>
+        <event name="onsave" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.DutyInspectorSchedule.onSave" libraryName="ts_/js/DutyInspectorSchedule.js" handlerUniqueId="{c11f52e1-2a3c-4b1e-8d09-cfe18912361f}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onrecordselect" application="false" active="false" relationship="" control="grid_duty_inspectors">
+          <Handlers>
+            <Handler functionName="lockFieldsDutyInspectorsEditableGrid" libraryName="ts_/js/Common.js" handlerUniqueId="{2d7101c0-687e-5898-01e5-e51a8ea80735}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>

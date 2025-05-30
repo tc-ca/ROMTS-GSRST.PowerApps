@@ -42,6 +42,8 @@ var ROM;
         function onLoad(eContext) {
             var form = eContext.getFormContext();
             ToggleQuestionnaire(eContext);
+            //Do not remove this line, this is used for debugging offline mode
+            console.log("Questionnaire Response Form Loaded - OFFLINE MODE");
             //Banner warning message displayed if Questionnaire Response has already been appended to a work order
             var warningMessage = Xrm.Utility.getResourceString("ovs_/resx/QuestionnaireResponse", "WorkOrderBannerMessage");
             //if the work order is not null, display the message, otherwise don't show it
@@ -84,6 +86,10 @@ var ROM;
                                 surveyLocale = getSurveyLocal();
                                 win.InitialContext(eContext);
                                 win.isComplete = false;
+                                // Set to null if the questionnaire response is empty or undefined to prevent errors
+                                if (questionnaireResponse === "" || questionnaireResponse === undefined) {
+                                    questionnaireResponse = null;
+                                }
                                 win.InitializeSurveyRender(questionnaireDefinition, questionnaireResponse, surveyLocale, mode);
                                 return [2 /*return*/];
                             });

@@ -80,7 +80,7 @@ var ROM;
                 if (!userBusinessUnitName.startsWith("Aviation")) {
                     form.getControl("ts_details").setVisible(false);
                     form.getControl("ts_overtime").setVisible(false);
-                    form.getControl("ts_overtimerequired").setVisible(false);
+                    form.getControl("ts_overtimerequired").setVisible(true);
                 }
                 else if (userBusinessUnitName.startsWith("Aviation")) {
                     form.getControl("ts_details").setVisible(true);
