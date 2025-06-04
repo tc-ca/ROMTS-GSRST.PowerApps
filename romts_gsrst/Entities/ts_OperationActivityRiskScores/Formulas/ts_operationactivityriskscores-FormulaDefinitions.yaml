@@ -1,4 +1,13 @@
+ts_activitytyperiskscore: |-
+    =
+    If(IsBlank(ts_ActivityTypeEntityRisk.ts_calculatedriskscore), 0, ts_ActivityTypeEntityRisk.ts_calculatedriskscore)
 ts_calculatedriskscore: |-
     =If(IsBlank(ts_ProgramAreaEntityRisk.ts_calculatedriskscore), 0, ts_ProgramAreaEntityRisk.ts_calculatedriskscore) +
     If(IsBlank(ts_ActivityTypeEntityRisk.ts_calculatedriskscore), 0, ts_ActivityTypeEntityRisk.ts_calculatedriskscore) 
+ts_operationriskscore: |
+    =If(IsBlank(ts_OperationEntityRisk.ts_calculatedriskscore), 0, ts_OperationEntityRisk.ts_calculatedriskscore)
+ts_operationtyperiskscore: =If(IsBlank(ts_OperationTypeEntityRisk.ts_calculatedriskscore), 0, ts_OperationTypeEntityRisk.ts_calculatedriskscore)
+ts_programareariskscore: =If(IsBlank(ts_ProgramAreaEntityRisk.ts_calculatedriskscore), 0, ts_ProgramAreaEntityRisk.ts_calculatedriskscore)
 ts_riskscore: =If(ts_riskapplication, ts_riskapplicationscore,ts_calculatedriskscore)
+ts_siteriskscore: =If(IsBlank(ts_SiteEntityRisk.ts_calculatedriskscore), 0, ts_SiteEntityRisk.ts_calculatedriskscore)
+ts_stakeholderriskscore: =If(IsBlank(ts_StakeholderEntityRisk.ts_calculatedriskscore), 0, ts_StakeholderEntityRisk.ts_calculatedriskscore)

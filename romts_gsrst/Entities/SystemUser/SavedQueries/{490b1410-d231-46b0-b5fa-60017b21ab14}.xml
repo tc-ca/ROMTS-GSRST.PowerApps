@@ -33,7 +33,10 @@
             <condition attribute="islicensed" operator="eq" value="0" />
             <condition attribute="fullname" operator="ne" value="SYSTEM" />
             <condition attribute="fullname" operator="ne" value="INTEGRATION" />
-            <condition attribute="systemmanagedusertype" operator="eq" value="0" />
+            <filter type="or">
+              <condition attribute="systemmanagedusertype" operator="eq" value="0" />
+              <condition attribute="systemmanagedusertype" operator="eq" value="2" />
+            </filter>
           </filter>
           <attribute name="systemuserid" />
         </entity>

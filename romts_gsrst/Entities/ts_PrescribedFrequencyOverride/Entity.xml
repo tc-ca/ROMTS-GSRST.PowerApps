@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Entity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Name LocalizedName="Prescribed Frequency" OriginalName="Entity Risk Frequency">ts_EntityRiskFrequency</Name>
+  <Name LocalizedName="Prescribed Frequency Override" OriginalName="Prescribed Frequency Override">ts_PrescribedFrequencyOverride</Name>
   <EntityInfo>
-    <entity Name="ts_EntityRiskFrequency">
+    <entity Name="ts_PrescribedFrequencyOverride">
       <LocalizedNames>
-        <LocalizedName description="Prescribed Frequency" languagecode="1033" />
-        <LocalizedName description="Fréquence prescrite" languagecode="1036" />
+        <LocalizedName description="Prescribed Frequency Override" languagecode="1033" />
+        <LocalizedName description="Fréquence Prescrite" languagecode="1036" />
       </LocalizedNames>
       <LocalizedCollectionNames>
-        <LocalizedCollectionName description="Prescribed Frequencies" languagecode="1033" />
-        <LocalizedCollectionName description="Fréquences prescrites" languagecode="1036" />
+        <LocalizedCollectionName description="Prescribed Frequency Overrides" languagecode="1033" />
+        <LocalizedCollectionName description="Fréquence Prescrites" languagecode="1036" />
       </LocalizedCollectionNames>
       <Descriptions>
-        <Description description="NOT USED IN ROM - AvSec Risk, table defines the assigned Risk Freq for a specific Fiscal Year and one of the following entities: Program Area, Activity Type, Operation, Operation Type, Site, or Stakeholder. Each record ensures that only one Risk Frequency is assigned per entity type per fiscal year." languagecode="1033" />
-        <Description description="Pour le risque AvSec, ce tableau définit la fréquence de risque attribuée pour un exercice financier spécifique et l’une des entités suivantes : secteur de programme, type d’activité, opération, type d’opération, site ou intervenant. Chaque enregistrement garantit qu’une seule fréquence de risque est attribuée par type d’entité et par exercice financier." languagecode="1036" />
+        <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
       </Descriptions>
       <attributes>
         <attribute PhysicalName="CreatedBy">
@@ -170,7 +170,7 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format></Format>
+          <Format>none</Format>
           <MinValue>-2147483648</MinValue>
           <MaxValue>2147483647</MaxValue>
           <displaynames>
@@ -545,7 +545,7 @@
           <IsFilterable>1</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <optionset Name="ts_entityriskfrequency_statecode">
+          <optionset Name="ts_prescribedfrequencyoverride_statecode">
             <OptionSetType>state</OptionSetType>
             <IntroducedVersion>1.0</IntroducedVersion>
             <IsCustomizable>1</IsCustomizable>
@@ -554,8 +554,8 @@
               <displayname description="Statut" languagecode="1036" />
             </displaynames>
             <Descriptions>
-              <Description description="Status of the Entity Risk Frequency" languagecode="1033" />
-              <Description description="Statut de l'élément Entity Risk Frequency" languagecode="1036" />
+              <Description description="Status of the Prescribed Frequency Override" languagecode="1033" />
+              <Description description="Statut de l'élément Prescribed Frequency Override" languagecode="1036" />
             </Descriptions>
             <states>
               <state value="0" defaultstatus="1" invariantname="Active">
@@ -577,8 +577,8 @@
             <displayname description="Statut" languagecode="1036" />
           </displaynames>
           <Descriptions>
-            <Description description="Status of the Entity Risk Frequency" languagecode="1033" />
-            <Description description="Statut de l'élément Entity Risk Frequency" languagecode="1036" />
+            <Description description="Status of the Prescribed Frequency Override" languagecode="1033" />
+            <Description description="Statut de l'élément Prescribed Frequency Override" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="statuscode">
@@ -611,7 +611,7 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <optionset Name="ts_entityriskfrequency_statuscode">
+          <optionset Name="ts_prescribedfrequencyoverride_statuscode">
             <OptionSetType>status</OptionSetType>
             <IntroducedVersion>1.0</IntroducedVersion>
             <IsCustomizable>1</IsCustomizable>
@@ -620,8 +620,8 @@
               <displayname description="Raison du statut" languagecode="1036" />
             </displaynames>
             <Descriptions>
-              <Description description="Reason for the status of the Entity Risk Frequency" languagecode="1033" />
-              <Description description="Raison du statut de l'élément Entity Risk Frequency" languagecode="1036" />
+              <Description description="Reason for the status of the Prescribed Frequency Override" languagecode="1033" />
+              <Description description="Raison du statut de l'élément Prescribed Frequency Override" languagecode="1036" />
             </Descriptions>
             <statuses>
               <status value="1" state="0">
@@ -643,8 +643,8 @@
             <displayname description="Raison du statut" languagecode="1036" />
           </displaynames>
           <Descriptions>
-            <Description description="Reason for the status of the Entity Risk Frequency" languagecode="1033" />
-            <Description description="Raison du statut de l'élément Entity Risk Frequency" languagecode="1036" />
+            <Description description="Reason for the status of the Prescribed Frequency Override" languagecode="1033" />
+            <Description description="Raison du statut de l'élément Prescribed Frequency Override" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="TimeZoneRuleVersionNumber">
@@ -692,7 +692,7 @@
           <Type>lookup</Type>
           <Name>ts_activitytype</Name>
           <LogicalName>ts_activitytype</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
+          <RequiredLevel>required</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
@@ -700,7 +700,7 @@
           <IsCustomField>1</IsCustomField>
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20250319.1</IntroducedVersion>
+          <IntroducedVersion>1.0.20250530.1</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -725,193 +725,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="ts_EnglishName">
-          <Type>nvarchar</Type>
-          <Name>ts_englishname</Name>
-          <LogicalName>ts_englishname</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>1</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>424</MaxLength>
-          <Length>1700</Length>
-          <displaynames>
-            <displayname description="English Name" languagecode="1033" />
-            <displayname description="nom anglais" languagecode="1036" />
-          </displaynames>
-          <Descriptions>
-            <Description description="" languagecode="1033" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="ts_EntityName">
-          <Type>picklist</Type>
-          <Name>ts_entityname</Name>
-          <LogicalName>ts_entityname</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>1</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20250319.1</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <AppDefaultValue>-1</AppDefaultValue>
-          <optionset Name="ts_entityriskfrequency_ts_entityname">
-            <OptionSetType>picklist</OptionSetType>
-            <IntroducedVersion>1.0.20250319.1</IntroducedVersion>
-            <IsCustomizable>1</IsCustomizable>
-            <ExternalTypeName></ExternalTypeName>
-            <displaynames>
-              <displayname description="Entity Name" languagecode="1033" />
-            </displaynames>
-            <Descriptions>
-              <Description description="" languagecode="1033" />
-            </Descriptions>
-            <options>
-              <option value="741130000" ExternalValue="" IsHidden="0">
-                <labels>
-                  <label description="Activity Type" languagecode="1033" />
-                  <label description="Type d'activité" languagecode="1036" />
-                </labels>
-                <Descriptions>
-                  <Description description="" languagecode="1033" />
-                </Descriptions>
-              </option>
-              <option value="741130001" ExternalValue="" IsHidden="0">
-                <labels>
-                  <label description="Operation" languagecode="1033" />
-                  <label description="Opération" languagecode="1036" />
-                </labels>
-                <Descriptions>
-                  <Description description="" languagecode="1033" />
-                </Descriptions>
-              </option>
-              <option value="741130002" ExternalValue="" IsHidden="0">
-                <labels>
-                  <label description="Operation Type" languagecode="1033" />
-                  <label description="Type d'opération" languagecode="1036" />
-                </labels>
-                <Descriptions>
-                  <Description description="" languagecode="1033" />
-                </Descriptions>
-              </option>
-              <option value="741130003" ExternalValue="" IsHidden="0">
-                <labels>
-                  <label description="Program Area" languagecode="1033" />
-                  <label description="Zone de programme" languagecode="1036" />
-                </labels>
-                <Descriptions>
-                  <Description description="" languagecode="1033" />
-                </Descriptions>
-              </option>
-              <option value="741130004" ExternalValue="" IsHidden="0">
-                <labels>
-                  <label description="Site" languagecode="1033" />
-                  <label description="Site" languagecode="1036" />
-                </labels>
-                <Descriptions>
-                  <Description description="" languagecode="1033" />
-                </Descriptions>
-              </option>
-              <option value="741130005" ExternalValue="" IsHidden="0">
-                <labels>
-                  <label description="Stakeholder" languagecode="1033" />
-                  <label description="Partie prenante" languagecode="1036" />
-                </labels>
-                <Descriptions>
-                  <Description description="" languagecode="1033" />
-                </Descriptions>
-              </option>
-            </options>
-          </optionset>
-          <displaynames>
-            <displayname description="Entity Name" languagecode="1033" />
-            <displayname description="Nom de l'entité" languagecode="1036" />
-          </displaynames>
-          <Descriptions>
-            <Description description="Related Entity Table Name.  It shows what Entity the record is being used for." languagecode="1033" />
-            <Description description="Nom de la table d'entité associée. Il montre pour quelle entité l'enregistrement est utilisé." languagecode="1036" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="ts_EntityRiskFrequencyId">
-          <Type>primarykey</Type>
-          <Name>ts_entityriskfrequencyid</Name>
-          <LogicalName>ts_entityriskfrequencyid</LogicalName>
-          <RequiredLevel>systemrequired</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|RequiredForGrid</DisplayMask>
-          <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>0</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>0</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>0</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>1</IsFilterable>
-          <IsRetrievable>1</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <displaynames>
-            <displayname description="Entity Risk Frequency" languagecode="1033" />
-          </displaynames>
-          <Descriptions>
-            <Description description="Unique identifier for entity instances" languagecode="1033" />
-            <Description description="Identificateur unique des instances d'entité" languagecode="1036" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_FiscalYear">
@@ -926,7 +740,7 @@
           <IsCustomField>1</IsCustomField>
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20250319.1</IntroducedVersion>
+          <IntroducedVersion>1.0.20250530.1</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -951,89 +765,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="ts_FrenchName">
-          <Type>nvarchar</Type>
-          <Name>ts_frenchname</Name>
-          <LogicalName>ts_frenchname</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>1</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>424</MaxLength>
-          <Length>1700</Length>
-          <displaynames>
-            <displayname description="French Name" languagecode="1033" />
-            <displayname description="nom français" languagecode="1036" />
-          </displaynames>
-          <Descriptions>
-            <Description description="" languagecode="1033" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="ts_GeneratedUniqueKey">
-          <Type>nvarchar</Type>
-          <Name>ts_generateduniquekey</Name>
-          <LogicalName>ts_generateduniquekey</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
-          <DisplayMask>ValidForForm|ValidForGrid</DisplayMask>
-          <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>1</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <Format>text</Format>
-          <MaxLength>100</MaxLength>
-          <Length>200</Length>
-          <displaynames>
-            <displayname description="Generated Unique Key" languagecode="1033" />
-            <displayname description="clé unique générée" languagecode="1036" />
-          </displaynames>
-          <Descriptions>
-            <Description description="This is done in Web resources when the record is created. A combination of the fiscal year and entity GUID is used to make sure each record is unique." languagecode="1033" />
-            <Description description="Cela se fait dans les ressources Web lors de la création de l'enregistrement. Une combinaison de l'année fiscale et du GUID de l'entité est utilisée pour garantir que chaque enregistrement est unique." languagecode="1036" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_Name">
@@ -1071,29 +803,31 @@
           <Length>1700</Length>
           <displaynames>
             <displayname description="Name" languagecode="1033" />
-            <displayname description="nom" languagecode="1036" />
+            <displayname description="Nom" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ts_Operation">
-          <Type>lookup</Type>
-          <Name>ts_operation</Name>
-          <LogicalName>ts_operation</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
+        <attribute PhysicalName="ts_PrescribedFrequencyOverrideId">
+          <Type>primarykey</Type>
+          <Name>ts_prescribedfrequencyoverrideid</Name>
+          <LogicalName>ts_prescribedfrequencyoverrideid</LogicalName>
+          <RequiredLevel>systemrequired</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|RequiredForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
+          <IsCustomField>0</IsCustomField>
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20250319.1</IntroducedVersion>
+          <IntroducedVersion>1.0</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyRequirementLevelSettings>0</CanModifyRequirementLevelSettings>
           <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
           <SourceType>0</SourceType>
           <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
@@ -1103,95 +837,15 @@
           <IsDataSourceSecret>0</IsDataSourceSecret>
           <AutoNumberFormat></AutoNumberFormat>
           <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
+          <IsFilterable>1</IsFilterable>
+          <IsRetrievable>1</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes />
           <displaynames>
-            <displayname description="Operation" languagecode="1033" />
-            <displayname description="Opération" languagecode="1036" />
+            <displayname description="Prescribed Frequency Override" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="" languagecode="1033" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="ts_OperationType">
-          <Type>lookup</Type>
-          <Name>ts_operationtype</Name>
-          <LogicalName>ts_operationtype</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20250319.1</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes />
-          <displaynames>
-            <displayname description="Operation Type" languagecode="1033" />
-            <displayname description="Type d'opération" languagecode="1036" />
-          </displaynames>
-          <Descriptions>
-            <Description description="" languagecode="1033" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="ts_ProgramArea">
-          <Type>lookup</Type>
-          <Name>ts_programarea</Name>
-          <LogicalName>ts_programarea</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20250319.1</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes />
-          <displaynames>
-            <displayname description="Program Area" languagecode="1033" />
-            <displayname description="Zone de programme" languagecode="1036" />
-          </displaynames>
-          <Descriptions>
-            <Description description="" languagecode="1033" />
+            <Description description="Unique identifier for entity instances" languagecode="1033" />
+            <Description description="Identificateur unique des instances d'entité" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_RiskFrequency">
@@ -1206,7 +860,7 @@
           <IsCustomField>1</IsCustomField>
           <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20250319.1</IntroducedVersion>
+          <IntroducedVersion>1.0.20250530.1</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -1227,88 +881,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Risk Frequency" languagecode="1033" />
-            <displayname description="fréquence des risques" languagecode="1036" />
+            <displayname description="Fréquence des risques" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="ts_Site">
-          <Type>lookup</Type>
-          <Name>ts_site</Name>
-          <LogicalName>ts_site</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20250319.1</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes />
-          <displaynames>
-            <displayname description="Site" languagecode="1033" />
-            <displayname description="Site" languagecode="1036" />
-          </displaynames>
-          <Descriptions>
-            <Description description="" languagecode="1033" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="ts_Stakeholder">
-          <Type>lookup</Type>
-          <Name>ts_stakeholder</Name>
-          <LogicalName>ts_stakeholder</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20250319.1</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes />
-          <displaynames>
-            <displayname description="Stakeholder" languagecode="1033" />
-            <displayname description="Partie prenante" languagecode="1036" />
-          </displaynames>
-          <Descriptions>
-            <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="UTCConversionTimeZoneCode">
@@ -1355,19 +932,20 @@
       </attributes>
       <EntityKeys>
         <EntityKey>
-          <Name>ts_GeneratedUniqueKey</Name>
-          <LogicalName>ts_generateduniquekey</LogicalName>
-          <IntroducedVersion>1.0.20250319.1</IntroducedVersion>
+          <Name>ts_FiscalYear</Name>
+          <LogicalName>ts_fiscalyear</LogicalName>
+          <IntroducedVersion>1.0.20250530.1</IntroducedVersion>
           <IsCustomizable>0</IsCustomizable>
           <EntityKeyAttributes>
-            <AttributeName>ts_generateduniquekey</AttributeName>
+            <AttributeName>ts_activitytype</AttributeName>
+            <AttributeName>ts_fiscalyear</AttributeName>
           </EntityKeyAttributes>
           <displaynames>
-            <displayname description="Generated Unique Key" languagecode="1033" />
+            <displayname description="Fiscal Year" languagecode="1033" />
           </displaynames>
         </EntityKey>
       </EntityKeys>
-      <EntitySetName>ts_entityriskfrequencies</EntitySetName>
+      <EntitySetName>ts_prescribedfrequencyoverrides</EntitySetName>
       <IsDuplicateCheckSupported>1</IsDuplicateCheckSupported>
       <IsBusinessProcessEnabled>0</IsBusinessProcessEnabled>
       <IsRequiredOffline>0</IsRequiredOffline>
@@ -1375,7 +953,6 @@
       <IsCollaboration>0</IsCollaboration>
       <AutoRouteToOwnerQueue>0</AutoRouteToOwnerQueue>
       <IsConnectionsEnabled>0</IsConnectionsEnabled>
-      <EntityColor></EntityColor>
       <IsDocumentManagementEnabled>0</IsDocumentManagementEnabled>
       <AutoCreateAccessTeams>0</AutoCreateAccessTeams>
       <IsOneNoteIntegrationEnabled>0</IsOneNoteIntegrationEnabled>
@@ -1422,12 +999,10 @@
       <CanCreateViews>1</CanCreateViews>
       <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
       <CanEnableSyncToExternalSearchIndex>1</CanEnableSyncToExternalSearchIndex>
-      <IconVectorName>ts_clockrotateleftsolid</IconVectorName>
       <EnforceStateTransitions>0</EnforceStateTransitions>
       <CanChangeHierarchicalRelationship>1</CanChangeHierarchicalRelationship>
       <EntityHelpUrlEnabled>0</EntityHelpUrlEnabled>
-      <EntityHelpUrl></EntityHelpUrl>
-      <ChangeTrackingEnabled>1</ChangeTrackingEnabled>
+      <ChangeTrackingEnabled>0</ChangeTrackingEnabled>
       <CanChangeTrackingBeEnabled>1</CanChangeTrackingBeEnabled>
       <IsEnabledForExternalChannels>0</IsEnabledForExternalChannels>
       <IsMSTeamsIntegrationEnabled>0</IsMSTeamsIntegrationEnabled>
