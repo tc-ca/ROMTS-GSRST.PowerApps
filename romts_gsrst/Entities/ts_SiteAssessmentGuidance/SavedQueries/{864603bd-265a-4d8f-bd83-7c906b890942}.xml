@@ -3,38 +3,35 @@
   <savedquery>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>0</CanBeDeleted>
-    <isquickfindquery>1</isquickfindquery>
+    <isquickfindquery>0</isquickfindquery>
     <isprivate>0</isprivate>
     <isdefault>1</isdefault>
-    <savedqueryid>{f1451751-edfc-449a-b888-038af695fc65}</savedqueryid>
+    <savedqueryid>{864603bd-265a-4d8f-bd83-7c906b890942}</savedqueryid>
     <layoutxml>
-      <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
-        <row name="result" id="ts_dutyinspectorid">
+      <grid name="ts_siteassessmentguidances" jump="ts_name" select="1" icon="1" preview="1">
+        <row name="ts_siteassessmentguidance" id="ts_siteassessmentguidanceid">
           <cell name="ts_name" width="300" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
     </layoutxml>
-    <querytype>4</querytype>
+    <querytype>2</querytype>
     <fetchxml>
       <fetch version="1.0" mapping="logical">
-        <entity name="ts_dutyinspector">
-          <attribute name="ts_dutyinspectorid" />
+        <entity name="ts_siteassessmentguidance">
+          <attribute name="ts_siteassessmentguidanceid" />
           <attribute name="ts_name" />
           <attribute name="createdon" />
           <order attribute="ts_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
-          <filter type="or" isquickfindfields="1">
-            <condition attribute="ts_name" operator="like" value="{0}" />
-          </filter>
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0</IntroducedVersion>
     <LocalizedNames>
-      <LocalizedName description="Quick Find Active Duty Inspectors" languagecode="1033" />
+      <LocalizedName description="Site Assessment Guidance Associated View" languagecode="1033" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

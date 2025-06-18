@@ -10,7 +10,7 @@
     <layoutxml>
       <grid name="ts_prescribedfrequencyoverrides" jump="ts_name" select="1" icon="1" preview="1">
         <row name="ts_prescribedfrequencyoverride" id="ts_prescribedfrequencyoverrideid">
-          <cell name="ts_activitytype" width="300" />
+          <cell name="ts_name" width="250" />
           <cell name="ts_riskfrequency" width="129" />
           <cell name="ts_fiscalyear" width="103" />
           <cell name="createdon" width="125" />
@@ -27,15 +27,16 @@
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
           <attribute name="ts_fiscalyear" />
-          <attribute name="ts_activitytype" />
           <attribute name="ts_riskfrequency" />
+          <attribute name="ts_name" />
+          <order attribute="ts_fiscalyear" descending="true" />
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0</IntroducedVersion>
     <LocalizedNames>
       <LocalizedName description="Prescribed Frequency Override Associated View" languagecode="1033" />
-      <LocalizedName description="Vue associée à la fréquence prescrite" languagecode="1036" />
+      <LocalizedName description="Vue associée aux remplacements de fréquences prescrites" languagecode="1036" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

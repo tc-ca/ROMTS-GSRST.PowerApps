@@ -95,7 +95,6 @@
   <EntityRelationship Name="business_unit_ts_discretionaryfactorgrouping" />
   <EntityRelationship Name="business_unit_ts_discretionaryfactoroption" />
   <EntityRelationship Name="business_unit_ts_discretionaryfactorresponse" />
-  <EntityRelationship Name="business_unit_ts_dutyinspector" />
   <EntityRelationship Name="business_unit_ts_dutyinspectors" />
   <EntityRelationship Name="business_unit_ts_dutyinspectorschedule" />
   <EntityRelationship Name="business_unit_ts_entityrisk" />
@@ -432,8 +431,6 @@
   <EntityRelationship Name="lk_ts_discretionaryfactoroption_modifiedby" />
   <EntityRelationship Name="lk_ts_discretionaryfactorresponse_createdby" />
   <EntityRelationship Name="lk_ts_discretionaryfactorresponse_modifiedby" />
-  <EntityRelationship Name="lk_ts_dutyinspector_createdby" />
-  <EntityRelationship Name="lk_ts_dutyinspector_modifiedby" />
   <EntityRelationship Name="lk_ts_dutyinspectors_createdby" />
   <EntityRelationship Name="lk_ts_dutyinspectors_modifiedby" />
   <EntityRelationship Name="lk_ts_dutyinspectorschedule_createdby" />
@@ -548,6 +545,8 @@
   <EntityRelationship Name="lk_ts_sharepointfilerequest_modifiedby" />
   <EntityRelationship Name="lk_ts_site_createdby" />
   <EntityRelationship Name="lk_ts_site_modifiedby" />
+  <EntityRelationship Name="lk_ts_siteassessmentguidance_createdby" />
+  <EntityRelationship Name="lk_ts_siteassessmentguidance_modifiedby" />
   <EntityRelationship Name="lk_ts_sitevisit_createdby" />
   <EntityRelationship Name="lk_ts_sitevisit_modifiedby" />
   <EntityRelationship Name="lk_ts_suggestedinspection_createdby" />
@@ -1236,6 +1235,7 @@
   <EntityRelationship Name="msdyn_soundnotificationsetting_Annotations" />
   <EntityRelationship Name="msdyn_suggestionprincipalobjectaccess_connections1" />
   <EntityRelationship Name="msdyn_suggestionprincipalobjectaccess_connections2" />
+  <EntityRelationship Name="msdyn_summarysynthesizerinput_Annotations" />
   <EntityRelationship Name="msdyn_swarm_ActivityPointers" />
   <EntityRelationship Name="msdyn_swarm_Annotations" />
   <EntityRelationship Name="msdyn_swarm_Emails" />
@@ -1443,6 +1443,7 @@
   <EntityRelationship Name="organization_qm_tylegislationsource" />
   <EntityRelationship Name="organization_qm_tylegislationtype" />
   <EntityRelationship Name="Organization_SyncErrors" />
+  <EntityRelationship Name="organization_ts_siteassessmentguidance" />
   <EntityRelationship Name="ovs_Account_SiteType_ovs_SiteType" />
   <EntityRelationship Name="ovs_BookableResourceBooking_PlannedFiscalQuar" />
   <EntityRelationship Name="ovs_BookableResourceBooking_RevisedQuarter_tc" />
@@ -1528,7 +1529,6 @@
   <EntityRelationship Name="owner_ts_discretionaryfactorgrouping" />
   <EntityRelationship Name="owner_ts_discretionaryfactoroption" />
   <EntityRelationship Name="owner_ts_discretionaryfactorresponse" />
-  <EntityRelationship Name="owner_ts_dutyinspector" />
   <EntityRelationship Name="owner_ts_dutyinspectors" />
   <EntityRelationship Name="owner_ts_dutyinspectorschedule" />
   <EntityRelationship Name="owner_ts_entityrisk" />
@@ -1748,7 +1748,6 @@
   <EntityRelationship Name="team_ts_discretionaryfactorgrouping" />
   <EntityRelationship Name="team_ts_discretionaryfactoroption" />
   <EntityRelationship Name="team_ts_discretionaryfactorresponse" />
-  <EntityRelationship Name="team_ts_dutyinspector" />
   <EntityRelationship Name="team_ts_dutyinspectors" />
   <EntityRelationship Name="team_ts_dutyinspectorschedule" />
   <EntityRelationship Name="team_ts_entityrisk" />
@@ -1891,11 +1890,6 @@
   <EntityRelationship Name="ts_discretionaryresponse_discretionarygroup" />
   <EntityRelationship Name="ts_discretionaryresponse_discretionaryoption" />
   <EntityRelationship Name="ts_discretionaryresponse_riskassessment" />
-  <EntityRelationship Name="ts_dutyinspector_FiscalYear_tc_tcfiscalyear" />
-  <EntityRelationship Name="ts_dutyinspector_Inspector_systemuser" />
-  <EntityRelationship Name="ts_dutyinspector_Month_tc_tcmonth" />
-  <EntityRelationship Name="ts_dutyinspector_Region_msdyn_region" />
-  <EntityRelationship Name="ts_dutyinspector_Team_team" />
   <EntityRelationship Name="ts_dutyinspectors_Inspector_systemuser" />
   <EntityRelationship Name="ts_dutyinspectors_Month_tc_tcmonth" />
   <EntityRelationship Name="ts_dutyinspectorschedule_FiscalYear_tc_tcfiscalyear" />
@@ -1922,6 +1916,7 @@
   <EntityRelationship Name="ts_EntityRisk_msdyn_incidenttype_msdyn_incidenttype" />
   <EntityRelationship Name="ts_EntityRisk_ovs_operation_ovs_operation" />
   <EntityRelationship Name="ts_EntityRisk_ovs_operationtype_ovs_operationtype" />
+  <EntityRelationship Name="ts_entityrisk_RiskApplicationOperationType_ovs_operationtype" />
   <EntityRelationship Name="ts_entityrisk_RiskFrequency_ts_riskfrequency" />
   <EntityRelationship Name="ts_entityrisk_RiskRating_ts_riskrating" />
   <EntityRelationship Name="ts_EntityRisk_ts_programarea_ts_programarea" />
@@ -1947,6 +1942,7 @@
   <EntityRelationship Name="ts_exemption_ovs_operationtype" />
   <EntityRelationship Name="ts_exemption_qm_rclegislation" />
   <EntityRelationship Name="ts_exemption_Territory" />
+  <EntityRelationship Name="ts_file_Action_ts_action" />
   <EntityRelationship Name="ts_file_Annotations" />
   <EntityRelationship Name="ts_file_connections1" />
   <EntityRelationship Name="ts_file_connections2" />
@@ -2116,6 +2112,7 @@
   <EntityRelationship Name="ts_operationactivityriskscores_OperationActivity_ts_operationactivity" />
   <EntityRelationship Name="ts_operationactivityriskscores_OperationEntityRisk_ts_entityrisk" />
   <EntityRelationship Name="ts_operationactivityriskscores_OperationTypeEntityRisk_ts_entityrisk" />
+  <EntityRelationship Name="ts_operationactivityriskscores_PrescribedFrequencyOverride_ts_prescribedfrequencyoverride" />
   <EntityRelationship Name="ts_operationactivityriskscores_ProgramAreaEntityRisk_ts_entityrisk" />
   <EntityRelationship Name="ts_operationactivityriskscores_RiskFrequency_ts_riskfrequency" />
   <EntityRelationship Name="ts_operationactivityriskscores_RiskRating_ts_riskrating" />
@@ -2191,6 +2188,8 @@
   <EntityRelationship Name="ts_planningsettings_Annotations" />
   <EntityRelationship Name="ts_prescribedfrequencyoverride_ActivityType_msdyn_incidenttype" />
   <EntityRelationship Name="ts_prescribedfrequencyoverride_FiscalYear_tc_tcfiscalyear" />
+  <EntityRelationship Name="ts_prescribedfrequencyoverride_PrescribedFrequencyClass2_ts_riskfrequency" />
+  <EntityRelationship Name="ts_prescribedfrequencyoverride_PrescribedFrequencyClass3_ts_riskfrequency" />
   <EntityRelationship Name="ts_prescribedfrequencyoverride_RiskFrequency_ts_riskfrequency" />
   <EntityRelationship Name="ts_programarea_Annotations" />
   <EntityRelationship Name="ts_programarea_msdyn_incidenttype_ProgramArea" />
@@ -2442,7 +2441,6 @@
   <EntityRelationship Name="user_ts_discretionaryfactorgrouping" />
   <EntityRelationship Name="user_ts_discretionaryfactoroption" />
   <EntityRelationship Name="user_ts_discretionaryfactorresponse" />
-  <EntityRelationship Name="user_ts_dutyinspector" />
   <EntityRelationship Name="user_ts_dutyinspectors" />
   <EntityRelationship Name="user_ts_dutyinspectorschedule" />
   <EntityRelationship Name="user_ts_entityrisk" />

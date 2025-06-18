@@ -11,6 +11,10 @@
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_prescribedfrequencyoverrideid">
           <cell name="ts_name" width="300" />
+          <cell name="ts_riskfrequency" width="216" />
+          <cell name="ts_prescribedfrequencyclass2" width="216" />
+          <cell name="ts_prescribedfrequencyclass3" width="216" />
+          <cell name="ts_fiscalyear" width="103" />
           <cell name="createdon" width="125" />
         </row>
       </grid>
@@ -22,17 +26,21 @@
           <attribute name="ts_prescribedfrequencyoverrideid" />
           <attribute name="ts_name" />
           <attribute name="createdon" />
-          <order attribute="ts_name" descending="false" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>
+          <attribute name="ts_riskfrequency" />
+          <attribute name="ts_prescribedfrequencyclass2" />
+          <attribute name="ts_prescribedfrequencyclass3" />
+          <attribute name="ts_fiscalyear" />
+          <order attribute="ts_fiscalyear" descending="true" />
         </entity>
       </fetch>
     </fetchxml>
     <IntroducedVersion>1.0</IntroducedVersion>
     <LocalizedNames>
       <LocalizedName description="Active Prescribed Frequency Overrides" languagecode="1033" />
-      <LocalizedName description="Fréquences prescrites actives" languagecode="1036" />
+      <LocalizedName description="Remplacements de fréquences prescrites actifs" languagecode="1036" />
     </LocalizedNames>
   </savedquery>
 </savedqueries>

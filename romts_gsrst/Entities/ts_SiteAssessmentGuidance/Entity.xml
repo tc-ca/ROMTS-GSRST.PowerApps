@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Entity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Name LocalizedName="Duty Inspector" OriginalName="Duty Inspector">ts_dutyinspector</Name>
+  <Name LocalizedName="Site Assessment Guidance" OriginalName="Site Assessment Guidance">ts_SiteAssessmentGuidance</Name>
   <EntityInfo>
-    <entity Name="ts_dutyinspector">
+    <entity Name="ts_SiteAssessmentGuidance">
       <LocalizedNames>
-        <LocalizedName description="Duty Inspector" languagecode="1033" />
+        <LocalizedName description="Site Assessment Guidance" languagecode="1033" />
       </LocalizedNames>
       <LocalizedCollectionNames>
-        <LocalizedCollectionName description="Duty Inspectors" languagecode="1033" />
+        <LocalizedCollectionName description="Site Assessment Guidances" languagecode="1033" />
       </LocalizedCollectionNames>
       <Descriptions>
-        <Description description="" languagecode="1033" />
+        <Description description="Holds the Site Assessment Guidance text that connects to the Operation Risk Assessment table, under the Site Assessment tab." languagecode="1033" />
       </Descriptions>
       <attributes>
         <attribute PhysicalName="CreatedBy">
@@ -167,7 +167,7 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format></Format>
+          <Format>none</Format>
           <MinValue>-2147483648</MinValue>
           <MaxValue>2147483647</MaxValue>
           <displaynames>
@@ -303,6 +303,45 @@
             <Description description="Identificateur unique de l'utilisateur délégué ayant modifié l'enregistrement." languagecode="1036" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="OrganizationId">
+          <Type>lookup</Type>
+          <Name>organizationid</Name>
+          <LogicalName>organizationid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="Organization Id" languagecode="1033" />
+            <displayname description="ID d’organisation" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Unique identifier for the organization" languagecode="1033" />
+            <Description description="Identificateur unique de l'organisation" languagecode="1036" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="OverriddenCreatedOn">
           <Type>datetime</Type>
           <Name>overriddencreatedon</Name>
@@ -345,173 +384,6 @@
             <Description description="Date et heure de migration de l'enregistrement." languagecode="1036" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="OwnerId">
-          <Type>owner</Type>
-          <Name>ownerid</Name>
-          <LogicalName>ownerid</LogicalName>
-          <RequiredLevel>systemrequired</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid|RequiredForForm</DisplayMask>
-          <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>0</IsCustomField>
-          <IsAuditEnabled>1</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>1</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes>
-            <LookupType id="00000000-0000-0000-0000-000000000000">8</LookupType>
-            <LookupType id="00000000-0000-0000-0000-000000000000">9</LookupType>
-          </LookupTypes>
-          <displaynames>
-            <displayname description="Owner" languagecode="1033" />
-            <displayname description="Propriétaire" languagecode="1036" />
-          </displaynames>
-          <Descriptions>
-            <Description description="Owner Id" languagecode="1033" />
-            <Description description="ID du propriétaire" languagecode="1036" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="OwningBusinessUnit">
-          <Type>lookup</Type>
-          <Name>owningbusinessunit</Name>
-          <LogicalName>owningbusinessunit</LogicalName>
-          <RequiredLevel>systemrequired</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>0</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>0</ValidForCreateApi>
-          <IsCustomField>0</IsCustomField>
-          <IsAuditEnabled>1</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>1</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes />
-          <displaynames>
-            <displayname description="Owning Business Unit" languagecode="1033" />
-            <displayname description="Division propriétaire" languagecode="1036" />
-          </displaynames>
-          <Descriptions>
-            <Description description="Unique identifier for the business unit that owns the record" languagecode="1033" />
-            <Description description="Identificateur unique de la division propriétaire de l'enregistrement" languagecode="1036" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="OwningTeam">
-          <Type>lookup</Type>
-          <Name>owningteam</Name>
-          <LogicalName>owningteam</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
-          <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>0</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>0</ValidForCreateApi>
-          <IsCustomField>0</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
-          <IsLogical>1</IsLogical>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes />
-          <displaynames>
-            <displayname description="Owning Team" languagecode="1033" />
-            <displayname description="Équipe propriétaire" languagecode="1036" />
-          </displaynames>
-          <Descriptions>
-            <Description description="Unique identifier for the team that owns the record." languagecode="1033" />
-            <Description description="Identificateur unique de l'équipe propriétaire de l'enregistrement." languagecode="1036" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="OwningUser">
-          <Type>lookup</Type>
-          <Name>owninguser</Name>
-          <LogicalName>owninguser</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
-          <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>0</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>0</ValidForCreateApi>
-          <IsCustomField>0</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
-          <IsLogical>1</IsLogical>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes />
-          <displaynames>
-            <displayname description="Owning User" languagecode="1033" />
-            <displayname description="Utilisateur propriétaire" languagecode="1036" />
-          </displaynames>
-          <Descriptions>
-            <Description description="Unique identifier for the user that owns the record." languagecode="1033" />
-            <Description description="Identificateur unique de l'utilisateur propriétaire de l'enregistrement." languagecode="1036" />
-          </Descriptions>
-        </attribute>
         <attribute PhysicalName="statecode">
           <Type>state</Type>
           <Name>statecode</Name>
@@ -542,7 +414,7 @@
           <IsFilterable>1</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <optionset Name="ts_dutyinspector_statecode">
+          <optionset Name="ts_siteassessmentguidance_statecode">
             <OptionSetType>state</OptionSetType>
             <IntroducedVersion>1.0</IntroducedVersion>
             <IsCustomizable>1</IsCustomizable>
@@ -551,8 +423,8 @@
               <displayname description="Statut" languagecode="1036" />
             </displaynames>
             <Descriptions>
-              <Description description="Status of the Duty Inspector" languagecode="1033" />
-              <Description description="Statut de l'élément Duty Inspector" languagecode="1036" />
+              <Description description="Status of the Site Assessment Guidance" languagecode="1033" />
+              <Description description="Statut de l'élément Site Assessment Guidance" languagecode="1036" />
             </Descriptions>
             <states>
               <state value="0" defaultstatus="1" invariantname="Active">
@@ -574,8 +446,8 @@
             <displayname description="Statut" languagecode="1036" />
           </displaynames>
           <Descriptions>
-            <Description description="Status of the Duty Inspector" languagecode="1033" />
-            <Description description="Statut de l'élément Duty Inspector" languagecode="1036" />
+            <Description description="Status of the Site Assessment Guidance" languagecode="1033" />
+            <Description description="Statut de l'élément Site Assessment Guidance" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="statuscode">
@@ -608,7 +480,7 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <optionset Name="ts_dutyinspector_statuscode">
+          <optionset Name="ts_siteassessmentguidance_statuscode">
             <OptionSetType>status</OptionSetType>
             <IntroducedVersion>1.0</IntroducedVersion>
             <IsCustomizable>1</IsCustomizable>
@@ -617,8 +489,8 @@
               <displayname description="Raison du statut" languagecode="1036" />
             </displaynames>
             <Descriptions>
-              <Description description="Reason for the status of the Duty Inspector" languagecode="1033" />
-              <Description description="Raison du statut de l'élément Duty Inspector" languagecode="1036" />
+              <Description description="Reason for the status of the Site Assessment Guidance" languagecode="1033" />
+              <Description description="Raison du statut de l'élément Site Assessment Guidance" languagecode="1036" />
             </Descriptions>
             <statuses>
               <status value="1" state="0">
@@ -640,8 +512,8 @@
             <displayname description="Raison du statut" languagecode="1036" />
           </displaynames>
           <Descriptions>
-            <Description description="Reason for the status of the Duty Inspector" languagecode="1033" />
-            <Description description="Raison du statut de l'élément Duty Inspector" languagecode="1036" />
+            <Description description="Reason for the status of the Site Assessment Guidance" languagecode="1033" />
+            <Description description="Raison du statut de l'élément Site Assessment Guidance" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="TimeZoneRuleVersionNumber">
@@ -685,48 +557,10 @@
             <Description description="Utilisation interne uniquement." languagecode="1036" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ts_dutyinspectorId">
-          <Type>primarykey</Type>
-          <Name>ts_dutyinspectorid</Name>
-          <LogicalName>ts_dutyinspectorid</LogicalName>
-          <RequiredLevel>systemrequired</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|RequiredForGrid</DisplayMask>
-          <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>0</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>0</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>0</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>1</IsFilterable>
-          <IsRetrievable>1</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <displaynames>
-            <displayname description="Duty Inspector" languagecode="1033" />
-          </displaynames>
-          <Descriptions>
-            <Description description="Unique identifier for entity instances" languagecode="1033" />
-            <Description description="Identificateur unique des instances d'entité" languagecode="1036" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="ts_EndDate">
-          <Type>datetime</Type>
-          <Name>ts_enddate</Name>
-          <LogicalName>ts_enddate</LogicalName>
+        <attribute PhysicalName="ts_GuidanceTextEn1">
+          <Type>ntext</Type>
+          <Name>ts_guidancetexten1</Name>
+          <LogicalName>ts_guidancetexten1</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
@@ -753,28 +587,30 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format>date</Format>
-          <Behavior>3</Behavior>
+          <Format>richtext</Format>
+          <MaxLength>1048576</MaxLength>
           <displaynames>
-            <displayname description="End Date" languagecode="1033" />
+            <displayname description="Guidance Text En 1" languagecode="1033" />
+            <displayname description="Guidance Text En 1" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ts_FiscalYear">
-          <Type>lookup</Type>
-          <Name>ts_fiscalyear</Name>
-          <LogicalName>ts_fiscalyear</LogicalName>
+        <attribute PhysicalName="ts_GuidanceTextEn2">
+          <Type>ntext</Type>
+          <Name>ts_guidancetexten2</Name>
+          <LogicalName>ts_guidancetexten2</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
           <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20250428.1</IntroducedVersion>
+          <IntroducedVersion>1.0</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -791,28 +627,30 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes />
+          <Format>richtext</Format>
+          <MaxLength>1048576</MaxLength>
           <displaynames>
-            <displayname description="Fiscal Year" languagecode="1033" />
+            <displayname description="Guidance Text En 2" languagecode="1033" />
+            <displayname description="Guidance Text En 2" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ts_Inspector">
-          <Type>lookup</Type>
-          <Name>ts_inspector</Name>
-          <LogicalName>ts_inspector</LogicalName>
+        <attribute PhysicalName="ts_GuidanceTextEn3">
+          <Type>ntext</Type>
+          <Name>ts_guidancetexten3</Name>
+          <LogicalName>ts_guidancetexten3</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
           <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20250428.1</IntroducedVersion>
+          <IntroducedVersion>1.0</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -829,28 +667,30 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes />
+          <Format>richtext</Format>
+          <MaxLength>1048576</MaxLength>
           <displaynames>
-            <displayname description="Inspector" languagecode="1033" />
+            <displayname description="Guidance Text En 3" languagecode="1033" />
+            <displayname description="Guidance Text En 3" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ts_Month">
-          <Type>lookup</Type>
-          <Name>ts_month</Name>
-          <LogicalName>ts_month</LogicalName>
+        <attribute PhysicalName="ts_GuidanceTextEn4">
+          <Type>ntext</Type>
+          <Name>ts_guidancetexten4</Name>
+          <LogicalName>ts_guidancetexten4</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
           <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20250428.1</IntroducedVersion>
+          <IntroducedVersion>1.0</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
@@ -867,10 +707,171 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes />
+          <Format>richtext</Format>
+          <MaxLength>1048576</MaxLength>
           <displaynames>
-            <displayname description="Month" languagecode="1033" />
+            <displayname description="Guidance Text En 4" languagecode="1033" />
+            <displayname description="Guidance Text En 4" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ts_GuidanceTextFr1">
+          <Type>ntext</Type>
+          <Name>ts_guidancetextfr1</Name>
+          <LogicalName>ts_guidancetextfr1</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>richtext</Format>
+          <MaxLength>1048576</MaxLength>
+          <displaynames>
+            <displayname description="Guidance Text Fr 1" languagecode="1033" />
+            <displayname description="Guidance Text Fr 1" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ts_GuidanceTextFr2">
+          <Type>ntext</Type>
+          <Name>ts_guidancetextfr2</Name>
+          <LogicalName>ts_guidancetextfr2</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>richtext</Format>
+          <MaxLength>1048576</MaxLength>
+          <displaynames>
+            <displayname description="Guidance Text Fr 2" languagecode="1033" />
+            <displayname description="Guidance Text Fr 2" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ts_GuidanceTextFr3">
+          <Type>ntext</Type>
+          <Name>ts_guidancetextfr3</Name>
+          <LogicalName>ts_guidancetextfr3</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>richtext</Format>
+          <MaxLength>1048576</MaxLength>
+          <displaynames>
+            <displayname description="Guidance Text Fr 3" languagecode="1033" />
+            <displayname description="Guidance Text Fr 3" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ts_GuidanceTextFr4">
+          <Type>ntext</Type>
+          <Name>ts_guidancetextfr4</Name>
+          <LogicalName>ts_guidancetextfr4</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>richtext</Format>
+          <MaxLength>1048576</MaxLength>
+          <displaynames>
+            <displayname description="Guidance Text Fr 4" languagecode="1033" />
+            <displayname description="Guidance Text Fr 4" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
@@ -911,67 +912,30 @@
           <Length>1700</Length>
           <displaynames>
             <displayname description="Name" languagecode="1033" />
+            <displayname description="Nom" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ts_Region">
-          <Type>lookup</Type>
-          <Name>ts_region</Name>
-          <LogicalName>ts_region</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20250428.1</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes />
-          <displaynames>
-            <displayname description="Region" languagecode="1033" />
-          </displaynames>
-          <Descriptions>
-            <Description description="" languagecode="1033" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="ts_StartDate">
-          <Type>datetime</Type>
-          <Name>ts_startdate</Name>
-          <LogicalName>ts_startdate</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+        <attribute PhysicalName="ts_SiteAssessmentGuidanceId">
+          <Type>primarykey</Type>
+          <Name>ts_siteassessmentguidanceid</Name>
+          <LogicalName>ts_siteassessmentguidanceid</LogicalName>
+          <RequiredLevel>systemrequired</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|RequiredForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsCustomField>0</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
           <IsSecured>0</IsSecured>
           <IntroducedVersion>1.0</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyRequirementLevelSettings>0</CanModifyRequirementLevelSettings>
           <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
           <SourceType>0</SourceType>
           <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
@@ -981,54 +945,15 @@
           <IsDataSourceSecret>0</IsDataSourceSecret>
           <AutoNumberFormat></AutoNumberFormat>
           <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
+          <IsFilterable>1</IsFilterable>
+          <IsRetrievable>1</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <Format>date</Format>
-          <Behavior>3</Behavior>
           <displaynames>
-            <displayname description="Start Date" languagecode="1033" />
+            <displayname description="Site Assessment Guidance" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="" languagecode="1033" />
-          </Descriptions>
-        </attribute>
-        <attribute PhysicalName="ts_Team">
-          <Type>lookup</Type>
-          <Name>ts_team</Name>
-          <LogicalName>ts_team</LogicalName>
-          <RequiredLevel>none</RequiredLevel>
-          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
-          <ValidForUpdateApi>1</ValidForUpdateApi>
-          <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>1</ValidForCreateApi>
-          <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
-          <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20250428.1</IntroducedVersion>
-          <IsCustomizable>1</IsCustomizable>
-          <IsRenameable>1</IsRenameable>
-          <CanModifySearchSettings>1</CanModifySearchSettings>
-          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
-          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>0</SourceType>
-          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
-          <IsSortableEnabled>0</IsSortableEnabled>
-          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
-          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
-          <IsDataSourceSecret>0</IsDataSourceSecret>
-          <AutoNumberFormat></AutoNumberFormat>
-          <IsSearchable>0</IsSearchable>
-          <IsFilterable>0</IsFilterable>
-          <IsRetrievable>0</IsRetrievable>
-          <IsLocalizable>0</IsLocalizable>
-          <LookupStyle>single</LookupStyle>
-          <LookupTypes />
-          <displaynames>
-            <displayname description="Team" languagecode="1033" />
-          </displaynames>
-          <Descriptions>
-            <Description description="" languagecode="1033" />
+            <Description description="Unique identifier for entity instances" languagecode="1033" />
+            <Description description="Identificateur unique des instances d'entité" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="UTCConversionTimeZoneCode">
@@ -1073,8 +998,8 @@
           </Descriptions>
         </attribute>
       </attributes>
-      <EntitySetName>ts_dutyinspectors</EntitySetName>
-      <IsDuplicateCheckSupported>1</IsDuplicateCheckSupported>
+      <EntitySetName>ts_siteassessmentguidances</EntitySetName>
+      <IsDuplicateCheckSupported>0</IsDuplicateCheckSupported>
       <IsBusinessProcessEnabled>0</IsBusinessProcessEnabled>
       <IsRequiredOffline>0</IsRequiredOffline>
       <IsInteractionCentricEnabled>0</IsInteractionCentricEnabled>
@@ -1088,7 +1013,7 @@
       <IsSLAEnabled>0</IsSLAEnabled>
       <IsDocumentRecommendationsEnabled>0</IsDocumentRecommendationsEnabled>
       <IsBPFEntity>0</IsBPFEntity>
-      <OwnershipTypeMask>UserOwned</OwnershipTypeMask>
+      <OwnershipTypeMask>OrgOwned</OwnershipTypeMask>
       <IsAuditEnabled>0</IsAuditEnabled>
       <IsRetrieveAuditEnabled>0</IsRetrieveAuditEnabled>
       <IsRetrieveMultipleAuditEnabled>0</IsRetrieveMultipleAuditEnabled>
@@ -1097,7 +1022,7 @@
       <IsActivityParty>0</IsActivityParty>
       <IsReplicated>0</IsReplicated>
       <IsReplicationUserFiltered>0</IsReplicationUserFiltered>
-      <IsMailMergeEnabled>1</IsMailMergeEnabled>
+      <IsMailMergeEnabled>0</IsMailMergeEnabled>
       <IsVisibleInMobile>0</IsVisibleInMobile>
       <IsVisibleInMobileClient>0</IsVisibleInMobileClient>
       <IsReadOnlyInMobileClient>0</IsReadOnlyInMobileClient>

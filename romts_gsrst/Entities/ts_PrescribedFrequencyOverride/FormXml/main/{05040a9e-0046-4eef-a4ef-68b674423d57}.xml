@@ -31,6 +31,24 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{483679b2-d418-4aa7-b9be-12ce62198cbb}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="English Name" languagecode="1033" />
+                          <label description="English Name" languagecode="1036" />
+                        </labels>
+                        <control id="ts_englishname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_englishname" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a0085c21-2e93-43b7-9d2e-6615b12186c7}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="French Name" languagecode="1033" />
+                          <label description="French Name" languagecode="1036" />
+                        </labels>
+                        <control id="ts_frenchname" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_frenchname" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{349a2d0b-b0c2-4b1f-a5a2-ace9cca88fbb}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
                           <label description="Owner" languagecode="1033" />
@@ -49,12 +67,39 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{e4c3565f-c484-4aeb-b972-b1758bad6ff2}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Prescribed Frequency Class Selection" languagecode="1033" />
+                          <label description="Sélection de la classe de fréquence prescrite" languagecode="1036" />
+                        </labels>
+                        <control id="ts_prescribedfrequencyclassselection" classid="{4AA28AB7-9C13-4F57-A73D-AD894D048B5F}" datafieldname="ts_prescribedfrequencyclassselection" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{a5448bf1-e4fe-4af6-a474-fa9c4272eb19}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
-                          <label description="Risk Frequency" languagecode="1033" />
-                          <label description="Fréquence des risques" languagecode="1036" />
+                          <label description="Prescribed Frequency (Class 1)" languagecode="1033" />
+                          <label description="Fréquence prescrite (Classe 1)" languagecode="1036" />
                         </labels>
                         <control id="ts_riskfrequency" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_riskfrequency" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4ad2da30-9132-44da-ba0f-220360a675d0}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Prescribed Frequency (Class 2)" languagecode="1033" />
+                          <label description="Fréquence prescrite (Classe 2)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_prescribedfrequencyclass2" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_prescribedfrequencyclass2" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{edcf0f0f-a6f7-475d-8004-597fa125b485}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Prescribed Frequency (Class 3)" languagecode="1033" />
+                          <label description="Fréquence prescrite (Classe 3)" languagecode="1036" />
+                        </labels>
+                        <control id="ts_prescribedfrequencyclass3" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_prescribedfrequencyclass3" disabled="false" />
                       </cell>
                     </row>
                     <row>
@@ -139,6 +184,21 @@
         <event name="onchange" application="false" active="false" attribute="ts_fiscalyear">
           <Handlers>
             <Handler functionName="ROM.PrescribedFrequencyOverride.fiscalYearOnChange" libraryName="ts_/js/PrescribedFrequencyOverride.js" handlerUniqueId="{324255b1-e4fd-447d-b917-7ed513892b72}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_activitytype">
+          <Handlers>
+            <Handler functionName="ROM.PrescribedFrequencyOverride.activityTypeOnChange" libraryName="ts_/js/PrescribedFrequencyOverride.js" handlerUniqueId="{57999595-ac00-467f-a0d6-6c8b81164581}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_prescribedfrequencyclassselection">
+          <Handlers>
+            <Handler functionName="ROM.PrescribedFrequencyOverride.classSelection" libraryName="ts_/js/PrescribedFrequencyOverride.js" handlerUniqueId="{f9f20cda-1993-4bd0-941c-ce5bee15f61c}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.PrescribedFrequencyOverride.classSelection" libraryName="ts_/js/PrescribedFrequencyOverride.js" handlerUniqueId="{1b93ece1-8c1d-4cab-a1b2-8a858d53fc54}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

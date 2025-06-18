@@ -1,0 +1,120 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_2d435"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "7272609a-cfc9-403d-9dfb-76a577852d88"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ts_dutyinspectorschedule",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Update_a_row": {
+          "runAfter": {
+            "Get_a_row_by_ID_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7116da48-d17d-4105-a0ef-178a7bfb5f27"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "UpdateOnlyRecord",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_dutyinspectorschedules",
+              "recordId": "@triggerOutputs()?['body/ts_dutyinspectorscheduleid']",
+              "item/ts_name": "@{outputs('Get_a_row_by_ID')?['body/name']}-@{outputs('Get_a_row_by_ID_2')?['body/tc_name']}"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_a_row_by_ID": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "f7a90ec0-796a-4c3e-992d-180c7678a0e8"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "territories",
+              "recordId": "@triggerOutputs()?['body/_ts_region_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Get_a_row_by_ID_2": {
+          "runAfter": {
+            "Get_a_row_by_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "50ba2d6a-08ca-4918-a50a-288858923121"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "tc_tcfiscalyears",
+              "recordId": "@triggerOutputs()?['body/_ts_fiscalyear_value']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

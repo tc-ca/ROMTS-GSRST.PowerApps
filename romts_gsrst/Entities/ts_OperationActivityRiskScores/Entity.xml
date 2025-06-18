@@ -798,10 +798,10 @@
           <MaxValue>100000000000</MaxValue>
           <Accuracy>2</Accuracy>
           <displaynames>
-            <displayname description="Default Risk Score" languagecode="1033" />
+            <displayname description="Risk Score" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="The default calculation used if there is no Risk Application." languagecode="1033" />
+            <Description description="The final calculated risk score for this record.&#xA;If Risk Application is enabled, the score is computed by multiplying the selected risk dimension scores (e.g., Activity Type, Operation, Program Area).&#xA;If Risk Application is not used, the score defaults to the sum of Program Area and Activity Type risk scores." languagecode="1033" />
           </Descriptions>
           <FormulaDefinitionFileName>/Formulas/ts_operationactivityriskscores-FormulaDefinitions.yaml</FormulaDefinitionFileName>
         </attribute>
@@ -837,10 +837,10 @@
           <LookupStyle>single</LookupStyle>
           <LookupTypes />
           <displaynames>
-            <displayname description="Entity Risk Frequency" languagecode="1033" />
+            <displayname description="z-Entity Risk Frequency (Do Not Use)" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="If populated, it is used in a calculation to set the Risk Frequency based on using a customized override tied to a specific Program Area, Activity Type, Operation, Operation Type, Site, or Stakeholder." languagecode="1033" />
+            <Description description="NOT USED - If populated, it is used in a calculation to set the Risk Frequency based on using a customized override tied to a specific Program Area, Activity Type, Operation, Operation Type, Site, or Stakeholder." languagecode="1033" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_FiscalYear">
@@ -1114,6 +1114,47 @@
             <Description description="" languagecode="1033" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="ts_OperationTypeRiskID">
+          <Type>nvarchar</Type>
+          <Name>ts_operationtyperiskid</Name>
+          <LogicalName>ts_operationtyperiskid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20250604.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>3</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>4000</MaxLength>
+          <Length>8000</Length>
+          <displaynames>
+            <displayname description="Operation Type Risk ID" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="This hidden column shows the related Operation Type ID in Text.  It is used with the flow [Operation Type] Risk Application Update" languagecode="1033" />
+          </Descriptions>
+          <FormulaDefinitionFileName>/Formulas/ts_operationactivityriskscores-FormulaDefinitions.yaml</FormulaDefinitionFileName>
+        </attribute>
         <attribute PhysicalName="ts_OperationTypeRiskScore">
           <Type>decimal</Type>
           <Name>ts_operationtyperiskscore</Name>
@@ -1154,6 +1195,44 @@
             <Description description="The Calculated Operation Type Risk Score" languagecode="1033" />
           </Descriptions>
           <FormulaDefinitionFileName>/Formulas/ts_operationactivityriskscores-FormulaDefinitions.yaml</FormulaDefinitionFileName>
+        </attribute>
+        <attribute PhysicalName="ts_PrescribedFrequencyOverride">
+          <Type>lookup</Type>
+          <Name>ts_prescribedfrequencyoverride</Name>
+          <LogicalName>ts_prescribedfrequencyoverride</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20250604.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="Prescribed Frequency Override" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="If populated, it is used in a calculation to set the Risk Frequency based on using a customized override tied to Activity Type." languagecode="1033" />
+          </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_ProgramAreaEntityRisk">
           <Type>lookup</Type>
@@ -1238,7 +1317,7 @@
           <Type>bit</Type>
           <Name>ts_riskapplication</Name>
           <LogicalName>ts_riskapplication</LogicalName>
-          <RequiredLevel>required</RequiredLevel>
+          <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
@@ -1290,10 +1369,10 @@
             </options>
           </optionset>
           <displaynames>
-            <displayname description="Risk Application" languagecode="1033" />
+            <displayname description="z-Risk Application-Do not use" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="This is used as a flag to indicate if this record has a related Operation Type that is using a Risk Application." languagecode="1033" />
+            <Description description="This field is not being used." languagecode="1033" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_RiskApplicationScore">
@@ -1328,11 +1407,12 @@
           <IsLocalizable>0</IsLocalizable>
           <MinValue>-100000000000</MinValue>
           <MaxValue>100000000000</MaxValue>
+          <Accuracy>2</Accuracy>
           <displaynames>
-            <displayname description="Risk Application Score" languagecode="1033" />
+            <displayname description="z_Risk Application Score- Do not use" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="If a related Operation Type uses Risk Application, the calculation is recorded here." languagecode="1033" />
+            <Description description="Not in use" languagecode="1033" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_RiskFrequency">
@@ -1445,10 +1525,10 @@
           <MaxValue>100000000000</MaxValue>
           <Accuracy>2</Accuracy>
           <displaynames>
-            <displayname description="Risk Score" languagecode="1033" />
+            <displayname description="z-Risk Score-Do Not use" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="The calculated Risk Score of this record. If 'Risk Application' is true set Risk Application Score' as the value, otherwise set ' Default Risk Score' as the value.&#xA;" languagecode="1033" />
+            <Description description="Not in use" languagecode="1033" />
           </Descriptions>
           <FormulaDefinitionFileName>/Formulas/ts_operationactivityriskscores-FormulaDefinitions.yaml</FormulaDefinitionFileName>
         </attribute>
@@ -1686,6 +1766,68 @@
           </displaynames>
           <Descriptions>
             <Description description="The Calculated Stakeholder Risk Score" languagecode="1033" />
+          </Descriptions>
+          <FormulaDefinitionFileName>/Formulas/ts_operationactivityriskscores-FormulaDefinitions.yaml</FormulaDefinitionFileName>
+        </attribute>
+        <attribute PhysicalName="ts_UsesRiskApplication">
+          <Type>bit</Type>
+          <Name>ts_usesriskapplication</Name>
+          <LogicalName>ts_usesriskapplication</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>0</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20250604.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>3</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="ts_operationactivityriskscores_ts_usesriskapplication">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>1.0.20250604.1</IntroducedVersion>
+            <IsCustomizable>1</IsCustomizable>
+            <displaynames>
+              <displayname description="Uses Risk Application" languagecode="1033" />
+            </displaynames>
+            <Descriptions>
+              <Description description="" languagecode="1033" />
+            </Descriptions>
+            <options>
+              <option value="1" ExternalValue="" IsHidden="0">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="0" ExternalValue="" IsHidden="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Uses Risk Application" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="This hidden field is used to determine if the record uses a Risk Application.  It is used in Calculating the Risk Score" languagecode="1033" />
           </Descriptions>
           <FormulaDefinitionFileName>/Formulas/ts_operationactivityriskscores-FormulaDefinitions.yaml</FormulaDefinitionFileName>
         </attribute>

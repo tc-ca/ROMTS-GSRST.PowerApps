@@ -41,41 +41,8 @@ var ROM;
     (function (DutyInspectorSchedule) {
         function onSave(eContext) {
             return __awaiter(this, void 0, void 0, function () {
-                var form, region, fiscalYear, fiscalYearId, regionId, regionName, fiscalYearName, eventArgs;
                 return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            form = eContext.getFormContext();
-                            region = form.getAttribute("ts_region").getValue();
-                            fiscalYear = form.getAttribute("ts_fiscalyear").getValue();
-                            eventArgs = eContext.getEventArgs();
-                            eventArgs.preventDefault();
-                            if (fiscalYear != null && region != null) {
-                                fiscalYearId = fiscalYear[0].id.slice(1, -1);
-                                regionId = region[0].id.slice(1, -1);
-                            }
-                            // Fetch region name
-                            return [4 /*yield*/, Xrm.WebApi.retrieveRecord("territory", regionId, "?$select=name").then(function success(result) {
-                                    regionName = result.name;
-                                })];
-                        case 1:
-                            // Fetch region name
-                            _a.sent();
-                            // Fetch fiscal year name
-                            return [4 /*yield*/, Xrm.WebApi.retrieveRecord("tc_tcfiscalyear", fiscalYearId, "?$select=tc_name").then(function success(result) {
-                                    fiscalYearName = result.tc_name;
-                                })];
-                        case 2:
-                            // Fetch fiscal year name
-                            _a.sent();
-                            form.getAttribute("ts_name").setValue(regionName + " - " + fiscalYearName);
-                            // Let the form fully reset, then save
-                            setTimeout(function () {
-                                // Save again now that value is set
-                                form.data.save();
-                            }, 500); // slight delay to avoid conflict
-                            return [2 /*return*/];
-                    }
+                    return [2 /*return*/];
                 });
             });
         }

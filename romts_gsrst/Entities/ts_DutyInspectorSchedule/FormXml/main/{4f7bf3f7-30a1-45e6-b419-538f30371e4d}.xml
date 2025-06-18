@@ -61,7 +61,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell locklevel="0" id="{4f0fc715-784f-4142-b9ab-7dcff85201f3}" colspan="1" rowspan="7" showlabel="true" auto="false">
+                      <cell locklevel="0" id="{4f0fc715-784f-4142-b9ab-7dcff85201f3}" colspan="1" rowspan="7" showlabel="true" auto="true">
                         <labels>
                           <label description="Duty Inspectors" languagecode="1033" />
                         </labels>
@@ -71,14 +71,14 @@
                             <ViewId>{ACBDBAB2-C6B4-4487-9BC8-0FE48BC4213B}</ViewId>
                             <EnableViewPicker>false</EnableViewPicker>
                             <IsUserView>false</IsUserView>
-                            <RecordsPerPage>4</RecordsPerPage>
+                            <RecordsPerPage>100</RecordsPerPage>
                             <RelationshipName>ts_DutyInspectorSchedule_ts_DutyInspectorSchedule_ts_dutyinspectors</RelationshipName>
                             <ViewIds>{ACBDBAB2-C6B4-4487-9BC8-0FE48BC4213B}</ViewIds>
                             <ChartGridMode>All</ChartGridMode>
                             <HeaderColorCode>#F3F3F3</HeaderColorCode>
                             <EnableQuickFind>false</EnableQuickFind>
                             <EnableJumpBar>false</EnableJumpBar>
-                            <AutoExpand>Fixed</AutoExpand>
+                            <AutoExpand>Auto</AutoExpand>
                             <VisualizationId />
                             <IsUserChart>false</IsUserChart>
                             <EnableChartPicker>true</EnableChartPicker>
@@ -234,7 +234,7 @@
         </controlDescription>
       </controlDescriptions>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -269,11 +269,6 @@
         <Library name="ts_/js/DutyInspectorSchedule.js" libraryUniqueId="{e7bf995d-c6d1-453a-aee0-5333d40e7ef8}" />
       </formLibraries>
       <events>
-        <event name="onsave" application="false" active="false">
-          <Handlers>
-            <Handler functionName="ROM.DutyInspectorSchedule.onSave" libraryName="ts_/js/DutyInspectorSchedule.js" handlerUniqueId="{c11f52e1-2a3c-4b1e-8d09-cfe18912361f}" enabled="true" parameters="" passExecutionContext="true" />
-          </Handlers>
-        </event>
         <event name="onrecordselect" application="false" active="false" relationship="" control="grid_duty_inspectors">
           <Handlers>
             <Handler functionName="lockFieldsDutyInspectorsEditableGrid" libraryName="ts_/js/Common.js" handlerUniqueId="{2d7101c0-687e-5898-01e5-e51a8ea80735}" enabled="true" parameters="" passExecutionContext="true" />

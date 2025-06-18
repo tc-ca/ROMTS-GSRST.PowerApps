@@ -10,19 +10,21 @@
     <layoutxml>
       <grid name="ts_dutyinspectorses" jump="ts_name" select="1" icon="1" preview="1">
         <row name="ts_dutyinspectors" id="ts_dutyinspectorsid">
-          <cell name="ts_name" width="300" />
-          <cell name="createdon" width="125" />
+          <cell name="ts_startdate" width="100" />
+          <cell name="ts_enddate" width="100" />
+          <cell name="ts_inspector" width="100" />
         </row>
       </grid>
     </layoutxml>
     <querytype>2</querytype>
     <fetchxml>
-      <fetch version="1.0" mapping="logical">
+      <fetch version="1.0" mapping="logical" distinct="true">
         <entity name="ts_dutyinspectors">
           <attribute name="ts_dutyinspectorsid" />
-          <attribute name="ts_name" />
-          <attribute name="createdon" />
-          <order attribute="ts_name" descending="false" />
+          <attribute name="ts_startdate" />
+          <attribute name="ts_enddate" />
+          <order attribute="ts_startdate" descending="false" />
+          <attribute name="ts_inspector" />
           <filter type="and">
             <condition attribute="statecode" operator="eq" value="0" />
           </filter>

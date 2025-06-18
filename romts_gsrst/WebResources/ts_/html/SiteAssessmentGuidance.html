@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const languageId = parent?.Xrm?.Utility?.getGlobalContext()?.userSettings?.languageId;
+            if (languageId === 1033) {
+                $("[lang=fr]").hide();
+                $("[lang=en]").show();
+            } else {
+                $("[lang=en]").hide();
+                $("[lang=fr]").show();
+            }
+        });
+    </script>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        .title {
+            background-color: #777;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+
+            .active,
+            .title:hover {
+                background-color: #555;
+            }
+
+        .tips {
+            display: none;
+            overflow: hidden;
+        }
+
+        ul, ol {
+            list-style-position: inside;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="categories">
+        <!-- Updated sections for each theme with English and French names -->
+        <div class="category">
+            <button type="button" class="title" data-guidance-id="1">
+                <span lang="en">Site Information and Operating Profile</span>
+                <span lang="fr">Renseignements sur le site et profil opérationnel</span>
+            </button>
+            <div class="tips" id="guidanceContent1" style="min-height:200px;">Loading guidance...</div>
+        </div>
+        <div style="height: 16px"></div>
+
+        <div class="category">
+            <button type="button" class="title" data-guidance-id="2">
+                <span lang="en">Access Control</span>
+                <span lang="fr">Contrôle d’accès</span>
+            </button>
+            <div class="tips" id="guidanceContent2" style="min-height:200px;">Loading guidance...</div>
+        </div>
+        <div style="height: 16px"></div>
+
+        <div class="category">
+            <button type="button" class="title" data-guidance-id="3">
+                <span lang="en">Perimeter Security</span>
+                <span lang="fr">Sécurité du périmètre</span>
+            </button>
+            <div class="tips" id="guidanceContent3" style="min-height:200px;">Loading guidance...</div>
+        </div>
+        <div style="height: 16px"></div>
+
+        <div class="category">
+            <button type="button" class="title" data-guidance-id="4">
+                <span lang="en">Security Vulnerabilities</span>
+                <span lang="fr">Vulnérabilités de sécurité</span>
+            </button>
+            <div class="tips" id="guidanceContent4" style="min-height:200px;">Loading guidance...</div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector(".categories").addEventListener("click", function (event) {
+            const button = event.target.closest(".title");
+            if (button) {
+                button.classList.toggle("active");
+                const guidanceId = button.getAttribute("data-guidance-id");
+                const tips = document.getElementById(`guidanceContent${guidanceId}`);
+                tips.style.display = (tips.style.display === "block") ? "none" : "block";
+            }
+        });
+
+        const isEnglish = parent?.Xrm?.Utility?.getGlobalContext()?.userSettings?.languageId === 1033;
+
+        const guidanceId = "456c80fe-c04a-f011-877a-002248adfc3b"; // Replace with dynamic ID if needed
+
+        const fetchXml = `
+                <fetch top='1'>
+                    <entity name='ts_siteassessmentguidance'>
+                        <attribute name='ts_guidancetexten1' />
+                        <attribute name='ts_guidancetextfr1' />
+                        <attribute name='ts_guidancetexten2' />
+                        <attribute name='ts_guidancetextfr2' />
+                        <attribute name='ts_guidancetexten3' />
+                        <attribute name='ts_guidancetextfr3' />
+                        <attribute name='ts_guidancetexten4' />
+                        <attribute name='ts_guidancetextfr4' />
+                        <filter>
+                            <condition attribute='ts_siteassessmentguidanceid' operator='eq' value='${guidanceId}' />
+                        </filter>
+                    </entity>
+                </fetch>
+            `;
+
+        parent.Xrm.WebApi.retrieveMultipleRecords("ts_siteassessmentguidance", `?fetchXml=${encodeURIComponent(fetchXml)}`)
+            .then(function (result) {
+                if (result.entities.length > 0) {
+                    const guidance = result.entities[0];
+
+                    const fieldNames = [
+                        isEnglish ? "ts_guidancetexten1" : "ts_guidancetextfr1",
+                        isEnglish ? "ts_guidancetexten2" : "ts_guidancetextfr2",
+                        isEnglish ? "ts_guidancetexten3" : "ts_guidancetextfr3",
+                        isEnglish ? "ts_guidancetexten4" : "ts_guidancetextfr4"
+                    ];
+
+                    fieldNames.forEach((fieldName, idx) => {
+                        const html = guidance[fieldName] || "No guidance available.";
+                        const contentElement = document.getElementById(`guidanceContent${idx + 1}`);
+                        contentElement.innerHTML = html;
+                    });
+                } else {
+                    document.querySelectorAll(".tips").forEach(tips => {
+                        tips.innerText = "No guidance data found.";
+                    });
+                }
+            })
+            .catch(function (err) {
+                console.error("Error fetching guidance data:", err.message);
+                document.querySelectorAll(".tips").forEach(tips => {
+                    tips.innerText = `Error loading guidance: ${err.message}`;
+                });
+            });
+    </script>
+</body>
+</html>
