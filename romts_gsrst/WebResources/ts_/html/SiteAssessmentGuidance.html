@@ -58,11 +58,11 @@
 
 <body>
     <div class="categories">
-        <!-- Updated sections for each theme with English and French names -->
+        <!-- English and French Names for the Site Assessment Guidance -->
         <div class="category">
             <button type="button" class="title" data-guidance-id="1">
                 <span lang="en">Site Information and Operating Profile</span>
-                <span lang="fr">Renseignements sur le site et profil opérationnel</span>
+                <span lang="fr">Information sur le site et profil des opérations</span>
             </button>
             <div class="tips" id="guidanceContent1" style="min-height:200px;">Loading guidance...</div>
         </div>
@@ -71,7 +71,7 @@
         <div class="category">
             <button type="button" class="title" data-guidance-id="2">
                 <span lang="en">Access Control</span>
-                <span lang="fr">Contrôle d’accès</span>
+                <span lang="fr">Contrôle des accès</span>
             </button>
             <div class="tips" id="guidanceContent2" style="min-height:200px;">Loading guidance...</div>
         </div>
@@ -80,7 +80,7 @@
         <div class="category">
             <button type="button" class="title" data-guidance-id="3">
                 <span lang="en">Perimeter Security</span>
-                <span lang="fr">Sécurité du périmètre</span>
+                <span lang="fr">Sûreté du périmètre</span>
             </button>
             <div class="tips" id="guidanceContent3" style="min-height:200px;">Loading guidance...</div>
         </div>
@@ -89,7 +89,7 @@
         <div class="category">
             <button type="button" class="title" data-guidance-id="4">
                 <span lang="en">Security Vulnerabilities</span>
-                <span lang="fr">Vulnérabilités de sécurité</span>
+                <span lang="fr">Vulnérabilités en matière de sûreté</span>
             </button>
             <div class="tips" id="guidanceContent4" style="min-height:200px;">Loading guidance...</div>
         </div>
@@ -108,7 +108,7 @@
 
         const isEnglish = parent?.Xrm?.Utility?.getGlobalContext()?.userSettings?.languageId === 1033;
 
-        const guidanceId = "456c80fe-c04a-f011-877a-002248adfc3b"; // Replace with dynamic ID if needed
+        const guidanceId = "Site Assessment Guidance";
 
         const fetchXml = `
                 <fetch top='1'>
@@ -122,7 +122,7 @@
                         <attribute name='ts_guidancetexten4' />
                         <attribute name='ts_guidancetextfr4' />
                         <filter>
-                            <condition attribute='ts_siteassessmentguidanceid' operator='eq' value='${guidanceId}' />
+                            <condition attribute='ts_name' operator='eq' value='${guidanceId}' />
                         </filter>
                     </entity>
                 </fetch>

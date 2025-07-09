@@ -1,3 +1,4 @@
+ts_activitytyperiskid: =ts_ActivityTypeEntityRisk.ts_entityid
 ts_activitytyperiskscore: |
     =If(
         ts_usesriskapplication,
@@ -91,6 +92,7 @@ ts_programareariskscore: |-
         )
     )
 ts_riskscore: =If(ts_riskapplication, ts_riskapplicationscore,ts_calculatedriskscore)
+ts_siteriskclass: =ts_SiteEntityRisk.ts_siteclass
 ts_siteriskscore: |-
     =If(
         ts_usesriskapplication,
@@ -120,6 +122,18 @@ ts_stakeholderriskscore: |-
             0
         ),
         0
+    )
+ts_usesprescribedfrequencyoverride: |
+    =If(
+        Not(IsBlank(ts_ActivityTypeEntityRisk.ts_PrescribedFrequencyOverride)),
+        Switch(
+            ts_siteriskclass,
+            "1", Not(IsBlank(ts_ActivityTypeEntityRisk.ts_PrescribedFrequencyOverride.ts_RiskFrequency)),
+            "2", Not(IsBlank(ts_ActivityTypeEntityRisk.ts_PrescribedFrequencyOverride.ts_PrescribedFrequencyClass2)),
+            "3", Not(IsBlank(ts_ActivityTypeEntityRisk.ts_PrescribedFrequencyOverride.ts_PrescribedFrequencyClass3)),
+            false
+        ),
+        false
     )
 ts_usesriskapplication: |
     =ts_OperationTypeEntityRisk.ts_usesriskapplicationactivitytype

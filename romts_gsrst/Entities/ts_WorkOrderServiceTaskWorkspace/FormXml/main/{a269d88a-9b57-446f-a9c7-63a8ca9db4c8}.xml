@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{a269d88a-9b57-446f-a9c7-63a8ca9db4c8}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form headerdensity="HighWithControls">
+      <tabs>
+        <tab verticallayout="true" id="{578b3ec3-87ed-45d8-87b4-1f28409dcf53}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+            <label description="Général" languagecode="1036" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{7ba17bb1-afc2-446c-9d5a-bd0d982517ae}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{1f85f1dd-911f-4d0d-818e-ef2e14688430}" visible="false">
+                        <labels>
+                          <label description="Name" languagecode="1033" />
+                        </labels>
+                        <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{92b2b819-5c71-4ef8-be55-79c17c17528c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Work Order Service Task" languagecode="1033" />
+                        </labels>
+                        <control id="ts_workorderservicetask" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_workorderservicetask" disabled="true" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e0619f69-18aa-45aa-aea1-d8d38d4b8558}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Work Order Service Task Start Date" languagecode="1033" />
+                        </labels>
+                        <control id="ts_workorderservicetaskstartdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_workorderservicetaskstartdate" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+      <header id="{7bfda2d8-863c-40ca-ad64-120684b8228c}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{764a8d57-83c6-4ec1-a9d2-4b49dc47981b}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{f11e219d-7095-415f-8d16-84202702fe70}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{6a1fca35-b64e-4be4-acc3-a028962f920f}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{0fe5c125-ed0c-4a2e-8999-61cc3fd37dde}" colspan="1" rowspan="1">
+              <labels>
+                <label description="Owner" languagecode="1033" />
+                <label description="Propriétaire" languagecode="1036" />
+              </labels>
+              <control id="header_ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+            </cell>
+          </row>
+        </rows>
+      </header>
+      <footer id="{abf170f7-04cb-4d2e-94a1-d0c3fa26116f}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{f4ddd1c0-5a2a-4155-9abf-7f1abd2e836b}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{28f2a732-15c2-49ec-b263-0a8a2420d1f7}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{58622d1f-226c-48ae-9bb6-14d74a9d2718}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+      <formLibraries>
+        <Library name="ts_/js/WorkOrderServiceTaskWorkspace.js" libraryUniqueId="{e1db13b3-e2e2-4ac6-8476-2a28e91349f5}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTaskWorkspace.onLoad" libraryName="ts_/js/WorkOrderServiceTaskWorkspace.js" handlerUniqueId="{69bdfe21-a4cb-4888-bbec-a1e4fe8b6914}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_workorderservicetaskstartdate">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTaskWorkspace.workOrderServiceTaskStartDateOnChange" libraryName="ts_/js/WorkOrderServiceTaskWorkspace.js" handlerUniqueId="{582f8f4b-f543-4aa3-98c8-58a0bc9582c3}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+      <LocalizedName description="Information" languagecode="1036" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+      <Description description="A form for this entity." languagecode="1036" />
+    </Descriptions>
+  </systemform>
+</forms>

@@ -71,6 +71,11 @@
         </FlyoutAnchor>
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorderservicetask.ServiceTaskWorkspace.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="18">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.ServiceTaskWorkspace.Alt" Command="ts.msdyn_workorderservicetask.ServiceTaskWorkSpace" Id="ts.msdyn_workorderservicetask.ServiceTaskWorkspace" LabelText="$LocLabels:ts.msdyn_workorderservicetask.ServiceTaskWorkspace.LabelText" Sequence="18" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.ServiceTaskWorkspace.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.ServiceTaskWorkspace.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorderservicetask.TSIS.SendReportButton.CustomAction" Location="Mscrm.SubGrid.msdyn_workorderservicetask.MainTab.Management.Controls._children" Sequence="53">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.TSIS.SendReportButton.Alt" Command="ts.msdyn_workorderservicetask.TSIS.SendReport" Id="ts.msdyn_workorderservicetask.TSIS.SendReportButton" Image32by32="$webresource:Service/_imgs/ribbon/Email_32.png" Image16by16="/_imgs/ribbon/AddEmail_16.png" LabelText="$LocLabels:ts.msdyn_workorderservicetask.TSIS.SendReportButton.LabelText" Sequence="53" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.TSIS.SendReportButton.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.TSIS.SendReportButton.ToolTipDescription" ModernImage="EmailLink" />
@@ -585,6 +590,15 @@
         <JavaScriptFunction FunctionName="printQuestionnaire" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js">
           <CrmParameter Value="PrimaryControl" />
           <BoolParameter Value="true" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorderservicetask.ServiceTaskWorkSpace">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="openRelatedWorkOrderServiceTaskWorkspace" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -1105,6 +1119,26 @@
     <LocLabel Id="ts.msdyn_workorderservicetask.Flyout.PrintQuestionnaire.LabelText">
       <Titles>
         <Title description="Print Questionnaire" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.ServiceTaskWorkspace.Alt">
+      <Titles>
+        <Title description="Service Task Workspace" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.ServiceTaskWorkspace.LabelText">
+      <Titles>
+        <Title description="Service Task Workspace" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.ServiceTaskWorkspace.ToolTipDescription">
+      <Titles>
+        <Title description="Service Task Workspace" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.ServiceTaskWorkspace.ToolTipTitle">
+      <Titles>
+        <Title description="Service Task Workspace" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.TSIS.SendReportButton.Alt">
