@@ -40,7 +40,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{4d99f7ea-e92b-4cf4-b653-9c153c9c26e5}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{4d99f7ea-e92b-4cf4-b653-9c153c9c26e5}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
                           <label description="Attachment" languagecode="1033" />
                           <label description="Jointe" languagecode="1036" />
@@ -53,7 +53,7 @@
                         <labels>
                           <label description="SharePoint Link" languagecode="1033" />
                         </labels>
-                        <control id="ts_sharepointlink" classid="{71716B6C-711E-476C-8AB8-5D11542BFB47}" datafieldname="ts_sharepointlink" disabled="false" />
+                        <control id="ts_sharepointlink" classid="{71716B6C-711E-476C-8AB8-5D11542BFB47}" datafieldname="ts_sharepointlink" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -208,6 +208,16 @@
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>
+      <formLibraries>
+        <Library name="ts_/js/File.js" libraryUniqueId="{05848393-fe86-4476-9e63-e30fefbcc21c}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.File.onLoad" libraryName="ts_/js/File.js" handlerUniqueId="{708fed57-acc2-4c23-974b-c684c8ab5965}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
