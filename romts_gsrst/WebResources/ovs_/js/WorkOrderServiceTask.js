@@ -162,7 +162,7 @@ var ROM;
         }
         WorkOrderServiceTask.taskTypeOnChange = taskTypeOnChange;
         function onLoadServiceTaskStartDate(eContext) {
-            var _a;
+            var _a, _b, _c;
             if (appUrl === DEV_URL || appUrl === QA_URL || appUrl === INT_URL) {
                 var formContext_1 = eContext.getFormContext();
                 var serviceTaskStartDateAttr = formContext_1.getAttribute("ts_servicetaskstartdate");
@@ -171,6 +171,14 @@ var ROM;
                     var entityId = formContext_1.data.entity.getId();
                     var entityIdClean = entityId.replace(/{|}/g, ""); // Remove curly braces
                     var entityName = (_a = formContext_1.getAttribute("msdyn_name")) === null || _a === void 0 ? void 0 : _a.getValue();
+                    var workOrderLookup = (_b = formContext_1.getAttribute("msdyn_workorder")) === null || _b === void 0 ? void 0 : _b.getValue();
+                    var workOrderId = workOrderLookup && workOrderLookup.length > 0 ? workOrderLookup[0].id.replace(/{|}/g, "") : null;
+                    var workOrderName = workOrderLookup && workOrderLookup.length > 0 ? workOrderLookup[0].name : null;
+                    var taskTypeLookup = (_c = formContext_1.getAttribute("msdyn_tasktype")) === null || _c === void 0 ? void 0 : _c.getValue();
+                    var taskTypeId = taskTypeLookup && taskTypeLookup.length > 0 ? taskTypeLookup[0].id.replace(/{|}/g, "") : null;
+                    var taskTypeName = taskTypeLookup && taskTypeLookup.length > 0 ? taskTypeLookup[0].name : null;
+                    console.log("taskTypeId: ", taskTypeId);
+                    console.log("workOrderId: ", workOrderId);
                     var pageInput = {
                         pageType: "entityrecord",
                         entityName: "ts_workorderservicetaskworkspace",
@@ -178,7 +186,17 @@ var ROM;
                         useQuickCreateForm: true,
                         data: {
                             ts_name: entityName,
-                            "ts_workorderservicetask@odata.bind": "/msdyn_workorderservicetasks(" + entityIdClean + ")"
+                            "ts_workorderservicetask@odata.bind": "/msdyn_workorderservicetasks(" + entityIdClean + ")",
+                            ts_workorder: {
+                                id: workOrderId,
+                                name: workOrderName,
+                                entityType: "msdyn_workorder"
+                            },
+                            ts_tasktype: {
+                                id: taskTypeId,
+                                name: taskTypeName,
+                                entityType: "msdyn_servicetasktype"
+                            }
                         },
                         createFromEntity: {
                             entityType: "msdyn_workorderservicetask",
