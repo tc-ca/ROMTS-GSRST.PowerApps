@@ -11,8 +11,11 @@
       <grid name="resultset" jump="ts_name" select="1" icon="1" preview="1">
         <row name="result" id="ts_operationcontactid">
           <cell name="ts_contact" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
-          <cell name="ts_operation" width="150" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
           <cell name="ts_connectionrole" width="125" imageproviderfunctionname="" imageproviderwebresource="$webresource:" />
+          <cell name="a_e797d1d2ff4e4b1eb4d63d1320063ddb.ts_stakeholder" width="176" />
+          <cell name="a_e797d1d2ff4e4b1eb4d63d1320063ddb.ts_site" width="131" />
+          <cell name="a_02f870a8a97d4820b80111ff28eb5f42.mobilephone" width="176" />
+          <cell name="a_02f870a8a97d4820b80111ff28eb5f42.emailaddress1" width="130" />
         </row>
       </grid>
     </layoutxml>
@@ -26,8 +29,15 @@
           </filter>
           <attribute name="ts_contact" />
           <attribute name="ts_connectionrole" />
-          <attribute name="ts_operation" />
           <attribute name="ts_operationcontactid" />
+          <link-entity alias="a_e797d1d2ff4e4b1eb4d63d1320063ddb" name="ovs_operation" to="ts_operation" from="ovs_operationid" link-type="outer" visible="false">
+            <attribute name="ts_stakeholder" />
+            <attribute name="ts_site" />
+          </link-entity>
+          <link-entity alias="a_02f870a8a97d4820b80111ff28eb5f42" name="contact" to="ts_contact" from="contactid" link-type="outer" visible="false">
+            <attribute name="emailaddress1" />
+            <attribute name="mobilephone" />
+          </link-entity>
         </entity>
       </fetch>
     </fetchxml>

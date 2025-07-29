@@ -1,14 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <CustomActions />
+  <CustomActions>
+    <CustomAction Id="ts.ts_workorderservicetask.TSISMarkComplete.Form.CustomAction" Location="Mscrm.Form.ts_workorderservicetaskworkspace.MainTab.Save.Controls._children" Sequence="0">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts_workorderservicetask.TSISMarkComplete.Form.Alt" Command="ts_workorderservicetaskworkspace.TSISMarkComplete.Form.Command" Id="ts_workorderservicetask.TSISMarkComplete.Form" Image32by32="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_32.png" Image16by16="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_16.png" LabelText="$LocLabels:ts_workorderservicetask.TSISMarkComplete.Form.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts_workorderservicetask.TSISMarkComplete.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts_workorderservicetask.TSISMarkComplete.Form.ToolTipDescription" ModernImage="SaveAsComplete" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="ts_workorderservicetaskworkspace.TSISMarkComplete.Form.Command">
+      <EnableRules>
+        <EnableRule Id="ts_workorderservicetaskworkspace.MainTab.Save.AsComplete.Command.EnableRule.FormStateRule" />
+        <EnableRule Id="ts_workorderservicetaskworkspace.MainTab.Save.AsComplete.Command.EnableRule.FormStateRule2" />
+        <EnableRule Id="ts_workorderservicetaskworkspace.TSIS.isStatusReasonNew.Inverted" />
+        <EnableRule Id="ts_workorderservicetaskworkspace.IsNotCompleted" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="ts_workorderservicetaskworkspace.MainTab.Save.AsComplete.Command.DisplayRule.EntityPrivilegeRule" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="surveyHasErrors" Library="$webresource:ovs_/js/WorkOrderServiceTaskWorkspaceRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
     <DisplayRules />
-    <EnableRules />
+    <EnableRules>
+      <EnableRule Id="ts_workorderservicetaskworkspace.IsNotCompleted">
+        <ValueRule Field="statuscode" Value="741130001" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts_workorderservicetaskworkspace.MainTab.Save.AsComplete.Command.EnableRule.FormStateRule">
+        <FormStateRule State="ReadOnly" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts_workorderservicetaskworkspace.MainTab.Save.AsComplete.Command.EnableRule.FormStateRule2">
+        <FormStateRule State="Disabled" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts_workorderservicetaskworkspace.TSIS.isStatusReasonNew.Inverted">
+        <CustomRule FunctionName="isStatusReasonNew" Library="$webresource:ovs_/js/WorkOrderServiceTaskWorkspaceRibbon.js" Default="false" InvertResult="true">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
-  <LocLabels />
+  <LocLabels>
+    <LocLabel Id="ts_workorderservicetask.TSISMarkComplete.Form.Alt">
+      <Titles>
+        <Title description="Mark Complete" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts_workorderservicetask.TSISMarkComplete.Form.LabelText">
+      <Titles>
+        <Title description="Mark Complete" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts_workorderservicetask.TSISMarkComplete.Form.ToolTipDescription">
+      <Titles>
+        <Title description="Mark Complete" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts_workorderservicetask.TSISMarkComplete.Form.ToolTipTitle">
+      <Titles>
+        <Title description="Mark Complete" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
 </RibbonDiffXml>
