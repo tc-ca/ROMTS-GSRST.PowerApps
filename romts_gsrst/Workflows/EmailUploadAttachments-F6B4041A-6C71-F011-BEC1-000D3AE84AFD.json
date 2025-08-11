@@ -1,0 +1,286 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_2d435"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "829d5da9-4362-455c-8448-0c321065198c"
+          },
+          "type": "Request",
+          "kind": "Http",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "emailId": {
+                  "type": "string"
+                },
+                "fileIds": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "method": "POST",
+            "triggerAuthenticationType": "All"
+          }
+        }
+      },
+      "actions": {
+        "Parse_JSON": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "2546f06c-d7ff-48cc-a090-5746cd8f36b9"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@triggerOutputs()['headers']",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "Content-Type": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "EmailID": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "RecordOwner": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "SelectedFiles": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "properties": {
+                              "type": "object",
+                              "properties": {
+                                "Name": {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "base64": {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "tags": {
+                                  "type": "object",
+                                  "properties": {
+                                    "type": {
+                                      "type": "string"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable_-_emailId": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f325ddba-0219-48ce-b3d2-9c108c63bcca"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "emailId",
+                "type": "string",
+                "value": "@triggerBody()?['emailId']"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_fileIds": {
+          "runAfter": {
+            "Initialize_variable_-_emailId": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "baded9f1-968c-4370-a6a9-4c2464415896"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "fileIds",
+                "type": "array",
+                "value": "@triggerBody()?['fileIds']"
+              }
+            ]
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@variables('fileIds')",
+          "actions": {
+            "Get_a_row_by_ID": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "0053d0b1-4840-4b04-be5f-25520bc72400"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_files",
+                  "recordId": "@items('Apply_to_each')"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Add_a_new_row": {
+              "runAfter": {
+                "Download_a_file_or_an_image": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "66fb5a34-065c-4f18-b144-909cba996d8f"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "CreateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "activitymimeattachments",
+                  "item/attachmentid@odata.bind": "@''",
+                  "item/objecttypecode": "email",
+                  "item/objectid_email@odata.bind": "/emails(@{variables('emailId')})",
+                  "item/body": "@body('Download_a_file_or_an_image')",
+                  "item/filename": "@outputs('Get_a_row_by_ID')?['body/ts_file']",
+                  "item/mimetype": "@outputs('Get_a_row_by_ID')?['body/ts_filetype']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Download_a_file_or_an_image": {
+              "runAfter": {
+                "Get_a_row_by_ID": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "d80b6613-be1a-43ef-818f-6d6f3c33b06e"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetEntityFileImageFieldContent",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_files",
+                  "recordId": "@outputs('Get_a_row_by_ID')?['body/ts_fileid']",
+                  "fileImageFieldName": "ts_attachment"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_fileIds": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0dfa6807-cb04-4834-ba61-7c886bd3c60e"
+          },
+          "type": "Foreach"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

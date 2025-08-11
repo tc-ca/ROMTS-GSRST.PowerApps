@@ -42,7 +42,7 @@
                         <labels>
                           <label description="Work Order Service Task Start Date" languagecode="1033" />
                         </labels>
-                        <control id="ts_workorderservicetaskstartdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_workorderservicetaskstartdate" disabled="false" />
+                        <control id="ts_workorderservicetaskstartdate" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_workorderservicetaskstartdate" disabled="true" />
                       </cell>
                     </row>
                     <row>
@@ -63,18 +63,166 @@
                     </row>
                   </rows>
                 </section>
-                <section name="tab_Oversight_Aircraft" id="0d7896de-2a56-4dae-8c7c-8d8f1e993693" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
+                <section name="tab_Oversight_Location" id="edb98be6-d345-4168-ac22-bc10f1a23c15" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Location Details" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{4d4d76ee-cf73-410f-a070-0de134986b61}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Location" languagecode="1033" />
+                        </labels>
+                        <control id="ts_location" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_location" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_Oversight_Flight" id="0d7896de-2a56-4dae-8c7c-8d8f1e993693" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
+                  <labels>
+                    <label description="Flight Details" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{f53b8f71-f988-45ae-bf3a-6e678f68d911}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Flight Number" languagecode="1033" />
+                        </labels>
+                        <control id="ts_flightnumber" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_flightnumber" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{37ebb7eb-44e0-427a-b03e-a9bf244fd8b6}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Departure Aerodrome" languagecode="1033" />
+                        </labels>
+                        <control id="ts_origin" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_origin" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{F49F4F64-5ABF-ED11-83FF-0022483D7716}</DefaultViewId>
+                            <AvailableViewIds>{F49F4F64-5ABF-ED11-83FF-0022483D7716},{750E041A-F88C-4B3C-887A-1F1946B8D86B},{9FC31307-BF85-EA11-A81F-000D3AAB1E57},{8ED11338-0AD3-4EA2-A31E-7774E9195AEF},{27332682-C585-EA11-A81F-000D3AAB1E57},{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4},{67DB7F7D-2291-4E94-9875-D79572BB6EFC},{F63DB87C-CFE7-4FC1-80CE-D6EE95E07D7E},{CE3D1B20-7143-4293-BBC8-BCE3BBC7ECF0},{A5D1F403-C185-EA11-A81F-000D3AAB1E57},{3507A249-81BF-ED11-83FF-0022483D7716}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{edfbd7c4-bc94-473e-8303-8dce91107272}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Arrival Aerodrome" languagecode="1033" />
+                        </labels>
+                        <control id="ts_destination" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_destination" disabled="false">
+                          <parameters>
+                            <DefaultViewId>{F49F4F64-5ABF-ED11-83FF-0022483D7716}</DefaultViewId>
+                            <AvailableViewIds>{F49F4F64-5ABF-ED11-83FF-0022483D7716},{750E041A-F88C-4B3C-887A-1F1946B8D86B},{9FC31307-BF85-EA11-A81F-000D3AAB1E57},{8ED11338-0AD3-4EA2-A31E-7774E9195AEF},{27332682-C585-EA11-A81F-000D3AAB1E57},{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4},{67DB7F7D-2291-4E94-9875-D79572BB6EFC},{F63DB87C-CFE7-4FC1-80CE-D6EE95E07D7E},{CE3D1B20-7143-4293-BBC8-BCE3BBC7ECF0},{A5D1F403-C185-EA11-A81F-000D3AAB1E57},{3507A249-81BF-ED11-83FF-0022483D7716}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{f2806299-a747-41df-a0cb-3058412c3f89}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Flight Category" languagecode="1033" />
+                        </labels>
+                        <control id="ts_flightcategory" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_flightcategory" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5df4eab3-083d-4877-be6f-4ee6f5f19fb3}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Flight Type" languagecode="1033" />
+                        </labels>
+                        <control id="ts_flighttype" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_flighttype" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{02d09ded-577d-45ed-812a-434f39f59b8c}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="PAX Checked-in" languagecode="1033" />
+                        </labels>
+                        <control id="ts_paxonboard" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_paxonboard" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5f694f23-0460-4956-9e39-e94b7e3a4347}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="PAX Boarded" languagecode="1033" />
+                        </labels>
+                        <control id="ts_paxboarded" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_paxboarded" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{42084743-50e0-413a-8b7b-737a520e8b86}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="CB Checked-in" languagecode="1033" />
+                        </labels>
+                        <control id="ts_cbonboard" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_cbonboard" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{8e315d13-83af-4894-894d-c6426611c379}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="CB Loaded" languagecode="1033" />
+                        </labels>
+                        <control id="ts_cbloaded" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_cbloaded" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{9afec1a9-3565-4b3a-956d-2cffc7cda1f7}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Scheduled Time of Departure/Arrival" languagecode="1033" />
+                        </labels>
+                        <control id="ts_scheduledtime" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_scheduledtime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{0bfe319a-fc99-4eb9-a8c6-a3487d337473}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Actual Time of Departure/Arrival" languagecode="1033" />
+                        </labels>
+                        <control id="ts_actualtime" classid="{5B773807-9FB2-42DB-97C3-7A91EFF8ADFF}" datafieldname="ts_actualtime" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_Oversight_Aircraft" id="06bcbc6e-a05f-4907-921a-b510ded74881" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
                   <labels>
                     <label description="Aircraft Details" languagecode="1033" />
                   </labels>
                   <rows>
                     <row />
                     <row>
+                      <cell id="{426f1d06-97f9-465f-9cad-58145b302522}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Registration (Mark)" languagecode="1033" />
+                        </labels>
+                        <control id="ts_aircraftmark" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_aircraftmark" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5cdc0d8d-7b41-480c-9dcc-4bcb28efe190}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Manufacturer" languagecode="1033" />
+                        </labels>
+                        <control id="ts_aircraftmanufacturer" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_aircraftmanufacturer" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{10a7f0c4-639f-4c25-a68f-089769ef7fd2}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Model" languagecode="1033" />
                         </labels>
                         <control id="ts_aircraftmodel" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_aircraftmodel" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{761341fb-a2c7-4203-bff0-c1a86d72b94b}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Other Model" languagecode="1033" />
+                        </labels>
+                        <control id="ts_aircraftmodelother" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_aircraftmodelother" disabled="false" />
                       </cell>
                     </row>
                   </rows>
@@ -115,7 +263,13 @@
                         <labels>
                           <label description="AOC Operation" languagecode="1033" />
                         </labels>
-                        <control id="ts_aocoperation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_aocoperation" disabled="false" />
+                        <control id="ts_aocoperation" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_aocoperation" disabled="false">
+                          <parameters>
+                            <AvailableViewIds>{DFCAC278-14E6-45D1-8E67-289F2C7082A1},{711F5276-75DB-EC11-A7B5-000D3AE86184}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                            <DefaultViewId>{711F5276-75DB-EC11-A7B5-000D3AE86184}</DefaultViewId>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -123,7 +277,12 @@
                         <labels>
                           <label description="AOC Stakeholder" languagecode="1033" />
                         </labels>
-                        <control id="ts_aocstakeholder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_aocstakeholder" disabled="true" />
+                        <control id="ts_aocstakeholder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_aocstakeholder" disabled="true">
+                          <parameters>
+                            <AvailableViewIds>{A9AF0AB8-861D-4CFA-92A5-C6281FED7FAB}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row>
@@ -139,9 +298,139 @@
                         <labels>
                           <label description="AOC Site" languagecode="1033" />
                         </labels>
-                        <control id="ts_aocsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_aocsite" disabled="true" />
+                        <control id="ts_aocsite" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_aocsite" disabled="true">
+                          <parameters>
+                            <AvailableViewIds>{57F1ECE8-04AC-4178-B2BD-CBD292D2ECC4}</AvailableViewIds>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
+                  </rows>
+                </section>
+                <section name="tab_Oversight_ServiceProviders" id="73bb50d5-4ccc-49f5-bbf7-eeb36e9a3656" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Service Providers" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{969d9de7-38d6-4252-b1b1-65567c03d850}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Passenger Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_passengerservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_passengerservices" disabled="false">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{aae16c5e-a119-4f6f-a8ad-aeaa35647f58}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Ramp Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_rampservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_rampservices" disabled="false">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{bff2d05f-d9bf-4695-b2b2-504dca8340d4}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Cargo Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_cargoservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_cargoservices" disabled="false">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{db8a2808-c077-40ed-b396-8bf6cb18a8a6}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Catering Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_cateringservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_cateringservices" disabled="false">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{800c1312-36bf-41f7-a5eb-215b8fc1ced9}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Grooming Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_groomingservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_groomingservices" disabled="false">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{1dac2dbc-f73a-460f-9878-7a0ca4ec6388}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Security Search Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_securitysearchservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_securitysearchservices" disabled="false">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5f01b67c-b0ad-4e6d-aa6a-accc45e02e95}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Access Control Security Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_accesscontrolsecurityservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_accesscontrolsecurityservices" disabled="false">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fd046efd-67a2-45e9-836c-c37728baa89a}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Other Security Services" languagecode="1033" />
+                        </labels>
+                        <control id="ts_othersecurityservices" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_othersecurityservices" disabled="false">
+                          <parameters>
+                            <DisableViewPicker>true</DisableViewPicker>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section name="tab_Oversight_Other" id="b0dbf0cc-f84e-4b1c-a9c2-4ffe78984fb7" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                  <labels>
+                    <label description="Other" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row />
+                    <row>
+                      <cell id="{ecf8206f-8917-42d4-ab9f-f394568181fa}" locklevel="0" colspan="1" rowspan="6">
+                        <labels>
+                          <label description="Report Details" languagecode="1033" />
+                        </labels>
+                        <control id="ts_reportdetails" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_reportdetails" disabled="false" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
+                    <row />
                   </rows>
                 </section>
               </sections>
@@ -183,16 +472,15 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{ef585c32-48b9-4029-a0cb-fc1de4c2ea32}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{ef585c32-48b9-4029-a0cb-fc1de4c2ea32}" locklevel="0" colspan="2" rowspan="1">
                         <labels>
                           <label description="Legislation Source Filter" languagecode="1033" />
                         </labels>
-                        <control id="ts_legislationsourcefilter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_legislationsourcefilter" disabled="false" />
-                      </cell>
-                      <cell locklevel="0" id="{82b237cd-c744-4aa0-8bd7-673fba088f01}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
+                        <control id="ts_legislationsourcefilter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_legislationsourcefilter" disabled="false">
+                          <parameters>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
                       </cell>
                       <cell locklevel="0" id="{5c55e191-9e9e-47f0-bce2-f5fc39b0a0a0}">
                         <labels>
@@ -206,16 +494,15 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{dcccf2e6-2cc8-4da3-bee4-f899ce1fefda}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{dcccf2e6-2cc8-4da3-bee4-f899ce1fefda}" locklevel="0" colspan="2" rowspan="1">
                         <labels>
                           <label description="Legislation Type Filter" languagecode="1033" />
                         </labels>
-                        <control id="ts_legislationtypefilter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_legislationtypefilter" disabled="false" />
-                      </cell>
-                      <cell locklevel="0" id="{609c41bc-1b6e-42f8-8ea6-9047ae544960}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
+                        <control id="ts_legislationtypefilter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_legislationtypefilter" disabled="false">
+                          <parameters>
+                            <DisableMru>true</DisableMru>
+                          </parameters>
+                        </control>
                       </cell>
                       <cell locklevel="0" id="{60ac22cf-c5eb-4cb2-b290-ed9a054bfb67}">
                         <labels>
@@ -250,9 +537,6 @@
                         </control>
                       </cell>
                     </row>
-                    <row />
-                    <row />
-                    <row />
                   </rows>
                 </section>
                 <section name="QuestionnaireFormSection" id="2ebdf7af-0389-47ff-938e-8f74823d2b97" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
@@ -262,7 +546,7 @@
                   <rows>
                     <row />
                     <row>
-                      <cell rowspan="40" id="{ce439201-79ce-4132-b6e4-ced855c97b53}" showlabel="false" colspan="1" visible="true" auto="true">
+                      <cell rowspan="40" id="{ce439201-79ce-4132-b6e4-ced855c97b53}" showlabel="false" colspan="1" visible="false" auto="true">
                         <labels>
                           <label description="ovs_/html/SurveyRender.html" languagecode="1033" />
                         </labels>
@@ -525,6 +809,7 @@
       </DisplayConditions>
       <formLibraries>
         <Library name="ts_/js/WorkOrderServiceTaskWorkspace.js" libraryUniqueId="{e1db13b3-e2e2-4ac6-8476-2a28e91349f5}" />
+        <Library name="ts_/js/buildprovisiontext.js" libraryUniqueId="{e5b0b9ed-12ce-403c-93ee-99e825ca40d8}" />
       </formLibraries>
       <events>
         <event name="onload" application="false" active="false">
@@ -550,6 +835,21 @@
         <event name="onchange" application="false" active="false" attribute="ts_aocoperation">
           <Handlers>
             <Handler functionName="ROM.WorkOrderServiceTaskWorkspace.AOCOperationOnChange" libraryName="ts_/js/WorkOrderServiceTaskWorkspace.js" handlerUniqueId="{16465a9b-b358-48fa-bfbf-83993f389978}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_origin">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTaskWorkspace.populateFlightCategory" libraryName="ts_/js/WorkOrderServiceTaskWorkspace.js" handlerUniqueId="{525cfc20-083d-4c81-a847-488f3eee66bf}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_destination">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTaskWorkspace.populateFlightCategory" libraryName="ts_/js/WorkOrderServiceTaskWorkspace.js" handlerUniqueId="{10a2575a-538e-45b2-a862-df59683a857b}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_aircraftmanufacturer">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrderServiceTaskWorkspace.aircraftManufacturerOnChange" libraryName="ts_/js/WorkOrderServiceTaskWorkspace.js" handlerUniqueId="{317649ac-e1f8-463e-b1cb-f71e909391cb}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

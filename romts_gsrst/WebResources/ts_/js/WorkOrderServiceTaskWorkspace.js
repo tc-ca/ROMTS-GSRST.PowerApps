@@ -60,7 +60,7 @@ var ROM;
                             if (Form.getAttribute("ts_workorder").getValue() != null) {
                                 setTaskTypeFilteredView(Form);
                                 showHideFieldsByIncidentType(Form);
-                                //aircraftManufacturerOnChange(eContext);
+                                aircraftManufacturerOnChange(eContext);
                             }
                             taskType = Form.getAttribute("ts_tasktype").getValue();
                             //Lock Task Type field if it has a value.
@@ -149,6 +149,24 @@ var ROM;
             UpdateQuestionnaireDefinition(eContext);
         }
         WorkOrderServiceTaskWorkspace.taskTypeOnChange = taskTypeOnChange;
+        function applyMandatoryFieldFromTaskType(eContext) {
+            var fc = eContext.getFormContext();
+            var taskTypeValue = fc.getAttribute("ts_tasktype").getValue();
+            console.log("Retrieved values: check type ");
+            if (taskTypeValue != null && taskTypeValue != undefined && taskTypeValue[0].entityType == "msdyn_servicetasktype") {
+                Xrm.WebApi.retrieveRecord("msdyn_servicetasktype", taskTypeValue[0].id, "?$select=ts_mandatory").then(function success(result) {
+                    console.log("Retrieved values: ts_mandatory: " + result.ts_mandatory);
+                    if (result.ts_mandatory != null && result.ts_mandatory) {
+                        fc.getAttribute("ts_mandatory").setValue(true);
+                    }
+                    else {
+                        fc.getAttribute("ts_mandatory").setValue(false);
+                    }
+                }, function (error) {
+                    console.log(error.message);
+                });
+            }
+        }
         function ToggleQuestionnaire(eContext) {
             console.log("Entering ToggleQuestionnaire ");
             var Form = eContext.getFormContext();
@@ -164,50 +182,6 @@ var ROM;
             // Get Questionnaire definition
             wrCtrl.setVisible(true);
             InitiateSurvey(eContext, wrCtrl, questionnaireDefinition, questionnaireResponse, mode);
-        }
-        function filterLegislationSource(eContext) {
-            var formContext = eContext.getFormContext();
-            var workOrderValue = formContext.getAttribute("ts_workorder").getValue();
-            var workOrderId = workOrderValue ? workOrderValue[0].id : "";
-            Xrm.WebApi.retrieveRecord("msdyn_workorder", workOrderId, "?$select=ovs_operationtypeid&$expand=ovs_operationtypeid($expand=owningbusinessunit($select=name))").then(function (workOrder) {
-                if (workOrder != null && workOrder.ovs_operationtypeid != null && workOrder.ovs_operationtypeid.owningbusinessunit.name != null) {
-                    if (workOrder.ovs_operationtypeid.owningbusinessunit.name.startsWith("Aviation")) {
-                        //Change Legislation Source filter to use
-                        var viewId = '{145AC9F2-4F7E-43DF-BEBD-442CB4C1F662}';
-                        var entityName = "qm_tylegislationsource";
-                        var fetchXml = [
-                            "<fetch>",
-                            "  <entity name='qm_tylegislationsource'>",
-                            "    <link-entity name='ts_tylegislationsource_ovs_operationtype' from='qm_tylegislationsourceid' to='qm_tylegislationsourceid' intersect='true'>",
-                            "      <filter>",
-                            "        <condition attribute='ovs_operationtypeid' operator='eq' value='", workOrder.ovs_operationtypeid.ovs_operationtypeid, "' uitype='ts_tylegislationsource_ovs_operationtype'/>",
-                            "      </filter>",
-                            "    </link-entity>",
-                            "  </entity>",
-                            "</fetch>"
-                        ].join("");
-                        var layoutXml = '<grid name="resultset" object="10010" jump="name" select="1" icon="1" preview="1"><row name="result" id="qm_tylegislationsourceid"><cell name="qm_name" width="200" /></row></grid>';
-                        formContext.getControl("ts_legislationsourcefilter").addCustomView(viewId, entityName, "", fetchXml, layoutXml, true);
-                    }
-                }
-            });
-        }
-        function workOrderIsDraft(eContext) {
-            return __awaiter(this, void 0, void 0, function () {
-                var form, workOrderValue, workOrderId, workOrder;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            form = eContext.getFormContext();
-                            workOrderValue = form.getAttribute("ts_workorder").getValue();
-                            workOrderId = workOrderValue ? workOrderValue[0].id : "";
-                            return [4 /*yield*/, Xrm.WebApi.retrieveRecord("msdyn_workorder", workOrderId, "?$select=ts_state")];
-                        case 1:
-                            workOrder = _a.sent();
-                            return [2 /*return*/, workOrder.ts_state == 717750000 /* Draft */];
-                    }
-                });
-            });
         }
         function UpdateQuestionnaireDefinition(eContext) {
             return __awaiter(this, void 0, void 0, function () {
@@ -413,6 +387,248 @@ var ROM;
                 }
             }, function error(error) {
                 Xrm.Navigation.openAlertDialog({ text: error.message });
+            });
+        }
+        function populateFlightCategory(eContext) {
+            var form = eContext.getFormContext();
+            var originValue = form.getAttribute("ts_origin").getValue();
+            var destinationValue = form.getAttribute("ts_destination").getValue();
+            var originCountry;
+            var distinationCountry;
+            if (originValue != null && destinationValue != null) {
+                Xrm.WebApi.retrieveRecord("msdyn_functionallocation", originValue[0].id, "?$select=_ts_country_value ").then(function success(result1) {
+                    originCountry = result1._ts_country_value;
+                    Xrm.WebApi.retrieveRecord("msdyn_functionallocation", destinationValue[0].id, "?$select=_ts_country_value ").then(function success(result2) {
+                        distinationCountry = result2._ts_country_value;
+                        if (distinationCountry == "208ef8a1-8e75-eb11-a812-000d3af3fac7" && originCountry == "208ef8a1-8e75-eb11-a812-000d3af3fac7") { // Canada
+                            // Domestic
+                            form.getAttribute("ts_flightcategory").setValue(741130000 /* Domestic */);
+                        }
+                        else if ((distinationCountry != "7c01709f-8e75-eb11-a812-000d3af3f6ab" && distinationCountry != "208ef8a1-8e75-eb11-a812-000d3af3fac7")
+                            || (originCountry != "7c01709f-8e75-eb11-a812-000d3af3f6ab" && originCountry != "208ef8a1-8e75-eb11-a812-000d3af3fac7")) { //Not in USA or Canada
+                            //International
+                            form.getAttribute("ts_flightcategory").setValue(741130001 /* International */);
+                        }
+                        else {
+                            //Transborder
+                            form.getAttribute("ts_flightcategory").setValue(741130002 /* Transborder */);
+                        }
+                    }, function error(error) {
+                        Xrm.Navigation.openAlertDialog({ text: error.message });
+                    });
+                }, function error(error) {
+                    Xrm.Navigation.openAlertDialog({ text: error.message });
+                });
+            }
+        }
+        WorkOrderServiceTaskWorkspace.populateFlightCategory = populateFlightCategory;
+        function showHideFieldsByIncidentType(form) {
+            var workOrderValue = form.getAttribute("ts_workorder").getValue();
+            var workOrderId = workOrderValue ? workOrderValue[0].id : "";
+            var fieldsMap = [
+                ['ts_vlocation', 'ts_location'],
+                ['ts_vflightnumber', 'ts_flightnumber'],
+                ['ts_vorigin', 'ts_origin'],
+                ['ts_vdestination', 'ts_destination'],
+                ['ts_vflightcategory', 'ts_flightcategory'],
+                ['ts_vflighttype', 'ts_flighttype'],
+                ['ts_vreportdetails', 'ts_reportdetails'],
+                ['ts_vpaxcheckedin', 'ts_paxonboard'],
+                ['ts_vpaxboarded', 'ts_paxboarded'],
+                ['ts_vcbcheckedin', 'ts_cbonboard'],
+                ['ts_vcbloaded', 'ts_cbloaded'],
+                ['ts_vscheduledtime', 'ts_scheduledtime'],
+                ['ts_vactualtime', 'ts_actualtime'],
+                ['ts_vregistration', 'ts_aircraftmark'],
+                ['ts_vmanufacturer', 'ts_aircraftmanufacturer'],
+                ['ts_vmodel', 'ts_aircraftmodel'],
+                ['ts_vbrandname', 'ts_brandname'],
+                ['ts_vaocoperation', 'ts_aocoperation'],
+                ['ts_vaocstakeholder', 'ts_aocstakeholder'],
+                ['ts_vaocoperationtype', 'ts_aocoperationtype'],
+                ['ts_vaocsite', 'ts_aocsite'],
+                ['ts_vpassengerservices', 'ts_passengerservices'],
+                ['ts_vrampservices', 'ts_rampservices'],
+                ['ts_vcargoservices', 'ts_cargoservices'],
+                ['ts_vcateringservices', 'ts_cateringservices'],
+                ['ts_vgroomingservices', 'ts_groomingservices'],
+                ['ts_vsecuritysearchservices', 'ts_securitysearchservices'],
+                ['ts_vaccesscontrolsecurityservices', 'ts_accesscontrolsecurityservices'],
+                ['ts_vothersecurityservices', 'ts_othersecurityservices']
+            ];
+            Xrm.WebApi.retrieveRecord("msdyn_workorder", workOrderId, "?$select=_msdyn_primaryincidenttype_value&$expand=msdyn_primaryincidenttype ").then(function success(result) {
+                fieldsMap.forEach(function (item, index) {
+                    var isVisiable = false;
+                    if (result["msdyn_primaryincidenttype"][item[0]] == true) {
+                        isVisiable = true;
+                    }
+                    var control = form.getControl(item[1]);
+                    if (control != null) {
+                        control.setVisible(isVisiable);
+                    }
+                });
+            }, function error(error) {
+                Xrm.Navigation.openAlertDialog({ text: error.message });
+            });
+        }
+        function showHideFieldsByOperationType(form, operationTypeId, operationTypeOwnerId) {
+            if (operationTypeOwnerId != "e2e3910d-a41f-ec11-b6e6-0022483cb5c7") { //Owner is AvSec
+                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_AirCarrier').setVisible(false);
+                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Location').setVisible(false);
+                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_ServiceProviders').setVisible(false);
+                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Aircraft').setVisible(false);
+                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Flight').setVisible(false);
+                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Other').setVisible(false);
+            }
+            else {
+                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_AirCarrier').setVisible(true);
+                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Location').setVisible(true);
+                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_ServiceProviders').setVisible(true);
+                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Aircraft').setVisible(true);
+                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Flight').setVisible(true);
+                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Other').setVisible(true);
+            }
+        }
+        function setAOCSiteFilteredView(form, regionAttributeId, stakeholderTypeAttributeId, operationTypeAttributeId) {
+            var viewId = '{6E57251F-F695-4076-9498-49AB892154B7}';
+            var entityName = "msdyn_functionallocation";
+            var viewDisplayName = Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "FilteredSites");
+            var fetchXml = '<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true" returntotalrecordcount="true" page="1" count="25" no-lock="false"><entity name="msdyn_functionallocation"><attribute name="statecode"/><attribute name="msdyn_functionallocationid"/><attribute name="msdyn_name"/><filter>' + '</filter><filter><condition attribute="ts_region" operator="eq" value="' + regionAttributeId + '"/></filter><filter><condition attribute="ts_sitestatus" operator="ne" value="717750001" /></filter><order attribute="msdyn_name" descending="false"/><link-entity name="ovs_operation" from="ts_site" to="msdyn_functionallocationid"><filter type="and"><condition attribute="ovs_operationtypeid" operator="eq" value=" ' + operationTypeAttributeId + '"/><condition attribute="ts_stakeholder" operator="eq" value="' + stakeholderTypeAttributeId + '"/><condition attribute="ts_operationalstatus" operator="eq" value="717750000"/></filter></link-entity></entity></fetch>';
+            var layoutXml = '<grid name="resultset" object="10010" jump="name" select="1" icon="1" preview="1"><row name="result" id="msdyn_functionallocationid"><cell name="msdyn_name" width="200" /></row></grid>';
+            form.getControl("ts_aocsite").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
+        }
+        function AOCOperationOnChange(eContext) {
+            var form = eContext.getFormContext();
+            var aocOperation = form.getAttribute("ts_aocoperation").getValue();
+            if (aocOperation != null) {
+                Xrm.WebApi.retrieveRecord("ovs_operation", aocOperation[0].id, "?$select=_ts_stakeholder_value,_ovs_operationtypeid_value,_ts_site_value ").then(function success(result) {
+                    var lookup = new Array();
+                    lookup[0] = new Object();
+                    if (result._ovs_operationtypeid_value != null) {
+                        lookup[0].id = result._ovs_operationtypeid_value;
+                        lookup[0].name = result["_ovs_operationtypeid_value@OData.Community.Display.V1.FormattedValue"];
+                        lookup[0].entityType = result["_ovs_operationtypeid_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
+                        form.getAttribute("ts_aocoperationtype").setValue(lookup);
+                    }
+                    lookup = new Array();
+                    lookup[0] = new Object();
+                    if (result._ts_stakeholder_value != null) {
+                        lookup[0].id = result._ts_stakeholder_value;
+                        lookup[0].name = result["_ts_stakeholder_value@OData.Community.Display.V1.FormattedValue"];
+                        lookup[0].entityType = result["_ts_stakeholder_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
+                        form.getAttribute("ts_aocstakeholder").setValue(lookup);
+                    }
+                    lookup = new Array();
+                    lookup[0] = new Object();
+                    if (result._ts_site_value != null) {
+                        lookup[0].id = result._ts_site_value;
+                        lookup[0].name = result["_ts_site_value@OData.Community.Display.V1.FormattedValue"];
+                        lookup[0].entityType = result["_ts_site_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
+                        form.getAttribute("ts_aocsite").setValue(lookup);
+                    }
+                }, function error(error) {
+                    Xrm.Navigation.openAlertDialog({ text: error.message });
+                });
+            }
+            else {
+                form.getAttribute("ts_aocoperationtype").setValue(null);
+                form.getAttribute("ts_aocstakeholder").setValue(null);
+                form.getAttribute("ts_aocsite").setValue(null);
+            }
+        }
+        WorkOrderServiceTaskWorkspace.AOCOperationOnChange = AOCOperationOnChange;
+        function onAOCFieldsOnChange(eContext) {
+            var form = eContext.getFormContext();
+            var aocStakeholder = form.getAttribute("ts_aocstakeholder").getValue();
+            var aocOperationtype = form.getAttribute("ts_aocoperationtype").getValue();
+            if (aocStakeholder != null && aocOperationtype != null) {
+                setAOCSiteFilteredView(form, aocRegion, aocStakeholder[0].id, aocOperationtype[0].id);
+            }
+        }
+        WorkOrderServiceTaskWorkspace.onAOCFieldsOnChange = onAOCFieldsOnChange;
+        function aircraftManufacturerOnChange(eContext) {
+            setTimeout(function () {
+                var form = eContext.getFormContext();
+                var aircraftmanufacturer = form.getAttribute("ts_aircraftmanufacturer").getValue();
+                var options = form.getControl("ts_aircraftmodel").getOptions();
+                for (var i = 0; i < options.length; i++)
+                    form.getControl("ts_aircraftmodel").removeOption(options[i].value);
+                form.getControl("ts_aircraftmodelother").setVisible(false);
+                form.getControl("ts_aircraftmodel").setVisible(true);
+                if (aircraftmanufacturer == 741130000 /* Boeing */) {
+                    for (var i = 1; i <= 11; i++) {
+                        form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
+                    }
+                }
+                else if (aircraftmanufacturer == 741130001 /* Airbus */) {
+                    for (var i = 12; i <= 22; i++) {
+                        form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
+                    }
+                }
+                else if (aircraftmanufacturer == 741130002 /* DeHavilland */) {
+                    for (var i = 23; i <= 24; i++) {
+                        form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
+                    }
+                }
+                else if (aircraftmanufacturer == 741130003 /* Bombardier */) {
+                    for (var i = 25; i <= 25; i++) {
+                        form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
+                    }
+                }
+                else if (aircraftmanufacturer == 741130004 /* Embraer */) {
+                    for (var i = 26; i <= 29; i++) {
+                        form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
+                    }
+                }
+                else if (aircraftmanufacturer == 741130005 /* Other */) {
+                    form.getControl("ts_aircraftmodelother").setVisible(true);
+                    form.getControl("ts_aircraftmodel").setVisible(false);
+                }
+            }, 500);
+        }
+        WorkOrderServiceTaskWorkspace.aircraftManufacturerOnChange = aircraftManufacturerOnChange;
+        function filterLegislationSource(eContext) {
+            var formContext = eContext.getFormContext();
+            var workOrderValue = formContext.getAttribute("ts_workorder").getValue();
+            var workOrderId = workOrderValue ? workOrderValue[0].id : "";
+            Xrm.WebApi.retrieveRecord("msdyn_workorder", workOrderId, "?$select=ovs_operationtypeid&$expand=ovs_operationtypeid($expand=owningbusinessunit($select=name))").then(function (workOrder) {
+                if (workOrder != null && workOrder.ovs_operationtypeid != null && workOrder.ovs_operationtypeid.owningbusinessunit.name != null) {
+                    if (workOrder.ovs_operationtypeid.owningbusinessunit.name.startsWith("Aviation")) {
+                        //Change Legislation Source filter to use
+                        var viewId = '{145AC9F2-4F7E-43DF-BEBD-442CB4C1F662}';
+                        var entityName = "qm_tylegislationsource";
+                        var fetchXml = [
+                            "<fetch>",
+                            "  <entity name='qm_tylegislationsource'>",
+                            "    <link-entity name='ts_tylegislationsource_ovs_operationtype' from='qm_tylegislationsourceid' to='qm_tylegislationsourceid' intersect='true'>",
+                            "      <filter>",
+                            "        <condition attribute='ovs_operationtypeid' operator='eq' value='", workOrder.ovs_operationtypeid.ovs_operationtypeid, "' uitype='ts_tylegislationsource_ovs_operationtype'/>",
+                            "      </filter>",
+                            "    </link-entity>",
+                            "  </entity>",
+                            "</fetch>"
+                        ].join("");
+                        var layoutXml = '<grid name="resultset" object="10010" jump="name" select="1" icon="1" preview="1"><row name="result" id="qm_tylegislationsourceid"><cell name="qm_name" width="200" /></row></grid>';
+                        formContext.getControl("ts_legislationsourcefilter").addCustomView(viewId, entityName, "", fetchXml, layoutXml, true);
+                    }
+                }
+            });
+        }
+        function workOrderIsDraft(eContext) {
+            return __awaiter(this, void 0, void 0, function () {
+                var form, workOrderValue, workOrderId, workOrder;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            form = eContext.getFormContext();
+                            workOrderValue = form.getAttribute("ts_workorder").getValue();
+                            workOrderId = workOrderValue ? workOrderValue[0].id : "";
+                            return [4 /*yield*/, Xrm.WebApi.retrieveRecord("msdyn_workorder", workOrderId, "?$select=ts_state")];
+                        case 1:
+                            workOrder = _a.sent();
+                            return [2 /*return*/, workOrder.ts_state == 717750000 /* Draft */];
+                    }
+                });
             });
         }
         function getSurveyLocal() {
@@ -998,99 +1214,6 @@ var ROM;
                 if (control && control.getDisabled && !control.getDisabled()) {
                     control.setDisabled(true);
                 }
-            });
-        }
-        function applyMandatoryFieldFromTaskType(eContext) {
-            var fc = eContext.getFormContext();
-            var taskTypeValue = fc.getAttribute("ts_tasktype").getValue();
-            console.log("Retrieved values: check type ");
-            if (taskTypeValue != null && taskTypeValue != undefined && taskTypeValue[0].entityType == "msdyn_servicetasktype") {
-                Xrm.WebApi.retrieveRecord("msdyn_servicetasktype", taskTypeValue[0].id, "?$select=ts_mandatory").then(function success(result) {
-                    console.log("Retrieved values: ts_mandatory: " + result.ts_mandatory);
-                    if (result.ts_mandatory != null && result.ts_mandatory) {
-                        fc.getAttribute("ts_mandatory").setValue(true);
-                    }
-                    else {
-                        fc.getAttribute("ts_mandatory").setValue(false);
-                    }
-                }, function (error) {
-                    console.log(error.message);
-                });
-            }
-        }
-        function showHideFieldsByOperationType(form, operationTypeId, operationTypeOwnerId) {
-            if (operationTypeOwnerId != "e2e3910d-a41f-ec11-b6e6-0022483cb5c7") { //Owner is AvSec
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_AirCarrier').setVisible(false);
-                //form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Location').setVisible(false);
-                //form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_ServiceProviders').setVisible(false);
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Aircraft').setVisible(false);
-                //form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Flight').setVisible(false);
-                //form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Other').setVisible(false);
-            }
-            else {
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_AirCarrier').setVisible(true);
-                //form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Location').setVisible(true);
-                //form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_ServiceProviders').setVisible(true);
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Aircraft').setVisible(true);
-                //form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Flight').setVisible(true);
-                //form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Other').setVisible(true);
-            }
-        }
-        function setAOCSiteFilteredView(form, regionAttributeId, stakeholderTypeAttributeId, operationTypeAttributeId) {
-            var viewId = '{6E57251F-F695-4076-9498-49AB892154B7}';
-            var entityName = "msdyn_functionallocation";
-            var viewDisplayName = Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "FilteredSites");
-            var fetchXml = '<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true" returntotalrecordcount="true" page="1" count="25" no-lock="false"><entity name="msdyn_functionallocation"><attribute name="statecode"/><attribute name="msdyn_functionallocationid"/><attribute name="msdyn_name"/><filter>' + '</filter><filter><condition attribute="ts_region" operator="eq" value="' + regionAttributeId + '"/></filter><filter><condition attribute="ts_sitestatus" operator="ne" value="717750001" /></filter><order attribute="msdyn_name" descending="false"/><link-entity name="ovs_operation" from="ts_site" to="msdyn_functionallocationid"><filter type="and"><condition attribute="ovs_operationtypeid" operator="eq" value=" ' + operationTypeAttributeId + '"/><condition attribute="ts_stakeholder" operator="eq" value="' + stakeholderTypeAttributeId + '"/><condition attribute="ts_operationalstatus" operator="eq" value="717750000"/></filter></link-entity></entity></fetch>';
-            var layoutXml = '<grid name="resultset" object="10010" jump="name" select="1" icon="1" preview="1"><row name="result" id="msdyn_functionallocationid"><cell name="msdyn_name" width="200" /></row></grid>';
-            form.getControl("ts_aocsite").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
-        }
-        function showHideFieldsByIncidentType(form) {
-            var workOrderValue = form.getAttribute("ts_workorder").getValue();
-            var workOrderId = workOrderValue ? workOrderValue[0].id : "";
-            var fieldsMap = [
-                //['ts_vlocation', 'ts_location'],
-                //['ts_vflightnumber', 'ts_flightnumber'],
-                //['ts_vorigin', 'ts_origin'],
-                //['ts_vdestination', 'ts_destination'],
-                //['ts_vflightcategory', 'ts_flightcategory'],
-                //['ts_vflighttype', 'ts_flighttype'],
-                //['ts_vreportdetails', 'ts_reportdetails'],
-                //['ts_vpaxcheckedin', 'ts_paxonboard'],
-                //['ts_vpaxboarded', 'ts_paxboarded'],
-                //['ts_vcbcheckedin', 'ts_cbonboard'],
-                //['ts_vcbloaded', 'ts_cbloaded'],
-                //['ts_vscheduledtime', 'ts_scheduledtime'],
-                //['ts_vactualtime', 'ts_actualtime'],
-                //['ts_vregistration', 'ts_aircraftmark'],
-                //['ts_vmanufacturer', 'ts_aircraftmanufacturer'],
-                ['ts_vmodel', 'ts_aircraftmodel'],
-                ['ts_vbrandname', 'ts_brandname'],
-                ['ts_vaocoperation', 'ts_aocoperation'],
-                ['ts_vaocstakeholder', 'ts_aocstakeholder'],
-                ['ts_vaocoperationtype', 'ts_aocoperationtype'],
-                ['ts_vaocsite', 'ts_aocsite'],
-                //['ts_vpassengerservices', 'ts_passengerservices'],
-                //['ts_vrampservices', 'ts_rampservices'],
-                //['ts_vcargoservices', 'ts_cargoservices'],
-                //['ts_vcateringservices', 'ts_cateringservices'],
-                //['ts_vgroomingservices', 'ts_groomingservices'],
-                //['ts_vsecuritysearchservices', 'ts_securitysearchservices'],
-                //['ts_vaccesscontrolsecurityservices', 'ts_accesscontrolsecurityservices'],
-                //['ts_vothersecurityservices', 'ts_othersecurityservices']
-            ];
-            Xrm.WebApi.retrieveRecord("msdyn_workorder", workOrderId, "?$select=_msdyn_primaryincidenttype_value&$expand=msdyn_primaryincidenttype ").then(function success(result) {
-                fieldsMap.forEach(function (item, index) {
-                    var isVisiable = false;
-                    if (result["msdyn_primaryincidenttype"][item[0]] == true) {
-                        isVisiable = true;
-                    }
-                    var control = form.getControl(item[1]);
-                    if (control != null) {
-                        control.setVisible(isVisiable);
-                    }
-                });
-            }, function error(error) {
-                Xrm.Navigation.openAlertDialog({ text: error.message });
             });
         }
     })(WorkOrderServiceTaskWorkspace = ROM.WorkOrderServiceTaskWorkspace || (ROM.WorkOrderServiceTaskWorkspace = {}));
