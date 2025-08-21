@@ -16,6 +16,25 @@
         <Button Alt="$LocLabels:ts_workorderservicetaskworkspace.Button.Unlock.Form.Alt" Command="ts_workorderservicetaskworkspace.Button.Unlock.Form" Id="ts_workorderservicetaskworkspace.Button.Unlock.Form" LabelText="$LocLabels:ts_workorderservicetaskworkspace.Button.Unlock.Form.LabelText" Sequence="1" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts_workorderservicetaskworkspace.Button.Unlock.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts_workorderservicetaskworkspace.Button.Unlock.Form.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.ts_workorderservicetaskworkspace.Flyout.PrintQuestionnaire.CustomAction" Location="Mscrm.Form.ts_workorderservicetaskworkspace.MainTab.Save.Controls._children" Sequence="34">
+      <CommandUIDefinition>
+        <FlyoutAnchor Command="Mscrm.Enabled" Id="ts.ts_workorderservicetaskworkspace.Flyout.PrintQuestionnaire" LabelText="$LocLabels:ts.ts_workorderservicetaskworkspace.Flyout.PrintQuestionnaire.LabelText" Sequence="34" TemplateAlias="o1">
+          <Menu Id="ts.ts_workorderservicetaskworkspace.Flyout.PrintQuestionnaire.Menu">
+            <MenuSection Id="ts.ts_workorderservicetaskworkspace.Section5.Section" Sequence="5" DisplayMode="Menu16">
+              <Controls Id="ts.ts_workorderservicetaskworkspace.Section5.Section.Controls">
+                <Button Alt="$LocLabels:ts.ts_workorderservicetaskworkspace.TSISPrintSurvey.Form.Alt" Command="ts.ts_workorderservicetaskworkspace.TSIS.PrintQuestionnaire" Id="ts.ts_workorderservicetaskworkspace.TSISPrintSurvey.Form" LabelText="$LocLabels:ts.ts_workorderservicetaskworkspace.TSISPrintSurvey.Form.LabelText" Sequence="10" ToolTipTitle="$LocLabels:ts.ts_workorderservicetaskworkspace.TSISPrintSurvey.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_workorderservicetaskworkspace.TSISPrintSurvey.Form.ToolTipDescription" />
+                <Button Alt="$LocLabels:ts.ts_workorderservicetaskworkspace.TSISPrintSurveyOnlyQuestions.Form.Alt" Command="ts.ts_workorderservicetaskworkspace.PrintQuestionnaireOnlyQuestions" Id="ts.ts_workorderservicetaskworkspace.TSISPrintSurveyOnlyQuestions.Form" LabelText="$LocLabels:ts.ts_workorderservicetaskworkspace.TSISPrintSurveyOnlyQuestions.Form.LabelText" Sequence="15" ToolTipTitle="$LocLabels:ts.ts_workorderservicetaskworkspace.TSISPrintSurveyOnlyQuestions.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_workorderservicetaskworkspace.TSISPrintSurveyOnlyQuestions.Form.ToolTipDescription" />
+              </Controls>
+            </MenuSection>
+          </Menu>
+        </FlyoutAnchor>
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.ts_workorderservicetaskworkspace.OpenWorkOrderServiceTask.CustomAction" Location="Mscrm.Form.ts_workorderservicetaskworkspace.MainTab.Save.Controls._children" Sequence="38">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.ts_workorderservicetaskworkspace.OpenWorkOrderServiceTask.Alt" Command="ts.ts_workorderservicetaskworkspace.OpenWorkOrderServiceTask" Id="ts.ts_workorderservicetaskworkspace.OpenWorkOrderServiceTask" LabelText="$LocLabels:ts.ts_workorderservicetaskworkspace.OpenWorkOrderServiceTask.LabelText" Sequence="38" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.ts_workorderservicetaskworkspace.OpenWorkOrderServiceTask.ToolTipTitle" ToolTipDescription="$LocLabels:ts.ts_workorderservicetaskworkspace.OpenWorkOrderServiceTask.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.ts_workorderservicetaskworkspace.TSISMarkComplete.Form.CustomAction" Location="Mscrm.Form.ts_workorderservicetaskworkspace.MainTab.Save.Controls._children" Sequence="0">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts_workorderservicetaskworkspace.TSISMarkComplete.Form.Alt" Command="ts_workorderservicetaskworkspace.TSISMarkComplete.Form.Command" Id="ts_workorderservicetaskworkspace.TSISMarkComplete.Form" Image32by32="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_32.png" Image16by16="$webresource:msdyn_/Icons/CommandBar/SaveAsComplete_16.png" LabelText="$LocLabels:ts_workorderservicetaskworkspace.TSISMarkComplete.Form.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts_workorderservicetaskworkspace.TSISMarkComplete.Form.ToolTipTitle" ToolTipDescription="$LocLabels:ts_workorderservicetaskworkspace.TSISMarkComplete.Form.ToolTipDescription" ModernImage="SaveAsComplete" />
@@ -37,6 +56,17 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="ts.ts_workorderservicetaskworkspace.OpenWorkOrderServiceTask">
+      <EnableRules>
+        <EnableRule Id="ts_workorderservicetaskworkspace.isSystemAdmin" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="openRelatedWorkOrderServiceTask" Library="$webresource:ovs_/js/WorkOrderServiceTaskWorkspaceRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="ts.ts_workorderservicetaskworkspace.PreviewProvisionText">
       <EnableRules>
         <EnableRule Id="ts.ts_workorderservicetaskworkspace.isTaskTypeCustomQuestionnaire" />
@@ -44,6 +74,29 @@
       <DisplayRules />
       <Actions>
         <JavaScriptFunction FunctionName="previewProvisionText" Library="$webresource:ovs_/js/WorkOrderServiceTaskWorkspaceRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ts_workorderservicetaskworkspace.PrintQuestionnaireOnlyQuestions">
+      <EnableRules>
+        <EnableRule Id="ts.ts_workorderservicetaskworkspace.TSIS.hasQuestionnaireDefinition" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="printQuestionnaire" Library="$webresource:ovs_/js/WorkOrderServiceTaskWorkspaceRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
+          <BoolParameter Value="true" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.ts_workorderservicetaskworkspace.TSIS.PrintQuestionnaire">
+      <EnableRules>
+        <EnableRule Id="ts.ts_workorderservicetaskworkspace.TSIS.hasQuestionnaireDefinition" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="printQuestionnaire" Library="$webresource:ovs_/js/WorkOrderServiceTaskWorkspaceRibbon.js">
           <CrmParameter Value="PrimaryControl" />
         </JavaScriptFunction>
       </Actions>
@@ -86,11 +139,21 @@
           <CrmParameter Value="PrimaryControl" />
         </CustomRule>
       </EnableRule>
+      <EnableRule Id="ts.ts_workorderservicetaskworkspace.TSIS.hasQuestionnaireDefinition">
+        <CustomRule FunctionName="hasQuestionnaireDefinition" Library="$webresource:ovs_/js/WorkOrderServiceTaskWorkspaceRibbon.js" Default="false">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
       <EnableRule Id="ts_workorderservicetaskworkspace.IsCompleted">
         <ValueRule Field="statuscode" Value="741130001" />
       </EnableRule>
       <EnableRule Id="ts_workorderservicetaskworkspace.IsNotCompleted">
         <ValueRule Field="statuscode" Value="741130001" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="ts_workorderservicetaskworkspace.isSystemAdmin">
+        <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
+          <StringParameter Value="System Administrator" />
+        </CustomRule>
       </EnableRule>
       <EnableRule Id="ts_workorderservicetaskworkspace.isSystemOrBusinessAdmins">
         <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
@@ -149,6 +212,71 @@
     <LocLabel Id="ts.ts_workorderservicetaskworkspace.Button.PreviewProvisionText.ToolTipTitle">
       <Titles>
         <Title description="Preview Provision Text" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_workorderservicetaskworkspace.Flyout.PrintQuestionnaire.LabelText">
+      <Titles>
+        <Title description="Print Questionnaire" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_workorderservicetaskworkspace.OpenWorkOrderServiceTask.Alt">
+      <Titles>
+        <Title description="Work Order Service Task" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_workorderservicetaskworkspace.OpenWorkOrderServiceTask.LabelText">
+      <Titles>
+        <Title description="Work Order Service Task" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_workorderservicetaskworkspace.OpenWorkOrderServiceTask.ToolTipDescription">
+      <Titles>
+        <Title description="Work Order Service Task" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_workorderservicetaskworkspace.OpenWorkOrderServiceTask.ToolTipTitle">
+      <Titles>
+        <Title description="Work Order Service Task" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_workorderservicetaskworkspace.TSISPrintSurvey.Form.Alt">
+      <Titles>
+        <Title description="Print Questionnaire" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_workorderservicetaskworkspace.TSISPrintSurvey.Form.LabelText">
+      <Titles>
+        <Title description="Print Questionnaire" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_workorderservicetaskworkspace.TSISPrintSurvey.Form.ToolTipDescription">
+      <Titles>
+        <Title description="Print Questionnaire" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_workorderservicetaskworkspace.TSISPrintSurvey.Form.ToolTipTitle">
+      <Titles>
+        <Title description="Print Questionnaire" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_workorderservicetaskworkspace.TSISPrintSurveyOnlyQuestions.Form.Alt">
+      <Titles>
+        <Title description="Print Questionnaire (Only Questions)" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_workorderservicetaskworkspace.TSISPrintSurveyOnlyQuestions.Form.LabelText">
+      <Titles>
+        <Title description="Print Questionnaire (Only Questions)" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_workorderservicetaskworkspace.TSISPrintSurveyOnlyQuestions.Form.ToolTipDescription">
+      <Titles>
+        <Title description="Print Questionnaire (Only Questions)" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ts_workorderservicetaskworkspace.TSISPrintSurveyOnlyQuestions.Form.ToolTipTitle">
+      <Titles>
+        <Title description="Print Questionnaire (Only Questions)" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts_workorderservicetaskworkspace.Button.Unlock.Form.Alt">

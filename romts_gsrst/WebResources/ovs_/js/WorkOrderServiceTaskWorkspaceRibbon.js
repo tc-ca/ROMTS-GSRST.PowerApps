@@ -84,106 +84,106 @@ function isStatusReasonNew(primaryControl) {
     return statusReason == 741130003;
 }
 
-////Returns true if the Work Order Service Task has a questionnaire definition.
+//Returns true if the Work Order Service Task has a questionnaire definition.
 //Used for hiding Print Questionnaire ribbon button when no survey exists.
-//function hasQuestionnaireDefinition(primaryControl) {
-//    var questionnaireDefinition = primaryControl.getAttribute("ts_questionnairedefinition").getValue();
-//    return questionnaireDefinition != null;
-//}
+function hasQuestionnaireDefinition(primaryControl) {
+    var questionnaireDefinition = primaryControl.getAttribute("ts_questionnairedefinition").getValue();
+    return questionnaireDefinition != null;
+}
 
-//async function printQuestionnaire(primaryControl, questionsOnly = false) {
-//    let operationData = await retrieveWorkOrderOperationData(primaryControl);
-//    var printWindow = window.open("../WebResources/ts_/html/surveyRenderPrint.html", "SurveyPrint");
-//    //Provide printWindow with data required to render survey before survey is initialized in surveyRenderPrintScript below
-//    printWindow.questionnaireDefinition = primaryControl.getAttribute("ts_questionnairedefinition").getValue();
-//    // Do not pass responses if we are only printing the questions
-//    printWindow.questionnaireResponse = questionsOnly
-//        ? null
-//        : primaryControl.getAttribute("ts_questionnaireresponse").getValue();
-//    languageId = Xrm.Utility.getGlobalContext().userSettings.languageId;
-//    printWindow.locale = languageId == 1036 ? "fr" : "en";
-//    printWindow.operationList = operationData.operations;
-//    printWindow.activityTypeOperationTypeIdsList = operationData.activityTypeOperationTypeIds;
-//    printWindow.questionsOnly = questionsOnly;
-//    printWindow.onload = function () {
-//        //Run surveyRenderPrint.js in printWindow
-//        var surveyRenderPrintScript = printWindow.document.createElement("script");
-//        surveyRenderPrintScript.src = "../../ts_/js/surveyRenderPrint.js";
-//        printWindow.document.body.appendChild(surveyRenderPrintScript);
+async function printQuestionnaire(primaryControl, questionsOnly = false) {
+    let operationData = await retrieveWorkOrderOperationData(primaryControl);
+    var printWindow = window.open("../WebResources/ts_/html/surveyRenderPrint.html", "SurveyPrint");
+    //Provide printWindow with data required to render survey before survey is initialized in surveyRenderPrintScript below
+    printWindow.questionnaireDefinition = primaryControl.getAttribute("ts_questionnairedefinition").getValue();
+    // Do not pass responses if we are only printing the questions
+    printWindow.questionnaireResponse = questionsOnly
+        ? null
+        : primaryControl.getAttribute("ts_questionnaireresponse").getValue();
+    languageId = Xrm.Utility.getGlobalContext().userSettings.languageId;
+    printWindow.locale = languageId == 1036 ? "fr" : "en";
+    printWindow.operationList = operationData.operations;
+    printWindow.activityTypeOperationTypeIdsList = operationData.activityTypeOperationTypeIds;
+    printWindow.questionsOnly = questionsOnly;
+    printWindow.onload = function () {
+        //Run surveyRenderPrint.js in printWindow
+        var surveyRenderPrintScript = printWindow.document.createElement("script");
+        surveyRenderPrintScript.src = "../../ts_/js/surveyRenderPrint.js";
+        printWindow.document.body.appendChild(surveyRenderPrintScript);
 
-//        //Add Word Order Service Task and Work Order Details at the top
+        //Add Word Order Service Task and Work Order Details at the top
 
-//        //WOST Details
-//        var wostNameText = primaryControl.getAttribute("ts_name").getValue();
+        //WOST Details
+        var wostNameText = primaryControl.getAttribute("ts_name").getValue();
 
-//        var taskTypeLabel = primaryControl.getControl("ts_tasktype").getLabel();
-//        var taskTypeValue = primaryControl.getAttribute("ts_tasktype").getValue();
-//        var taskTypeText = taskTypeValue != null ? taskTypeValue[0].name : "";
+        var taskTypeLabel = primaryControl.getControl("ts_tasktype").getLabel();
+        var taskTypeValue = primaryControl.getAttribute("ts_tasktype").getValue();
+        var taskTypeText = taskTypeValue != null ? taskTypeValue[0].name : "";
 
-//        var statusLabel = primaryControl.getControl("statuscode").getLabel();
-//        var statusValue = primaryControl.getAttribute("statuscode").getText();
+        var statusLabel = primaryControl.getControl("statuscode").getLabel();
+        var statusValue = primaryControl.getAttribute("statuscode").getText();
 
-//        var wostHeader = printWindow.document.createElement("h1");
-//        wostHeader.innerHTML = workOrderServiceTaskLocalized;
+        var wostHeader = printWindow.document.createElement("h1");
+        wostHeader.innerHTML = workOrderServiceTaskLocalized;
 
-//        var wostName = printWindow.document.createElement("h2");
-//        wostName.innerHTML = wostNameText;
+        var wostName = printWindow.document.createElement("h2");
+        wostName.innerHTML = wostNameText;
 
-//        var wostDetailsHeader = printWindow.document.createElement("h3");
-//        wostDetailsHeader.innerHTML = workOrderServiceTaskDetailsLocalized;
+        var wostDetailsHeader = printWindow.document.createElement("h3");
+        wostDetailsHeader.innerHTML = workOrderServiceTaskDetailsLocalized;
 
-//        var workOrderServiceTaskDetailsList = printWindow.document.createElement("ul");
-//        workOrderServiceTaskDetailsList.style.listStyleType = "none";
-//        workOrderServiceTaskDetailsList.innerHTML += "<li>" + taskTypeLabel + ": " + taskTypeText + "</li>";
-//        workOrderServiceTaskDetailsList.innerHTML += "<li>" + statusLabel + ": " + statusValue + "</li>";
+        var workOrderServiceTaskDetailsList = printWindow.document.createElement("ul");
+        workOrderServiceTaskDetailsList.style.listStyleType = "none";
+        workOrderServiceTaskDetailsList.innerHTML += "<li>" + taskTypeLabel + ": " + taskTypeText + "</li>";
+        workOrderServiceTaskDetailsList.innerHTML += "<li>" + statusLabel + ": " + statusValue + "</li>";
 
-//        //Work Order Details
-//        var workOrderHeader = printWindow.document.createElement("h3");
-//        workOrderHeader.innerHTML = workOrderDetailsLocalized;
-//        var workOrderQuickView = primaryControl.ui.quickForms.get("WorkOrderQuickView");
+        //Work Order Details
+        var workOrderHeader = printWindow.document.createElement("h3");
+        workOrderHeader.innerHTML = workOrderDetailsLocalized;
+        var workOrderQuickView = primaryControl.ui.quickForms.get("WorkOrderQuickView");
 
-//        var workOrderLabel = primaryControl.getControl("ts_workorder").getLabel();
-//        var workOrderValue = primaryControl.getAttribute("ts_workorder").getValue();
-//        var workOrderText = workOrderValue != null ? workOrderValue[0].name : "";
+        var workOrderLabel = primaryControl.getControl("ts_workorder").getLabel();
+        var workOrderValue = primaryControl.getAttribute("ts_workorder").getValue();
+        var workOrderText = workOrderValue != null ? workOrderValue[0].name : "";
 
-//        var regionLabel = workOrderQuickView.getControl("ts_region").getLabel();
-//        var regionValue = workOrderQuickView.getAttribute("ts_region").getValue();
-//        var regionText = regionValue != null ? regionValue[0].name : "";
+        var regionLabel = workOrderQuickView.getControl("ts_region").getLabel();
+        var regionValue = workOrderQuickView.getAttribute("ts_region").getValue();
+        var regionText = regionValue != null ? regionValue[0].name : "";
 
-//        var countryLabel = workOrderQuickView.getControl("ts_country").getLabel();
-//        var countryValue = workOrderQuickView.getAttribute("ts_country").getValue();
-//        var countryText = countryValue != null ? countryValue[0].name : "";
+        var countryLabel = workOrderQuickView.getControl("ts_country").getLabel();
+        var countryValue = workOrderQuickView.getAttribute("ts_country").getValue();
+        var countryText = countryValue != null ? countryValue[0].name : "";
 
-//        var operationTypeLabel = workOrderQuickView.getControl("ovs_assetcategory").getLabel();
-//        var operationTypeValue = workOrderQuickView.getAttribute("ovs_assetcategory").getValue();
-//        var operationTypeText = operationTypeValue != null ? operationTypeValue[0].name : "";
+        var operationTypeLabel = workOrderQuickView.getControl("ovs_assetcategory").getLabel();
+        var operationTypeValue = workOrderQuickView.getAttribute("ovs_assetcategory").getValue();
+        var operationTypeText = operationTypeValue != null ? operationTypeValue[0].name : "";
 
-//        var stakeholderLabel = workOrderQuickView.getControl("msdyn_serviceaccount").getLabel();
-//        var stakeholderValue = workOrderQuickView.getAttribute("msdyn_serviceaccount").getValue();
-//        var stakeholderText = stakeholderValue != null ? stakeholderValue[0].name : "";
+        var stakeholderLabel = workOrderQuickView.getControl("msdyn_serviceaccount").getLabel();
+        var stakeholderValue = workOrderQuickView.getAttribute("msdyn_serviceaccount").getValue();
+        var stakeholderText = stakeholderValue != null ? stakeholderValue[0].name : "";
 
-//        var siteLabel = workOrderQuickView.getControl("ts_site").getLabel();
-//        var siteValue = workOrderQuickView.getAttribute("ts_site").getValue();
-//        var siteText = siteValue != null ? siteValue[0].name : "";
+        var siteLabel = workOrderQuickView.getControl("ts_site").getLabel();
+        var siteValue = workOrderQuickView.getAttribute("ts_site").getValue();
+        var siteText = siteValue != null ? siteValue[0].name : "";
 
-//        var workOrderDetailsList = printWindow.document.createElement("ul");
-//        workOrderDetailsList.style.listStyleType = "none";
-//        workOrderDetailsList.innerHTML += "<li>" + workOrderLabel + ": " + workOrderText + "</li>";
-//        workOrderDetailsList.innerHTML += "<li>" + regionLabel + ": " + regionText + "</li>";
-//        workOrderDetailsList.innerHTML += "<li>" + countryLabel + ": " + countryText + "</li>";
-//        workOrderDetailsList.innerHTML += "<li>" + operationTypeLabel + ": " + operationTypeText + "</li>";
-//        workOrderDetailsList.innerHTML += "<li>" + stakeholderLabel + ": " + stakeholderText + "</li>";
-//        workOrderDetailsList.innerHTML += "<li>" + siteLabel + ": " + siteText + "</li>";
+        var workOrderDetailsList = printWindow.document.createElement("ul");
+        workOrderDetailsList.style.listStyleType = "none";
+        workOrderDetailsList.innerHTML += "<li>" + workOrderLabel + ": " + workOrderText + "</li>";
+        workOrderDetailsList.innerHTML += "<li>" + regionLabel + ": " + regionText + "</li>";
+        workOrderDetailsList.innerHTML += "<li>" + countryLabel + ": " + countryText + "</li>";
+        workOrderDetailsList.innerHTML += "<li>" + operationTypeLabel + ": " + operationTypeText + "</li>";
+        workOrderDetailsList.innerHTML += "<li>" + stakeholderLabel + ": " + stakeholderText + "</li>";
+        workOrderDetailsList.innerHTML += "<li>" + siteLabel + ": " + siteText + "</li>";
 
-//        var workOrderServiceTaskDetails = printWindow.document.getElementById("workOrderServiceTaskDetails");
-//        workOrderServiceTaskDetails.appendChild(wostHeader);
-//        workOrderServiceTaskDetails.appendChild(wostName);
-//        workOrderServiceTaskDetails.appendChild(wostDetailsHeader);
-//        workOrderServiceTaskDetails.appendChild(workOrderServiceTaskDetailsList);
-//        workOrderServiceTaskDetails.appendChild(workOrderHeader);
-//        workOrderServiceTaskDetails.appendChild(workOrderDetailsList);
-//    };
-//}
+        var workOrderServiceTaskDetails = printWindow.document.getElementById("workOrderServiceTaskDetails");
+        workOrderServiceTaskDetails.appendChild(wostHeader);
+        workOrderServiceTaskDetails.appendChild(wostName);
+        workOrderServiceTaskDetails.appendChild(wostDetailsHeader);
+        workOrderServiceTaskDetails.appendChild(workOrderServiceTaskDetailsList);
+        workOrderServiceTaskDetails.appendChild(workOrderHeader);
+        workOrderServiceTaskDetails.appendChild(workOrderDetailsList);
+    };
+}
 
 //Retrieves parent Work Order's Operations and parent Work Order's ActivityType's OperationTypes
 async function retrieveWorkOrderOperationData(primaryControl) {
@@ -871,3 +871,79 @@ async function getWorkOrderOperationTypeBusinessUnitName(workOrderId) {
 //        primaryControl.getControl("workorderservicetasksgrid").refresh();
 //    });
 //}
+function openRelatedWorkOrderServiceTask(primaryControl) {
+    // Called from ts_workorderservicetaskworkspace ribbon to open its related msdyn_workorderservicetask
+    try {
+        var workspaceId = primaryControl.data.entity.getId().replace(/[{}]/g, "");
+        if (!workspaceId) {
+            console.error("Workspace Id not found.");
+            return;
+        }
+
+        // 1. Use the lookup on the form if present
+        var wostLookupAttr = primaryControl.getAttribute("ts_workorderservicetask");
+        if (wostLookupAttr) {
+            var lookupVal = wostLookupAttr.getValue();
+            if (lookupVal && lookupVal.length > 0) {
+                openWost(lookupVal[0].id);
+                return;
+            }
+        }
+
+        // 2. Fallback: Retrieve the workspace record and get the lookup value
+        Xrm.WebApi
+            .retrieveRecord(
+                "ts_workorderservicetaskworkspace",
+                workspaceId,
+                "?$select=ts_workorderservicetaskworkspaceid,_ts_workorderservicetask_value&$expand=ts_workorderservicetask($select=msdyn_workorderservicetaskid,msdyn_name)"
+            )
+            .then(function (result) {
+                var relatedId =
+                    result._ts_workorderservicetask_value ||
+                    (result.ts_workorderservicetask
+                        ? result.ts_workorderservicetask.msdyn_workorderservicetaskid
+                        : null);
+
+                if (!relatedId) {
+                    console.error("No related Work Order Service Task found on workspace " + workspaceId);
+                    return;
+                }
+                openWost(relatedId);
+            })
+            .catch(function (error) {
+                console.error("Error retrieving workspace record: " + error.message);
+            });
+
+        function openWost(wostId) {
+            wostId = wostId.replace(/[{}]/g, "");
+            // Set flag to tell WOST form not to auto-open (avoid loop)
+            try {
+                sessionStorage.setItem("ROM.SkipWorkspaceAutoOpen." + wostId, "1");
+            } catch (e) {
+                console.warn("Could not set skip flag: " + e.message);
+            }
+            primaryControl.ui.close();
+            var pageInput = {
+                pageType: "entityrecord",
+                entityName: "msdyn_workorderservicetask",
+                entityId: wostId
+            };
+            var navigationOptions = {
+                target: 2,
+                width: { value: 80, unit: "%" },
+                height: { value: 80, unit: "%" },
+                position: 1
+            };
+            Xrm.Navigation.navigateTo(pageInput, navigationOptions).then(
+                function () {
+                    console.log("Work Order Service Task opened: " + wostId);
+                },
+                function (err) {
+                    console.error("Failed to open Work Order Service Task: " + err.message);
+                }
+            );
+        }
+    } catch (e) {
+        console.error("openRelatedWorkOrderServiceTask unexpected error: " + e.message);
+    }
+}

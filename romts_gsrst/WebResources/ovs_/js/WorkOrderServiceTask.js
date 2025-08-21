@@ -162,14 +162,41 @@ var ROM;
         }
         WorkOrderServiceTask.taskTypeOnChange = taskTypeOnChange;
         function onLoadServiceTaskStartDate(eContext) {
-            var _a, _b, _c;
+            // Skip auto workspace navigation if we came from the workspace ribbon (sessionStorage flag)
+            try {
+                var formContext = eContext.getFormContext();
+                var currentId = formContext.data.entity.getId().replace(/[{}]/g, "");
+                var flagKey = "ROM.SkipWorkspaceAutoOpen." + currentId;
+                if (sessionStorage.getItem(flagKey) === "1") {
+                    sessionStorage.removeItem(flagKey);
+                    return; // Do NOT auto-open or create workspace
+                }
+            }
+            catch (e) {
+                console.warn("Skip flag check failed: " + e.message);
+            }
             if (appUrl === DEV_URL || appUrl === QA_URL || appUrl === INT_URL) {
                 var formContext_1 = eContext.getFormContext();
                 var serviceTaskStartDateAttr = formContext_1.getAttribute("ts_servicetaskstartdate");
-                var serviceTaskStartDate = serviceTaskStartDateAttr ? serviceTaskStartDateAttr.getValue() : null;
-                if (serviceTaskStartDate === null) {
-                    var entityId = formContext_1.data.entity.getId();
-                    var entityIdClean = entityId.replace(/{|}/g, ""); // Remove curly braces
+                var serviceTaskStartDate_1 = serviceTaskStartDateAttr ? serviceTaskStartDateAttr.getValue() : null;
+                var entityId_1 = formContext_1.data.entity.getId();
+                var entityIdClean_1 = entityId_1.replace(/{|}/g, "");
+                var openExistingWorkspaceDialog_1 = function (workspaceId) {
+                    var pageInput = {
+                        pageType: "entityrecord",
+                        entityName: "ts_workorderservicetaskworkspace",
+                        entityId: workspaceId
+                    };
+                    var navigationOptions = {
+                        target: 2,
+                        width: { value: 80, unit: "%" },
+                        height: { value: 80, unit: "%" },
+                        position: 1
+                    };
+                    Xrm.Navigation.navigateTo(pageInput, navigationOptions).then(function () { return formContext_1.ui.close(); }, function (error) { return console.error("Error opening existing workspace modal: ", error.message); });
+                };
+                var openWorkspaceCreateDialog_1 = function () {
+                    var _a, _b, _c;
                     var entityName = (_a = formContext_1.getAttribute("msdyn_name")) === null || _a === void 0 ? void 0 : _a.getValue();
                     var workOrderLookup = (_b = formContext_1.getAttribute("msdyn_workorder")) === null || _b === void 0 ? void 0 : _b.getValue();
                     var workOrderId = workOrderLookup && workOrderLookup.length > 0 ? workOrderLookup[0].id.replace(/{|}/g, "") : null;
@@ -177,8 +204,6 @@ var ROM;
                     var taskTypeLookup = (_c = formContext_1.getAttribute("msdyn_tasktype")) === null || _c === void 0 ? void 0 : _c.getValue();
                     var taskTypeId = taskTypeLookup && taskTypeLookup.length > 0 ? taskTypeLookup[0].id.replace(/{|}/g, "") : null;
                     var taskTypeName = taskTypeLookup && taskTypeLookup.length > 0 ? taskTypeLookup[0].name : null;
-                    console.log("taskTypeId: ", taskTypeId);
-                    console.log("workOrderId: ", workOrderId);
                     var pageInput = {
                         pageType: "entityrecord",
                         entityName: "ts_workorderservicetaskworkspace",
@@ -186,21 +211,21 @@ var ROM;
                         useQuickCreateForm: true,
                         data: {
                             ts_name: entityName,
-                            "ts_workorderservicetask@odata.bind": "/msdyn_workorderservicetasks(" + entityIdClean + ")",
-                            ts_workorder: {
+                            "ts_workorderservicetask@odata.bind": "/msdyn_workorderservicetasks(" + entityIdClean_1 + ")",
+                            ts_workorder: workOrderId ? {
                                 id: workOrderId,
                                 name: workOrderName,
                                 entityType: "msdyn_workorder"
-                            },
-                            ts_tasktype: {
+                            } : undefined,
+                            ts_tasktype: taskTypeId ? {
                                 id: taskTypeId,
                                 name: taskTypeName,
                                 entityType: "msdyn_servicetasktype"
-                            }
+                            } : undefined
                         },
                         createFromEntity: {
                             entityType: "msdyn_workorderservicetask",
-                            id: entityId,
+                            id: entityId_1,
                             name: entityName
                         }
                     };
@@ -208,21 +233,42 @@ var ROM;
                         target: 2,
                         width: { value: 80, unit: "%" },
                         height: { value: 80, unit: "%" },
-                        position: 1 // Center
+                        position: 1
                     };
-                    Xrm.Navigation.navigateTo(pageInput, navigationOptions).then(function success() {
-                        // Close the current msdyn_workorderservicetask form
-                        formContext_1.ui.close();
-                    }, function error(error) {
-                        console.error("Error opening modal window: ", error.message);
-                    });
-                }
-                else {
-                    return; // If the start date is already set, do nothing
-                }
+                    Xrm.Navigation.navigateTo(pageInput, navigationOptions).then(function () { return formContext_1.ui.close(); }, function (error) { return console.error("Error opening create workspace modal: ", error.message); });
+                };
+                // Always check first if a related workspace already exists (default case: open it)
+                var fetchExisting = [
+                    "<fetch top='1'>",
+                    "  <entity name='ts_workorderservicetaskworkspace'>",
+                    "    <attribute name='ts_workorderservicetaskworkspaceid' />",
+                    "    <order attribute='createdon' descending='true' />",
+                    "    <filter>",
+                    "      <condition attribute='ts_workorderservicetask' operator='eq' value='", entityIdClean_1, "'/>",
+                    "    </filter>",
+                    "  </entity>",
+                    "</fetch>"
+                ].join("");
+                Xrm.WebApi.retrieveMultipleRecords("ts_workorderservicetaskworkspace", "?fetchXml=" + encodeURIComponent(fetchExisting))
+                    .then(function (result) {
+                    if (result.entities && result.entities.length > 0) {
+                        // Existing workspace: open it regardless of start date value
+                        openExistingWorkspaceDialog_1(result.entities[0].ts_workorderservicetaskworkspaceid);
+                        return;
+                    }
+                    // No existing workspace: create new workspace only if start date is null
+                    if (serviceTaskStartDate_1 === null) {
+                        // Create when start date is null
+                        openWorkspaceCreateDialog_1();
+                    }
+                    else {
+                        // Offline Mode: Create when start date has value but no workspace exists
+                        openWorkspaceCreateDialog_1();
+                    }
+                })
+                    .catch(function (err) { return console.error("Error querying existing workspace: ", err.message); });
             }
             else {
-                //don't run the code in training, acc, prod
                 return;
             }
         }
