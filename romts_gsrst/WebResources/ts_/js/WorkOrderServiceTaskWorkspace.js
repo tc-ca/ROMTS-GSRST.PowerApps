@@ -547,44 +547,42 @@ var ROM;
         }
         WorkOrderServiceTaskWorkspace.onAOCFieldsOnChange = onAOCFieldsOnChange;
         function aircraftManufacturerOnChange(eContext) {
-            setTimeout(function () {
-                var form = eContext.getFormContext();
-                var aircraftmanufacturer = form.getAttribute("ts_aircraftmanufacturer").getValue();
-                var options = form.getControl("ts_aircraftmodel").getOptions();
-                for (var i = 0; i < options.length; i++)
-                    form.getControl("ts_aircraftmodel").removeOption(options[i].value);
-                form.getControl("ts_aircraftmodelother").setVisible(false);
-                form.getControl("ts_aircraftmodel").setVisible(true);
-                if (aircraftmanufacturer == 741130000 /* Boeing */) {
-                    for (var i = 1; i <= 11; i++) {
-                        form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
-                    }
+            var form = eContext.getFormContext();
+            var aircraftmanufacturer = form.getAttribute("ts_aircraftmanufacturer").getValue();
+            var options = form.getControl("ts_aircraftmodel").getOptions();
+            for (var i = 0; i < options.length; i++)
+                form.getControl("ts_aircraftmodel").removeOption(options[i].value);
+            form.getControl("ts_aircraftmodelother").setVisible(false);
+            form.getControl("ts_aircraftmodel").setVisible(true);
+            if (aircraftmanufacturer == 741130000 /* Boeing */) {
+                for (var i = 1; i <= 11; i++) {
+                    form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
                 }
-                else if (aircraftmanufacturer == 741130001 /* Airbus */) {
-                    for (var i = 12; i <= 22; i++) {
-                        form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
-                    }
+            }
+            else if (aircraftmanufacturer == 741130001 /* Airbus */) {
+                for (var i = 12; i <= 22; i++) {
+                    form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
                 }
-                else if (aircraftmanufacturer == 741130002 /* DeHavilland */) {
-                    for (var i = 23; i <= 24; i++) {
-                        form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
-                    }
+            }
+            else if (aircraftmanufacturer == 741130002 /* DeHavilland */) {
+                for (var i = 23; i <= 24; i++) {
+                    form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
                 }
-                else if (aircraftmanufacturer == 741130003 /* Bombardier */) {
-                    for (var i = 25; i <= 25; i++) {
-                        form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
-                    }
+            }
+            else if (aircraftmanufacturer == 741130003 /* Bombardier */) {
+                for (var i = 25; i <= 25; i++) {
+                    form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
                 }
-                else if (aircraftmanufacturer == 741130004 /* Embraer */) {
-                    for (var i = 26; i <= 29; i++) {
-                        form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
-                    }
+            }
+            else if (aircraftmanufacturer == 741130004 /* Embraer */) {
+                for (var i = 26; i <= 29; i++) {
+                    form.getControl("ts_aircraftmodel").addOption(aircraftModelOptions[i]);
                 }
-                else if (aircraftmanufacturer == 741130005 /* Other */) {
-                    form.getControl("ts_aircraftmodelother").setVisible(true);
-                    form.getControl("ts_aircraftmodel").setVisible(false);
-                }
-            }, 500);
+            }
+            else if (aircraftmanufacturer == 741130005 /* Other */) {
+                form.getControl("ts_aircraftmodelother").setVisible(true);
+                form.getControl("ts_aircraftmodel").setVisible(false);
+            }
         }
         WorkOrderServiceTaskWorkspace.aircraftManufacturerOnChange = aircraftManufacturerOnChange;
         function filterLegislationSource(eContext) {

@@ -71,6 +71,11 @@
         </FlyoutAnchor>
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorderservicetask.ServiceAccount.CreateQualityControl.CustomAction" Location="Mscrm.SubGrid.msdyn_workorderservicetask.MainTab.Management.Controls._children" Sequence="120">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.ServiceAccount.CreateQualityControl.Alt" Command="ts.msdyn_workorderservicetask.ServiceAccount.CreateQualityControl" Id="ts.msdyn_workorderservicetask.ServiceAccount.CreateQualityControl" LabelText="$LocLabels:ts.msdyn_workorderservicetask.ServiceAccount.CreateQualityControl.LabelText" Sequence="120" TemplateAlias="isv" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.ServiceAccount.CreateQualityControl.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.ServiceAccount.CreateQualityControl.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorderservicetask.ServiceTaskWorkspace.CustomAction" Location="Mscrm.Form.msdyn_workorderservicetask.MainTab.Save.Controls._children" Sequence="18">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorderservicetask.ServiceTaskWorkspace.Alt" Command="ts.msdyn_workorderservicetask.ServiceTaskWorkSpace" Id="ts.msdyn_workorderservicetask.ServiceTaskWorkspace" LabelText="$LocLabels:ts.msdyn_workorderservicetask.ServiceTaskWorkspace.LabelText" Sequence="18" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorderservicetask.ServiceTaskWorkspace.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorderservicetask.ServiceTaskWorkspace.ToolTipDescription" />
@@ -590,6 +595,18 @@
         <JavaScriptFunction FunctionName="printQuestionnaire" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js">
           <CrmParameter Value="PrimaryControl" />
           <BoolParameter Value="true" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorderservicetask.ServiceAccount.CreateQualityControl">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorderservicetask.isManagerOrBusinessAdminOrSystemAdmin" />
+        <EnableRule Id="ts.msdyn_workorderservicetask.isOnWorkOrderForm" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="createQCServiceTask" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -1119,6 +1136,30 @@
     <LocLabel Id="ts.msdyn_workorderservicetask.Flyout.PrintQuestionnaire.LabelText">
       <Titles>
         <Title description="Print Questionnaire" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.ServiceAccount.CreateQualityControl.Alt">
+      <Titles>
+        <Title description="Create Quality Control using Service Account" languagecode="1033" />
+        <Title description="Créer liste de contrôle" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.ServiceAccount.CreateQualityControl.LabelText">
+      <Titles>
+        <Title description="Create QC" languagecode="1033" />
+        <Title description="Créer liste de contrôle" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.ServiceAccount.CreateQualityControl.ToolTipDescription">
+      <Titles>
+        <Title description="Create Quality Control using Service Account" languagecode="1033" />
+        <Title description="Créer liste de contrôle" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorderservicetask.ServiceAccount.CreateQualityControl.ToolTipTitle">
+      <Titles>
+        <Title description="Create Quality Control using Service Account" languagecode="1033" />
+        <Title description="Créer liste de contrôle" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.ServiceTaskWorkspace.Alt">
