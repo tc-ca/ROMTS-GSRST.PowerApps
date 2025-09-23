@@ -263,8 +263,8 @@
     </CommandDefinition>
     <CommandDefinition Id="ts.ovs_finding.EnforcementAction">
       <EnableRules>
-        <EnableRule Id="ts.ovs_finding.PrimaryIsIncident" />
         <EnableRule Id="ts.ovs_finding.SelectionCountNon" />
+        <EnableRule Id="ts.ovs_finding.PrimaryIsWorkspaceOrIncident" />
       </EnableRules>
       <DisplayRules />
       <Actions>
@@ -545,6 +545,16 @@
       </EnableRule>
       <EnableRule Id="ts.ovs_finding.PrimaryIsIncident">
         <EntityRule EntityName="incident" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="false" />
+      </EnableRule>
+      <EnableRule Id="ts.ovs_finding.PrimaryIsWorkspaceOrIncident">
+        <OrRule>
+          <Or>
+            <EntityRule EntityName="msdyn_workorderservicetask" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="false" />
+          </Or>
+          <Or>
+            <EntityRule EntityName="incident" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="true" InvertResult="false" />
+          </Or>
+        </OrRule>
       </EnableRule>
       <EnableRule Id="ts.ovs_finding.SelectionCountNon">
         <SelectionCountRule AppliesTo="PrimaryEntity" Default="true" />

@@ -33,9 +33,9 @@
         <Button Alt="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.Alt" Command="ts.msdyn_workorder.AddAdditionalInspectors" Id="ts.msdyn_workorder.AddAdditionalInspectors" LabelText="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.LabelText" Sequence="24" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.AddAdditionalInspectors.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
-    <CustomAction Id="ts.msdyn_workorder.Button4.Planning.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="0">
+    <CustomAction Id="ts.msdyn_workorder.Button4.Planning.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="1">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:ts.msdyn_workorder.Button4.Planning.Alt" Command="ts.msdyn_workorder.TSIS.Planning" Id="ts.msdyn_workorder.Button4.Planning" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.Button4.Planning.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Button4.Planning.ToolTipTitle" />
+        <Button Alt="$LocLabels:ts.msdyn_workorder.Button4.Planning.Alt" Command="ts.msdyn_workorder.TSIS.Planning" Id="ts.msdyn_workorder.Button4.Planning" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.Button4.Planning.LabelText" Sequence="1" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Button4.Planning.ToolTipTitle" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.Button6.AddToTrip.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="22">
@@ -56,6 +56,11 @@
     <CustomAction Id="ts.msdyn_workorder.Documents.Button.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="58">
       <CommandUIDefinition>
         <Button Command="ts.msdyn_workorder.Documents.Command" Id="ts.msdyn_workorder.Documents.Button" LabelText="$LocLabels:ts.msdyn_workorder.Documents.Button.LabelText" Sequence="58" TemplateAlias="o2" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.NewUnplannedWO.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="1">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.NewUnplannedWO.Alt" Command="ts.msdyn_workorder.NewUnplannedWorkOrder" Id="ts.msdyn_workorder.NewUnplannedWO" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.NewUnplannedWO.LabelText" Sequence="1" TemplateAlias="o1" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.SubGrid.AddExistingStandardSecurityIncident.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="30">
@@ -424,6 +429,15 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.NewUnplannedWorkOrder">
+      <EnableRules />
+      <DisplayRules>
+        <DisplayRule Id="ts.msdyn_workorder.HideNewUnplannedWO" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="openUnplannedWorkOrderForm" Library="$webresource:ovs_/js/WorkOrderRibbon.js" />
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorder.SubgridCommit">
       <EnableRules>
         <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
@@ -587,6 +601,9 @@
       </DisplayRule>
       <DisplayRule Id="ts.msdyn_workorder.HideAddNewForFunctionalLocation">
         <EntityRule EntityName="msdyn_functionallocation" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="ts.msdyn_workorder.HideNewUnplannedWO">
+        <ValueRule Value="" InvertResult="true" />
       </DisplayRule>
     </DisplayRules>
     <EnableRules>
@@ -888,6 +905,16 @@
       <Titles>
         <Title description="Documents" languagecode="1033" />
         <Title description="Documents" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.NewUnplannedWO.Alt">
+      <Titles>
+        <Title description="New Unplanned WO" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.NewUnplannedWO.LabelText">
+      <Titles>
+        <Title description="New Unplanned WO" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.SubGridCommit.Alt">

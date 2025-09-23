@@ -1,10 +1,10 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_commondataserviceforapps": {
+      "shared_commondataserviceforapps_1": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_2d435"
+          "connectionReferenceLogicalName": "ts_DataverseROMTSGSRST"
         },
         "api": {
           "name": "shared_commondataserviceforapps"
@@ -32,7 +32,7 @@
           "type": "OpenApiConnectionWebhook",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "SubscribeWebhookTrigger",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -54,7 +54,7 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "ListRecords",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -78,14 +78,13 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_commondataserviceforapps",
+                      "connectionName": "shared_commondataserviceforapps_1",
                       "operationId": "UpdateOnlyRecord",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                     },
                     "parameters": {
                       "entityName": "ts_securityincidents",
-                      "recordId": "@triggerOutputs()?['body/ts_securityincidentid']",
-                      "item/ts_DutyInspector@odata.bind": "/ts_dutyinspectorses(@{items('Apply_to_each')?['_ts_inspector_value']})"
+                      "recordId": "@triggerOutputs()?['body/ts_securityincidentid']"
                     },
                     "authentication": "@parameters('$authentication')"
                   }

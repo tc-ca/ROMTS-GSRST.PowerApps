@@ -4,7 +4,7 @@
       "shared_commondataserviceforapps": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_6867e"
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
         },
         "api": {
           "name": "shared_commondataserviceforapps"
@@ -35,6 +35,9 @@
       },
       "triggers": {
         "When_a_Request_is_created": {
+          "metadata": {
+            "operationMetadataId": "f8485bdc-b371-4345-a545-b065cb036b40"
+          },
           "type": "OpenApiConnectionWebhook",
           "inputs": {
             "host": {
@@ -58,6 +61,9 @@
               "Succeeded"
             ]
           },
+          "metadata": {
+            "operationMetadataId": "ee89562e-f174-4c10-8765-dd3bf88c809b"
+          },
           "type": "InitializeVariable",
           "inputs": {
             "variables": [
@@ -71,6 +77,9 @@
         },
         "Get_Request_by_ID": {
           "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "674c9ac8-0244-4b70-9bb2-51bbb09fcef4"
+          },
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
@@ -90,6 +99,9 @@
             "Get_Request_by_ID": [
               "Succeeded"
             ]
+          },
+          "metadata": {
+            "operationMetadataId": "e6d30397-25b5-4943-8dda-2aaf410ba6b7"
           },
           "type": "OpenApiConnection",
           "inputs": {
@@ -111,6 +123,9 @@
               "Succeeded"
             ]
           },
+          "metadata": {
+            "operationMetadataId": "684fa306-8193-4de0-8788-8f63ef7ff941"
+          },
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
@@ -130,7 +145,7 @@
       },
       "outputs": {}
     },
-    "templateName": null
+    "templateName": ""
   },
   "schemaVersion": "1.0.0.0"
 }
