@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20251008.1</Version>
+    <Version>1.0.20251008.2</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -718,23 +718,42 @@
       <RootComponent type="61" schemaName="ts_/resx/UnplannedWorkOrder.1036.resx" behavior="0" />
       <RootComponent type="61" schemaName="ts_ActionsIcon" behavior="0" />
       <RootComponent type="61" schemaName="ts_ActivitiesIcon" behavior="0" />
+      <RootComponent type="61" schemaName="ts_Aircrafts" behavior="0" />
+      <RootComponent type="61" schemaName="ts_AssessmentRating" behavior="0" />
+      <RootComponent type="61" schemaName="ts_AssessmentScoreThresholds" behavior="0" />
       <RootComponent type="61" schemaName="ts_AviationSecurityIcon" behavior="0" />
+      <RootComponent type="61" schemaName="ts_CancelledInspectionJustification" behavior="0" />
       <RootComponent type="61" schemaName="ts_CasesIcon" behavior="0" />
+      <RootComponent type="61" schemaName="ts_Category" behavior="0" />
       <RootComponent type="61" schemaName="ts_clockrotateleftsolid" behavior="0" />
       <RootComponent type="61" schemaName="ts_ContactsIcon" behavior="0" />
+      <RootComponent type="61" schemaName="ts_Country" behavior="0" />
       <RootComponent type="61" schemaName="ts_DocumentCentreIcon" behavior="0" />
+      <RootComponent type="61" schemaName="ts_DutyInspectors" behavior="0" />
       <RootComponent type="61" schemaName="ts_ExemptionsIcon" behavior="0" />
       <RootComponent type="61" schemaName="ts_FindingsIcon" behavior="0" />
+      <RootComponent type="61" schemaName="ts_IncompleteInspectionJustification" behavior="0" />
+      <RootComponent type="61" schemaName="ts_Infractions" behavior="0" />
+      <RootComponent type="61" schemaName="ts_Justifications" behavior="0" />
       <RootComponent type="61" schemaName="ts_NonOversightActivitiesIcon" behavior="0" />
       <RootComponent type="61" schemaName="ts_operationscanvas.html" behavior="0" />
       <RootComponent type="61" schemaName="ts_OperationsIcon" behavior="0" />
+      <RootComponent type="61" schemaName="ts_OperationTypes" behavior="0" />
       <RootComponent type="61" schemaName="ts_RailSecurityIcon" behavior="0" />
+      <RootComponent type="61" schemaName="ts_RecurrenceFrequencies" behavior="0" />
       <RootComponent type="61" schemaName="ts_RequestsIcon" behavior="0" />
+      <RootComponent type="61" schemaName="ts_RiskThresholds" behavior="0" />
+      <RootComponent type="61" schemaName="ts_Roles" behavior="0" />
       <RootComponent type="61" schemaName="ts_romdocumentcentre.html" behavior="0" />
       <RootComponent type="61" schemaName="ts_ROMLibraryIcon" behavior="0" />
+      <RootComponent type="61" schemaName="ts_SecurityContacts" behavior="0" />
       <RootComponent type="61" schemaName="ts_SecurityIncidentsIcon" behavior="0" />
+      <RootComponent type="61" schemaName="ts_SecurityIncidentSubcategory" behavior="0" />
+      <RootComponent type="61" schemaName="ts_SecurityIncidentType" behavior="0" />
       <RootComponent type="61" schemaName="ts_SitesIcon" behavior="0" />
+      <RootComponent type="61" schemaName="ts_SiteTypes" behavior="0" />
       <RootComponent type="61" schemaName="ts_StakeholdersIcon" behavior="0" />
+      <RootComponent type="61" schemaName="ts_TargetElements" behavior="0" />
       <RootComponent type="61" schemaName="ts_TeamsIcon" behavior="0" />
       <RootComponent type="61" schemaName="ts_TripsIcon" behavior="0" />
       <RootComponent type="61" schemaName="ts_tripsinspections" behavior="0" />
@@ -22292,7 +22311,7 @@
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
           <package appName="msdynce_AppCommon" version="9.0.25093.10002">msdynce_AppCommonAnchor (9.0.25093.10002)</package>
         </Required>
-        <Dependent type="60" displayName="In Context Form" parentDisplayName="Account" id="{face3aa6-99c4-4b7e-af07-55f121cdca86}" />
+        <Dependent type="60" displayName="Account for Multisession experience" parentDisplayName="Account" id="{ff49442f-8c60-4877-bdae-8fe51e6f4636}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
@@ -22359,7 +22378,7 @@
           <package appName="Dynamics 365 Sales Integration &amp; AddOns" version="9.0.24104.10001">msdyn_SalesIntegrationsAddOns (9.0.24104.10001)</package>
           <package appName="Dynamics 365 Sales Insights Add-On" version="9.0.22054.10002">msdyn_SalesIntegrationsAddOns (9.0.22054.10002)</package>
         </Required>
-        <Dependent type="60" displayName="Sales Insights" parentDisplayName="Account" id="{cb430327-bcc1-416d-959d-db7592e685af}" />
+        <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="MarketingSales/Lead/Lead_main_system_library.js" displayName="MarketingSales/Lead/Lead_main_system_library.js" solution="msdynce_MarketingSales (9.0.4.29)">
@@ -24142,12 +24161,6 @@
         <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
           <package appName="msdynce_Sales" version="9.0.25094.10005">msdynce_SalesAnchor (9.0.25094.10005)</package>
         </Required>
-        <Dependent type="60" displayName="Contact Main Form" parentDisplayName="Contact" id="{2c961780-b9f9-ea11-a815-000d3af3ac0d}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
-          <package appName="msdynce_Sales" version="9.0.25094.10005">msdynce_SalesAnchor (9.0.25094.10005)</package>
-        </Required>
         <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
       </MissingDependency>
       <MissingDependency>
@@ -24161,6 +24174,12 @@
           <package appName="msdynce_Sales" version="9.0.25094.10005">msdynce_SalesAnchor (9.0.25094.10005)</package>
         </Required>
         <Dependent type="60" displayName="Organisations" parentDisplayName="Account" id="{b6466851-a1fd-ea11-a813-000d3af3ac0d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
+          <package appName="msdynce_Sales" version="9.0.25094.10005">msdynce_SalesAnchor (9.0.25094.10005)</package>
+        </Required>
+        <Dependent type="60" displayName="Lead" parentDisplayName="Lead" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
@@ -24214,7 +24233,7 @@
         <Required type="61" schemaName="Service/_imgs/ribbon/Assign_32.png" displayName="Service/_imgs/ribbon/Assign_32.png" solution="msdynce_Service (9.0.5.56)">
           <package appName="msdynce_Service" version="9.0.25091.1003">msdynce_ServiceAnchor (9.0.25091.1003)</package>
         </Required>
-        <Dependent type="50" schemaName="ovs_finding:RibbonDiffXml" displayName="ovs_finding:RibbonDiffXml" parentSchemaName="ribboncustomization" parentDisplayName="Application Ribbons" />
+        <Dependent type="50" schemaName="incident:RibbonDiffXml" displayName="incident:RibbonDiffXml" parentSchemaName="ribboncustomization" parentDisplayName="Application Ribbons" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Convert/Incident_convert_library.js" displayName="Service/Incident/Convert/Incident_convert_library.js" solution="msdynce_Service (9.0.5.56)">
@@ -24268,6 +24287,12 @@
         <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
           <package appName="msdynce_Service" version="9.0.25091.1003">msdynce_ServiceAnchor (9.0.25091.1003)</package>
         </Required>
+        <Dependent type="60" displayName="Case Quick Create" parentDisplayName="Case" id="{8e10b902-0b3e-441c-8b12-88e6c1793848}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
+          <package appName="msdynce_Service" version="9.0.25091.1003">msdynce_ServiceAnchor (9.0.25091.1003)</package>
+        </Required>
         <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
@@ -24281,12 +24306,6 @@
           <package appName="msdynce_Service" version="9.0.25091.1003">msdynce_ServiceAnchor (9.0.25091.1003)</package>
         </Required>
         <Dependent type="60" displayName="App for Outlook Case Quick Create" parentDisplayName="Case" id="{ac33e173-6502-4816-ab48-c3eefd7be580}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
-          <package appName="msdynce_Service" version="9.0.25091.1003">msdynce_ServiceAnchor (9.0.25091.1003)</package>
-        </Required>
-        <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
@@ -24311,6 +24330,12 @@
           <package appName="msdynce_Service" version="9.0.25091.1003">msdynce_ServiceAnchor (9.0.25091.1003)</package>
         </Required>
         <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
+          <package appName="msdynce_Service" version="9.0.25091.1003">msdynce_ServiceAnchor (9.0.25091.1003)</package>
+        </Required>
+        <Dependent type="50" schemaName="incident:RibbonDiffXml" displayName="incident:RibbonDiffXml" parentSchemaName="ribboncustomization" parentDisplayName="Application Ribbons" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
@@ -24358,12 +24383,6 @@
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
           <package appName="msdynce_Service" version="9.0.25091.1003">msdynce_ServiceAnchor (9.0.25091.1003)</package>
         </Required>
-        <Dependent type="60" displayName="Field Service Information" parentDisplayName="Quote" id="{b3fa6477-581b-411f-a725-0ab32d8edb8f}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
-          <package appName="msdynce_Service" version="9.0.25091.1003">msdynce_ServiceAnchor (9.0.25091.1003)</package>
-        </Required>
         <Dependent type="60" displayName="Enhanced full case form" parentDisplayName="Case" id="{cd0d48a0-10c6-ec11-a7b5-000d3a58b83a}" />
       </MissingDependency>
       <MissingDependency>
@@ -24395,82 +24414,6 @@
           <package appName="ServiceExtended" version="9.0.25093.2009">msdyn_ServiceExtendedAnchor (9.0.25093.2009)</package>
         </Required>
         <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_Aircrafts" displayName="ts_Aircrafts" solution="Active" />
-        <Dependent type="1" schemaName="ts_aircraft" displayName="Aircraft" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_AssessmentRating" displayName="ts_AssessmentRating" solution="Active" />
-        <Dependent type="1" schemaName="ts_assessmentrating" displayName="Assessment Rating" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_AssessmentScoreThresholds" displayName="ts_AssessmentScoreThresholds" solution="Active" />
-        <Dependent type="1" schemaName="ts_assessmentscorethredshots" displayName="Assessment Score Thresholds" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_CancelledInspectionJustification" displayName="ts_CancelledInspectionJustification" solution="Active" />
-        <Dependent type="1" schemaName="ts_canceledinspectionjustification" displayName="Cancelled Inspection Justification" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_Category" displayName="ts_Category" solution="Active" />
-        <Dependent type="1" schemaName="ovs_tyrational" displayName="Category" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_Country" displayName="ts_Country" solution="Active" />
-        <Dependent type="1" schemaName="tc_country" displayName="Country" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_DutyInspectors" displayName="ts_DutyInspectors" solution="Active" />
-        <Dependent type="1" schemaName="ts_dutyinspectorschedule" displayName="Duty Inspector Schedule" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_IncompleteInspectionJustification" displayName="ts_IncompleteInspectionJustification" solution="Active" />
-        <Dependent type="1" schemaName="ts_incompleteworkorderreason" displayName="Incomplete Inspection Justification" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_Infractions" displayName="ts_Infractions" solution="Active" />
-        <Dependent type="1" schemaName="ts_infraction" displayName="Infraction" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_Justifications" displayName="ts_Justifications" solution="Active" />
-        <Dependent type="1" schemaName="ts_justification" displayName="Justification" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_OperationTypes" displayName="ts_OperationTypes" solution="Active" />
-        <Dependent type="1" schemaName="ovs_operationtype" displayName="Operation Type" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_RecurrenceFrequencies" displayName="ts_RecurrenceFrequencies" solution="Active" />
-        <Dependent type="1" schemaName="ts_recurrencefrequencies" displayName="Recurrence Frequencies" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_RiskThresholds" displayName="ts_RiskThresholds" solution="Active" />
-        <Dependent type="1" schemaName="ts_riskcategory" displayName="Risk Threshold" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_Roles" displayName="ts_Roles" solution="Active" />
-        <Dependent type="1" schemaName="ts_role" displayName="Role" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_SecurityContacts" displayName="ts_SecurityContacts" solution="Active" />
-        <Dependent type="1" schemaName="ts_operationcontact" displayName="Operation Contact" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_SecurityIncidentSubcategory" displayName="ts_SecurityIncidentSubcategory" solution="Active" />
-        <Dependent type="1" schemaName="ts_securityincidentsubcategory" displayName="Security Incident Subcategory" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_SecurityIncidentType" displayName="ts_SecurityIncidentType" solution="Active" />
-        <Dependent type="1" schemaName="ts_securityincidenttype" displayName="Security Incident Type" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_SiteTypes" displayName="ts_SiteTypes" solution="Active" />
-        <Dependent type="1" schemaName="ovs_sitetype" displayName="Site Type" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="ts_TargetElements" displayName="ts_TargetElements" solution="Active" />
-        <Dependent type="1" schemaName="ts_targetelement" displayName="Target Element" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="Intelligence.BusinessCardReaderControl.BusinessCardReader" displayName="Intelligence.BusinessCardReaderControl.BusinessCardReader" solution="BaseCustomControlsCore (9.0.2509.4007)">
