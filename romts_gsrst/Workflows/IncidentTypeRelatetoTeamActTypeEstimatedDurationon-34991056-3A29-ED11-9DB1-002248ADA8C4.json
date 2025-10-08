@@ -1,0 +1,455 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "308b629f-fa9c-43ac-be80-3da2d67f990a"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "msdyn_incidenttype",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_international, ts_domestic"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Check_owning_business_unit": {
+          "runAfter": {
+            "Initialize_variable_that_store_the_string_to_use_in_the_team_name_filter": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e6425643-2131-41e8-8174-8bb5bfcd97b5"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "msdyn_incidenttypes",
+              "fetchXml": "<fetch distinct=\"true\">\n  <entity name=\"msdyn_incidenttype\">\n    <attribute name=\"msdyn_incidenttypeid\" />\n    <filter>\n      <condition attribute=\"msdyn_incidenttypeid\" operator=\"eq\" value=\"@{triggerOutputs()?['body/msdyn_incidenttypeid']}\"/>\n    </filter>\n    <link-entity name=\"businessunit\" from=\"businessunitid\" to=\"owningbusinessunit\" link-type=\"inner\" alias=\"bu\">\n      <attribute name=\"name\" />\n      <filter type=\"or\">\n        <condition attribute=\"name\" operator=\"like\" value=\"Aviation%\" />\n        <condition attribute=\"name\" operator=\"like\" value=\"Intermodal%\" />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>",
+              "$top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Condition": {
+          "actions": {
+            "Apply_to_each": {
+              "foreach": "@outputs('List_teams')?['body/value']",
+              "actions": {
+                "Check_if_there's_an_existing_team_activity_type_estimated_duration": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "5958445b-a4d2-4ea3-aa58-d4d391cdc25b"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "ListRecords",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_teamactivitytypeestimateddurations",
+                      "$filter": "(_ts_team_value eq @{items('Apply_to_each')?['teamid']} and _ts_activitytype_value eq @{triggerOutputs()?['body/msdyn_incidenttypeid']}) and (ts_Team/teamid ne null) and (ts_ActivityType/msdyn_incidenttypeid ne null)",
+                      "$top": 1,
+                      "$expand": "ts_Team($select=_ts_territory_value),ts_ActivityType($select=ts_domestic,ts_international)"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Was_one_found": {
+                  "actions": {
+                    "If_Activity_Type_applies_to_Team_Region": {
+                      "actions": {
+                        "Apply_to_each_3": {
+                          "foreach": "@outputs('Check_if_there''s_an_existing_team_activity_type_estimated_duration')?['body/value']",
+                          "actions": {
+                            "Is_the_Estimated_Duration_record_Active": {
+                              "actions": {},
+                              "runAfter": {},
+                              "else": {
+                                "actions": {
+                                  "Activate_it": {
+                                    "runAfter": {},
+                                    "metadata": {
+                                      "operationMetadataId": "b346677d-c2c3-49a0-b77b-c4a67892ff32"
+                                    },
+                                    "type": "OpenApiConnection",
+                                    "inputs": {
+                                      "host": {
+                                        "connectionName": "shared_commondataserviceforapps_1",
+                                        "operationId": "UpdateRecord",
+                                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                      },
+                                      "parameters": {
+                                        "entityName": "ts_teamactivitytypeestimateddurations",
+                                        "recordId": "@items('Apply_to_each_3')?['ts_teamactivitytypeestimateddurationid']",
+                                        "item/statecode": 0,
+                                        "item/statuscode": 1
+                                      },
+                                      "authentication": "@parameters('$authentication')"
+                                    }
+                                  }
+                                }
+                              },
+                              "expression": {
+                                "equals": [
+                                  "@items('Apply_to_each_3')?['statecode']",
+                                  0
+                                ]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "d85e8273-b99e-4a33-9074-c92ace1be270"
+                              },
+                              "type": "If"
+                            },
+                            "Apply_to_each_4": {
+                              "foreach": "@outputs('Check_owning_business_unit')?['body/value']",
+                              "actions": {
+                                "Compose": {
+                                  "runAfter": {},
+                                  "metadata": {
+                                    "operationMetadataId": "c36800c6-6c7f-4ade-92de-a5d65f6988f4"
+                                  },
+                                  "type": "Compose",
+                                  "inputs": "Team: @{items('Apply_to_each')?['name']} \nRegion: @{items('Apply_to_each')?['_ts_territory_value']}\nInternational @{triggerOutputs()?['body/ts_international']}\nDomestic @{triggerOutputs()?['body/ts_domestic']}\n"
+                                }
+                              },
+                              "runAfter": {
+                                "Is_the_Estimated_Duration_record_Active": [
+                                  "Succeeded"
+                                ]
+                              },
+                              "metadata": {
+                                "operationMetadataId": "fb7b2289-f3ab-4154-9be6-52dec161b5ff"
+                              },
+                              "type": "Foreach"
+                            }
+                          },
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "e0098e8e-3d6d-46c5-9456-087558654984"
+                          },
+                          "type": "Foreach"
+                        }
+                      },
+                      "runAfter": {},
+                      "else": {
+                        "actions": {
+                          "Apply_to_found_Estimated_Duration,_Region_does_not_apply": {
+                            "foreach": "@outputs('Check_if_there''s_an_existing_team_activity_type_estimated_duration')?['body/value']",
+                            "actions": {
+                              "Is_the_estimated_duration_record_already_deactivated": {
+                                "actions": {},
+                                "runAfter": {},
+                                "else": {
+                                  "actions": {
+                                    "Deactivate_the_Estimated_Duration": {
+                                      "runAfter": {},
+                                      "metadata": {
+                                        "operationMetadataId": "d35d2f21-f7f5-4efd-b156-d13fedc39192"
+                                      },
+                                      "type": "OpenApiConnection",
+                                      "inputs": {
+                                        "host": {
+                                          "connectionName": "shared_commondataserviceforapps_1",
+                                          "operationId": "UpdateRecord",
+                                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                        },
+                                        "parameters": {
+                                          "entityName": "ts_teamactivitytypeestimateddurations",
+                                          "recordId": "@items('Apply_to_found_Estimated_Duration,_Region_does_not_apply')?['ts_teamactivitytypeestimateddurationid']",
+                                          "item/statecode": 1,
+                                          "item/statuscode": 2
+                                        },
+                                        "authentication": "@parameters('$authentication')"
+                                      }
+                                    }
+                                  }
+                                },
+                                "expression": {
+                                  "equals": [
+                                    "",
+                                    1
+                                  ]
+                                },
+                                "metadata": {
+                                  "operationMetadataId": "756d3129-1095-49c9-b348-445f8653e1af"
+                                },
+                                "type": "If"
+                              }
+                            },
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "488616a8-f852-4254-9322-45a4e1336322"
+                            },
+                            "type": "Foreach"
+                          }
+                        }
+                      },
+                      "expression": {
+                        "or": [
+                          {
+                            "and": [
+                              {
+                                "equals": [
+                                  "@triggerOutputs()?['body/ts_international']",
+                                  true
+                                ]
+                              },
+                              {
+                                "equals": [
+                                  "@items('Apply_to_each')?['_ts_territory_value']",
+                                  "3bf0fa88-150f-eb11-a813-000d3af3a7a7"
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "and": [
+                              {
+                                "equals": [
+                                  "@triggerOutputs()?['body/ts_domestic']",
+                                  true
+                                ]
+                              },
+                              {
+                                "not": {
+                                  "equals": [
+                                    "@items('Apply_to_each')?['_ts_territory_value']",
+                                    "3bf0fa88-150f-eb11-a813-000d3af3a7a7"
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "c9c97994-8520-4e8f-8492-d877d4b254c1"
+                      },
+                      "type": "If"
+                    }
+                  },
+                  "runAfter": {
+                    "Check_if_there's_an_existing_team_activity_type_estimated_duration": [
+                      "Succeeded"
+                    ]
+                  },
+                  "else": {
+                    "actions": {
+                      "If_Activity_Type_applies_to_Team_Region_2": {
+                        "actions": {
+                          "Add_Team_Activity_Type_Estimated_Duration": {
+                            "runAfter": {},
+                            "metadata": {
+                              "operationMetadataId": "72076991-1a4e-4d22-a40a-63313301e2b5"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "host": {
+                                "connectionName": "shared_commondataserviceforapps_1",
+                                "operationId": "CreateRecord",
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                              },
+                              "parameters": {
+                                "entityName": "ts_teamactivitytypeestimateddurations",
+                                "item/ts_name": "@{items('Apply_to_each')?['teamid']} - @{triggerOutputs()?['body/msdyn_name']} default estimated duration",
+                                "item/ts_ActivityType@odata.bind": "msdyn_incidenttypes/@{triggerOutputs()?['body/msdyn_incidenttypeid']}",
+                                "item/ts_Team@odata.bind": "teams/@{items('Apply_to_each')?['teamid']}"
+                              },
+                              "authentication": "@parameters('$authentication')"
+                            }
+                          }
+                        },
+                        "runAfter": {},
+                        "expression": {
+                          "or": [
+                            {
+                              "and": [
+                                {
+                                  "equals": [
+                                    "@triggerOutputs()?['body/ts_international']",
+                                    true
+                                  ]
+                                },
+                                {
+                                  "equals": [
+                                    "@items('Apply_to_each')?['_ts_territory_value']",
+                                    "3bf0fa88-150f-eb11-a813-000d3af3a7a7"
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "and": [
+                                {
+                                  "equals": [
+                                    "@triggerOutputs()?['body/ts_domestic']",
+                                    true
+                                  ]
+                                },
+                                {
+                                  "not": {
+                                    "equals": [
+                                      "@items('Apply_to_each')?['_ts_territory_value']",
+                                      "3bf0fa88-150f-eb11-a813-000d3af3a7a7"
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "c9c97994-8520-4e8f-8492-d877d4b254c1"
+                        },
+                        "type": "If"
+                      }
+                    }
+                  },
+                  "expression": {
+                    "greater": [
+                      "@length(outputs('Check_if_there''s_an_existing_team_activity_type_estimated_duration')?['body/value'])",
+                      0
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "b0ba65b5-a37f-49d0-9450-13e6b3c88d89"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {
+                "List_teams": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "90646cf1-bbb2-4295-8115-8cdd7642a9ec"
+              },
+              "type": "Foreach"
+            },
+            "Apply_to_each_2": {
+              "foreach": "@outputs('Check_owning_business_unit')?['body/value']",
+              "actions": {
+                "Set_variable_2": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "2f1e2ad4-7853-46f9-984f-89af4afcbb11"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "teamNameStartsWith",
+                    "value": "@{if(startsWith(String(items('Apply_to_each_2')?['bu.name']), 'Aviation'), 'AVSEC', 'ISSO')}"
+                  }
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "efbc892e-6bd5-4347-aa3c-e54917a4d504"
+              },
+              "type": "Foreach"
+            },
+            "List_teams": {
+              "runAfter": {
+                "Apply_to_each_2": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "07aadb22-02f6-4c38-a563-4139eafeb300"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "teams",
+                  "fetchXml": "<fetch>\n  <entity name=\"team\">\n    <attribute name=\"name\" />\n    <attribute name=\"teamid\" />\n    <attribute name=\"businessunitid\" />\n    <attribute name=\"ts_territory\" />\n    <filter>\n      <condition attribute=\"teamtype\" operator=\"eq\" value=\"0\" />\n    </filter>\n    <filter type=\"and\">\n      <condition attribute=\"name\" operator=\"like\" value=\"@{variables('teamNameStartsWith')} |%\" />\n    </filter>\n    <link-entity name=\"businessunit\" from=\"businessunitid\" to=\"businessunitid\" link-type=\"inner\" alias=\"bu\">\n      <attribute name=\"name\" />\n      <filter type=\"or\">\n        <condition attribute=\"name\" operator=\"like\" value=\"Aviation%\" />\n        <condition attribute=\"name\" operator=\"like\" value=\"Intermodal%\" />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Check_owning_business_unit": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@length(outputs('Check_owning_business_unit')?['body/value'])",
+              1
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "469f43b2-0350-45c3-8c3f-f154f0c776bb"
+          },
+          "type": "If"
+        },
+        "Initialize_variable_that_store_the_string_to_use_in_the_team_name_filter": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "86eef9ac-e663-49fc-b5ba-f256eeac4ad3"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "teamNameStartsWith",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

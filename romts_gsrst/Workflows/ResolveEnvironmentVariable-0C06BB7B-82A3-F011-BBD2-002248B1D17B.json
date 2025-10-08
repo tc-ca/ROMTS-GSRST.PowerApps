@@ -1,0 +1,178 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_81d95"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "4f62fc15-c854-494d-bdac-6aacb7c74c94"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Input",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "ts_TransportCanadaBusinessUnitGUID",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "8f547a0c-985d-492f-9cfa-5fd455c44a98"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "environmentvariabledefinitions",
+              "fetchXml": "<fetch top='1'>\n  <entity name='environmentvariabledefinition'>\n    <attribute name='defaultvalue' />\n    <attribute name='schemaname' />\n    <filter>\n      <condition attribute='schemaname' operator='eq' value=\"@{triggerBody()['text']}\" />\n    </filter>\n    <link-entity name='environmentvariablevalue'\n                 from='environmentvariabledefinitionid'\n                 to='environmentvariabledefinitionid'\n                 alias='v'\n                 link-type='outer'>\n      <attribute name='value' />\n    </link-entity>\n  </entity>\n</fetch>\n",
+              "$top": 1
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Extract_Environment_Variable_Value": {
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f43d7e68-3dd8-4b34-934a-af0850947ef4"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "rawGuid",
+                "type": "string",
+                "value": "@{if(equals(length(outputs('List_rows')?['body/value']), 0), \r\n   null, \r\n   coalesce(first(outputs('List_rows')?['body/value'])?['v.value'],\r\n            first(outputs('List_rows')?['body/value'])?['defaultvalue']))\r\n}"
+              }
+            ]
+          }
+        },
+        "Normalize_GUID_(Lowercase_And_Remove_Braces)": {
+          "runAfter": {
+            "Extract_Environment_Variable_Value": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "cc371faa-7114-43c0-9490-301e02ea6698"
+          },
+          "type": "Compose",
+          "inputs": "@if(empty(variables('rawGuid')), null,\r\n   toLower(replace(replace(variables('rawGuid'),'{',''),'}','')))\r\n"
+        },
+        "Determine_Value_Source_(Current_|_Default_|_None)": {
+          "runAfter": {
+            "Normalize_GUID_(Lowercase_And_Remove_Braces)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "78a7f9ad-a68c-452b-9c97-232c9d821dfa"
+          },
+          "type": "Compose",
+          "inputs": "@if(\r\n  equals(length(outputs('List_rows')?['body/value']), 0),\r\n  'none',\r\n  if(\r\n    not(empty(first(outputs('List_rows')?['body/value'])?['v.value'])),\r\n    'current',\r\n    if(\r\n      not(empty(first(outputs('List_rows')?['body/value'])?['defaultvalue'])),\r\n      'default',\r\n      'none'\r\n    )\r\n  )\r\n)\r\n"
+        },
+        "Check_if_GUID_Found_(Boolean)": {
+          "runAfter": {
+            "Determine_Value_Source_(Current_|_Default_|_None)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4827a93b-b540-4ca9-bc28-316e6c3ad451"
+          },
+          "type": "Compose",
+          "inputs": "@and(\r\n  not(equals(length(outputs('List_rows')?['body/value']), 0)),\r\n  not(empty(variables('rawGuid')))\r\n)\r\n"
+        },
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Check_if_GUID_Found_(Boolean)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "73ace046-8923-4fe5-88e9-528014e592e5"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "processedguid": "@{outputs('Normalize_GUID_(Lowercase_And_Remove_Braces)')}",
+              "valuesource": "@{outputs('Determine_Value_Source_(Current_|_Default_|_None)')}",
+              "found": "@{if(outputs('Check_if_GUID_Found_(Boolean)'), true, false)\r\n}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "processedguid": {
+                  "title": "processedGuid",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "valuesource": {
+                  "title": "valueSource",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "found": {
+                  "title": "found",
+                  "x-ms-dynamically-added": true,
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

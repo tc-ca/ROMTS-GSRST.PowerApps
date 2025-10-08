@@ -7,7 +7,7 @@
     <FormActivationState>1</FormActivationState>
     <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
-        <tab verticallayout="true" id="{6149c9cd-3d20-407b-afa7-f39428d1ceb0}" IsUserDefined="1">
+        <tab verticallayout="true" id="{6149c9cd-3d20-407b-afa7-f39428d1ceb0}" IsUserDefined="1" name="Trip_General">
           <labels>
             <label description="General" languagecode="1033" />
             <label description="Général" languagecode="1036" />
@@ -15,12 +15,18 @@
           <columns>
             <column width="100%">
               <sections>
-                <section showlabel="false" showbar="false" IsUserDefined="0" id="{c9ccd5ec-318d-4ed3-b8f6-7d600e0d3bb0}" name="Region">
+                <section name="Trip_General_section_3" id="cebe8fdd-c6f4-4959-a842-70542e395e09" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
                   <labels>
                     <label description="General" languagecode="1033" />
-                    <label description="Général" languagecode="1036" />
                   </labels>
                   <rows>
+                    <row>
+                      <cell locklevel="0" id="{266c38db-4464-49f2-9b44-6de09198e600}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{6d3b7c91-cf3f-49ee-9b32-097375ab3f0f}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
@@ -31,7 +37,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{3e78e95f-428e-4777-84f1-768df55a3ffa}" showlabel="true" locklevel="0">
+                      <cell id="{3e78e95f-428e-4777-84f1-768df55a3ffa}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Trip Name" languagecode="1033" />
                           <label description="Nom du voyage" languagecode="1036" />
@@ -39,6 +45,123 @@
                         <control id="ts_name" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_name" uniqueid="{22c37012-6100-0c34-c0bc-2b8e7c0e6936}" disabled="false" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{009a6097-3adb-542b-be70-ee176d9ed2e8}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Total Estimated Duration" languagecode="1033" />
+                          <label description="Durée totale estimée pour le voyage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_estimatedduration" classid="{AA987274-CE4E-4271-A803-66164311A958}" datafieldname="ts_estimatedduration" disabled="true" uniqueid="{0aaba1d7-94b2-5433-b40e-01ad4c2bace3}" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{dab9d578-0c88-850c-3295-9ca9e8838333}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Fiscal Year" languagecode="1033" />
+                        </labels>
+                        <control id="ts_fiscalyear" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalyear" disabled="false">
+                          <parameters>
+                            <DependentAttributeName>ts_trip.ts_plannedfiscalquarter</DependentAttributeName>
+                            <DependentAttributeType>tc_tcfiscalquarter</DependentAttributeType>
+                            <FilterRelationshipName>tc_TCFiscalQuarter_TCFiscalYear</FilterRelationshipName>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{54150742-b5e5-d362-edb9-ee86c3eab652}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Planned Fiscal Quarter" languagecode="1033" />
+                          <label description="Trimestre financier prévu" languagecode="1036" />
+                        </labels>
+                        <control id="ts_plannedfiscalquarter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_plannedfiscalquarter" disabled="false" uniqueid="{3521299c-5755-663d-a7cd-03a1800dc23a}">
+                          <parameters>
+                            <AutoResolve>true</AutoResolve>
+                            <DisableMru>false</DisableMru>
+                            <DisableQuickFind>false</DisableQuickFind>
+                            <DisableViewPicker>false</DisableViewPicker>
+                            <DefaultViewId>{72CCA668-4E5D-4AB1-AFEF-9B00703A5C41}</DefaultViewId>
+                            <AllowFilterOff>false</AllowFilterOff>
+                            <DependentAttributeName>ts_trip.ts_fiscalyear</DependentAttributeName>
+                            <DependentAttributeType>tc_tcfiscalyear</DependentAttributeType>
+                            <FilterRelationshipName>tc_TCFiscalQuarter_TCFiscalYear</FilterRelationshipName>
+                            <AvailableViewIds>{D036C837-0C99-4546-A03D-79C69B876CE4},{52C9CBFD-B62E-ED11-9DB0-0022483C5061},{829E958E-9938-EB11-A813-000D3AF3FC19},{3E6CAA4E-67B1-4363-AAD7-09723F312C52},{72CCA668-4E5D-4AB1-AFEF-9B00703A5C41}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{ea6707eb-9bd9-7aba-857b-c85acde8caa9}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Actual Cost" languagecode="1033" />
+                          <label description="Coût effectif du voyage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_actualcost" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ts_actualcost" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e2e8b91d-0a93-a93c-ba5d-5bb9adb209a0}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Estimated Cost" languagecode="1033" />
+                          <label description="Coût estimé" languagecode="1036" />
+                        </labels>
+                        <control id="ts_estimatedcost" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ts_estimatedcost" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{030846d4-250d-1425-4dbb-83ca3b2183da}" showlabel="true" locklevel="0" rowspan="2" colspan="1">
+                        <labels>
+                          <label description="Cost Explanation" languagecode="1033" />
+                          <label description="Explication du coût" languagecode="1036" />
+                        </labels>
+                        <control id="ts_costexplanation" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_costexplanation" disabled="false" uniqueid="{03ee029e-a5b6-9716-3601-385c6e76c38a}" />
+                      </cell>
+                    </row>
+                    <row />
+                    <row>
+                      <cell id="{953c6864-5bee-a524-140a-6c83297eed00}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Actual Travel Time" languagecode="1033" />
+                          <label description="Temps de voyage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_traveltime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_traveltime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{296c2b17-b7e6-4490-6ab9-dcbd50473363}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Estimated Travel Time" languagecode="1033" />
+                          <label description="Durée estimée du voyage" languagecode="1036" />
+                        </labels>
+                        <control id="ts_estimatedtraveltime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_estimatedtraveltime" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{7173c8c5-fdbb-417a-b10c-6a14f1ad70b2}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Program" languagecode="1033" />
+                          <label description="Programme" languagecode="1036" />
+                        </labels>
+                        <control id="ts_program" classid="{3EF39988-22BB-4F0B-BBBE-64B5A3748AEE}" datafieldname="ts_program" disabled="false" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{5b56e060-1dfb-4af8-b68f-25b6122feadd}" locklevel="0" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="Region" languagecode="1033" />
+                          <label description="Région" languagecode="1036" />
+                        </labels>
+                        <control id="ts_region" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_region" disabled="false" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+                <section showlabel="true" showbar="false" IsUserDefined="0" id="{c9ccd5ec-318d-4ed3-b8f6-7d600e0d3bb0}" name="Region" columns="1">
+                  <labels>
+                    <label description="Associated Records" languagecode="1033" />
+                    <label description="Général" languagecode="1036" />
+                  </labels>
+                  <rows>
                     <row>
                       <cell id="{30de25f3-23d9-4ecd-831b-b7a0e19a70c6}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
@@ -63,51 +186,6 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{009a6097-3adb-542b-be70-ee176d9ed2e8}" showlabel="true" locklevel="0">
-                        <labels>
-                          <label description="Total Estimated Duration" languagecode="1033" />
-                          <label description="Durée totale estimée pour le voyage" languagecode="1036" />
-                        </labels>
-                        <control id="ts_estimatedduration" classid="{AA987274-CE4E-4271-A803-66164311A958}" datafieldname="ts_estimatedduration" disabled="true" uniqueid="{0aaba1d7-94b2-5433-b40e-01ad4c2bace3}" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{dab9d578-0c88-850c-3295-9ca9e8838333}" showlabel="true" locklevel="0" colspan="1" rowspan="1">
-                        <labels>
-                          <label description="Planned Fiscal Year" languagecode="1033" />
-                        </labels>
-                        <control id="ts_fiscalyear" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_fiscalyear" disabled="false">
-                          <parameters>
-                            <DependentAttributeName>ts_trip.ts_plannedfiscalquarter</DependentAttributeName>
-                            <DependentAttributeType>tc_tcfiscalquarter</DependentAttributeType>
-                            <FilterRelationshipName>tc_TCFiscalQuarter_TCFiscalYear</FilterRelationshipName>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{54150742-b5e5-d362-edb9-ee86c3eab652}" showlabel="true" locklevel="0">
-                        <labels>
-                          <label description="Planned Fiscal Quarter" languagecode="1033" />
-                          <label description="Trimestre financier prévu" languagecode="1036" />
-                        </labels>
-                        <control id="ts_plannedfiscalquarter" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_plannedfiscalquarter" disabled="false" uniqueid="{3521299c-5755-663d-a7cd-03a1800dc23a}">
-                          <parameters>
-                            <AutoResolve>true</AutoResolve>
-                            <DisableMru>false</DisableMru>
-                            <DisableQuickFind>false</DisableQuickFind>
-                            <DisableViewPicker>false</DisableViewPicker>
-                            <DefaultViewId>{72CCA668-4E5D-4AB1-AFEF-9B00703A5C41}</DefaultViewId>
-                            <AllowFilterOff>false</AllowFilterOff>
-                            <DependentAttributeName>ts_trip.ts_fiscalyear</DependentAttributeName>
-                            <DependentAttributeType>tc_tcfiscalyear</DependentAttributeType>
-                            <FilterRelationshipName>tc_TCFiscalQuarter_TCFiscalYear</FilterRelationshipName>
-                            <AvailableViewIds>{D036C837-0C99-4546-A03D-79C69B876CE4},{52C9CBFD-B62E-ED11-9DB0-0022483C5061},{829E958E-9938-EB11-A813-000D3AF3FC19},{3E6CAA4E-67B1-4363-AAD7-09723F312C52},{72CCA668-4E5D-4AB1-AFEF-9B00703A5C41}</AvailableViewIds>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                    <row>
                       <cell id="{6cace660-2cca-2dc7-921e-b7ee2edb11ad}" showlabel="true" locklevel="0" visible="false">
                         <labels>
                           <label description="Planned Cost of Trip" languagecode="1033" />
@@ -117,59 +195,32 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{ea6707eb-9bd9-7aba-857b-c85acde8caa9}" showlabel="true" locklevel="0">
+                      <cell locklevel="0" id="{bcd3fe9a-2d0b-4e11-b937-ab3092d10d5b}" rowspan="6" colspan="1" auto="false" showlabel="true">
                         <labels>
-                          <label description="Actual Cost of Trip" languagecode="1033" />
-                          <label description="Coût effectif du voyage" languagecode="1036" />
+                          <label description="Work Orders" languagecode="1033" />
                         </labels>
-                        <control id="ts_actualcost" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ts_actualcost" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{e2e8b91d-0a93-a93c-ba5d-5bb9adb209a0}" showlabel="true" locklevel="0">
-                        <labels>
-                          <label description="Estimated Cost" languagecode="1033" />
-                          <label description="Coût estimé" languagecode="1036" />
-                        </labels>
-                        <control id="ts_estimatedcost" classid="{533B9E00-756B-4312-95A0-DC888637AC78}" datafieldname="ts_estimatedcost" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{030846d4-250d-1425-4dbb-83ca3b2183da}" showlabel="true" locklevel="0" rowspan="2">
-                        <labels>
-                          <label description="Cost Explanation" languagecode="1033" />
-                          <label description="Explication du coût" languagecode="1036" />
-                        </labels>
-                        <control id="ts_costexplanation" classid="{E0DECE4B-6FC8-4a8f-A065-082708572369}" datafieldname="ts_costexplanation" disabled="false" uniqueid="{03ee029e-a5b6-9716-3601-385c6e76c38a}" />
+                        <control indicationOfSubgrid="true" id="Work_Orders" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
+                          <parameters>
+                            <RecordsPerPage>4</RecordsPerPage>
+                            <AutoExpand>Fixed</AutoExpand>
+                            <EnableQuickFind>false</EnableQuickFind>
+                            <EnableViewPicker>false</EnableViewPicker>
+                            <EnableChartPicker>true</EnableChartPicker>
+                            <ChartGridMode>All</ChartGridMode>
+                            <RelationshipName>ts_trip_msdyn_workorder_trip</RelationshipName>
+                            <TargetEntityType>msdyn_workorder</TargetEntityType>
+                            <ViewId>{FCE37246-EBA1-4E92-BB9D-F8CB3EC38E3F}</ViewId>
+                            <ViewIds>{70518E86-6EC4-ED11-B596-0022482D11ED},{7C4BF420-C476-EF11-AC20-6045BD5E7A93},{FCE37246-EBA1-4E92-BB9D-F8CB3EC38E3F}</ViewIds>
+                            <VisualizationId>{5472FF64-C30F-EB11-A813-000D3AF3A7A7}</VisualizationId>
+                          </parameters>
+                        </control>
                       </cell>
                     </row>
                     <row />
-                    <row>
-                      <cell id="{953c6864-5bee-a524-140a-6c83297eed00}" showlabel="true" locklevel="0">
-                        <labels>
-                          <label description="Travel Time" languagecode="1033" />
-                          <label description="Temps de voyage" languagecode="1036" />
-                        </labels>
-                        <control id="ts_traveltime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_traveltime" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{296c2b17-b7e6-4490-6ab9-dcbd50473363}" showlabel="true" locklevel="0">
-                        <labels>
-                          <label description="Estimated Travel Time" languagecode="1033" />
-                          <label description="Durée estimée du voyage" languagecode="1036" />
-                        </labels>
-                        <control id="ts_estimatedtraveltime" classid="{C3EFE0C3-0EC6-42be-8349-CBD9079DFD8E}" datafieldname="ts_estimatedtraveltime" disabled="false" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{5b56e060-1dfb-4af8-b68f-25b6122feadd}" locklevel="0" colspan="1" rowspan="1">
-                        <labels>
-                          <label description="Region" languagecode="1033" />
-                        </labels>
-                        <control id="ts_region" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_region" disabled="false" />
-                      </cell>
-                    </row>
+                    <row />
+                    <row />
+                    <row />
+                    <row />
                     <row>
                       <cell id="{acc35eb1-e990-169a-50a5-1c4a6ecb0e08}" showlabel="true" colspan="1" auto="false" rowspan="7">
                         <labels>
@@ -203,6 +254,13 @@
                     <row />
                     <row />
                     <row />
+                    <row>
+                      <cell id="{a36e29d3-dac5-4e26-b9e7-4b0b574ea3ed}" userspacer="true" showlabel="false" colspan="1" rowspan="1">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{41505d13-e0b6-e632-bb85-1c787716e5a2}" showlabel="true" colspan="1" auto="false" rowspan="7">
                         <labels>
@@ -242,7 +300,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_Interactions" id="dbf01fa2-aa8b-44fe-9270-55b9305737b2" IsUserDefined="0" locklevel="0" showlabel="true">
+        <tab name="Trip_Interations" id="dbf01fa2-aa8b-44fe-9270-55b9305737b2" IsUserDefined="0" locklevel="0" showlabel="true">
           <labels>
             <label description="Interactions" languagecode="1033" />
           </labels>
@@ -520,6 +578,11 @@
         <event name="onload" application="false" active="false">
           <Handlers>
             <Handler functionName="ROM.Trip.onLoad" libraryName="ts_/js/Trip.js" handlerUniqueId="{b7964ba0-a778-d9ec-3930-452c330869cd}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_program">
+          <Handlers>
+            <Handler functionName="ROM.Trip.onProgramChange" libraryName="ts_/js/Trip.js" handlerUniqueId="{425c3386-069d-4559-9edb-7664d7cd5e48}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

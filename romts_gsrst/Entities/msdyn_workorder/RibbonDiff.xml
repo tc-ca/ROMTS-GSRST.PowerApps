@@ -10,7 +10,7 @@
     </CustomAction>
     <CustomAction Id="ts.Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="40">
       <CommandUIDefinition>
-        <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="Mscrm.AddExistingRecordFromSubGridAssociated" Id="Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Sequence="40" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipDescription" ModernImage="AddExisting" />
+        <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="Mscrm.AddExistingRecordFromSubGridAssociated" Id="Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc.LabelText" Sequence="40" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingAssoc_ToolTipDescription" ModernImage="AddExisting" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.Mscrm.SubGrid.msdyn_workorder.NewRecord.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="10">
@@ -43,9 +43,9 @@
         <Button Alt="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.Alt" Command="ts.msdyn_workorder.TSIS.AddToTrip" Id="ts.msdyn_workorder.Button6.AddToTrip" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/Edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.LabelText" Sequence="22" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Button6.AddToTrip.ToolTipTitle" />
       </CommandUIDefinition>
     </CustomAction>
-    <CustomAction Id="ts.msdyn_workorder.Commit.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="0">
+    <CustomAction Id="ts.msdyn_workorder.Commit.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="1">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:ts.msdyn_workorder.Commit.Alt" Command="ts.msdyn_workorder.commitSelectedWorkOrders" Id="ts.msdyn_workorder.Commit" LabelText="$LocLabels:ts.msdyn_workorder.Commit.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Commit.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.Commit.ToolTipDescription" />
+        <Button Alt="$LocLabels:ts.msdyn_workorder.Commit.Alt" Command="ts.msdyn_workorder.commitSelectedWorkOrders" Id="ts.msdyn_workorder.Commit" LabelText="$LocLabels:ts.msdyn_workorder.Commit.LabelText" Sequence="1" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.Commit.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.Commit.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.CopyServiceTask.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="50">
@@ -58,19 +58,29 @@
         <Button Command="ts.msdyn_workorder.Documents.Command" Id="ts.msdyn_workorder.Documents.Button" LabelText="$LocLabels:ts.msdyn_workorder.Documents.Button.LabelText" Sequence="58" TemplateAlias="o2" />
       </CommandUIDefinition>
     </CustomAction>
-    <CustomAction Id="ts.msdyn_workorder.NewUnplannedWO.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="1">
+    <CustomAction Id="ts.msdyn_workorder.NewUnplannedWO.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="0">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:ts.msdyn_workorder.NewUnplannedWO.Alt" Command="ts.msdyn_workorder.NewUnplannedWorkOrder" Id="ts.msdyn_workorder.NewUnplannedWO" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.NewUnplannedWO.LabelText" Sequence="1" TemplateAlias="o1" />
+        <Button Alt="$LocLabels:ts.msdyn_workorder.NewUnplannedWO.Alt" Command="ts.msdyn_workorder.NewUnplannedWorkOrder" Id="ts.msdyn_workorder.NewUnplannedWO" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.NewUnplannedWO.LabelText" Sequence="0" TemplateAlias="o1" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.NewUnplannedWOHome.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="0">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.NewUnplannedWOHome.Alt" Command="ts.msdyn_workorder.NewUnplannedWorkOrder" Id="ts.msdyn_workorder.NewUnplannedWOHome" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.NewUnplannedWOHome.LabelText" Sequence="0" TemplateAlias="o5" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.SubGrid.AddExistingStandardSecurityIncident.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="30">
       <CommandUIDefinition>
-        <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="ts.msdyn_workorder.AddExistingStandardSecurityIncident" Id="ts.msdyn_workorder.SubGrid.AddExistingStandardSecurityIncident" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Sequence="30" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipDescription" ModernImage="AddExisting" />
+        <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="ts.msdyn_workorder.AddExistingStandardSecurityIncident" Id="ts.msdyn_workorder.SubGrid.AddExistingStandardSecurityIncident" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:ts.msdyn_workorder.SubGrid.AddExistingStandardSecurityIncident.LabelText" Sequence="30" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipDescription" ModernImage="AddExisting" />
       </CommandUIDefinition>
     </CustomAction>
-    <CustomAction Id="ts.msdyn_workorder.SubGridCommit.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="6">
+    <CustomAction Id="ts.msdyn_workorder.SubGridCommit.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="0">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:ts.msdyn_workorder.SubGridCommit.Alt" Command="ts.msdyn_workorder.SubgridCommit" Id="ts.msdyn_workorder.SubGridCommit" LabelText="$LocLabels:ts.msdyn_workorder.SubGridCommit.LabelText" Sequence="6" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.SubGridCommit.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.SubGridCommit.ToolTipDescription" />
+        <Button Alt="$LocLabels:ts.msdyn_workorder.SubGridCommit.Alt" Command="ts.msdyn_workorder.SubgridCommit" Id="ts.msdyn_workorder.SubGridCommit" LabelText="$LocLabels:ts.msdyn_workorder.SubGridCommit.LabelText" Sequence="0" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.SubGridCommit.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.SubGridCommit.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.TripSubGrid.AddExisting.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="32">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.TripSubGrid.AddExisting.Alt" Command="ts.msdyn_workorder.AddExistingRecordSubGridForTrip" Id="ts.msdyn_workorder.TripSubGrid.AddExisting" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:ts.msdyn_workorder.TripSubGrid.AddExisting.LabelText" Sequence="32" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.TripSubGrid.AddExisting.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.TripSubGrid.AddExisting.ToolTipDescription" ModernImage="AddExisting" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.TSIS.Cancel.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="15">
@@ -88,9 +98,9 @@
         <Button Alt="$LocLabels:ts.msdyn_workorder.TSIS.Justify.Alt" Command="ts.msdyn_workorder.TSIS.Justify" Id="ts.msdyn_workorder.TSIS.Justify" Image32by32="/_imgs/ribbon/edit32.png" Image16by16="/_imgs/ribbon/edit_16.png" LabelText="$LocLabels:ts.msdyn_workorder.TSIS.Justify.LabelText" Sequence="13" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.TSIS.Justify.ToolTipTitle" />
       </CommandUIDefinition>
     </CustomAction>
-    <CustomAction Id="ts.ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="35">
+    <CustomAction Id="ts.ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="33">
       <CommandUIDefinition>
-        <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="ovs.msdyn_workorder.SubGrid.msdyn_workorder.AddExistingStandard" Id="ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Sequence="35" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipDescription" ModernImage="AddExisting" />
+        <Button Alt="$Resources(EntityDisplayName):Ribbon.SubGrid.AddExisting" Command="ovs.msdyn_workorder.SubGrid.msdyn_workorder.AddExistingStandard" Id="ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard" Image32by32="/_imgs/ribbon/AddExistingStandard_32.png" Image16by16="/_imgs/ribbon/AddExistingStandard_16.png" LabelText="$LocLabels:ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard.LabelText" Sequence="33" TemplateAlias="o1" ToolTipTitle="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipTitle" ToolTipDescription="$Resources(EntityDisplayName):Mscrm_SubGrid_EntityLogicalName_MainTab_Management_AddExistingStandard_ToolTipDescription" ModernImage="AddExisting" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.ovs.msdyn_workorder.TSIS.msdyn_workorder.Assign.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="46">
@@ -162,6 +172,7 @@
         <DisplayRule Id="Mscrm.AppendSelected" />
         <DisplayRule Id="Mscrm.HideAddNewForChildEntities" />
         <DisplayRule Id="ts.msdyn_workorder.HideAddNewForFunctionalLocation" />
+        <DisplayRule Id="ts.msdyn_workorder.HideAddNewForTrip" />
       </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="XrmCore.Commands.Open.addNewFromSubGridStandard" Library="$webresource:Main_system_library.js">
@@ -327,7 +338,7 @@
         <EnableRule Id="ts.msdyn_workorder.HideInOperation.EnableRule" />
         <EnableRule Id="ts.msdyn_workorder.HideInStakeholder.EnableRule" />
         <EnableRule Id="ts.msdyn_workorder.PrimaryIsNotTeamPlanningData" />
-        <EnableRule Id="ts.msdyn_workorder.IsNotSecurityIncident" />
+        <EnableRule Id="ts.msdyn_workorder.AddExistingForCaseSubGrid.EnableRule" />
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="Mscrm.AddExisting" />
@@ -370,6 +381,18 @@
         <JavaScriptFunction FunctionName="bulkAddAdditionalInspectors" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
           <CrmParameter Value="PrimaryControl" />
           <CrmParameter Value="SelectedControlSelectedItemIds" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.AddExistingRecordSubGridForTrip">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.AddExistingForTripSubGrid.EnableRule" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridStandard" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -431,9 +454,7 @@
     </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorder.NewUnplannedWorkOrder">
       <EnableRules />
-      <DisplayRules>
-        <DisplayRule Id="ts.msdyn_workorder.HideNewUnplannedWO" />
-      </DisplayRules>
+      <DisplayRules />
       <Actions>
         <JavaScriptFunction FunctionName="openUnplannedWorkOrderForm" Library="$webresource:ovs_/js/WorkOrderRibbon.js" />
       </Actions>
@@ -602,6 +623,9 @@
       <DisplayRule Id="ts.msdyn_workorder.HideAddNewForFunctionalLocation">
         <EntityRule EntityName="msdyn_functionallocation" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="true" />
       </DisplayRule>
+      <DisplayRule Id="ts.msdyn_workorder.HideAddNewForTrip">
+        <EntityRule EntityName="ts_trip" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="true" />
+      </DisplayRule>
       <DisplayRule Id="ts.msdyn_workorder.HideNewUnplannedWO">
         <ValueRule Value="" InvertResult="true" />
       </DisplayRule>
@@ -695,6 +719,18 @@
       <EnableRule Id="ovs.msdyn_workorder.TSIS.isROMRole.inverted">
         <CustomRule FunctionName="isROMRole" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js" Default="false" InvertResult="true" />
       </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.AddExistingForCaseSubGrid.EnableRule">
+        <CustomRule FunctionName="showAddExistingButton" Library="$webresource:ovs_/js/WorkOrderRibbon.js" Default="false">
+          <CrmParameter Value="PrimaryControl" />
+          <StringParameter Value="45b022a4-928d-eb11-b1ac-000d3ae92dbf" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.AddExistingForTripSubGrid.EnableRule">
+        <CustomRule FunctionName="showAddExistingButton" Library="$webresource:ovs_/js/WorkOrderRibbon.js" Default="false">
+          <CrmParameter Value="PrimaryControl" />
+          <StringParameter Value="6f157fec-1d27-464f-a848-f221e46fc3d5" />
+        </CustomRule>
+      </EnableRule>
       <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected">
         <SelectionCountRule Minimum="1" />
       </EnableRule>
@@ -745,6 +781,11 @@
         <Title description="Activate" languagecode="1036" />
       </Titles>
     </LocLabel>
+    <LocLabel Id="Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc.LabelText">
+      <Titles>
+        <Title description="Add Existing {0} / Associated" languagecode="1033" />
+      </Titles>
+    </LocLabel>
     <LocLabel Id="msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.Alt">
       <Titles>
         <Title description="Book" languagecode="1033" />
@@ -791,6 +832,11 @@
       <Titles>
         <Title description="Book Resource" languagecode="1033" />
         <Title description="Book Resource" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard.LabelText">
+      <Titles>
+        <Title description="Add Existing {0}" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.AddAdditionalInspectors.Alt">
@@ -917,6 +963,21 @@
         <Title description="New Unplanned WO" languagecode="1033" />
       </Titles>
     </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.NewUnplannedWOHome.Alt">
+      <Titles>
+        <Title description="New Unplanned WO" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.NewUnplannedWOHome.LabelText">
+      <Titles>
+        <Title description="New Unplanned WO" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.SubGrid.AddExistingStandardSecurityIncident.LabelText">
+      <Titles>
+        <Title description="Add Existing {0} / Security " languagecode="1033" />
+      </Titles>
+    </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.SubGridCommit.Alt">
       <Titles>
         <Title description="Commit" languagecode="1033" />
@@ -939,6 +1000,26 @@
       <Titles>
         <Title description="Commit" languagecode="1033" />
         <Title description="Commit" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TripSubGrid.AddExisting.Alt">
+      <Titles>
+        <Title description="Add Existing {0}" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TripSubGrid.AddExisting.LabelText">
+      <Titles>
+        <Title description="Add Existing {0}" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TripSubGrid.AddExisting.ToolTipDescription">
+      <Titles>
+        <Title description="Add a {0} that already exists to the record you are working with." languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.TripSubGrid.AddExisting.ToolTipTitle">
+      <Titles>
+        <Title description="Add Existing {0}" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.TSIS.Cancel.Alt">

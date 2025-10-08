@@ -1,0 +1,213 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "735ec97e-afeb-459d-a255-a2869f07edf5"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "schemaNamesJson",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "[\"ts_AviationSecurityDirectorateDomesticBusinessUnitGUID\",\n \"ts_AviationSecurityInternationalBusinessUnitGUID\",\n \"ts_AviationSecurityDirectorateBusinessUnitGUID\"]\n",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Initialize_guids": {
+          "runAfter": {
+            "SchemaNames_to_Arrray": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f0ca49ae-652b-4a86-80f0-6f295253e156"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Collected GUIDs",
+                "type": "array",
+                "value": []
+              }
+            ]
+          }
+        },
+        "Initialize_map": {
+          "runAfter": {
+            "Initialize_guids": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e8df7db9-94e1-4b0a-9a17-fe1730426b6a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Schema Map",
+                "type": "array",
+                "value": []
+              }
+            ]
+          }
+        },
+        "For_each_Schema_Name": {
+          "foreach": "@outputs('SchemaNames_to_Arrray')",
+          "actions": {
+            "Resolve_Single_Environment_Variable": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "c7ef18df-c2dc-401a-a4c8-71da913b969f"
+              },
+              "type": "Workflow",
+              "inputs": {
+                "host": {
+                  "workflowReferenceName": "0c06bb7b-82a3-f011-bbd2-002248b1d17b"
+                },
+                "body": {
+                  "text": "@items('For_each_Schema_Name')"
+                }
+              }
+            },
+            "Condition": {
+              "actions": {
+                "Collect_GUIDs": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "be1a0ada-2466-4dfb-8d8c-d6062f1bbfad"
+                  },
+                  "type": "AppendToArrayVariable",
+                  "inputs": {
+                    "name": "Collected GUIDs",
+                    "value": "@body('Resolve_Single_Environment_Variable')?['processedguid']\r\n"
+                  }
+                },
+                "Schema_Map": {
+                  "runAfter": {
+                    "Collect_GUIDs": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "991bde27-17aa-4ef3-9aeb-e34f22ddb4c1"
+                  },
+                  "type": "AppendToArrayVariable",
+                  "inputs": {
+                    "name": "Schema Map",
+                    "value": "@json(concat(\r\n  '{',\r\n    '\"schema\":\"', string(item()), '\",',\r\n    '\"valueSource\":\"', string(body('Resolve_Single_Environment_Variable')?['valuesource']), '\",',\r\n    '\"guid\":\"', string(body('Resolve_Single_Environment_Variable')?['processedguid']), '\"',\r\n  '}'\r\n))\r\n"
+                  }
+                }
+              },
+              "runAfter": {
+                "Resolve_Single_Environment_Variable": [
+                  "Succeeded"
+                ]
+              },
+              "expression": {
+                "equals": [
+                  "@body('Resolve_Single_Environment_Variable')?['found']",
+                  "True"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a0b8d9b6-681d-4455-a3d9-64a8cbecedf0"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_map": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ad447057-7ff0-4d87-a745-40dda092fbb5"
+          },
+          "type": "Foreach"
+        },
+        "SchemaNames_to_Arrray": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "42c623b1-a843-4994-9bf4-2505e2d9a39c"
+          },
+          "type": "Compose",
+          "inputs": "@if(\r\n  or(equals(triggerBody()?['text'], ''), equals(triggerBody()?['text'], null)),\r\n  createArray(),\r\n  if(\r\n    startsWith(trim(triggerBody()?['text']), '['),\r\n    json(triggerBody()?['text']),\r\n    createArray(triggerBody()?['text'])\r\n  )\r\n)\r\n"
+        },
+        "Compose": {
+          "runAfter": {
+            "For_each_Schema_Name": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c7f6108e-e73c-4acc-aa2f-73139f50f595"
+          },
+          "type": "Compose",
+          "inputs": "@union(variables('Collected GUIDs'), variables('Collected GUIDs'))\r\n"
+        },
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "517d0912-5451-4f2a-ac6e-c9c0c6303a79"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "guids": "@{outputs('Compose')}",
+              "map": "@{variables('Schema Map')}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "guids": {
+                  "title": "guids",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "map": {
+                  "title": "map",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

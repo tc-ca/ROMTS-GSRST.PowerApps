@@ -1,0 +1,150 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "5e7b70df-20db-4b7a-bc03-c1247d8b9948"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "attribute",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "schemaNamesJson",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Compose_-_Schema_Names_(Array)": {
+          "runAfter": {
+            "Compose_-_Raw_Schema_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "986858e3-318c-4cee-837b-2eaa8b05fb76"
+          },
+          "type": "Compose",
+          "inputs": "@if(\r\n  or(equals(outputs('Compose_-_Raw_Schema_JSON'), ''), equals(outputs('Compose_-_Raw_Schema_JSON'), null)),\r\n  createArray(),\r\n  if(\r\n    startsWith(trim(string(outputs('Compose_-_Raw_Schema_JSON'))), '['),\r\n    json(outputs('Compose_-_Raw_Schema_JSON')),\r\n    createArray(outputs('Compose_-_Raw_Schema_JSON'))\r\n  )\r\n)\r\n"
+        },
+        "Resolve_GUID_Set": {
+          "runAfter": {
+            "Compose_-_Schema_Names_(Array)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "48f54e5b-6ff2-4459-acd0-267df337ffd4"
+          },
+          "type": "Workflow",
+          "inputs": {
+            "host": {
+              "workflowReferenceName": "112dae1f-91a3-f011-bbd2-002248b1d17b"
+            },
+            "body": {
+              "text": "@string(outputs('Compose_-_Schema_Names_(Array)'))\r\n"
+            }
+          }
+        },
+        "Compose_-_GUIDs_(Array)": {
+          "runAfter": {
+            "Resolve_GUID_Set": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "66581b59-09c3-4f4a-9c03-57f263d21726"
+          },
+          "type": "Compose",
+          "inputs": "@if(\r\n  or(equals(outputs('Resolve_GUID_Set')?['body/guids'], ''), equals(outputs('Resolve_GUID_Set')?['body/guids'], null)),\r\n  createArray(),\r\n  if(\r\n    startsWith(trim(string(outputs('Resolve_GUID_Set')?['body/guids'])), '['),\r\n    json(outputs('Resolve_GUID_Set')?['body/guids']),\r\n    createArray(outputs('Resolve_GUID_Set')?['body/guids'])\r\n  )\r\n)\r\n"
+        },
+        "Compose_–_In-Clause": {
+          "runAfter": {
+            "Compose_-_GUIDs_(Array)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "07c9c1f9-ef15-4cbb-9166-3934f46e83d3"
+          },
+          "type": "Compose",
+          "inputs": "@if(\r\n  equals(length(outputs('Compose_-_GUIDs_(Array)')), 0),\r\n  '',\r\n  concat(\r\n    '<condition attribute=\"', coalesce(triggerBody()?['attribute'], triggerBody()?['text']), '\" operator=\"in\"><value>',\r\n    join(outputs('Compose_-_GUIDs_(Array)'), '</value><value>'),\r\n    '</value></condition>'\r\n  )\r\n)\r\n"
+        },
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Compose_–_In-Clause": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bcc9fbca-ed33-458c-97b9-3307ea5224e2"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "conditionxml": "@{outputs('Compose_–_In-Clause')}\n",
+              "guids": "\n@{outputs('Compose_-_GUIDs_(Array)')}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "conditionxml": {
+                  "title": "conditionXml",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                },
+                "guids": {
+                  "title": "guids",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Compose_-_Raw_Schema_JSON": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "64330a43-7f4c-4aa2-8d5e-764a39a2b191"
+          },
+          "type": "Compose",
+          "inputs": "@coalesce(\r\n  triggerBody()?['schemaNamesJson'],\r\n  triggerBody()?['text_1'],\r\n  triggerBody()?['schemaNames'],\r\n  triggerBody()?['text']\r\n)\r\n"
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}
