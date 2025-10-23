@@ -1,0 +1,385 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "9dcc9bca-3c7e-4f8c-895b-75cff7f401af"
+          },
+          "type": "Request",
+          "kind": "Http",
+          "inputs": {
+            "triggerAuthenticationType": "All"
+          },
+          "conditions": [
+            {
+              "expression": "@equals(triggerbody()?['InputParameters'][1]?['value']?['SchemaName'],'ts_ovs_operationtypes_msdyn_incidenttypes')"
+            }
+          ]
+        }
+      },
+      "actions": {
+        "Get_Incident_Type": {
+          "runAfter": {
+            "Initialize_Operation_Status_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5be33751-2493-4a7e-ade3-147bce431dc0"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "msdyn_incidenttypes",
+              "recordId": "@triggerBody()?['InputParameters'][0]?['value']?['Id']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Check_owning_business_unit": {
+          "runAfter": {
+            "Build_In-Clause_From_Schemas": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6a9e193c-c492-4b7a-bb05-87f193203f4c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "msdyn_incidenttypes",
+              "fetchXml": "<fetch distinct=\"true\">\n  <entity name=\"msdyn_incidenttype\">\n    <attribute name=\"msdyn_incidenttypeid\" />\n    <filter>\n      <condition attribute=\"msdyn_incidenttypeid\" operator=\"eq\" value=\"{@{outputs('Get_Incident_Type')?['body/msdyn_incidenttypeid']}}\" />\n    </filter>\n    <link-entity name=\"businessunit\" from=\"businessunitid\" to=\"owningbusinessunit\" link-type=\"inner\">\n      <filter type=\"and\">\n       @{body('Build_In-Clause_From_Schemas')?['conditionxml']}\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>",
+              "$top": 1
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Condition": {
+          "actions": {
+            "Get_Operation_Type": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "4143d3c6-f446-475e-9a6a-953926c28aaf"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ovs_operationtypes",
+                  "recordId": "@triggerBody()?['InputParameters'][2]?['value'][0]['Id']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each": {
+              "foreach": "@outputs('Check_owning_business_unit')?['body/value']",
+              "actions": {
+                "Get_linked_Operations": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "8966351e-5f3f-47b7-b719-004dcec798f7"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps_1",
+                      "operationId": "ListRecords",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ovs_operations",
+                      "fetchXml": "<fetch version=\"1.0\" distinct=\"true\" mapping=\"logical\" returntotalrecordcount=\"true\" no-lock=\"false\">\n  <entity name=\"ovs_operation\">\n  <attribute name=\"ovs_name\" />\n    <attribute name=\"ovs_operationid\" />\n    <attribute name=\"ovs_operationtypeid\" />\n    <attribute name=\"ts_stakeholder\" />\n    <attribute name=\"ts_site\" />\n    <filter>\n      <condition attribute=\"ovs_operationtypeid\" operator=\"eq\" value=\"{@{outputs('Get_Operation_Type')?['body/ovs_operationtypeid']}}\" />\n    </filter>\n    <link-entity name=\"businessunit\" from=\"businessunitid\" to=\"owningbusinessunit\" link-type=\"inner\">\n      <filter>\n        @{body('Build_In-Clause_From_Schemas')?['conditionxml']}\n      </filter>\n    </link-entity>\n    <link-entity name=\"ts_operationactivity\" from=\"ts_operation\" to=\"ovs_operationid\" link-type=\"outer\">\n      <filter>\n        <condition attribute=\"ts_activity\" operator=\"ne\" value=\"{@{outputs('Get_Incident_Type')?['body/msdyn_incidenttypeid']}}\" />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Apply_to_each_2": {
+                  "foreach": "@outputs('Get_linked_Operations')?['body/value']",
+                  "actions": {
+                    "Condition_2": {
+                      "actions": {
+                        "Get_Account_associated_with_Operation": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "c7b14963-ab4b-4649-b16b-8768f84d5b34"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_1",
+                              "operationId": "GetItem",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "accounts",
+                              "recordId": "@items('Apply_to_each_2')?['_ts_stakeholder_value']",
+                              "$select": "name, accountid"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        },
+                        "Get_Site_associated_with_Operation": {
+                          "runAfter": {
+                            "Get_Account_associated_with_Operation": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "1c694607-1a3e-438e-87ff-3552d348b11b"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps_1",
+                              "operationId": "GetItem",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "msdyn_functionallocations",
+                              "recordId": "@items('Apply_to_each_2')?['_ts_site_value']",
+                              "$select": "msdyn_name, msdyn_functionallocationid, _ts_country_value,  _ts_region_value"
+                            },
+                            "authentication": "@parameters('$authentication')"
+                          }
+                        },
+                        "If_Activity_Type_applies_to_Site_Region": {
+                          "actions": {
+                            "Create_new_Operation_Activity": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "1b9d0eeb-886a-4293-a955-c6800211c18c"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps_1",
+                                  "operationId": "CreateRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "ts_operationactivities",
+                                  "item/ts_Activity@odata.bind": "msdyn_incidenttypes/@{outputs('Get_Incident_Type')?['body/msdyn_incidenttypeid']}",
+                                  "item/ts_name": "Operation Activity",
+                                  "item/ts_Operation@odata.bind": "ovs_operations/@{items('Apply_to_each_2')?['ovs_operationid']}",
+                                  "item/ts_operationalstatus": 717750000,
+                                  "item/ts_englishname": "@{items('Apply_to_each_2')?['ovs_name']} | @{outputs('Get_Incident_Type')?['body/ovs_incidenttypenameenglish']}",
+                                  "item/ts_frenchname": "@{items('Apply_to_each_2')?['ovs_name']} | @{items('Apply_to_each')?['ovs_incidenttypenamefrench']}",
+                                  "item/ts_OperationType@odata.bind": "ovs_operationtypes/@{items('Apply_to_each_2')?['_ovs_operationtypeid_value']}",
+                                  "item/ownerid@odata.bind": "teams(e2e3910d-a41f-ec11-b6e6-0022483cb5c7)",
+                                  "item/ts_Site@odata.bind": "msdyn_functionallocations/@{outputs('Get_Site_associated_with_Operation')?['body/msdyn_functionallocationid']}",
+                                  "item/ts_Stakeholder@odata.bind": "accounts/@{outputs('Get_Account_associated_with_Operation')?['body/accountid']}"
+                                },
+                                "authentication": "@parameters('$authentication')"
+                              }
+                            }
+                          },
+                          "runAfter": {
+                            "Get_Site_associated_with_Operation": [
+                              "Succeeded"
+                            ]
+                          },
+                          "expression": {
+                            "or": [
+                              {
+                                "and": [
+                                  {
+                                    "equals": [
+                                      "@outputs('Get_Site_associated_with_Operation')?['body/_ts_region_value']",
+                                      "3bf0fa88-150f-eb11-a813-000d3af3a7a7"
+                                    ]
+                                  },
+                                  {
+                                    "equals": [
+                                      "@outputs('Get_Incident_Type')?['body/ts_international']",
+                                      "@true"
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "and": [
+                                  {
+                                    "not": {
+                                      "equals": [
+                                        "@outputs('Get_Site_associated_with_Operation')?['body/_ts_region_value']",
+                                        "3bf0fa88-150f-eb11-a813-000d3af3a7a7"
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "equals": [
+                                      "@outputs('Get_Incident_Type')?['body/ts_domestic']",
+                                      "@true"
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "bd7ba594-8e09-45ab-8055-7fd0cd3ebe4e"
+                          },
+                          "type": "If"
+                        }
+                      },
+                      "runAfter": {
+                        "Check_for_existing_opactivity": [
+                          "Succeeded"
+                        ]
+                      },
+                      "expression": {
+                        "equals": [
+                          "@length(outputs('Check_for_existing_opactivity')?['body/value'])",
+                          0
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "0091e2d4-d3d0-4453-9bbc-685b54d1603e"
+                      },
+                      "type": "If"
+                    },
+                    "Check_for_existing_opactivity": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "42a998f6-3e13-43cb-86b1-0439f254fdb4"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_commondataserviceforapps_1",
+                          "operationId": "ListRecords",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                        },
+                        "parameters": {
+                          "entityName": "ts_operationactivities",
+                          "fetchXml": "<fetch distinct=\"true\">\n  <entity name=\"ts_operationactivity\">\n    <filter>\n      <condition attribute=\"ts_operation\" operator=\"eq\" value=\"{@{items('Apply_to_each_2')?['ovs_operationid']}}\" />\n      <condition attribute=\"ts_activity\" operator=\"eq\" value=\"{@{outputs('Get_Incident_Type')?['body/msdyn_incidenttypeid']}}\" />\n    </filter>\n  </entity>\n</fetch>",
+                          "$top": 1
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Get_linked_Operations": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "0dcd9c04-8a51-422d-a818-d9130b1af4da"
+                  },
+                  "type": "Foreach",
+                  "runtimeConfiguration": {
+                    "concurrency": {
+                      "repetitions": 20
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_Operation_Type": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ba40d64a-e461-4ca3-85c9-6908fb5ed9e7"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Check_owning_business_unit": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@length(outputs('Check_owning_business_unit')?['body/value'])",
+              1
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "40bac1df-2fb2-45fb-97af-6d87cdb9d85c"
+          },
+          "type": "If"
+        },
+        "Initialize_Operation_Status_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "c1553556-74c1-47e1-82fa-e5cc6902ff58"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Operational Status",
+                "type": "integer"
+              }
+            ]
+          }
+        },
+        "Build_In-Clause_From_Schemas": {
+          "runAfter": {
+            "Get_Incident_Type": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "43d5615f-0618-4de5-9c2b-9562d5358f3f"
+          },
+          "type": "Workflow",
+          "inputs": {
+            "host": {
+              "workflowReferenceName": "11f9e00b-a0a3-f011-bbd2-7c1e52549bb6"
+            },
+            "body": {
+              "text": "name",
+              "text_1": "[\"ts_AviationSecurityDirectorateDomesticBusinessUnitGUID\",\n \"ts_AviationSecurityInternationalBusinessUnitGUID\",\n \"ts_AviationSecurityDirectorateBusinessUnitGUID\"]"
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

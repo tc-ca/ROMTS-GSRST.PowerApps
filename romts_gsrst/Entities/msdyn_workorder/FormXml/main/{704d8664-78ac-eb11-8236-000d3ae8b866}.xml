@@ -223,6 +223,32 @@
                       </cell>
                     </row>
                     <row>
+                      <cell id="{b331caa1-4c82-4b3d-a1b1-9cc22943e5bb}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Raisonnement de l'ordre de travail" languagecode="1033" />
+                          <label description="Raison" languagecode="1036" />
+                        </labels>
+                        <control id="ts_reason" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_reason" disabled="false">
+                          <parameters>
+                            <AvailableViewIds>{0620948F-F61F-483B-96F6-AB3E57D9D26C}</AvailableViewIds>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{c5d43f03-e961-4652-a3fe-36db85ddaa66}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Justification de l'ordre de travail" languagecode="1033" />
+                        </labels>
+                        <control id="ts_workorderjustification" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_workorderjustification" disabled="false">
+                          <parameters>
+                            <AvailableViewIds>{48C20ADE-1AB0-F011-BBD3-7C1E52549CC5}</AvailableViewIds>
+                            <DefaultViewId>{48C20ADE-1AB0-F011-BBD3-7C1E52549CC5}</DefaultViewId>
+                          </parameters>
+                        </control>
+                      </cell>
+                    </row>
+                    <row>
                       <cell id="{567ac3e0-52ea-ce18-bd8b-125ee12316b4}" showlabel="true" locklevel="0">
                         <labels>
                           <label description="State" languagecode="1033" />
@@ -267,7 +293,7 @@
                         <control disabled="false" id="msdyn_workhourtemplate" datafieldname="msdyn_workhourtemplate" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" />
                       </cell>
                     </row>
-                    <row height="auto">
+                    <row>
                       <cell id="{a8119cab-a939-4805-39ac-e2ab0a638d33}" labelid="{a34affaa-aabc-4d0c-96b8-62f149d36eef}" showlabel="true" locklevel="0" auto="true" rowspan="1" colspan="1" visible="false">
                         <labels>
                           <label description="Work Order Summary" languagecode="1033" />
@@ -438,7 +464,13 @@
                     <label description="New Section" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row />
+                    <row>
+                      <cell id="{2fb546c7-8c7b-4da6-a58f-22738220cd70}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{ad4472cd-e19f-40b8-889c-ca64dacff7a4}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
@@ -1457,24 +1489,6 @@
                           <label description="Origine" languagecode="1036" />
                         </labels>
                         <control id="ts_origin" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="ts_origin" disabled="true" uniqueid="{0a490130-38b6-07c8-83a8-9e63d000934e}" />
-                      </cell>
-                    </row>
-                    <row>
-                      <cell id="{576a0718-9a73-a2ba-138e-6a2d79c9b3dc}" showlabel="true" locklevel="0">
-                        <labels>
-                          <label description="Reason" languagecode="1033" />
-                          <label description="Raison" languagecode="1036" />
-                        </labels>
-                        <control id="ts_reason" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_reason" disabled="true" uniqueid="{09d0342c-1b3b-eed4-e763-7635c993be59}">
-                          <parameters>
-                            <AutoResolve>true</AutoResolve>
-                            <DisableMru>false</DisableMru>
-                            <DisableQuickFind>false</DisableQuickFind>
-                            <DisableViewPicker>false</DisableViewPicker>
-                            <DefaultViewId>{0620948F-F61F-483B-96F6-AB3E57D9D26C}</DefaultViewId>
-                            <AllowFilterOff>false</AllowFilterOff>
-                          </parameters>
-                        </control>
                       </cell>
                     </row>
                     <row>
@@ -2547,7 +2561,7 @@
                           <parameters>
                             <TargetEntityType>ts_file</TargetEntityType>
                             <ViewId>{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewId>
-                            <ViewIds>{3407E68C-3F63-EC11-8F8E-000D3A847292},{8BAC3298-4E72-EC11-8942-000D3A8497E6}</ViewIds>
+                            <ViewIds>{3407E68C-3F63-EC11-8F8E-000D3A847292},{8BAC3298-4E72-EC11-8942-000D3A8497E6},{0ADB685F-E19F-EC11-B3FE-002248AD8103},{05C50EFD-8595-EC11-B3FE-0022483E878B}</ViewIds>
                             <EnableViewPicker>false</EnableViewPicker>
                             <RelationshipName>ts_File_msdyn_workorder_msdyn_workorder</RelationshipName>
                             <RecordsPerPage>10</RecordsPerPage>
@@ -4201,12 +4215,12 @@
         </controlDescription>
       </controlDescriptions>
       <formLibraries>
+        <Library name="ts_/js/Common.js" libraryUniqueId="{1cb8dc7a-8546-abb2-8038-3ddeee5d0c32}" />
         <Library name="msdyn_/WorkOrder/WorkOrder.Library.js" libraryUniqueId="{17dd260c-4613-be64-6de8-3e20e7931c70}" />
         <Library name="msdyn_/Utils/FieldServiceTrial.js" libraryUniqueId="{c8daeb2a-4593-8c82-1b0c-83be5e6acc94}" />
         <Library name="msdyn_/CFS/WorkOrder/WorkOrderForm.js" libraryUniqueId="{66c75878-8967-ee9a-4dae-5d4142dbb309}" />
         <Library name="ovs_/js/WorkOrder.js" libraryUniqueId="{ed68d241-5966-3dae-2d71-e4d9bbe7668a}" />
         <Library name="ovs_/lib/dg.xrmquery.web.min.js" libraryUniqueId="{0d997e24-b2e9-4957-b63e-5cfa0001c6c6}" />
-        <Library name="ts_/js/Common.js" libraryUniqueId="{1cb8dc7a-8546-abb2-8038-3ddeee5d0c32}" />
       </formLibraries>
       <events>
         <event name="onload" application="false" active="false">
@@ -4333,6 +4347,11 @@
         <event name="onchange" application="false" active="false" attribute="ts_subsubsite">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.subSubSiteOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{ed20a458-4346-3ae6-4293-c63cea0292d6}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_reason">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.rationaleOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{45633e4f-34f7-4cfa-a630-5f1c54c7a2da}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

@@ -1,0 +1,265 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted_-_Security_Incident_Additional_Details": {
+          "metadata": {
+            "operationMetadataId": "7f317848-24da-4a13-aaf9-511b22bc6392"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 4,
+              "subscriptionRequest/entityname": "ts_securityincidentadditionaldetails",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "ts_securityincident"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Condition_-_Check_if_the_Security_Incident_is_not_empty": {
+          "actions": {
+            "List_rows_-_Parent_Security_Incident": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "789ed972-8f56-426b-9ed4-75e9a7722f25"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_securityincidents",
+                  "$filter": "ts_securityincidentid eq '@{triggerOutputs()?['body/_ts_securityincident_value']}'"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Update_a_row": {
+              "runAfter": {
+                "Apply_to_each": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c2954a7b-4c8b-403a-91ef-cf5c809e4001"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps_1",
+                  "operationId": "UpdateRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "ts_securityincidentadditionaldetailses",
+                  "recordId": "@triggerOutputs()?['body/ts_securityincidentadditionaldetailsid']",
+                  "item/ownerid@odata.bind": "/teams(@{variables('New Owner String')})"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each": {
+              "foreach": "@outputs('List_rows_-_Parent_Security_Incident')?['body/value']",
+              "actions": {
+                "Condition_-_Program_equals_Aviation_Security": {
+                  "actions": {
+                    "Set_variable_-_New_Owner_String_-_Aviation_Security": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "9454fe24-6e4e-4387-8839-f755eda7b2ca"
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "New Owner String",
+                        "value": "@body('Get_AvSec_Domestic_Team_GUID')?['processedguid']"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "else": {
+                    "actions": {
+                      "Set_variable_-_New_Owner_String_-_ISSO": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "9454fe24-6e4e-4387-8839-f755eda7b2ca"
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "New Owner String",
+                          "value": "@body('Get_ISSO_Team_')?['processedguid']"
+                        }
+                      }
+                    }
+                  },
+                  "expression": {
+                    "equals": [
+                      "@items('Apply_to_each')?['ts_mode']",
+                      717750002
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "9205f95e-ff66-4eaf-a5a4-f3dcdb1b3a1b"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {
+                "Get_ISSO_Team_": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ce76c7e6-61bb-4dea-8e48-ce899b0725b5"
+              },
+              "type": "Foreach"
+            },
+            "Get_AvSec_Domestic_Team_GUID": {
+              "runAfter": {
+                "List_rows_-_Parent_Security_Incident": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "8a3fdfad-42f8-4890-9b44-1526cca1ed05"
+              },
+              "type": "Workflow",
+              "inputs": {
+                "host": {
+                  "workflowReferenceName": "0c06bb7b-82a3-f011-bbd2-002248b1d17b"
+                },
+                "body": {
+                  "text": "ts_AviationSecurityDirectorateDomesticTeamGUID"
+                }
+              }
+            },
+            "Get_ISSO_Team_": {
+              "runAfter": {
+                "Get_AvSec_Domestic_Team_GUID": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "2df19820-4d26-4d4a-b54e-822b59369fe4"
+              },
+              "type": "Workflow",
+              "inputs": {
+                "host": {
+                  "workflowReferenceName": "0c06bb7b-82a3-f011-bbd2-002248b1d17b"
+                },
+                "body": {
+                  "text": "ts_IntermodalSurfaceSecurityOversightISSOTeamGUID"
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_-_Security_Incident": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Terminate": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "b3ca7b1b-a7fa-4992-b6ff-b2ee142ae447"
+                },
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Failed",
+                  "runError": {
+                    "code": "400",
+                    "message": "Bad Request ts_securityincident is empty"
+                  }
+                }
+              }
+            }
+          },
+          "expression": {
+            "not": {
+              "equals": [
+                "@variables('Security Incident')",
+                ""
+              ]
+            }
+          },
+          "metadata": {
+            "operationMetadataId": "df132586-60f9-45cb-a0d0-148b9b72057d"
+          },
+          "type": "If"
+        },
+        "Initialize_variable_-_New_Owner_String": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "3d98dab1-3366-466c-b77c-79350e34202c"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "New Owner String",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_Security_Incident": {
+          "runAfter": {
+            "Initialize_variable_-_New_Owner_String": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0a751d86-eb0f-446b-9c4e-e0848e473255"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Security Incident",
+                "type": "string",
+                "value": "@triggerOutputs()?['body/_ts_securityincident_value']"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

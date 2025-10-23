@@ -542,7 +542,7 @@
     </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorderservicetask.CreateQualityControl">
       <EnableRules>
-        <EnableRule Id="ts.msdyn_workorderservicetask.isManagerOrBusinessAdminOrSystemAdmin" />
+        <EnableRule Id="ts.msdyn_workorderservicetask.isManagerOrBusinessAdminOrSystemAdminOrInspectorOrPlanner" />
         <EnableRule Id="ts.msdyn_workorderservicetask.isOnWorkOrderForm" />
       </EnableRules>
       <DisplayRules />
@@ -600,7 +600,7 @@
     </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorderservicetask.ServiceAccount.CreateQualityControl">
       <EnableRules>
-        <EnableRule Id="ts.msdyn_workorderservicetask.isManagerOrBusinessAdminOrSystemAdmin" />
+        <EnableRule Id="ts.msdyn_workorderservicetask.isManagerOrBusinessAdminOrSystemAdminOrInspectorOrPlanner" />
         <EnableRule Id="ts.msdyn_workorderservicetask.isOnWorkOrderForm" />
       </EnableRules>
       <DisplayRules />
@@ -878,9 +878,9 @@
       <EnableRule Id="ts.msdyn_workorderservicetask.isEntityWorkOrder">
         <EntityRule EntityName="msdyn_workorder" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="false" />
       </EnableRule>
-      <EnableRule Id="ts.msdyn_workorderservicetask.isManagerOrBusinessAdminOrSystemAdmin">
+      <EnableRule Id="ts.msdyn_workorderservicetask.isManagerOrBusinessAdminOrSystemAdminOrInspectorOrPlanner">
         <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js" Default="false">
-          <StringParameter Value="System Administrator|ROM - Business Admin|ROM - Manager" />
+          <StringParameter Value="System Administrator|ROM - Business Admin|ROM - Manager|ROM - Inspector|ROM - Planner" />
         </CustomRule>
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorderservicetask.IsNotCompleted">

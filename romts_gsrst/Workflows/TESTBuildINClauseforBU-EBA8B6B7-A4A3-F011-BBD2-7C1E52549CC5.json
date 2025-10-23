@@ -1,0 +1,137 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_81d95"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "0d0ce27e-3f97-4450-bb3b-fc08e03e649c"
+          },
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Get_Incident_Type": {
+          "runAfter": {
+            "Build_In-Clause_From_Schemas": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5be33751-2493-4a7e-ade3-147bce431dc0"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "msdyn_incidenttypes",
+              "recordId": "58e7800d-c753-ed11-9561-000d3af4c525"
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Check_owning_business_unit": {
+          "runAfter": {
+            "Get_Incident_Type": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6a9e193c-c492-4b7a-bb05-87f193203f4c"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_1",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "msdyn_incidenttypes",
+              "fetchXml": "<fetch distinct=\"true\">\n  <entity name=\"msdyn_incidenttype\">\n    <attribute name=\"msdyn_incidenttypeid\" />\n    <filter>\n      <condition attribute=\"msdyn_incidenttypeid\" operator=\"eq\" value=\"{@{outputs('Get_Incident_Type')?['body/msdyn_incidenttypeid']}}\" />\n@{outputs('Build_In-Clause_From_Schemas')?['body/conditionxml']}@{body('Build_In-Clause_From_Schemas')?['conditionxml']}\n    </filter>\n  </entity>\n</fetch>",
+              "$top": 1
+            },
+            "authentication": {
+              "type": "Raw",
+              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+            }
+          }
+        },
+        "Condition": {
+          "actions": {},
+          "runAfter": {
+            "Check_owning_business_unit": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@length(outputs('Check_owning_business_unit')?['body/value'])",
+              1
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "40bac1df-2fb2-45fb-97af-6d87cdb9d85c"
+          },
+          "type": "If"
+        },
+        "Build_In-Clause_From_Schemas": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "e929ef5c-5ae4-4f10-8ee0-be678d32255d"
+          },
+          "type": "Workflow",
+          "inputs": {
+            "host": {
+              "workflowReferenceName": "11f9e00b-a0a3-f011-bbd2-7c1e52549bb6"
+            },
+            "body": {
+              "text": "owningbusinessunit",
+              "text_1": "[\"ts_AviationSecurityDirectorateDomesticBusinessUnitGUID\",\n \"ts_AviationSecurityInternationalBusinessUnitGUID\",\n \"ts_AviationSecurityDirectorateBusinessUnitGUID\",\n \"ts_IntermodalSurfaceSecurityOversightISSOBusinessUnitGUID\"]"
+            }
+          }
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form headerdensity="HighWithControls">
+    <form headerdensity="HighWithControls" shownavigationbar="true" showImage="false" maxWidth="1920">
       <tabs>
         <tab verticallayout="true" id="{9d0ebc93-5d52-4c14-a2a1-e20fa13ad71b}" IsUserDefined="1">
           <labels>
@@ -144,9 +144,6 @@
                             <WebResourceId>{547b0176-1bea-ef11-9342-000d3ae93ca1}</WebResourceId>
                           </parameters>
                         </control>
-                        <events>
-                          <event name="onload" application="false" active="false" />
-                        </events>
                       </cell>
                     </row>
                     <row />
@@ -169,7 +166,13 @@
                     <label description="Related to" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row />
+                    <row>
+                      <cell id="{5392adf9-510b-4b37-abc9-34c55871ec25}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{459d4770-dae8-4be1-8aa5-5321efd15807}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
@@ -215,6 +218,7 @@
                       <cell locklevel="0" id="{6e6be6f0-6a21-4eee-9f16-3990d81ede7e}" rowspan="4" colspan="1" auto="false" showlabel="true">
                         <labels>
                           <label description="Actions" languagecode="1033" />
+                          <label description="Constatations" languagecode="1036" />
                         </labels>
                         <control indicationOfSubgrid="true" id="Subgrid_new_3" classid="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
                           <parameters>
@@ -246,7 +250,13 @@
                     <label description="Notes" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row />
+                    <row>
+                      <cell id="{fe4c2ff2-6d8c-4f04-843f-a0f25f01722e}">
+                        <labels>
+                          <label description="" languagecode="1033" />
+                        </labels>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{2bbb5530-a457-4aa9-bf95-279b1f17c8d1}" locklevel="0" colspan="1" rowspan="1" showlabel="false">
                         <labels>
@@ -594,7 +604,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{e596b9dc-161d-454e-8660-bc2a929bd43a}">
+                      <cell id="{e596b9dc-161d-454e-8660-bc2a929bd43a}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -616,7 +626,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{92b3e482-ee71-4c6b-8b13-b9715e82e59c}">
+                      <cell id="{92b3e482-ee71-4c6b-8b13-b9715e82e59c}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -646,7 +656,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{3ecad18c-ef38-43eb-840c-9bb3e6c54dd4}">
+                      <cell id="{3ecad18c-ef38-43eb-840c-9bb3e6c54dd4}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -703,7 +713,7 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{395a8f6f-2286-4484-8da4-5eb037aaed55}">
+                      <cell id="{395a8f6f-2286-4484-8da4-5eb037aaed55}" showlabel="false">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -826,6 +836,7 @@
         </rows>
       </footer>
       <formLibraries>
+        <Library name="ts_/js/Common.js" libraryUniqueId="{8d9dc240-c552-3cd4-2a6c-a6b111b259a3}" />
         <Library name="ts_/js/Infraction.js" libraryUniqueId="{d6c02ed9-5c2b-444e-a7ea-0825238e0a8e}" />
       </formLibraries>
       <events>
@@ -922,7 +933,7 @@
         </event>
       </events>
       <Navigation>
-        <NavBar />
+        <NavBar></NavBar>
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
