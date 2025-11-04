@@ -58,6 +58,11 @@
         <Button Command="ts.msdyn_workorder.Documents.Command" Id="ts.msdyn_workorder.Documents.Button" LabelText="$LocLabels:ts.msdyn_workorder.Documents.Button.LabelText" Sequence="58" TemplateAlias="o2" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.EditUnplannedWO.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="1">
+      <CommandUIDefinition>
+        <Button Alt="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.Alt" Command="ts.msdyn_workorder.EditUnplannedWO" Id="ts.msdyn_workorder.EditUnplannedWO" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.LabelText" Sequence="1" TemplateAlias="o1" />
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.NewUnplannedWO.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="0">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorder.NewUnplannedWO.Alt" Command="ts.msdyn_workorder.NewUnplannedWorkOrder" Id="ts.msdyn_workorder.NewUnplannedWO" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.NewUnplannedWO.LabelText" Sequence="0" TemplateAlias="o1" />
@@ -449,6 +454,15 @@
           <CrmParameter Value="PrimaryControl" />
           <CrmParameter Value="PrimaryEntityTypeName" />
           <CrmParameter Value="PrimaryControlId" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.EditUnplannedWO">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="editUnplannedWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="PrimaryControl" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -951,6 +965,16 @@
       <Titles>
         <Title description="Documents" languagecode="1033" />
         <Title description="Documents" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.Alt">
+      <Titles>
+        <Title description="Edit Unplanned WO" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.LabelText">
+      <Titles>
+        <Title description="Edit Unplanned WO" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.NewUnplannedWO.Alt">

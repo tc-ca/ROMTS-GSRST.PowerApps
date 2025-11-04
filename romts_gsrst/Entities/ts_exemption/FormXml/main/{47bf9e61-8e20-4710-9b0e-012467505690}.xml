@@ -461,6 +461,27 @@
                   </labels>
                   <rows>
                     <row>
+                      <cell rowspan="1" id="{e49b03b3-9369-4a79-9b12-fa89e3a6abaa}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="ts_/html/NewDocumentCenterNotice.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{fcdc8c06-76af-f011-bbd2-0022483c7c31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
                       <cell locklevel="0" id="{a6494446-f1f9-4eeb-9080-c8b2b91da20f}" rowspan="4" colspan="1" auto="false">
                         <labels>
                           <label description="Attachments" languagecode="1033" />
@@ -550,7 +571,7 @@
         </rows>
       </header>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -636,6 +657,16 @@
       <DisplayConditions Order="0" FallbackForm="true">
         <Everyone />
       </DisplayConditions>
+      <formLibraries>
+        <Library name="ts_/js/Common.js" libraryUniqueId="{8f160eb8-ad23-420b-8cb1-7360a59e0397}" />
+      </formLibraries>
+      <events>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{93640fbe-a48c-4345-b187-c8c5885e934a}" enabled="true" parameters="&quot;Attachments&quot;, &quot;attachments_section2_documentcentre&quot;" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

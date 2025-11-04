@@ -1169,7 +1169,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_4" id="{c8e3dde5-cd7e-c8a5-828b-895c17e79832}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+        <tab name="security_incident_document_tab" id="{c8e3dde5-cd7e-c8a5-828b-895c17e79832}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
           <labels>
             <label description="Documents" languagecode="1033" />
             <label description="Documents" languagecode="1036" />
@@ -1182,6 +1182,27 @@
                     <label description="Section" languagecode="1033" />
                   </labels>
                   <rows>
+                    <row>
+                      <cell rowspan="1" id="{11c6af8f-2d6a-4ab3-b44a-9a422b529637}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="ts_/html/NewDocumentCenterNotice.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{fcdc8c06-76af-f011-bbd2-0022483c7c31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{b865d914-e485-4e62-10a8-a06918006e14}" showlabel="false" colspan="1" auto="false" rowspan="6">
                         <labels>
@@ -1220,7 +1241,7 @@
             </column>
             <column width="33%">
               <sections>
-                <section name="tab_4_section_2" showlabel="false" showbar="false" locklevel="0" id="{0921278a-12b0-bc91-3004-d41d6c5d5939}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
+                <section name="security_incident_document_section" showlabel="false" showbar="false" locklevel="0" id="{0921278a-12b0-bc91-3004-d41d6c5d5939}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" celllabelalignment="Left" celllabelposition="Left">
                   <labels>
                     <label description="ROM Document Centre" languagecode="1033" />
                   </labels>
@@ -1293,7 +1314,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -1489,6 +1510,7 @@
           <Handlers>
             <Handler functionName="ROM.SecurityIncident.onLoad" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{4c10d204-7c4d-49b8-bb00-c227a349aa27}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler functionName="openLookupModalDialogSecurityIncidentForm" libraryName="ts_/js/SecurityIncident.js" handlerUniqueId="{ebaac45c-4364-18a2-e2e2-53a9170132c4}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{875794cd-f3be-4f60-bb4a-d9802a942571}" enabled="true" parameters="&quot;security_incident_document_tab&quot;, &quot;security_incident_document_section&quot;" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="false" active="false" attribute="ts_arrests">

@@ -225,8 +225,8 @@
                     <row>
                       <cell id="{b331caa1-4c82-4b3d-a1b1-9cc22943e5bb}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
-                          <label description="Raisonnement de l'ordre de travail" languagecode="1033" />
-                          <label description="Raison" languagecode="1036" />
+                          <label description="Work Order Rationale" languagecode="1033" />
+                          <label description="Raisonnement de l'ordre de travail" languagecode="1036" />
                         </labels>
                         <control id="ts_reason" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_reason" disabled="false">
                           <parameters>
@@ -238,12 +238,13 @@
                     <row>
                       <cell id="{c5d43f03-e961-4652-a3fe-36db85ddaa66}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
-                          <label description="Justification de l'ordre de travail" languagecode="1033" />
+                          <label description="Work Order Justification" languagecode="1033" />
+                          <label description="Justification de l'ordre de travail" languagecode="1036" />
                         </labels>
                         <control id="ts_workorderjustification" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_workorderjustification" disabled="false">
                           <parameters>
-                            <AvailableViewIds>{48C20ADE-1AB0-F011-BBD3-7C1E52549CC5}</AvailableViewIds>
-                            <DefaultViewId>{48C20ADE-1AB0-F011-BBD3-7C1E52549CC5}</DefaultViewId>
+                            <AvailableViewIds>{6F36B628-8308-4401-89B3-568D11C8E330}</AvailableViewIds>
+                            <DefaultViewId>{6F36B628-8308-4401-89B3-568D11C8E330}</DefaultViewId>
                           </parameters>
                         </control>
                       </cell>
@@ -419,6 +420,7 @@
                       <cell id="{e8c7d3ca-744c-470d-83ad-c20639f44dcd}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
                           <label description="Business Owner" languagecode="1033" />
+                          <label description="Business Owner" languagecode="1036" />
                         </labels>
                         <control id="ts_businessowner" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_businessowner" disabled="true" />
                       </cell>
@@ -427,6 +429,7 @@
                       <cell id="{f4f1adda-990d-46cb-89d3-abe627e7229f}" locklevel="0" colspan="1" rowspan="1">
                         <labels>
                           <label description="Business Owner" languagecode="1033" />
+                          <label description="Business Owner" languagecode="1036" />
                         </labels>
                         <control id="ts_businessowner" classid="{4273EDBD-AC1D-40D3-9FB2-095C621B552D}" datafieldname="ts_businessowner" disabled="true" />
                       </cell>
@@ -2498,7 +2501,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_14" id="44e149d3-e447-4ed9-a785-59d04813238c" IsUserDefined="0" locklevel="0" showlabel="true" contenttype="cardSections" expanded="true">
+        <tab name="work_order_document_tab" id="44e149d3-e447-4ed9-a785-59d04813238c" IsUserDefined="0" locklevel="0" showlabel="true" contenttype="cardSections" expanded="true">
           <labels>
             <label description="Documents" languagecode="1033" />
             <label description="Documents" languagecode="1036" />
@@ -2512,6 +2515,27 @@
                     <label description="Documents" languagecode="1036" />
                   </labels>
                   <rows>
+                    <row>
+                      <cell rowspan="1" id="{be8622d1-4f19-4b40-ad3c-e094657aa593}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="ts_/html/NewDocumentCenterNotice.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{fcdc8c06-76af-f011-bbd2-0022483c7c31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
                     <row>
                       <cell locklevel="0" id="{80a1c1f0-1f3a-4f28-b29a-432c211fa59c}" rowspan="12" colspan="1" auto="false" showlabel="true">
                         <labels>
@@ -2575,7 +2599,7 @@
             </column>
             <column width="33%">
               <sections>
-                <section name="tab_14_section_3" id="1081862f-fb5c-4fa8-b72f-2377fa9d3bb1" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                <section name="work_order_document_section" id="1081862f-fb5c-4fa8-b72f-2377fa9d3bb1" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
                   <labels>
                     <label description="Document Centre" languagecode="1033" />
                     <label description="Centre de documentation" languagecode="1036" />
@@ -4230,6 +4254,7 @@
             <Handler functionName="msdyn.workOrderForm.onLoad" libraryName="msdyn_/CFS/WorkOrder/WorkOrderForm.js" handlerUniqueId="{56e4c9eb-ba02-4319-841d-deec4f5ce6f5}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler functionName="WorkOrders.Library.Load" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{e1fc70a3-64bc-4e4d-a397-e2d0ba64274b}" enabled="false" parameters="" passExecutionContext="true" />
             <Handler functionName="openLookupModalDialogWOForm" libraryName="ts_/js/Common.js" handlerUniqueId="{665dc799-2b6a-5cb3-7145-d5155a8021a1}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{8355057b-b8a7-4e06-be21-70c308d4d4c5}" enabled="true" parameters="&quot;work_order_document_tab&quot;, &quot;work_order_document_section&quot;" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="false" active="false" attribute="msdyn_iotalert">

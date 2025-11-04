@@ -1252,7 +1252,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_files" id="15ff65d6-9ce4-4f82-b95e-88542566be7f" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+        <tab name="work_order_service_task_document_tab" id="15ff65d6-9ce4-4f82-b95e-88542566be7f" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
           <labels>
             <label description="Documents" languagecode="1033" />
           </labels>
@@ -1264,6 +1264,27 @@
                     <label description="Uploaded Files" languagecode="1033" />
                   </labels>
                   <rows>
+                    <row>
+                      <cell rowspan="1" id="{ad4ed510-59f3-4636-b11b-7865b58d9ad8}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="ts_/html/NewDocumentCenterNotice.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{fcdc8c06-76af-f011-bbd2-0022483c7c31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{957ac66a-457a-373e-7cb5-de106b75a2ed}" showlabel="true" colspan="1" auto="false" rowspan="6">
                         <labels>
@@ -1302,7 +1323,7 @@
             </column>
             <column width="30%">
               <sections>
-                <section name="tab_files_section_2" showlabel="false" showbar="false" locklevel="0" id="{026e135b-d37a-e97c-4537-e1c3090a1e55}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                <section name="work_order_service_task_document_section" showlabel="false" showbar="false" locklevel="0" id="{026e135b-d37a-e97c-4537-e1c3090a1e55}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
                   <labels>
                     <label description="Section" languagecode="1033" />
                   </labels>
@@ -2066,6 +2087,7 @@
         <Library name="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" libraryUniqueId="{506d0839-7130-9366-88a2-3d05766edd36}" />
         <Library name="ovs_/js/WorkOrderServiceTask.js" libraryUniqueId="{2d4e68d3-8ed8-49c9-8877-45a4c8a3499a}" />
         <Library name="ts_/js/buildprovisiontext.js" libraryUniqueId="{c62733e8-a2c1-65b3-3048-eb9a716e859c}" />
+        <Library name="ts_/js/Common.js" libraryUniqueId="{f0a58845-8f42-4eae-b579-fbd10e6cdf65}" />
       </formLibraries>
       <events>
         <event name="onload" application="false" active="false">
@@ -2073,6 +2095,7 @@
             <Handler handlerUniqueId="{5c802397-be80-172c-de32-13cb84402074}" functionName="WorkOrderServiceTask.Library.Load" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" enabled="true" passExecutionContext="true" parameters="" />
             <Handler functionName="ROM.WorkOrderServiceTask.onLoad" libraryName="ovs_/js/WorkOrderServiceTask.js" handlerUniqueId="{fcea2e78-3ca3-4f42-95c4-3245fcdf8f6f}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler functionName="ROM.WorkOrderServiceTask.onLoadServiceTaskStartDate" libraryName="msdyn_/WorkOrderServiceTask/WorkOrderServiceTask.js" handlerUniqueId="{355b1928-6b3d-409c-adfa-868bd6aa69d3}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{d4cc919b-1055-41c5-9ec0-0c9eb0b4750a}" enabled="true" parameters="&quot;work_order_service_task_document_tab&quot;, &quot;work_order_service_task_document_section&quot;" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onsave" application="false" active="false">

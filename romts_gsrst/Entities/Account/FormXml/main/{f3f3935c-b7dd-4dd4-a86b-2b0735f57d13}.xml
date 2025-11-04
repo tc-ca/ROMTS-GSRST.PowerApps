@@ -1032,7 +1032,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_8" id="c4bb527f-12b3-4cfa-b6ba-464a3132a210" IsUserDefined="0" locklevel="0" showlabel="true">
+        <tab name="shareholder_document_tab" id="c4bb527f-12b3-4cfa-b6ba-464a3132a210" IsUserDefined="0" locklevel="0" showlabel="true">
           <labels>
             <label description="Documents" languagecode="1033" />
           </labels>
@@ -1044,6 +1044,27 @@
                     <label description="New Section" languagecode="1033" />
                   </labels>
                   <rows>
+                    <row>
+                      <cell rowspan="1" id="{2c667a7f-4135-4d85-aae1-2c2d837f8995}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="ts_/html/NewDocumentCenterNotice.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{fcdc8c06-76af-f011-bbd2-0022483c7c31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{773995e2-8668-8619-3696-8dee26dd56d1}" showlabel="true" colspan="1" auto="false" rowspan="13">
                         <labels>
@@ -1090,7 +1111,7 @@
             </column>
             <column width="30%">
               <sections>
-                <section name="_section_477" id="6f2abe2d-6e49-4b6a-a2c5-0af772092937" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                <section name="shareholder_document_section" id="6f2abe2d-6e49-4b6a-a2c5-0af772092937" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
                   <labels>
                     <label description="New Section" languagecode="1033" />
                   </labels>
@@ -2712,6 +2733,7 @@
             <Handler functionName="AssetCommon.Account.OnLoad" libraryName="msdyn_/Account/AssetCommon.Account.Library.js" handlerUniqueId="{281eb247-9ea4-d89b-59d2-8b29711499e9}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler passExecutionContext="true" enabled="true" handlerUniqueId="{CA3D9A4B-7A5C-4238-BAD6-5810FB05E86C}" libraryName="Sales/ClientCommon/Sales_ClientCommon.js" functionName="Sales.DocumentsTabController.shouldShowDocumentsTab" parameters="" />
             <Handler functionName="ROM.Account.onLoad" libraryName="ovs_/js/Account.js" handlerUniqueId="{91bbccc6-4f1b-4ba6-ba77-0fef5dac0f68}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{c501ebe8-2bad-467b-a9b2-cddbcd706601}" enabled="true" parameters="&quot;shareholder_document_tab&quot;, &quot;shareholder_document_section&quot;" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="true" active="true" attribute="ts_country">

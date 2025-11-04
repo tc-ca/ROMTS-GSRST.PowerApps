@@ -795,7 +795,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_5" id="bf3f1ff9-af5e-4c7b-a963-74d66c48e52a" IsUserDefined="0" locklevel="0" showlabel="true">
+        <tab name="operation_document_tab" id="bf3f1ff9-af5e-4c7b-a963-74d66c48e52a" IsUserDefined="0" locklevel="0" showlabel="true">
           <labels>
             <label description="Documents" languagecode="1033" />
           </labels>
@@ -807,6 +807,27 @@
                     <label description="New Section" languagecode="1033" />
                   </labels>
                   <rows>
+                    <row>
+                      <cell rowspan="1" id="{1c605a66-e12b-401c-adda-09db4d5ee1e0}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="ts_/html/NewDocumentCenterNotice.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{fcdc8c06-76af-f011-bbd2-0022483c7c31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{b34e1b73-c2ed-8733-9e24-c7145ab87cd9}" showlabel="true" colspan="1" auto="false" rowspan="13">
                         <labels>
@@ -853,7 +874,7 @@
             </column>
             <column width="30%">
               <sections>
-                <section name="tab_5_section_2" id="33ccdc9e-7244-419d-ac35-800f378138dd" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                <section name="operation_document_section" id="33ccdc9e-7244-419d-ac35-800f378138dd" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
                   <labels>
                     <label description="New Section" languagecode="1033" />
                   </labels>
@@ -1783,6 +1804,7 @@
         <event name="onload" application="true" active="true">
           <Handlers>
             <Handler functionName="ROM.Operation.onLoad" libraryName="ts_/js/Operation.js" handlerUniqueId="{0152adec-3673-4a18-9738-762d648cb0b3}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{211959f3-af35-4b39-89c7-c8fbc7cd730f}" enabled="true" parameters="&quot;operation_document_tab&quot;, &quot;operation_document_section&quot;" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="true" active="true" attribute="ts_statusstartdate">

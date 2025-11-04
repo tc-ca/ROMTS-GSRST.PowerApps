@@ -402,7 +402,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_2" id="{28243310-d6b9-130e-2546-2abe9be6b850}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
+        <tab name="trip_document_tab" id="{28243310-d6b9-130e-2546-2abe9be6b850}" IsUserDefined="0" locklevel="0" showlabel="true" expanded="true">
           <labels>
             <label description="Documents" languagecode="1033" />
           </labels>
@@ -414,6 +414,27 @@
                     <label description="Section" languagecode="1033" />
                   </labels>
                   <rows>
+                    <row>
+                      <cell rowspan="1" id="{76f405b6-2c29-4fa4-ab6c-7df738521542}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="ts_/html/NewDocumentCenterNotice.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{fcdc8c06-76af-f011-bbd2-0022483c7c31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{199dedc4-43b9-6066-ab34-8d5c2de69569}" showlabel="false" colspan="1" auto="false" rowspan="6">
                         <labels>
@@ -453,7 +474,7 @@
             </column>
             <column width="33%">
               <sections>
-                <section name="tab_2_section_2" showlabel="false" showbar="false" locklevel="0" id="{43c71748-0462-5363-520c-5e2b71753609}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
+                <section name="trip_document_section" showlabel="false" showbar="false" locklevel="0" id="{43c71748-0462-5363-520c-5e2b71753609}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115">
                   <labels>
                     <label description="Section" languagecode="1033" />
                   </labels>
@@ -475,7 +496,7 @@
         </tab>
       </tabs>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -595,6 +616,7 @@
         <event name="onload" application="false" active="false">
           <Handlers>
             <Handler functionName="ROM.Trip.onLoad" libraryName="ts_/js/Trip.js" handlerUniqueId="{b7964ba0-a778-d9ec-3930-452c330869cd}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{6d6a4c8c-618f-424d-a5ce-c1bb01478e99}" enabled="true" parameters="&quot;trip_document_tab&quot;, &quot;trip_document_section&quot;" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="false" active="false" attribute="ts_program">

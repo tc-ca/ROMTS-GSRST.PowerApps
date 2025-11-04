@@ -1682,7 +1682,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_14" id="4ca1fcbe-4d66-4074-b393-4c8a2c2f6f70" IsUserDefined="0" locklevel="0" showlabel="true">
+        <tab name="case_document_tab" id="4ca1fcbe-4d66-4074-b393-4c8a2c2f6f70" IsUserDefined="0" locklevel="0" showlabel="true">
           <labels>
             <label description="Documents" languagecode="1033" />
           </labels>
@@ -1694,6 +1694,27 @@
                     <label description="Documents" languagecode="1033" />
                   </labels>
                   <rows>
+                    <row>
+                      <cell rowspan="1" id="{07df310e-445c-40fb-950b-02cbb9bfd3f4}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="ts_/html/NewDocumentCenterNotice.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{fcdc8c06-76af-f011-bbd2-0022483c7c31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
                     <row>
                       <cell id="{c3b2bd0d-7508-d6ca-921a-a332c0c1b92b}" showlabel="true" colspan="1" auto="false" rowspan="13">
                         <labels>
@@ -1756,7 +1777,7 @@
             </column>
             <column width="33%">
               <sections>
-                <section name="tab_14_section_2" id="f63a929e-37c0-4315-b62d-a89ebf67abe1" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                <section name="case_document_section" id="f63a929e-37c0-4315-b62d-a89ebf67abe1" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
                   <labels>
                     <label description="New Section" languagecode="1033" />
                   </labels>
@@ -2419,6 +2440,7 @@
             <Handler functionName="FS.Incident.Library.Load" libraryName="msdyn_/Case/Case.Library.js" handlerUniqueId="{ce190b7b-5e43-7367-cb16-3770da0b2436}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler functionName="ROM.Incident.onLoad" libraryName="ovs_/js/Incident.js" handlerUniqueId="{3e10d29b-746e-2e67-3071-1eca321960b3}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler functionName="openLookupModalDialogCaseForm" libraryName="ts_/js/Common.js" handlerUniqueId="{ca7db97e-7e8d-6b8b-14c8-97babea02145}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{c015944f-98da-48b0-8746-28373f6246ed}" enabled="true" parameters="&quot;case_document_tab&quot;,&quot;case_document_section&quot;" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="true" active="true" attribute="contractid">

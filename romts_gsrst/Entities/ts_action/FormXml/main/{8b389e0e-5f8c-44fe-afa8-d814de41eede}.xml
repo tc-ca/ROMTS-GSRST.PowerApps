@@ -285,7 +285,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_4" id="c29d04b5-adde-45d4-9527-f1f2b31e5764" IsUserDefined="0" locklevel="0" showlabel="true">
+        <tab name="action_document_tab" id="c29d04b5-adde-45d4-9527-f1f2b31e5764" IsUserDefined="0" locklevel="0" showlabel="true">
           <labels>
             <label description="Documents" languagecode="1033" />
           </labels>
@@ -298,10 +298,24 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{b1e6bd9f-dd9f-4291-8a6d-9943a0fc4a5b}">
+                      <cell rowspan="1" id="{325d196d-fcc5-4893-987b-5677816ba079}" showlabel="false" colspan="1">
                         <labels>
-                          <label description="" languagecode="1033" />
+                          <label description="ts_/html/NewDocumentCenterNotice.html" languagecode="1033" />
                         </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{fcdc8c06-76af-f011-bbd2-0022483c7c31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
                       </cell>
                     </row>
                     <row>
@@ -328,6 +342,14 @@
                     </row>
                     <row />
                     <row />
+                    <row />
+                  </rows>
+                </section>
+                <section name="action_document_section" id="90e4b6bd-417e-4be9-8db3-914c87a07a89" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="false">
+                  <labels>
+                    <label description="Attachments_Section" languagecode="1033" />
+                  </labels>
+                  <rows>
                     <row />
                   </rows>
                 </section>
@@ -372,7 +394,7 @@
         </rows>
       </header>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -455,6 +477,7 @@
         <event name="onload" application="false" active="false">
           <Handlers>
             <Handler functionName="ROM.Action.onLoad" libraryName="ts_/js/Action.js" handlerUniqueId="{3b276485-4f18-4ce0-9fc0-0f004a8af2fe}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{f3e54f8f-a3f1-49f7-b663-a4477220ff19}" enabled="true" parameters="&quot;action_document_tab&quot;, &quot;action_document_section&quot;" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="false" active="false" attribute="ts_actiontype">

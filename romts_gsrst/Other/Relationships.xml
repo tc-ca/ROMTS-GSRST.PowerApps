@@ -107,6 +107,7 @@
   <EntityRelationship Name="business_unit_ts_filecategory" />
   <EntityRelationship Name="business_unit_ts_filesubcategory" />
   <EntityRelationship Name="business_unit_ts_findingsreport" />
+  <EntityRelationship Name="business_unit_ts_frequencyforecastmap" />
   <EntityRelationship Name="business_unit_ts_incompleteworkorderreason" />
   <EntityRelationship Name="business_unit_ts_infraction" />
   <EntityRelationship Name="business_unit_ts_inspectionhours" />
@@ -458,6 +459,8 @@
   <EntityRelationship Name="lk_ts_filesubcategory_modifiedby" />
   <EntityRelationship Name="lk_ts_findingsreport_createdby" />
   <EntityRelationship Name="lk_ts_findingsreport_modifiedby" />
+  <EntityRelationship Name="lk_ts_frequencyforecastmap_createdby" />
+  <EntityRelationship Name="lk_ts_frequencyforecastmap_modifiedby" />
   <EntityRelationship Name="lk_ts_incompleteworkorderreason_createdby" />
   <EntityRelationship Name="lk_ts_incompleteworkorderreason_modifiedby" />
   <EntityRelationship Name="lk_ts_infraction_createdby" />
@@ -1552,6 +1555,7 @@
   <EntityRelationship Name="owner_ts_filecategory" />
   <EntityRelationship Name="owner_ts_filesubcategory" />
   <EntityRelationship Name="owner_ts_findingsreport" />
+  <EntityRelationship Name="owner_ts_frequencyforecastmap" />
   <EntityRelationship Name="owner_ts_incompleteworkorderreason" />
   <EntityRelationship Name="owner_ts_infraction" />
   <EntityRelationship Name="owner_ts_inspectionhours" />
@@ -1773,6 +1777,7 @@
   <EntityRelationship Name="team_ts_filecategory" />
   <EntityRelationship Name="team_ts_filesubcategory" />
   <EntityRelationship Name="team_ts_findingsreport" />
+  <EntityRelationship Name="team_ts_frequencyforecastmap" />
   <EntityRelationship Name="team_ts_incompleteworkorderreason" />
   <EntityRelationship Name="team_ts_infraction" />
   <EntityRelationship Name="team_ts_inspectionhours" />
@@ -1898,6 +1903,7 @@
   <EntityRelationship Name="ts_contact_ts_case_primarycontactid" />
   <EntityRelationship Name="ts_contact_ts_operationcontact_contact" />
   <EntityRelationship Name="ts_Contact_ts_securityincident_ts_securityin" />
+  <EntityRelationship Name="ts_Contact_ts_unplannedworkorder_ts_unplannedworkorder" />
   <EntityRelationship Name="ts_correctiveaction_ovs_Finding_ovs_Finding" />
   <EntityRelationship Name="ts_discretionaryfactor_discretionarygrouping" />
   <EntityRelationship Name="ts_discretionarygrouping_operationtype" />
@@ -1987,6 +1993,9 @@
   <EntityRelationship Name="ts_FindingsReport_Case_Incident" />
   <EntityRelationship Name="ts_FindingsReport_ovs_Finding_ovs_Finding" />
   <EntityRelationship Name="ts_FindingsReport_ts_File_ts_File" />
+  <EntityRelationship Name="ts_frequencyforecastmap_FrequencyID_ts_riskfrequency" />
+  <EntityRelationship Name="ts_frequencyforecastmap_Quarter_tc_tcfiscalquarter" />
+  <EntityRelationship Name="ts_frequencyforecastmap_Year_tc_tcfiscalyear" />
   <EntityRelationship Name="ts_functionallocation_workorder_arrivalaerodrome" />
   <EntityRelationship Name="ts_functionallocation_workorder_departureaerodrome" />
   <EntityRelationship Name="ts_incident_AdditionalInspectors1_systemuser" />
@@ -2180,6 +2189,7 @@
   <EntityRelationship Name="ts_ovs_operation_site_msdyn_functionallocati" />
   <EntityRelationship Name="ts_ovs_operation_stakeholder_account" />
   <EntityRelationship Name="ts_ovs_operation_subsite_msdyn_functionalloc" />
+  <EntityRelationship Name="ts_ovs_operation_ts_unplannedworkorder_ts_unplannedworkorder" />
   <EntityRelationship Name="ts_ovs_operationtype_incident_OperationType" />
   <EntityRelationship Name="ts_ovs_operationtype_msdyn_workorderservicetask_AOCOperationType" />
   <EntityRelationship Name="ts_ovs_operationtype_qm_rclegislation_qm_rcl" />
@@ -2421,15 +2431,21 @@
   <EntityRelationship Name="ts_unplannedworkorder_operationtype_ovs_operationtype" />
   <EntityRelationship Name="ts_unplannedworkorder_primaryincidenttype_msdyn_incidenttype" />
   <EntityRelationship Name="ts_unplannedworkorder_rational_ovs_tyrational" />
+  <EntityRelationship Name="ts_unplannedworkorder_reason_ts_planningreason" />
   <EntityRelationship Name="ts_unplannedworkorder_region_territory" />
   <EntityRelationship Name="ts_unplannedworkorder_revisedquarterid_tc_tcfiscalquarter" />
+  <EntityRelationship Name="ts_unplannedworkorder_SecurityIncident_ts_securityincident" />
   <EntityRelationship Name="ts_unplannedworkorder_servicerequest_incident" />
   <EntityRelationship Name="ts_unplannedworkorder_site_msdyn_functionallocation" />
   <EntityRelationship Name="ts_unplannedworkorder_stakeholder_account" />
   <EntityRelationship Name="ts_unplannedworkorder_subsubsite_msdyn_functionallocation" />
   <EntityRelationship Name="ts_unplannedworkorder_TradeName_ts_tradename" />
+  <EntityRelationship Name="ts_unplannedworkorder_Trip_ts_trip" />
+  <EntityRelationship Name="ts_unplannedworkorder_UnplannedWorkOrder_ts_workordertimetracking" />
   <EntityRelationship Name="ts_unplannedworkorder_WorkOrder_msdyn_workorder" />
+  <EntityRelationship Name="ts_unplannedworkorder_WorkOrderJustification_ts_justification" />
   <EntityRelationship Name="ts_unplannedworkorder_workordertype_msdyn_workordertype" />
+  <EntityRelationship Name="ts_unplannedworkorderjustification" />
   <EntityRelationship Name="ts_UserRegistration_aaduser_aaduser" />
   <EntityRelationship Name="ts_UserRegistration_BusinessUnit_Business" />
   <EntityRelationship Name="ts_workorder_Annotations" />
@@ -2518,6 +2534,7 @@
   <EntityRelationship Name="user_ts_filecategory" />
   <EntityRelationship Name="user_ts_filesubcategory" />
   <EntityRelationship Name="user_ts_findingsreport" />
+  <EntityRelationship Name="user_ts_frequencyforecastmap" />
   <EntityRelationship Name="user_ts_incompleteworkorderreason" />
   <EntityRelationship Name="user_ts_infraction" />
   <EntityRelationship Name="user_ts_inspectionhours" />

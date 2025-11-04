@@ -336,7 +336,7 @@
                 <section name="tab_3_section_3" showlabel="false" showbar="false" locklevel="0" id="{0e7a16d4-9caa-5895-e6b7-9046534e7672}" IsUserDefined="0" layout="varwidth" columns="1" labelwidth="115" ordinalvalue="1" solutionaction="Modified">
                   <rows>
                     <row>
-                      <cell id="{55c34005-c73c-4198-96e9-3458f5c423c0}" ordinalvalue="10000" solutionaction="Added">
+                      <cell id="{55c34005-c73c-4198-96e9-3458f5c423c0}" showlabel="false" ordinalvalue="10000" solutionaction="Added">
                         <labels>
                           <label description="" languagecode="1033" />
                         </labels>
@@ -719,7 +719,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_6" id="01b5166e-228e-4191-8563-2539474c6a60" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="10" solutionaction="Added">
+        <tab name="functional_location_document_tab" id="01b5166e-228e-4191-8563-2539474c6a60" IsUserDefined="0" locklevel="0" showlabel="true" ordinalvalue="10" solutionaction="Added">
           <labels>
             <label description="Documents" languagecode="1033" />
           </labels>
@@ -732,7 +732,30 @@
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{936d6d37-36e7-8475-646e-7406b7352c74}" showlabel="true" colspan="1" auto="false" rowspan="13" ordinalvalue="10000">
+                      <cell id="{1334d22a-0d9a-9382-04a9-c2a85e701b61}" showlabel="false" colspan="1" auto="false" rowspan="1" ordinalvalue="10000">
+                        <labels>
+                          <label description="New Document Center Notice" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47f4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>true</PassParameters>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <WebResourceId>{FCDC8C06-76AF-F011-BBD2-0022483C7C31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false">
+                            <dependencies />
+                          </event>
+                        </events>
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{936d6d37-36e7-8475-646e-7406b7352c74}" showlabel="true" colspan="1" auto="false" rowspan="13" ordinalvalue="10001">
                         <labels>
                           <label description="Files" languagecode="1033" />
                           <label description="Opérations" languagecode="1036" />
@@ -777,7 +800,7 @@
             </column>
             <column width="30%" id="1">
               <sections>
-                <section name="tab_6_section_2" id="cc1b84e7-d870-4deb-8bac-ebefa377e479" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
+                <section name="functional_location_document_section" id="cc1b84e7-d870-4deb-8bac-ebefa377e479" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" ordinalvalue="0">
                   <labels>
                     <label description="New Section" languagecode="1033" />
                   </labels>
@@ -850,6 +873,7 @@
           <Handlers>
             <Handler functionName="AssetCommon.FunctionalLocation.Library.Load" libraryName="msdyn_/FunctionalLocation/AssetCommon.FunctionalLocation.Library.js" handlerUniqueId="{9b21d6c5-d142-7907-9dab-b03e3cbed296}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="2" solutionaction="Modified" />
             <Handler functionName="ROM.FunctionalLocation.onLoad" libraryName="ts_/js/FunctionalLocation.js" handlerUniqueId="{2f99d731-9f81-40c5-bc44-1881260e43eb}" enabled="true" parameters="" passExecutionContext="true" ordinalvalue="1" solutionaction="Added" />
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{88c969a9-e73c-4a1e-9d57-759430df36eb}" enabled="true" parameters="&quot;functional_location_document_tab&quot;, &quot;functional_location_document_section&quot;" passExecutionContext="true" ordinalvalue="3" solutionaction="Added" />
           </Handlers>
         </event>
         <event name="onchange" application="true" active="true" attribute="ts_statusstartdate" solutionaction="Added">
@@ -1170,17 +1194,17 @@
       <footer id="{88a644ea-0f70-4b1f-ba54-70abd90d154c}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left" solutionaction="Added">
         <rows>
           <row>
-            <cell id="{366ceb72-c6f4-4fce-87a0-4f1626dde54b}" ordinalvalue="10000">
+            <cell id="{366ceb72-c6f4-4fce-87a0-4f1626dde54b}" showlabel="false" ordinalvalue="10000">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
             </cell>
-            <cell id="{e71ac1b3-1ab2-4e92-975f-c3d07474cec8}" ordinalvalue="20001">
+            <cell id="{e71ac1b3-1ab2-4e92-975f-c3d07474cec8}" showlabel="false" ordinalvalue="20001">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
             </cell>
-            <cell id="{170e4335-5771-4467-9297-395b5dd244ee}" ordinalvalue="30002">
+            <cell id="{170e4335-5771-4467-9297-395b5dd244ee}" showlabel="false" ordinalvalue="30002">
               <labels>
                 <label description="" languagecode="1033" />
               </labels>
