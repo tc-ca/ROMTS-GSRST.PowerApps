@@ -60,7 +60,7 @@
     </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.EditUnplannedWO.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="1">
       <CommandUIDefinition>
-        <Button Alt="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.Alt" Command="ts.msdyn_workorder.EditUnplannedWO" Id="ts.msdyn_workorder.EditUnplannedWO" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.LabelText" Sequence="1" TemplateAlias="o1" />
+        <Button Alt="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.Alt" Command="ts.msdyn_workorder.EditUnplannedWO" Id="ts.msdyn_workorder.EditUnplannedWO" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.LabelText" Sequence="1" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.NewUnplannedWO.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="0">
@@ -458,7 +458,9 @@
       </Actions>
     </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorder.EditUnplannedWO">
-      <EnableRules />
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.TSIS.disableEditWorkOrder" />
+      </EnableRules>
       <DisplayRules />
       <Actions>
         <JavaScriptFunction FunctionName="editUnplannedWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
@@ -776,6 +778,11 @@
       <EnableRule Id="ts.msdyn_workorder.PrimaryIsSecurityIncident">
         <EntityRule EntityName="ts_securityincident" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="false" />
       </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.TSIS.disableEditWorkOrder">
+        <CustomRule FunctionName="disableEditButtonOnWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js" Default="false" InvertResult="false">
+          <CrmParameter Value="PrimaryControl" />
+        </CustomRule>
+      </EnableRule>
       <EnableRule Id="ts.msdyn_workorder.TSIS.hasWorkOrderName">
         <CustomRule FunctionName="hasWorkOrderName" Library="$webresource:ovs_/js/WorkOrderRibbon.js" Default="false" InvertResult="false">
           <CrmParameter Value="PrimaryControl" />
@@ -969,12 +976,22 @@
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.Alt">
       <Titles>
-        <Title description="Edit Unplanned WO" languagecode="1033" />
+        <Title description="Edit Work Order" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.LabelText">
       <Titles>
-        <Title description="Edit Unplanned WO" languagecode="1033" />
+        <Title description="Edit Work Order" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.ToolTipDescription">
+      <Titles>
+        <Title description="Edit Work Order in Workspace" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.ToolTipTitle">
+      <Titles>
+        <Title description="Edit Work Order in Workspace" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.NewUnplannedWO.Alt">

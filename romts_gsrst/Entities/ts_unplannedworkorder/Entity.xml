@@ -1,16 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Entity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Name LocalizedName="Unplanned Work Order" OriginalName="Unplanned Work Order">ts_unplannedworkorder</Name>
+  <Name LocalizedName="Work Order Workspace" OriginalName="Unplanned Work Order">ts_unplannedworkorder</Name>
   <EntityInfo>
     <entity Name="ts_unplannedworkorder">
       <LocalizedNames>
-        <LocalizedName description="Unplanned Work Order" languagecode="1033" />
+        <LocalizedName description="Work Order Workspace" languagecode="1033" />
+        <LocalizedName description="Espace de travail de l’ordre de travail" languagecode="1036" />
       </LocalizedNames>
       <LocalizedCollectionNames>
-        <LocalizedCollectionName description="Unplanned Work Orders" languagecode="1033" />
+        <LocalizedCollectionName description="Work Order Workspaces" languagecode="1033" />
+        <LocalizedCollectionName description="Work Order Workspaces" languagecode="1036" />
       </LocalizedCollectionNames>
       <Descriptions>
         <Description description="" languagecode="1033" />
+        <Description description="" languagecode="1036" />
       </Descriptions>
       <attributes>
         <attribute PhysicalName="CreatedBy">
@@ -801,10 +804,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Accountable Team" languagecode="1033" />
-            <displayname description="Accountable Team" languagecode="1036" />
+            <displayname description="Équipe responsible" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_actualcost">
@@ -843,10 +847,11 @@
           <AccuracySource>2</AccuracySource>
           <displaynames>
             <displayname description="Actual Cost" languagecode="1033" />
-            <displayname description="Actual Cost" languagecode="1036" />
+            <displayname description="Coût effectif" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_actualcost_Base">
@@ -886,7 +891,7 @@
           <CalculationOf>ts_actualcost</CalculationOf>
           <displaynames>
             <displayname description="Actual Cost (Base)" languagecode="1033" />
-            <displayname description="Actual Cost (de base)" languagecode="1036" />
+            <displayname description="Coût effectif (de base)" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Value of the Actual Cost in base currency." languagecode="1033" />
@@ -927,10 +932,11 @@
           <OptionSetName>ts_aircraftclassification</OptionSetName>
           <displaynames>
             <displayname description="Aircraft Classification" languagecode="1033" />
-            <displayname description="Aircraft Classification" languagecode="1036" />
+            <displayname description="Classification d'Aéronef" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_BusinessOwner">
@@ -972,6 +978,47 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ts_CancelledInspectionJustification">
+          <Type>lookup</Type>
+          <Name>ts_cancelledinspectionjustification</Name>
+          <LogicalName>ts_cancelledinspectionjustification</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20251104.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <LookupStyle>single</LookupStyle>
+          <LookupTypes />
+          <displaynames>
+            <displayname description="Cancelled Inspection Justification" languagecode="1033" />
+            <displayname description="Justification de l'inspection annulée" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_cantcompleteinspection">
@@ -1035,6 +1082,7 @@
           </displaynames>
           <Descriptions>
             <Description description="Can’t complete inspection within assigned quarter" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_Comments">
@@ -1071,10 +1119,11 @@
           <MaxLength>8000</MaxLength>
           <displaynames>
             <displayname description="Comments" languagecode="1033" />
-            <displayname description="Comments" languagecode="1036" />
+            <displayname description="Commentaires" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_completedquarter">
@@ -1123,6 +1172,7 @@
               <option value="717750001" ExternalValue="" IsHidden="0">
                 <labels>
                   <label description="Q1" languagecode="1033" />
+                  <label description="T1" languagecode="1036" />
                 </labels>
                 <Descriptions>
                   <Description description="" languagecode="1033" />
@@ -1131,6 +1181,7 @@
               <option value="717750002" ExternalValue="" IsHidden="0">
                 <labels>
                   <label description="Q2" languagecode="1033" />
+                  <label description="T2" languagecode="1036" />
                 </labels>
                 <Descriptions>
                   <Description description="" languagecode="1033" />
@@ -1139,6 +1190,7 @@
               <option value="717750003" ExternalValue="" IsHidden="0">
                 <labels>
                   <label description="Q3" languagecode="1033" />
+                  <label description="T3" languagecode="1036" />
                 </labels>
                 <Descriptions>
                   <Description description="" languagecode="1033" />
@@ -1147,6 +1199,7 @@
               <option value="717750004" ExternalValue="" IsHidden="0">
                 <labels>
                   <label description="Q4" languagecode="1033" />
+                  <label description="T4" languagecode="1036" />
                 </labels>
                 <Descriptions>
                   <Description description="" languagecode="1033" />
@@ -1160,6 +1213,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_contact">
@@ -1199,6 +1253,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_costexplanation">
@@ -1240,6 +1295,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_country">
@@ -1275,10 +1331,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Country" languagecode="1033" />
-            <displayname description="Country" languagecode="1036" />
+            <displayname description="Pays" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_details">
@@ -1316,10 +1373,11 @@
           <Length>200</Length>
           <displaynames>
             <displayname description="Planning Comments" languagecode="1033" />
-            <displayname description="Planning Comments" languagecode="1036" />
+            <displayname description="Commentaires de planification" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_functionallocation">
@@ -1355,10 +1413,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Functional Location" languagecode="1033" />
-            <displayname description="Functional Location" languagecode="1036" />
+            <displayname description="Poste technique" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_instructions">
@@ -1399,6 +1458,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_Name">
@@ -1440,6 +1500,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_operation">
@@ -1475,10 +1536,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Operation" languagecode="1033" />
-            <displayname description="Operation" languagecode="1036" />
+            <displayname description="Opération" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_operationtype">
@@ -1514,10 +1576,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Operation Type" languagecode="1033" />
-            <displayname description="Operation Type" languagecode="1036" />
+            <displayname description="Type d'opération" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_overtime">
@@ -1555,10 +1618,11 @@
           <Accuracy>2</Accuracy>
           <displaynames>
             <displayname description="Overtime" languagecode="1033" />
-            <displayname description="Overtime" languagecode="1036" />
+            <displayname description="Heures supplémentaires" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_overtimerequired">
@@ -1607,21 +1671,24 @@
               <option value="1" ExternalValue="" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
+                  <label description="Oui" languagecode="1036" />
                 </labels>
               </option>
               <option value="0" ExternalValue="" Color="#0000ff" IsHidden="0">
                 <labels>
                   <label description="No" languagecode="1033" />
+                  <label description="Non" languagecode="1036" />
                 </labels>
               </option>
             </options>
           </optionset>
           <displaynames>
             <displayname description="Overtime Required?" languagecode="1033" />
-            <displayname description="Overtime Required?" languagecode="1036" />
+            <displayname description="Heures supplémentaires nécessaires" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_plannedcost">
@@ -1660,10 +1727,11 @@
           <AccuracySource>2</AccuracySource>
           <displaynames>
             <displayname description="Planned Cost" languagecode="1033" />
-            <displayname description="Planned Cost" languagecode="1036" />
+            <displayname description="Coût planifié" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_plannedcost_Base">
@@ -1703,7 +1771,7 @@
           <CalculationOf>ts_plannedcost</CalculationOf>
           <displaynames>
             <displayname description="Planned Cost (Base)" languagecode="1033" />
-            <displayname description="Planned Cost (de base)" languagecode="1036" />
+            <displayname description="Coût planifié (de base)" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Value of the Planned Cost in base currency." languagecode="1033" />
@@ -1744,10 +1812,11 @@
           <MaxLength>2000</MaxLength>
           <displaynames>
             <displayname description="Primary Incident Description" languagecode="1033" />
-            <displayname description="Primary Incident Description" languagecode="1036" />
+            <displayname description="Description de l'incident principal" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_PrimaryIncidentEstimatedDuration">
@@ -1785,10 +1854,11 @@
           <MaxValue>2147483647</MaxValue>
           <displaynames>
             <displayname description="Primary Incident Estimated Duration" languagecode="1033" />
-            <displayname description="Primary Incident Estimated Duration" languagecode="1036" />
+            <displayname description="Durée estimée de l'incident principal" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Shows the time estimated to resolve this incident." languagecode="1033" />
+            <Description description="Affiche la durée estimée pour résoudre l'incident." languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_primaryincidenttype">
@@ -1824,10 +1894,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Activity Type" languagecode="1033" />
-            <displayname description="Activity Type" languagecode="1036" />
+            <displayname description="Type d'activité" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Primary incident type reported" languagecode="1033" />
+            <Description description="Type d'incident principal signalé" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_rational">
@@ -1863,10 +1934,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Category" languagecode="1033" />
-            <displayname description="Category" languagecode="1036" />
+            <displayname description="Catégorie" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_reason">
@@ -1906,6 +1978,7 @@
           </displaynames>
           <Descriptions>
             <Description description="Rationale" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_recordstatus">
@@ -1942,10 +2015,11 @@
           <OptionSetName>msdyn_wosystemstatus</OptionSetName>
           <displaynames>
             <displayname description="Record Status" languagecode="1033" />
-            <displayname description="Record Status" languagecode="1036" />
+            <displayname description="État du dossier" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_region">
@@ -1981,10 +2055,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Region" languagecode="1033" />
-            <displayname description="Region" languagecode="1036" />
+            <displayname description="Région" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_reportdetails">
@@ -2021,10 +2096,11 @@
           <MaxLength>30000</MaxLength>
           <displaynames>
             <displayname description="Report Details" languagecode="1033" />
-            <displayname description="Report Details" languagecode="1036" />
+            <displayname description="Détails du rapport" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_revisedquarterid">
@@ -2060,10 +2136,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Scheduled Quarter" languagecode="1033" />
-            <displayname description="Scheduled Quarter" languagecode="1036" />
+            <displayname description="Trimestre prévu" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_ScheduledQuarterJustification">
@@ -2099,10 +2176,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Scheduled Quarter Justification" languagecode="1033" />
-            <displayname description="Scheduled Quarter Justification" languagecode="1036" />
+            <displayname description="Justification du trimestre prévu" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_ScheduledQuarterJustificationComment">
@@ -2139,10 +2217,11 @@
           <MaxLength>2000</MaxLength>
           <displaynames>
             <displayname description="Scheduled Quarter Justification Comment" languagecode="1033" />
-            <displayname description="Scheduled Quarter Justification Comment" languagecode="1036" />
+            <displayname description="Commentaire de justification du trimestre prévu" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_SecurityIncident">
@@ -2178,10 +2257,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Security Incident" languagecode="1033" />
-            <displayname description="Security Incident" languagecode="1036" />
+            <displayname description="Incident de sûreté" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_servicerequest">
@@ -2217,10 +2297,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Case" languagecode="1033" />
-            <displayname description="Case" languagecode="1036" />
+            <displayname description="Cas" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_site">
@@ -2260,6 +2341,71 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ts_SkipPlugin">
+          <Type>bit</Type>
+          <Name>ts_skipplugin</Name>
+          <LogicalName>ts_skipplugin</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20251104.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="ts_unplannedworkorder_ts_skipplugin">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>1.0.20251104.1</IntroducedVersion>
+            <IsCustomizable>1</IsCustomizable>
+            <ExternalTypeName></ExternalTypeName>
+            <displaynames>
+              <displayname description="Skip Plugin" languagecode="1033" />
+            </displaynames>
+            <Descriptions>
+              <Description description="" languagecode="1033" />
+            </Descriptions>
+            <options>
+              <option value="1" ExternalValue="" IsHidden="0">
+                <labels>
+                  <label description="True" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="0" ExternalValue="" IsHidden="0">
+                <labels>
+                  <label description="False" languagecode="1033" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Skip Plugin" languagecode="1033" />
+            <displayname description="Skip Plugin" languagecode="1036" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Skips Unplanned Work Order plugin that creates a new WO since a WO already exists." languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_stakeholder">
@@ -2295,10 +2441,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Stakeholder" languagecode="1033" />
-            <displayname description="Stakeholder" languagecode="1036" />
+            <displayname description="Intervenant" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_state">
@@ -2331,14 +2478,15 @@
           <IsFilterable>0</IsFilterable>
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
-          <AppDefaultValue>717750000</AppDefaultValue>
+          <AppDefaultValue>717750001</AppDefaultValue>
           <OptionSetName>ts_planningstate</OptionSetName>
           <displaynames>
             <displayname description="State" languagecode="1033" />
-            <displayname description="State" languagecode="1036" />
+            <displayname description="État" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_subsubsite">
@@ -2378,6 +2526,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_TotalConductOversight">
@@ -2415,10 +2564,11 @@
           <Accuracy>2</Accuracy>
           <displaynames>
             <displayname description="Total Conduct Oversight" languagecode="1033" />
-            <displayname description="Total Conduct Oversight" languagecode="1036" />
+            <displayname description="Temps total de la surveillance" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
           <FormulaDefinitionFileName>/Formulas/ts_unplannedworkorder-ts_totalconductoversight.xaml</FormulaDefinitionFileName>
         </attribute>
@@ -2457,10 +2607,11 @@
           <Accuracy>2</Accuracy>
           <displaynames>
             <displayname description="Total Preparation Time" languagecode="1033" />
-            <displayname description="Total Preparation Time" languagecode="1036" />
+            <displayname description="Temps total de préparation" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
           <FormulaDefinitionFileName>/Formulas/ts_unplannedworkorder-ts_totalpreparationtime.xaml</FormulaDefinitionFileName>
         </attribute>
@@ -2499,10 +2650,11 @@
           <Accuracy>2</Accuracy>
           <displaynames>
             <displayname description="Total Rep and Doc Time" languagecode="1033" />
-            <displayname description="Total Rep and Doc Time" languagecode="1036" />
+            <displayname description="Temps total des rapports et de la documentation" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
           <FormulaDefinitionFileName>/Formulas/ts_unplannedworkorder-ts_totalrepanddoctime.xaml</FormulaDefinitionFileName>
         </attribute>
@@ -2541,10 +2693,11 @@
           <Accuracy>2</Accuracy>
           <displaynames>
             <displayname description="Total Travel Time" languagecode="1033" />
-            <displayname description="Total Travel Time" languagecode="1036" />
+            <displayname description="Temps total de voyagement" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
           <FormulaDefinitionFileName>/Formulas/ts_unplannedworkorder-ts_totaltraveltime.xaml</FormulaDefinitionFileName>
         </attribute>
@@ -2581,10 +2734,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Trade Name" languagecode="1033" />
-            <displayname description="Trade Name" languagecode="1036" />
+            <displayname description="Nom commercial" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_Trip">
@@ -2620,10 +2774,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Trip" languagecode="1033" />
-            <displayname description="Trip" languagecode="1036" />
+            <displayname description="Voyage" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_unplannedworkorderId">
@@ -2699,10 +2854,11 @@
           <Accuracy>2</Accuracy>
           <displaynames>
             <displayname description="WO Conducting Oversight" languagecode="1033" />
-            <displayname description="WO Conducting Oversight" languagecode="1036" />
+            <displayname description="Temps lié à la surveillance de l'ordre de travail" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_WOPreparationTime">
@@ -2740,10 +2896,11 @@
           <Accuracy>2</Accuracy>
           <displaynames>
             <displayname description="WO Preparation Time" languagecode="1033" />
-            <displayname description="WO Preparation Time" languagecode="1036" />
+            <displayname description="Temps de préparation de l'ordre de travail" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_WOReportingandDocumentation">
@@ -2781,10 +2938,11 @@
           <Accuracy>2</Accuracy>
           <displaynames>
             <displayname description="WO Reporting and Documentation" languagecode="1033" />
-            <displayname description="WO Reporting and Documentation" languagecode="1036" />
+            <displayname description="Rapport et documentation de l'ordre de travail" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_worklocation">
@@ -2821,10 +2979,11 @@
           <OptionSetName>msdyn_worklocation</OptionSetName>
           <displaynames>
             <displayname description="Work Location" languagecode="1033" />
-            <displayname description="Work Location" languagecode="1036" />
+            <displayname description="Emplacement de travail" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_WorkOrder">
@@ -2833,6 +2992,7 @@
           <LogicalName>ts_workorder</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
           <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
           <ValidForCreateApi>1</ValidForCreateApi>
@@ -2864,6 +3024,7 @@
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_WorkOrderJustification">
@@ -2903,6 +3064,7 @@
           </displaynames>
           <Descriptions>
             <Description description="Work Order Justification" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_workordertype">
@@ -2938,10 +3100,11 @@
           <LookupTypes />
           <displaynames>
             <displayname description="Work Order Type" languagecode="1033" />
-            <displayname description="Work Order Type" languagecode="1036" />
+            <displayname description="Type d'ordre de travail" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="Work Order Type" languagecode="1033" />
+            <Description description="Type d'ordre de travail" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_WOTravelTime">
@@ -2979,10 +3142,11 @@
           <Accuracy>2</Accuracy>
           <displaynames>
             <displayname description="WO Travel Time" languagecode="1033" />
-            <displayname description="WO Travel Time" languagecode="1036" />
+            <displayname description="Temps de voyagement de l'ordre de travail" languagecode="1036" />
           </displaynames>
           <Descriptions>
             <Description description="" languagecode="1033" />
+            <Description description="" languagecode="1036" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="UTCConversionTimeZoneCode">
@@ -3027,6 +3191,20 @@
           </Descriptions>
         </attribute>
       </attributes>
+      <EntityKeys>
+        <EntityKey>
+          <Name>ts_WorkOrder</Name>
+          <LogicalName>ts_workorder</LogicalName>
+          <IntroducedVersion>1.0.20251104.1</IntroducedVersion>
+          <IsCustomizable>0</IsCustomizable>
+          <EntityKeyAttributes>
+            <AttributeName>ts_workorder</AttributeName>
+          </EntityKeyAttributes>
+          <displaynames>
+            <displayname description="Work Order" languagecode="1033" />
+          </displaynames>
+        </EntityKey>
+      </EntityKeys>
       <EntitySetName>ts_unplannedworkorders</EntitySetName>
       <IsDuplicateCheckSupported>1</IsDuplicateCheckSupported>
       <IsBusinessProcessEnabled>0</IsBusinessProcessEnabled>
@@ -3083,6 +3261,7 @@
       <CanCreateViews>1</CanCreateViews>
       <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
       <CanEnableSyncToExternalSearchIndex>1</CanEnableSyncToExternalSearchIndex>
+      <IconVectorName></IconVectorName>
       <EnforceStateTransitions>0</EnforceStateTransitions>
       <CanChangeHierarchicalRelationship>1</CanChangeHierarchicalRelationship>
       <EntityHelpUrlEnabled>0</EntityHelpUrlEnabled>

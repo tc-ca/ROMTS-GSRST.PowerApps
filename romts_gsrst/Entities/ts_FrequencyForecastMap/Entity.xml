@@ -726,6 +726,46 @@
           </Descriptions>
           <FormulaDefinitionFileName>/Formulas/ts_frequencyforecastmap-ts_currentdate.xaml</FormulaDefinitionFileName>
         </attribute>
+        <attribute PhysicalName="ts_FiscalYearNum">
+          <Type>nvarchar</Type>
+          <Name>ts_fiscalyearnum</Name>
+          <LogicalName>ts_fiscalyearnum</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>100</MaxLength>
+          <Length>200</Length>
+          <displaynames>
+            <displayname description="FiscalYearNum" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Fiscal Year Number" languagecode="1033" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="ts_FrequencyForecastMapId">
           <Type>primarykey</Type>
           <Name>ts_frequencyforecastmapid</Name>
@@ -802,26 +842,26 @@
             <Description description="Lookup to existing Risk Frequency table" languagecode="1033" />
           </Descriptions>
         </attribute>
-        <attribute PhysicalName="ts_IsCurrentDate5YearAlternatingYear">
+        <attribute PhysicalName="ts_Is5Year">
           <Type>bit</Type>
-          <Name>ts_iscurrentdate5yearalternatingyear</Name>
-          <LogicalName>ts_iscurrentdate5yearalternatingyear</LogicalName>
+          <Name>ts_is5year</Name>
+          <LogicalName>ts_is5year</LogicalName>
           <RequiredLevel>none</RequiredLevel>
           <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
           <ImeMode>auto</ImeMode>
-          <ValidForUpdateApi>0</ValidForUpdateApi>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
           <ValidForReadApi>1</ValidForReadApi>
-          <ValidForCreateApi>0</ValidForCreateApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
           <IsCustomField>1</IsCustomField>
-          <IsAuditEnabled>0</IsAuditEnabled>
+          <IsAuditEnabled>1</IsAuditEnabled>
           <IsSecured>0</IsSecured>
-          <IntroducedVersion>1.0.20251023.1</IntroducedVersion>
+          <IntroducedVersion>1.0.20251104.1</IntroducedVersion>
           <IsCustomizable>1</IsCustomizable>
           <IsRenameable>1</IsRenameable>
           <CanModifySearchSettings>1</CanModifySearchSettings>
           <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
           <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
-          <SourceType>1</SourceType>
+          <SourceType>0</SourceType>
           <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
           <IsSortableEnabled>0</IsSortableEnabled>
           <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
@@ -833,37 +873,160 @@
           <IsRetrievable>0</IsRetrievable>
           <IsLocalizable>0</IsLocalizable>
           <AppDefaultValue>0</AppDefaultValue>
-          <optionset Name="ts_frequencyforecastmap_ts_iscurrentdate5yearalternatingyear">
+          <optionset Name="ts_frequencyforecastmap_ts_is5year">
             <OptionSetType>bit</OptionSetType>
-            <IntroducedVersion>1.0.20251023.1</IntroducedVersion>
+            <IntroducedVersion>1.0.20251104.1</IntroducedVersion>
             <IsCustomizable>1</IsCustomizable>
             <ExternalTypeName></ExternalTypeName>
             <displaynames>
-              <displayname description="Is Current Date 5 Year Alternating Year" languagecode="1033" />
+              <displayname description="Is 5 Year" languagecode="1033" />
             </displaynames>
             <Descriptions>
               <Description description="" languagecode="1033" />
             </Descriptions>
             <options>
-              <option value="0" ExternalValue="" Color="#0000ff" IsHidden="0">
-                <labels>
-                  <label description="No" languagecode="1033" />
-                </labels>
-              </option>
-              <option value="1" ExternalValue="" Color="#0000ff" IsHidden="0">
+              <option value="1" ExternalValue="" IsHidden="0">
                 <labels>
                   <label description="Yes" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="0" ExternalValue="" IsHidden="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
                 </labels>
               </option>
             </options>
           </optionset>
           <displaynames>
-            <displayname description="Is Current Date 5 Year Alternating Year" languagecode="1033" />
+            <displayname description="Is 5 Year" languagecode="1033" />
           </displaynames>
           <Descriptions>
-            <Description description="For 2025-2029, the alternating years (e.g., 2025, 2027, 2029)." languagecode="1033" />
+            <Description description="Is this 5 year?" languagecode="1033" />
           </Descriptions>
-          <FormulaDefinitionFileName>/Formulas/ts_frequencyforecastmap-ts_iscurrentdate5yearalternatingyear.xaml</FormulaDefinitionFileName>
+        </attribute>
+        <attribute PhysicalName="ts_IsCurrentInAlternatingYear">
+          <Type>bit</Type>
+          <Name>ts_iscurrentinalternatingyear</Name>
+          <LogicalName>ts_iscurrentinalternatingyear</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20251104.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="ts_frequencyforecastmap_ts_iscurrentinalternatingyear">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>1.0.20251104.1</IntroducedVersion>
+            <IsCustomizable>1</IsCustomizable>
+            <ExternalTypeName></ExternalTypeName>
+            <displaynames>
+              <displayname description="Is Current In Alternating Year" languagecode="1033" />
+            </displaynames>
+            <Descriptions>
+              <Description description="" languagecode="1033" />
+            </Descriptions>
+            <options>
+              <option value="1" ExternalValue="" IsHidden="0">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="0" ExternalValue="" IsHidden="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Is Current In Alternating Year" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="For 2025-2030, the alternating years are falling into second fiscal year or fourth fiscal year" languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ts_IsCurrentInThirdYear">
+          <Type>bit</Type>
+          <Name>ts_iscurrentinthirdyear</Name>
+          <LogicalName>ts_iscurrentinthirdyear</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0.20251104.1</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <AppDefaultValue>0</AppDefaultValue>
+          <optionset Name="ts_frequencyforecastmap_ts_iscurrentinthirdyear">
+            <OptionSetType>bit</OptionSetType>
+            <IntroducedVersion>1.0.20251104.1</IntroducedVersion>
+            <IsCustomizable>1</IsCustomizable>
+            <ExternalTypeName></ExternalTypeName>
+            <displaynames>
+              <displayname description="Is Current In Third Year" languagecode="1033" />
+            </displaynames>
+            <Descriptions>
+              <Description description="" languagecode="1033" />
+            </Descriptions>
+            <options>
+              <option value="1" ExternalValue="" IsHidden="0">
+                <labels>
+                  <label description="Yes" languagecode="1033" />
+                </labels>
+              </option>
+              <option value="0" ExternalValue="" IsHidden="0">
+                <labels>
+                  <label description="No" languagecode="1033" />
+                </labels>
+              </option>
+            </options>
+          </optionset>
+          <displaynames>
+            <displayname description="Is Current In Third Year" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="Is current date falling into third fiscal year" languagecode="1033" />
+          </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_Name">
           <Type>nvarchar</Type>

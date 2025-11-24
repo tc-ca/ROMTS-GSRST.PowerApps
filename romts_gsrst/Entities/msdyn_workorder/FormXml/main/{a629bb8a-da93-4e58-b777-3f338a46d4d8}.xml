@@ -2648,7 +2648,7 @@
             </column>
           </columns>
         </tab>
-        <tab name="tab_14" id="44e149d3-e447-4ed9-a785-59d04813238c" IsUserDefined="0" locklevel="0" showlabel="true" contenttype="cardSections" expanded="false" labelid="{721f1529-1ebd-4f80-8d86-a44dfe62d3ca}">
+        <tab name="work_order_rom_two_document_tab" id="44e149d3-e447-4ed9-a785-59d04813238c" IsUserDefined="0" locklevel="0" showlabel="true" contenttype="cardSections" expanded="false" labelid="{721f1529-1ebd-4f80-8d86-a44dfe62d3ca}">
           <labels>
             <label description="Attachments" languagecode="1033" />
             <label description="Documents" languagecode="1036" />
@@ -2662,6 +2662,27 @@
                     <label description="Documents" languagecode="1036" />
                   </labels>
                   <rows>
+                    <row>
+                      <cell rowspan="1" id="{b038a8d0-7996-4eb4-b00b-90521457ed35}" showlabel="false" colspan="1">
+                        <labels>
+                          <label description="ts_/html/NewDocumentCenterNotice.html" languagecode="1033" />
+                        </labels>
+                        <control id="WebResource_NewDocumentCenterNotice" classid="{9FDF5F91-88B1-47F4-AD53-C11EFC01A01D}">
+                          <parameters>
+                            <Url>ts_/html/NewDocumentCenterNotice.html</Url>
+                            <PassParameters>false</PassParameters>
+                            <Security>false</Security>
+                            <Scrolling>auto</Scrolling>
+                            <Border>false</Border>
+                            <ShowOnMobileClient>false</ShowOnMobileClient>
+                            <WebResourceId>{fcdc8c06-76af-f011-bbd2-0022483c7c31}</WebResourceId>
+                          </parameters>
+                        </control>
+                        <events>
+                          <event name="onload" application="false" active="false" />
+                        </events>
+                      </cell>
+                    </row>
                     <row>
                       <cell locklevel="0" id="{80a1c1f0-1f3a-4f28-b29a-432c211fa59c}" rowspan="12" colspan="1" auto="false" showlabel="true" labelid="{22791200-bbdc-41bc-a1dd-1c8b4b5fd75d}">
                         <labels>
@@ -2725,7 +2746,7 @@
             </column>
             <column width="33%">
               <sections>
-                <section name="tab_14_section_3" id="1081862f-fb5c-4fa8-b72f-2377fa9d3bb1" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{6b366d4a-210e-49be-9cb0-e26d3213ac27}">
+                <section name="work_order_rom_two_document_section" id="1081862f-fb5c-4fa8-b72f-2377fa9d3bb1" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" labelid="{6b366d4a-210e-49be-9cb0-e26d3213ac27}">
                   <labels>
                     <label description="Document Centre" languagecode="1033" />
                     <label description="Centre de documentation" languagecode="1036" />
@@ -4520,6 +4541,7 @@
             <Handler functionName="msdyn.workOrderForm.onLoad" libraryName="msdyn_/CFS/WorkOrder/WorkOrderForm.js" handlerUniqueId="{56e4c9eb-ba02-4319-841d-deec4f5ce6f5}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler functionName="WorkOrders.Library.Load" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{e1fc70a3-64bc-4e4d-a397-e2d0ba64274b}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler functionName="openLookupModalDialogWOForm" libraryName="ts_/js/Common.js" handlerUniqueId="{665dc799-2b6a-5cb3-7145-d5155a8021a1}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{6c31de3b-8158-4f0b-8aa2-65a1d1d2d681}" enabled="true" parameters="&quot;work_order_rom_two_document_tab&quot;, &quot;work_order_rom_two_document_section&quot;" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="false" active="false" attribute="msdyn_iotalert">

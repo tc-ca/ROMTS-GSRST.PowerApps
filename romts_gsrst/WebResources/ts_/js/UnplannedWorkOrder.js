@@ -68,7 +68,7 @@ var ROM;
                 "  <entity name='businessunit'>",
                 "    <attribute name='name' />",
                 "    <attribute name='businessunitid' />",
-                "    <link-entity name='systemuser' from='businessunitid' to='businessunitid' link-type='inner' alias='ab'>>",
+                "    <link-entity name='systemuser' from='businessunitid' to='businessunitid' link-type='inner' alias='ab'>",
                 "      <filter>",
                 "        <condition attribute='systemuserid' operator='eq' value='", userId, "'/>",
                 "      </filter>",
@@ -380,6 +380,10 @@ var ROM;
                     restrictEditRightReportDetails(eContext, subgridAdditionalInspectors);
                 });
             }
+            //Lock Cancelled Inspection Justification field if WO is cancelled        
+            if (currentSystemStatus == 690970005 /* msdyn_wosystemstatus.Cancelled */) {
+                form.getControl("ts_cancelledinspectionjustification").setDisabled(true);
+            }
             //  unlockRecordLogFieldsIfUserIsSystemAdmin(form);
             RemoveOptionCancel(eContext);
             showRationaleField(form, UNPLANNED_CATEGORY_ID);
@@ -432,6 +436,7 @@ var ROM;
         function onSave(eContext) {
             var form = eContext.getFormContext();
             var systemStatus = form.getAttribute("ts_recordstatus").getValue();
+            var cancelledInspectionJustification = form.getAttribute("ts_cancelledinspectionjustification").getValue();
             var workOrderServiceTaskData;
             if (systemStatus == 690970004 /* msdyn_wosystemstatus.ClosedInactive */) { //Only close associated entities when Record Status is set to Closed - Posted  690970004
                 workOrderServiceTaskData =
@@ -448,6 +453,10 @@ var ROM;
             //  setCantCompleteinspectionVisibility(form);
             //Post a note on ScheduledQuarter Change
             //  postNoteOnScheduledQuarterChange(form);
+            if (cancelledInspectionJustification != null) {
+                form.getAttribute("ts_recordstatus").setValue(690970005 /* msdyn_wosystemstatus.Cancelled */);
+                form.getControl("ts_cancelledinspectionjustification").setDisabled(true);
+            }
         }
         UnplannedWorkOrder.onSave = onSave;
         function workOrderTypeOnChange(eContext) {
@@ -2449,6 +2458,16 @@ var ROM;
                     justificationAttribute.setValue(null);
                 }
             }
+        }
+        function updateModalTitle() {
+            var selector = "div[id^='dialogPageContainer'] span[data-id='entity_name_span']";
+            var interval = setInterval(function () {
+                var el = document.querySelector(selector);
+                if (el) {
+                    el.textContent = "Edit Work Order";
+                    clearInterval(interval);
+                }
+            }, 200);
         }
     })(UnplannedWorkOrder = ROM.UnplannedWorkOrder || (ROM.UnplannedWorkOrder = {}));
 })(ROM || (ROM = {}));
