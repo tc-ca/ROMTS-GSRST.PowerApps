@@ -9,7 +9,7 @@
       <Description description="Regulatory Oversight Management - Transportation Security" languagecode="1033" />
       <Description description="Gestion de la surveillance reglementaire  - Sûreté des transports" languagecode="1036" />
     </Descriptions>
-    <Version>1.0.20251125.1</Version>
+    <Version>1.0.20251202.1</Version>
     <Managed>0</Managed>
     <Publisher>
       <UniqueName>transportationsecuritypublisher</UniqueName>
@@ -236,6 +236,7 @@
       <RootComponent type="1" schemaName="ts_discretionaryfactorgrouping" behavior="0" />
       <RootComponent type="1" schemaName="ts_discretionaryfactoroption" behavior="0" />
       <RootComponent type="1" schemaName="ts_discretionaryfactorresponse" behavior="0" />
+      <RootComponent type="1" schemaName="ts_dutyinspector" behavior="0" />
       <RootComponent type="1" schemaName="ts_dutyinspectors" behavior="0" />
       <RootComponent type="1" schemaName="ts_dutyinspectorschedule" behavior="0" />
       <RootComponent type="1" schemaName="ts_enforcementaction" behavior="0" />
@@ -318,6 +319,7 @@
       <RootComponent type="1" schemaName="ts_userregistration" behavior="0" />
       <RootComponent type="1" schemaName="ts_workorderactivitytype" behavior="0" />
       <RootComponent type="1" schemaName="ts_workordercreationwizard" behavior="0" />
+      <RootComponent type="1" schemaName="ts_workorderexportjob" behavior="0" />
       <RootComponent type="1" schemaName="ts_workorderservicetaskworkspace" behavior="0" />
       <RootComponent type="1" schemaName="ts_workordertimetracking" behavior="0" />
       <RootComponent type="1" schemaName="uom" behavior="1" />
@@ -375,6 +377,7 @@
       <RootComponent type="9" schemaName="ts_planstatus" behavior="0" />
       <RootComponent type="9" schemaName="ts_ppecategories" behavior="0" />
       <RootComponent type="9" schemaName="ts_prescribedfrequencyclassselection" behavior="0" />
+      <RootComponent type="9" schemaName="ts_processingstatus" behavior="0" />
       <RootComponent type="9" schemaName="ts_program" behavior="0" />
       <RootComponent type="9" schemaName="ts_programaccess" behavior="0" />
       <RootComponent type="9" schemaName="ts_province" behavior="0" />
@@ -427,6 +430,7 @@
       <RootComponent type="20" id="{eed78bb6-bca5-ee11-a568-002248aeebdb}" behavior="0" />
       <RootComponent type="20" id="{ef56a65a-65be-f011-bbd2-6045bd5d2567}" behavior="0" />
       <RootComponent type="29" id="{03b420af-8522-ee11-9966-0022483d7716}" behavior="0" />
+      <RootComponent type="29" id="{0bb97eb7-1ecc-f011-8543-7ced8d3565fb}" behavior="0" />
       <RootComponent type="29" id="{0c06bb7b-82a3-f011-bbd2-002248b1d17b}" behavior="0" />
       <RootComponent type="29" id="{0cecc970-8df3-48c3-872c-963a9d817b3d}" behavior="0" />
       <RootComponent type="29" id="{10c5bb94-b929-f011-8c4e-6045bd5e8d7e}" behavior="0" />
@@ -636,6 +640,7 @@
       <RootComponent type="61" schemaName="ts_/html/SiteAssessmentGuidance.html" behavior="0" />
       <RootComponent type="61" schemaName="ts_/html/SurveyRenderPrint.html" behavior="0" />
       <RootComponent type="61" schemaName="ts_/html/TeamPlanningDataDetailsDisplay.html" behavior="0" />
+      <RootComponent type="61" schemaName="ts_/html/WorkOrderExportRender.html" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/Action.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/aircraft.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/ajax.js" behavior="0" />
@@ -662,6 +667,7 @@
       <RootComponent type="61" schemaName="ts_/js/EntityRiskRibbon.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/File.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/FunctionalLocation.js" behavior="0" />
+      <RootComponent type="61" schemaName="ts_/js/html2pdf.bundle.min.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/IncidentQuickCreate.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/Infraction.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/InfractionRibbon.js" behavior="0" />
@@ -712,6 +718,7 @@
       <RootComponent type="61" schemaName="ts_/js/UserRegistration.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/utils/SubGridFetchXmlModifier.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/WorkOrderCreationWizard.js" behavior="0" />
+      <RootComponent type="61" schemaName="ts_/js/WorkOrderExportJob.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/WorkOrderQuickCreate.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/js/WorkOrderServiceTaskWorkspace.js" behavior="0" />
       <RootComponent type="61" schemaName="ts_/mapoperation.html" behavior="0" />
@@ -1273,50 +1280,50 @@
         <Dependent type="80" schemaName="ts_OversightPlanningModule" displayName="Oversight Planning Module" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="bot" displayName="Chatbot" solution="PowerVirtualAgents (2025.10.4.18471236)">
-          <package appName="CCI Bots" version="2025.10.4.18471236">msdynce_CustomerCareIntelligenceBots_Anchor (2025.10.4.18471236)</package>
+        <Required type="1" schemaName="bot" displayName="Chatbot" solution="PowerVirtualAgents (2025.11.2.18477777)">
+          <package appName="CCI Bots" version="2025.11.2.18477777">msdynce_CustomerCareIntelligenceBots_Anchor (2025.11.2.18477777)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="campaign" displayName="Campaign" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="1" schemaName="campaign" displayName="Campaign" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="campaign" displayName="Campaign" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="22" id="{0c75e22a-3aa2-4fd2-b77c-288bf0f019fa}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="campaign" displayName="Campaign" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="22" id="{5f9a4060-fbe2-47b0-8376-fa58a8894872}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="campaignactivity" displayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="1" schemaName="campaignactivity" displayName="Campaign Activity" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="campaignactivity" displayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="22" id="{5f9a4060-fbe2-47b0-8376-fa58a8894872}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="campaignresponse" displayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="1" schemaName="campaignresponse" displayName="Campaign Response" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="campaignresponse" displayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="22" id="{9b23d7fb-316a-45c2-a5ee-803bf0a7b443}" />
       </MissingDependency>
@@ -1730,7 +1737,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="list" displayName="Marketing List" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
@@ -2131,9 +2138,9 @@
         <Dependent type="1" schemaName="incident" displayName="Case" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_appprofilerolemapping" displayName="App profile role mapping" solution="msdyn_AppProfileManager (10.1.25104.1011)">
+        <Required type="1" schemaName="msdyn_appprofilerolemapping" displayName="App profile role mapping" solution="msdyn_AppProfileManager (10.1.25112.1006)">
           <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
-          <package appName="App profile manager" version="10.1.25104.1011">msdyn_AppProfileManagerAnchor (10.1.25104.1011)</package>
+          <package appName="App profile manager" version="10.1.25112.1006">msdyn_AppProfileManagerAnchor (10.1.25112.1006)</package>
         </Required>
         <Dependent type="1" schemaName="role" displayName="Security Role" />
       </MissingDependency>
@@ -2173,20 +2180,20 @@
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_autocaseclosureagentactivity" displayName="Case Management Agent for case closure Activity" solution="msdyn_CaseManagementIntelligence (9.2.25104.1073)">
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+        <Required type="1" schemaName="msdyn_autocaseclosureagentactivity" displayName="Case Management Agent for case closure Activity" solution="msdyn_CaseManagementIntelligence (9.2.25112.1046)">
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="email" displayName="Email" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_autocaseclosureagentactivity" displayName="Case Management Agent for case closure Activity" solution="msdyn_CaseManagementIntelligence (9.2.25104.1073)">
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+        <Required type="1" schemaName="msdyn_autocaseclosureagentactivity" displayName="Case Management Agent for case closure Activity" solution="msdyn_CaseManagementIntelligence (9.2.25112.1046)">
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="incident" displayName="Case" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_autocaseclosureagentmonitoring" displayName="Case Management Agent for case closure Monitoring" solution="msdyn_CaseManagementIntelligence (9.2.25104.1073)">
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+        <Required type="1" schemaName="msdyn_autocaseclosureagentmonitoring" displayName="Case Management Agent for case closure Monitoring" solution="msdyn_CaseManagementIntelligence (9.2.25112.1046)">
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="incident" displayName="Case" />
       </MissingDependency>
@@ -2326,23 +2333,23 @@
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_caseenrichment" displayName="Case Enrichment" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="1" schemaName="msdyn_caseenrichment" displayName="Case Enrichment" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="incident" displayName="Case" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_casesuggestion" displayName="Case Suggestion" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="1" schemaName="msdyn_casesuggestion" displayName="Case Suggestion" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="incident" displayName="Case" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_casesuggestionrequestpayload" displayName="Case Suggestion Request Payload" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="1" schemaName="msdyn_casesuggestionrequestpayload" displayName="Case Suggestion Request Payload" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="incident" displayName="Case" />
       </MissingDependency>
@@ -2391,9 +2398,9 @@
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_copilotskillrole" displayName="Copilot Skill Role" solution="msdyn_CSIntelligenceCore (9.2.25104.1073)">
+        <Required type="1" schemaName="msdyn_copilotskillrole" displayName="Copilot Skill Role" solution="msdyn_CSIntelligenceCore (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="role" displayName="Security Role" />
       </MissingDependency>
@@ -2826,26 +2833,26 @@
         <Dependent type="60" displayName="Account" parentDisplayName="Account" id="{8448b78f-8f42-454e-8e2a-f8196b0419af}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_intentcontexthistory" displayName="Intent Context History" solution="msdyn_IntentEngineCore (9.2.25104.1073)">
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+        <Required type="1" schemaName="msdyn_intentcontexthistory" displayName="Intent Context History" solution="msdyn_IntentEngineCore (9.2.25112.1046)">
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="incident" displayName="Case" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_intententity" displayName="intententity" solution="msdyn_IntentEngineCore (9.2.25104.1073)">
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+        <Required type="1" schemaName="msdyn_intententity" displayName="intententity" solution="msdyn_IntentEngineCore (9.2.25112.1046)">
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="incident" displayName="Case" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_intentfamily" displayName="Line of Business" solution="msdyn_IntentEngineCore (9.2.25104.1073)">
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+        <Required type="1" schemaName="msdyn_intentfamily" displayName="Line of Business" solution="msdyn_IntentEngineCore (9.2.25112.1046)">
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="msdyn_agentgroup" displayName="Agent Group" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_intentsolutionmap" displayName="Intent Solution Map" solution="msdyn_IntentEngineCore (9.2.25104.1073)">
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+        <Required type="1" schemaName="msdyn_intentsolutionmap" displayName="Intent Solution Map" solution="msdyn_IntentEngineCore (9.2.25112.1046)">
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="msdyn_agentgroup" displayName="Agent Group" />
       </MissingDependency>
@@ -3238,9 +3245,9 @@
         <Dependent type="1" schemaName="contact" displayName="Contact" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_nextaction" displayName="Next Action" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="1" schemaName="msdyn_nextaction" displayName="Next Action" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="incident" displayName="Case" />
       </MissingDependency>
@@ -3899,9 +3906,9 @@
         <Dependent type="1" schemaName="contact" displayName="Contact" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_servicecopilotpluginrole" displayName="Service Copilot Plugin Role" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="1" schemaName="msdyn_servicecopilotpluginrole" displayName="Service Copilot Plugin Role" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="role" displayName="Security Role" />
       </MissingDependency>
@@ -3933,9 +3940,9 @@
         <Dependent type="1" schemaName="account" displayName="Account" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_suggestioninteraction" displayName="Suggestion Interaction" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="1" schemaName="msdyn_suggestioninteraction" displayName="Suggestion Interaction" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="incident" displayName="Case" />
       </MissingDependency>
@@ -3946,9 +3953,9 @@
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_suggestionrequestpayload" displayName="Suggestion request payload" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="1" schemaName="msdyn_suggestionrequestpayload" displayName="Suggestion request payload" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="1" schemaName="incident" displayName="Case" />
       </MissingDependency>
@@ -4298,8 +4305,8 @@
         <Dependent type="1" schemaName="msdyn_workordertype" displayName="Work Order Type" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="1" schemaName="msdyn_workstream_bot_mapping" displayName="Work Stream Bot Mapping" solution="msdyn_ChannelExperienceApp (1.0.25104.1016)">
-          <package appName="ChannelExperienceApps" version="1.0.25104.1016">msdyn_ChannelExperienceAppsAnchor (1.0.25104.1016)</package>
+        <Required type="1" schemaName="msdyn_workstream_bot_mapping" displayName="Work Stream Bot Mapping" solution="msdyn_ChannelExperienceApp (1.0.25112.1027)">
+          <package appName="ChannelExperienceApps" version="1.0.25112.1027">msdyn_ChannelExperienceAppsAnchor (1.0.25112.1027)</package>
         </Required>
         <Dependent type="1" schemaName="systemuser" displayName="User" />
       </MissingDependency>
@@ -4790,22 +4797,6 @@
           <package appName="msdynce_AppCommon" version="9.0.25112.10001">msdynce_AppCommonAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="1" schemaName="territory" displayName="Region" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="ts_dutyinspector" displayName="Duty Inspector" solution="Active" />
-        <Dependent type="1" schemaName="systemuser" displayName="User" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="ts_dutyinspector" displayName="Duty Inspector" solution="Active" />
-        <Dependent type="1" schemaName="tc_tcfiscalyear" displayName="TCFiscalYear" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="ts_dutyinspector" displayName="Duty Inspector" solution="Active" />
-        <Dependent type="1" schemaName="tc_tcmonth" displayName="TCMonth" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="1" schemaName="ts_dutyinspector" displayName="Duty Inspector" solution="Active" />
-        <Dependent type="1" schemaName="team" displayName="Team" />
       </MissingDependency>
       <MissingDependency>
         <Required type="1" schemaName="ts_questionnaireoffline" displayName="Questionnaire Offline" solution="Active" />
@@ -6175,9 +6166,9 @@
         <Dependent type="60" displayName="Agreement" parentDisplayName="Agreement" id="{d3fab127-1057-4b53-99a2-f38b90877e99}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="10" schemaName="msdyn_appconfiguration_systemuser" displayName="msdyn_appconfiguration_systemuser" parentSchemaName="msdyn_appconfiguration" parentDisplayName="App profile" solution="msdyn_AppProfileManager (10.1.25104.1011)">
+        <Required type="10" schemaName="msdyn_appconfiguration_systemuser" displayName="msdyn_appconfiguration_systemuser" parentSchemaName="msdyn_appconfiguration" parentDisplayName="App profile" solution="msdyn_AppProfileManager (10.1.25112.1006)">
           <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
-          <package appName="App profile manager" version="10.1.25104.1011">msdyn_AppProfileManagerAnchor (10.1.25104.1011)</package>
+          <package appName="App profile manager" version="10.1.25112.1006">msdyn_AppProfileManagerAnchor (10.1.25112.1006)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_appconfiguration_systemuser" displayName="msdyn_appconfiguration_systemuser" parentSchemaName="msdyn_appconfiguration" parentDisplayName="App profile" />
       </MissingDependency>
@@ -6197,7 +6188,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="10" schemaName="msdyn_ciprovider_systemuser_membership" displayName="msdyn_ciprovider_systemuser_membership" parentSchemaName="msdyn_ciprovider" parentDisplayName="Channel Integration Framework v1.0 Provider" solution="ChannelAPIIntegrationFramework (9.2.0.49)">
-          <package appName="App profile manager" version="10.1.25104.1011">msdyn_AppProfileManagerAnchor (10.1.25104.1011)</package>
+          <package appName="App profile manager" version="10.1.25112.1006">msdyn_AppProfileManagerAnchor (10.1.25112.1006)</package>
         </Required>
         <Dependent type="10" schemaName="msdyn_ciprovider_systemuser_membership" displayName="msdyn_ciprovider_systemuser_membership" parentSchemaName="msdyn_ciprovider" parentDisplayName="Channel Integration Framework v1.0 Provider" />
       </MissingDependency>
@@ -10521,235 +10512,235 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="actualcost" displayName="Actual Cost" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="actualend" displayName="Actual End" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="actualstart" displayName="Actual Start" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="budgetedcost" displayName="Budget Allocated" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="channeltypecode" displayName="Channel" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="description" displayName="Description" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="excludeifcontactedinxdays" displayName="No. of Days" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="ownerid" displayName="Owner" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="partners" displayName="Outsource Vendors" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="prioritycode" displayName="Priority" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="regardingobjectid" displayName="Parent Campaign" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="scheduledend" displayName="Scheduled End" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="scheduledstart" displayName="Scheduled Start" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="statuscode" displayName="Status Reason" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="subject" displayName="Subject" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="transactioncurrencyid" displayName="Currency" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="typecode" displayName="Type" parentSchemaName="campaignactivity" parentDisplayName="Campaign Activity" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="activityid" displayName="Campaign Response" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="26" schemaName="Accounts: Responded to Campaigns in Last 6 Months" displayName="Accounts: Responded to Campaigns in Last 6 Months" parentSchemaName="account" parentDisplayName="Account" id="{49fb9771-09e1-4e70-b193-198752493577}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="activityid" displayName="Campaign Response" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="26" schemaName="Contacts: Responded to Campaigns in Last 6 Months" displayName="Contacts: Responded to Campaigns in Last 6 Months" parentSchemaName="contact" parentDisplayName="Contact" id="{9c241a33-ca0b-4e50-ae92-db780d5b2a12}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="channeltypecode" displayName="Channel" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="companyname" displayName="Company Name" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="customer" displayName="Customer" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="description" displayName="Description" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="emailaddress" displayName="Email" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="firstname" displayName="First Name" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="lastname" displayName="Last Name" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="ownerid" displayName="Owner" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="partner" displayName="Outsource Vendor" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="prioritycode" displayName="Priority" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="promotioncodename" displayName="Promotion Code" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="receivedon" displayName="Received On" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="26" schemaName="Accounts: Responded to Campaigns in Last 6 Months" displayName="Accounts: Responded to Campaigns in Last 6 Months" parentSchemaName="account" parentDisplayName="Account" id="{49fb9771-09e1-4e70-b193-198752493577}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="receivedon" displayName="Received On" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="26" schemaName="Contacts: Responded to Campaigns in Last 6 Months" displayName="Contacts: Responded to Campaigns in Last 6 Months" parentSchemaName="contact" parentDisplayName="Contact" id="{9c241a33-ca0b-4e50-ae92-db780d5b2a12}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="receivedon" displayName="Received On" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="regardingobjectid" displayName="Parent Campaign" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="responsecode" displayName="Response Code" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="scheduledend" displayName="Close By" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="statecode" displayName="Status" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="subject" displayName="Subject" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="telephone" displayName="Phone" parentSchemaName="campaignresponse" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
@@ -11471,9 +11462,9 @@
         <Dependent type="2" schemaName="msdyn_casesurveyinviteurl" displayName="Survey Invite" parentSchemaName="incident" parentDisplayName="Case" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_copilotengaged" displayName="Copilot Engaged" parentSchemaName="incident" parentDisplayName="Case" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="2" schemaName="msdyn_copilotengaged" displayName="Copilot Engaged" parentSchemaName="incident" parentDisplayName="Case" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="2" schemaName="msdyn_copilotengaged" displayName="Copilot Engaged" parentSchemaName="incident" parentDisplayName="Case" />
       </MissingDependency>
@@ -12102,16 +12093,16 @@
         <Dependent type="60" displayName="Knowledge Article for Interactive experience" parentDisplayName="Knowledge Article" id="{f7502aaf-4874-49fc-868d-cc201c6c4453}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_creationmode" displayName="Creation Mode" parentSchemaName="knowledgearticle" parentDisplayName="Knowledge Article" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="2" schemaName="msdyn_creationmode" displayName="Creation Mode" parentSchemaName="knowledgearticle" parentDisplayName="Knowledge Article" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="60" displayName="Knowledge Article" parentDisplayName="Knowledge Article" id="{e7ef555e-7f57-4164-b604-59fa4f0a7e2e}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="2" schemaName="msdyn_creationmode" displayName="Creation Mode" parentSchemaName="knowledgearticle" parentDisplayName="Knowledge Article" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="2" schemaName="msdyn_creationmode" displayName="Creation Mode" parentSchemaName="knowledgearticle" parentDisplayName="Knowledge Article" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="60" displayName="Knowledge Article for Interactive experience" parentDisplayName="Knowledge Article" id="{f7502aaf-4874-49fc-868d-cc201c6c4453}" />
       </MissingDependency>
@@ -12195,13 +12186,13 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="campaignid" displayName="Source Campaign" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Lead Insights" parentDisplayName="Lead" id="{e160d172-172b-4619-9799-81bb007ecc54}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="campaignid" displayName="Source Campaign" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_Marketing (9.0.4.37)">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Lead" parentDisplayName="Lead" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
       </MissingDependency>
@@ -14059,6 +14050,12 @@
           <package appName="Field Service" version="8.8.140.325">FieldService_Anchor (8.8.140.325)</package>
         </Required>
         <Dependent type="2" schemaName="msdyn_unitprice" displayName="Unit Price" parentSchemaName="msdyn_quoteinvoicingproduct" parentDisplayName="Quote Invoicing Product" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_region" parentDisplayName="Region" solution="msdyn_AgentGroupManager (1.5.25112.1035)">
+          <package appName="UnifiedRoutingPrime" version="1.5.27.138">UnifiedRoutingPrimeAnchor (1.5.27.138)</package>
+        </Required>
+        <Dependent type="10" schemaName="ts_dutyinspector_Region_msdyn_region" displayName="ts_dutyinspector_Region_msdyn_region" parentSchemaName="msdyn_region" parentDisplayName="Region" />
       </MissingDependency>
       <MissingDependency>
         <Required type="2" schemaName="msdyn_name" displayName="Name" parentSchemaName="msdyn_requirementcharacteristic" parentDisplayName="Requirement Characteristic" solution="MicrosoftDynamicsScheduling (3.12.0.448)">
@@ -18708,19 +18705,19 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Campaign Lookup View" displayName="Campaign Lookup View" parentSchemaName="campaign" parentDisplayName="Campaign" solution="msdynce_Marketing (9.0.4.37)" id="{0e76dc73-2052-484e-8c00-a760f8d522ec}">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Campaign Lookup View" displayName="Campaign Lookup View" parentSchemaName="campaign" parentDisplayName="Campaign" solution="msdynce_Marketing (9.0.4.37)" id="{0e76dc73-2052-484e-8c00-a760f8d522ec}">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Lead Insights" parentDisplayName="Lead" id="{e160d172-172b-4619-9799-81bb007ecc54}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Campaign Lookup View" displayName="Campaign Lookup View" parentSchemaName="campaign" parentDisplayName="Campaign" solution="msdynce_Marketing (9.0.4.37)" id="{0e76dc73-2052-484e-8c00-a760f8d522ec}">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Lead" parentDisplayName="Lead" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
       </MissingDependency>
@@ -19272,7 +19269,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Selected Contacts Campaigns" displayName="Selected Contacts Campaigns" parentSchemaName="contact" parentDisplayName="Contact" solution="msdynce_MarketingPatch (9.0.1904.1019)" id="{38962192-31ff-46fc-9ac3-2db0a7d9dc7c}">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="26" schemaName="Selected Contacts Campaigns" displayName="Selected Contacts Campaigns" parentSchemaName="contact" parentDisplayName="Contact" id="{38962192-31ff-46fc-9ac3-2db0a7d9dc7c}" />
       </MissingDependency>
@@ -20005,7 +20002,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Excluded Contacts Campaigns" displayName="Excluded Contacts Campaigns" parentSchemaName="contact" parentDisplayName="Contact" solution="msdynce_MarketingPatch (9.0.1904.1019)" id="{69103b65-f27e-45ce-a69c-eb1a7c805a45}">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="26" schemaName="Excluded Contacts Campaigns" displayName="Excluded Contacts Campaigns" parentSchemaName="contact" parentDisplayName="Contact" id="{69103b65-f27e-45ce-a69c-eb1a7c805a45}" />
       </MissingDependency>
@@ -20054,7 +20051,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Active Marketing Lists Brief" displayName="Active Marketing Lists Brief" parentSchemaName="list" parentDisplayName="Marketing List" solution="msdynce_Marketing (9.0.4.37)" id="{6e255efb-607b-e211-b3b3-00155d894f2e}">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
@@ -20179,13 +20176,13 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Excluded Leads Campaigns" displayName="Excluded Leads Campaigns" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_MarketingPatch (9.0.1904.1019)" id="{7c17132b-cda1-497a-b4c2-50da36bc0d4a}">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Excluded Accounts Campaigns" displayName="Excluded Accounts Campaigns" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_MarketingPatch (9.0.1904.1019)" id="{7de498c2-508f-49a4-b2e8-d550d5b1b9ee}">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="26" schemaName="Excluded Accounts Campaigns" displayName="Excluded Accounts Campaigns" parentSchemaName="account" parentDisplayName="Account" id="{7de498c2-508f-49a4-b2e8-d550d5b1b9ee}" />
       </MissingDependency>
@@ -20900,7 +20897,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Selected Leads Campaigns" displayName="Selected Leads Campaigns" parentSchemaName="lead" parentDisplayName="Lead" solution="msdynce_MarketingPatch (9.0.1904.1019)" id="{c8f256c6-f809-4951-b286-3cbd9f99f80b}">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
@@ -20981,7 +20978,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="26" schemaName="Selected Accounts Campaigns" displayName="Selected Accounts Campaigns" parentSchemaName="account" parentDisplayName="Account" solution="msdynce_MarketingPatch (9.0.1904.1019)" id="{d15e48f6-e8fe-e811-8165-000d3af92c6e}">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="26" schemaName="Selected Accounts Campaigns" displayName="Selected Accounts Campaigns" parentSchemaName="account" parentDisplayName="Account" id="{d15e48f6-e8fe-e811-8165-000d3af92c6e}" />
       </MissingDependency>
@@ -21760,32 +21757,32 @@
         <Dependent type="60" displayName="Case form for swarming" parentDisplayName="Case" id="{1898d587-4b84-ec11-8d21-0022481c0d29}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25104.1002)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}">
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25112.1004)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}">
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="ROM Case" parentDisplayName="Case" id="{45b022a4-928d-eb11-b1ac-000d3ae92dbf}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25104.1002)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}">
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25112.1004)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}">
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="Case" parentDisplayName="Case" id="{4a63c8d1-6c1e-48ec-9db4-3e6c7155334c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25104.1002)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}">
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25112.1004)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}">
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25104.1002)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}">
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25112.1004)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}">
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="ROM Case Time Tracking" parentDisplayName="Case" id="{cc169f8e-7df9-ed11-8f6e-000d3af36bac}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25104.1002)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}">
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+        <Required type="60" displayName="Resolve By SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25112.1004)" id="{19b14c51-3d43-4d56-ab34-49c540bf468c}">
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Case" id="{ccd0711d-1a23-4da5-842e-65bc1125f30d}" />
       </MissingDependency>
@@ -22281,7 +22278,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" solution="msdynce_MarketingPatch (9.0.1904.1019)" id="{d5870630-a81a-4dec-ab17-be35da052180}">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Activity" parentDisplayName="Campaign Activity" id="{d5870630-a81a-4dec-ab17-be35da052180}" />
       </MissingDependency>
@@ -22311,7 +22308,7 @@
       </MissingDependency>
       <MissingDependency>
         <Required type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" solution="msdynce_Marketing (9.0.4.37)" id="{db9d45a2-5190-4373-af67-d729d51d173f}">
-          <package appName="msdynce_Marketing" version="9.0.25111.10001">msdynce_MarketingAnchor (9.0.25111.10001)</package>
+          <package appName="msdynce_Marketing" version="9.0.25112.10001">msdynce_MarketingAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Campaign Response" parentDisplayName="Campaign Response" id="{db9d45a2-5190-4373-af67-d729d51d173f}" />
       </MissingDependency>
@@ -22382,32 +22379,32 @@
         <Dependent type="60" displayName="Add Task Mobile" parentDisplayName="Work Order Service Task" id="{ed535341-4323-ee11-9cbe-000d3a32e968}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25104.1002)" id="{ede9dac3-e143-4be4-acc8-237309e31210}">
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25112.1004)" id="{ede9dac3-e143-4be4-acc8-237309e31210}">
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="ROM Case" parentDisplayName="Case" id="{45b022a4-928d-eb11-b1ac-000d3ae92dbf}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25104.1002)" id="{ede9dac3-e143-4be4-acc8-237309e31210}">
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25112.1004)" id="{ede9dac3-e143-4be4-acc8-237309e31210}">
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="Case" parentDisplayName="Case" id="{4a63c8d1-6c1e-48ec-9db4-3e6c7155334c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25104.1002)" id="{ede9dac3-e143-4be4-acc8-237309e31210}">
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25112.1004)" id="{ede9dac3-e143-4be4-acc8-237309e31210}">
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25104.1002)" id="{ede9dac3-e143-4be4-acc8-237309e31210}">
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25112.1004)" id="{ede9dac3-e143-4be4-acc8-237309e31210}">
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="ROM Case Time Tracking" parentDisplayName="Case" id="{cc169f8e-7df9-ed11-8f6e-000d3af36bac}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25104.1002)" id="{ede9dac3-e143-4be4-acc8-237309e31210}">
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+        <Required type="60" displayName="First Response SLA" parentDisplayName="SLA KPI Instance" solution="msdynce_ServiceLevelAgreement (9.0.25112.1004)" id="{ede9dac3-e143-4be4-acc8-237309e31210}">
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Case" id="{ccd0711d-1a23-4da5-842e-65bc1125f30d}" />
       </MissingDependency>
@@ -22505,13 +22502,13 @@
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
           <package appName="msdynce_AppCommon" version="9.0.25112.10001">msdynce_AppCommonAnchor (9.0.25112.10001)</package>
         </Required>
-        <Dependent type="60" displayName="Organisations" parentDisplayName="Account" id="{b6466851-a1fd-ea11-a813-000d3af3ac0d}" />
+        <Dependent type="60" displayName="Information" parentDisplayName="Account" id="{b053a39a-041a-4356-acef-ddf00182762b}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
           <package appName="msdynce_AppCommon" version="9.0.25112.10001">msdynce_AppCommonAnchor (9.0.25112.10001)</package>
         </Required>
-        <Dependent type="60" displayName="In Context Form" parentDisplayName="Opportunity" id="{ba7f7ad7-e0e7-43aa-be19-5069dd9c60eb}" />
+        <Dependent type="60" displayName="Organisations" parentDisplayName="Account" id="{b6466851-a1fd-ea11-a813-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="AppCommon/Account/Account_main_system_library.js" displayName="AppCommon/Account/Account_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
@@ -22553,12 +22550,6 @@
         <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
           <package appName="msdynce_AppCommon" version="9.0.25112.10001">msdynce_AppCommonAnchor (9.0.25112.10001)</package>
         </Required>
-        <Dependent type="60" displayName="AI for Sales" parentDisplayName="Contact" id="{293c878f-f068-40a0-ae48-4297e060871c}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
-          <package appName="msdynce_AppCommon" version="9.0.25112.10001">msdynce_AppCommonAnchor (9.0.25112.10001)</package>
-        </Required>
         <Dependent type="60" displayName="Contact Main Form" parentDisplayName="Contact" id="{2c961780-b9f9-ea11-a815-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
@@ -22572,6 +22563,12 @@
           <package appName="msdynce_AppCommon" version="9.0.25112.10001">msdynce_AppCommonAnchor (9.0.25112.10001)</package>
         </Required>
         <Dependent type="60" displayName="Contact for Interactive experience" parentDisplayName="Contact" id="{cc760212-3eab-4009-b5c3-ea9cf6f3e141}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AppCommon/Contact/Contact_main_system_library.js" displayName="AppCommon/Contact/Contact_main_system_library.js" solution="msdynce_AppCommon (9.0.4.0066)">
+          <package appName="msdynce_AppCommon" version="9.0.25112.10001">msdynce_AppCommonAnchor (9.0.25112.10001)</package>
+        </Required>
+        <Dependent type="60" displayName="Contact for Multisession experience" parentDisplayName="Contact" id="{e06af4d1-2812-45c7-a9c2-9fb73fee7bec}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="dev1_/images/runreport16.png" displayName="dev1_/images/runreport16.png" solution="Develop1SmartButtons (1.2.638.1)" />
@@ -22595,7 +22592,7 @@
         <Required type="61" schemaName="LeadManagement/Lead/Lead_main_system_library.js" displayName="LeadManagement/Lead/Lead_main_system_library.js" solution="msdynce_LeadManagement (9.0.4.0066)">
           <package appName="msdynce_LeadManagement" version="9.0.25112.10001">msdynce_LeadManagementAnchor (9.0.25112.10001)</package>
         </Required>
-        <Dependent type="60" displayName="Lead Insights" parentDisplayName="Lead" id="{e160d172-172b-4619-9799-81bb007ecc54}" />
+        <Dependent type="60" displayName="Lead" parentDisplayName="Lead" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="LinkedInExtensions/Account/LinkedInExtensions_Account.js" displayName="LinkedInExtensions/Account/LinkedInExtensions_Account.js" solution="msdyn_LinkedInExtensions (9.0.25104.10002)">
@@ -22608,7 +22605,7 @@
         <Required type="61" schemaName="MarketingSales/Lead/Lead_main_system_library.js" displayName="MarketingSales/Lead/Lead_main_system_library.js" solution="msdynce_MarketingSales (9.0.4.29)">
           <package appName="msdynce_MarketingSales" version="9.0.25103.10001">msdynce_MarketingSalesAnchor (9.0.25103.10001)</package>
         </Required>
-        <Dependent type="60" displayName="Lead Insights" parentDisplayName="Lead" id="{e160d172-172b-4619-9799-81bb007ecc54}" />
+        <Dependent type="60" displayName="Lead" parentDisplayName="Lead" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="ModernCaseManagement/Incident/msdyn_ModernCaseManagement.js" displayName="ModernCaseManagement/Incident/msdyn_ModernCaseManagement.js" solution="msdyn_ModernCaseManagement (9.0.25112.2015)">
@@ -24230,37 +24227,37 @@
         <Dependent type="60" displayName="User" parentDisplayName="User" id="{c2cd9e55-d4b4-4b55-9951-16ead79643e5}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_CopilotCaseSummaryLibrary.js" displayName="msdyn_CopilotCaseSummaryLibrary.js" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="61" schemaName="msdyn_CopilotCaseSummaryLibrary.js" displayName="msdyn_CopilotCaseSummaryLibrary.js" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="60" displayName="Case" parentDisplayName="Case" id="{4a63c8d1-6c1e-48ec-9db4-3e6c7155334c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_CopilotCaseSummaryLibrary.js" displayName="msdyn_CopilotCaseSummaryLibrary.js" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="61" schemaName="msdyn_CopilotCaseSummaryLibrary.js" displayName="msdyn_CopilotCaseSummaryLibrary.js" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_CopilotCaseSummaryLibrary.js" displayName="msdyn_CopilotCaseSummaryLibrary.js" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="61" schemaName="msdyn_CopilotCaseSummaryLibrary.js" displayName="msdyn_CopilotCaseSummaryLibrary.js" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_CopilotCaseSummaryLibrary.js" displayName="msdyn_CopilotCaseSummaryLibrary.js" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="61" schemaName="msdyn_CopilotCaseSummaryLibrary.js" displayName="msdyn_CopilotCaseSummaryLibrary.js" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="60" displayName="Enhanced full case form" parentDisplayName="Case" id="{cd0d48a0-10c6-ec11-a7b5-000d3a58b83a}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="61" schemaName="msdyn_CopilotEmailAssist.js" displayName="msdyn_CopilotEmailAssist.js" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="61" schemaName="msdyn_CopilotEmailAssist.js" displayName="msdyn_CopilotEmailAssist.js" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="60" displayName="Email" parentDisplayName="Email" id="{0d1e47ff-12b2-4f53-9090-bee951b98cb4}" />
       </MissingDependency>
@@ -24401,19 +24398,13 @@
         <Required type="61" schemaName="Sales/_static/sfa/invoice/InvoiceRibbonActions.js" displayName="Sales/_static/sfa/invoice/InvoiceRibbonActions.js" solution="msdynce_Sales (9.0.4.0076)">
           <package appName="msdynce_Sales" version="9.0.25112.10007">msdynce_SalesAnchor (9.0.25112.10007)</package>
         </Required>
-        <Dependent type="60" displayName="Field Service Information" parentDisplayName="Order" id="{578e22c0-2084-490d-8019-4b55dbbfadc9}" />
+        <Dependent type="60" displayName="Field Service Information" parentDisplayName="Invoice" id="{e42e464f-c249-4005-896e-cdee472d7e1e}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
           <package appName="msdynce_Sales" version="9.0.25112.10007">msdynce_SalesAnchor (9.0.25112.10007)</package>
         </Required>
         <Dependent type="60" displayName="Contact" parentDisplayName="Contact" id="{1fed44d1-ae68-4a41-bd2b-f13acac4acfa}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
-          <package appName="msdynce_Sales" version="9.0.25112.10007">msdynce_SalesAnchor (9.0.25112.10007)</package>
-        </Required>
-        <Dependent type="60" displayName="Contact Main Form" parentDisplayName="Contact" id="{2c961780-b9f9-ea11-a815-000d3af3ac0d}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
@@ -24437,6 +24428,12 @@
         <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
           <package appName="msdynce_Sales" version="9.0.25112.10007">msdynce_SalesAnchor (9.0.25112.10007)</package>
         </Required>
+        <Dependent type="60" displayName="Lead" parentDisplayName="Lead" id="{e3b6ddb7-8df0-4410-ac7b-fd32e5053d38}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="Sales/ClientCommon/Sales_ClientCommon.js" displayName="Sales/ClientCommon/Sales_ClientCommon.js" solution="msdynce_Sales (9.0.4.0076)">
+          <package appName="msdynce_Sales" version="9.0.25112.10007">msdynce_SalesAnchor (9.0.25112.10007)</package>
+        </Required>
         <Dependent type="60" displayName="ROM Information" parentDisplayName="Account" id="{f3f3935c-b7dd-4dd4-a86b-2b0735f57d13}" />
       </MissingDependency>
       <MissingDependency>
@@ -24455,7 +24452,7 @@
         <Required type="61" schemaName="Sales/Opportunity/Opportunity_main_system_library.js" displayName="Sales/Opportunity/Opportunity_main_system_library.js" solution="msdynce_Sales (9.0.4.0076)">
           <package appName="msdynce_Sales" version="9.0.25112.10007">msdynce_SalesAnchor (9.0.25112.10007)</package>
         </Required>
-        <Dependent type="60" displayName="Opportunity" parentDisplayName="Opportunity" id="{a837e4a7-01b8-4f82-a475-be9abd67e667}" />
+        <Dependent type="60" displayName="Field Service Information" parentDisplayName="Opportunity" id="{8335a04b-dc80-44b0-83ab-11ed80f93d3e}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Scheduling/BookableResource/BookableResource_main_system_library.js" displayName="Scheduling/BookableResource/BookableResource_main_system_library.js" solution="msdynce_Scheduling (9.0.0.0)">
@@ -24503,13 +24500,13 @@
         <Required type="61" schemaName="Service/Incident/Convert/Incident_convert_library.js" displayName="Service/Incident/Convert/Incident_convert_library.js" solution="msdynce_Service (9.0.5.56)">
           <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
         </Required>
-        <Dependent type="60" displayName="Field Service Information" parentDisplayName="Quote" id="{b3fa6477-581b-411f-a725-0ab32d8edb8f}" />
+        <Dependent type="60" displayName="App for Outlook Case Quick Create" parentDisplayName="Case" id="{ac33e173-6502-4816-ab48-c3eefd7be580}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Convert/Incident_convert_library.js" displayName="Service/Incident/Convert/Incident_convert_library.js" solution="msdynce_Service (9.0.5.56)">
           <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
         </Required>
-        <Dependent type="60" displayName="Information" parentDisplayName="Case" id="{f658c846-f74c-459b-b591-b97558958106}" />
+        <Dependent type="60" displayName="Field Service Information" parentDisplayName="Quote" id="{b3fa6477-581b-411f-a725-0ab32d8edb8f}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
@@ -24522,12 +24519,6 @@
           <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
         </Required>
         <Dependent type="60" displayName="ROM Case" parentDisplayName="Case" id="{45b022a4-928d-eb11-b1ac-000d3ae92dbf}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
-          <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
-        </Required>
-        <Dependent type="60" displayName="Case" parentDisplayName="Case" id="{4a63c8d1-6c1e-48ec-9db4-3e6c7155334c}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
@@ -24575,6 +24566,12 @@
         <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
           <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
         </Required>
+        <Dependent type="60" displayName="ROM 2.0" parentDisplayName="Case" id="{ccd0711d-1a23-4da5-842e-65bc1125f30d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="Service/Incident/Incident_main_system_library.js" displayName="Service/Incident/Incident_main_system_library.js" solution="msdynce_Service (9.0.5.56)">
+          <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
+        </Required>
         <Dependent type="60" displayName="Enhanced full case form" parentDisplayName="Case" id="{cd0d48a0-10c6-ec11-a7b5-000d3a58b83a}" />
       </MissingDependency>
       <MissingDependency>
@@ -24587,12 +24584,6 @@
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
           <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
         </Required>
-        <Dependent type="50" schemaName="incident:RibbonDiffXml" displayName="incident:RibbonDiffXml" parentSchemaName="ribboncustomization" parentDisplayName="Application Ribbons" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
-          <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
-        </Required>
         <Dependent type="60" displayName="Enhanced quick case form" parentDisplayName="Case" id="{1bd69321-f7c5-ec11-a7b5-000d3a58b83a}" />
       </MissingDependency>
       <MissingDependency>
@@ -24600,6 +24591,12 @@
           <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
         </Required>
         <Dependent type="60" displayName="TimelineWallControl - Case- Main" parentDisplayName="Case" id="{5f304da5-d0c5-4776-b8d6-7d5bcd94d869}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
+          <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
+        </Required>
+        <Dependent type="60" displayName="Case Quick Create" parentDisplayName="Case" id="{8e10b902-0b3e-441c-8b12-88e6c1793848}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="Service/Incident/Ribbon/Incident_ribbon_library.js" displayName="Service/Incident/Ribbon/Incident_ribbon_library.js" solution="msdynce_Service (9.0.5.56)">
@@ -25210,30 +25207,30 @@
         <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" displayName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="66" schemaName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" displayName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="60" displayName="Case" parentDisplayName="Case" id="{4a63c8d1-6c1e-48ec-9db4-3e6c7155334c}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" displayName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="66" schemaName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" displayName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" displayName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="66" schemaName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" displayName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" displayName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" solution="msdyn_CSIntelligence (9.2.25104.1073)">
+        <Required type="66" schemaName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" displayName="MscrmControls.CSIntelligence.CopilotCaseSummaryControl" solution="msdyn_CSIntelligence (9.2.25112.1046)">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="60" displayName="Enhanced full case form" parentDisplayName="Case" id="{cd0d48a0-10c6-ec11-a7b5-000d3a58b83a}" />
       </MissingDependency>
@@ -25252,42 +25249,42 @@
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.CustomerService.SelectionTreeViewControl" displayName="MscrmControls.CustomerService.SelectionTreeViewControl" solution="msdynce_ServiceManagementControlsExtension (9.1.25112.1002)">
           <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="Enhanced quick case form" parentDisplayName="Case" id="{1bd69321-f7c5-ec11-a7b5-000d3a58b83a}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.CustomerService.SelectionTreeViewControl" displayName="MscrmControls.CustomerService.SelectionTreeViewControl" solution="msdynce_ServiceManagementControlsExtension (9.1.25112.1002)">
           <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="Case Quick Create" parentDisplayName="Case" id="{8e10b902-0b3e-441c-8b12-88e6c1793848}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.CustomerService.SelectionTreeViewControl" displayName="MscrmControls.CustomerService.SelectionTreeViewControl" solution="msdynce_ServiceManagementControlsExtension (9.1.25112.1002)">
           <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="Case for Interactive experience" parentDisplayName="Case" id="{915f6055-2e07-4276-ae08-2b96c8d02c57}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.CustomerService.SelectionTreeViewControl" displayName="MscrmControls.CustomerService.SelectionTreeViewControl" solution="msdynce_ServiceManagementControlsExtension (9.1.25112.1002)">
           <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="Case for Multisession experience" parentDisplayName="Case" id="{b05c1e9c-94d0-46c1-8968-df49b8f33ec7}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.CustomerService.SelectionTreeViewControl" displayName="MscrmControls.CustomerService.SelectionTreeViewControl" solution="msdynce_ServiceManagementControlsExtension (9.1.25112.1002)">
           <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="Enhanced full case form" parentDisplayName="Case" id="{cd0d48a0-10c6-ec11-a7b5-000d3a58b83a}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="66" schemaName="MscrmControls.CustomerService.SelectionTreeViewControl" displayName="MscrmControls.CustomerService.SelectionTreeViewControl" solution="msdynce_ServiceManagementControlsExtension (9.1.25112.1002)">
           <package appName="msdynce_Service" version="9.0.25112.1003">msdynce_ServiceAnchor (9.0.25112.1003)</package>
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="Case Quick Create for Multisession" parentDisplayName="Case" id="{f43b46e9-17a4-4443-afc4-141d40a46f22}" />
       </MissingDependency>
@@ -25688,6 +25685,12 @@
         <Required type="66" schemaName="MscrmControls.Grid.GridControl" displayName="MscrmControls.Grid.GridControl" solution="BaseCustomControlsCore (9.0.2511.2009)">
           <package appName="Base Custom Controls" version="9.0.2511.2009">BaseCustomControlsCore (9.0.2511.2009)</package>
         </Required>
+        <Dependent type="60" displayName="Information" parentDisplayName="Duty Inspector" id="{78f26878-8473-421c-943a-e3f1c89692da}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.Grid.GridControl" displayName="MscrmControls.Grid.GridControl" solution="BaseCustomControlsCore (9.0.2511.2009)">
+          <package appName="Base Custom Controls" version="9.0.2511.2009">BaseCustomControlsCore (9.0.2511.2009)</package>
+        </Required>
         <Dependent type="60" displayName="Team" parentDisplayName="Team" id="{7ba7fac1-1418-4335-935f-f7f8dfd73fcc}" />
       </MissingDependency>
       <MissingDependency>
@@ -26083,8 +26086,8 @@
         <Dependent type="60" displayName="Information" parentDisplayName="Work Order Workspace" id="{f3f01c33-c5b2-4835-a141-db032f3869a6}" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="66" schemaName="MscrmControls.SlaTimer.SlaTimerControl" displayName="MscrmControls.SlaTimer.SlaTimerControl" solution="msdynce_ServiceLevelAgreementExtension (9.0.25104.1002)">
-          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25104.1002">msdynce_ServiceLevelAgreementAnchor (9.0.25104.1002)</package>
+        <Required type="66" schemaName="MscrmControls.SlaTimer.SlaTimerControl" displayName="MscrmControls.SlaTimer.SlaTimerControl" solution="msdynce_ServiceLevelAgreementExtension (9.0.25112.1004)">
+          <package appName="msdynce_ServiceLevelAgreement" version="9.0.25112.1004">msdynce_ServiceLevelAgreementAnchor (9.0.25112.1004)</package>
         </Required>
         <Dependent type="60" displayName="Enhanced full case form" parentDisplayName="Case" id="{cd0d48a0-10c6-ec11-a7b5-000d3a58b83a}" />
       </MissingDependency>
@@ -27064,46 +27067,6 @@
         <Dependent type="2" schemaName="servicestage" displayName="Service Stage" parentSchemaName="incident" parentDisplayName="Case" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="connectionreference" displayName="new_sharedsharepointonline_bdaec" solution="Active" id.connectionreferencelogicalname="new_sharedsharepointonline_bdaec" />
-        <Dependent type="29" displayName="[SharePoint] Upload File" id="{82581b2d-6c68-ee11-9ae7-0022483d7716}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="ts_ROMTSGSRSTFlowsDataverse" solution="Active" id.connectionreferencelogicalname="ts_ROMTSGSRSTFlowsDataverse" />
-        <Dependent type="29" displayName="[Operation type / Incident Type] Create Operation Activity association is made" id="{2c30d0b9-f023-ed11-9db2-002248ae429c}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="ts_ROMTSGSRSTFlowsDataverse" solution="Active" id.connectionreferencelogicalname="ts_ROMTSGSRSTFlowsDataverse" />
-        <Dependent type="29" displayName="[Incident Type] Relate to Team ActType Estimated Duration on create" id="{34991056-3a29-ed11-9db1-002248ada8c4}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="ts_ROMTSGSRSTFlowsDataverse" solution="Active" id.connectionreferencelogicalname="ts_ROMTSGSRSTFlowsDataverse" />
-        <Dependent type="29" displayName="[Operation Activity] Relate Activity Type to all operations of same operation type" id="{4a0d3d0f-2c1a-ed11-b83f-002248ae429c}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="ts_ROMTSGSRSTFlowsDataverse" solution="Active" id.connectionreferencelogicalname="ts_ROMTSGSRSTFlowsDataverse" />
-        <Dependent type="29" displayName="[Security Incident Additional Details] Set Owner" id="{53732312-cb97-ef11-8a69-6045bd5ebca0}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="ts_ROMTSGSRSTFlowsDataverse" solution="Active" id.connectionreferencelogicalname="ts_ROMTSGSRSTFlowsDataverse" />
-        <Dependent type="29" displayName="When a Request is created, notify on Teams" id="{a1d48d72-baca-eb11-bacc-000d3af34646}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="ts_ROMTSGSRSTFlowsDataverse" solution="Active" id.connectionreferencelogicalname="ts_ROMTSGSRSTFlowsDataverse" />
-        <Dependent type="29" displayName="[Operation] Create and relate to Operation Activity on creation of Operation" id="{fd8a951a-4d1a-ed11-b83f-002248ae429c}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="ts_sharedcommondataserviceforapps_2d435" solution="Active" id.connectionreferencelogicalname="ts_sharedcommondataserviceforapps_2d435" />
-        <Dependent type="29" displayName="[Duty Inspector Schedule] Update" id="{cf0eeb1a-3045-f011-877a-6045bd5e8d7e}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="ts_sharedcommondataserviceforapps_81d95" solution="Active" id.connectionreferencelogicalname="ts_sharedcommondataserviceforapps_81d95" />
-        <Dependent type="29" displayName="Resolve Environment Variable" id="{0c06bb7b-82a3-f011-bbd2-002248b1d17b}" />
-      </MissingDependency>
-      <MissingDependency>
-        <Required type="connectionreference" displayName="ts_sharedcommondataserviceforapps_81d95" solution="Active" id.connectionreferencelogicalname="ts_sharedcommondataserviceforapps_81d95" />
-        <Dependent type="29" displayName="[TEST] Build IN Clause for BU" id="{eba8b6b7-a4a3-f011-bbd2-7c1e52549cc5}" />
-      </MissingDependency>
-      <MissingDependency>
         <Required type="SettingDefinition" displayName="AllowNotificationsEarlyAccess" solution="AppNotifications (10.0.0.16)" id.uniquename="AllowNotificationsEarlyAccess">
           <package appName="PowerAppsUnifiedClientExtensionApp Package" version="1.0.0.62">msft_PowerAppsUnifiedClientInfraExtensions (1.0.0.62)</package>
         </Required>
@@ -27179,11 +27142,24 @@
         <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=ovs_ROM,settingdefinitionid.uniquename=msdyn_enablertecopilot" id.parentappmoduleid.uniquename="ovs_ROM" id.settingdefinitionid.uniquename="msdyn_enablertecopilot" />
       </MissingDependency>
       <MissingDependency>
-        <Required type="SettingDefinition" displayName="msdyn_rtecopilotdefaultonruncompleted" solution="msdyn_CSIntelligence (9.2.25104.1073)" id.uniquename="msdyn_rtecopilotdefaultonruncompleted">
+        <Required type="SettingDefinition" displayName="msdyn_enablertecopilot" solution="msdyn_SalesCopilot (9.1.25112.10007)" id.uniquename="msdyn_enablertecopilot">
+          <package appName="msdynce_Sales" version="9.0.25112.10007">msdynce_SalesAnchor (9.0.25112.10007)</package>
+        </Required>
+        <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=ts_ROMRailSafety,settingdefinitionid.uniquename=msdyn_enablertecopilot" id.parentappmoduleid.uniquename="ts_ROMRailSafety" id.settingdefinitionid.uniquename="msdyn_enablertecopilot" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="SettingDefinition" displayName="msdyn_rtecopilotdefaultonruncompleted" solution="msdyn_CSIntelligence (9.2.25112.1046)" id.uniquename="msdyn_rtecopilotdefaultonruncompleted">
           <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
-          <package appName="Service Intelligence Package" version="9.2.25104.1073">msdyn_ServiceIntelligenceAnchor (9.2.25104.1073)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
         </Required>
         <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=ovs_ROM,settingdefinitionid.uniquename=msdyn_rtecopilotdefaultonruncompleted" id.parentappmoduleid.uniquename="ovs_ROM" id.settingdefinitionid.uniquename="msdyn_rtecopilotdefaultonruncompleted" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="SettingDefinition" displayName="msdyn_rtecopilotdefaultonruncompleted" solution="msdyn_CSIntelligence (9.2.25112.1046)" id.uniquename="msdyn_rtecopilotdefaultonruncompleted">
+          <package appName="ServiceExtended" version="9.0.25112.2015">msdyn_ServiceExtendedAnchor (9.0.25112.2015)</package>
+          <package appName="Service Intelligence Package" version="9.2.25112.1046">msdyn_ServiceIntelligenceAnchor (9.2.25112.1046)</package>
+        </Required>
+        <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=ts_ROMRailSafety,settingdefinitionid.uniquename=msdyn_rtecopilotdefaultonruncompleted" id.parentappmoduleid.uniquename="ts_ROMRailSafety" id.settingdefinitionid.uniquename="msdyn_rtecopilotdefaultonruncompleted" />
       </MissingDependency>
       <MissingDependency>
         <Required type="SettingDefinition" displayName="msdyn_TimelineCopilotForApps" solution="msdyn_TimelineExtended (1.25112.3.5808)" id.uniquename="msdyn_TimelineCopilotForApps">

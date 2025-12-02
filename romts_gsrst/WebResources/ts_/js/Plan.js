@@ -630,18 +630,6 @@ var ROM;
             nextInspectionDate.setMonth(nextInspectionDate.getMonth() + monthsToAdd);
             return nextInspectionDate;
         }
-        function userHasRole(rolesName) {
-            var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
-            var hasRole = false;
-            var roles = rolesName.split("|");
-            roles.forEach(function (roleItem) {
-                userRoles.forEach(function (userRoleItem) {
-                    if (userRoleItem.name.toLowerCase() == roleItem.toLowerCase())
-                        hasRole = true;
-                });
-            });
-            return hasRole;
-        }
         function planStatusOnChange(eContext) {
             var formContext = eContext.getFormContext();
             var planStatusValue = formContext.getAttribute("ts_planstatus").getValue();

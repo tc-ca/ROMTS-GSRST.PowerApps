@@ -141,10 +141,11 @@ var ROM;
         Action.onLoad = onLoad;
         function isISSOAction(caseId) {
             return __awaiter(this, void 0, void 0, function () {
-                var caseOwningBUFetchXML, incident, businessunit;
+                var isISSO, caseOwningBUFetchXML, incident, buId;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
+                            isISSO = false;
                             caseOwningBUFetchXML = [
                                 "<fetch version='1.0' mapping='logical' returntotalrecordcount='true' no-lock='false'>",
                                 "  <entity name='incident'>",
@@ -160,12 +161,10 @@ var ROM;
                         case 1:
                             incident = _a.sent();
                             if (!(incident.entities.length > 0)) return [3 /*break*/, 3];
-                            return [4 /*yield*/, Xrm.WebApi.retrieveRecord('businessunit', incident.entities[0]._owningbusinessunit_value, '?$select=name')];
+                            buId = incident.entities[0]._owningbusinessunit_value;
+                            return [4 /*yield*/, isISSOBU(buId)];
                         case 2:
-                            businessunit = _a.sent();
-                            if (businessunit.name.startsWith("Intermodal")) {
-                                isISSO = true;
-                            }
+                            isISSO = _a.sent();
                             _a.label = 3;
                         case 3: return [2 /*return*/, isISSO];
                     }

@@ -342,49 +342,64 @@ var ROM;
         function setTaskTypeFilteredView(form) {
             var workOrderValue = form.getAttribute("ts_workorder").getValue();
             var workOrderId = workOrderValue ? workOrderValue[0].id : "";
-            Xrm.WebApi.retrieveRecord("msdyn_workorder", workOrderId, "?$select=_msdyn_workordertype_value,_ovs_operationtypeid_value,_ts_site_value,_ts_region_value,_msdyn_serviceaccount_value,_ovs_operationid_value&$expand=ovs_operationtypeid($select=_ownerid_value) ").then(function success(result) {
-                var viewId = '{ae0d8547-6871-4854-91ba-03b0c619dbe1}';
-                var entityName = "msdyn_servicetasktype";
-                var viewDisplayName = (lang == 1036) ? "Type de tâche relative au service" : "Service Task Types";
-                var fetchXml = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\"> <entity name=\"msdyn_servicetasktype\"> <attribute name=\"msdyn_name\" /> <attribute name=\"createdon\" /> <attribute name=\"msdyn_estimatedduration\" /> <attribute name=\"msdyn_description\" /> <attribute name=\"msdyn_servicetasktypeid\" /> <order attribute=\"msdyn_name\" descending=\"false\" /> <link-entity name=\"msdyn_incidenttypeservicetask\" from=\"msdyn_tasktype\" to=\"msdyn_servicetasktypeid\" link-type=\"inner\" alias=\"ae\"> <link-entity name=\"msdyn_incidenttype\" from=\"msdyn_incidenttypeid\" to=\"msdyn_incidenttype\" link-type=\"inner\" alias=\"af\"> <filter type=\"and\"> <condition attribute=\"msdyn_defaultworkordertype\" operator=\"eq\" value=\"" + result._msdyn_workordertype_value + "\" /> </filter> <link-entity name=\"ts_ovs_operationtypes_msdyn_incidenttypes\" from=\"msdyn_incidenttypeid\" to=\"msdyn_incidenttypeid\" visible=\"false\" intersect=\"true\"> <link-entity name=\"ovs_operationtype\" from=\"ovs_operationtypeid\" to=\"ovs_operationtypeid\" alias=\"ag\"> <filter type=\"and\"> <condition attribute=\"ovs_operationtypeid\" operator=\"eq\" value=\"" + result._ovs_operationtypeid_value + "\" /> </filter> </link-entity> </link-entity> </link-entity> </link-entity> </entity> </fetch>";
-                var layoutXml = '<grid name="resultset" object="10010" jump="name" select="1" icon="1" preview="1"><row name="result" id="msdyn_servicetasktype"><cell name="msdyn_name" width="200" /></row></grid>';
-                form.getControl("ts_tasktype").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
-                showHideFieldsByOperationType(form, result._ovs_operationtypeid_value, result.ovs_operationtypeid._ownerid_value);
-                aocRegion = result._ts_region_value;
-                if (form.getAttribute("ts_aocoperation").getValue() == null && result._ovs_operationtypeid_value == "8b614ef0-c651-eb11-a812-000d3af3ac0d") { //Air Carrier (Passenger)
-                    var lookup = new Array();
-                    lookup[0] = new Object();
-                    lookup[0].id = result._ovs_operationid_value;
-                    lookup[0].name = result["_ovs_operationid_value@OData.Community.Display.V1.FormattedValue"];
-                    lookup[0].entityType = result["_ovs_operationid_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
-                    form.getAttribute("ts_aocoperation").setValue(lookup);
-                    lookup = new Array();
-                    lookup[0] = new Object();
-                    lookup[0].id = result._ovs_operationtypeid_value;
-                    lookup[0].name = result["_ovs_operationtypeid_value@OData.Community.Display.V1.FormattedValue"];
-                    lookup[0].entityType = result["_ovs_operationtypeid_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
-                    form.getAttribute("ts_aocoperationtype").setValue(lookup);
-                    lookup = new Array();
-                    lookup[0] = new Object();
-                    lookup[0].id = result._msdyn_serviceaccount_value;
-                    lookup[0].name = result["_msdyn_serviceaccount_value@OData.Community.Display.V1.FormattedValue"];
-                    lookup[0].entityType = result["_msdyn_serviceaccount_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
-                    form.getAttribute("ts_aocstakeholder").setValue(lookup);
-                    lookup = new Array();
-                    lookup[0] = new Object();
-                    lookup[0].id = result._ts_site_value;
-                    lookup[0].name = result["_ts_site_value@OData.Community.Display.V1.FormattedValue"];
-                    lookup[0].entityType = result["_ts_site_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
-                    form.getAttribute("ts_aocsite").setValue(lookup);
-                    setAOCSiteFilteredView(form, result._ts_region_value, result._msdyn_serviceaccount_value, result._ovs_operationtypeid_value);
-                }
-                else {
-                    var aocStakeholder = form.getAttribute("ts_aocstakeholder").getValue();
-                    var aocOperationtype = form.getAttribute("ts_aocoperationtype").getValue();
-                    if (aocStakeholder != null && aocOperationtype != null) {
-                        setAOCSiteFilteredView(form, aocRegion, aocStakeholder[0].id, aocOperationtype[0].id);
-                    }
-                }
+            Xrm.WebApi.retrieveRecord("msdyn_workorder", workOrderId, "?$select=_msdyn_workordertype_value,_ovs_operationtypeid_value,_ts_site_value,_ts_region_value,_msdyn_serviceaccount_value,_ovs_operationid_value").then(function success(result) {
+                return __awaiter(this, void 0, void 0, function () {
+                    var viewId, entityName, viewDisplayName, fetchXml, layoutXml, operationType, ownerId, lookup, aocStakeholder, aocOperationtype;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                viewId = '{ae0d8547-6871-4854-91ba-03b0c619dbe1}';
+                                entityName = "msdyn_servicetasktype";
+                                viewDisplayName = (lang == 1036) ? "Type de tâche relative au service" : "Service Task Types";
+                                fetchXml = "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"true\"> <entity name=\"msdyn_servicetasktype\"> <attribute name=\"msdyn_name\" /> <attribute name=\"createdon\" /> <attribute name=\"msdyn_estimatedduration\" /> <attribute name=\"msdyn_description\" /> <attribute name=\"msdyn_servicetasktypeid\" /> <order attribute=\"msdyn_name\" descending=\"false\" /> <link-entity name=\"msdyn_incidenttypeservicetask\" from=\"msdyn_tasktype\" to=\"msdyn_servicetasktypeid\" link-type=\"inner\" alias=\"ae\"> <link-entity name=\"msdyn_incidenttype\" from=\"msdyn_incidenttypeid\" to=\"msdyn_incidenttype\" link-type=\"inner\" alias=\"af\"> <filter type=\"and\"> <condition attribute=\"msdyn_defaultworkordertype\" operator=\"eq\" value=\"" + result._msdyn_workordertype_value + "\" /> </filter> <link-entity name=\"ts_ovs_operationtypes_msdyn_incidenttypes\" from=\"msdyn_incidenttypeid\" to=\"msdyn_incidenttypeid\" visible=\"false\" intersect=\"true\"> <link-entity name=\"ovs_operationtype\" from=\"ovs_operationtypeid\" to=\"ovs_operationtypeid\" alias=\"ag\"> <filter type=\"and\"> <condition attribute=\"ovs_operationtypeid\" operator=\"eq\" value=\"" + result._ovs_operationtypeid_value + "\" /> </filter> </link-entity> </link-entity> </link-entity> </link-entity> </entity> </fetch>";
+                                layoutXml = '<grid name="resultset" object="10010" jump="name" select="1" icon="1" preview="1"><row name="result" id="msdyn_servicetasktype"><cell name="msdyn_name" width="200" /></row></grid>';
+                                form.getControl("ts_tasktype").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
+                                return [4 /*yield*/, Xrm.WebApi.retrieveRecord("ovs_operationtype", result._ovs_operationtypeid_value, "?$select=_ownerid_value")];
+                            case 1:
+                                operationType = _a.sent();
+                                ownerId = getOwnerIdFromRecord(operationType);
+                                return [4 /*yield*/, showHideFieldsByOperationType(form, result._ovs_operationtypeid_value, ownerId)];
+                            case 2:
+                                _a.sent();
+                                aocRegion = result._ts_region_value;
+                                if (form.getAttribute("ts_aocoperation").getValue() == null && result._ovs_operationtypeid_value == "8b614ef0-c651-eb11-a812-000d3af3ac0d") { //Air Carrier (Passenger)
+                                    lookup = new Array();
+                                    lookup[0] = new Object();
+                                    lookup[0].id = result._ovs_operationid_value;
+                                    lookup[0].name = result["_ovs_operationid_value@OData.Community.Display.V1.FormattedValue"];
+                                    lookup[0].entityType = result["_ovs_operationid_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
+                                    form.getAttribute("ts_aocoperation").setValue(lookup);
+                                    lookup = new Array();
+                                    lookup[0] = new Object();
+                                    lookup[0].id = result._ovs_operationtypeid_value;
+                                    lookup[0].name = result["_ovs_operationtypeid_value@OData.Community.Display.V1.FormattedValue"];
+                                    lookup[0].entityType = result["_ovs_operationtypeid_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
+                                    form.getAttribute("ts_aocoperationtype").setValue(lookup);
+                                    lookup = new Array();
+                                    lookup[0] = new Object();
+                                    lookup[0].id = result._msdyn_serviceaccount_value;
+                                    lookup[0].name = result["_msdyn_serviceaccount_value@OData.Community.Display.V1.FormattedValue"];
+                                    lookup[0].entityType = result["_msdyn_serviceaccount_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
+                                    form.getAttribute("ts_aocstakeholder").setValue(lookup);
+                                    lookup = new Array();
+                                    lookup[0] = new Object();
+                                    lookup[0].id = result._ts_site_value;
+                                    lookup[0].name = result["_ts_site_value@OData.Community.Display.V1.FormattedValue"];
+                                    lookup[0].entityType = result["_ts_site_value@Microsoft.Dynamics.CRM.lookuplogicalname"];
+                                    form.getAttribute("ts_aocsite").setValue(lookup);
+                                    setAOCSiteFilteredView(form, result._ts_region_value, result._msdyn_serviceaccount_value, result._ovs_operationtypeid_value);
+                                }
+                                else {
+                                    aocStakeholder = form.getAttribute("ts_aocstakeholder").getValue();
+                                    aocOperationtype = form.getAttribute("ts_aocoperationtype").getValue();
+                                    if (aocStakeholder != null && aocOperationtype != null) {
+                                        setAOCSiteFilteredView(form, aocRegion, aocStakeholder[0].id, aocOperationtype[0].id);
+                                    }
+                                }
+                                return [2 /*return*/];
+                        }
+                    });
+                });
             }, function error(error) {
                 Xrm.Navigation.openAlertDialog({ text: error.message });
             });
@@ -472,22 +487,33 @@ var ROM;
             });
         }
         function showHideFieldsByOperationType(form, operationTypeId, operationTypeOwnerId) {
-            if (operationTypeOwnerId != "e2e3910d-a41f-ec11-b6e6-0022483cb5c7") { //Owner is AvSec
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_AirCarrier').setVisible(false);
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Location').setVisible(false);
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_ServiceProviders').setVisible(false);
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Aircraft').setVisible(false);
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Flight').setVisible(false);
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Other').setVisible(false);
-            }
-            else {
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_AirCarrier').setVisible(true);
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Location').setVisible(true);
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_ServiceProviders').setVisible(true);
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Aircraft').setVisible(true);
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Flight').setVisible(true);
-                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Other').setVisible(true);
-            }
+            return __awaiter(this, void 0, void 0, function () {
+                var isAvSec;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, isOwnedByAvSec(operationTypeOwnerId)];
+                        case 1:
+                            isAvSec = _a.sent();
+                            if (!isAvSec) {
+                                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_AirCarrier').setVisible(false);
+                                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Location').setVisible(false);
+                                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_ServiceProviders').setVisible(false);
+                                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Aircraft').setVisible(false);
+                                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Flight').setVisible(false);
+                                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Other').setVisible(false);
+                            }
+                            else {
+                                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_AirCarrier').setVisible(true);
+                                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Location').setVisible(true);
+                                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_ServiceProviders').setVisible(true);
+                                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Aircraft').setVisible(true);
+                                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Flight').setVisible(true);
+                                form.ui.tabs.get('tab_Oversight').sections.get('tab_Oversight_Other').setVisible(true);
+                            }
+                            return [2 /*return*/];
+                    }
+                });
+            });
         }
         function setAOCSiteFilteredView(form, regionAttributeId, stakeholderTypeAttributeId, operationTypeAttributeId) {
             var viewId = '{6E57251F-F695-4076-9498-49AB892154B7}';
@@ -586,30 +612,48 @@ var ROM;
         }
         WorkOrderServiceTaskWorkspace.aircraftManufacturerOnChange = aircraftManufacturerOnChange;
         function filterLegislationSource(eContext) {
-            var formContext = eContext.getFormContext();
-            var workOrderValue = formContext.getAttribute("ts_workorder").getValue();
-            var workOrderId = workOrderValue ? workOrderValue[0].id : "";
-            Xrm.WebApi.retrieveRecord("msdyn_workorder", workOrderId, "?$select=ovs_operationtypeid&$expand=ovs_operationtypeid($expand=owningbusinessunit($select=name))").then(function (workOrder) {
-                if (workOrder != null && workOrder.ovs_operationtypeid != null && workOrder.ovs_operationtypeid.owningbusinessunit.name != null) {
-                    if (workOrder.ovs_operationtypeid.owningbusinessunit.name.startsWith("Aviation")) {
-                        //Change Legislation Source filter to use
-                        var viewId = '{145AC9F2-4F7E-43DF-BEBD-442CB4C1F662}';
-                        var entityName = "qm_tylegislationsource";
-                        var fetchXml = [
-                            "<fetch>",
-                            "  <entity name='qm_tylegislationsource'>",
-                            "    <link-entity name='ts_tylegislationsource_ovs_operationtype' from='qm_tylegislationsourceid' to='qm_tylegislationsourceid' intersect='true'>",
-                            "      <filter>",
-                            "        <condition attribute='ovs_operationtypeid' operator='eq' value='", workOrder.ovs_operationtypeid.ovs_operationtypeid, "' uitype='ts_tylegislationsource_ovs_operationtype'/>",
-                            "      </filter>",
-                            "    </link-entity>",
-                            "  </entity>",
-                            "</fetch>"
-                        ].join("");
-                        var layoutXml = '<grid name="resultset" object="10010" jump="name" select="1" icon="1" preview="1"><row name="result" id="qm_tylegislationsourceid"><cell name="qm_name" width="200" /></row></grid>';
-                        formContext.getControl("ts_legislationsourcefilter").addCustomView(viewId, entityName, "", fetchXml, layoutXml, true);
-                    }
-                }
+            return __awaiter(this, void 0, void 0, function () {
+                var formContext, workOrderValue, workOrderId;
+                return __generator(this, function (_a) {
+                    formContext = eContext.getFormContext();
+                    workOrderValue = formContext.getAttribute("ts_workorder").getValue();
+                    workOrderId = workOrderValue ? workOrderValue[0].id : "";
+                    Xrm.WebApi.retrieveRecord("msdyn_workorder", workOrderId, "?$select=ovs_operationtypeid&$expand=ovs_operationtypeid($expand=owningbusinessunit($select=businessunitid))").then(function (workOrder) {
+                        return __awaiter(this, void 0, void 0, function () {
+                            var buId, isAvSec, viewId, entityName, fetchXml, layoutXml;
+                            return __generator(this, function (_a) {
+                                switch (_a.label) {
+                                    case 0:
+                                        if (!(workOrder != null && workOrder.ovs_operationtypeid != null && workOrder.ovs_operationtypeid.owningbusinessunit != null)) return [3 /*break*/, 2];
+                                        buId = workOrder.ovs_operationtypeid.owningbusinessunit.businessunitid;
+                                        return [4 /*yield*/, isAvSecBU(buId)];
+                                    case 1:
+                                        isAvSec = _a.sent();
+                                        if (isAvSec) {
+                                            viewId = '{145AC9F2-4F7E-43DF-BEBD-442CB4C1F662}';
+                                            entityName = "qm_tylegislationsource";
+                                            fetchXml = [
+                                                "<fetch>",
+                                                "  <entity name='qm_tylegislationsource'>",
+                                                "    <link-entity name='ts_tylegislationsource_ovs_operationtype' from='qm_tylegislationsourceid' to='qm_tylegislationsourceid' intersect='true'>",
+                                                "      <filter>",
+                                                "        <condition attribute='ovs_operationtypeid' operator='eq' value='", workOrder.ovs_operationtypeid.ovs_operationtypeid, "' uitype='ts_tylegislationsource_ovs_operationtype'/>",
+                                                "      </filter>",
+                                                "    </link-entity>",
+                                                "  </entity>",
+                                                "</fetch>"
+                                            ].join("");
+                                            layoutXml = '<grid name="resultset" object="10010" jump="name" select="1" icon="1" preview="1"><row name="result" id="qm_tylegislationsourceid"><cell name="qm_name" width="200" /></row></grid>';
+                                            formContext.getControl("ts_legislationsourcefilter").addCustomView(viewId, entityName, "", fetchXml, layoutXml, true);
+                                        }
+                                        _a.label = 2;
+                                    case 2: return [2 /*return*/];
+                                }
+                            });
+                        });
+                    });
+                    return [2 /*return*/];
+                });
             });
         }
         function workOrderIsDraft(eContext) {
@@ -620,7 +664,11 @@ var ROM;
                         case 0:
                             form = eContext.getFormContext();
                             workOrderValue = form.getAttribute("ts_workorder").getValue();
-                            workOrderId = workOrderValue ? workOrderValue[0].id : "";
+                            workOrderId = workOrderValue && workOrderValue[0] ? workOrderValue[0].id : null;
+                            // No parent work order → cannot be "Draft" in the planning sense
+                            if (!workOrderId) {
+                                return [2 /*return*/, false];
+                            }
                             return [4 /*yield*/, Xrm.WebApi.retrieveRecord("msdyn_workorder", workOrderId, "?$select=ts_state")];
                         case 1:
                             workOrder = _a.sent();
@@ -1187,18 +1235,6 @@ var ROM;
                     return [2 /*return*/];
                 });
             });
-        }
-        function userHasRole(rolesName) {
-            var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
-            var hasRole = false;
-            var roles = rolesName.split("|");
-            roles.forEach(function (roleItem) {
-                userRoles.forEach(function (userRoleItem) {
-                    if (userRoleItem.name.toLowerCase() == roleItem.toLowerCase())
-                        hasRole = true;
-                });
-            });
-            return hasRole;
         }
         function CompleteQuestionnaire(wrCtrl) {
             // Get the web resource inner content window

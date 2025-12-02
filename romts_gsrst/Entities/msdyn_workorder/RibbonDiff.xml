@@ -63,6 +63,20 @@
         <Button Alt="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.Alt" Command="ts.msdyn_workorder.EditUnplannedWO" Id="ts.msdyn_workorder.EditUnplannedWO" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.LabelText" Sequence="1" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
+    <CustomAction Id="ts.msdyn_workorder.ExportToPDFs.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="72">
+      <CommandUIDefinition>
+        <FlyoutAnchor Command="Mscrm.Enabled" Id="ts.msdyn_workorder.ExportToPDFs" LabelText="$LocLabels:ts.msdyn_workorder.ExportToPDFs.LabelText" Sequence="72" TemplateAlias="o2">
+          <Menu Id="ts.msdyn_workorder.ExportToPDFs.Menu">
+            <MenuSection Id="ts.msdyn_workorder.Section21.Section" Sequence="10" DisplayMode="Menu16">
+              <Controls Id="ts.msdyn_workorder.Section21.Section.Controls">
+                <Button Alt="$LocLabels:ts.ExportQuestionnaire.Alt" Command="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithHiddenQuestions" Id="ts.ExportQuestionnaire" Image32by32="/_imgs/ribbon/Save_32.png" Image16by16="/_imgs/ribbon/Save_16.png" LabelText="$LocLabels:ts.ExportQuestionnaire.LabelText" Sequence="15" TemplateAlias="o2" ModernImage="Save" />
+                <Button Alt="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.Alt" Command="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithHiddenQuestions" Id="ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions" Image32by32="/_imgs/ribbon/Save_32.png" Image16by16="/_imgs/ribbon/Save_16.png" LabelText="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.LabelText" Sequence="20" TemplateAlias="o2" ModernImage="Save" />
+              </Controls>
+            </MenuSection>
+          </Menu>
+        </FlyoutAnchor>
+      </CommandUIDefinition>
+    </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.NewUnplannedWO.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="0">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorder.NewUnplannedWO.Alt" Command="ts.msdyn_workorder.NewUnplannedWorkOrder" Id="ts.msdyn_workorder.NewUnplannedWO" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.NewUnplannedWO.LabelText" Sequence="0" TemplateAlias="o1" />
@@ -460,6 +474,7 @@
     <CommandDefinition Id="ts.msdyn_workorder.EditUnplannedWO">
       <EnableRules>
         <EnableRule Id="ts.msdyn_workorder.TSIS.disableEditWorkOrder" />
+        <EnableRule Id="ts.msdyn_workorder.enableEditWorkOrderButtonForOwnerOrInspector" />
       </EnableRules>
       <DisplayRules />
       <Actions>
@@ -508,6 +523,33 @@
       <Actions>
         <JavaScriptFunction FunctionName="justifyWorkOrderCancellation" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
           <CrmParameter Value="SelectedControlSelectedItemIds" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithHiddenQuestions">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="ts.msdyn_workorder.ShowInExportJobForm" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="exportWorkOrderFromSubgrid" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="SelectedControl" />
+          <BoolParameter Value="true" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithoutHiddenQuestions">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="ts.msdyn_workorder.ShowInExportJobForm" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="exportWorkOrderQuestionnaireFromSubgrid" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+          <CrmParameter Value="SelectedControl" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -645,6 +687,9 @@
       <DisplayRule Id="ts.msdyn_workorder.HideNewUnplannedWO">
         <ValueRule Value="" InvertResult="true" />
       </DisplayRule>
+      <DisplayRule Id="ts.msdyn_workorder.ShowInExportJobForm">
+        <EntityRule EntityName="msdyn_workorder" AppliesTo="SelectedEntity" Context="SubGridStandard" Default="false" InvertResult="false" />
+      </DisplayRule>
     </DisplayRules>
     <EnableRules>
       <EnableRule Id="FieldService.Form.msdyn_workorder.EnableRule.ShowSimplifiedCommands">
@@ -745,6 +790,11 @@
         <CustomRule FunctionName="showAddExistingButton" Library="$webresource:ovs_/js/WorkOrderRibbon.js" Default="false">
           <CrmParameter Value="PrimaryControl" />
           <StringParameter Value="6f157fec-1d27-464f-a848-f221e46fc3d5" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.enableEditWorkOrderButtonForOwnerOrInspector">
+        <CustomRule FunctionName="enableEditWorkOrderButtonForOwnerOrInspector" Library="$webresource:ovs_/js/WorkOrderRibbon.js" Default="false" InvertResult="false">
+          <CrmParameter Value="PrimaryControl" />
         </CustomRule>
       </EnableRule>
       <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected">
@@ -858,6 +908,26 @@
     <LocLabel Id="ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard.LabelText">
       <Titles>
         <Title description="Add Existing {0}" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ExportQuestionnaire.Alt">
+      <Titles>
+        <Title description="Export to PDF with hidden questions" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ExportQuestionnaire.LabelText">
+      <Titles>
+        <Title description="with hidden questions" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.Alt">
+      <Titles>
+        <Title description="Export to PDF without hidden questions" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.LabelText">
+      <Titles>
+        <Title description="without hidden questions" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.AddAdditionalInspectors.Alt">
@@ -992,6 +1062,11 @@
     <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.ToolTipTitle">
       <Titles>
         <Title description="Edit Work Order in Workspace" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.msdyn_workorder.ExportToPDFs.LabelText">
+      <Titles>
+        <Title description="Export to PDF(s)" languagecode="1033" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.NewUnplannedWO.Alt">

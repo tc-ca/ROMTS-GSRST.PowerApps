@@ -41,20 +41,24 @@ var ROM;
     (function (OperationType) {
         function onLoad(eContext) {
             return __awaiter(this, void 0, void 0, function () {
-                var form, ownerAttribute, ownerAttributeValue;
+                var form, ownerAttribute, ownerAttributeValue, isAvSec;
                 return __generator(this, function (_a) {
-                    form = eContext.getFormContext();
-                    ownerAttribute = form.getAttribute("ownerid");
-                    ownerAttributeValue = ownerAttribute.getValue();
-                    if (ownerAttributeValue != null) {
-                        if (ownerAttributeValue[0].name && ownerAttributeValue[0].name.toLowerCase().includes("aviation security".toLowerCase())) {
-                            form.getControl("Subgrid_EntityRisk").setVisible(true);
-                        }
-                        else {
+                    switch (_a.label) {
+                        case 0:
+                            form = eContext.getFormContext();
+                            ownerAttribute = form.getAttribute("ownerid");
+                            ownerAttributeValue = ownerAttribute.getValue();
+                            if (!(ownerAttributeValue != null && ownerAttributeValue[0])) return [3 /*break*/, 2];
+                            return [4 /*yield*/, isOwnedByAvSec(ownerAttributeValue)];
+                        case 1:
+                            isAvSec = _a.sent();
+                            form.getControl("Subgrid_EntityRisk").setVisible(isAvSec);
+                            return [3 /*break*/, 3];
+                        case 2:
                             form.getControl("Subgrid_EntityRisk").setVisible(false);
-                        }
+                            _a.label = 3;
+                        case 3: return [2 /*return*/];
                     }
-                    return [2 /*return*/];
                 });
             });
         }

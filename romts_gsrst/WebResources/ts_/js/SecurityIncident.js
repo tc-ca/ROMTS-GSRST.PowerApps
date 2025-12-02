@@ -478,19 +478,6 @@ var ROM;
             form.getControl("ts_destination").setDefaultView("3507a249-81bf-ed11-83ff-0022483d7716");
             form.getControl("ts_diversionaerodrome").setDefaultView("3507a249-81bf-ed11-83ff-0022483d7716");
         }
-        function userHasRole(rolesName) {
-            var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
-            var hasRole = false;
-            var roles = rolesName.split("|");
-            roles.forEach(function (roleItem) {
-                userRoles.forEach(function (userRoleItem) {
-                    if (userRoleItem.name.toLowerCase() == roleItem.toLowerCase())
-                        hasRole = true;
-                });
-            });
-            return hasRole;
-        }
-        SecurityIncident.userHasRole = userHasRole;
         function unlockRecordLogFieldsIfUserIsSystemAdmin(formContext) {
             if (userHasRole("System Administrator")) {
                 formContext.getControl("ts_closedon").setDisabled(false);

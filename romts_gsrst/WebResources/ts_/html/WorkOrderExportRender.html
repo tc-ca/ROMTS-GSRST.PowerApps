@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Work Order Export Render</title>
+    <meta charset="utf-8" />
+    <!-- SurveyJS Dependencies -->
+    <script src="../../ovs_/js/jquery.js"></script>
+    <script src="../../ovs_/js/survey.jquery.min.js"></script>
+    <script src="../../ovs_/js/showdown.min.js"></script>
+    <script src="../../ts_/js/bootstrap-datepicker.min.js"></script>
+    <script src="../../ts_/js/surveyjs-widgets.min.js"></script>
+    <script src="../../ovs_/js/tsis2findingwidget.js"></script>
+    
+    <!-- Survey Render (exposes InitializeSurveyRender function) -->
+    <script src="../../ovs_/js/surveyRender.js"></script>
+    
+    <!-- PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../../ovs_/css/survey.min.css" />
+    <style>
+        #renderContainer {
+            width: 1100px;
+            background: white;
+            padding: 20px;
+        }
+        .printed-textarea {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            border: 1px solid #ccc;
+            padding: 5px;
+            min-height: 50px;
+        }
+        .sv_row {
+            display: block;
+            page-break-inside: avoid;
+        }
+    </style>
+</head>
+<body>
+    <div id="renderContainer"></div>
+</body>
+</html>
+
