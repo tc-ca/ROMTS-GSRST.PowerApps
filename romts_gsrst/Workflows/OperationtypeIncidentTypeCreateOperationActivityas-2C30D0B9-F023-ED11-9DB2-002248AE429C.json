@@ -83,7 +83,7 @@
             },
             "parameters": {
               "entityName": "msdyn_incidenttypes",
-              "fetchXml": "<fetch distinct=\"true\">\n  <entity name=\"msdyn_incidenttype\">\n    <attribute name=\"msdyn_incidenttypeid\" />\n    <filter>\n      <condition attribute=\"msdyn_incidenttypeid\" operator=\"eq\" value=\"{@{outputs('Get_Incident_Type')?['body/msdyn_incidenttypeid']}}\" />\n    </filter>\n    <link-entity name=\"businessunit\" from=\"businessunitid\" to=\"owningbusinessunit\" link-type=\"inner\">\n      <filter type=\"and\">\n       @{body('Build_In-Clause_From_Schemas')?['conditionxml']}\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>",
+              "fetchXml": "<fetch distinct=\"true\">\n  <entity name=\"msdyn_incidenttype\">\n    <attribute name=\"msdyn_incidenttypeid\" />\n    <filter>\n      <condition attribute=\"msdyn_incidenttypeid\" operator=\"eq\" value=\"{@{outputs('Get_Incident_Type')?['body/msdyn_incidenttypeid']}}\" />\n       @{body('Build_In-Clause_From_Schemas')?['conditionxml']}\n      </filter>\n  </entity>\n</fetch>",
               "$top": 1
             },
             "authentication": "@parameters('$authentication')"
@@ -127,7 +127,7 @@
                     },
                     "parameters": {
                       "entityName": "ovs_operations",
-                      "fetchXml": "<fetch version=\"1.0\" distinct=\"true\" mapping=\"logical\" returntotalrecordcount=\"true\" no-lock=\"false\">\n  <entity name=\"ovs_operation\">\n  <attribute name=\"ovs_name\" />\n    <attribute name=\"ovs_operationid\" />\n    <attribute name=\"ovs_operationtypeid\" />\n    <attribute name=\"ts_stakeholder\" />\n    <attribute name=\"ts_site\" />\n    <filter>\n      <condition attribute=\"ovs_operationtypeid\" operator=\"eq\" value=\"{@{outputs('Get_Operation_Type')?['body/ovs_operationtypeid']}}\" />\n    </filter>\n    <link-entity name=\"businessunit\" from=\"businessunitid\" to=\"owningbusinessunit\" link-type=\"inner\">\n      <filter>\n        @{body('Build_In-Clause_From_Schemas')?['conditionxml']}\n      </filter>\n    </link-entity>\n    <link-entity name=\"ts_operationactivity\" from=\"ts_operation\" to=\"ovs_operationid\" link-type=\"outer\">\n      <filter>\n        <condition attribute=\"ts_activity\" operator=\"ne\" value=\"{@{outputs('Get_Incident_Type')?['body/msdyn_incidenttypeid']}}\" />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>"
+                      "fetchXml": "<fetch version=\"1.0\" distinct=\"true\" mapping=\"logical\" returntotalrecordcount=\"true\" no-lock=\"false\">\n  <entity name=\"ovs_operation\">\n  <attribute name=\"ovs_name\" />\n    <attribute name=\"ovs_operationid\" />\n    <attribute name=\"ovs_operationtypeid\" />\n    <attribute name=\"ts_stakeholder\" />\n    <attribute name=\"ts_site\" />\n    <filter>\n      <condition attribute=\"ovs_operationtypeid\" operator=\"eq\" value=\"{@{outputs('Get_Operation_Type')?['body/ovs_operationtypeid']}}\" />\n        @{body('Build_In-Clause_From_Schemas')?['conditionxml']}\n      </filter>\n    <link-entity name=\"ts_operationactivity\" from=\"ts_operation\" to=\"ovs_operationid\" link-type=\"outer\">\n      <filter>\n        <condition attribute=\"ts_activity\" operator=\"ne\" value=\"{@{outputs('Get_Incident_Type')?['body/msdyn_incidenttypeid']}}\" />\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>"
                     },
                     "authentication": "@parameters('$authentication')"
                   }
@@ -371,7 +371,7 @@
               "workflowReferenceName": "11f9e00b-a0a3-f011-bbd2-7c1e52549bb6"
             },
             "body": {
-              "text": "name",
+              "text": "owningbusinessunit",
               "text_1": "[\"ts_AviationSecurityDirectorateDomesticBusinessUnitGUID\",\n \"ts_AviationSecurityInternationalBusinessUnitGUID\",\n \"ts_AviationSecurityDirectorateBusinessUnitGUID\"]"
             }
           }

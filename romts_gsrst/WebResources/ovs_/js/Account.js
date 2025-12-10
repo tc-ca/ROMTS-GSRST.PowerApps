@@ -39,6 +39,8 @@ var ROM;
 (function (ROM) {
     var Account;
     (function (Account) {
+        // Rail Safety tab visibility configuration for Account (Stakeholder) form
+        var RAIL_SAFETY_VISIBLE_TABS = ["SUMMARY_TAB", "DETAILS_TAB", "tab_contacts", "Work Orders"];
         function onLoad(eContext) {
             return __awaiter(this, void 0, void 0, function () {
                 var form, addressControl, ownerAttribute, ownerAttributeValue, isISSOOwner, operationView, ownerValue, isAvSec;
@@ -72,18 +74,54 @@ var ROM;
                             }
                             _a.label = 2;
                         case 2:
-                            //Lock for non Admin users
-                            if (!userHasRole("System Administrator|ROM - Business Admin")) {
-                                form.getControl("name").setDisabled(true);
-                                form.getControl("ovs_legalname").setDisabled(true);
-                            }
-                            else {
-                                form.getControl("ovs_accountnameenglish").setVisible(true);
-                                form.getControl("ovs_accountnamefrench").setVisible(true);
-                            }
+                            // Log Rail Safety ownership status to console
+                            logRailSafetyOwnershipStatus(form);
+                            // Show only specific tabs for Rail Safety team members
+                            return [4 /*yield*/, applyTabVisibilityForTeam(form, TEAM_SCHEMA_NAMES.RAIL_SAFETY, RAIL_SAFETY_VISIBLE_TABS)];
+                        case 3:
+                            // Show only specific tabs for Rail Safety team members
+                            _a.sent();
+                            //Lock for non Admin users, unless the current user is a member of the ROM Rail Safety Administrator team
+                            (function () {
+                                return __awaiter(this, void 0, void 0, function () {
+                                    var isRailSafetyAdmin, err_1;
+                                    return __generator(this, function (_a) {
+                                        switch (_a.label) {
+                                            case 0:
+                                                _a.trys.push([0, 2, , 3]);
+                                                return [4 /*yield*/, isUserInTeamByEnvVar(TEAM_SCHEMA_NAMES.ROM_RAIL_SAFETY_ADMINISTRATOR)];
+                                            case 1:
+                                                isRailSafetyAdmin = _a.sent();
+                                                if (!userHasRole("System Administrator|ROM - Business Admin") && !isRailSafetyAdmin) {
+                                                    form.getControl("name").setDisabled(true);
+                                                    form.getControl("ovs_legalname").setDisabled(true);
+                                                }
+                                                else {
+                                                    form.getControl("ovs_accountnameenglish").setVisible(true);
+                                                    form.getControl("ovs_accountnamefrench").setVisible(true);
+                                                }
+                                                return [3 /*break*/, 3];
+                                            case 2:
+                                                err_1 = _a.sent();
+                                                console.error("Error checking Rail Safety admin team membership:", err_1);
+                                                // Fallback to original behavior if check fails
+                                                if (!userHasRole("System Administrator|ROM - Business Admin")) {
+                                                    form.getControl("name").setDisabled(true);
+                                                    form.getControl("ovs_legalname").setDisabled(true);
+                                                }
+                                                else {
+                                                    form.getControl("ovs_accountnameenglish").setVisible(true);
+                                                    form.getControl("ovs_accountnamefrench").setVisible(true);
+                                                }
+                                                return [3 /*break*/, 3];
+                                            case 3: return [2 /*return*/];
+                                        }
+                                    });
+                                });
+                            })();
                             ownerValue = form.getAttribute("ownerid").getValue();
                             return [4 /*yield*/, isOwnedByAvSec(ownerValue)];
-                        case 3:
+                        case 4:
                             isAvSec = _a.sent();
                             form.ui.tabs.get("tab_Risk").setVisible(isAvSec);
                             return [2 /*return*/];
@@ -92,20 +130,50 @@ var ROM;
             });
         }
         Account.onLoad = onLoad;
+        /**
+         * OnSave event handler for Account form.
+         * Sets the owner to Rail Safety team for Rail Safety users.
+         * With Async save handler enabled, attribute changes are included in the save.
+         * @param eContext - The execution context
+         */
         function onSave(eContext) {
-            var form = eContext.getFormContext();
-            var statusStartDateValue = form.getAttribute("ts_statusstartdate").getValue();
-            var statusEndDateValue = form.getAttribute("ts_statusenddate").getValue();
-            if (statusStartDateValue != null) {
-                if (Date.parse(statusStartDateValue.toDateString()) <= Date.parse(new Date(Date.now()).toDateString())) {
-                    form.getAttribute("ts_stakeholderstatus").setValue(717750001 /* NonOperational */);
-                }
-            }
-            if (statusEndDateValue != null) {
-                if (Date.parse(statusEndDateValue.toDateString()) <= Date.parse(new Date(Date.now()).toDateString())) {
-                    form.getAttribute("ts_stakeholderstatus").setValue(717750000 /* Operational */);
-                }
-            }
+            return __awaiter(this, void 0, void 0, function () {
+                var form, statusStartDateValue, statusEndDateValue, error_1;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            form = eContext.getFormContext();
+                            statusStartDateValue = form.getAttribute("ts_statusstartdate").getValue();
+                            statusEndDateValue = form.getAttribute("ts_statusenddate").getValue();
+                            if (statusStartDateValue != null) {
+                                if (Date.parse(statusStartDateValue.toDateString()) <= Date.parse(new Date(Date.now()).toDateString())) {
+                                    form.getAttribute("ts_stakeholderstatus").setValue(717750001 /* NonOperational */);
+                                }
+                            }
+                            if (statusEndDateValue != null) {
+                                if (Date.parse(statusEndDateValue.toDateString()) <= Date.parse(new Date(Date.now()).toDateString())) {
+                                    form.getAttribute("ts_stakeholderstatus").setValue(717750000 /* Operational */);
+                                }
+                            }
+                            _a.label = 1;
+                        case 1:
+                            _a.trys.push([1, 3, , 4]);
+                            // Rail Safety ownership assignment
+                            // With Async save handler enabled, attribute changes are included in the save
+                            return [4 /*yield*/, assignRailSafetyOwnershipOnSave(form)];
+                        case 2:
+                            // Rail Safety ownership assignment
+                            // With Async save handler enabled, attribute changes are included in the save
+                            _a.sent();
+                            return [3 /*break*/, 4];
+                        case 3:
+                            error_1 = _a.sent();
+                            console.error("[Account.onSave] Error:", error_1);
+                            return [3 /*break*/, 4];
+                        case 4: return [2 /*return*/];
+                    }
+                });
+            });
         }
         Account.onSave = onSave;
         function regionOnChange(eContext) {

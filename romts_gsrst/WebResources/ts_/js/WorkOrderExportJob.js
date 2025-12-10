@@ -41,7 +41,7 @@ var ROM;
     (function (WorkOrderExportJob) {
         function onLoad(eContext) {
             return __awaiter(this, void 0, void 0, function () {
-                var formContext, statusAttribute, status, wrControl, renderWindow_1, payloadAttr, ids, userSettings, locale_1, style, _i, ids_1, workOrderId, fetchOptions, tasks, validTaskFound, _loop_1, _a, _b, task, e_1, errorMsgAttr;
+                var formContext, statusAttribute, status, wrControl, renderWindow_1, payloadAttr, rawPayload, ids, includeHiddenQuestions_1, userSettings, locale_1, style, _i, ids_1, workOrderId, fetchOptions, tasks, validTaskFound, _loop_1, _a, _b, task, e_1, errorMsgAttr;
                 return __generator(this, function (_c) {
                     switch (_c.label) {
                         case 0:
@@ -79,8 +79,21 @@ var ROM;
                             if (!payloadAttr || !payloadAttr.getValue()) {
                                 throw new Error("No payload JSON found.");
                             }
-                            ids = JSON.parse(payloadAttr.getValue());
-                            console.log("[PDFTEST] Starting loop for " + ids.length + " Work Orders");
+                            rawPayload = JSON.parse(payloadAttr.getValue());
+                            ids = [];
+                            includeHiddenQuestions_1 = false;
+                            if (Array.isArray(rawPayload)) {
+                                // Legacy behaviour: payload was just an array of GUIDs
+                                ids = rawPayload;
+                            }
+                            else if (rawPayload && Array.isArray(rawPayload.ids)) {
+                                ids = rawPayload.ids;
+                                includeHiddenQuestions_1 = !!rawPayload.includeHiddenQuestions;
+                            }
+                            else {
+                                throw new Error("Invalid payload JSON format.");
+                            }
+                            console.log("[PDFTEST] Starting loop for " + ids.length + " Work Orders. includeHiddenQuestions=" + includeHiddenQuestions_1);
                             userSettings = Xrm.Utility.getGlobalContext().userSettings;
                             locale_1 = (userSettings.languageId === 1036) ? 'fr' : 'en';
                             console.log("[PDFTEST] Locale: " + locale_1);
@@ -135,22 +148,30 @@ var ROM;
                                                 throw new Error("Target Element (#surveyElementPrint or #surveyElement) not found.");
                                             }
                                             surveyDef = JSON.parse(def);
-                                            // logic: Move all elements to Page 0 and remove 'visibleIf' to show everything
+                                            // logic: Move all elements to Page 0.
+                                            // If includeHiddenQuestions = true, also clear visibleIf so ALL questions render.
+                                            // If false, keep visibleIf so only questions the user actually saw will render.
                                             if (surveyDef.pages) {
                                                 firstPageElements_1 = surveyDef.pages[0].elements || [];
-                                                // Clean Page 0 elements
-                                                firstPageElements_1.forEach(function (el) { el.visibleIf = null; });
                                                 // Process subsequent pages
                                                 surveyDef.pages.forEach(function (page, index) {
                                                     if (index >= 1) {
                                                         if (page.elements) {
                                                             page.elements.forEach(function (el) {
-                                                                el.visibleIf = null; // Show hidden
+                                                                if (includeHiddenQuestions_1) {
+                                                                    el.visibleIf = null; // Show hidden
+                                                                }
                                                                 firstPageElements_1.push(el); // Move to page 0
                                                             });
                                                         }
                                                     }
                                                 });
+                                                // If including hidden questions, also clear visibleIf on existing page 0 elements
+                                                if (includeHiddenQuestions_1) {
+                                                    firstPageElements_1.forEach(function (el) {
+                                                        el.visibleIf = null;
+                                                    });
+                                                }
                                                 // Remove other pages
                                                 surveyDef.pages = [surveyDef.pages[0]];
                                             }

@@ -1,0 +1,216 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps_2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_DataverseROMTSGSRST"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "71b37ffa-37ba-43fb-a3d5-847f0b9b5cfe"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_2",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 3,
+              "subscriptionRequest/entityname": "msdyn_workorder",
+              "subscriptionRequest/scope": 4,
+              "subscriptionRequest/filteringattributes": "msdyn_systemstatus "
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "78da0deb-4073-4a49-a3f6-5b3f11c838ae"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps_2",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_unplannedworkorders",
+              "fetchXml": "<fetch version=\"1.0\" output-format=\"xml-platform\" mapping=\"logical\" distinct=\"false\">\n    <entity name=\"ts_unplannedworkorder\">\n        <attribute name=\"ts_unplannedworkorderid\"/>\n<attribute name=\"ts_recordstatus\" />\n        <filter type=\"and\">\n            <condition attribute=\"ts_workorder\" operator=\"eq\" value=\"@{triggerOutputs()?['body/msdyn_workorderid']}\"/>\n        </filter>\n    </entity>\n</fetch>"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Condition": {
+          "actions": {
+            "Terminate": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "9b708995-256a-4195-9d83-8842ce035fdb"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Cancelled"
+              }
+            }
+          },
+          "runAfter": {
+            "Condition_2": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Mettre_à_jour_une_ligne": {
+                "runAfter": {},
+                "metadata": {
+                  "operationMetadataId": "26f4062a-07e5-4eea-94cc-adc8b56eb799"
+                },
+                "type": "OpenApiConnection",
+                "inputs": {
+                  "host": {
+                    "connectionName": "shared_commondataserviceforapps_2",
+                    "operationId": "UpdateOnlyRecord",
+                    "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  },
+                  "parameters": {
+                    "entityName": "ts_unplannedworkorders",
+                    "recordId": "@variables('WOWorkspaceID')",
+                    "item/ts_recordstatus": "@triggerOutputs()?['body/msdyn_systemstatus']"
+                  },
+                  "authentication": "@parameters('$authentication')"
+                }
+              }
+            }
+          },
+          "expression": {
+            "equals": [
+              "@variables('Status')",
+              "@variables('WOStatus')"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4ed7e9cb-0301-46ee-8e98-c4f28f7c2a35"
+          },
+          "type": "If"
+        },
+        "Condition_2": {
+          "actions": {
+            "Terminate_2": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "9b708995-256a-4195-9d83-8842ce035fdb"
+              },
+              "type": "Terminate",
+              "inputs": {
+                "runStatus": "Cancelled"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@length(outputs('List_rows')?['body/value'])",
+              0
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ae5a8bcd-d6d0-4441-963a-5a9fbb4e4661"
+          },
+          "type": "If"
+        },
+        "Initialiser_la_variable": {
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a2940ec0-26d2-410b-9131-78ba6340fde1"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Status",
+                "type": "string",
+                "value": "@{first(outputs('List_rows')?['body/value'])?['ts_recordstatus']}"
+              }
+            ]
+          }
+        },
+        "Initialiser_la_variable_2": {
+          "runAfter": {
+            "Initialiser_la_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0702cbd6-ea5d-4e9b-b3e4-337c8abcc623"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "WOWorkspaceID",
+                "type": "string",
+                "value": "@{first(outputs('List_rows')?['body/value'])?['ts_unplannedworkorderid']}"
+              }
+            ]
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Initialiser_la_variable_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "61238be2-0796-4a58-be8c-48626a327f39"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "WOStatus",
+                "type": "string",
+                "value": "@{triggerOutputs()?['body/msdyn_systemstatus']}"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -77,7 +77,7 @@
                 },
                 "parameters": {
                   "entityName": "ovs_operationtypes",
-                  "fetchXml": "<fetch distinct=\"true\">\n  <entity name=\"ovs_operationtype\">\n    <attribute name=\"ovs_operationtypeid\" />\n    <filter>\n      <condition attribute=\"ovs_operationtypeid\" operator=\"eq\" value=\"{@{triggerOutputs()?['body/_ovs_operationtypeid_value']}}\" />\n    </filter>\n    <link-entity name=\"businessunit\" from=\"businessunitid\" to=\"owningbusinessunit\" link-type=\"inner\">\n      <filter type=\"and\">\n        @{body('Run_a_Child_Flow')?['conditionxml']}\n      </filter>\n    </link-entity>\n  </entity>\n</fetch>",
+                  "fetchXml": "<fetch distinct=\"true\">\n  <entity name=\"ovs_operationtype\">\n    <attribute name=\"ovs_operationtypeid\" />\n    <filter>\n      <condition attribute=\"ovs_operationtypeid\" operator=\"eq\" value=\"{@{triggerOutputs()?['body/_ovs_operationtypeid_value']}}\" />\n        @{body('Run_a_Child_Flow')?['conditionxml']}\n      </filter>\n  </entity>\n</fetch>",
                   "$top": 1
                 },
                 "authentication": "@parameters('$authentication')"
@@ -267,7 +267,7 @@
               "workflowReferenceName": "11f9e00b-a0a3-f011-bbd2-7c1e52549bb6"
             },
             "body": {
-              "text": "name",
+              "text": "owningbusinessunit",
               "text_1": "[\"ts_AviationSecurityDirectorateDomesticBusinessUnitGUID\",\n \"ts_AviationSecurityInternationalBusinessUnitGUID\",\n \"ts_AviationSecurityDirectorateBusinessUnitGUID\"]"
             }
           }

@@ -65,6 +65,14 @@ var ROM;
             var formItem = formContext.ui.formSelector.getCurrentItem().getId();
             isROM20Form = formItem.toLowerCase() == "c01347bc-d346-447d-b902-4f411a0e9706";
             formContext.getAttribute("ts_ncatfactorguide").setValue(false);
+            // Log Rail Safety ownership status to console
+            logRailSafetyOwnershipStatus(formContext);
+            // Visible tabs for Rail Safety users (logical names)
+            var RAIL_SAFETY_VISIBLE_TABS = ['summary', 'wo_details', 'tab_6'];
+            // Show only those tabs for Rail Safety users
+            applyTabVisibilityForTeam(formContext, TEAM_SCHEMA_NAMES.RAIL_SAFETY, RAIL_SAFETY_VISIBLE_TABS).catch(function (err) {
+                console.error("Error applying Rail Safety tab visibility:", err);
+            });
             var userId = Xrm.Utility.getGlobalContext().userSettings.userId;
             var currentUserBusinessUnitFetchXML = [
                 "<fetch top='50'>",
@@ -255,24 +263,44 @@ var ROM;
             });
         }
         function onSave(eContext) {
-            var formContext = eContext.getFormContext();
-            var statusCodeAttribute = formContext.getAttribute("statuscode");
-            var statusCodeValue = statusCodeAttribute.getValue();
-            onLoad(eContext);
-            if (statusCodeValue == 717750002 /* Complete */)
-                return;
-            var acceptNCATRecommendation = formContext.getAttribute("ts_acceptncatrecommendation").getValue();
-            var acceptRATERecommendation = formContext.getAttribute("ts_acceptraterecommendation").getValue();
-            var rejectedRecommendation = (acceptNCATRecommendation == 717750001 /* No */ || acceptRATERecommendation == 717750001 /* No */);
-            var NCATManager = formContext.getAttribute("ts_ncatmanager").getValue();
-            var RATEManager = formContext.getAttribute("ts_ratemanager").getValue();
-            var hasManagerFieldPopulated = (NCATManager != null || RATEManager != null);
-            if (rejectedRecommendation && hasManagerFieldPopulated) {
-                statusCodeAttribute.setValue(717750001 /* Pending */);
-            }
-            else {
-                statusCodeAttribute.setValue(717750000 /* InProgress */);
-            }
+            return __awaiter(this, void 0, void 0, function () {
+                var formContext, statusCodeAttribute, statusCodeValue, acceptNCATRecommendation, acceptRATERecommendation, rejectedRecommendation, NCATManager, RATEManager, hasManagerFieldPopulated, error_1;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            formContext = eContext.getFormContext();
+                            statusCodeAttribute = formContext.getAttribute("statuscode");
+                            statusCodeValue = statusCodeAttribute.getValue();
+                            onLoad(eContext);
+                            if (statusCodeValue == 717750002 /* Complete */)
+                                return [2 /*return*/];
+                            acceptNCATRecommendation = formContext.getAttribute("ts_acceptncatrecommendation").getValue();
+                            acceptRATERecommendation = formContext.getAttribute("ts_acceptraterecommendation").getValue();
+                            rejectedRecommendation = (acceptNCATRecommendation == 717750001 /* No */ || acceptRATERecommendation == 717750001 /* No */);
+                            NCATManager = formContext.getAttribute("ts_ncatmanager").getValue();
+                            RATEManager = formContext.getAttribute("ts_ratemanager").getValue();
+                            hasManagerFieldPopulated = (NCATManager != null || RATEManager != null);
+                            if (rejectedRecommendation && hasManagerFieldPopulated) {
+                                statusCodeAttribute.setValue(717750001 /* Pending */);
+                            }
+                            else {
+                                statusCodeAttribute.setValue(717750000 /* InProgress */);
+                            }
+                            _a.label = 1;
+                        case 1:
+                            _a.trys.push([1, 3, , 4]);
+                            return [4 /*yield*/, assignRailSafetyOwnershipOnSave(formContext)];
+                        case 2:
+                            _a.sent();
+                            return [3 /*break*/, 4];
+                        case 3:
+                            error_1 = _a.sent();
+                            console.error("[Finding.onSave] Error:", error_1);
+                            return [3 /*break*/, 4];
+                        case 4: return [2 /*return*/];
+                    }
+                });
+            });
         }
         Finding.onSave = onSave;
         //If all NCAT Fields are set, calculate and set the recommended enforcement
