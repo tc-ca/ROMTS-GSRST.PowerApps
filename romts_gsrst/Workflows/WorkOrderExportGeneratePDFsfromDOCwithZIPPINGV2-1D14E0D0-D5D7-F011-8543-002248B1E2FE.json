@@ -1,0 +1,484 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "9ac16e34-7ea8-473c-bc73-57588043c365"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ts_workorderexportjob",
+              "subscriptionRequest/scope": 2
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        }
+      },
+      "actions": {
+        "Parse_JSON": {
+          "runAfter": {
+            "Compose_–_Payload_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b81d864c-9e38-40ba-bea7-9811d4b93b20"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@outputs('Compose_–_Payload_JSON')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "WorkOrders": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "WorkOrderNumber": {
+                        "type": "string"
+                      },
+                      "WorkOrderDate": {
+                        "type": "string"
+                      },
+                      "RegionName": {
+                        "type": "string"
+                      },
+                      "OperationType": {
+                        "type": "string"
+                      },
+                      "StakeholderName": {
+                        "type": "string"
+                      },
+                      "SiteName": {
+                        "type": "string"
+                      },
+                      "WorkLocation": {
+                        "type": "string"
+                      },
+                      "PrimaryIncidentDescription": {
+                        "type": "string"
+                      },
+                      "BusinessOwner": {
+                        "type": "string"
+                      },
+                      "Findings": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "Finding_Description": {
+                              "type": "string"
+                            },
+                            "Finding_Type": {
+                              "type": "string"
+                            },
+                            "Finding_Status": {
+                              "type": "string"
+                            },
+                            "Finding_Enforcement": {
+                              "type": "string"
+                            },
+                            "Finding_Sensitivity": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Finding_Description",
+                            "Finding_Type",
+                            "Finding_Status",
+                            "Finding_Enforcement",
+                            "Finding_Sensitivity"
+                          ]
+                        }
+                      },
+                      "Actions": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "Action_Name": {
+                              "type": "string"
+                            },
+                            "Action_Category": {
+                              "type": "string"
+                            },
+                            "Action_Type": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Action_Name",
+                            "Action_Category",
+                            "Action_Type"
+                          ]
+                        }
+                      },
+                      "Interactions": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "Interaction_Date": {
+                              "type": "string"
+                            },
+                            "Interaction_Type": {
+                              "type": "string"
+                            },
+                            "Interaction_Subject": {
+                              "type": "string"
+                            },
+                            "Interaction_Description": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Interaction_Date",
+                            "Interaction_Type",
+                            "Interaction_Subject",
+                            "Interaction_Description"
+                          ]
+                        }
+                      },
+                      "ServiceTasks": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "Task_Name": {
+                              "type": "string"
+                            },
+                            "Task_Status": {
+                              "type": "string"
+                            },
+                            "Task_InspectionResult": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Task_Name",
+                            "Task_Status",
+                            "Task_InspectionResult"
+                          ]
+                        }
+                      },
+                      "Documents": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "Doc_Name": {
+                              "type": "string"
+                            },
+                            "Doc_Category": {
+                              "type": "string"
+                            },
+                            "Doc_Context": {
+                              "type": "string"
+                            },
+                            "Doc_Link": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Doc_Name",
+                            "Doc_Category",
+                            "Doc_Context",
+                            "Doc_Link"
+                          ]
+                        }
+                      },
+                      "Contacts": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "Contact_Name": {
+                              "type": "string"
+                            },
+                            "Contact_JobTitle": {
+                              "type": "string"
+                            },
+                            "Contact_Email": {
+                              "type": "string"
+                            },
+                            "Contact_Phone": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "Contact_Name",
+                            "Contact_JobTitle",
+                            "Contact_Email",
+                            "Contact_Phone"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "WorkOrderNumber",
+                      "WorkOrderDate",
+                      "RegionName",
+                      "OperationType",
+                      "StakeholderName",
+                      "SiteName",
+                      "WorkLocation",
+                      "PrimaryIncidentDescription",
+                      "BusinessOwner",
+                      "Findings",
+                      "Actions",
+                      "Interactions",
+                      "ServiceTasks",
+                      "Documents",
+                      "Contacts"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Get_a_row_by_ID": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "5b5798a2-936a-4f77-a7c8-81dd06750dfb"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_workorderexportjobs",
+              "recordId": "@triggerOutputs()?['body/ts_workorderexportjobid']"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Compose_–_Payload_JSON": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5dac2949-75ee-4084-a7ec-2a367b5b8d06"
+          },
+          "type": "Compose",
+          "inputs": "@outputs('Get_a_row_by_ID')?['body/ts_payloadjson']"
+        },
+        "Apply_to_each": {
+          "foreach": "@body('Parse_JSON')?['WorkOrders']",
+          "actions": {
+            "Compose_–_PDF_File_Name": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "608b3e5d-2d8c-42fa-8a85-4d0731cc39eb"
+              },
+              "type": "Compose",
+              "inputs": "WO_@{items('Apply_to_each')?['WorkOrderNumber']}.pdf"
+            },
+            "Populate_a_Microsoft_Word_template_2": {
+              "runAfter": {
+                "Compose_–_PDF_File_Name": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "01JEPQUZEXJRGKWLYJVFAK63RMJ6XUVNK2": "/WOExportTemplate.docx",
+                "operationMetadataId": "cbcf0cac-9590-4f09-9ab8-fb11c8a41fb8"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_wordonlinebusiness",
+                  "operationId": "CreateFileItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness"
+                },
+                "parameters": {
+                  "source": "me",
+                  "drive": "b!LH3ZXyy0A0GSq8GKxpzPcUETVZslZv9Pqv8vQE7XmP7hwFGSStUAR4vvcIsfLZps",
+                  "file": "01JEPQUZEXJRGKWLYJVFAK63RMJ6XUVNK2",
+                  "dynamicFileSchema/753325090": "@items('Apply_to_each')?['OperationType']",
+                  "dynamicFileSchema/870196557": "@items('Apply_to_each')?['WorkOrderDate']",
+                  "dynamicFileSchema/879053440": "@items('Apply_to_each')?['Actions']",
+                  "dynamicFileSchema/1093364203": "@items('Apply_to_each')?['Findings']",
+                  "dynamicFileSchema/1516808847": "@items('Apply_to_each')?['Interactions']",
+                  "dynamicFileSchema/1943643842": "@items('Apply_to_each')?['Contacts']",
+                  "dynamicFileSchema/2038773573": "@items('Apply_to_each')?['StakeholderName']",
+                  "dynamicFileSchema/-399828658": "@items('Apply_to_each')?['WorkOrderNumber']",
+                  "dynamicFileSchema/-1413461047": "@items('Apply_to_each')?['RegionName']",
+                  "dynamicFileSchema/-1585221778": "@items('Apply_to_each')?['SiteName']",
+                  "dynamicFileSchema/-818496960": "@items('Apply_to_each')?['WorkLocation']",
+                  "dynamicFileSchema/-555624904": "@items('Apply_to_each')?['PrimaryIncidentDescription']",
+                  "dynamicFileSchema/-1164622995": "@items('Apply_to_each')?['BusinessOwner']",
+                  "dynamicFileSchema/-1143338785": "@items('Apply_to_each')?['ServiceTasks']",
+                  "dynamicFileSchema/-787588157": "@items('Apply_to_each')?['Documents']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Convert_Word_Document_to_PDF_2": {
+              "runAfter": {
+                "Create_file_3": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ad77cb5b-a267-4d7f-91b1-40301595735d"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_wordonlinebusiness",
+                  "operationId": "GetFilePDF",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness"
+                },
+                "parameters": {
+                  "source": "me",
+                  "drive": "b!LH3ZXyy0A0GSq8GKxpzPcUETVZslZv9Pqv8vQE7XmP7hwFGSStUAR4vvcIsfLZps",
+                  "file": "@outputs('Create_file_3')?['body/Path']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Create_file_3": {
+              "runAfter": {
+                "Populate_a_Microsoft_Word_template_2": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "ee168995-ee24-4ddd-87f8-cca1e3f47c20"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_onedriveforbusiness",
+                  "operationId": "CreateFile",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                },
+                "parameters": {
+                  "folderPath": "/EXPORTS/TEMPDOCX",
+                  "name": "WO_@{items('Apply_to_each')?['WorkOrderNumber']}.docx",
+                  "body": "@body('Populate_a_Microsoft_Word_template_2')"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runtimeConfiguration": {
+                "contentTransfer": {
+                  "transferMode": "Chunked"
+                }
+              }
+            },
+            "Create_file_4": {
+              "runAfter": {
+                "Convert_Word_Document_to_PDF_2": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "f6c692bc-8623-43ab-9a21-d2df7b7c3260"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_onedriveforbusiness",
+                  "operationId": "CreateFile",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                },
+                "parameters": {
+                  "folderPath": "@variables('folderPath')",
+                  "name": "@outputs('Compose_–_PDF_File_Name')",
+                  "body": "@body('Convert_Word_Document_to_PDF_2')"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runtimeConfiguration": {
+                "contentTransfer": {
+                  "transferMode": "Chunked"
+                }
+              }
+            },
+            "Delete_file": {
+              "runAfter": {
+                "Create_file_4": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "1b876709-4f0a-4038-b738-db100485e371"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_onedriveforbusiness",
+                  "operationId": "DeleteFile",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                },
+                "parameters": {
+                  "id": "@outputs('Create_file_3')?['body/Id']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3c9e2430-fad5-444a-9f83-3993c6d6df4a"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Get_a_row_by_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "db5c05d0-9c8a-4b85-8fa8-cfc2c52e0d6d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "folderPath",
+                "type": "string",
+                "value": "@{concat('/EXPORTS/', formatDateTime(utcNow(), 'yyyyMMdd_HHmmss'))}"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

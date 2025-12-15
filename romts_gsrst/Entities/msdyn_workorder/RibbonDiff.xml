@@ -69,8 +69,8 @@
           <Menu Id="ts.msdyn_workorder.ExportToPDFs.Menu">
             <MenuSection Id="ts.msdyn_workorder.Section21.Section" Sequence="10" DisplayMode="Menu16">
               <Controls Id="ts.msdyn_workorder.Section21.Section.Controls">
-                <Button Alt="$LocLabels:ts.ExportQuestionnaire.Alt" Command="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithHiddenQuestions" Id="ts.ExportQuestionnaire" Image32by32="/_imgs/ribbon/Save_32.png" Image16by16="/_imgs/ribbon/Save_16.png" LabelText="$LocLabels:ts.ExportQuestionnaire.LabelText" Sequence="15" TemplateAlias="o2" ModernImage="Save" />
-                <Button Alt="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.Alt" Command="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithHiddenQuestions" Id="ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions" Image32by32="/_imgs/ribbon/Save_32.png" Image16by16="/_imgs/ribbon/Save_16.png" LabelText="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.LabelText" Sequence="20" TemplateAlias="o2" ModernImage="Save" />
+                <Button Alt="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.Alt" Command="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithHiddenQuestions" Id="ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions" Image32by32="/_imgs/ribbon/Save_32.png" Image16by16="/_imgs/ribbon/Save_16.png" LabelText="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.LabelText" Sequence="15" TemplateAlias="o2" ModernImage="Save" />
+                <Button Alt="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions.Alt" Command="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithoutHiddenQuestions" Id="ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions" Image32by32="/_imgs/ribbon/Save_32.png" Image16by16="/_imgs/ribbon/Save_16.png" LabelText="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions.LabelText" Sequence="20" TemplateAlias="o2" ModernImage="Save" />
               </Controls>
             </MenuSection>
           </Menu>
@@ -548,7 +548,7 @@
         <DisplayRule Id="ts.msdyn_workorder.ShowInExportJobForm" />
       </DisplayRules>
       <Actions>
-        <JavaScriptFunction FunctionName="exportWorkOrderQuestionnaireFromSubgrid" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
+        <JavaScriptFunction FunctionName="exportWorkOrderFromSubgrid" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
           <CrmParameter Value="SelectedControl" />
         </JavaScriptFunction>
       </Actions>
@@ -855,6 +855,7 @@
     <LocLabel Id="Mscrm.SubGrid.msdyn_workorder.AddExistingAssoc.LabelText">
       <Titles>
         <Title description="Add Existing {0} / Associated" languagecode="1033" />
+        <Title description="Add Existing {0} / Associated" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="msdyn.ApplicationRibbon.msdyn_workorder.Form.BookResource.Button.Alt">
@@ -908,26 +909,31 @@
     <LocLabel Id="ovs.msdyn_workorder.Button.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard.LabelText">
       <Titles>
         <Title description="Add Existing {0}" languagecode="1033" />
-      </Titles>
-    </LocLabel>
-    <LocLabel Id="ts.ExportQuestionnaire.Alt">
-      <Titles>
-        <Title description="Export to PDF with hidden questions" languagecode="1033" />
-      </Titles>
-    </LocLabel>
-    <LocLabel Id="ts.ExportQuestionnaire.LabelText">
-      <Titles>
-        <Title description="with hidden questions" languagecode="1033" />
+        <Title description="Add Existing {0}" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.Alt">
       <Titles>
-        <Title description="Export to PDF without hidden questions" languagecode="1033" />
+        <Title description="Export to PDF with hidden questions" languagecode="1033" />
+        <Title description="Export to PDF with hidden questions" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.LabelText">
       <Titles>
+        <Title description="with hidden questions" languagecode="1033" />
+        <Title description="with hidden questions" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions.Alt">
+      <Titles>
+        <Title description="Export to PDF without hidden questions" languagecode="1033" />
+        <Title description="Export to PDF without hidden questions" languagecode="1036" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions.LabelText">
+      <Titles>
         <Title description="without hidden questions" languagecode="1033" />
+        <Title description="without hidden questions" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.AddAdditionalInspectors.Alt">
@@ -1047,51 +1053,61 @@
     <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.Alt">
       <Titles>
         <Title description="Edit Work Order" languagecode="1033" />
+        <Title description="Modifier l'ODT" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.LabelText">
       <Titles>
         <Title description="Edit Work Order" languagecode="1033" />
+        <Title description="Modifier l'ODT" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.ToolTipDescription">
       <Titles>
         <Title description="Edit Work Order in Workspace" languagecode="1033" />
+        <Title description="Modifier l'ordre de travail dans l’espace de travail" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.EditUnplannedWO.ToolTipTitle">
       <Titles>
         <Title description="Edit Work Order in Workspace" languagecode="1033" />
+        <Title description="Modifier l'ordre de travail dans l’espace de travail" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.ExportToPDFs.LabelText">
       <Titles>
         <Title description="Export to PDF(s)" languagecode="1033" />
+        <Title description="Export to PDF(s)" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.NewUnplannedWO.Alt">
       <Titles>
         <Title description="New Unplanned WO" languagecode="1033" />
+        <Title description="Nouvel ODT non planifier" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.NewUnplannedWO.LabelText">
       <Titles>
         <Title description="New Unplanned WO" languagecode="1033" />
+        <Title description="Nouvel ODT non planifier" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.NewUnplannedWOHome.Alt">
       <Titles>
         <Title description="New Unplanned WO" languagecode="1033" />
+        <Title description="Nouvel ODT non planifier" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.NewUnplannedWOHome.LabelText">
       <Titles>
         <Title description="New Unplanned WO" languagecode="1033" />
+        <Title description="Nouvel ODT non planifier" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.SubGrid.AddExistingStandardSecurityIncident.LabelText">
       <Titles>
         <Title description="Add Existing {0} / Security " languagecode="1033" />
+        <Title description="Add Existing {0} / Security " languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.SubGridCommit.Alt">
@@ -1121,21 +1137,25 @@
     <LocLabel Id="ts.msdyn_workorder.TripSubGrid.AddExisting.Alt">
       <Titles>
         <Title description="Add Existing {0}" languagecode="1033" />
+        <Title description="Add Existing {0}" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.TripSubGrid.AddExisting.LabelText">
       <Titles>
         <Title description="Add Existing {0}" languagecode="1033" />
+        <Title description="Add Existing {0}" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.TripSubGrid.AddExisting.ToolTipDescription">
       <Titles>
         <Title description="Add a {0} that already exists to the record you are working with." languagecode="1033" />
+        <Title description="Add a {0} that already exists to the record you are working with." languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.TripSubGrid.AddExisting.ToolTipTitle">
       <Titles>
         <Title description="Add Existing {0}" languagecode="1033" />
+        <Title description="Add Existing {0}" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.TSIS.Cancel.Alt">

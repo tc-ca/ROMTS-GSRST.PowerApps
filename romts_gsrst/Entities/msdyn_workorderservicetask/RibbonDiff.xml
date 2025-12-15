@@ -545,7 +545,9 @@
         <EnableRule Id="ts.msdyn_workorderservicetask.isManagerOrBusinessAdminOrSystemAdminOrInspectorOrPlanner" />
         <EnableRule Id="ts.msdyn_workorderservicetask.isOnWorkOrderForm" />
       </EnableRules>
-      <DisplayRules />
+      <DisplayRules>
+        <DisplayRule Id="ts.msdyn_workorderservicetask.HideCreateQualityControlButton" />
+      </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="createQualityControlServiceTask" Library="$webresource:ovs_/js/WorkOrderServiceTaskRibbon.js">
           <CrmParameter Value="PrimaryControl" />
@@ -740,6 +742,9 @@
       </DisplayRule>
       <DisplayRule Id="Mscrm.WriteSelectedEntityPermission">
         <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="ts.msdyn_workorderservicetask.HideCreateQualityControlButton">
+        <ValueRule Value="" InvertResult="true" />
       </DisplayRule>
     </DisplayRules>
     <EnableRules>
@@ -1105,25 +1110,25 @@
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.CreateQualityControl.Alt">
       <Titles>
-        <Title description="Create Quality Control" languagecode="1033" />
+        <Title description="Create Quality Control ( Removed)" languagecode="1033" />
         <Title description="Créer liste de contrôle" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.CreateQualityControl.LabelText">
       <Titles>
-        <Title description="Create Quality Control" languagecode="1033" />
+        <Title description="Create Quality Control ( Removed)" languagecode="1033" />
         <Title description="Créer liste de contrôle" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.CreateQualityControl.ToolTipDescription">
       <Titles>
-        <Title description="Create Quality Control" languagecode="1033" />
+        <Title description="Create Quality Control ( Removed)" languagecode="1033" />
         <Title description="Créer liste de contrôle" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.CreateQualityControl.ToolTipTitle">
       <Titles>
-        <Title description="Create Quality Control" languagecode="1033" />
+        <Title description="Create Quality Control ( Removed)" languagecode="1033" />
         <Title description="Créer liste de contrôle" languagecode="1036" />
       </Titles>
     </LocLabel>
@@ -1146,7 +1151,7 @@
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorderservicetask.ServiceAccount.CreateQualityControl.LabelText">
       <Titles>
-        <Title description="Create QC" languagecode="1033" />
+        <Title description="Create Quality Control" languagecode="1033" />
         <Title description="Créer liste de contrôle" languagecode="1036" />
       </Titles>
     </LocLabel>
