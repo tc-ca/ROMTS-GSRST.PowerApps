@@ -63,14 +63,14 @@
         <Button Alt="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.Alt" Command="ts.msdyn_workorder.EditUnplannedWO" Id="ts.msdyn_workorder.EditUnplannedWO" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.LabelText" Sequence="1" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.ToolTipDescription" />
       </CommandUIDefinition>
     </CustomAction>
-    <CustomAction Id="ts.msdyn_workorder.ExportToPDFs.CustomAction" Location="Mscrm.SubGrid.msdyn_workorder.MainTab.Management.Controls._children" Sequence="72">
+    <CustomAction Id="ts.msdyn_workorder.ExportToPDFs.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.ExportData.Controls._children" Sequence="50">
       <CommandUIDefinition>
-        <FlyoutAnchor Command="Mscrm.Enabled" Id="ts.msdyn_workorder.ExportToPDFs" LabelText="$LocLabels:ts.msdyn_workorder.ExportToPDFs.LabelText" Sequence="72" TemplateAlias="o2">
+        <FlyoutAnchor Command="ts.msdyn_workorder.HideExportToPDFFlyout" Id="ts.msdyn_workorder.ExportToPDFs" Image16by16="$webresource:ts_/img/exporttopng16.png" Image32by32="$webresource:ts_/img/exporttopng32.png" LabelText="$LocLabels:ts.msdyn_workorder.ExportToPDFs.LabelText" Sequence="50" TemplateAlias="o3">
           <Menu Id="ts.msdyn_workorder.ExportToPDFs.Menu">
-            <MenuSection Id="ts.msdyn_workorder.Section21.Section" Sequence="10" DisplayMode="Menu16">
-              <Controls Id="ts.msdyn_workorder.Section21.Section.Controls">
-                <Button Alt="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.Alt" Command="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithHiddenQuestions" Id="ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions" Image32by32="/_imgs/ribbon/Save_32.png" Image16by16="/_imgs/ribbon/Save_16.png" LabelText="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.LabelText" Sequence="15" TemplateAlias="o2" ModernImage="Save" />
-                <Button Alt="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions.Alt" Command="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithoutHiddenQuestions" Id="ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions" Image32by32="/_imgs/ribbon/Save_32.png" Image16by16="/_imgs/ribbon/Save_16.png" LabelText="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions.LabelText" Sequence="20" TemplateAlias="o2" ModernImage="Save" />
+            <MenuSection Id="ts.msdyn_workorder.ExportToPDF.MenuSection" Sequence="8" DisplayMode="Menu16">
+              <Controls Id="ts.msdyn_workorder.ExportToPDF.MenuSection.Controls">
+                <Button Alt="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.Alt" Command="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithHiddenQuestions" Id="ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions" Image32by32="$webresource:ts_/img/exporttopng32.png" Image16by16="$webresource:ts_/img/exporttopng16.png" LabelText="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.LabelText" Sequence="15" TemplateAlias="o2" ModernImage="Save" />
+                <Button Alt="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions.Alt" Command="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithoutHiddenQuestions" Id="ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions" Image32by32="$webresource:ts_/img/exporttopng32.png" Image16by16="$webresource:ts_/img/exporttopng16.png" LabelText="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions.LabelText" Sequence="20" TemplateAlias="o2" ModernImage="Save" />
               </Controls>
             </MenuSection>
           </Menu>
@@ -482,6 +482,13 @@
           <CrmParameter Value="PrimaryControl" />
         </JavaScriptFunction>
       </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ts.msdyn_workorder.HideExportToPDFFlyout">
+      <EnableRules>
+        <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions />
     </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorder.NewUnplannedWorkOrder">
       <EnableRules />
