@@ -374,7 +374,6 @@
         const CONFIG = {
             appId: 'eaf22071-895b-4a2e-a634-6c5e7615b9b5',
             ctid: '2008ffa9-c9b2-4d97-9ad9-4ace25386be7'
-            // Remove default report ID - user must paste URL/ID to load
         };
 
         // DOM Elements
@@ -396,15 +395,11 @@
 
         function initDashboard() {
             try {
-                // Check admin access to show/hide controls
                 checkAdminAccess();
-                
-                // Always try to load the report - let PowerBI show access denied if needed
                 loadInitialReport();
-                
                 attachEventListeners();
             } catch (error) {
-                // Fallback: just load the report anyway
+                // If admin check fails, still try to load the report
                 loadInitialReport();
                 attachEventListeners();
             }
@@ -419,38 +414,58 @@
                 const debugToggle = document.getElementById('debug-toggle');
                 
                 if (isAdmin) {
-                    // Show admin controls
+                    // Show admin controls and debug panel
                     if (controlPanel) controlPanel.style.display = 'block';
                     if (debugPanel) debugPanel.style.display = 'block';
                     if (debugToggle) debugToggle.style.display = 'block';
                     
-                    // Show admin badge
                     elements.adminBadge.style.display = 'inline-block';
                     elements.controlPanel.classList.add('admin-only');
-                    
-                    // Keep controls enabled
                     elements.reportUrlInput.disabled = false;
                     elements.updateBtn.disabled = false;
-
                 } else {
-                    // Hide control panel from non-admins, but let them see PowerBI's native error
+                    // Hide admin controls for non-admins
                     if (controlPanel) controlPanel.style.display = 'none';
                     if (debugPanel) debugPanel.style.display = 'none';
                     if (debugToggle) debugToggle.style.display = 'none';
                 }
             } catch (error) {
-                // Fallback: enable controls if check fails
+                // If admin check fails, enable controls anyway
                 elements.reportUrlInput.disabled = false;
                 elements.updateBtn.disabled = false;
             }
         }
 
         function isSystemAdministrator() {
-            const isAdmin = userHasRole("System Administrator");
+            let isAdmin = false;
             
-            // Log admin check result with current user roles
             try {
-                const globalContext = Xrm?.Utility?.getGlobalContext?.();
+                let globalContext = null;
+                
+                // Webresources run in iframes, so check multiple Xrm contexts
+                if (typeof Xrm !== 'undefined' && Xrm.Utility?.getGlobalContext) {
+                    globalContext = Xrm.Utility.getGlobalContext();
+                } else if (typeof parent !== 'undefined' && parent.Xrm?.Utility?.getGlobalContext) {
+                    globalContext = parent.Xrm.Utility.getGlobalContext();
+                } else if (typeof window.parent !== 'undefined' && window.parent.Xrm?.Utility?.getGlobalContext) {
+                    globalContext = window.parent.Xrm.Utility.getGlobalContext();
+                }
+                
+                if (globalContext) {
+                    const roles = globalContext.userSettings?.roles || [];
+                    roles.forEach(function(role) {
+                        if (role.name === 'System Administrator') {
+                            isAdmin = true;
+                        }
+                    });
+                }
+            } catch (error) {
+                isAdmin = true; // Default to true so admins can always access
+            }
+            
+            // Log the result to debug console
+            try {
+                const globalContext = Xrm?.Utility?.getGlobalContext?.() || parent?.Xrm?.Utility?.getGlobalContext?.();
                 if (globalContext) {
                     const roles = globalContext.userSettings?.roles || [];
                     const roleNames = roles.map(r => r.name).join(', ') || 'None';
@@ -461,7 +476,7 @@
                     }
                 }
             } catch (error) {
-                // Silent fail - just use the result
+                // Silent fail
             }
             
             return isAdmin;
@@ -547,7 +562,6 @@
                 return;
             }
 
-            // Try multiple ways to extract the report ID
             let reportId = extractReportId(input);
 
             if (!reportId || !isValidGuid(reportId)) {
@@ -555,56 +569,35 @@
                 return;
             }
 
-            // Check if record exists and create if not
             checkAndCreateConfig(reportId, input);
-            
-            // Load the report
             loadReport(reportId);
         }
 
-        // Check if record exists and activate it, or create new one
+        // Check if report config already exists, create/update as needed
         async function checkAndCreateConfig(reportId, reportUrl) {
             try {
                 debugLog('Starting checkAndCreateConfig...');
                 
                 const orgUrl = parent.Xrm?.Utility?.getGlobalContext?.()?.getClientUrl?.();
-                debugLog(`Org URL: ${orgUrl}`);
                 
                 if (!orgUrl) {
                     debugLog('Could not get org URL for saving config', 'error');
                     return;
                 }
 
-                // Step 1: Check if a record with this reportId already exists
-                debugLog('Checking if record with this report ID already exists...');
                 const existingRecord = await findExistingRecord(orgUrl, reportId);
 
                 if (existingRecord) {
                     debugLog(`Found existing record: ${existingRecord.ts_rompowerbiconfigid}`, 'info');
-                    
-                    // Deactivate all OTHER active records
-                    debugLog('Deactivating other active records...');
                     await deactivateOtherRecords(orgUrl, existingRecord.ts_rompowerbiconfigid);
                     
-                    // Activate THIS record if it's not already active
                     if (existingRecord.statecode !== 0) {
-                        debugLog('Activating existing record...');
                         await activateRecord(orgUrl, existingRecord.ts_rompowerbiconfigid);
-                    } else {
-                        debugLog('Record is already active');
                     }
                 } else {
-                    debugLog('No existing record found, creating new one...');
-                    
-                    // Deactivate all currently active records
-                    debugLog('Deactivating old active records...');
                     await deactivateActiveRecords(orgUrl);
-
-                    // Create new active record
-                    debugLog('Creating new active record...');
                     await createConfigRecord(orgUrl, reportId, reportUrl);
                 }
-
             } catch (error) {
                 debugLog(`Exception in checkAndCreateConfig: ${error.message}`, 'error');
             }
@@ -639,7 +632,7 @@
             }
         }
 
-        // Deactivate all OTHER records (not the specified one)
+        // Only one report config should be active at a time
         async function deactivateOtherRecords(orgUrl, excludeRecordId) {
             try {
                 // Query for all active records EXCEPT the specified one
@@ -825,36 +818,28 @@
         }
 
         function extractReportId(input) {
-            // Method 1: Just a GUID
+            // Try to find a GUID from various Power BI URL formats
             if (isValidGuid(input)) {
                 return input;
             }
 
-            // Method 2: reportId query parameter (reportId=xxxxx)
             let match = input.match(/reportId=([a-f0-9\-]+)/i);
             if (match) return match[1];
 
-            // Method 3: Path format with /reports/ (/reports/xxxxx/)
             match = input.match(/\/reports\/([a-f0-9\-]+)/i);
             if (match) return match[1];
 
-            // Method 4: Full URL with /groups/me/reports/xxxxx/
             match = input.match(/\/groups\/[^\/]+\/reports\/([a-f0-9\-]+)/i);
             if (match) return match[1];
 
-            // Method 5: URL with workspace ID /groups/xxxxx/reports/yyyyy/
             match = input.match(/\/groups\/[a-f0-9\-]+\/reports\/([a-f0-9\-]+)/i);
             if (match) return match[1];
 
-            // Method 6: appId in URL (get from appId=xxxxx)
             match = input.match(/appId=([a-f0-9\-]+)/i);
             if (match && isValidGuid(match[1])) return match[1];
 
-            // Method 7: Look for any standalone GUID in the URL
             match = input.match(/([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})/i);
             if (match && match[1]) {
-                // Make sure it's not the ctid or other common IDs
-                // We'll return it but it might fail validation
                 return match[1];
             }
 

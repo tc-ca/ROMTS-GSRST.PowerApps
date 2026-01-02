@@ -2551,6 +2551,7 @@ var ROM;
                         break;
                     }
                 }
+                form.ui.refreshRibbon();
             })
                 .catch(function (error) {
                 console.error("Error retrieving subgrid users: ", error.message);

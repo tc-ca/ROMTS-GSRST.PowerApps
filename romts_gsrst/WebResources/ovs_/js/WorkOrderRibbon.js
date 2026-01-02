@@ -897,7 +897,7 @@ function editUnplannedWorkOrder(primaryControl) {
 function createWorkOrderWorkspaceFromWorkOrder(formContext, currentWorkOrderId, lang) {
   // Retrieve work order data to transfer fields
   Xrm.WebApi.retrieveRecord("msdyn_workorder", currentWorkOrderId,
-    "?$select=msdyn_name,_msdyn_workordertype_value,_ts_region_value,_ts_country_value,_ovs_operationtypeid_value,ts_aircraftclassification,_ts_tradenameid_value,_msdyn_serviceaccount_value,_ts_contact_value,_ts_site_value,_msdyn_functionallocation_value,_ts_subsubsite_value,_ts_reason_value,_ts_workorderjustification_value,_ovs_operationid_value,msdyn_worklocation,_ovs_rational_value,ts_businessowner,_msdyn_primaryincidenttype_value,msdyn_primaryincidentdescription,msdyn_primaryincidentestimatedduration,ts_overtimerequired,ts_reportdetails,_ts_canceledinspectionjustification_value,_ovs_revisedquarterid_value,_ts_scheduledquarterjustification_value,ts_justificationcomment,ts_details,msdyn_instructions,ts_preparationtime,ts_woreportinganddocumentation,ts_comments,ts_overtime,ts_conductingoversight,ts_traveltime,_msdyn_servicerequest_value,_ts_securityincident_value,_ts_trip_value,msdyn_systemstatus"
+    "?$select=msdyn_name,_ownerid_value,_msdyn_workordertype_value,_ts_region_value,_ts_country_value,_ovs_operationtypeid_value,ts_aircraftclassification,_ts_tradenameid_value,_msdyn_serviceaccount_value,_ts_contact_value,_ts_site_value,_msdyn_functionallocation_value,_ts_subsubsite_value,_ts_reason_value,_ts_workorderjustification_value,_ovs_operationid_value,msdyn_worklocation,_ovs_rational_value,ts_businessowner,_msdyn_primaryincidenttype_value,msdyn_primaryincidentdescription,msdyn_primaryincidentestimatedduration,ts_overtimerequired,ts_reportdetails,_ts_canceledinspectionjustification_value,_ovs_revisedquarterid_value,_ts_scheduledquarterjustification_value,ts_justificationcomment,ts_details,msdyn_instructions,ts_preparationtime,ts_woreportinganddocumentation,ts_comments,ts_overtime,ts_conductingoversight,ts_traveltime,_msdyn_servicerequest_value,_ts_securityincident_value,_ts_trip_value,msdyn_systemstatus"
   ).then(
     function success(workOrder) {
       // Prepare data for creating the unplanned work order record
@@ -909,6 +909,9 @@ function createWorkOrderWorkspaceFromWorkOrder(formContext, currentWorkOrderId, 
 
       // Add lookup fields only if they exist
       // Summary
+      if (workOrder._ownerid_value) {
+          unplannedWorkOrderData["ownerid@odata.bind"] = "/systemusers(" + workOrder._ownerid_value + ")";
+      }
       if (currentWorkOrderId) {
         unplannedWorkOrderData["ts_WorkOrder@odata.bind"] = "/msdyn_workorders(" + currentWorkOrderId + ")";
       }
@@ -1097,7 +1100,7 @@ function disableEditButtonOnWorkOrder(primaryControl) {
         ? primaryControl.getAttribute("msdyn_systemstatus")
         : null;
     var status = attr ? attr.getValue() : null;
-    if (status === 690970000 || status === 741130001) {
+    if (status === 690970000 || status === 741130001 || status === 741130000) {
         return true; // Enable Edit button
     }
     else {
@@ -1124,7 +1127,6 @@ function disableEditButtonOnWorkOrder(primaryControl) {
  * If not, it falls back to a shared flag that indicates whether the
  * user has access through an Access Team (e.g., Additional Inspectors).
  */
-
 function enableEditWorkOrderButtonForOwnerOrInspector(primaryControl) {
     const formContext = primaryControl;
     const currentUserId = Xrm.Utility.getGlobalContext().userSettings.userId.replace(/[{}]/g, "");
@@ -1136,5 +1138,20 @@ function enableEditWorkOrderButtonForOwnerOrInspector(primaryControl) {
         }
     }
 
+    if (canEditWorkOrderWorkspace()) {
+        return validUser = true;
+    }
+
     return ROM.WorkOrder.isEditWorkOrderEnabled;
+}
+
+function canEditWorkOrderWorkspace() {
+    var roles = Xrm.Utility.getGlobalContext().userSettings.roles;
+    var enable = false;
+    roles.forEach(function (item) {
+        if (item.name == "System Administrator" || item.name == "ROM - Manager" || item.name == "ROM - Planner" || item.name == "ROM - Business Admin") {
+            enable = true;
+        } 
+    });
+    return enable;
 }
