@@ -10,7 +10,7 @@
         <LocalizedCollectionName description="SharePoint Files" languagecode="1033" />
       </LocalizedCollectionNames>
       <Descriptions>
-        <Description description="-NOT IN USE-&#xA;Used to keep track of what table individual files belong to in SharePoint.  One or more files can have the same SharePoint File ID" languagecode="1033" />
+        <Description description="Used to keep track of files that have been uploaded to SharePoint.  It is used with the File  table to allow users to delete files from SharePoint in ROM." languagecode="1033" />
       </Descriptions>
       <attributes>
         <attribute PhysicalName="CreatedBy">
@@ -685,6 +685,46 @@
             <Description description="Utilisation interne uniquement." languagecode="1036" />
           </Descriptions>
         </attribute>
+        <attribute PhysicalName="ts_FileID">
+          <Type>nvarchar</Type>
+          <Name>ts_fileid</Name>
+          <LogicalName>ts_fileid</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>100</MaxLength>
+          <Length>200</Length>
+          <displaynames>
+            <displayname description="File ID" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="The ID of the related file record from the File table." languagecode="1033" />
+          </Descriptions>
+        </attribute>
         <attribute PhysicalName="ts_Name">
           <Type>nvarchar</Type>
           <Name>ts_name</Name>
@@ -799,6 +839,86 @@
           <Descriptions>
             <Description description="Unique identifier for entity instances" languagecode="1033" />
             <Description description="Identificateur unique des instances d'entité" languagecode="1036" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ts_SharePointFileIdentifier">
+          <Type>nvarchar</Type>
+          <Name>ts_sharepointfileidentifier</Name>
+          <LogicalName>ts_sharepointfileidentifier</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>3000</MaxLength>
+          <Length>6000</Length>
+          <displaynames>
+            <displayname description="SharePoint File Identifier" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="The ID of the uploaded SharePoint file." languagecode="1033" />
+          </Descriptions>
+        </attribute>
+        <attribute PhysicalName="ts_SharePointLineofBusiness">
+          <Type>nvarchar</Type>
+          <Name>ts_sharepointlineofbusiness</Name>
+          <LogicalName>ts_sharepointlineofbusiness</LogicalName>
+          <RequiredLevel>none</RequiredLevel>
+          <DisplayMask>ValidForAdvancedFind|ValidForForm|ValidForGrid</DisplayMask>
+          <ImeMode>auto</ImeMode>
+          <ValidForUpdateApi>1</ValidForUpdateApi>
+          <ValidForReadApi>1</ValidForReadApi>
+          <ValidForCreateApi>1</ValidForCreateApi>
+          <IsCustomField>1</IsCustomField>
+          <IsAuditEnabled>1</IsAuditEnabled>
+          <IsSecured>0</IsSecured>
+          <IntroducedVersion>1.0</IntroducedVersion>
+          <IsCustomizable>1</IsCustomizable>
+          <IsRenameable>1</IsRenameable>
+          <CanModifySearchSettings>1</CanModifySearchSettings>
+          <CanModifyRequirementLevelSettings>1</CanModifyRequirementLevelSettings>
+          <CanModifyAdditionalSettings>1</CanModifyAdditionalSettings>
+          <SourceType>0</SourceType>
+          <IsGlobalFilterEnabled>0</IsGlobalFilterEnabled>
+          <IsSortableEnabled>0</IsSortableEnabled>
+          <CanModifyGlobalFilterSettings>1</CanModifyGlobalFilterSettings>
+          <CanModifyIsSortableSettings>1</CanModifyIsSortableSettings>
+          <IsDataSourceSecret>0</IsDataSourceSecret>
+          <AutoNumberFormat></AutoNumberFormat>
+          <IsSearchable>0</IsSearchable>
+          <IsFilterable>0</IsFilterable>
+          <IsRetrievable>0</IsRetrievable>
+          <IsLocalizable>0</IsLocalizable>
+          <Format>text</Format>
+          <MaxLength>100</MaxLength>
+          <Length>200</Length>
+          <displaynames>
+            <displayname description="SharePoint Line of Business" languagecode="1033" />
+          </displaynames>
+          <Descriptions>
+            <Description description="The line of business that the file is related to." languagecode="1033" />
           </Descriptions>
         </attribute>
         <attribute PhysicalName="ts_TableName">

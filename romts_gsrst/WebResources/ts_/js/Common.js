@@ -8,6 +8,7 @@ const TEAM_SCHEMA_NAMES = {
   ROM_RAIL_SAFETY_ADMINISTRATOR: "ts_ROMRailSafetyAdministratorGUID",
   AVIATION_SECURITY_INTERNATIONAL_DEV: "ts_AviationSecurityInternationalTeamGUID_DEV",
   ISSO_TEAM_DEV: "ts_IntermodalSurfaceSecurityOversightISSOTeamGUID_DEV",
+  ROM_SECURITY_INCIDENT_TEAM: "ts_ROMSecurityIncident",
 };
 
 // Business Unit Schema Name Constants
@@ -22,6 +23,11 @@ const BU_SCHEMA_NAMES = {
 // Model Driven App Names
 const MDA_NAMES = {
     ROM_RAIL_SAFETY: "ts_ROMRailSafetyAppId"
+}
+
+// Operation Type Configuration
+const OPERATION_TYPE_NAMES = {
+    RAILWAY_CARRIER: "ts_RailwayCarrierOperationTypeId"
 }
 
 function userHasRole(rolesName) {

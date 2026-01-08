@@ -132,9 +132,11 @@ var ROM;
                                     form.getControl("ts_details").setVisible(false);
                                     /*                form.getControl("ts_overtime").setVisible(false);*/
                                     form.getControl("ts_overtimerequired").setVisible(true);
+                                    form.getControl("ts_servicerequest").setDisabled(true);
                                 }
                                 else {
                                     form.getControl("ts_details").setVisible(true);
+                                    form.getControl("ts_servicerequest").setVisible(false);
                                     //form.getControl("ts_instructions").setVisible(true);
                                     //form.getControl("ts_accountableteam").setVisible(true);
                                     //form.getControl("ts_plannedcost").setVisible(false);
@@ -175,21 +177,21 @@ var ROM;
             //Keep track of the current system status, to be used when cancelling a status change.
             currentStatus = form.getAttribute("ts_state").getValue();
             form.getControl("ts_worklocation").removeOption(690970001); //Remove Facility Work Location Option
-            //updateCaseView(eContext);
+            updateCaseView(eContext);
             //Set required fields
             form.getAttribute("ts_region").setRequiredLevel("required");
             form.getAttribute("ts_operationtype").setRequiredLevel("required");
             form.getAttribute("ts_site").setRequiredLevel("required");
             //If the Work Order has a Case, set the case lookup to required to prevent saving a Work Order without a Case
-            //if (form.getAttribute("ts_servicerequest").getValue() != null) {
-            //    form.getAttribute("ts_servicerequest").setRequiredLevel("required");
-            //}
-            ////Set Case Lookup Navigation to open Time Tracking form when on Time Tracking Tab
-            //setCaseLookupClickNavigation(eContext);
-            ////Set Security Incident Lookup Navigation to open Time Tracking form when on Time Tracking Tab
-            //setSecurityIncidentLookupClickNavigation(eContext);
-            ////Set Trip Lookup Navigation to open Time Tracking form when on Time Tracking Tab
-            //setTripLookupClickNavigation(eContext);
+            if (form.getAttribute("ts_servicerequest").getValue() != null) {
+                form.getAttribute("ts_servicerequest").setRequiredLevel("required");
+            }
+            //Set Case Lookup Navigation to open Time Tracking form when on Time Tracking Tab
+            setCaseLookupClickNavigation(eContext);
+            //Set Security Incident Lookup Navigation to open Time Tracking form when on Time Tracking Tab
+            setSecurityIncidentLookupClickNavigation(eContext);
+            //Set Trip Lookup Navigation to open Time Tracking form when on Time Tracking Tab
+            setTripLookupClickNavigation(eContext);
             showHideFiedsByOperationType(eContext);
             //if (currentSystemStatus == 690970004 || currentSystemStatus == msdyn_wosystemstatus.Closed) {
             //    form.getControl("ts_completedquarter").setVisible(true);
@@ -227,20 +229,20 @@ var ROM;
             //else { //If the work order is active, show the active views
             //    setWorkOrderServiceTasksView(form, true);
             //}
-            //if (form.getAttribute("ts_fiscalquarter").getValue() != null && form.getAttribute("ts_revisedquarter").getValue() == null)
-            //    form.getAttribute("ovs_revisedquarterid").setValue(form.getAttribute("ovs_fiscalquarter").getValue());
-            //setScheduledQuarterFilter(form);
+            if (form.getAttribute("ts_plannedfiscalquarter").getValue() != null && form.getAttribute("ts_revisedquarterid").getValue() == null)
+                form.getAttribute("ts_revisedquarterid").setValue(form.getAttribute("ts_plannedfiscalquarter").getValue());
+            setScheduledQuarterFilter(form);
             switch (form.ui.getFormType()) {
                 case 1: //Create New Work Order
                     //If work order is New (case 1) and it already has a case on form load, the work order must be coming from a case
-                    //if (form.getAttribute("ts_servicerequest").getValue() != null) {
-                    //    isFromCase = true;
-                    //}
-                    //else if (form.getAttribute("ts_securityincident").getValue() != null) {
-                    //    isFromSecurityIncident = true;
-                    //}
+                    if (form.getAttribute("ts_servicerequest").getValue() != null) {
+                        isFromCase = true;
+                    }
+                    else if (form.getAttribute("ts_securityincident").getValue() != null) {
+                        isFromSecurityIncident = true;
+                    }
                     // Set default values
-                    //          setDefaultFiscalYear(form);
+                    setDefaultFiscalYear(form);
                     setRegion(form);
                     //If the new work order is coming from a case, set default rational to planned
                     if (isFromCase) {
@@ -248,7 +250,7 @@ var ROM;
                         lookup[0] = new Object();
                         lookup[0].id = "{994c3ec1-c104-eb11-a813-000d3af3a7a7}";
                         lookup[0].name = "Planned";
-                        lookup[0].entityType = "ts_tyrational";
+                        lookup[0].entityType = "ovs_tyrational";
                         form.getAttribute("ts_rational").setValue(lookup); //Planned
                     }
                     else {
@@ -258,7 +260,7 @@ var ROM;
                         lookup[0].name = "Unplanned";
                         lookup[0].entityType = "ovs_tyrational";
                         form.getAttribute("ts_rational").setValue(lookup); //Unplanned
-                        //                setFiscalQuarter(form);
+                        setFiscalQuarter(form);
                     }
                     // Disable all operation related fields
                     form.getControl("ts_region").setDisabled(true);
@@ -432,6 +434,13 @@ var ROM;
             //Lock Cancelled Inspection Justification field if WO is cancelled
             if (currentSystemStatus == 690970005 /* Cancelled */) {
                 form.getControl("ts_cancelledinspectionjustification").setDisabled(true);
+                var selectedCanceledWorkOrderReason = form.getAttribute("ts_cancelledinspectionjustification").getValue();
+                var selectedOther = "{A8D7125C-7F24-ED11-9DB2-002248AE429C}";
+                //If 'Other' is selected as a reason, make ts_othercanceledjustification visible
+                if (selectedCanceledWorkOrderReason != null && selectedCanceledWorkOrderReason[0].id.toUpperCase() == selectedOther) {
+                    form.getControl("ts_othercancelledjustification").setVisible(true);
+                    form.getAttribute("ts_othercancelledjustification").setRequiredLevel("required");
+                }
             }
             //  unlockRecordLogFieldsIfUserIsSystemAdmin(form);
             RemoveOptionCancel(eContext);
@@ -1368,17 +1377,18 @@ var ROM;
         //            //form.getAttribute("ts_woreportinganddocumentation").setRequiredLevel("none");
         //        }
         //}
-        //export function caseOnChange(eContext: Xrm.ExecutionContext<any, any>): void {
-        //    const form = <Form.msdyn_workorder.Main.ROMOversightActivity>eContext.getFormContext();
-        //    const caseAttribute = form.getAttribute("msdyn_servicerequest");
-        //    if (caseAttribute.getValue() == null) {
-        //        form.getControl("ts_region").setDisabled(false);
-        //        form.getControl("ts_country").setDisabled(false);
-        //        //form.getControl("ts_tradenameid").setDisabled(false);
-        //        form.getControl("msdyn_serviceaccount").setDisabled(false);
-        //        form.getControl("ts_site").setDisabled(false);
-        //    }
-        //}
+        function caseOnChange(eContext) {
+            var form = eContext.getFormContext();
+            var caseAttribute = form.getAttribute("ts_stakeholder");
+            if (caseAttribute.getValue() == null) {
+                form.getControl("ts_region").setDisabled(false);
+                form.getControl("ts_country").setDisabled(false);
+                //form.getControl("ts_tradenameid").setDisabled(false);
+                form.getControl("ts_stakeholder").setDisabled(false);
+                form.getControl("ts_site").setDisabled(false);
+            }
+        }
+        UnplannedWorkOrder.caseOnChange = caseOnChange;
         //export function stateCodeOnChange(eContext: Xrm.ExecutionContext<any, any>): void {
         //    const form = <Form.msdyn_workorder.Main.ROMOversightActivity>eContext.getFormContext();
         //    var stateCode = form.getAttribute("statecode").getValue();
@@ -1395,52 +1405,52 @@ var ROM;
         //        }
         //    }
         //}
-        //export function updateCaseView(eContext: Xrm.ExecutionContext<any, any>): void {
-        //    try {
-        //        const form = <Form.msdyn_workorder.Main.ROMOversightActivity>eContext.getFormContext();
-        //        const caseAttribute = form.getAttribute("msdyn_servicerequest");
-        //        const regionAttribute = form.getAttribute("ts_region");
-        //        const countryAttribute = form.getAttribute("ts_country");
-        //        const stakeholderAttribute = form.getAttribute("msdyn_serviceaccount");
-        //        const siteAttribute = form.getAttribute("ts_site");
-        //        const caseAttributeValue = caseAttribute.getValue();
-        //        const regionAttributeValue = regionAttribute.getValue();
-        //        const countryAttributeValue = countryAttribute.getValue();
-        //        const stakeholderAttributeValue = stakeholderAttribute.getValue();
-        //        const siteAttributeValue = siteAttribute.getValue();
-        //        var regionCondition = regionAttributeValue == null ? "" : '<condition attribute="ovs_region" operator="eq" value="' + regionAttributeValue[0].id + '" />';
-        //        var countryCondition = getCountryFetchXmlCondition(form);
-        //        var stakeholderCondition = stakeholderAttributeValue == null ? "" : '<condition attribute="customerid" operator="eq" value="' + stakeholderAttributeValue[0].id + '" />';
-        //        var siteCondition = siteAttributeValue == null ? "" : '<condition attribute="msdyn_functionallocation" operator="eq" value="' + siteAttributeValue[0].id + '" />';
-        //        if (caseAttribute != null && caseAttribute != undefined) {
-        //            if (caseAttributeValue != null) {
-        //                Xrm.WebApi.retrieveRecord("incident", caseAttributeValue[0].id.replace(/({|})/g, ''), "?$select=_ovs_region_value, _ts_country_value, _customerid_value, _msdyn_functionallocation_value").then(
-        //                    function success(result) {
-        //                        if ((regionCondition != "" && (result != null && regionAttributeValue != null && regionAttributeValue[0].id.replace(/({|})/g, '') != result._ovs_region_value?.toUpperCase())) ||
-        //                            (countryCondition != "" && (result != null && countryAttributeValue != null && countryAttributeValue[0].id.replace(/({|})/g, '') != result._ts_country_value?.toUpperCase())) ||
-        //                            (stakeholderCondition != "" && (result != null && stakeholderAttributeValue != null && stakeholderAttributeValue[0].id.replace(/({|})/g, '') != result._customerid_value?.toUpperCase())) ||
-        //                            (siteCondition != "" && (result != null && siteAttributeValue != null && siteAttributeValue[0].id.replace(/({|})/g, '') != result._msdyn_functionallocation_value?.toUpperCase()))) {
-        //                            form.getAttribute("msdyn_servicerequest").setValue(null);
-        //                        }
-        //                    },
-        //                    function (error) {
-        //                        showErrorMessageAlert(error);
-        //                    }
-        //                );
-        //            }
-        //            // Setup a custom view
-        //            // This value is never saved and only needs to be unique among the other available views for the lookup.
-        //            const viewId = '{5B58559F-F162-5428-4771-79BC825240B3}';
-        //            const entityName = "incident";
-        //            const viewDisplayName = Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "FilteredCases");
-        //            const fetchXml = '<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"> <entity name="incident"> <attribute name="ticketnumber" /> <attribute name="incidentid" /> <order attribute="ticketnumber" descending="false" /> <filter type="and">' + regionCondition + countryCondition + stakeholderCondition + siteCondition + ' </filter> </entity> </fetch>';
-        //            const layoutXml = '<grid name="resultset" object="10010" jump="title" select="1" icon="1" preview="1"><row name="result" id="incidentid"><cell name="title" width="200" /></row></grid>';
-        //            form.getControl("msdyn_servicerequest").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
-        //        }
-        //    } catch (e) {
-        //        throw new Error((e as any).Message);
-        //    }
-        //}
+        function updateCaseView(eContext) {
+            try {
+                var form_6 = eContext.getFormContext();
+                var caseAttribute = form_6.getAttribute("ts_servicerequest");
+                var regionAttribute = form_6.getAttribute("ts_region");
+                var countryAttribute = form_6.getAttribute("ts_country");
+                var stakeholderAttribute = form_6.getAttribute("ts_stakeholder");
+                var siteAttribute = form_6.getAttribute("ts_site");
+                var caseAttributeValue = caseAttribute.getValue();
+                var regionAttributeValue_1 = regionAttribute.getValue();
+                var countryAttributeValue_1 = countryAttribute.getValue();
+                var stakeholderAttributeValue_1 = stakeholderAttribute.getValue();
+                var siteAttributeValue_1 = siteAttribute.getValue();
+                var regionCondition = regionAttributeValue_1 == null ? "" : '<condition attribute="ovs_region" operator="eq" value="' + regionAttributeValue_1[0].id + '" />';
+                var countryCondition = getCountryFetchXmlCondition(form_6);
+                var stakeholderCondition = stakeholderAttributeValue_1 == null ? "" : '<condition attribute="customerid" operator="eq" value="' + stakeholderAttributeValue_1[0].id + '" />';
+                var siteCondition = siteAttributeValue_1 == null ? "" : '<condition attribute="msdyn_functionallocation" operator="eq" value="' + siteAttributeValue_1[0].id + '" />';
+                if (caseAttribute != null && caseAttribute != undefined) {
+                    if (caseAttributeValue != null) {
+                        Xrm.WebApi.retrieveRecord("incident", caseAttributeValue[0].id.replace(/({|})/g, ''), "?$select=_ovs_region_value, _ts_country_value, _customerid_value, _msdyn_functionallocation_value").then(function success(result) {
+                            var _a, _b, _c, _d;
+                            if ((regionCondition != "" && (result != null && regionAttributeValue_1 != null && regionAttributeValue_1[0].id.replace(/({|})/g, '') != ((_a = result._ovs_region_value) === null || _a === void 0 ? void 0 : _a.toUpperCase()))) ||
+                                (countryCondition != "" && (result != null && countryAttributeValue_1 != null && countryAttributeValue_1[0].id.replace(/({|})/g, '') != ((_b = result._ts_country_value) === null || _b === void 0 ? void 0 : _b.toUpperCase()))) ||
+                                (stakeholderCondition != "" && (result != null && stakeholderAttributeValue_1 != null && stakeholderAttributeValue_1[0].id.replace(/({|})/g, '') != ((_c = result._customerid_value) === null || _c === void 0 ? void 0 : _c.toUpperCase()))) ||
+                                (siteCondition != "" && (result != null && siteAttributeValue_1 != null && siteAttributeValue_1[0].id.replace(/({|})/g, '') != ((_d = result._msdyn_functionallocation_value) === null || _d === void 0 ? void 0 : _d.toUpperCase())))) {
+                                form_6.getAttribute("ts_servicerequest").setValue(null);
+                            }
+                        }, function (error) {
+                            showErrorMessageAlert(error);
+                        });
+                    }
+                    // Setup a custom view
+                    // This value is never saved and only needs to be unique among the other available views for the lookup.
+                    var viewId = '{5B58559F-F162-5428-4771-79BC825240B3}';
+                    var entityName = "incident";
+                    var viewDisplayName = Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "FilteredCases");
+                    var fetchXml = '<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"> <entity name="incident"> <attribute name="ticketnumber" /> <attribute name="incidentid" /> <order attribute="ticketnumber" descending="false" /> <filter type="and">' + regionCondition + countryCondition + stakeholderCondition + siteCondition + ' </filter> </entity> </fetch>';
+                    var layoutXml = '<grid name="resultset" object="10010" jump="title" select="1" icon="1" preview="1"><row name="result" id="incidentid"><cell name="title" width="200" /></row></grid>';
+                    form_6.getControl("ts_servicerequest").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
+                }
+            }
+            catch (e) {
+                throw new Error(e.Message);
+            }
+        }
+        UnplannedWorkOrder.updateCaseView = updateCaseView;
         //export function revisedQuarterOnChange(eContext: Xrm.ExecutionContext<any, any>): void {
         //    const form = <Form.msdyn_workorder.Main.ROMOversightActivity>eContext.getFormContext();
         //    const revisedQuarterAttribute = form.getAttribute("ovs_revisedquarterid");
@@ -1499,39 +1509,40 @@ var ROM;
             }
         }
         UnplannedWorkOrder.scheduledQuarterOnChange = scheduledQuarterOnChange;
-        ////Sets the Scheduled Quarter filter to show quarters in the planned fiscal year and the year after
-        //export function setScheduledQuarterFilter(form: Form.msdyn_workorder.Main.ROMOversightActivity): void {
-        //    //Get name of planned fiscal year
-        //    const fiscalYearValue = form.getAttribute("ovs_fiscalyear").getValue();
-        //    if (fiscalYearValue != null) {
-        //        const fiscalYearName = fiscalYearValue[0].name;
-        //        if (fiscalYearName != null) {
-        //            const nextFiscalYearName = fiscalYearName.split("-")[1] + "-" + (Number(fiscalYearName.split("-")[1]) + 1);
-        //            const viewId = '{8982C38D-8BB4-4C95-BD05-493398F' + Date.now().toString().slice(-5) + '}'; //If this function is called again, this guid needs to be unique
-        //            const entityName = "tc_tcfiscalquarter";
-        //            const viewDisplayName = "Fiscal Quarters";
-        //            //All Active Stakeholders/Accounts that have an Operation with a matching Operation Type
-        //            var fetchXml = [
-        //                "<fetch>",
-        //                "  <entity name='tc_tcfiscalquarter'>",
-        //                "    <attribute name='tc_name'/>",
-        //                "    <attribute name='tc_tcfiscalyearid'/>",
-        //                "    <order attribute='tc_tcfiscalyearid'/>",
-        //                "    <link-entity name='tc_tcfiscalyear' from='tc_tcfiscalyearid' to='tc_tcfiscalyearid' alias='fiscalyear'>",
-        //                "      <attribute name='tc_fiscalyearlonglbl'/>",
-        //                "      <filter type='or'>",
-        //                "        <condition attribute='tc_name' operator='eq' value='", fiscalYearName, "'/>",
-        //                "        <condition attribute='tc_name' operator='eq' value='", nextFiscalYearName, "'/>",
-        //                "      </filter>",
-        //                "    </link-entity>",
-        //                "  </entity>",
-        //                "</fetch>"
-        //            ].join("");
-        //            const layoutXml = '<grid name="resultset" jump="tc_name" select="1" icon="1" preview="1"> <row name="result" id="fiscalquarterid"> <cell name="tc_name" width="100" />< cell name = "fiscalyear.tc_fiscalyearlonglbl" width = "167" /></row> </grid>';
-        //            form.getControl("ovs_revisedquarterid").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
-        //        }
-        //    }
-        //}
+        //Sets the Scheduled Quarter filter to show quarters in the planned fiscal year and the year after
+        function setScheduledQuarterFilter(form) {
+            //Get name of planned fiscal year
+            var fiscalYearValue = form.getAttribute("ts_plannedfiscalyear").getValue();
+            if (fiscalYearValue != null) {
+                var fiscalYearName = fiscalYearValue[0].name;
+                if (fiscalYearName != null) {
+                    var nextFiscalYearName = fiscalYearName.split("-")[1] + "-" + (Number(fiscalYearName.split("-")[1]) + 1);
+                    var viewId = '{8982C38D-8BB4-4C95-BD05-493398F' + Date.now().toString().slice(-5) + '}'; //If this function is called again, this guid needs to be unique
+                    var entityName = "tc_tcfiscalquarter";
+                    var viewDisplayName = "Fiscal Quarters";
+                    //All Active Stakeholders/Accounts that have an Operation with a matching Operation Type
+                    var fetchXml = [
+                        "<fetch>",
+                        "  <entity name='tc_tcfiscalquarter'>",
+                        "    <attribute name='tc_name'/>",
+                        "    <attribute name='tc_tcfiscalyearid'/>",
+                        "    <order attribute='tc_tcfiscalyearid'/>",
+                        "    <link-entity name='tc_tcfiscalyear' from='tc_tcfiscalyearid' to='tc_tcfiscalyearid' alias='fiscalyear'>",
+                        "      <attribute name='tc_fiscalyearlonglbl'/>",
+                        "      <filter type='or'>",
+                        "        <condition attribute='tc_name' operator='eq' value='", fiscalYearName, "'/>",
+                        "        <condition attribute='tc_name' operator='eq' value='", nextFiscalYearName, "'/>",
+                        "      </filter>",
+                        "    </link-entity>",
+                        "  </entity>",
+                        "</fetch>"
+                    ].join("");
+                    var layoutXml = '<grid name="resultset" jump="tc_name" select="1" icon="1" preview="1"> <row name="result" id="fiscalquarterid"> <cell name="tc_name" width="100" />< cell name = "fiscalyear.tc_fiscalyearlonglbl" width = "167" /></row> </grid>';
+                    form.getControl("ts_revisedquarterid").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
+                }
+            }
+        }
+        UnplannedWorkOrder.setScheduledQuarterFilter = setScheduledQuarterFilter;
         // FUNCTIONS
         function postNoteOnScheduledQuarterChange(form) {
             if (scheduledQuarterAttributeValueChanged) {
@@ -1576,24 +1587,23 @@ var ROM;
                 .select(function (x) { return [x.tc_name]; })
                 .filter(function (x) { return Filter.equals(x.tc_iscurrentfiscalyear, true); })
                 .execute(function (fiscalYears) {
-                //should only return one fiscal year record as the current
-                if (fiscalYears.length === 1) {
-                    var targetedFiscalYear = fiscalYears[0];
-                    var lookup = new Array();
-                    lookup[0] = new Object();
-                    lookup[0].id = targetedFiscalYear.tc_tcfiscalyearid;
-                    lookup[0].name = targetedFiscalYear.tc_name;
-                    lookup[0].entityType = 'tc_tcfiscalyear';
-                    form.getAttribute('ovs_fiscalyear').setValue(lookup);
+                // There are 2 records: one year fiscal year and five year fiscal year.
+                if (!fiscalYears || fiscalYears.length === 0) {
+                    return; // nothing to set
                 }
-                else {
-                    // do not set a default if multiple records are found, error.
-                }
+                // set to one year fiscal year.
+                var targetedFiscalYear = fiscalYears[0];
+                var lookup = new Array();
+                lookup[0] = new Object();
+                lookup[0].id = targetedFiscalYear.tc_tcfiscalyearid;
+                lookup[0].name = targetedFiscalYear.tc_name;
+                lookup[0].entityType = 'tc_tcfiscalyear';
+                form.getAttribute('ts_plannedfiscalyear').setValue(lookup);
             });
         }
         function removeSelectedFiscalQuarter(eContext) {
             var form = eContext.getFormContext();
-            form.getAttribute('ovs_fiscalquarter').setValue(null);
+            form.getAttribute('ts_plannedfiscalquarter').setValue(null);
         }
         function setRegion(form) {
             var regionAttribute = form.getAttribute("ts_region");
@@ -2012,26 +2022,29 @@ var ROM;
         //        form.getAttribute("ts_incompleteworkorderreasonforother").setRequiredLevel("none");
         //    }
         //}
-        //export function fiscalQuarterOnChange(eContext: Xrm.ExecutionContext<any, any>): void {
-        //    const form = <Form.msdyn_workorder.Main.ROMOversightActivity>eContext.getFormContext();
-        //    //Check if the Work Order is past the Planned Fiscal Quarter
-        //    setCantCompleteinspectionVisibility(form);
-        //    setScheduledQuarterFilter(form);
-        //}
-        //export function canceledWorkOrderReasonOnChange(eContext: Xrm.ExecutionContext<any, any>): void {
-        //    const form = <Form.msdyn_workorder.Main.ROMOversightActivity>eContext.getFormContext();
-        //    let selectedCanceledWorkOrderReason = form.getAttribute("ts_canceledinspectionjustification").getValue();
-        //    const selectedOther = "{A8D7125C-7F24-ED11-9DB2-002248AE429C}";
-        //    //If 'Other' is selected as a reason, make ts_othercanceledjustification visible
-        //    if (selectedCanceledWorkOrderReason != null && selectedCanceledWorkOrderReason[0].id.toUpperCase() == selectedOther) {
-        //        form.getControl("ts_othercanceledjustification").setVisible(true);
-        //        form.getAttribute("ts_othercanceledjustification").setRequiredLevel("required");
-        //    } else {
-        //        form.getControl("ts_othercanceledjustification").setVisible(false);
-        //        form.getAttribute("ts_othercanceledjustification").setValue(null);
-        //        form.getAttribute("ts_othercanceledjustification").setRequiredLevel("none");
-        //    }
-        //}
+        function fiscalQuarterOnChange(eContext) {
+            var form = eContext.getFormContext();
+            //Check if the Work Order is past the Planned Fiscal Quarter
+            //setCantCompleteinspectionVisibility(form);
+            setScheduledQuarterFilter(form);
+        }
+        UnplannedWorkOrder.fiscalQuarterOnChange = fiscalQuarterOnChange;
+        function canceledWorkOrderReasonOnChange(eContext) {
+            var form = eContext.getFormContext();
+            var selectedCanceledWorkOrderReason = form.getAttribute("ts_cancelledinspectionjustification").getValue();
+            var selectedOther = "{A8D7125C-7F24-ED11-9DB2-002248AE429C}";
+            //If 'Other' is selected as a reason, make ts_othercanceledjustification visible
+            if (selectedCanceledWorkOrderReason != null && selectedCanceledWorkOrderReason[0].id.toUpperCase() == selectedOther) {
+                form.getControl("ts_othercancelledjustification").setVisible(true);
+                form.getAttribute("ts_othercancelledjustification").setRequiredLevel("required");
+            }
+            else {
+                form.getControl("ts_othercancelledjustification").setVisible(false);
+                form.getAttribute("ts_othercancelledjustification").setValue(null);
+                form.getAttribute("ts_othercancelledjustification").setRequiredLevel("none");
+            }
+        }
+        UnplannedWorkOrder.canceledWorkOrderReasonOnChange = canceledWorkOrderReasonOnChange;
         function populateOperationField(eContext) {
             var form = eContext.getFormContext();
             var operationTypeAttribute = form.getAttribute("ts_operationtype");
@@ -2186,119 +2199,113 @@ var ROM;
                 });
             });
         }
-        //function setFiscalQuarter(form: Form.msdyn_workorder.Main.ROMOversightActivity) {
-        //    let currentDate = new Date();
-        //    let currentDateString = currentDate.toISOString();
-        //    let fetchXml = `<fetch top="1"><entity name="tc_tcfiscalquarter"><attribute name="tc_name"/><attribute name="tc_tcfiscalquarterid"/><filter type="and"><condition attribute="tc_quarterstart" operator="le" value="${currentDateString}"/><condition attribute="tc_quarterend" operator="ge" value="${currentDateString}"/></filter></entity></fetch>`;
-        //    let lookup = new Array();
-        //    Xrm.WebApi.retrieveMultipleRecords("tc_tcfiscalquarter", "?fetchXml=" + fetchXml).then(
-        //        function success(result) {
-        //            lookup[0] = new Object();
-        //            lookup[0].entityType = "tc_tcfiscalquarter";
-        //            lookup[0].name = result.entities[0].tc_name;
-        //            lookup[0].id = result.entities[0].tc_tcfiscalquarterid;
-        //            form.getAttribute("ovs_fiscalquarter").setValue(lookup);
-        //        },
-        //        function (error) {
-        //        }
-        //    );
-        //}
-        //function setCaseLookupClickNavigation(eContext) {
-        //    const formContext = eContext.getFormContext();
-        //    formContext.getControl("msdyn_servicerequest").addOnLookupTagClick(function (eContext) {
-        //        const formContext = eContext.getFormContext();
-        //        //Check if the Time Tracking Tab is Expanded
-        //        var timeTrackingExpanded = false;
-        //        if (isROM20Form) {
-        //            timeTrackingExpanded = formContext.ui.tabs.get("tab_workspace").getDisplayState() == 'expanded';
-        //        }
-        //        else {
-        //            timeTrackingExpanded = formContext.ui.tabs.get("tab_TimeTracking").getDisplayState() == 'expanded';
-        //        }
-        //        if (timeTrackingExpanded) {
-        //            eContext.getEventArgs().preventDefault(); //Prevent default navigation to normal Case form
-        //            var record = eContext.getEventArgs().getTagValue();
-        //            Xrm.Navigation.navigateTo({
-        //                pageType: "entityrecord",
-        //                entityName: record.entityType,
-        //                entityId: record.id,
-        //                formId: "cc169f8e-7df9-ed11-8f6e-000d3af36bac"
-        //            }, {
-        //                target: 2,
-        //                position: 2,
-        //                width:
-        //                {
-        //                    value: 30,
-        //                    unit: "%"
-        //                }
-        //            });
-        //        }
-        //    });
-        //}
-        //function setSecurityIncidentLookupClickNavigation(eContext) {
-        //    const formContext = eContext.getFormContext();
-        //    formContext.getControl("ts_securityincident").addOnLookupTagClick(function (eContext) {
-        //        const formContext = eContext.getFormContext();
-        //        //Check if the Time Tracking Tab is Expanded
-        //        var timeTrackingExpanded = false;
-        //        if (isROM20Form) {
-        //            timeTrackingExpanded = formContext.ui.tabs.get("tab_workspace").getDisplayState() == 'expanded';
-        //        }
-        //        else {
-        //            timeTrackingExpanded = formContext.ui.tabs.get("tab_TimeTracking").getDisplayState() == 'expanded';
-        //        }
-        //        if (timeTrackingExpanded) {
-        //            eContext.getEventArgs().preventDefault(); //Prevent default navigation to normal Case form
-        //            var record = eContext.getEventArgs().getTagValue();
-        //            Xrm.Navigation.navigateTo({
-        //                pageType: "entityrecord",
-        //                entityName: record.entityType,
-        //                entityId: record.id,
-        //                formId: "54b321b6-6afa-ed11-8f6e-0022483c5061"
-        //            }, {
-        //                target: 2,
-        //                position: 2,
-        //                width:
-        //                {
-        //                    value: 30,
-        //                    unit: "%"
-        //                }
-        //            });
-        //        }
-        //    });
-        //}
-        //function setTripLookupClickNavigation(eContext) {
-        //    const formContext = eContext.getFormContext();
-        //    formContext.getControl("ts_trip").addOnLookupTagClick(function (eContext) {
-        //        const formContext = eContext.getFormContext();
-        //        //Check if the Time Tracking Tab is Expanded
-        //        var timeTrackingExpanded = false;
-        //        if (isROM20Form) {
-        //            timeTrackingExpanded = formContext.ui.tabs.get("tab_workspace").getDisplayState() == 'expanded';
-        //        }
-        //        else {
-        //            timeTrackingExpanded = formContext.ui.tabs.get("tab_TimeTracking").getDisplayState() == 'expanded';
-        //        }
-        //        if (timeTrackingExpanded) {
-        //            eContext.getEventArgs().preventDefault(); //Prevent default navigation to normal Case form
-        //            var record = eContext.getEventArgs().getTagValue();
-        //            Xrm.Navigation.navigateTo({
-        //                pageType: "entityrecord",
-        //                entityName: record.entityType,
-        //                entityId: record.id,
-        //                formId: "F9A735C7-D9C6-4CFF-B0CE-C78A28C8E5AD"
-        //            }, {
-        //                target: 2,
-        //                position: 2,
-        //                width:
-        //                {
-        //                    value: 30,
-        //                    unit: "%"
-        //                }
-        //            });
-        //        }
-        //    });
-        //}
+        function setFiscalQuarter(form) {
+            var currentDate = new Date();
+            var currentDateString = currentDate.toISOString();
+            var fetchXml = "<fetch top=\"1\"><entity name=\"tc_tcfiscalquarter\"><attribute name=\"tc_name\"/><attribute name=\"tc_tcfiscalquarterid\"/><filter type=\"and\"><condition attribute=\"tc_quarterstart\" operator=\"le\" value=\"" + currentDateString + "\"/><condition attribute=\"tc_quarterend\" operator=\"ge\" value=\"" + currentDateString + "\"/></filter></entity></fetch>";
+            var lookup = new Array();
+            Xrm.WebApi.retrieveMultipleRecords("tc_tcfiscalquarter", "?fetchXml=" + fetchXml).then(function success(result) {
+                lookup[0] = new Object();
+                lookup[0].entityType = "tc_tcfiscalquarter";
+                lookup[0].name = result.entities[0].tc_name;
+                lookup[0].id = result.entities[0].tc_tcfiscalquarterid;
+                form.getAttribute("ts_plannedfiscalquarter").setValue(lookup);
+            }, function (error) {
+            });
+        }
+        function setCaseLookupClickNavigation(eContext) {
+            var formContext = eContext.getFormContext();
+            formContext.getControl("ts_servicerequest").addOnLookupTagClick(function (eContext) {
+                var formContext = eContext.getFormContext();
+                //Check if the Time Tracking Tab is Expanded
+                var timeTrackingExpanded = false;
+                if (isROM20Form) {
+                    //timeTrackingExpanded = formContext.ui.tabs.get("tab_workspace").getDisplayState() == 'expanded';
+                }
+                else {
+                    timeTrackingExpanded = formContext.ui.tabs.get("tab_TimeTracking").getDisplayState() == 'expanded';
+                }
+                if (timeTrackingExpanded) {
+                    eContext.getEventArgs().preventDefault(); //Prevent default navigation to normal Case form
+                    var record = eContext.getEventArgs().getTagValue();
+                    Xrm.Navigation.navigateTo({
+                        pageType: "entityrecord",
+                        entityName: record.entityType,
+                        entityId: record.id,
+                        formId: "cc169f8e-7df9-ed11-8f6e-000d3af36bac"
+                    }, {
+                        target: 2,
+                        position: 2,
+                        width: {
+                            value: 30,
+                            unit: "%"
+                        }
+                    });
+                }
+            });
+        }
+        function setSecurityIncidentLookupClickNavigation(eContext) {
+            var formContext = eContext.getFormContext();
+            formContext.getControl("ts_securityincident").addOnLookupTagClick(function (eContext) {
+                var formContext = eContext.getFormContext();
+                //Check if the Time Tracking Tab is Expanded
+                var timeTrackingExpanded = false;
+                if (isROM20Form) {
+                    //timeTrackingExpanded = formContext.ui.tabs.get("tab_workspace").getDisplayState() == 'expanded';
+                }
+                else {
+                    timeTrackingExpanded = formContext.ui.tabs.get("tab_TimeTracking").getDisplayState() == 'expanded';
+                }
+                if (timeTrackingExpanded) {
+                    eContext.getEventArgs().preventDefault(); //Prevent default navigation to normal Case form
+                    var record = eContext.getEventArgs().getTagValue();
+                    Xrm.Navigation.navigateTo({
+                        pageType: "entityrecord",
+                        entityName: record.entityType,
+                        entityId: record.id,
+                        formId: "54b321b6-6afa-ed11-8f6e-0022483c5061"
+                    }, {
+                        target: 2,
+                        position: 2,
+                        width: {
+                            value: 30,
+                            unit: "%"
+                        }
+                    });
+                }
+            });
+        }
+        function setTripLookupClickNavigation(eContext) {
+            var formContext = eContext.getFormContext();
+            formContext.getControl("ts_trip").addOnLookupTagClick(function (eContext) {
+                var formContext = eContext.getFormContext();
+                //Check if the Time Tracking Tab is Expanded
+                var timeTrackingExpanded = false;
+                if (isROM20Form) {
+                    //timeTrackingExpanded = formContext.ui.tabs.get("tab_workspace").getDisplayState() == 'expanded';
+                }
+                else {
+                    timeTrackingExpanded = formContext.ui.tabs.get("tab_TimeTracking").getDisplayState() == 'expanded';
+                }
+                if (timeTrackingExpanded) {
+                    eContext.getEventArgs().preventDefault(); //Prevent default navigation to normal Case form
+                    var record = eContext.getEventArgs().getTagValue();
+                    Xrm.Navigation.navigateTo({
+                        pageType: "entityrecord",
+                        entityName: record.entityType,
+                        entityId: record.id,
+                        formId: "F9A735C7-D9C6-4CFF-B0CE-C78A28C8E5AD"
+                    }, {
+                        target: 2,
+                        position: 2,
+                        width: {
+                            value: 30,
+                            unit: "%"
+                        }
+                    });
+                }
+            });
+        }
         //function unlockRecordLogFieldsIfUserIsSystemAdmin(formContext) {
         //    if (userHasRole("System Administrator")) {
         //        formContext.getControl("msdyn_timeclosed").setDisabled(false);

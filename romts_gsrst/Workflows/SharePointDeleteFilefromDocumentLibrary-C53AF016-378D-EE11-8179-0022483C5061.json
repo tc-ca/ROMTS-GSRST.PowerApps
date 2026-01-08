@@ -2,12 +2,21 @@
   "properties": {
     "connectionReferences": {
       "shared_sharepointonline": {
-        "runtimeSource": "invoker",
+        "runtimeSource": "embedded",
         "connection": {
           "connectionReferenceLogicalName": "ts_SharePointROMTSGSRST"
         },
         "api": {
           "name": "shared_sharepointonline"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_86ec4"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
         }
       }
     },
@@ -25,49 +34,36 @@
         }
       },
       "triggers": {
-        "manual": {
+        "When_a_row_is_deleted_-_ts_file": {
           "metadata": {
-            "operationMetadataId": "213229f2-5e70-40cd-99f8-86c76ce4c67c"
+            "operationMetadataId": "37915596-8009-4e7e-9e90-2180cd3748ce"
           },
-          "type": "Request",
-          "kind": "PowerAppV2",
+          "type": "OpenApiConnectionWebhook",
           "inputs": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "text": {
-                  "title": "RecordOwner",
-                  "type": "string",
-                  "x-ms-dynamically-added": true,
-                  "description": "The owning Business Unit",
-                  "x-ms-content-hint": "TEXT"
-                },
-                "text_1": {
-                  "title": "FileIdentifier",
-                  "type": "string",
-                  "x-ms-dynamically-added": true,
-                  "description": "The File Identifier of the SharePoint File that needs to be deleted",
-                  "x-ms-content-hint": "TEXT"
-                }
-              },
-              "required": [
-                "text",
-                "text_1"
-              ]
-            }
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "subscriptionRequest/message": 2,
+              "subscriptionRequest/entityname": "ts_file",
+              "subscriptionRequest/scope": 4
+            },
+            "authentication": "@parameters('$authentication')"
           }
         }
       },
       "actions": {
         "Switch_-_Who_is_the_Record_Owner": {
           "runAfter": {
-            "Initialize_variable": [
+            "Apply_to_each": [
               "Succeeded"
             ]
           },
           "cases": {
             "Case_-_AvSec": {
-              "case": "Aviation Security",
+              "case": "AvSec",
               "actions": {
                 "Scope_-_Try_Deleting_AvSec_file": {
                   "actions": {
@@ -85,7 +81,7 @@
                         },
                         "parameters": {
                           "dataset": "https://034gc.sharepoint.com/sites/TC-008-006",
-                          "id": "@triggerBody()['text_1']"
+                          "id": "@variables('SharePoint File Identifier')"
                         },
                         "authentication": "@parameters('$authentication')"
                       }
@@ -140,7 +136,7 @@
               }
             },
             "Case": {
-              "case": "Intermodal Surface Security Oversight",
+              "case": "ISSO",
               "actions": {
                 "Scope_-_Try_Deleting_ISSO_file": {
                   "actions": {
@@ -158,7 +154,7 @@
                         },
                         "parameters": {
                           "dataset": "https://034gc.sharepoint.com/sites/TC-008-004",
-                          "id": "@triggerBody()['text_1']"
+                          "id": "@variables('SharePoint File Identifier')"
                         },
                         "authentication": "@parameters('$authentication')"
                       }
@@ -243,14 +239,18 @@
               }
             }
           },
-          "expression": "@triggerBody()['text']",
+          "expression": "@variables('SharePoint Line of Business')",
           "metadata": {
             "operationMetadataId": "cc7e967f-7b62-4c59-94f8-0a4df0cdd6f0"
           },
           "type": "Switch"
         },
         "Initialize_variable_-_hasError": {
-          "runAfter": {},
+          "runAfter": {
+            "Initialize_variable_-_File_ID": [
+              "Succeeded"
+            ]
+          },
           "metadata": {
             "operationMetadataId": "488c08b6-cabd-4c84-b054-36099fe5cd7d"
           },
@@ -265,7 +265,7 @@
             ]
           }
         },
-        "Initialize_variable": {
+        "Initialize_variable_-_resultMessage": {
           "runAfter": {
             "Initialize_variable_-_hasError": [
               "Succeeded"
@@ -285,39 +285,124 @@
             ]
           }
         },
-        "Respond_to_a_PowerApp_or_flow_-_Delete_File_Completed": {
+        "Initialize_variable_-_SharePoint_Line_of_Business": {
           "runAfter": {
-            "Switch_-_Who_is_the_Record_Owner": [
+            "Initialize_variable_-_resultMessage": [
               "Succeeded"
             ]
           },
           "metadata": {
-            "operationMetadataId": "f8cdf290-92a6-49d5-a0d1-8b884d108855"
+            "operationMetadataId": "2e734d0b-4656-4661-b944-715a1d7b4e15"
           },
-          "type": "Response",
-          "kind": "PowerApp",
+          "type": "InitializeVariable",
           "inputs": {
-            "statusCode": 200,
-            "body": {
-              "resultmessage": "@variables('resultMessage')",
-              "haserror": "@{variables('hasError')}"
+            "variables": [
+              {
+                "name": "SharePoint Line of Business",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_SharePoint_File_Identifier": {
+          "runAfter": {
+            "Initialize_variable_-_SharePoint_Line_of_Business": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "72e83b16-1f0f-491b-b540-5eeb72995007"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "SharePoint File Identifier",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_-_File_ID": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "fabaff3e-f7b6-42bc-8c01-69ed43111fa2"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "File ID",
+                "type": "string",
+                "value": "@triggerOutputs()?['body/ts_fileid']"
+              }
+            ]
+          },
+          "description": "Get the ID of the File that is being deleted"
+        },
+        "List_rows_-_SharePointFiles": {
+          "runAfter": {
+            "Initialize_variable_-_SharePoint_File_Identifier": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ee7bb53b-5556-43d6-afb8-2602acae4ee7"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
-            "schema": {
-              "type": "object",
-              "properties": {
-                "resultmessage": {
-                  "title": "resultMessage",
-                  "x-ms-dynamically-added": true,
-                  "type": "string"
-                },
-                "haserror": {
-                  "title": "hasError",
-                  "x-ms-dynamically-added": true,
-                  "type": "string"
-                }
+            "parameters": {
+              "entityName": "ts_sharepointfiles",
+              "fetchXml": "<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>\n  <entity name='ts_sharepointfile'>\n    <attribute name='ts_sharepointfileidentifier' />\n    <attribute name='ts_sharepointlineofbusiness' />\n    <filter type='and'>\n      <condition attribute='ts_fileid' operator='eq' value='@{variables('File ID')}' />\n    </filter>\n  </entity>\n</fetch>\n"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "description": "See if the File ID is in the SharePoint Files table"
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_rows_-_SharePointFiles')?['body/value']",
+          "actions": {
+            "Set_variable_-_SharePoint_File_Identifier": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "1270a573-b0c1-4f86-bee7-f7ba8e65b5f6"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "SharePoint File Identifier",
+                "value": "@{items('Apply_to_each')?['SharePoint_File_Identifier']}"
+              }
+            },
+            "Set_variable_-_SharePoint_Line_of_Business": {
+              "runAfter": {
+                "Set_variable_-_SharePoint_File_Identifier": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "618cecbf-6a2a-4c9a-acc9-2eda951d68c6"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "SharePoint Line of Business",
+                "value": "@{items('Apply_to_each')?['SharePoint Line of Business']}"
               }
             }
-          }
+          },
+          "runAfter": {
+            "List_rows_-_SharePointFiles": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "8365c2df-244f-4b33-a372-b01d4927c0f0"
+          },
+          "type": "Foreach"
         }
       }
     },
