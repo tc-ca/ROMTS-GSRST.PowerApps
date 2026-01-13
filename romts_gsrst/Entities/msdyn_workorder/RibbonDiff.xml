@@ -486,8 +486,11 @@
     <CommandDefinition Id="ts.msdyn_workorder.HideExportToPDFFlyout">
       <EnableRules>
         <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+        <EnableRule Id="ts.msdyn_workorder.UserIsPlannerOrSystemAdminOrManagerOrBusinessAdmin" />
       </EnableRules>
-      <DisplayRules />
+      <DisplayRules>
+        <DisplayRule Id="ts.msdyn_workorder.Hide" />
+      </DisplayRules>
       <Actions />
     </CommandDefinition>
     <CommandDefinition Id="ts.msdyn_workorder.NewUnplannedWorkOrder">
@@ -536,9 +539,10 @@
     <CommandDefinition Id="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithHiddenQuestions">
       <EnableRules>
         <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+        <EnableRule Id="ts.msdyn_workorder.UserIsPlannerOrSystemAdminOrManagerOrBusinessAdmin" />
       </EnableRules>
       <DisplayRules>
-        <DisplayRule Id="ts.msdyn_workorder.ShowInExportJobForm" />
+        <DisplayRule Id="ts.msdyn_workorder.Hide" />
       </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="exportWorkOrderFromSubgrid" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
@@ -550,9 +554,10 @@
     <CommandDefinition Id="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithoutHiddenQuestions">
       <EnableRules>
         <EnableRule Id="ts.msdyn_workorder.EnableRule16.ItemSelected" />
+        <EnableRule Id="ts.msdyn_workorder.UserIsPlannerOrSystemAdminOrManagerOrBusinessAdmin" />
       </EnableRules>
       <DisplayRules>
-        <DisplayRule Id="ts.msdyn_workorder.ShowInExportJobForm" />
+        <DisplayRule Id="ts.msdyn_workorder.Hide" />
       </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="exportWorkOrderFromSubgrid" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
@@ -685,6 +690,9 @@
       </DisplayRule>
       <DisplayRule Id="Mscrm.ShowForOneToManyGrids">
         <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="OneToMany" />
+      </DisplayRule>
+      <DisplayRule Id="ts.msdyn_workorder.Hide">
+        <ValueRule Value="False" Default="false" />
       </DisplayRule>
       <DisplayRule Id="ts.msdyn_workorder.HideAddNewForFunctionalLocation">
         <EntityRule EntityName="msdyn_functionallocation" AppliesTo="PrimaryEntity" Context="SubGridStandard" Default="false" InvertResult="true" />
@@ -849,6 +857,11 @@
       <EnableRule Id="ts.msdyn_workorder.UserIsPlannerOrSystemAdmin">
         <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js">
           <StringParameter Value="ROM - Planner|System Administrator" />
+        </CustomRule>
+      </EnableRule>
+      <EnableRule Id="ts.msdyn_workorder.UserIsPlannerOrSystemAdminOrManagerOrBusinessAdmin">
+        <CustomRule FunctionName="userHasRole" Library="$webresource:ts_/js/Common.js">
+          <StringParameter Value="System Administrator|ROM - Business Admin|ROM - Planner|ROM - Manager" />
         </CustomRule>
       </EnableRule>
     </EnableRules>

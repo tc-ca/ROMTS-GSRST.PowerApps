@@ -10,10 +10,10 @@
           "name": "shared_sharepointonline"
         }
       },
-      "shared_commondataserviceforapps": {
+      "shared_commondataserviceforapps_1": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_86ec4"
+          "connectionReferenceLogicalName": "ts_DataverseROMTSGSRST"
         },
         "api": {
           "name": "shared_commondataserviceforapps"
@@ -41,7 +41,7 @@
           "type": "OpenApiConnectionWebhook",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "SubscribeWebhookTrigger",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -352,13 +352,13 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "ListRecords",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
             "parameters": {
               "entityName": "ts_sharepointfiles",
-              "fetchXml": "<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>\n  <entity name='ts_sharepointfile'>\n    <attribute name='ts_sharepointfileidentifier' />\n    <attribute name='ts_sharepointlineofbusiness' />\n    <filter type='and'>\n      <condition attribute='ts_fileid' operator='eq' value='@{variables('File ID')}' />\n    </filter>\n  </entity>\n</fetch>\n"
+              "fetchXml": "<fetch xmlns:generator='MarkMpn.SQL4CDS'>\n  <entity name='ts_sharepointfile'>\n    <attribute name='ts_sharepointfileidentifier' />\n    <attribute name='ts_sharepointlineofbusiness' />\n    <filter>\n      <condition attribute='ts_fileid' operator='eq' value='@{variables('File ID')}' />\n    </filter>\n  </entity>\n</fetch>\n"
             },
             "authentication": "@parameters('$authentication')"
           },
@@ -375,7 +375,7 @@
               "type": "SetVariable",
               "inputs": {
                 "name": "SharePoint File Identifier",
-                "value": "@{items('Apply_to_each')?['SharePoint_File_Identifier']}"
+                "value": "@{items('Apply_to_each')?['ts_sharepointfileidentifier']}"
               }
             },
             "Set_variable_-_SharePoint_Line_of_Business": {
@@ -390,7 +390,7 @@
               "type": "SetVariable",
               "inputs": {
                 "name": "SharePoint Line of Business",
-                "value": "@{items('Apply_to_each')?['SharePoint Line of Business']}"
+                "value": "@{items('Apply_to_each')?['ts_sharepointlineofbusiness']}"
               }
             }
           },
