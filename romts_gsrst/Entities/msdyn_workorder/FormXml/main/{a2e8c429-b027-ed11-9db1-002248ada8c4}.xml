@@ -941,13 +941,13 @@
                     </row>
                   </rows>
                 </section>
-                <section name="f1tab_mainsettings_section_7" id="3ef5aee1-9180-4325-a66e-e6664caf3bd3" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                <section name="f1tab_mainsettings_section_7" id="3ef5aee1-9180-4325-a66e-e6664caf3bd3" IsUserDefined="0" locklevel="0" showlabel="false" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115" visible="true">
                   <labels>
                     <label description="New Section" languagecode="1033" />
                   </labels>
                   <rows>
                     <row>
-                      <cell id="{f67d56f0-499c-4b7e-b713-9b06604f8870}" locklevel="0" colspan="1" rowspan="1">
+                      <cell id="{f67d56f0-499c-4b7e-b713-9b06604f8870}" locklevel="0" colspan="1" rowspan="1" visible="true">
                         <labels>
                           <label description="Record Status" languagecode="1033" />
                           <label description="État du dossier" languagecode="1036" />
@@ -1034,18 +1034,12 @@
             </column>
             <column width="50%">
               <sections>
-                <section name="f1tab_mainsettings_section_7" id="6366e1c3-578d-4242-bb84-d0f3f4af4043" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
+                <section name="_section_7" id="7e44573b-f9bf-416e-ba14-6aee37eebfa8" IsUserDefined="0" locklevel="0" showlabel="true" showbar="false" layout="varwidth" celllabelalignment="Left" celllabelposition="Left" columns="1" labelwidth="115">
                   <labels>
                     <label description="New Section" languagecode="1033" />
                   </labels>
                   <rows>
-                    <row>
-                      <cell showlabel="false" locklevel="0" id="{99e7578f-ecb0-44fa-b596-08d3616c7d00}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
+                    <row />
                   </rows>
                 </section>
               </sections>
@@ -3013,6 +3007,7 @@
         <Library name="msdyn_/CFS/WorkOrder/WorkOrderForm.js" libraryUniqueId="{66c75878-8967-ee9a-4dae-5d4142dbb309}" />
         <Library name="ovs_/js/WorkOrder.js" libraryUniqueId="{ed68d241-5966-3dae-2d71-e4d9bbe7668a}" />
         <Library name="ovs_/lib/dg.xrmquery.web.min.js" libraryUniqueId="{0d997e24-b2e9-4957-b63e-5cfa0001c6c6}" />
+        <Library name="ts_/js/Common.js" libraryUniqueId="{c7ae7c69-8bc8-4937-8db9-dc5e5571e9f1}" />
       </formLibraries>
       <events>
         <event name="onload" application="false" active="false">
@@ -3020,7 +3015,7 @@
             <Handler passExecutionContext="true" parameters="" enabled="true" handlerUniqueId="{8a748511-45ae-9991-76ad-253800974873}" libraryName="msdyn_/Utils/FieldServiceTrial.js" functionName="FieldServiceTrial.Library.Load" />
             <Handler functionName="msdyn.workOrderForm.onLoad" libraryName="msdyn_/CFS/WorkOrder/WorkOrderForm.js" handlerUniqueId="{56e4c9eb-ba02-4319-841d-deec4f5ce6f5}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler functionName="WorkOrders.Library.Load" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{e1fc70a3-64bc-4e4d-a397-e2d0ba64274b}" enabled="true" parameters="" passExecutionContext="true" />
-            <Handler functionName="ROM.WorkOrder.filterCanceledJustificationField" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{6306c69a-2762-a49e-bd33-b0a96a05187d}" enabled="true" parameters="" passExecutionContext="true" />
+            <Handler functionName="ROM.WorkOrder.filterCanceledJustificationField" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{6306c69a-2762-a49e-bd33-b0a96a05187d}" enabled="true" parameters="&quot;WO Justify Cancellation&quot;" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="false" active="false" attribute="msdyn_iotalert">
@@ -3106,7 +3101,7 @@
           </Handlers>
         </event>
       </events>
-      <DisplayConditions FallbackForm="true" Order="14">
+      <DisplayConditions FallbackForm="true" Order="17">
         <Role Id="{627090ff-40a3-4053-8790-584edc5be201}" />
         <Role Id="{119f245c-3cc8-4b62-b31c-d1a046ced15d}" />
         <Role Id="{f50405f9-8d49-4a4c-bf53-2842c8af46b2}" />

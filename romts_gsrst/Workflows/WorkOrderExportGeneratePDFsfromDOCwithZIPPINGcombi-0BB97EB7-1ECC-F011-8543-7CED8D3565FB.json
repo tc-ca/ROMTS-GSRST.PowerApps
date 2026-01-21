@@ -102,6 +102,8 @@
                 "parameters": {
                   "entityName": "ts_workorderexportjobs",
                   "recordId": "@outputs('Get_a_row_by_ID')?['body/ts_workorderexportjobid']",
+                  "item/ts_lastheartbeat": "@utcNow()",
+                  "item/ts_progressmessage": "Flow started. Generating main PDFs...",
                   "item/statuscode": 741130004
                 },
                 "authentication": "@parameters('$authentication')"
@@ -521,7 +523,7 @@
                 },
                 "Delete_file": {
                   "runAfter": {
-                    "Add_a_new_row_(Notes)": [
+                    "Increment_variable": [
                       "Succeeded"
                     ]
                   },
@@ -540,10 +542,25 @@
                     },
                     "authentication": "@parameters('$authentication')"
                   }
+                },
+                "Increment_variable": {
+                  "runAfter": {
+                    "Add_a_new_row_(Notes)": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "33f453ae-bae9-4bb0-ab61-9fdf2602f2d0"
+                  },
+                  "type": "IncrementVariable",
+                  "inputs": {
+                    "name": "runningDoneUnits",
+                    "value": 1
+                  }
                 }
               },
               "runAfter": {
-                "Parse_JSON": [
+                "Set_variable_2": [
                   "Succeeded"
                 ]
               },
@@ -551,6 +568,21 @@
                 "operationMetadataId": "3c9e2430-fad5-444a-9f83-3993c6d6df4a"
               },
               "type": "Foreach"
+            },
+            "Set_variable_2": {
+              "runAfter": {
+                "Parse_JSON": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "97ae572f-2616-4c59-a10f-764b83049178"
+              },
+              "type": "SetVariable",
+              "inputs": {
+                "name": "totalWorkOrders",
+                "value": "@length(body('Parse_JSON')?['WorkOrders'])"
+              }
             }
           },
           "runAfter": {
@@ -565,7 +597,7 @@
         },
         "Initialize_folder_path": {
           "runAfter": {
-            "Get_a_row_by_ID": [
+            "Initialize_variable_3": [
               "Succeeded"
             ]
           },
@@ -600,6 +632,9 @@
                 "parameters": {
                   "entityName": "ts_workorderexportjobs",
                   "recordId": "@outputs('Get_a_row_by_ID')?['body/ts_workorderexportjobid']",
+                  "item/ts_doneunits": "@variables('runningDoneUnits')",
+                  "item/ts_lastheartbeat": "@utcNow()",
+                  "item/ts_progressmessage": "@concat('Main PDFs: ', string(sub(variables('runningDoneUnits'), variables('baseDoneUnits'))), '/', string(variables('totalWorkOrders')))",
                   "item/statuscode": 741130005
                 },
                 "authentication": "@parameters('$authentication')"
@@ -633,6 +668,9 @@
                 "parameters": {
                   "entityName": "ts_workorderexportjobs",
                   "recordId": "@outputs('Get_a_row_by_ID')?['body/ts_workorderexportjobid']",
+                  "item/ts_doneunits": "@variables('runningDoneUnits')",
+                  "item/ts_lastheartbeat": "@utcNow()",
+                  "item/ts_progressmessage": "@concat('Flow failed. Check error. Main PDFs: ', string(sub(variables('runningDoneUnits'), variables('baseDoneUnits'))), '/', string(variables('totalWorkOrders')))",
                   "item/statuscode": 741130007
                 },
                 "authentication": "@parameters('$authentication')"
@@ -649,6 +687,65 @@
             "operationMetadataId": "9be05b27-2d10-42e5-a5a0-50be8cd19703"
           },
           "type": "Scope"
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Get_a_row_by_ID": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c2b13c72-ce7f-464d-b0ea-2ad6b45034ee"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "baseDoneUnits",
+                "type": "integer",
+                "value": "@coalesce(outputs('Get_a_row_by_ID')?['body/ts_doneunits'], 0)"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_2": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "00f7057f-6ff4-426e-80bf-7be04dfc1aec"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "runningDoneUnits",
+                "type": "integer",
+                "value": "@variables('baseDoneUnits')"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_3": {
+          "runAfter": {
+            "Initialize_variable_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5b85f426-7a37-4d55-8143-9e491f82e5d9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "totalWorkOrders",
+                "type": "integer"
+              }
+            ]
+          }
         }
       }
     },

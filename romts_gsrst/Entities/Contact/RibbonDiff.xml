@@ -6,11 +6,90 @@
   <Templates>
     <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
   </Templates>
-  <CommandDefinitions />
+  <CommandDefinitions>
+    <CommandDefinition Id="Mscrm.AddExistingRecordFromSubGridAssociated">
+      <EnableRules>
+        <EnableRule Id="Mscrm.AppendToPrimary" />
+        <EnableRule Id="Mscrm.EntityFormIsEnabled" />
+        <EnableRule Id="Mscrm.isNotDynamicList" />
+        <EnableRule Id="Mscrm.IsListUnLocked" />
+        <EnableRule Id="Mscrm.SubGrid.EnableRule.SubgridEntityMatchesTargetWebClientOnly" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.AddExisting" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.ShowOnManyToManyOrAccountFormExceptCAForm" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="Mscrm.HideOnUciList" />
+        <DisplayRule Id="tc.contact.HideAddExistingOnWorkOrder" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridAssociated" Library="$webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
   <RuleDefinitions>
     <TabDisplayRules />
-    <DisplayRules />
-    <EnableRules />
+    <DisplayRules>
+      <DisplayRule Id="Mscrm.AddExisting">
+        <ReferencingAttributeRequiredRule Default="false" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendSelected">
+        <EntityPrivilegeRule PrivilegeType="Append" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.AppendToPrimary">
+        <EntityPrivilegeRule PrivilegeType="AppendTo" PrivilegeDepth="Basic" AppliesTo="PrimaryEntity" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.HideOnUciList">
+        <OrRule>
+          <Or>
+            <CommandClientTypeRule Type="Modern" InvertResult="true" />
+          </Or>
+          <Or>
+            <FormEntityContextRule EntityName="list" Default="false" InvertResult="true" />
+          </Or>
+        </OrRule>
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.ShowOnManyToManyOrAccountFormExceptCAForm">
+        <OrRule>
+          <Or>
+            <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="ManyToMany" />
+            <FormEntityContextRule EntityName="campaignactivity" Default="false" InvertResult="true" />
+          </Or>
+          <Or>
+            <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="OneToMany" />
+            <FormEntityContextRule EntityName="account" Default="false" InvertResult="false" />
+          </Or>
+        </OrRule>
+      </DisplayRule>
+      <DisplayRule Id="tc.contact.HideAddExistingOnWorkOrder">
+        <EntityRule EntityName="msdyn_workorder" Context="SubGridStandard" InvertResult="true" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules>
+      <EnableRule Id="Mscrm.AppendToPrimary">
+        <RecordPrivilegeRule PrivilegeType="AppendTo" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.EntityFormIsEnabled">
+        <FormStateRule State="Disabled" InvertResult="true" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.IsListUnLocked">
+        <CustomRule FunctionName="Marketing.List.Commands.isListLocked" Library="$webresource:Marketing/List/List_main_system_library.js" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.isNotDynamicList">
+        <CustomRule FunctionName="Marketing.List.Commands.isNotDynamicList" Library="$webresource:Marketing/List/List_main_system_library.js" />
+      </EnableRule>
+      <EnableRule Id="Mscrm.SubGrid.EnableRule.SubgridEntityMatchesTargetWebClientOnly">
+        <CustomRule FunctionName="Marketing.CommandActions.Instance.showButtonForListEntityOnlyWebClient" Library="$webresource:Marketing/CommandActions/Marketing_CommandActions.js" Default="false">
+          <CrmParameter Value="SelectedEntityTypeName" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+        </CustomRule>
+      </EnableRule>
+    </EnableRules>
   </RuleDefinitions>
   <LocLabels />
 </RibbonDiffXml>

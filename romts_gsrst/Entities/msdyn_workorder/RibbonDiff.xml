@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <CustomActions>
+    <HideCustomAction HideActionId="Mscrm.AddExistingRecordFromSubGridAssociated" Location="Mscrm.SubGrid.contact.MainTab.Management.Controls._children" />
     <HideCustomAction HideActionId="ovs.Mscrm.SubGrid.msdyn_workorder.AddExistingStandard.Hide" Location="Mscrm.SubGrid.msdyn_workorder.AddExistingStandard" />
     <HideCustomAction HideActionId="ts.Mscrm.Form.msdyn_workorder.Activate.Hide" Location="Mscrm.Form.msdyn_workorder.Activate" />
     <CustomAction Id="ts.Mscrm.Form.msdyn_workorder.Activate.TSIS.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="55">
@@ -61,20 +62,6 @@
     <CustomAction Id="ts.msdyn_workorder.EditUnplannedWO.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="1">
       <CommandUIDefinition>
         <Button Alt="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.Alt" Command="ts.msdyn_workorder.EditUnplannedWO" Id="ts.msdyn_workorder.EditUnplannedWO" Image32by32="/_imgs/ribbon/New_32.png" Image16by16="/_imgs/ribbon/New_16.png" LabelText="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.LabelText" Sequence="1" TemplateAlias="o1" ToolTipTitle="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.ToolTipTitle" ToolTipDescription="$LocLabels:ts.msdyn_workorder.EditUnplannedWO.ToolTipDescription" />
-      </CommandUIDefinition>
-    </CustomAction>
-    <CustomAction Id="ts.msdyn_workorder.ExportToPDFs.CustomAction" Location="Mscrm.HomepageGrid.msdyn_workorder.MainTab.ExportData.Controls._children" Sequence="50">
-      <CommandUIDefinition>
-        <FlyoutAnchor Command="ts.msdyn_workorder.HideExportToPDFFlyout" Id="ts.msdyn_workorder.ExportToPDFs" Image16by16="$webresource:ts_/img/exporttopng16.png" Image32by32="$webresource:ts_/img/exporttopng32.png" LabelText="$LocLabels:ts.msdyn_workorder.ExportToPDFs.LabelText" Sequence="50" TemplateAlias="o3">
-          <Menu Id="ts.msdyn_workorder.ExportToPDFs.Menu">
-            <MenuSection Id="ts.msdyn_workorder.ExportToPDF.MenuSection" Sequence="8" DisplayMode="Menu16">
-              <Controls Id="ts.msdyn_workorder.ExportToPDF.MenuSection.Controls">
-                <Button Alt="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.Alt" Command="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithHiddenQuestions" Id="ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions" Image32by32="$webresource:ts_/img/exporttopng32.png" Image16by16="$webresource:ts_/img/exporttopng16.png" LabelText="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.LabelText" Sequence="15" TemplateAlias="o2" ModernImage="Save" />
-                <Button Alt="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions.Alt" Command="ts.msdyn_workorder.TSIS.ExportQuestionnaireWithoutHiddenQuestions" Id="ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions" Image32by32="$webresource:ts_/img/exporttopng32.png" Image16by16="$webresource:ts_/img/exporttopng16.png" LabelText="$LocLabels:ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions.LabelText" Sequence="20" TemplateAlias="o2" ModernImage="Save" />
-              </Controls>
-            </MenuSection>
-          </Menu>
-        </FlyoutAnchor>
       </CommandUIDefinition>
     </CustomAction>
     <CustomAction Id="ts.msdyn_workorder.NewUnplannedWO.CustomAction" Location="Mscrm.Form.msdyn_workorder.MainTab.Save.Controls._children" Sequence="0">
@@ -140,11 +127,11 @@
       </EnableRules>
       <DisplayRules>
         <DisplayRule Id="Mscrm.AddExisting" />
-        <DisplayRule Id="Mscrm.ShowForManyToManyGrids" />
         <DisplayRule Id="Mscrm.AppendToPrimary" />
         <DisplayRule Id="Mscrm.AppendPrimary" />
         <DisplayRule Id="Mscrm.AppendSelected" />
         <DisplayRule Id="Mscrm.AppendToSelected" />
+        <DisplayRule Id="Mscrm.ShowForManyToManyGrids" />
       </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridAssociated" Library="$webresource:Main_system_library.js">
@@ -933,30 +920,6 @@
         <Title description="Add Existing {0}" languagecode="1036" />
       </Titles>
     </LocLabel>
-    <LocLabel Id="ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.Alt">
-      <Titles>
-        <Title description="Export to PDF with hidden questions" languagecode="1033" />
-        <Title description="Export to PDF with hidden questions" languagecode="1036" />
-      </Titles>
-    </LocLabel>
-    <LocLabel Id="ts.ExportQuestionnaireQuestionnaireWithHiddenQuestions.LabelText">
-      <Titles>
-        <Title description="with hidden questions" languagecode="1033" />
-        <Title description="with hidden questions" languagecode="1036" />
-      </Titles>
-    </LocLabel>
-    <LocLabel Id="ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions.Alt">
-      <Titles>
-        <Title description="Export to PDF without hidden questions" languagecode="1033" />
-        <Title description="Export to PDF without hidden questions" languagecode="1036" />
-      </Titles>
-    </LocLabel>
-    <LocLabel Id="ts.ExportQuestionnaireQuestionnaireWithoutHiddenQuestions.LabelText">
-      <Titles>
-        <Title description="without hidden questions" languagecode="1033" />
-        <Title description="without hidden questions" languagecode="1036" />
-      </Titles>
-    </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.AddAdditionalInspectors.Alt">
       <Titles>
         <Title description="Add Additional Inspectors" languagecode="1033" />
@@ -1093,12 +1056,6 @@
       <Titles>
         <Title description="Edit Work Order in Workspace" languagecode="1033" />
         <Title description="Modifier l'ordre de travail dans l’espace de travail" languagecode="1036" />
-      </Titles>
-    </LocLabel>
-    <LocLabel Id="ts.msdyn_workorder.ExportToPDFs.LabelText">
-      <Titles>
-        <Title description="Export to PDF(s)" languagecode="1033" />
-        <Title description="Export to PDF(s)" languagecode="1036" />
       </Titles>
     </LocLabel>
     <LocLabel Id="ts.msdyn_workorder.NewUnplannedWO.Alt">

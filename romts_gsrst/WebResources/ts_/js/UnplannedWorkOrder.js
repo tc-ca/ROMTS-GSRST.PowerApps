@@ -137,8 +137,8 @@ var ROM;
                                 else {
                                     form.getControl("ts_details").setVisible(true);
                                     form.getControl("ts_servicerequest").setVisible(false);
-                                    //form.getControl("ts_instructions").setVisible(true);
-                                    //form.getControl("ts_accountableteam").setVisible(true);
+                                    form.getControl("ts_instructions").setVisible(true);
+                                    form.getControl("ts_accountableteam").setVisible(true);
                                     //form.getControl("ts_plannedcost").setVisible(false);
                                     //form.getControl("ts_actualcost").setVisible(false);
                                     //form.getControl("ts_costexplanation").setVisible(false);
@@ -905,6 +905,37 @@ var ROM;
             }
         }
         UnplannedWorkOrder.subSubSiteOnChange = subSubSiteOnChange;
+        function filterCanceledJustificationField(eContext) {
+            return __awaiter(this, void 0, void 0, function () {
+                var form, effectiveBuId, fetchXml, control;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            form = eContext.getFormContext();
+                            return [4 /*yield*/, getEffectiveUserBuForCurrentUser()];
+                        case 1:
+                            effectiveBuId = _a.sent();
+                            // If null → no BU filter applied (TC users)
+                            if (!effectiveBuId) {
+                                console.log("No BU filter applied for this user (TC or unknown)");
+                                return [2 /*return*/];
+                            }
+                            fetchXml = "\n        <fetch mapping='logical'>\n          <entity name='ts_canceledinspectionjustification'>\n            <filter>\n              <condition attribute='owningbusinessunit' operator='eq' value='" + effectiveBuId + "' />\n            </filter>\n          </entity>\n        </fetch>\n    ";
+                            control = form.getControl("ts_cancelledinspectionjustification");
+                            if (control) {
+                                control.addPreSearch(function () {
+                                    control.addCustomFilter(fetchXml, "ts_canceledinspectionjustification");
+                                });
+                            }
+                            else {
+                                console.warn("Control 'ts_cancelledinspectionjustification' not found on the form.");
+                            }
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        }
+        UnplannedWorkOrder.filterCanceledJustificationField = filterCanceledJustificationField;
         //export function filterCanceledJustificationField(eContext: Xrm.ExecutionContext<any, any>): void {
         //    try {
         //        let form = <Form.msdyn_workorder.Main.WOJustifyCancellation>eContext.getFormContext();
@@ -1440,7 +1471,7 @@ var ROM;
                     // This value is never saved and only needs to be unique among the other available views for the lookup.
                     var viewId = '{5B58559F-F162-5428-4771-79BC825240B3}';
                     var entityName = "incident";
-                    var viewDisplayName = Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "FilteredCases");
+                    var viewDisplayName = Xrm.Utility.getResourceString("ts_/resx/UnplannedWorkOrder", "FilteredCases");
                     var fetchXml = '<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false"> <entity name="incident"> <attribute name="ticketnumber" /> <attribute name="incidentid" /> <order attribute="ticketnumber" descending="false" /> <filter type="and">' + regionCondition + countryCondition + stakeholderCondition + siteCondition + ' </filter> </entity> </fetch>';
                     var layoutXml = '<grid name="resultset" object="10010" jump="title" select="1" icon="1" preview="1"><row name="result" id="incidentid"><cell name="title" width="200" /></row></grid>';
                     form_6.getControl("ts_servicerequest").addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);

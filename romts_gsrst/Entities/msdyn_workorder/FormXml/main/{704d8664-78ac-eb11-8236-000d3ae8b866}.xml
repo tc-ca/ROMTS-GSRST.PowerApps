@@ -243,8 +243,10 @@
                         </labels>
                         <control id="ts_workorderjustification" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_workorderjustification" disabled="false">
                           <parameters>
-                            <AvailableViewIds>{6F36B628-8308-4401-89B3-568D11C8E330}</AvailableViewIds>
-                            <DefaultViewId>{6F36B628-8308-4401-89B3-568D11C8E330}</DefaultViewId>
+                            <AvailableViewIds>{6F36B628-8308-4401-89B3-568D11C8E330},{48C20ADE-1AB0-F011-BBD3-7C1E52549CC5}</AvailableViewIds>
+                            <DefaultViewId>{48C20ADE-1AB0-F011-BBD3-7C1E52549CC5}</DefaultViewId>
+                            <DisableMru>true</DisableMru>
+                            <DisableViewPicker>true</DisableViewPicker>
                           </parameters>
                         </control>
                       </cell>
@@ -1274,7 +1276,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell locklevel="0" id="{eb8b5512-672e-47e4-8c8e-5acf7f5f39c0}" rowspan="1" colspan="1" auto="false" showlabel="false">
+                      <cell locklevel="0" id="{eb8b5512-672e-47e4-8c8e-5acf7f5f39c0}" rowspan="6" colspan="1" auto="false" showlabel="false">
                         <labels>
                           <label description="Contacts" languagecode="1033" />
                           <label description="Contacts" languagecode="1036" />
@@ -1289,6 +1291,7 @@
                             <EnableViewPicker>false</EnableViewPicker>
                             <RelationshipName>ts_Contact_msdyn_workorder_msdyn_workorder</RelationshipName>
                             <VisualizationId>{E365462F-1DB9-46A8-928D-BEAB1A7A2375}</VisualizationId>
+                            <ChartGridMode>Grid</ChartGridMode>
                           </parameters>
                         </control>
                       </cell>
@@ -4255,6 +4258,7 @@
             <Handler functionName="WorkOrders.Library.Load" libraryName="msdyn_/WorkOrder/WorkOrder.Library.js" handlerUniqueId="{e1fc70a3-64bc-4e4d-a397-e2d0ba64274b}" enabled="false" parameters="" passExecutionContext="true" />
             <Handler functionName="openLookupModalDialogWOForm" libraryName="ts_/js/Common.js" handlerUniqueId="{665dc799-2b6a-5cb3-7145-d5155a8021a1}" enabled="true" parameters="" passExecutionContext="true" />
             <Handler functionName="toggleDocumentCenter" libraryName="ts_/js/Common.js" handlerUniqueId="{8355057b-b8a7-4e06-be21-70c308d4d4c5}" enabled="true" parameters="&quot;work_order_document_tab&quot;, &quot;work_order_document_section&quot;" passExecutionContext="true" />
+            <Handler functionName="ROM.WorkOrder.filterCanceledJustificationField" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{84f46b33-ba7e-4919-b850-303f95e5c812}" enabled="true" parameters="&quot;ROM Oversight Activity&quot;" passExecutionContext="true" />
           </Handlers>
         </event>
         <event name="onchange" application="false" active="false" attribute="msdyn_iotalert">
@@ -4380,7 +4384,7 @@
           </Handlers>
         </event>
       </events>
-      <DisplayConditions FallbackForm="true" Order="1">
+      <DisplayConditions FallbackForm="true" Order="2">
         <Role Id="{EED78BB6-BCA5-EE11-A568-002248AEEBDB}" />
         <Role Id="{8281365B-0A40-ED11-BBA2-0022483D5EE0}" />
         <Role Id="{5A6ED00F-94E6-EC11-BB3C-0022483D8865}" />
