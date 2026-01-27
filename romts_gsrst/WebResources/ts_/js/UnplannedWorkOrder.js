@@ -47,6 +47,8 @@ var ROM;
         var scheduledQuarterAttributeValueChanged = false;
         var isROM20Form = false;
         var UNPLANNED_CATEGORY_ID = "47f438c7-c104-eb11-a813-000d3af3a7a7";
+        var ISSO_CANCELED_JUSTICATION_OTHER = "{A8D7125C-7F24-ED11-9DB2-002248AE429C}";
+        var AVSEC_CANCELED_JUSTICATION_OTHER = "{F25411D0-29F2-F011-8406-70A8A50B10AD}";
         // EVENTS
         function onLoad(eContext) {
             var _a, _b, _c, _d, _e, _f, _g, _h, _j;
@@ -60,7 +62,6 @@ var ROM;
                     setWorkOrderTypeFilteredView(form, false);
                 }
             });
-            var state = (_a = form.getAttribute("statecode").getValue()) !== null && _a !== void 0 ? _a : null;
             // Check flag and navigate to WO if needed
             var flagAttr = form.getAttribute("ts_openworkorderoncreation");
             if (flagAttr && flagAttr.getValue() === true && form.ui.getFormType() === 2) {
@@ -91,6 +92,7 @@ var ROM;
                     console.error("Error saving flag change:", err);
                 });
             }
+            var state = (_a = form.getAttribute("statecode").getValue()) !== null && _a !== void 0 ? _a : null;
             var regionAttribute = form.getAttribute("ts_region");
             var regionAttributeValue = regionAttribute.getValue();
             var ownerControl = form.getControl("header_ownerid");
@@ -130,11 +132,11 @@ var ROM;
                                 isAvSec = _a.sent();
                                 if (!isAvSec) {
                                     form.getControl("ts_details").setVisible(false);
-                                    /*                form.getControl("ts_overtime").setVisible(false);*/
+                                    /*form.getControl("ts_overtime").setVisible(false);*/
                                     form.getControl("ts_overtimerequired").setVisible(true);
                                     form.getControl("ts_servicerequest").setDisabled(true);
                                 }
-                                else {
+                                else if (isAvSec) {
                                     form.getControl("ts_details").setVisible(true);
                                     form.getControl("ts_servicerequest").setVisible(false);
                                     form.getControl("ts_instructions").setVisible(true);
@@ -151,6 +153,17 @@ var ROM;
                                         if (!userHasRole("System Administrator|ROM - Business Admin|ROM - Planner|ROM - Manager")) {
                                             form.getControl("header_ts_recordstatus").setDisabled(true);
                                         }
+                                    }
+                                }
+                                // Set disabled false for quarter fields if ISSO
+                                else {
+                                    if (userHasRole("System Administrator|ROM - Business Admin|ROM - Planner|ROM - Manager|ROM - Inspector")) {
+                                        /*form.getControl("ts_completedquarter").setDisabled(false);*/
+                                        form.getControl("ts_revisedquarterid").setDisabled(false);
+                                    }
+                                    else {
+                                        /*form.getControl("ts_completedquarter").setDisabled(true);*/
+                                        form.getControl("ts_revisedquarterid").setDisabled(true);
                                     }
                                 }
                                 return [2 /*return*/];
@@ -199,9 +212,9 @@ var ROM;
             //else {
             //    form.getControl("ts_completedquarter").setVisible(false);
             //}
-            //if (currentSystemStatus == 690970004 || currentSystemStatus == 690970003 || currentSystemStatus == msdyn_wosystemstatus.Closed) { //Closed ; Completed
-            //    form.getControl("ovs_revisedquarterid").setDisabled(true);
-            //}
+            if (currentSystemStatus == 690970004 || currentSystemStatus == 690970003 || currentSystemStatus == 741130000 /* Closed */) { //Closed ; Completed
+                form.getControl("ts_revisedquarterid").setDisabled(true);
+            }
             //Limit ownership of a Work Order to users associated with the same program
             if (form.ui.getFormType() == 1 || form.ui.getFormType() == 2) {
                 if (ownerControl != null) {
@@ -435,9 +448,8 @@ var ROM;
             if (currentSystemStatus == 690970005 /* Cancelled */) {
                 form.getControl("ts_cancelledinspectionjustification").setDisabled(true);
                 var selectedCanceledWorkOrderReason = form.getAttribute("ts_cancelledinspectionjustification").getValue();
-                var selectedOther = "{A8D7125C-7F24-ED11-9DB2-002248AE429C}";
                 //If 'Other' is selected as a reason, make ts_othercanceledjustification visible
-                if (selectedCanceledWorkOrderReason != null && selectedCanceledWorkOrderReason[0].id.toUpperCase() == selectedOther) {
+                if (selectedCanceledWorkOrderReason != null && (selectedCanceledWorkOrderReason[0].id.toUpperCase() == ISSO_CANCELED_JUSTICATION_OTHER || selectedCanceledWorkOrderReason[0].id.toUpperCase() == AVSEC_CANCELED_JUSTICATION_OTHER)) {
                     form.getControl("ts_othercancelledjustification").setVisible(true);
                     form.getAttribute("ts_othercancelledjustification").setRequiredLevel("required");
                 }
@@ -510,7 +522,7 @@ var ROM;
             //Check if the Work Order is past the Planned Fiscal Quarter
             //  setCantCompleteinspectionVisibility(form);
             //Post a note on ScheduledQuarter Change
-            //  postNoteOnScheduledQuarterChange(form);
+            postNoteOnScheduledQuarterChange(form);
             if (cancelledInspectionJustification != null) {
                 form.getAttribute("ts_recordstatus").setValue(690970005 /* Cancelled */);
                 form.getControl("ts_cancelledinspectionjustification").setDisabled(true);
@@ -1577,33 +1589,45 @@ var ROM;
         // FUNCTIONS
         function postNoteOnScheduledQuarterChange(form) {
             if (scheduledQuarterAttributeValueChanged) {
-                var revisedQuarterAttributeValue = form.getAttribute("ovs_revisedquarterid").getValue();
-                var justification = form.getAttribute("ts_scheduledquarterjustification").getValue();
+                var revisedQuarterAttributeValue_1 = form.getAttribute("ts_revisedquarterid").getValue();
+                var justification_1 = form.getAttribute("ts_scheduledquarterjustification").getValue();
                 var justificationValue;
-                var justificationComment = form.getAttribute("ts_justificationcomment").getValue();
+                var justificationComment_1 = form.getAttribute("ts_scheduledquarterjustificationcomment").getValue();
                 if (form.ui.getFormType() == 2) {
-                    var recordId = form.data.entity.getId().replace(/[{}]/g, "");
-                    var data = {};
-                    data['objectid_msdyn_workorder@odata.bind'] = '/msdyn_workorders(' + recordId + ')';
-                    if (revisedQuarterAttributeValue != null) {
-                        data['subject'] = "Scheduled Quarter changed to: " + revisedQuarterAttributeValue[0].name;
-                    }
-                    else {
-                        data['subject'] = "Scheduled Quarter changed to null ";
-                    }
-                    if (justification != null) {
-                        justificationValue = justification[0].name;
-                    }
-                    else {
-                        justificationValue = "null";
-                    }
-                    data['notetext'] = "Justification changed to: " + justificationValue + " <br />Justification Comment: " + justificationComment;
-                    //form.getAttribute("ts_scheduledquarterjustification").setValue(null);
-                    //form.getAttribute("ts_justificationcomment").setValue(null);
-                    Xrm.WebApi.createRecord('annotation', data).then(function success(result) {
-                        scheduledQuarterAttributeValueChanged = false;
-                    }, function (error) {
-                        console.log(error.message);
+                    var unplannedWoId = form.data.entity.getId().replace(/[{}]/g, "");
+                    Xrm.WebApi.retrieveRecord("ts_unplannedworkorder", unplannedWoId, "?$select=_ts_workorder_value").then(function (result) {
+                        var workOrderId = result["_ts_workorder_value"];
+                        if (!workOrderId) {
+                            console.error("❌ No Work Order linked to Unplanned WO");
+                            return;
+                        }
+                        var data = {};
+                        data["objectid_msdyn_workorder@odata.bind"] =
+                            "/msdyn_workorders(" + workOrderId + ")";
+                        if (revisedQuarterAttributeValue_1 != null) {
+                            data["subject"] =
+                                "Scheduled Quarter changed to: " +
+                                    revisedQuarterAttributeValue_1[0].name;
+                        }
+                        else {
+                            data["subject"] =
+                                "Scheduled Quarter changed to null";
+                        }
+                        if (justification_1 != null) {
+                            justificationValue = justification_1[0].name;
+                        }
+                        data["notetext"] =
+                            "Justification changed to: " + justificationValue +
+                                "<br />Justification Comment: " + justificationComment_1;
+                        Xrm.WebApi.createRecord("annotation", data).then(function (result) {
+                            scheduledQuarterAttributeValueChanged = false;
+                        }, function (error) {
+                            console.error("❌ Create note failed:", error.message);
+                        });
+                        //form.getAttribute("ts_scheduledquarterjustification").setValue(null);
+                        //form.getAttribute("ts_justificationcomment").setValue(null);
+                    }).catch(function (error) {
+                        console.error("❌ Failed to retrieve Work Order:", error.message);
                     });
                 }
             }
@@ -2063,9 +2087,8 @@ var ROM;
         function canceledWorkOrderReasonOnChange(eContext) {
             var form = eContext.getFormContext();
             var selectedCanceledWorkOrderReason = form.getAttribute("ts_cancelledinspectionjustification").getValue();
-            var selectedOther = "{A8D7125C-7F24-ED11-9DB2-002248AE429C}";
             //If 'Other' is selected as a reason, make ts_othercanceledjustification visible
-            if (selectedCanceledWorkOrderReason != null && selectedCanceledWorkOrderReason[0].id.toUpperCase() == selectedOther) {
+            if (selectedCanceledWorkOrderReason != null && (selectedCanceledWorkOrderReason[0].id.toUpperCase() == ISSO_CANCELED_JUSTICATION_OTHER || selectedCanceledWorkOrderReason[0].id.toUpperCase() == AVSEC_CANCELED_JUSTICATION_OTHER)) {
                 form.getControl("ts_othercancelledjustification").setVisible(true);
                 form.getAttribute("ts_othercancelledjustification").setRequiredLevel("required");
             }

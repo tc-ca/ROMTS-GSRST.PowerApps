@@ -21,7 +21,7 @@
     </layoutxml>
     <querytype>0</querytype>
     <fetchxml>
-      <fetch version="1.0" output-format="xml-platform" mapping="logical">
+      <fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="true">
         <entity name="ts_file">
           <attribute name="ts_file" />
           <attribute name="ts_fileid" />
@@ -30,6 +30,9 @@
           <attribute name="ts_filecategory" />
           <attribute name="ts_filesubcategory" />
           <attribute name="ts_sharepointlink" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
         </entity>
       </fetch>
     </fetchxml>
