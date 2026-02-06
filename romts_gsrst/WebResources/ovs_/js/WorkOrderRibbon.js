@@ -47,6 +47,7 @@ function showAddExistingButton(primaryControl, targetFormId) {
 }
 function addExistingWorkOrdersToCase(primaryControl, selectedEntityTypeName, selectedControl) {
   const formContext = primaryControl;
+  const workOrderNumber = formContext.getAttribute("msdyn_name").getValue();
 
   const caseId = Xrm.Page.data.entity.getId().replace(/({|})/g, "");
 
@@ -106,7 +107,7 @@ function addExistingWorkOrdersToCase(primaryControl, selectedEntityTypeName, sel
             if (this.status === 204) {
               selectedControl.refresh();
             } else {
-              showErrorMessageAlert(this.statusText);
+              showErrorMessageAlert(this.statusText, workOrderNumber);
             }
           }
         };
@@ -115,13 +116,14 @@ function addExistingWorkOrdersToCase(primaryControl, selectedEntityTypeName, sel
       }
     },
     function (error) {
-      showErrorMessageAlert(error);
+      showErrorMessageAlert(error, workOrderNumber);
     }
   );
 }
 
 function ActivateWorkOrder(primaryControl) {
   const formContext = primaryControl;
+  const workOrderNumber = formContext.getAttribute("msdyn_name").getValue();
   $.ajaxSetup({ cache: true });
   $.getScript("../WebResources/ts_/js/Common.js", function () {
     $.ajaxSetup({ cache: false });
@@ -150,13 +152,14 @@ function ActivateWorkOrder(primaryControl) {
         }
       },
       function (error) {
-        showErrorMessageAlert(error);
+        showErrorMessageAlert(error, workOrderNumber);
       }
     );
   });
 }
 
 function openWorkOrderServiceTasks(formContext) {
+  const workOrderNumber = formContext.getAttribute("msdyn_name").getValue();
   workOrderServiceTaskData = {
     statecode: 0, //closed -> 1
     statuscode: 918640002, //closed -> 918640003
@@ -177,13 +180,13 @@ function openWorkOrderServiceTasks(formContext) {
           ).then(
             function success(result) {},
             function (error) {
-              showErrorMessageAlert(error);
+              showErrorMessageAlert(error, workOrderNumber);
             }
           );
         }
       },
       function (error) {
-        showErrorMessageAlert(error);
+        showErrorMessageAlert(error, workOrderNumber);
       }
     );
 }
@@ -198,8 +201,12 @@ function setWorkOrderServiceTasksView(formContext) {
   formContext.getControl("workorderservicetasksgrid").getViewSelector().setCurrentView(activeWorkOrderServiceTasksView);
 }
 
-function showErrorMessageAlert(error) {
-  var alertStrings = { text: error.message };
+function showErrorMessageAlert(error, workOrderNumber) {
+  var errorMessage = error.message || error.toString();
+  if (workOrderNumber) {
+    errorMessage = "Work Order: " + workOrderNumber + "\n\nError: " + errorMessage;
+  }
+  var alertStrings = { text: errorMessage };
   var alertOptions = { height: 120, width: 260 };
   Xrm.Navigation.openAlertDialog(alertStrings, alertOptions).then(function () {});
 }
@@ -469,14 +476,19 @@ function addExistingUsersToWorkOrder(primaryControl, selectedEntityTypeName, sel
     const incidentTypeOwnerId = getOwnerIdFromRecord(incidentType);
     const isAvSec = incidentTypeOwnerId ? await isOwnedByAvSec(incidentTypeOwnerId) : false;
     const isISSO = incidentTypeOwnerId ? await isOwnedByISSO(incidentTypeOwnerId) : false;
+    const isRailSafety = incidentTypeOwnerId ? await isOwnedByRailSafety(incidentTypeOwnerId) : false;
 
-    // TODO: Need to revisit once it is determined what will be done with the inspector teams.
-    let inspectorTeamConditions = "";
-    if (isAvSec) {
-      inspectorTeamConditions =
-        '<condition entityname="aa" attribute="name" operator="like" value="Aviation%Inspectors" />';
-    } else if (isISSO) {
-      inspectorTeamConditions = '<condition entityname="aa" attribute="name" operator="eq" value="ISSO%Inspectors" />';
+      // TODO: Need to revisit once it is determined what will be done with the inspector teams.
+      let inspectorTeamConditions = "";
+      if (isAvSec) {
+          inspectorTeamConditions =
+              '<condition entityname="aa" attribute="name" operator="like" value="Aviation%Inspectors" />';
+      }
+      else if (isISSO) {
+          inspectorTeamConditions = '<condition entityname="aa" attribute="name" operator="eq" value="ISSO%Inspectors" />';
+      }
+      else if (isRailSafety) {
+          inspectorTeamConditions = '<condition entityname="aa" attribute="name" operator="eq" value="Rail Safety Auditor" />';
       }
 
       let entityName = parentEntityName;
@@ -1181,6 +1193,124 @@ function enableEditWorkOrderButtonForOwnerOrInspector(primaryControl) {
     return ROM.WorkOrder.isEditWorkOrderEnabled;
 }
 
+/**
+ * Display rule: Shows button only when Work Order is in a subgrid on ts_workorderexportjob form
+ * Configure in Ribbon Workbench: Enable Rule -> Custom Rule -> Function: isInExportJobSubgrid
+ */
+function isInExportJobSubgrid(primaryControl) {
+  try {
+    // Check if we're in a subgrid context by checking parent window
+    if (typeof parent !== "undefined" && parent.Xrm && parent.Xrm.Page) {
+      var parentEntityName = parent.Xrm.Page.data.entity.getEntityName();
+      return parentEntityName === "ts_workorderexportjob";
+    }
+    return false;
+  } catch (e) {
+    return false;
+  }
+}
+
+/**
+ * Export questionnaires for this Work Order (called from ribbon button in subgrid)
+ * Creates a new export job for the selected Work Orders
+ * Configure in Ribbon Workbench:
+ *   - Button 1 (what user saw):    exportWorkOrderFromSubgrid(selectedControl)
+ *   - Button 2 (show all hidden):  exportWorkOrderFromSubgrid(selectedControl, true)
+ * @param {any} selectedControl - The subgrid control
+ * @param {boolean} includeHiddenQuestions - Optional flag, default false
+ */
+async function exportWorkOrderFromSubgrid(selectedControl, includeHiddenQuestions = false) {
+  try {
+    function pad2(n) {
+      return (n < 10 ? "0" : "") + n;
+    }
+
+    // Local, user-friendly timestamp for record names (avoid ISO noise)
+    function formatDateForJobName(d) {
+      var yyyy = d.getFullYear();
+      var mm = pad2(d.getMonth() + 1);
+      var dd = pad2(d.getDate());
+      var hh = pad2(d.getHours());
+      var mi = pad2(d.getMinutes());
+      return yyyy + "-" + mm + "-" + dd + " " + hh + ":" + mi;
+    }
+
+    async function checkForExistingActiveJobs() {
+      const activeStatuses = [741130001, 741130002, 741130003, 741130004, 741130005];
+      const filterConditions = activeStatuses.map(s => `statuscode eq ${s}`).join(" or ");
+      const query = `?$select=ts_name,statuscode&$filter=${filterConditions}&$top=1`;
+
+      try {
+        const result = await Xrm.WebApi.retrieveMultipleRecords("ts_workorderexportjob", query);
+        return (result.entities && result.entities.length > 0) ? result.entities[0] : null;
+      } catch (error) {
+        console.error("Error checking for active export jobs:", error);
+        return null; // fail-open (server plugin still enforces)
+      }
+    }
+
+    // 1. Get GUIDs from selected rows
+    var selectedRows = selectedControl.getGrid().getSelectedRows();
+    var selectedIds = [];
+    selectedRows.forEach(function (row) {
+      selectedIds.push(row.getData().getEntity().getId().replace(/[{}]/g, ""));
+    });
+
+    if (selectedIds.length === 0) {
+      Xrm.Navigation.openAlertDialog({ text: "Please select at least one Work Order." });
+      return;
+    }
+
+    // 2. Concurrency check (UX-only)
+    const existingJob = await checkForExistingActiveJobs();
+    if (existingJob) {
+      await Xrm.Navigation.openAlertDialog({
+        confirmButtonLabel: "OK",
+        text: `An export is already in progress: "${existingJob.ts_name || "(unnamed)"}". Please wait for it to complete before starting a new export.`
+      });
+      return;
+    }
+
+   // 2. Create ts_workorderexportjob
+   var includeHidden =
+     includeHiddenQuestions === true ||
+     includeHiddenQuestions === "true" ||
+     includeHiddenQuestions === 1;
+
+  var entity = {};
+  entity.ts_name = "Batch Export (" + selectedIds.length + " Work Orders) - " + formatDateForJobName(new Date());
+  entity.statuscode = 741130001; // Client Processing – questionnaire rendering
+  entity.ts_hiddenquestions = includeHidden;
+   entity.ts_surveypayloadjson = JSON.stringify({
+     ids: selectedIds,
+     includeHiddenQuestions: includeHidden,
+   });
+
+    const result = await Xrm.WebApi.createRecord("ts_workorderexportjob", entity);
+    var newId = result.id;
+
+    // 3. Navigation: Open record in a new window (not modal)
+    var pageInput = {
+      pageType: "entityrecord",
+      entityName: "ts_workorderexportjob",
+      entityId: newId
+    };
+    var navigationOptions = { target: 1 };
+
+    try {
+      await Xrm.Navigation.navigateTo(pageInput, navigationOptions);
+      // Refresh the subgrid
+      selectedControl.refresh();
+    } catch (e) {
+      // Silent fail - user can manually open the record if needed
+    }
+
+  } catch (e) {
+    console.log("[PDFTEST] Error in exportWorkOrderQuestionnaireFromSubgrid: " + e.message);
+    Xrm.Navigation.openAlertDialog({ text: "Error: " + e.message });
+  }
+}
+
 function canEditWorkOrderWorkspace() {
     var roles = Xrm.Utility.getGlobalContext().userSettings.roles;
     var enable = false;
@@ -1206,11 +1336,10 @@ function openBulkWorkspace(selectedControl) {
 
     if (!hasAccess) {
         const lang = Xrm.Utility.getGlobalContext().userSettings.languageId;
-        Xrm.Navigation.openAlertDialog({ 
-            text: (lang == 1036) ? 
-                "Vous n'avez pas la permission d'accéder à cette fonction." : 
-                "You do not have permission to access this function." 
-        });
+        const permissionError = new Error((lang == 1036) ? 
+            "Vous n'avez pas la permission d'accéder à cette fonction." : 
+            "You do not have permission to access this function.");
+        showErrorMessageAlert(permissionError);
         return;
     }
 
@@ -1269,12 +1398,19 @@ function openBulkWorkspace(selectedControl) {
             // Step 2.5: Show warning if any failed
             if (failedWoIds.length > 0) {
                 const successCount = missingWoIds.length - failedWoIds.length;
+                let diagnosticDetails = "\n\nDiagnostic Info:\n";
+                diagnosticDetails += "- Total WOs selected: " + woIds.length + "\n";
+                diagnosticDetails += "- Successfully created: " + successCount + "\n";
+                diagnosticDetails += "- Failed: " + failedWoIds.length + "\n";
+                diagnosticDetails += "- Step: Check workspace creation or API calls\n";
+                diagnosticDetails += "- Please check the browser console for detailed errors";
+                
                 const failureMessage = (lang == 1036) ?
-                    `${successCount} espace(s) de travail créé(s). Échec pour ${failedWoIds.length} ordre(s) de travail.\nIDs: ${failedWoIds.join(", ")}` :
-                    `${successCount} workspace(s) created. Failed for ${failedWoIds.length} work order(s).\nIDs: ${failedWoIds.join(", ")}`;
+                    `${successCount} espace(s) de travail créé(s). Échec pour ${failedWoIds.length} ordre(s) de travail.\nIDs: ${failedWoIds.join(", ")}` + diagnosticDetails :
+                    `${successCount} workspace(s) created. Failed for ${failedWoIds.length} work order(s).\nIDs: ${failedWoIds.join(", ")}` + diagnosticDetails;
                 
                 Xrm.Utility.closeProgressIndicator();
-                Xrm.Navigation.openAlertDialog({ text: failureMessage });
+                showErrorMessageAlert(new Error(failureMessage));
                 return;
             }
 
@@ -1295,12 +1431,7 @@ function openBulkWorkspace(selectedControl) {
             }
         } catch (error) {
             Xrm.Utility.closeProgressIndicator();
-            const lang = Xrm.Utility.getGlobalContext().userSettings.languageId;
-            Xrm.Navigation.openAlertDialog({ 
-                text: (lang == 1036) ? 
-                    "Une erreur s'est produite: " + error.message : 
-                    "An error occurred: " + error.message 
-            });
+            showErrorMessageAlert(error);
         }
     })();
 }

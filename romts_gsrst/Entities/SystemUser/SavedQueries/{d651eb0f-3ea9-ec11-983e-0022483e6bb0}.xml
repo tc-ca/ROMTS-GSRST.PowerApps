@@ -36,7 +36,10 @@
               <link-entity name="teamroles" intersect="true" visible="false" from="teamid" to="teamid">
                 <link-entity name="role" alias="ab" from="roleid" to="roleid">
                   <filter type="and">
-                    <condition attribute="name" operator="eq" value="ROM - Inspector" />
+                    <filter type="or">
+                      <condition attribute="name" operator="eq" value="ROM - Inspector" />
+                      <condition attribute="name" operator="eq" value="ROM - Rail Safety Auditor" />
+                    </filter>
                   </filter>
                 </link-entity>
               </link-entity>

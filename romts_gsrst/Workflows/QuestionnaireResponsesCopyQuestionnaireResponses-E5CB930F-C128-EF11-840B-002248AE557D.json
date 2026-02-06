@@ -301,6 +301,74 @@
                               "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
                             }
                           }
+                        },
+                        "Find_related_WOST_Workspace": {
+                          "runAfter": {
+                            "Update_a_row_-_Work_Order_Service_Task_2": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "a3931a70-5af8-48c5-a411-a678c60062ef"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "host": {
+                              "connectionName": "shared_commondataserviceforapps",
+                              "operationId": "ListRecords",
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                            },
+                            "parameters": {
+                              "entityName": "ts_workorderservicetaskworkspaces",
+                              "$filter": "_ts_workorderservicetask_value eq @{items('Apply_to_each_2')?['msdyn_workorderservicetaskid']}",
+                              "$top": 1
+                            },
+                            "authentication": {
+                              "type": "Raw",
+                              "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                            }
+                          }
+                        },
+                        "If_WOST_Workspace_Exists,_Update_it": {
+                          "foreach": "@outputs('Find_related_WOST_Workspace')?['body/value']",
+                          "actions": {
+                            "Update_WOST_Workspace_Record": {
+                              "runAfter": {},
+                              "metadata": {
+                                "operationMetadataId": "53e5dd8c-0a8b-4a43-ad91-bf8cf9bac493"
+                              },
+                              "type": "OpenApiConnection",
+                              "inputs": {
+                                "host": {
+                                  "connectionName": "shared_commondataserviceforapps",
+                                  "operationId": "UpdateOnlyRecord",
+                                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                                },
+                                "parameters": {
+                                  "entityName": "ts_workorderservicetaskworkspaces",
+                                  "recordId": "@items('If_WOST_Workspace_Exists,_Update_it')?['ts_workorderservicetaskworkspaceid']",
+                                  "item/ts_workorderservicetaskstartdate": "@outputs('Update_a_row_-_Work_Order_Service_Task_2')?['body/ts_servicetaskstartdate']",
+                                  "item/ts_fromoffline": true,
+                                  "item/ts_Questionnaire@odata.bind": "ovs_questionnaires(@{outputs('Questionnaire')?['body/ovs_questionnaireid']})",
+                                  "item/ts_questionnaireresponse": "@outputs('Questionnaire_Responses')?['body/ts_questionnaireanswers']",
+                                  "item/ts_TaskType@odata.bind": "msdyn_servicetasktypes(@{outputs('Service_Task_Type')?['body/msdyn_servicetasktypeid']})"
+                                },
+                                "authentication": {
+                                  "type": "Raw",
+                                  "value": "@json(decodeBase64(triggerOutputs().headers['X-MS-APIM-Tokens']))['$ConnectionKey']"
+                                }
+                              }
+                            }
+                          },
+                          "runAfter": {
+                            "Find_related_WOST_Workspace": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "e6ef5a51-7680-4eea-b986-914ccb49efc4"
+                          },
+                          "type": "Foreach"
                         }
                       },
                       "runAfter": {},

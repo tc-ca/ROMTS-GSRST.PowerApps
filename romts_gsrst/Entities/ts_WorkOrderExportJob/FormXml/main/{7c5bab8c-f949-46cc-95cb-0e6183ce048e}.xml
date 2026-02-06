@@ -38,13 +38,13 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{eb7d3491-d7a4-45c5-9b10-ff568d40230f}" locklevel="0" colspan="1" rowspan="3" auto="false">
+                      <cell id="{eb7d3491-d7a4-45c5-9b10-ff568d40230f}" locklevel="0" colspan="1" rowspan="3" auto="false" visible="false">
                         <labels>
                           <label description="Payload JSON" languagecode="1033" />
                         </labels>
                         <control id="ts_payloadjson" classid="{E0DECE4B-6FC8-4A8F-A065-082708572369}" datafieldname="ts_payloadjson" disabled="false" />
                       </cell>
-                      <cell id="{db8ad5c6-e437-4f45-8321-5ea7484f84c4}" locklevel="0" colspan="1" rowspan="3">
+                      <cell id="{db8ad5c6-e437-4f45-8321-5ea7484f84c4}" locklevel="0" colspan="1" rowspan="3" visible="false">
                         <labels>
                           <label description="Survey Payload JSON" languagecode="1033" />
                         </labels>
@@ -151,48 +151,6 @@
                         </events>
                       </cell>
                     </row>
-                    <row>
-                      <cell locklevel="0" id="{4a62224b-ac07-428d-991a-c7c6165a0e3a}" rowspan="4" colspan="1" auto="false">
-                        <labels>
-                          <label description="Work Orders" languagecode="1033" />
-                        </labels>
-                        <control indicationOfSubgrid="true" id="Subgrid_WorkOrders" classid="{F9A8A302-114E-466A-B582-6771B2AE0D92}" uniqueid="{4b30b4d8-fc29-44ff-b589-bd88e2be80db}">
-                          <parameters>
-                            <RecordsPerPage>10</RecordsPerPage>
-                            <AutoExpand>Fixed</AutoExpand>
-                            <EnableQuickFind>true</EnableQuickFind>
-                            <EnableViewPicker>true</EnableViewPicker>
-                            <EnableChartPicker>true</EnableChartPicker>
-                            <ChartGridMode>All</ChartGridMode>
-                            <RelationshipName />
-                            <TargetEntityType>msdyn_workorder</TargetEntityType>
-                            <ViewId>{76FAC358-06FB-ED11-8F6E-0022483D7716}</ViewId>
-                            <VisualizationId>{5472FF64-C30F-EB11-A813-000D3AF3A7A7}</VisualizationId>
-                          </parameters>
-                        </control>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell locklevel="0" id="{c48cc6d5-baef-43b5-9160-b55a67ab6461}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell locklevel="0" id="{fedbd43b-a60d-4a34-9fbf-f647820a06f3}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
-                    <row>
-                      <cell locklevel="0" id="{d6d40716-57df-48b0-a729-54df75aa3f4a}">
-                        <labels>
-                          <label description="" languagecode="1033" />
-                        </labels>
-                      </cell>
-                    </row>
                   </rows>
                 </section>
               </sections>
@@ -277,7 +235,7 @@
       </DisplayConditions>
       <formLibraries>
         <Library name="ts_/js/WorkOrderExportJob.js" libraryUniqueId="{1e65b21a-9867-4d40-9bea-671482bb9eb5}" />
-        <Library name="ts_/js/WorkOrderExportJobRibbon.js" libraryUniqueId="{b3c7995c-0fb0-462c-9f6f-544f0e2abf80}" />
+        <Library name="ts_/js/Common.js" libraryUniqueId="{8f66c1b1-2e3c-4fbc-a260-037103fe1b4c}" />
       </formLibraries>
       <events>
         <event name="onload" application="false" active="false">
@@ -286,137 +244,7 @@
           </Handlers>
         </event>
       </events>
-      <controlDescriptions>
-        <controlDescription forControl="{4b30b4d8-fc29-44ff-b589-bd88e2be80db}">
-          <customControl id="{E7A81278-8635-4D9E-8D4D-59480B391C5B}">
-            <parameters>
-              <RecordsPerPage>10</RecordsPerPage>
-              <AutoExpand>Fixed</AutoExpand>
-              <EnableQuickFind>true</EnableQuickFind>
-              <EnableViewPicker>true</EnableViewPicker>
-              <EnableChartPicker>true</EnableChartPicker>
-              <ChartGridMode>All</ChartGridMode>
-              <TargetEntityType>msdyn_workorder</TargetEntityType>
-              <ViewId>{76FAC358-06FB-ED11-8F6E-0022483D7716}</ViewId>
-              <VisualizationId>{5472FF64-C30F-EB11-A813-000D3AF3A7A7}</VisualizationId>
-            </parameters>
-          </customControl>
-          <customControl formFactor="0" name="Microsoft.PowerApps.PowerAppsOneGrid">
-            <parameters>
-              <data-set name="Items">
-                <ViewId>{76fac358-06fb-ed11-8f6e-0022483d7716}</ViewId>
-                <TargetEntityType>msdyn_workorder</TargetEntityType>
-                <IsUserView>false</IsUserView>
-                <EnableViewPicker>true</EnableViewPicker>
-                <RelationshipName />
-                <FilteredViewIds />
-              </data-set>
-              <EnableEditing type="Enum" static="true">no</EnableEditing>
-              <DisableChildItemsEditing type="Enum" static="true">no</DisableChildItemsEditing>
-              <EnableFiltering type="Enum" static="true">yes</EnableFiltering>
-              <EnableSorting type="Enum" static="true">yes</EnableSorting>
-              <EnableGrouping type="Enum" static="true">yes</EnableGrouping>
-              <EnableAggregation type="Enum" static="true">yes</EnableAggregation>
-              <EnableColumnMoving type="Enum" static="true">yes</EnableColumnMoving>
-              <EnableMultipleSelection type="Enum" static="true">yes</EnableMultipleSelection>
-              <EnableRangeSelection type="Enum" static="true">yes</EnableRangeSelection>
-              <EnableJumpBar type="Enum" static="true">no</EnableJumpBar>
-              <EnablePagination type="Enum" static="true">no</EnablePagination>
-              <EnableDropdownColor type="Enum" static="true">yes</EnableDropdownColor>
-              <EnableStatusIcons type="Enum" static="true">yes</EnableStatusIcons>
-              <EnableTypeIcons type="Enum" static="true">no</EnableTypeIcons>
-              <NavigationTypesAllowed type="Enum" static="true">all</NavigationTypesAllowed>
-              <ReflowBehavior type="Enum" static="true">Reflow</ReflowBehavior>
-              <ShowAvatar type="Enum" static="true">yes</ShowAvatar>
-              <NumberOfListColumns type="Whole.None" static="true">3</NumberOfListColumns>
-              <ShowFooter type="Enum" static="true">yes</ShowFooter>
-              <ShowColumnHeaders type="Enum" static="true">yes</ShowColumnHeaders>
-              <ContextualLookupColumnFilters type="Enum" static="true">yes</ContextualLookupColumnFilters>
-              <LookupFilterBeginsWith type="Enum" static="true">no</LookupFilterBeginsWith>
-              <UseFirstColumnForLookupEdits type="Enum" static="true">no</UseFirstColumnForLookupEdits>
-              <DateTimeFormat type="Enum" static="true">none</DateTimeFormat>
-              <DateOnlyFormat type="Enum" static="true">none</DateOnlyFormat>
-              <EnableStatusColumn type="Enum" static="true">yes</EnableStatusColumn>
-            </parameters>
-          </customControl>
-          <customControl formFactor="2" name="Microsoft.PowerApps.PowerAppsOneGrid">
-            <parameters>
-              <data-set name="Items">
-                <ViewId>{76fac358-06fb-ed11-8f6e-0022483d7716}</ViewId>
-                <TargetEntityType>msdyn_workorder</TargetEntityType>
-                <IsUserView>false</IsUserView>
-                <EnableViewPicker>true</EnableViewPicker>
-                <RelationshipName />
-                <FilteredViewIds />
-              </data-set>
-              <EnableEditing type="Enum" static="true">no</EnableEditing>
-              <DisableChildItemsEditing type="Enum" static="true">no</DisableChildItemsEditing>
-              <EnableFiltering type="Enum" static="true">yes</EnableFiltering>
-              <EnableSorting type="Enum" static="true">yes</EnableSorting>
-              <EnableGrouping type="Enum" static="true">yes</EnableGrouping>
-              <EnableAggregation type="Enum" static="true">yes</EnableAggregation>
-              <EnableColumnMoving type="Enum" static="true">yes</EnableColumnMoving>
-              <EnableMultipleSelection type="Enum" static="true">yes</EnableMultipleSelection>
-              <EnableRangeSelection type="Enum" static="true">yes</EnableRangeSelection>
-              <EnableJumpBar type="Enum" static="true">no</EnableJumpBar>
-              <EnablePagination type="Enum" static="true">no</EnablePagination>
-              <EnableDropdownColor type="Enum" static="true">yes</EnableDropdownColor>
-              <EnableStatusIcons type="Enum" static="true">yes</EnableStatusIcons>
-              <EnableTypeIcons type="Enum" static="true">no</EnableTypeIcons>
-              <NavigationTypesAllowed type="Enum" static="true">all</NavigationTypesAllowed>
-              <ReflowBehavior type="Enum" static="true">Reflow</ReflowBehavior>
-              <ShowAvatar type="Enum" static="true">yes</ShowAvatar>
-              <NumberOfListColumns type="Whole.None" static="true">3</NumberOfListColumns>
-              <ShowFooter type="Enum" static="true">yes</ShowFooter>
-              <ShowColumnHeaders type="Enum" static="true">yes</ShowColumnHeaders>
-              <ContextualLookupColumnFilters type="Enum" static="true">yes</ContextualLookupColumnFilters>
-              <LookupFilterBeginsWith type="Enum" static="true">no</LookupFilterBeginsWith>
-              <UseFirstColumnForLookupEdits type="Enum" static="true">no</UseFirstColumnForLookupEdits>
-              <DateTimeFormat type="Enum" static="true">none</DateTimeFormat>
-              <DateOnlyFormat type="Enum" static="true">none</DateOnlyFormat>
-              <EnableStatusColumn type="Enum" static="true">yes</EnableStatusColumn>
-            </parameters>
-          </customControl>
-          <customControl formFactor="1" name="Microsoft.PowerApps.PowerAppsOneGrid">
-            <parameters>
-              <data-set name="Items">
-                <ViewId>{76fac358-06fb-ed11-8f6e-0022483d7716}</ViewId>
-                <TargetEntityType>msdyn_workorder</TargetEntityType>
-                <IsUserView>false</IsUserView>
-                <EnableViewPicker>true</EnableViewPicker>
-                <RelationshipName />
-                <FilteredViewIds />
-              </data-set>
-              <EnableEditing type="Enum" static="true">no</EnableEditing>
-              <DisableChildItemsEditing type="Enum" static="true">no</DisableChildItemsEditing>
-              <EnableFiltering type="Enum" static="true">yes</EnableFiltering>
-              <EnableSorting type="Enum" static="true">yes</EnableSorting>
-              <EnableGrouping type="Enum" static="true">yes</EnableGrouping>
-              <EnableAggregation type="Enum" static="true">yes</EnableAggregation>
-              <EnableColumnMoving type="Enum" static="true">yes</EnableColumnMoving>
-              <EnableMultipleSelection type="Enum" static="true">yes</EnableMultipleSelection>
-              <EnableRangeSelection type="Enum" static="true">yes</EnableRangeSelection>
-              <EnableJumpBar type="Enum" static="true">no</EnableJumpBar>
-              <EnablePagination type="Enum" static="true">no</EnablePagination>
-              <EnableDropdownColor type="Enum" static="true">yes</EnableDropdownColor>
-              <EnableStatusIcons type="Enum" static="true">yes</EnableStatusIcons>
-              <EnableTypeIcons type="Enum" static="true">no</EnableTypeIcons>
-              <NavigationTypesAllowed type="Enum" static="true">all</NavigationTypesAllowed>
-              <ReflowBehavior type="Enum" static="true">Reflow</ReflowBehavior>
-              <ShowAvatar type="Enum" static="true">yes</ShowAvatar>
-              <NumberOfListColumns type="Whole.None" static="true">3</NumberOfListColumns>
-              <ShowFooter type="Enum" static="true">yes</ShowFooter>
-              <ShowColumnHeaders type="Enum" static="true">yes</ShowColumnHeaders>
-              <ContextualLookupColumnFilters type="Enum" static="true">yes</ContextualLookupColumnFilters>
-              <LookupFilterBeginsWith type="Enum" static="true">no</LookupFilterBeginsWith>
-              <UseFirstColumnForLookupEdits type="Enum" static="true">no</UseFirstColumnForLookupEdits>
-              <DateTimeFormat type="Enum" static="true">none</DateTimeFormat>
-              <DateOnlyFormat type="Enum" static="true">none</DateOnlyFormat>
-              <EnableStatusColumn type="Enum" static="true">yes</EnableStatusColumn>
-            </parameters>
-          </customControl>
-        </controlDescription>
-      </controlDescriptions>
+      <controlDescriptions />
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>
