@@ -415,9 +415,8 @@ var ROM;
             }
             unlockRecordLogFieldsIfUserIsSystemAdmin(form);
             RemoveOptionCancel(eContext);
+            // Call function to handle rationale field visibility
             showRationaleField(form, UNPLANNED_CATEGORY_ID);
-            // Hide ts_reason field (Work Order Rationale) unless owner is Domestic AvSec
-            showWorkOrderRationaleByBusinessUnit(form);
             checkUserIsInWorkOrderAccessTeam(form);
         }
         WorkOrder.onLoad = onLoad;
@@ -2167,32 +2166,30 @@ var ROM;
             //        });
             //}
         }
-        function isAvSecBusinessUnit() {
+        /**
+         * Determines if the current user belongs to the AvSec Domestic business unit.
+         *
+         * @returns {Promise<boolean>} True if user is in AvSec Domestic BU, false otherwise
+         */
+        function isCurrentUserAvSecDomestic() {
             return __awaiter(this, void 0, void 0, function () {
-                var userId, currentUserBusinessUnitFetchXML, userBusinessUnit, userBusinessUnitId;
+                var userId, error_1;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
+                            _a.trys.push([0, 2, , 3]);
                             userId = Xrm.Utility.getGlobalContext().userSettings.userId;
-                            currentUserBusinessUnitFetchXML = [
-                                "<fetch top='50'>",
-                                "  <entity name='businessunit'>",
-                                "    <attribute name='businessunitid' />",
-                                "    <link-entity name='systemuser' from='businessunitid' to='businessunitid' link-type='inner' alias='ab'>>",
-                                "      <filter>",
-                                "        <condition attribute='systemuserid' operator='eq' value='", userId, "'/>",
-                                "      </filter>",
-                                "    </link-entity>",
-                                "  </entity>",
-                                "</fetch>",
-                            ].join("");
-                            currentUserBusinessUnitFetchXML = "?fetchXml=" + encodeURIComponent(currentUserBusinessUnitFetchXML);
-                            return [4 /*yield*/, Xrm.WebApi.retrieveMultipleRecords("businessunit", currentUserBusinessUnitFetchXML)];
-                        case 1:
-                            userBusinessUnit = _a.sent();
-                            userBusinessUnitId = userBusinessUnit.entities[0].businessunitid;
-                            return [4 /*yield*/, isAvSecBU(userBusinessUnitId)];
-                        case 2: return [2 /*return*/, _a.sent()];
+                            if (!userId) {
+                                console.warn('[isCurrentUserAvSecDomestic] User ID not available');
+                                return [2 /*return*/, false];
+                            }
+                            return [4 /*yield*/, isOwnedByAvSecDomestic(userId)];
+                        case 1: return [2 /*return*/, _a.sent()];
+                        case 2:
+                            error_1 = _a.sent();
+                            console.error('[isCurrentUserAvSecDomestic] Error checking user business unit:', error_1);
+                            return [2 /*return*/, false];
+                        case 3: return [2 /*return*/];
                     }
                 });
             });
@@ -2428,51 +2425,66 @@ var ROM;
         }
         WorkOrder.rationaleOnChange = rationaleOnChange;
         /**
-         * Shows the Work Order Rationale field (ts_reason) ONLY for Domestic AvSec.
-         * Hides the field for Rail Safety, Rail Security, and International AvSec.
+         * Shows the Work Order Rationale field (ts_reason) based on category and business unit.
+         * Only shows for Unplanned category AND Domestic AvSec ownership.
          *
          * @param {Form.msdyn_workorder.Main.ROMOversightActivity} form The Work Order form context.
+         * @param {boolean} isUnplannedCategory Whether the category is "Unplanned".
          *
          * @returns {void}
          */
-        function showWorkOrderRationaleByBusinessUnit(form) {
+        function showWorkOrderRationaleByBusinessUnit(form, isUnplannedCategory) {
             return __awaiter(this, void 0, void 0, function () {
-                var ownerAttribute, ownerValue, rationaleControl_1, isDomesticAvSec, rationaleControl, rationaleAttribute, error_1;
+                var rationaleControl, rationaleAttribute, rationaleValue, isDomesticAvSec, error_2;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
                             _a.trys.push([0, 2, , 3]);
-                            ownerAttribute = form.getAttribute("ownerid");
-                            if (!ownerAttribute) {
-                                return [2 /*return*/];
-                            }
-                            ownerValue = ownerAttribute.getValue();
-                            if (!ownerValue || !ownerValue[0]) {
-                                rationaleControl_1 = form.getControl("ts_reason");
-                                if (rationaleControl_1) {
-                                    rationaleControl_1.setVisible(false);
-                                }
-                                return [2 /*return*/];
-                            }
-                            return [4 /*yield*/, isOwnedByAvSecDomestic(ownerValue)];
-                        case 1:
-                            isDomesticAvSec = _a.sent();
+                            console.log("[WorkOrder.showWorkOrderRationaleByBusinessUnit] Starting with isUnplannedCategory:", isUnplannedCategory);
                             rationaleControl = form.getControl("ts_reason");
                             rationaleAttribute = form.getAttribute("ts_reason");
-                            if (rationaleControl) {
-                                rationaleControl.setVisible(isDomesticAvSec);
-                            }
-                            if (rationaleAttribute) {
-                                rationaleAttribute.setRequiredLevel(isDomesticAvSec ? "required" : "none");
-                                // If hiding, clear value to avoid stale required-value mismatch
-                                if (!isDomesticAvSec) {
+                            rationaleValue = rationaleAttribute === null || rationaleAttribute === void 0 ? void 0 : rationaleAttribute.getValue();
+                            console.log("[WorkOrder.showWorkOrderRationaleByBusinessUnit] ts_reason value on load:", rationaleValue);
+                            // If category is not "Unplanned", hide the field regardless of business unit
+                            if (!isUnplannedCategory) {
+                                if (rationaleAttribute) {
+                                    rationaleAttribute.setRequiredLevel("none");
                                     rationaleAttribute.setValue(null);
                                 }
+                                if (rationaleControl) {
+                                    rationaleControl.setVisible(false);
+                                }
+                                return [2 /*return*/];
                             }
+                            return [4 /*yield*/, isCurrentUserAvSecDomestic()];
+                        case 1:
+                            isDomesticAvSec = _a.sent();
+                            console.log("[WorkOrder.showWorkOrderRationaleByBusinessUnit] Is Domestic AvSec:", isDomesticAvSec);
+                            if (isDomesticAvSec) {
+                                // Show field and make required
+                                if (rationaleControl) {
+                                    rationaleControl.setVisible(true);
+                                }
+                                if (rationaleAttribute) {
+                                    rationaleAttribute.setRequiredLevel("required");
+                                }
+                            }
+                            else {
+                                // Hide field and make optional, then clear value
+                                if (rationaleAttribute) {
+                                    rationaleAttribute.setRequiredLevel("none");
+                                    rationaleAttribute.setValue(null);
+                                }
+                                if (rationaleControl) {
+                                    rationaleControl.setVisible(false);
+                                }
+                            }
+                            // Always call this to update justification field visibility based on rationale
+                            showWorkOrderJustificationField(form);
                             return [3 /*break*/, 3];
                         case 2:
-                            error_1 = _a.sent();
-                            console.error("[WorkOrder.showWorkOrderRationaleByBusinessUnit] Error:", error_1);
+                            error_2 = _a.sent();
+                            console.error("[WorkOrder.showWorkOrderRationaleByBusinessUnit] Error:", error_2);
                             return [3 /*break*/, 3];
                         case 3: return [2 /*return*/];
                     }
@@ -2488,36 +2500,25 @@ var ROM;
          * @returns {void}
          */
         function showRationaleField(form, unplannedCategoryGUID) {
-            var lang = Xrm.Utility.getGlobalContext().userSettings.languageId;
+            console.log("[WorkOrder.showRationaleField] Starting rationale field evaluation");
             var categoryAttribute = form.getAttribute("ovs_rational");
             if (!categoryAttribute) {
                 return;
             }
             var categoryValue = categoryAttribute.getValue();
-            var show = false;
+            console.log("[WorkOrder.showRationaleField] Category value:", categoryValue);
+            var isUnplanned = false;
             if (Array.isArray(categoryValue) && categoryValue.length > 0) {
                 var item = categoryValue[0];
                 var rawId = item.id || "";
                 var id = rawId.replace(/[{}]/g, "").toLowerCase();
                 if (id === unplannedCategoryGUID.toLowerCase()) {
-                    show = true;
+                    isUnplanned = true;
                 }
             }
-            var rationaleControl = form.getControl("ts_reason");
-            var rationaleAttribute = form.getAttribute("ts_reason");
-            var rationaleValue = rationaleAttribute === null || rationaleAttribute === void 0 ? void 0 : rationaleAttribute.getValue();
-            console.log("ts_reason value on load:", rationaleValue);
-            if (rationaleControl) {
-                rationaleControl.setVisible(show);
-            }
-            if (rationaleAttribute) {
-                rationaleAttribute.setRequiredLevel(show ? "required" : "none");
-                showWorkOrderJustificationField(form);
-                // If hiding, clear value to avoid stale required-value mismatch
-                if (!show) {
-                    rationaleAttribute.setValue(null);
-                }
-            }
+            // Always call showWorkOrderRationaleByBusinessUnit with the unplanned status
+            // It will handle all ts_reason visibility logic
+            showWorkOrderRationaleByBusinessUnit(form, isUnplanned);
         }
         /**
          * Shows and makes required the Work Order Justification field when the current

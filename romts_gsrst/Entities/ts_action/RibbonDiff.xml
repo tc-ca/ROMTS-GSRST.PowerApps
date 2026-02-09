@@ -6,6 +6,11 @@
     <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ts_action.FollowButton.Hide" Location="Mscrm.HomepageGrid.ts_action.FollowButton" />
     <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ts_action.RefreshButton.Hide" Location="Mscrm.HomepageGrid.ts_action.RefreshButton" />
     <HideCustomAction HideActionId="ts.Mscrm.HomepageGrid.ts_action.RunReport.Hide" Location="Mscrm.HomepageGrid.ts_action.RunReport" />
+    <CustomAction Id="ts.Mscrm.OpenRecordItem.Mscrm.SubGrid.ts_action.MainTab.Management.CustomAction" Location="Mscrm.SubGrid.ts_action.MainTab.Management.Controls._children" Sequence="28">
+      <CommandUIDefinition>
+        <Button Command="Mscrm.OpenRecordItem" Id="Mscrm.OpenRecordItem" Sequence="28" TemplateAlias="o1" />
+      </CommandUIDefinition>
+    </CustomAction>
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_action.AddNewStandard.Hide" Location="Mscrm.SubGrid.ts_action.AddNewStandard" />
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_action.FollowButton.Hide" Location="Mscrm.SubGrid.ts_action.FollowButton" />
     <HideCustomAction HideActionId="ts.Mscrm.SubGrid.ts_action.NewRecord.Hide" Location="Mscrm.SubGrid.ts_action.NewRecord" />
@@ -35,6 +40,17 @@
         <JavaScriptFunction FunctionName="XrmCore.Commands.Deactivate.deactivatePrimaryRecord" Library="$webresource:Main_system_library.js">
           <CrmParameter Value="FirstPrimaryItemId" />
           <CrmParameter Value="PrimaryEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="Mscrm.OpenRecordItem">
+      <EnableRules>
+        <EnableRule Id="ts.ts_action.alwaysFalse" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="openRecord" Library="$webresource:ts_/js/ActionRibbon.js">
+          <CrmParameter Value="FirstSelectedItemId" />
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
@@ -69,6 +85,9 @@
     <EnableRules>
       <EnableRule Id="Mscrm.CanWritePrimary">
         <RecordPrivilegeRule PrivilegeType="Write" AppliesTo="PrimaryEntity" />
+      </EnableRule>
+      <EnableRule Id="ts.ts_action.alwaysFalse">
+        <CustomRule FunctionName="isNaN" Library="$webresource:ts_/js/ActionRibbon.js" Default="false" InvertResult="true" />
       </EnableRule>
       <EnableRule Id="ts.ts_action.isadminormanager">
         <OrRule>
