@@ -361,7 +361,7 @@
                 },
                 "Populate_a_Microsoft_Word_template_2": {
                   "runAfter": {
-                    "Compose_–_PDF_File_Name": [
+                    "Set_variable_3": [
                       "Succeeded"
                     ]
                   },
@@ -454,7 +454,7 @@
                 },
                 "Create_file_4": {
                   "runAfter": {
-                    "Convert_Word_Document_to_PDF_2": [
+                    "Increment_variable_2": [
                       "Succeeded"
                     ]
                   },
@@ -545,7 +545,7 @@
                 },
                 "Increment_variable": {
                   "runAfter": {
-                    "Add_a_new_row_(Notes)": [
+                    "Update_a_row_2": [
                       "Succeeded"
                     ]
                   },
@@ -556,6 +556,99 @@
                   "inputs": {
                     "name": "runningDoneUnits",
                     "value": 1
+                  }
+                },
+                "Increment_variable_2": {
+                  "runAfter": {
+                    "Update_a_row": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "81e5e24f-48e0-45c6-afd1-62056922a837"
+                  },
+                  "type": "IncrementVariable",
+                  "inputs": {
+                    "name": "runningDoneUnits",
+                    "value": 1
+                  }
+                },
+                "Update_a_row": {
+                  "runAfter": {
+                    "Convert_Word_Document_to_PDF_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "e33fc934-cbbb-4f90-afe3-cfbdab46a4e4"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateOnlyRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_workorderexportjobs",
+                      "recordId": "@outputs('Get_a_row_by_ID')?['body/ts_workorderexportjobid']",
+                      "item/ts_progressmessage": "@  concat(\r\n    'Generating main PDFs: ',\r\n    string(variables('mainPdfCompletedCount')),\r\n    '/',\r\n    string(variables('totalWorkOrders')),\r\n    ' completed. Preparing document for work order ',\r\n    coalesce(items('Apply_to_each')?['WorkOrderNumber'], items('Apply_to_each')?['WorkOrderId'], 'Unknown'),\r\n    '...'\r\n  )"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Update_a_row_2": {
+                  "runAfter": {
+                    "Add_a_new_row_(Notes)": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "6da534d1-ba0d-44e2-bf11-eb4f0467397a"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateOnlyRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_workorderexportjobs",
+                      "recordId": "@outputs('Get_a_row_by_ID')?['body/ts_workorderexportjobid']",
+                      "item/ts_progressmessage": "@  concat(\r\n    'Generating main PDFs: ',\r\n    string(variables('mainPdfCompletedCount')),\r\n    '/',\r\n    string(variables('totalWorkOrders')),\r\n    ' completed.'\r\n  )"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Set_variable": {
+                  "runAfter": {
+                    "Compose_–_PDF_File_Name": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "3a6101e4-dd59-4bd1-b2f7-4e3d58ea7925"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "currentWorkOrderNumber",
+                    "value": "@items('Apply_to_each')?['WorkOrderNumber']"
+                  }
+                },
+                "Set_variable_3": {
+                  "runAfter": {
+                    "Set_variable": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "941b1cde-15aa-489b-abcb-601a5b2ed293"
+                  },
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "currentWorkOrderId",
+                    "value": "@items('Apply_to_each')?['WorkOrderId']"
                   }
                 }
               },
@@ -597,7 +690,7 @@
         },
         "Initialize_folder_path": {
           "runAfter": {
-            "Initialize_variable_3": [
+            "Initialize_variable_7": [
               "Succeeded"
             ]
           },
@@ -648,43 +741,6 @@
           },
           "metadata": {
             "operationMetadataId": "eb0c600a-ba83-4e67-8a78-93bc889526f4"
-          },
-          "type": "Scope"
-        },
-        "Scope_-_On_Failure": {
-          "actions": {
-            "Update_a_row_-_StatusReason_set_to_Error": {
-              "runAfter": {},
-              "metadata": {
-                "operationMetadataId": "e7cf91d9-9335-4ec5-8112-4061e0f11a97"
-              },
-              "type": "OpenApiConnection",
-              "inputs": {
-                "host": {
-                  "connectionName": "shared_commondataserviceforapps",
-                  "operationId": "UpdateOnlyRecord",
-                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                },
-                "parameters": {
-                  "entityName": "ts_workorderexportjobs",
-                  "recordId": "@outputs('Get_a_row_by_ID')?['body/ts_workorderexportjobid']",
-                  "item/ts_doneunits": "@variables('runningDoneUnits')",
-                  "item/ts_lastheartbeat": "@utcNow()",
-                  "item/ts_progressmessage": "@concat('Flow failed. Check error. Main PDFs: ', string(sub(variables('runningDoneUnits'), variables('baseDoneUnits'))), '/', string(variables('totalWorkOrders')))",
-                  "item/statuscode": 741130007
-                },
-                "authentication": "@parameters('$authentication')"
-              }
-            }
-          },
-          "runAfter": {
-            "Scope_-_on_Success": [
-              "Failed",
-              "TimedOut"
-            ]
-          },
-          "metadata": {
-            "operationMetadataId": "9be05b27-2d10-42e5-a5a0-50be8cd19703"
           },
           "type": "Scope"
         },
@@ -743,6 +799,172 @@
               {
                 "name": "totalWorkOrders",
                 "type": "integer"
+              }
+            ]
+          }
+        },
+        "Scope_-_On_Failure": {
+          "actions": {
+            "Get_Notes": {
+              "runAfter": {
+                "Apply_to_each_3": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "4aa384a7-ce9a-4def-b636-977079703055"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecords",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "annotations",
+                  "$select": "annotationid",
+                  "$filter": "_objectid_value eq '@{outputs('Get_a_row_by_ID')?['body/ts_workorderexportjobid']\r\n}'"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_to_each_2": {
+              "foreach": "@outputs('Get_Notes')?['body/value']",
+              "actions": {
+                "Delete_a_row": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "b6d4db23-0f94-44f1-9e1d-a67fcaa4601c"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "DeleteRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "annotations",
+                      "recordId": "@items('Apply_to_each_2')?['annotationid']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Get_Notes": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "fa8b481d-a628-4c6a-adea-3e5c98a9fb07"
+              },
+              "type": "Foreach"
+            },
+            "Apply_to_each_3": {
+              "foreach": "@body('Parse_JSON')?['WorkOrders']",
+              "actions": {
+                "Update_a_row_-_StatusReason_set_to_Error": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "e7cf91d9-9335-4ec5-8112-4061e0f11a97"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateOnlyRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_workorderexportjobs",
+                      "recordId": "@outputs('Get_a_row_by_ID')?['body/ts_workorderexportjobid']",
+                      "item/ts_doneunits": "@variables('runningDoneUnits')",
+                      "item/ts_errormessage": "@concat(\r\n    'Main PDF generation failed for work order ',\r\n    coalesce(variables('currentWorkOrderNumber'), 'Unknown'),\r\n    ' (',\r\n    coalesce(variables('currentWorkOrderId'), 'Unknown ID'),\r\n    '). Flow run: ',\r\n    coalesce(workflow()?['run']?['name'], 'N/A'),\r\n    '. Please retry the export.'\r\n  )",
+                      "item/ts_lastheartbeat": "@utcNow()",
+                      "item/ts_progressmessage": "@concat('Flow failed. Check error. Main PDFs: ', string(sub(variables('runningDoneUnits'), variables('baseDoneUnits'))), '/', string(variables('totalWorkOrders')))",
+                      "item/statuscode": 741130007
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "d12d405d-be1a-4b9c-a65d-432f4d825189"
+              },
+              "type": "Foreach"
+            }
+          },
+          "runAfter": {
+            "Scope_Flow_Processing": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9be05b27-2d10-42e5-a5a0-50be8cd19703"
+          },
+          "type": "Scope"
+        },
+        "Initialize_variable_4": {
+          "runAfter": {
+            "Initialize_variable_3": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5b85f426-7a37-4d55-8143-9e491f82e5d9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "mainPdfCompletedCount",
+                "type": "integer",
+                "value": 0
+              }
+            ]
+          }
+        },
+        "Initialize_variable_6": {
+          "runAfter": {
+            "Initialize_variable_4": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2a4c23eb-08dd-4f73-8cc7-98b5e8e9ccfd"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "currentWorkOrderId",
+                "type": "string",
+                "value": "Not Started"
+              }
+            ]
+          }
+        },
+        "Initialize_variable_7": {
+          "runAfter": {
+            "Initialize_variable_6": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d3b82693-a961-4ba4-9363-75477f372113"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "currentWorkOrderNumber",
+                "type": "string",
+                "value": "Not Started"
               }
             ]
           }

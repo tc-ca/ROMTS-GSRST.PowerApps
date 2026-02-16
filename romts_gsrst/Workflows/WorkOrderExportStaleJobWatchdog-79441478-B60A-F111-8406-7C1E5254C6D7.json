@@ -1,0 +1,139 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_81d95"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Recurrence": {
+          "recurrence": {
+            "frequency": "Minute",
+            "interval": 10,
+            "startTime": "2026-02-15T15:00:00Z"
+          },
+          "metadata": {
+            "operationMetadataId": "c549a33e-33f3-49be-8db8-bf270e942a63"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "f9e9acc8-c94c-4467-ac58-8636558a1434"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "ts_workorderexportjobs",
+              "$select": "ts_workorderexportjobid,statuscode,ts_lastheartbeat,createdon,ts_name",
+              "$filter": "(statuscode eq 741130001 or\n   statuscode eq 741130002 or\n   statuscode eq 741130003 or\n   statuscode eq 741130004 or\n   statuscode eq 741130005 or\n   statuscode eq 741130008 or\n   statuscode eq 741130009 or\n   statuscode eq 741130010 or\n   statuscode eq 741130011 or\n   statuscode eq 741130012)",
+              "$orderby": "createdon asc"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "For_Each_Active_Export_Job": {
+          "foreach": "@outputs('List_rows')?['body/value']",
+          "actions": {
+            "Check_If_Export_Is_Inactive_(InactivityMinutes_min)": {
+              "actions": {
+                "_Mark_Export_As_Stopped_(Timed_Out)": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "e2b80990-ac8f-4a0c-92fa-22809cba113a"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateOnlyRecord",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "entityName": "ts_workorderexportjobs",
+                      "recordId": "@{items('For_Each_Active_Export_Job')}\n",
+                      "item/ts_errormessage": "@concat(\r\n    'This export was automatically stopped after ',\r\n    string(variables('InactivityMinutes')),\r\n    ' minutes with no progress updates. This usually happens if the browser was closed, refreshed, or the session was interrupted. Please start a new export.'\r\n  )",
+                      "item/ts_lastheartbeat": "@utcNow()",
+                      "item/ts_progressmessage": "@ concat('This export was stopped automatically because it had no activity for ', string(variables('InactivityMinutes')), ' minutes. Please start a new export.')",
+                      "item/statuscode": 741130007
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "expression": {
+                "equals": [
+                  "@coalesce(items('For_Each_Active_Export_Job')?['ts_lastheartbeat'], items('For_Each_Active_Export_Job')?['createdon'])",
+                  "@addMinutes(utcNow(), mul(variables('InactivityMinutes'), -1))"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "0b4993d7-7cb2-4896-aace-ebca03c6f344"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "dcad95a7-8625-41d0-a592-86c121d17da9"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "79893e9c-e16f-466c-aec7-6501640f7094"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "InactivityMinutes",
+                "type": "integer",
+                "value": 20
+              }
+            ]
+          }
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

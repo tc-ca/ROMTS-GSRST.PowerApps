@@ -1,222 +1,235 @@
-// Work Order Export Job ribbon helpers
-// Intended usage (Ribbon Workbench):
-// - Display/Enable rule: WorkOrderExportJobRibbon.canRestartFromStart(primaryControl)
-// - Action:             WorkOrderExportJobRibbon.restartFromStart(primaryControl)
+"use strict";
 
-var WorkOrderExportJobRibbon = WorkOrderExportJobRibbon || {};
+var STATUS_CLIENT_PROCESSING = 741130001;
+var STATUS_READY_FOR_SERVER = 741130002;
+var STATUS_READY_FOR_FLOW = 741130003;
+var STATUS_FLOW_RUNNING = 741130004;
+var STATUS_READY_FOR_MERGE = 741130005;
+var STATUS_MERGE_IN_PROGRESS = 741130008;
+var STATUS_READY_FOR_ZIP = 741130009;
+var STATUS_ZIP_IN_PROGRESS = 741130010;
+var STATUS_READY_FOR_CLEANUP = 741130011;
+var STATUS_CLEANUP_IN_PROGRESS = 741130012;
 
-(function () {
-  "use strict";
+var ALLOWED_RESTART_ROLES = "System Administrator|ROM - Business Admin|ROM - Planner|ROM - Manager";
 
-  var STATUS_CLIENT_PROCESSING = 741130001;
-
-  function logInfo(msg, data) {
-    try {
-      if (typeof console === "undefined") return;
-      if (data !== undefined) console.info("[WorkOrderExportJobRibbon]", msg, data);
-      else console.info("[WorkOrderExportJobRibbon]", msg);
-    } catch (e) {
-      // ignore
-    }
-  }
-
-  function logWarn(msg, data) {
-    try {
-      if (typeof console === "undefined") return;
-      if (data !== undefined) console.warn("[WorkOrderExportJobRibbon]", msg, data);
-      else console.warn("[WorkOrderExportJobRibbon]", msg);
-    } catch (e) {
-      // ignore
-    }
-  }
-
-  function logError(msg, err) {
-    try {
-      if (typeof console === "undefined") return;
-      console.error("[WorkOrderExportJobRibbon]", msg, err || "");
-    } catch (e) {
-      // ignore
-    }
-  }
-
-  function logOnce(key, level, msg, data) {
-    // Ribbon enable rules can be evaluated frequently; this prevents console spam without requiring a manual flag.
-    try {
-      var k = "tsis2:WorkOrderExportJobRibbon:once:" + key;
-      if (sessionStorage && sessionStorage.getItem(k) === "1") return;
-      if (sessionStorage) sessionStorage.setItem(k, "1");
-    } catch (e) {
-      // ignore dedupe failures (still log)
-    }
-
-    if (level === "warn") logWarn(msg, data);
-    else if (level === "error") logError(msg, data);
-    else logInfo(msg, data);
-  }
-
-  function getFormContext(primaryControl) {
+function woejGetFormContext(primaryControl) {
+  if (primaryControl && typeof primaryControl.getAttribute === "function") {
     return primaryControl;
   }
+  if (typeof Xrm !== "undefined" && Xrm.Page) {
+    return Xrm.Page;
+  }
+  return null;
+}
 
-  function getId(formContext) {
-    try {
-      return (formContext && formContext.data && formContext.data.entity && formContext.data.entity.getId
-        ? formContext.data.entity.getId()
-        : ""
-      ).replace(/[{}]/g, "");
-    } catch (e) {
-      return "";
-    }
+function woejGetJobId(formContext) {
+  return ((formContext && formContext.data && formContext.data.entity && formContext.data.entity.getId
+    ? formContext.data.entity.getId()
+    : "") || "").replace(/[{}]/g, "");
+}
+
+function woejGetStatusCode(formContext) {
+  var attr = formContext.getAttribute("statuscode") || formContext.getAttribute("header_ts_statuscode");
+  return attr ? attr.getValue() : null;
+}
+
+function woejIsInProgressStatus(statusCode) {
+  return statusCode === STATUS_CLIENT_PROCESSING ||
+    statusCode === STATUS_READY_FOR_SERVER ||
+    statusCode === STATUS_READY_FOR_FLOW ||
+    statusCode === STATUS_FLOW_RUNNING ||
+    statusCode === STATUS_READY_FOR_MERGE ||
+    statusCode === STATUS_MERGE_IN_PROGRESS ||
+    statusCode === STATUS_READY_FOR_ZIP ||
+    statusCode === STATUS_ZIP_IN_PROGRESS ||
+    statusCode === STATUS_READY_FOR_CLEANUP ||
+    statusCode === STATUS_CLEANUP_IN_PROGRESS;
+}
+
+function woejHasRestartRole() {
+  if (typeof userHasRole === "function") {
+    return userHasRole(ALLOWED_RESTART_ROLES);
   }
 
-  function getAttrValue(formContext, logicalName) {
-    try {
-      var a = formContext.getAttribute(logicalName);
-      return a ? a.getValue() : null;
-    } catch (e) {
-      return null;
+  var roles = Xrm.Utility.getGlobalContext().userSettings.roles;
+  var allowed = ALLOWED_RESTART_ROLES.toLowerCase().split("|");
+  var found = false;
+  roles.forEach(function (role) {
+    if (allowed.indexOf((role.name || "").toLowerCase()) >= 0) {
+      found = true;
     }
+  });
+  return found;
+}
+
+function woejShowAlert(text) {
+  return Xrm.Navigation.openAlertDialog({ text: text });
+}
+
+async function woejReloadExportJobForm(jobId, formContext) {
+  try {
+    await Xrm.Navigation.openForm({
+      entityName: "ts_workorderexportjob",
+      entityId: jobId,
+      openInNewWindow: false
+    });
+    return;
+  } catch (e) {
+    // Fallback to in-place refresh if navigation fails.
   }
 
-  WorkOrderExportJobRibbon.isSystemAdministrator = function () {
-    try {
-      var roles = Xrm.Utility.getGlobalContext().userSettings.roles;
-      var enable = false;
-      roles.forEach(function (item) {
-        if (item.name === "System Administrator") enable = true;
-      });
-      return enable;
-    } catch (e) {
-      logError("Failed to evaluate user roles (isSystemAdministrator).", e);
-      return false;
+  try {
+    await formContext.data.refresh(false);
+    try { formContext.ui.refreshRibbon(); } catch (e) { }
+  } catch (e) {
+    if (typeof window !== "undefined" && window.location && typeof window.location.reload === "function") {
+      window.location.reload();
     }
-  };
+  }
+}
 
-  // Use this for BOTH display rule + enable rule (must be synchronous).
-  WorkOrderExportJobRibbon.canRestartFromStart = function (primaryControl) {
-    try {
-      if (!WorkOrderExportJobRibbon.isSystemAdministrator()) {
-        logOnce("canRestartFromStart:notSysAdmin", "info", "Restart button hidden/disabled: user is not System Administrator.");
-        return false;
-      }
-      var formContext = getFormContext(primaryControl);
-      var id = getId(formContext);
-      if (!id) {
-        logOnce("canRestartFromStart:notSaved", "info", "Restart button hidden/disabled: record is not saved yet (no id).");
-        return false; // must be saved
-      }
-      var payload = getAttrValue(formContext, "ts_surveypayloadjson");
-      var hasPayload = !!(payload && payload.toString().trim());
-      if (!hasPayload) logOnce("canRestartFromStart:emptyPayload:" + id, "info", "Restart button hidden/disabled: ts_surveypayloadjson is empty.", { id: id });
-      return hasPayload;
-    } catch (e) {
-      logOnce("canRestartFromStart:exception", "error", "Restart button enable rule threw an exception.", e);
-      return false;
-    }
-  };
+function woejFormatRestartedName(existingName) {
+  var base = (existingName || "Batch Export").toString().trim();
+  base = base.replace(/\s+\(restarted\s*@.*\)$/i, "");
+  base = base.replace(/\s+\(restarted.*\)$/i, "");
 
-  async function deleteExportArtifacts(jobId) {
-    // Deletes only the export-generated notes (keeps user-authored notes):
-    // - WO_<WO>_SURVEY_<TASK>.pdf
-    // - WO_<WO>_MAIN.pdf
-    // - WO_<WO>_MERGED.pdf
-    // - WorkOrderExport_<jobId>.zip
-    var zipName = "WorkOrderExport_" + jobId + ".zip";
-    var query =
-      "?$select=annotationid,filename" +
-      "&$filter=_objectid_value eq " +
-      jobId +
-      " and isdocument eq true and (" +
-      "contains(filename,'WO_') or filename eq '" + zipName + "'" +
-      " or contains(subject,'WO_') or subject eq '" + zipName + "'" +
-      ")" +
-      "&$top=5000";
-
-    var notes = await Xrm.WebApi.retrieveMultipleRecords("annotation", query);
-    var entities = (notes && notes.entities) ? notes.entities : [];
-    logInfo("Found export artifact note(s) to delete.", { jobId: jobId, count: entities.length });
-
-    for (var i = 0; i < entities.length; i++) {
-      var noteId = entities[i].annotationid;
-      if (!noteId) continue;
-      await Xrm.WebApi.deleteRecord("annotation", noteId);
-    }
-
-    return entities.length;
+  var now = new Date();
+  var pad2 = function (n) { return n < 10 ? "0" + n : "" + n; };
+  var stamp = now.getFullYear() + "-" + pad2(now.getMonth() + 1) + "-" + pad2(now.getDate()) +
+    " " + pad2(now.getHours()) + ":" + pad2(now.getMinutes());
+  var userName = "";
+  try {
+    userName = (Xrm.Utility.getGlobalContext().userSettings.userName || "").toString().trim();
+  } catch (e) {
+    userName = "";
+  }
+  if (!userName) {
+    userName = "Unknown User";
   }
 
-  WorkOrderExportJobRibbon.restartFromStart = async function (primaryControl) {
-    var formContext = getFormContext(primaryControl);
-    logInfo("Restart requested.");
+  return base + " (Restarted @ " + stamp + " by " + userName + ")";
+}
 
-    if (!WorkOrderExportJobRibbon.isSystemAdministrator()) {
-      logWarn("Restart blocked: user is not System Administrator.");
-      await Xrm.Navigation.openAlertDialog({ text: "This action is restricted to System Administrators." });
-      return;
+function woejIsGeneratedExportArtifact(filename) {
+  var name = (filename || "").toString().trim().toLowerCase();
+  if (!name) return false;
+
+  if (/^wo_.+_survey_.+\.pdf$/i.test(name)) return true;
+  if (/^wo_.+_main\.pdf$/i.test(name)) return true;
+  if (/^wo_.+_merged\.pdf$/i.test(name)) return true;
+  if (name.endsWith(".zip")) return true;
+  return false;
+}
+
+async function woejGetGeneratedArtifactNotes(jobId) {
+  var query =
+    "?$select=annotationid,filename,isdocument" +
+    "&$filter=_objectid_value eq " + jobId + " and isdocument eq true" +
+    "&$top=5000";
+
+  var result = await Xrm.WebApi.retrieveMultipleRecords("annotation", query);
+  return (result.entities || []).filter(function (n) {
+    return !!n.annotationid && woejIsGeneratedExportArtifact(n.filename);
+  });
+}
+
+async function woejDeleteNotes(notes) {
+  for (var i = 0; i < notes.length; i++) {
+    try {
+      await Xrm.WebApi.deleteRecord("annotation", notes[i].annotationid);
+    } catch (e) {
+      // Keep restart resilient even if one note cannot be deleted.
     }
+  }
+}
 
-    var jobId = getId(formContext);
-    if (!jobId) {
-      logWarn("Restart blocked: Export Job is not saved (no id).");
-      await Xrm.Navigation.openAlertDialog({ text: "Please save the Export Job first." });
-      return;
-    }
+function canRestartJob(primaryControl) {
+  try {
+    var formContext = woejGetFormContext(primaryControl);
+    if (!formContext) return false;
+    if (!woejHasRestartRole()) return false;
 
-    var payload = getAttrValue(formContext, "ts_surveypayloadjson");
-    if (!payload || !payload.toString().trim()) {
-      logWarn("Restart blocked: ts_surveypayloadjson is empty.", { jobId: jobId });
-      await Xrm.Navigation.openAlertDialog({ text: "Cannot restart: ts_surveypayloadjson is empty." });
-      return;
-    }
+    var statusCode = woejGetStatusCode(formContext);
+    return !woejIsInProgressStatus(statusCode);
+  } catch (e) {
+    return false;
+  }
+}
 
-    var confirmStrings = {
-      title: "Restart export job from start",
-      text:
-        "This will delete previously generated export artifacts (PDF/ZIP notes) for this job and reset it to 'Client Processing'.\n\nContinue?"
-    };
-    var confirmOptions = { height: 260, width: 520 };
-    var confirmResult = await Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions);
-    if (!confirmResult || !confirmResult.confirmed) {
-      logInfo("Restart cancelled by user.", { jobId: jobId });
-      return;
-    }
+async function restartJob(primaryControl) {
+  var formContext = woejGetFormContext(primaryControl);
+  if (!formContext) {
+    await woejShowAlert("Could not determine the current form context.");
+    return;
+  }
 
+  if (!woejHasRestartRole()) {
+    await woejShowAlert("Only System Administrator, ROM - Business Admin, ROM - Planner, and ROM - Manager can restart a job.");
+    return;
+  }
+
+  var statusCode = woejGetStatusCode(formContext);
+  if (woejIsInProgressStatus(statusCode)) {
+    await woejShowAlert("This export job is currently in progress and cannot be restarted right now.");
+    return;
+  }
+
+  var jobId = woejGetJobId(formContext);
+  if (!jobId) {
+    await woejShowAlert("Could not determine the export job ID.");
+    return;
+  }
+
+  var confirm = await Xrm.Navigation.openConfirmDialog({
+    title: "Restart Export Job",
+    text: "This will restart the export job, remove generated export artifacts (PDF/ZIP notes), and reset progress fields. Continue?"
+  });
+  if (!confirm || !confirm.confirmed) return;
+
+  try {
     Xrm.Utility.showProgressIndicator("Restarting export job...");
 
+    var notes = await woejGetGeneratedArtifactNotes(jobId);
+    if (notes.length > 0) {
+      await woejDeleteNotes(notes);
+    }
+
+    var existingNameAttr = formContext.getAttribute("ts_name");
+    var existingName = existingNameAttr ? existingNameAttr.getValue() : "";
+    var restartedName = woejFormatRestartedName(existingName);
+
+    await Xrm.WebApi.updateRecord("ts_workorderexportjob", jobId, {
+      statuscode: STATUS_CLIENT_PROCESSING,
+      ts_name: restartedName,
+      ts_errormessage: "",
+      ts_payloadjson: null,
+      ts_doneunits: 0,
+      ts_totalunits: 0,
+      ts_progressmessage: "",
+      ts_lastheartbeat: null
+    });
+
+    // Best effort clear of file column artifact (if present).
     try {
-      var deletedCount = await deleteExportArtifacts(jobId);
-      logInfo("Deleted export artifact note(s).", { jobId: jobId, deletedCount: deletedCount });
-
-      // Reset job back to client stage; keep the same survey payload JSON.
-      // Note: we do NOT attempt to clear the file column here (ts_finalexportzip) because clearing file columns
-      // via client-side Web API is inconsistent across orgs; the next run will produce a fresh artifact anyway.
-      var patch = {
-        statuscode: STATUS_CLIENT_PROCESSING,
-        ts_errormessage: null,
-        ts_payloadjson: null,
-        ts_totalunits: 0,
-        ts_doneunits: 0,
-        ts_progressmessage: "Restarted by administrator. Ready to generate questionnaire PDFs.",
-        ts_lastheartbeat: new Date().toISOString()
-      };
-
-      await Xrm.WebApi.updateRecord("ts_workorderexportjob", jobId, patch);
-      logInfo("Export job reset to Client Processing.", { jobId: jobId, statuscode: STATUS_CLIENT_PROCESSING });
-
-      // Refresh so WorkOrderExportJob onLoad can pick up the ClientProcessing status immediately.
-      await formContext.data.refresh(true);
-
-      await Xrm.Navigation.openAlertDialog({
-        text: "Restarted. Deleted " + deletedCount + " export artifact note(s). Processing will begin on this tab."
+      await Xrm.WebApi.updateRecord("ts_workorderexportjob", jobId, {
+        ts_finalexportzip: null
       });
     } catch (e) {
-      var msg = (e && e.message) ? e.message : (e ? e.toString() : "Unknown error");
-      logError("Restart failed.", e);
-      await Xrm.Navigation.openAlertDialog({ text: "Restart failed: " + msg });
-    } finally {
-      try { Xrm.Utility.closeProgressIndicator(); } catch (e2) { /* ignore */ }
+      // Ignore if file-column clear is not available in this org/version.
     }
-  };
-})();
 
+    Xrm.Utility.closeProgressIndicator();
+    await woejShowAlert("Export job restarted. Reloading the form to resume processing.");
+    await woejReloadExportJobForm(jobId, formContext);
+  } catch (e) {
+    try { Xrm.Utility.closeProgressIndicator(); } catch (ignored) { }
+    await woejShowAlert("Failed to restart the export job: " + (e && e.message ? e.message : e));
+  }
+}
 
+if (typeof window !== "undefined") {
+  window.WorkOrderExportJobRibbon = window.WorkOrderExportJobRibbon || {};
+  window.WorkOrderExportJobRibbon.canRestartJob = canRestartJob;
+  window.WorkOrderExportJobRibbon.restartJob = restartJob;
+}

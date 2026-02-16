@@ -628,7 +628,7 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{efb16ba5-ba04-4207-9972-557ad44fe8be}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                      <cell id="{efb16ba5-ba04-4207-9972-557ad44fe8be}" locklevel="0" colspan="1" rowspan="1" visible="true">
                         <labels>
                           <label description="Other Cancelled Justification" languagecode="1033" />
                           <label description="Other Cancelled Justification" languagecode="1036" />
@@ -1087,6 +1087,11 @@
         <event name="onchange" application="false" active="false" attribute="ts_cancelledinspectionjustification">
           <Handlers>
             <Handler functionName="ROM.UnplannedWorkOrder.canceledWorkOrderReasonOnChange" libraryName="ts_/js/UnplannedWorkOrder.js" handlerUniqueId="{7e9ddf69-3567-474a-923f-0a9f9cbe8fc0}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_recordstatus">
+          <Handlers>
+            <Handler functionName="ROM.UnplannedWorkOrder.systemStatusOnChange" libraryName="ts_/js/UnplannedWorkOrder.js" handlerUniqueId="{5e1e764e-3732-4029-8dfd-81398842fc6c}" enabled="false" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
