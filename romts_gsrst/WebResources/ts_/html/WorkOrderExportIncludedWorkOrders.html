@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Included Work Orders</title>
+    <style>
+        :root {
+            --border: #d9d9d9;
+            --text: #1f1f1f;
+            --muted: #6b6b6b;
+            --bg: #ffffff;
+            --header-bg: #f5f7fa;
+            --row-hover: #f9fbff;
+            --accent: #005a9c;
+        }
+
+        body {
+            margin: 0;
+            padding: 12px;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            font-size: 13px;
+        }
+
+        .wo-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .wo-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .wo-count {
+            font-weight: 600;
+        }
+
+        .wo-status {
+            color: var(--muted);
+        }
+
+        .wo-refresh {
+            border: 1px solid var(--border);
+            background: #fff;
+            color: var(--text);
+            border-radius: 4px;
+            padding: 6px 10px;
+            cursor: pointer;
+        }
+
+        .wo-refresh:hover {
+            border-color: #b8b8b8;
+        }
+
+        .wo-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid var(--border);
+        }
+
+        .wo-table th,
+        .wo-table td {
+            text-align: left;
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        .wo-table thead th {
+            background: var(--header-bg);
+            font-weight: 600;
+        }
+
+        .wo-sort {
+            border: 0;
+            background: transparent;
+            color: inherit;
+            font: inherit;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .wo-sort:hover {
+            text-decoration: underline;
+        }
+
+        .wo-table tbody tr:hover {
+            background: var(--row-hover);
+        }
+
+        .wo-table a {
+            color: var(--accent);
+            text-decoration: none;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: background-color 120ms ease, color 120ms ease;
+        }
+
+        .wo-table a:hover {
+            text-decoration: underline;
+            background: #e8f1fb;
+            color: #004578;
+        }
+
+        .wo-empty {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 10px;
+            color: var(--muted);
+            background: #fafafa;
+        }
+    </style>
+</head>
+<body>
+    <div class="wo-top">
+        <div class="wo-meta">
+            <div id="wo-export-included-count" class="wo-count"></div>
+            <div id="wo-export-included-status" class="wo-status"></div>
+        </div>
+        <button id="wo-export-included-refresh" class="wo-refresh" type="button">Refresh List</button>
+    </div>
+
+    <div id="wo-export-included-table"></div>
+
+    <script>
+        (function () {
+            "use strict";
+
+            var STATUS_ID = "wo-export-included-status";
+            var COUNT_ID = "wo-export-included-count";
+            var TABLE_WRAP_ID = "wo-export-included-table";
+            var REFRESH_BTN_ID = "wo-export-included-refresh";
+            var currentRows = [];
+            var sortState = { key: "name", asc: true };
+
+            function getXrm() {
+                return (window.parent && window.parent.Xrm) || window.Xrm || null;
+            }
+
+            function getFormContext() {
+                var xrm = getXrm();
+                return xrm && xrm.Page ? xrm.Page : null;
+            }
+
+            function normalizeGuid(value) {
+                return (value || "").replace(/[{}]/g, "").toLowerCase().trim();
+            }
+
+            function escapeHtml(input) {
+                return (input || "")
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#39;");
+            }
+
+            function setStatus(text) {
+                var el = document.getElementById(STATUS_ID);
+                if (el) el.textContent = text;
+            }
+
+            function setCount(text) {
+                var el = document.getElementById(COUNT_ID);
+                if (el) el.textContent = text;
+            }
+
+            function parseIdsFromPayload(payload) {
+                if (!payload || !payload.trim()) return [];
+                var parsed;
+                try {
+                    parsed = JSON.parse(payload);
+                } catch (e) {
+                    return [];
+                }
+
+                var rawIds = Array.isArray(parsed && parsed.ids) ? parsed.ids : [];
+                var idMap = {};
+                var ids = [];
+                for (var i = 0; i < rawIds.length; i++) {
+                    var id = normalizeGuid((rawIds[i] || "").toString());
+                    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(id)) continue;
+                    if (idMap[id]) continue;
+                    idMap[id] = true;
+                    ids.push(id);
+                }
+                return ids;
+            }
+
+            function getPayloadFromCurrentJob() {
+                return new Promise(function (resolve, reject) {
+                    try {
+                        var formContext = getFormContext();
+                        if (!formContext) {
+                            resolve("");
+                            return;
+                        }
+
+                        var attr = formContext.getAttribute && formContext.getAttribute("ts_surveypayloadjson");
+                        var inFormValue = (attr && attr.getValue ? (attr.getValue() || "").toString() : "");
+                        if (inFormValue.trim()) {
+                            resolve(inFormValue);
+                            return;
+                        }
+
+                        var jobId = normalizeGuid(formContext.data && formContext.data.entity && formContext.data.entity.getId ? formContext.data.entity.getId() : "");
+                        if (!jobId) {
+                            resolve("");
+                            return;
+                        }
+
+                        var xrm = getXrm();
+                        xrm.WebApi.retrieveRecord("ts_workorderexportjob", jobId, "?$select=ts_surveypayloadjson").then(function (job) {
+                            resolve((job && job.ts_surveypayloadjson ? job.ts_surveypayloadjson : "").toString());
+                        }).catch(reject);
+                    } catch (e) {
+                        reject(e);
+                    }
+                });
+            }
+
+            function formatDate(value) {
+                if (!value) return "";
+                var date = new Date(value);
+                if (isNaN(date.getTime())) return value;
+                var pad2 = function (n) { return n < 10 ? "0" + n : "" + n; };
+                return date.getFullYear() + "-" + pad2(date.getMonth() + 1) + "-" + pad2(date.getDate()) +
+                    " " + pad2(date.getHours()) + ":" + pad2(date.getMinutes());
+            }
+
+            function queryWorkOrders(ids) {
+                var xrm = getXrm();
+                var filter = ids.map(function (id) { return "msdyn_workorderid eq " + id; }).join(" or ");
+                var query = "?$select=msdyn_workorderid,msdyn_name,statuscode,createdon,_ownerid_value&$filter=" + filter;
+
+                return xrm.WebApi.retrieveMultipleRecords("msdyn_workorder", query).then(function (result) {
+                    var entities = (result && result.entities) ? result.entities : [];
+                    var orderMap = {};
+                    for (var i = 0; i < ids.length; i++) orderMap[ids[i]] = i;
+
+                    var rows = entities.map(function (e) {
+                        var id = normalizeGuid(e && e.msdyn_workorderid ? e.msdyn_workorderid : "");
+                        var statusLabel = (e && e["statuscode@OData.Community.Display.V1.FormattedValue"])
+                            ? e["statuscode@OData.Community.Display.V1.FormattedValue"].toString()
+                            : ((e && e.statuscode != null) ? e.statuscode.toString() : "");
+
+                        return {
+                            sequence: (id in orderMap) ? orderMap[id] : Number.MAX_VALUE,
+                            id: id,
+                            name: (e && e.msdyn_name ? e.msdyn_name : "").toString(),
+                            owner: (e && e["_ownerid_value@OData.Community.Display.V1.FormattedValue"])
+                                ? e["_ownerid_value@OData.Community.Display.V1.FormattedValue"].toString()
+                                : "",
+                            status: statusLabel,
+                            createdOnRaw: (e && e.createdon ? e.createdon : "").toString(),
+                            createdOnTicks: (function () {
+                                var raw = (e && e.createdon ? e.createdon : "").toString();
+                                var ts = Date.parse(raw);
+                                return isNaN(ts) ? 0 : ts;
+                            })(),
+                            createdOn: formatDate((e && e.createdon ? e.createdon : "").toString())
+                        };
+                    });
+
+                    rows.sort(function (a, b) {
+                        return a.sequence - b.sequence;
+                    });
+                    return rows;
+                });
+            }
+
+            function getCurrentAppId() {
+                try {
+                    var href = (window.parent && window.parent.location && window.parent.location.href) || window.location.href;
+                    var url = new URL(href);
+                    return (url.searchParams.get("appid") || "").trim();
+                } catch (e) {
+                    return "";
+                }
+            }
+
+            function getWorkOrderUrl(id) {
+                var xrm = getXrm();
+                var baseUrl = (xrm && xrm.Utility && xrm.Utility.getGlobalContext)
+                    ? xrm.Utility.getGlobalContext().getClientUrl()
+                    : ((window.parent && window.parent.location && window.parent.location.origin) || window.location.origin);
+                var appId = getCurrentAppId();
+                var encodedId = encodeURIComponent(id);
+
+                if (appId) {
+                    return baseUrl + "/main.aspx?appid=" + encodeURIComponent(appId) +
+                        "&pagetype=entityrecord&etn=msdyn_workorder&id=" + encodedId;
+                }
+                return baseUrl + "/main.aspx?pagetype=entityrecord&etn=msdyn_workorder&id=" + encodedId;
+            }
+
+            function getSortIndicator(column) {
+                if (sortState.key !== column) return "";
+                return sortState.asc ? " ▲" : " ▼";
+            }
+
+            function toSortableValue(row, key) {
+                if (key === "createdOn") return row.createdOnTicks || 0;
+                return (row[key] || "").toString().toLowerCase();
+            }
+
+            function sortRows(rows) {
+                rows.sort(function (a, b) {
+                    var av = toSortableValue(a, sortState.key);
+                    var bv = toSortableValue(b, sortState.key);
+                    if (av < bv) return sortState.asc ? -1 : 1;
+                    if (av > bv) return sortState.asc ? 1 : -1;
+                    return (a.sequence || 0) - (b.sequence || 0);
+                });
+            }
+
+            function setSort(column) {
+                if (sortState.key === column) {
+                    sortState.asc = !sortState.asc;
+                } else {
+                    sortState.key = column;
+                    sortState.asc = true;
+                }
+                renderRows(currentRows);
+            }
+
+            function renderRows(rows) {
+                var wrap = document.getElementById(TABLE_WRAP_ID);
+                if (!wrap) return;
+
+                if (!rows || rows.length === 0) {
+                    wrap.innerHTML = '<div class="wo-empty">No Work Orders to display for this export.</div>';
+                    return;
+                }
+
+                var html = '';
+                var toHeader = function (label, key) {
+                    return '<button type="button" class="wo-sort" data-sort="' + key + '">' + label + getSortIndicator(key) + '</button>';
+                };
+                html += '<table class="wo-table">';
+                html += '<thead><tr>';
+                html += '<th>' + toHeader("Work Order", "name") + '</th>';
+                html += '<th>' + toHeader("Owner", "owner") + '</th>';
+                html += '<th>' + toHeader("Status", "status") + '</th>';
+                html += '<th>' + toHeader("Created On", "createdOn") + '</th>';
+                html += '</tr></thead>';
+                html += '<tbody>';
+                var displayRows = rows.slice(0);
+                sortRows(displayRows);
+                for (var i = 0; i < displayRows.length; i++) {
+                    var r = displayRows[i];
+                    html += '<tr>';
+                    var href = getWorkOrderUrl(r.id);
+                    html += '<td><a href="' + escapeHtml(href) + '" class="wo-link" data-id="' + escapeHtml(r.id) + '" target="_blank" rel="noopener noreferrer" title="Open Work Order">' + escapeHtml(r.name || "(unnamed)") + '</a></td>';
+                    html += '<td>' + escapeHtml(r.owner || "") + '</td>';
+                    html += '<td>' + escapeHtml(r.status || "") + '</td>';
+                    html += '<td>' + escapeHtml(r.createdOn || "") + '</td>';
+                    html += '</tr>';
+                }
+                html += '</tbody></table>';
+                wrap.innerHTML = html;
+
+                var sortButtons = wrap.querySelectorAll(".wo-sort");
+                for (var j = 0; j < sortButtons.length; j++) {
+                    sortButtons[j].addEventListener("click", function (ev) {
+                        var key = (ev.currentTarget && ev.currentTarget.getAttribute("data-sort")) || "";
+                        if (!key) return;
+                        setSort(key);
+                    });
+                }
+            }
+
+            function loadRows() {
+                setStatus("Loading Work Orders...");
+                setCount("");
+                return getPayloadFromCurrentJob()
+                    .then(function (payload) {
+                        var ids = parseIdsFromPayload(payload);
+                        if (ids.length === 0) {
+                            setStatus("No Work Orders were selected for this export.");
+                            setCount("0 Work Orders");
+                            renderRows([]);
+                            return;
+                        }
+                        return queryWorkOrders(ids).then(function (rows) {
+                            currentRows = rows || [];
+                            setCount(rows.length + " Work Order" + (rows.length === 1 ? "" : "s"));
+                            setStatus("");
+                            renderRows(rows);
+                        });
+                    })
+                    .catch(function (e) {
+                        var msg = (e && e.message ? e.message : (e || "Unknown error")).toString();
+                        console.error("WorkOrderExportIncludedWorkOrders load error:", msg);
+                        setStatus("Could not load Work Orders. Please refresh the list.");
+                        setCount("");
+                        renderRows([]);
+                    });
+            }
+
+            function onLoad() {
+                var refreshBtn = document.getElementById(REFRESH_BTN_ID);
+                if (refreshBtn) {
+                    refreshBtn.addEventListener("click", function () {
+                        loadRows();
+                    });
+                }
+                loadRows();
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", onLoad);
+            } else {
+                onLoad();
+            }
+        })();
+    </script>
+</body>
+</html>

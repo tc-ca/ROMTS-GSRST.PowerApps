@@ -10,6 +10,7 @@ var STATUS_READY_FOR_ZIP = 741130009;
 var STATUS_ZIP_IN_PROGRESS = 741130010;
 var STATUS_READY_FOR_CLEANUP = 741130011;
 var STATUS_CLEANUP_IN_PROGRESS = 741130012;
+var STALL_TIMEOUT_MS = 4 * 60 * 1000;
 
 var ALLOWED_RESTART_ROLES = "System Administrator|ROM - Business Admin|ROM - Planner|ROM - Manager";
 
@@ -67,6 +68,87 @@ function woejShowAlert(text) {
   return Xrm.Navigation.openAlertDialog({ text: text });
 }
 
+async function woejPromptResumeOrRestart() {
+  var choice = await Xrm.Navigation.openConfirmDialog({
+    title: "Resume Or Start Over",
+    text: "Select OK to resume from current progress, or Cancel to choose Start Over.",
+    confirmButtonLabel: "OK (Resume)",
+    cancelButtonLabel: "Start Over"
+  });
+
+  if (choice && choice.confirmed) {
+    return "resume";
+  }
+
+  var restartConfirm = await Xrm.Navigation.openConfirmDialog({
+    title: "Start Over Export Job",
+    text: "This will remove generated export artifacts (PDF/ZIP notes) and reset progress fields. Continue?",
+    confirmButtonLabel: "Start Over",
+    cancelButtonLabel: "Cancel"
+  });
+
+  return restartConfirm && restartConfirm.confirmed ? "restart" : "cancelled";
+}
+
+function woejParseDateMs(value) {
+  if (!value) return NaN;
+  var ts = Date.parse(value);
+  return Number.isFinite(ts) ? ts : NaN;
+}
+
+function woejIsLikelyStalled(job) {
+  if (!job) return false;
+  var statusCode = job.statuscode;
+  if (!woejIsInProgressStatus(statusCode)) return false;
+
+  var heartbeatMs = woejParseDateMs(job.ts_lastheartbeat);
+  var modifiedMs = woejParseDateMs(job.modifiedon);
+  var now = Date.now();
+  var heartbeatStale = Number.isFinite(heartbeatMs) ? ((now - heartbeatMs) >= STALL_TIMEOUT_MS) : true;
+  var modifiedStale = Number.isFinite(modifiedMs) ? ((now - modifiedMs) >= STALL_TIMEOUT_MS) : true;
+
+  var hasPartialProgress =
+    Number(job.ts_doneunits || 0) > 0 ||
+    (((job.ts_progressmessage || "").toString().trim().length) > 0) ||
+    Number(job.ts_nextmergeindex || 0) > 0;
+
+  return heartbeatStale && modifiedStale && hasPartialProgress;
+}
+
+async function woejGetLiveJobState(jobId) {
+  return await Xrm.WebApi.retrieveRecord(
+    "ts_workorderexportjob",
+    jobId,
+    "?$select=statuscode,ts_lastheartbeat,modifiedon,ts_progressmessage,ts_nextmergeindex,ts_doneunits"
+  );
+}
+
+function woejGetResumeTargetStatus(statusCode) {
+  if (
+    statusCode === STATUS_READY_FOR_MERGE ||
+    statusCode === STATUS_MERGE_IN_PROGRESS ||
+    statusCode === STATUS_READY_FOR_ZIP ||
+    statusCode === STATUS_ZIP_IN_PROGRESS ||
+    statusCode === STATUS_READY_FOR_CLEANUP ||
+    statusCode === STATUS_CLEANUP_IN_PROGRESS
+  ) {
+    return STATUS_READY_FOR_MERGE;
+  }
+
+  if (
+    statusCode === STATUS_READY_FOR_SERVER ||
+    statusCode === STATUS_READY_FOR_FLOW ||
+    statusCode === STATUS_FLOW_RUNNING ||
+    statusCode === STATUS_CLIENT_PROCESSING ||
+    statusCode === STATUS_ACTIVE ||
+    statusCode === 741130007 // STATUS_ERROR in plugin
+  ) {
+    return STATUS_READY_FOR_SERVER;
+  }
+
+  return STATUS_READY_FOR_SERVER;
+}
+
 async function woejReloadExportJobForm(jobId, formContext) {
   try {
     await Xrm.Navigation.openForm({
@@ -90,7 +172,8 @@ async function woejReloadExportJobForm(jobId, formContext) {
 }
 
 function woejFormatRestartedName(existingName) {
-  var base = (existingName || "Batch Export").toString().trim();
+  var base = (existingName || "Export").toString().trim();
+  base = base.replace(/\s*\|\s*restarted\s*@.*$/i, "");
   base = base.replace(/\s+\(restarted\s*@.*\)$/i, "");
   base = base.replace(/\s+\(restarted.*\)$/i, "");
 
@@ -108,7 +191,7 @@ function woejFormatRestartedName(existingName) {
     userName = "Unknown User";
   }
 
-  return base + " (Restarted @ " + stamp + " by " + userName + ")";
+  return base + " | Restarted @ " + stamp + " by " + userName;
 }
 
 function woejIsGeneratedExportArtifact(filename) {
@@ -149,9 +232,7 @@ function canRestartJob(primaryControl) {
     var formContext = woejGetFormContext(primaryControl);
     if (!formContext) return false;
     if (!woejHasRestartRole()) return false;
-
-    var statusCode = woejGetStatusCode(formContext);
-    return !woejIsInProgressStatus(statusCode);
+    return true;
   } catch (e) {
     return false;
   }
@@ -169,25 +250,57 @@ async function restartJob(primaryControl) {
     return;
   }
 
-  var statusCode = woejGetStatusCode(formContext);
-  if (woejIsInProgressStatus(statusCode)) {
-    await woejShowAlert("This export job is currently in progress and cannot be restarted right now.");
-    return;
-  }
-
   var jobId = woejGetJobId(formContext);
   if (!jobId) {
     await woejShowAlert("Could not determine the export job ID.");
     return;
   }
 
-  var confirm = await Xrm.Navigation.openConfirmDialog({
-    title: "Restart Export Job",
-    text: "This will restart the export job, remove generated export artifacts (PDF/ZIP notes), and reset progress fields. Continue?"
-  });
-  if (!confirm || !confirm.confirmed) return;
+  var jobState = null;
+  try {
+    jobState = await woejGetLiveJobState(jobId);
+  } catch (e) {
+    // Fall back to form values if live retrieve fails.
+  }
+
+  var statusCode = jobState && jobState.statuscode != null
+    ? jobState.statuscode
+    : woejGetStatusCode(formContext);
+  var inProgress = woejIsInProgressStatus(statusCode);
+  var isStalled = inProgress && woejIsLikelyStalled(jobState);
+
+  if (inProgress && !isStalled) {
+    await woejShowAlert("This export job is still running. Resume/Start Over is available when the job appears stalled (no progress for at least 4 minutes).");
+    return;
+  }
+
+  var mode = inProgress ? await woejPromptResumeOrRestart() : "restart";
+  if (mode === "cancelled") return;
 
   try {
+    if (mode === "resume") {
+      Xrm.Utility.showProgressIndicator("Resuming export job...");
+
+      var targetStatus = woejGetResumeTargetStatus(statusCode);
+      await Xrm.WebApi.updateRecord("ts_workorderexportjob", jobId, {
+        statuscode: targetStatus,
+        ts_errormessage: ""
+      });
+
+      Xrm.Utility.closeProgressIndicator();
+      await woejShowAlert("Resume requested. Reloading the form to continue processing.");
+      await woejReloadExportJobForm(jobId, formContext);
+      return;
+    }
+
+    if (!inProgress) {
+      var confirm = await Xrm.Navigation.openConfirmDialog({
+        title: "Restart Export Job",
+        text: "This will restart the export job, remove generated export artifacts (PDF/ZIP notes), and reset progress fields. Continue?"
+      });
+      if (!confirm || !confirm.confirmed) return;
+    }
+
     Xrm.Utility.showProgressIndicator("Restarting export job...");
 
     var notes = await woejGetGeneratedArtifactNotes(jobId);

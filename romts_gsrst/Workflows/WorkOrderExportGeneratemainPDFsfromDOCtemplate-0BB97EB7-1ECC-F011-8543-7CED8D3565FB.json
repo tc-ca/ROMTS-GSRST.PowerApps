@@ -1,28 +1,37 @@
 {
   "properties": {
     "connectionReferences": {
-      "shared_commondataserviceforapps": {
+      "shared_commondataserviceforapps_1": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_81d95"
+          "connectionReferenceLogicalName": "ts_sharedcommondataserviceforapps_ab028"
         },
         "api": {
           "name": "shared_commondataserviceforapps"
         }
       },
-      "shared_wordonlinebusiness": {
+      "shared_wordonlinebusiness_1": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "ts_sharedwordonlinebusiness_6b623"
+          "connectionReferenceLogicalName": "ts_sharedwordonlinebusiness_4034e"
         },
         "api": {
           "name": "shared_wordonlinebusiness"
         }
       },
-      "shared_onedriveforbusiness": {
+      "shared_wordonlinebusiness_2": {
         "runtimeSource": "embedded",
         "connection": {
-          "connectionReferenceLogicalName": "ts_sharedonedriveforbusiness_d2e1a"
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsWordOnlineBusiness"
+        },
+        "api": {
+          "name": "shared_wordonlinebusiness"
+        }
+      },
+      "shared_onedriveforbusiness_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ts_ROMTSGSRSTFlowsOneDriveForBusiness"
         },
         "api": {
           "name": "shared_onedriveforbusiness"
@@ -50,7 +59,7 @@
           "type": "OpenApiConnectionWebhook",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "SubscribeWebhookTrigger",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -74,7 +83,7 @@
           "type": "OpenApiConnection",
           "inputs": {
             "host": {
-              "connectionName": "shared_commondataserviceforapps",
+              "connectionName": "shared_commondataserviceforapps_1",
               "operationId": "GetItem",
               "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
             },
@@ -95,7 +104,7 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps_1",
                   "operationId": "UpdateOnlyRecord",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
@@ -367,19 +376,20 @@
                   },
                   "metadata": {
                     "01JEPQUZEXJRGKWLYJVFAK63RMJ6XUVNK2": "/WOExportTemplate.docx",
-                    "operationMetadataId": "cbcf0cac-9590-4f09-9ab8-fb11c8a41fb8"
+                    "operationMetadataId": "cbcf0cac-9590-4f09-9ab8-fb11c8a41fb8",
+                    "01GJVXCVHDEDJ5NKTTYVEIKCSZGMYSYKI2": "/WorkOrdersExports/WOExportTemplate.docx"
                   },
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_wordonlinebusiness",
+                      "connectionName": "shared_wordonlinebusiness_1",
                       "operationId": "CreateFileItem",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness"
                     },
                     "parameters": {
                       "source": "me",
-                      "drive": "b!LH3ZXyy0A0GSq8GKxpzPcUETVZslZv9Pqv8vQE7XmP7hwFGSStUAR4vvcIsfLZps",
-                      "file": "01JEPQUZEXJRGKWLYJVFAK63RMJ6XUVNK2",
+                      "drive": "b!MLZShIUzOUy5ZKS91iP8vMBdDNHP9NpNl43AVxAtsli9t_IgI-LeRaYLW0tJXfQm",
+                      "file": "01GJVXCVHDEDJ5NKTTYVEIKCSZGMYSYKI2",
                       "dynamicFileSchema/753325090": "@items('Apply_to_each')?['OperationType']",
                       "dynamicFileSchema/870196557": "@items('Apply_to_each')?['WorkOrderDate']",
                       "dynamicFileSchema/879053440": "@items('Apply_to_each')?['Actions']",
@@ -411,13 +421,13 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_wordonlinebusiness",
+                      "connectionName": "shared_wordonlinebusiness_2",
                       "operationId": "GetFilePDF",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_wordonlinebusiness"
                     },
                     "parameters": {
                       "source": "me",
-                      "drive": "b!LH3ZXyy0A0GSq8GKxpzPcUETVZslZv9Pqv8vQE7XmP7hwFGSStUAR4vvcIsfLZps",
+                      "drive": "b!MLZShIUzOUy5ZKS91iP8vMBdDNHP9NpNl43AVxAtsli9t_IgI-LeRaYLW0tJXfQm",
                       "file": "@outputs('Create_file_3')?['body/Path']"
                     },
                     "authentication": "@parameters('$authentication')"
@@ -435,13 +445,13 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_onedriveforbusiness",
+                      "connectionName": "shared_onedriveforbusiness_1",
                       "operationId": "CreateFile",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
                     },
                     "parameters": {
-                      "folderPath": "/EXPORTS/TEMPDOCX",
-                      "name": "WO_@{items('Apply_to_each')?['WorkOrderNumber']}.docx",
+                      "folderPath": "/WorkOrdersExports/.temporary_docs",
+                      "name": "@{formatDateTime(utcNow(),'yyyyMMdd') }_WO_@{items('Apply_to_each')?['WorkOrderNumber']}.docx",
                       "body": "@body('Populate_a_Microsoft_Word_template_2')"
                     },
                     "authentication": "@parameters('$authentication')"
@@ -464,7 +474,7 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_onedriveforbusiness",
+                      "connectionName": "shared_onedriveforbusiness_1",
                       "operationId": "CreateFile",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
                     },
@@ -493,7 +503,7 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_commondataserviceforapps",
+                      "connectionName": "shared_commondataserviceforapps_1",
                       "operationId": "CreateRecord",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                     },
@@ -533,7 +543,7 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_onedriveforbusiness",
+                      "connectionName": "shared_onedriveforbusiness_1",
                       "operationId": "DeleteFile",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
                     },
@@ -585,7 +595,7 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_commondataserviceforapps",
+                      "connectionName": "shared_commondataserviceforapps_1",
                       "operationId": "UpdateOnlyRecord",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                     },
@@ -609,13 +619,14 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_commondataserviceforapps",
+                      "connectionName": "shared_commondataserviceforapps_1",
                       "operationId": "UpdateOnlyRecord",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                     },
                     "parameters": {
                       "entityName": "ts_workorderexportjobs",
                       "recordId": "@outputs('Get_a_row_by_ID')?['body/ts_workorderexportjobid']",
+                      "item/ts_lastheartbeat": "@utcNow()",
                       "item/ts_progressmessage": "@  concat(\r\n    'Generating main PDFs: ',\r\n    string(variables('mainPdfCompletedCount')),\r\n    '/',\r\n    string(variables('totalWorkOrders')),\r\n    ' completed.'\r\n  )"
                     },
                     "authentication": "@parameters('$authentication')"
@@ -690,7 +701,7 @@
         },
         "Initialize_folder_path": {
           "runAfter": {
-            "Initialize_variable_7": [
+            "Initialize_currentWorkOrderNumber": [
               "Succeeded"
             ]
           },
@@ -718,7 +729,7 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps_1",
                   "operationId": "UpdateOnlyRecord",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
@@ -744,7 +755,7 @@
           },
           "type": "Scope"
         },
-        "Initialize_variable": {
+        "Initialize_baseDoneUnits": {
           "runAfter": {
             "Get_a_row_by_ID": [
               "Succeeded"
@@ -764,9 +775,9 @@
             ]
           }
         },
-        "Initialize_variable_2": {
+        "Initialize_runningDoneUnits": {
           "runAfter": {
-            "Initialize_variable": [
+            "Initialize_baseDoneUnits": [
               "Succeeded"
             ]
           },
@@ -784,9 +795,9 @@
             ]
           }
         },
-        "Initialize_variable_3": {
+        "Initialize_totalWorkOrders": {
           "runAfter": {
-            "Initialize_variable_2": [
+            "Initialize_runningDoneUnits": [
               "Succeeded"
             ]
           },
@@ -817,7 +828,7 @@
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps",
+                  "connectionName": "shared_commondataserviceforapps_1",
                   "operationId": "ListRecords",
                   "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                 },
@@ -840,7 +851,7 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_commondataserviceforapps",
+                      "connectionName": "shared_commondataserviceforapps_1",
                       "operationId": "DeleteRecord",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                     },
@@ -873,7 +884,7 @@
                   "type": "OpenApiConnection",
                   "inputs": {
                     "host": {
-                      "connectionName": "shared_commondataserviceforapps",
+                      "connectionName": "shared_commondataserviceforapps_1",
                       "operationId": "UpdateOnlyRecord",
                       "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
                     },
@@ -909,9 +920,9 @@
           },
           "type": "Scope"
         },
-        "Initialize_variable_4": {
+        "Initialize_mainPdfCompletedCount": {
           "runAfter": {
-            "Initialize_variable_3": [
+            "Initialize_totalWorkOrders": [
               "Succeeded"
             ]
           },
@@ -929,9 +940,9 @@
             ]
           }
         },
-        "Initialize_variable_6": {
+        "Initialize_currentWorkOrderId": {
           "runAfter": {
-            "Initialize_variable_4": [
+            "Initialize_mainPdfCompletedCount": [
               "Succeeded"
             ]
           },
@@ -949,9 +960,9 @@
             ]
           }
         },
-        "Initialize_variable_7": {
+        "Initialize_currentWorkOrderNumber": {
           "runAfter": {
-            "Initialize_variable_6": [
+            "Initialize_currentWorkOrderId": [
               "Succeeded"
             ]
           },
