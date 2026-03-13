@@ -46,6 +46,7 @@
         <DisplayRule Id="Mscrm.AppendPrimary" />
         <DisplayRule Id="Mscrm.AppendSelected" />
         <DisplayRule Id="Mscrm.AppendToSelected" />
+        <DisplayRule Id="ts.ovs_operation.HideOnWorkOrder" />
       </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="XrmCore.Commands.AddFromSubGrid.addExistingFromSubGridAssociated" Library="$webresource:Main_system_library.js">
@@ -206,6 +207,7 @@
       <DisplayRules>
         <DisplayRule Id="Mscrm.ShowForManyToManyGrids" />
         <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="ts.ovs_operation.HideOnWorkOrder" />
       </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="removeOperations" Library="$webresource:ts_/js/OperationRibbon.js">
@@ -330,6 +332,9 @@
       </DisplayRule>
       <DisplayRule Id="Mscrm.ShowForOneToManyGrids">
         <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="OneToMany" />
+      </DisplayRule>
+      <DisplayRule Id="ts.ovs_operation.HideOnWorkOrder">
+        <FormEntityContextRule EntityName="msdyn_workorder" InvertResult="true" />
       </DisplayRule>
     </DisplayRules>
     <EnableRules>

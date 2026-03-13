@@ -31,6 +31,11 @@ const OPERATION_TYPE_NAMES = {
     RAILWAY_CARRIER: "ts_RailwayCarrierOperationTypeId"
 }
 
+// Shared Work Order Export timing values used by the form and ribbon.
+var WORK_ORDER_EXPORT_TIMING = {
+  BACKEND_STALL_DEAD_AFTER_MINUTES: 10
+};
+
 function userHasRole(rolesName) {
   var userRoles = Xrm.Utility.getGlobalContext().userSettings.roles;
   var hasRole = false;
@@ -400,6 +405,16 @@ function getOwnerIdFromRecord(record) {
   return null;
 }
 
+
+function getCurrentUserLanguageEnglishFrench() {
+  var languageId = (Xrm.Utility.getGlobalContext().userSettings && Xrm.Utility.getGlobalContext().userSettings.languageId) || 1033;
+  return languageId === 1036 ? "fr" : "en";
+}
+
+
+function isCurrentUserFrench() {
+  return getCurrentUserLanguageEnglishFrench() === "fr";
+}
 
 /**
  * Polymorphic owner check:
@@ -888,63 +903,159 @@ async function applyTabVisibilityForTeam(formContext, teamSchemaName, visibleTab
 }
 
 /**
- * Assigns Rail Safety Team ownership if user is a Rail Safety team member.
- * Does not call save() - caller is responsible for save.
+ * Assigns ownership to the Business Unit's default (main) team of the current user.
+ * Does NOT call save(); caller handles saving.
  * @param {object} formContext - The form context
  * @returns {Promise<boolean>} True if the form was modified, false otherwise
  */
-async function assignRailSafetyOwnershipOnSave(formContext) {
+
+async function assignUserTeamOwnershipOnSave(formContext) {
   try {
-    var isMember = await isUserInTeamByEnvVar(TEAM_SCHEMA_NAMES.RAIL_SAFETY);
-    if (!isMember) return false;
+    const globalContext = Xrm.Utility.getGlobalContext();
+    const normalize = (s) => (s || "").replace(/[{}]/g, "").toLowerCase();
 
-    var teamGuid = await getEnvironmentVariableValue(TEAM_SCHEMA_NAMES.RAIL_SAFETY);
-    if (!teamGuid) return false;
+    const userId = normalize(globalContext.userSettings.userId);
 
-    var ownerAttribute = formContext.getAttribute("ownerid");
-    var currentOwner = ownerAttribute.getValue();
+    // 1) Get user's Business Unit Id
+    const user = await Xrm.WebApi.retrieveRecord(
+      "systemuser",
+      userId,
+      "?$select=_businessunitid_value"
+    );
 
-    // Check if already owned by Rail Safety team
-    if (currentOwner && currentOwner[0] && currentOwner[0].entityType === "team" &&
-        currentOwner[0].id.replace(/[{}]/g, "").toLowerCase() === teamGuid) {
+    const buId = normalize(user._businessunitid_value);
+    if (!buId) {
+      console.warn("[assignUserTeamOwnershipOnSave] User Business Unit not found");
       return false;
     }
 
-    var teamName = (await getTeamNameById(teamGuid)) || "";
+    // 2) OData: Get BU's default Owner Team (single call)
+    const defaultTeamResult = await Xrm.WebApi.retrieveMultipleRecords(
+      "team",
+      `?$select=teamid,name&$filter=_businessunitid_value eq ${buId} and isdefault eq true and teamtype eq 0&$top=1`
+    );
+
+    if (!defaultTeamResult.entities || defaultTeamResult.entities.length === 0) {
+      console.warn("[assignUserTeamOwnershipOnSave] No default Owner Team found for user's BU", { buId });
+      return false;
+    }
+
+    const targetTeamId = defaultTeamResult.entities[0].teamid;
+    const targetTeamName = defaultTeamResult.entities[0].name;
+
+    // 3) Skip if already owned by that team
+    const ownerAttribute = formContext.getAttribute("ownerid");
+    if (!ownerAttribute) {
+      console.warn("[assignUserTeamOwnershipOnSave] 'ownerid' attribute not present on form.");
+      return false;
+    }
+
+    const currentOwner = ownerAttribute.getValue();
+    const targetIdNorm = normalize(targetTeamId);
+
+    if (
+      currentOwner &&
+      currentOwner[0] &&
+      currentOwner[0].entityType === "team" &&
+      normalize(currentOwner[0].id) === targetIdNorm
+    ) {
+      return false;
+    }
+
+    // 4) Assign owner to the BU default team
     ownerAttribute.setValue([
       {
-        id: teamGuid,
+        id: `{${targetIdNorm}}`, // lookup often prefers braces
         entityType: "team",
-        name: teamName,
+        name: targetTeamName,
       },
     ]);
+
+    // Ensure it gets submitted
+    if (typeof ownerAttribute.setSubmitMode === "function") {
+      ownerAttribute.setSubmitMode("always");
+    }
+
+    console.log("[assignUserTeamOwnershipOnSave] Owner updated to team:", targetTeamName);
     return true;
   } catch (error) {
-    console.error("[Rail Safety] Error in assignRailSafetyOwnershipOnSave:", error);
+    console.error("Error in assignUserTeamOwnershipOnSave:", error);
     return false;
   }
 }
 
+
 /**
- * Checks if the current record is owned by the Rail Safety Team and logs to console.
+ * Checks if the current record is owned by Rail Safety, AvSec, or ISSO dynamically
+ * by determining the owner's business unit and logging the result.
  * @param {object} formContext - The form context
  * @returns {Promise<void>}
  */
-async function logRailSafetyOwnershipStatus(formContext) {
+async function logCurrentTeamOwnershipStatus(formContext) {
   try {
-    var ownerAttribute = formContext.getAttribute("ownerid");
-    var ownerValue = ownerAttribute.getValue();
+    const ownerAttribute = formContext.getAttribute("ownerid");
+    const ownerValue = ownerAttribute.getValue();
 
-    if (!ownerValue) {
+    if (!ownerValue || !ownerValue[0]) {
+      console.log("No owner assigned to this record");
       return;
     }
 
-    var isRailSafety = await isOwnedByRailSafety(ownerValue);
-    if (isRailSafety) {
-      console.log("This record belongs to Rail Safety.");
+    const ownerId = ownerValue[0].id.replace(/[{}]/g, "").toLowerCase();
+    const ownerEntityType = ownerValue[0].entityType;
+    const ownerName = ownerValue[0].name || "Unknown Owner";
+
+    let ownerBuId = null;
+
+    // Determine the business unit of the owner
+    if (ownerEntityType === "team") {
+      try {
+        const team = await Xrm.WebApi.retrieveRecord("team", ownerId, "?$select=_businessunitid_value");
+        ownerBuId = team._businessunitid_value;
+      } catch (error) {
+        console.warn("Error retrieving team business unit:", error);
+        return;
+      }
+    } else if (ownerEntityType === "systemuser") {
+      try {
+        const user = await Xrm.WebApi.retrieveRecord("systemuser", ownerId, "?$select=_businessunitid_value");
+        ownerBuId = user._businessunitid_value;
+      } catch (error) {
+        console.warn("Error retrieving user business unit:", error);
+        return;
+      }
+    } else {
+      console.log("This record is owned by: " + ownerName);
+      return;
     }
+
+    if (!ownerBuId) {
+      console.log("Could not determine business unit for owner: " + ownerName);
+      return;
+    }
+
+    const ownerBuIdNormalized = ownerBuId.replace(/[{}]/g, "").toLowerCase();
+
+    // Check which organization BU the owner belongs to
+    if (await isRailSafetyBU(ownerBuIdNormalized)) {
+      console.log("This record belongs to Rail Safety (via " + ownerName + ").");
+      return;
+    }
+
+    if (await isAvSecBU(ownerBuIdNormalized)) {
+      console.log("This record belongs to Aviation Security (via " + ownerName + ").");
+      return;
+    }
+
+    if (await isISSOBU(ownerBuIdNormalized)) {
+      console.log("This record belongs to ISSO (via " + ownerName + ").");
+      return;
+    }
+
+    // Default: just log the owner name
+    console.log("This record belongs to " + ownerName);
   } catch (error) {
-    console.error("Error checking Rail Safety ownership:", error);
+    console.error("Error in logCurrentTeamOwnershipStatus:", error);
   }
 }
 

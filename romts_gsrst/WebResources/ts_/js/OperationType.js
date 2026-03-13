@@ -58,8 +58,8 @@ var ROM;
                             form.getControl("Subgrid_EntityRisk").setVisible(false);
                             _a.label = 3;
                         case 3:
-                            // Log Rail Safety ownership status to console
-                            logRailSafetyOwnershipStatus(form);
+                            // Log Team/BU ownership status to console
+                            logCurrentTeamOwnershipStatus(form);
                             return [4 /*yield*/, isOwnedByRailSafety(ownerAttributeValue)];
                         case 4:
                             isRailSafety = _a.sent();
@@ -82,10 +82,10 @@ var ROM;
                             _a.label = 1;
                         case 1:
                             _a.trys.push([1, 3, , 4]);
-                            // Rail Safety ownership assignment
-                            return [4 /*yield*/, assignRailSafetyOwnershipOnSave(form)];
+                            // Team ownership assignment
+                            return [4 /*yield*/, assignUserTeamOwnershipOnSave(form)];
                         case 2:
-                            // Rail Safety ownership assignment
+                            // Team ownership assignment
                             _a.sent();
                             return [3 /*break*/, 4];
                         case 3:

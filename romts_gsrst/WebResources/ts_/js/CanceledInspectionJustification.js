@@ -6,7 +6,7 @@ var ROM;
         // EVENTS
         function onLoad(eContext) {
             var form = eContext.getFormContext();
-            var warningMessage = Xrm.Utility.getResourceString("ts_/resx/CanceledInspectionJustification", "WarningMessageText");
+            var warningMessage =Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "FilteredSites"); //Xrm.Utility.getResourceString("ts_/resx/CanceledInspectionJustification", "WarningMessageText");
             form.ui.setFormNotification(warningMessage, "WARNING", "WarningMessage");
             //If Create new
             if (form.ui.getFormType() == 1)

@@ -37,13 +37,17 @@ if (workorderRibbon_lang == 1036) {
 }
 /**
  * Determines if the "Add Existing" ribbon button should be visible on a specific form.
+ * Restricted to System Admins.
  * @param {Xrm.FormContext} primaryControl - The form context passed automatically by Ribbon Workbench
  * @param {string} targetFormId - The GUID of the form where the "Add Existing" button should be visible.
  * @returns {boolean} - True if the current form matches the target form
  */
 function showAddExistingButton(primaryControl, targetFormId) {
-  const currentFormId = primaryControl.ui.formSelector.getCurrentItem().getId();
-  return currentFormId === targetFormId;
+    if (!isSystemAdministrator()) {
+        return false;
+    }
+    const currentFormId = primaryControl.ui.formSelector.getCurrentItem().getId();
+    return currentFormId === targetFormId;
 }
 function addExistingWorkOrdersToCase(primaryControl, selectedEntityTypeName, selectedControl) {
   const formContext = primaryControl;
@@ -915,7 +919,7 @@ function createWorkspaceFromWorkOrder(currentWorkOrderId, lang) {
   return new Promise((resolve, reject) => {
     // Retrieve work order data to transfer fields
     Xrm.WebApi.retrieveRecord("msdyn_workorder", currentWorkOrderId,
-      "?$select=msdyn_name,_ownerid_value,_msdyn_workordertype_value,_ts_region_value,_ts_country_value,_ovs_operationtypeid_value,ts_aircraftclassification,_ts_tradenameid_value,_msdyn_serviceaccount_value,_ts_contact_value,_ts_site_value,_msdyn_functionallocation_value,_ts_subsubsite_value,_ts_reason_value,_ts_workorderjustification_value,_ovs_operationid_value,msdyn_worklocation,_ovs_rational_value,ts_businessowner,_msdyn_primaryincidenttype_value,msdyn_primaryincidentdescription,msdyn_primaryincidentestimatedduration,ts_overtimerequired,ts_reportdetails,_ts_canceledinspectionjustification_value,_ovs_revisedquarterid_value,_ts_scheduledquarterjustification_value,ts_justificationcomment,ts_details,msdyn_instructions,ts_preparationtime,ts_woreportinganddocumentation,ts_comments,ts_overtime,ts_conductingoversight,ts_traveltime,_msdyn_servicerequest_value,_ts_securityincident_value,_ts_trip_value,_msdyn_parentworkorder_value,msdyn_systemstatus,ts_state,_ovs_fiscalyear_value,_ovs_fiscalquarter_value,ts_othercanceledjustification,_ts_accountableteam_value"
+      "?$select=msdyn_name,_ownerid_value,_msdyn_workordertype_value,_ts_region_value,_ts_country_value,_ovs_operationtypeid_value,ts_aircraftclassification,_ts_tradenameid_value,_msdyn_serviceaccount_value,_ts_contact_value,_ts_site_value,_msdyn_functionallocation_value,_ts_subsubsite_value,_ts_reason_value,_ts_workorderjustification_value,_ovs_operationid_value,msdyn_worklocation,_ovs_rational_value,ts_businessowner,_msdyn_primaryincidenttype_value,msdyn_primaryincidentdescription,msdyn_primaryincidentestimatedduration,ts_overtimerequired,ts_reportdetails,_ts_canceledinspectionjustification_value,_ovs_revisedquarterid_value,_ts_scheduledquarterjustification_value,ts_justificationcomment,ts_details,msdyn_instructions,ts_preparationtime,ts_woreportinganddocumentation,ts_comments,ts_overtime,ts_conductingoversight,ts_traveltime,_msdyn_servicerequest_value,_ts_securityincident_value,_ts_trip_value,_msdyn_parentworkorder_value,msdyn_systemstatus,ts_state,_ovs_fiscalyear_value,_ovs_fiscalquarter_value,ts_othercanceledjustification,_ts_accountableteam_value,_ts_finding_value"
     ).then(
       function success(workOrder) {
         // Prepare data for creating the unplanned work order record
@@ -1006,7 +1010,7 @@ function createWorkspaceFromWorkOrder(currentWorkOrderId, lang) {
         if (workOrder._ts_accountableteam_value) {
           unplannedWorkOrderData["ts_accountableteam@odata.bind"] = "/teams(" + workOrder._ts_accountableteam_value + ")";
         }
-        // Time Tracking
+        // Time Tracking / Related To
         if (workOrder._msdyn_servicerequest_value) {
           unplannedWorkOrderData["ts_servicerequest@odata.bind"] = "/incidents(" + workOrder._msdyn_servicerequest_value + ")";
         }
@@ -1018,6 +1022,9 @@ function createWorkspaceFromWorkOrder(currentWorkOrderId, lang) {
         }
         if (workOrder._msdyn_parentworkorder_value) {
           unplannedWorkOrderData["ts_ParentWorkOrder@odata.bind"] = "/msdyn_workorders(" + workOrder._msdyn_parentworkorder_value + ")";
+            }
+        if (workOrder._ts_finding_value) {
+          unplannedWorkOrderData["ts_Finding@odata.bind"] = "/msdyn_workorders(" + workOrder._ts_finding_value + ")";
         }
         // Add simple fields only if they exist
         // Summary
@@ -1220,106 +1227,96 @@ function isInExportJobSubgrid(primaryControl) {
  * @param {boolean} includeHiddenQuestions - Optional flag, default false
  */
 async function exportWorkOrderFromSubgrid(selectedControl, includeHiddenQuestions = false) {
-  try {
-    function pad2(n) {
-      return (n < 10 ? "0" : "") + n;
-    }
-
-    // Local, user-friendly timestamp for record names (avoid ISO noise)
-    function formatDateForJobName(d) {
-      var yyyy = d.getFullYear();
-      var mm = pad2(d.getMonth() + 1);
-      var dd = pad2(d.getDate());
-      var hh = pad2(d.getHours());
-      var mi = pad2(d.getMinutes());
-      return yyyy + "-" + mm + "-" + dd + " " + hh + ":" + mi;
-    }
-
-    async function checkForExistingActiveJobs() {
-      const activeStatuses = [741130001, 741130002, 741130003, 741130004, 741130005];
-      const filterConditions = activeStatuses.map(s => `statuscode eq ${s}`).join(" or ");
-      const query = `?$select=ts_name,statuscode&$filter=${filterConditions}&$top=1`;
-
-      try {
-        const result = await Xrm.WebApi.retrieveMultipleRecords("ts_workorderexportjob", query);
-        return (result.entities && result.entities.length > 0) ? result.entities[0] : null;
-      } catch (error) {
-        console.error("Error checking for active export jobs:", error);
-        return null; // fail-open (server plugin still enforces)
-      }
-    }
-
-    // 1. Get GUIDs from selected rows
-    var selectedRows = selectedControl.getGrid().getSelectedRows();
-    var selectedIds = [];
-    selectedRows.forEach(function (row) {
-      selectedIds.push(row.getData().getEntity().getId().replace(/[{}]/g, ""));
-    });
-
-    if (selectedIds.length === 0) {
-      Xrm.Navigation.openAlertDialog({ text: "Please select at least one Work Order." });
-      return;
-    }
-
-    // 2. Concurrency check (UX-only)
-    const existingJob = await checkForExistingActiveJobs();
-    if (existingJob) {
-      await Xrm.Navigation.openAlertDialog({
-        confirmButtonLabel: "OK",
-        text: `An export is already in progress: "${existingJob.ts_name || "(unnamed)"}". Please wait for it to complete before starting a new export.`
-      });
-      return;
-    }
-
-   // 2. Create ts_workorderexportjob
-   var includeHidden =
-     includeHiddenQuestions === true ||
-     includeHiddenQuestions === "true" ||
-     includeHiddenQuestions === 1;
-
-  var entity = {};
-  entity.ts_name = "Batch Export (" + selectedIds.length + " Work Orders) - " + formatDateForJobName(new Date());
-  entity.statuscode = 741130001; // Client Processing – questionnaire rendering
-  entity.ts_hiddenquestions = includeHidden;
-   entity.ts_surveypayloadjson = JSON.stringify({
-     ids: selectedIds,
-     includeHiddenQuestions: includeHidden,
-   });
-
-    const result = await Xrm.WebApi.createRecord("ts_workorderexportjob", entity);
-    var newId = result.id;
-
-    // 3. Navigation: Open record in a new window (not modal)
-    var pageInput = {
-      pageType: "entityrecord",
-      entityName: "ts_workorderexportjob",
-      entityId: newId
-    };
-    var navigationOptions = { target: 1 };
-
     try {
-      await Xrm.Navigation.navigateTo(pageInput, navigationOptions);
-      // Refresh the subgrid
-      selectedControl.refresh();
+        function pad2(n) {
+            return (n < 10 ? "0" : "") + n;
+        }
+
+        // Local, user-friendly timestamp for record names (avoid ISO noise)
+        function formatDateForJobName(d) {
+            var yyyy = d.getFullYear();
+            var mm = pad2(d.getMonth() + 1);
+            var dd = pad2(d.getDate());
+            var hh = pad2(d.getHours());
+            var mi = pad2(d.getMinutes());
+            return yyyy + "-" + mm + "-" + dd + " " + hh + ":" + mi;
+        }
+
+        function normalizeIncludeHiddenQuestions(value) {
+            return value === true || value === "true" || value === 1;
+        }
+
+        // 1) Role check
+        if (!userHasRole("System Administrator|ROM - Business Admin|ROM - Planner|ROM - Manager")) {
+            await Xrm.Navigation.openAlertDialog({
+                confirmButtonLabel: (Xrm.Utility.getResourceString("ts_/resx/WorkOrderExport", "OK") || "").trim() || "OK",
+                text: (Xrm.Utility.getResourceString("ts_/resx/WorkOrderExport", "OnlyRolesCanExportPDFs") || "").trim() || "OnlyRolesCanExportPDFs"
+            });
+            return;
+        }
+
+        // 2) Collect selected Work Order IDs
+        var selectedRows = selectedControl.getGrid().getSelectedRows();
+        var selectedIds = [];
+        selectedRows.forEach(function (row) {
+            selectedIds.push(row.getData().getEntity().getId().replace(/[{}]/g, ""));
+        });
+
+        if (selectedIds.length === 0) {
+            Xrm.Navigation.openAlertDialog({ text: (Xrm.Utility.getResourceString("ts_/resx/WorkOrderExport", "PleaseSelectOneWorkOrder") || "").trim() || "PleaseSelectOneWorkOrder" });
+            return;
+        }
+
+        // 3) Confirm export start
+        var confirmText = ((Xrm.Utility.getResourceString("ts_/resx/WorkOrderExport", "ConfirmExportText") || "").trim() || "ConfirmExportText").replace("{0}", selectedIds.length);
+        var confirmStrings = {
+            title: (Xrm.Utility.getResourceString("ts_/resx/WorkOrderExport", "ConfirmExportTitle") || "").trim() || "ConfirmExportTitle",
+            text: confirmText,
+            confirmButtonLabel: (Xrm.Utility.getResourceString("ts_/resx/WorkOrderExport", "OK") || "").trim() || "OK",
+            cancelButtonLabel: (Xrm.Utility.getResourceString("ts_/resx/WorkOrderExport", "Cancel") || "").trim() || "Cancel"
+        };
+        var confirmResult = await Xrm.Navigation.openConfirmDialog(confirmStrings);
+        if (!confirmResult || !confirmResult.confirmed) {
+            return;
+        }
+
+        // 4) Create ts_workorderexportjob
+        var includeHidden = normalizeIncludeHiddenQuestions(includeHiddenQuestions);
+        var workOrderLabel = selectedIds.length === 1 ? (Xrm.Utility.getResourceString("ts_/resx/WorkOrderExport", "WorkOrderLabel") || "").trim() || "WorkOrderLabel" : (Xrm.Utility.getResourceString("ts_/resx/WorkOrderExport", "WorkOrdersLabel") || "").trim() || "WorkOrdersLabel";
+        var exportNamePrefix = (Xrm.Utility.getResourceString("ts_/resx/WorkOrderExport", "ExportDefaultName") || "").trim() || "ExportDefaultName";
+        var entity = {
+            ts_name: exportNamePrefix + " " + formatDateForJobName(new Date()) + " (" + selectedIds.length + " " + workOrderLabel + ")",
+            statuscode: 741130001, // Client Processing - questionnaire rendering
+            ts_hiddenquestions: includeHidden,
+            ts_surveypayloadjson: JSON.stringify({
+                ids: selectedIds,
+                includeHiddenQuestions: includeHidden,
+            })
+        };
+
+        const result = await Xrm.WebApi.createRecord("ts_workorderexportjob", entity);
+        var newId = result.id;
+
+        // 5) Open the new export job record in a new window (not modal)
+        var pageInput = {
+            pageType: "entityrecord",
+            entityName: "ts_workorderexportjob",
+            entityId: newId
+        };
+        var navigationOptions = { target: 1 };
+
+        try {
+            await Xrm.Navigation.navigateTo(pageInput, navigationOptions);
+            selectedControl.refresh();
+        } catch (e) {
+            // Silent fail - user can manually open the record if needed
+        }
     } catch (e) {
-      // Silent fail - user can manually open the record if needed
+        Xrm.Navigation.openAlertDialog({ text: "Error: " + e.message });
     }
-
-  } catch (e) {
-    console.log("[PDFTEST] Error in exportWorkOrderQuestionnaireFromSubgrid: " + e.message);
-    Xrm.Navigation.openAlertDialog({ text: "Error: " + e.message });
-  }
 }
-
 function canEditWorkOrderWorkspace() {
-    var roles = Xrm.Utility.getGlobalContext().userSettings.roles;
-    var enable = false;
-    roles.forEach(function (item) {
-        if (item.name == "System Administrator" || item.name == "ROM - Manager" || item.name == "ROM - Planner" || item.name == "ROM - Business Admin") {
-            enable = true;
-        } 
-    });
-    return enable;
+    return userHasRole("System Administrator|ROM - Manager|ROM - Planner|ROM - Business Admin");
 }
 
 // Bulk-edit opener for Workspace with auto-create capability
@@ -1435,3 +1432,4 @@ function openBulkWorkspace(selectedControl) {
         }
     })();
 }
+

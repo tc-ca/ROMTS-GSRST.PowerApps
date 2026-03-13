@@ -81,6 +81,25 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="Mscrm.DeleteSelectedRecord">
+      <EnableRules>
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+        <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
+        <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.NotShowForManyToManyGrids" />
+        <DisplayRule Id="Mscrm.DeleteSelectedEntityPermission" />
+        <DisplayRule Id="ts.systemuser.HideOnWorkOrder" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="XrmCore.Commands.Delete.deleteRecords" Library="$Webresource:Main_system_library.js">
+          <CrmParameter Value="SelectedControl" />
+          <CrmParameter Value="SelectedControlSelectedItemReferences" />
+          <CrmParameter Value="SelectedEntityTypeName" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="Mscrm.NewRecordFromGrid">
       <EnableRules>
         <EnableRule Id="Mscrm.IsEntityAvailableForUserInMocaOffline" />
@@ -99,6 +118,27 @@
         </JavaScriptFunction>
       </Actions>
     </CommandDefinition>
+    <CommandDefinition Id="Mscrm.RemoveUserAccess.UCI">
+      <EnableRules>
+        <EnableRule Id="Mscrm.SelectionCountAtLeastOne" />
+        <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
+        <EnableRule Id="Mscrm.SystemUser.IsGridEnabledForAccessTeams" />
+      </EnableRules>
+      <DisplayRules>
+        <DisplayRule Id="Mscrm.ShowOnlyOnModern" />
+        <DisplayRule Id="Mscrm.AppendToPrimary" />
+        <DisplayRule Id="Mscrm.AppendSelected" />
+        <DisplayRule Id="ts.systemuser.HideOnWorkOrder" />
+      </DisplayRules>
+      <Actions>
+        <JavaScriptFunction FunctionName="Mscrm.AppCommon.SystemUser.AccessTeams.removeUserFromAccessTeams" Library="$webresource:AppCommon/ControlWS/SystemUser/SystemUser.js">
+          <CrmParameter Value="FirstPrimaryItemId" />
+          <CrmParameter Value="PrimaryEntityTypeName" />
+          <CrmParameter Value="SelectedControl" />
+          <CrmParameter Value="SelectedControlSelectedItemReferences" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
     <CommandDefinition Id="ts.AddUserAccess.UCI">
       <EnableRules>
         <EnableRule Id="Mscrm.VisualizationPaneNotMaximized" />
@@ -109,6 +149,7 @@
         <DisplayRule Id="Mscrm.AppendToPrimary" />
         <DisplayRule Id="Mscrm.AppendSelected" />
         <DisplayRule Id="ts.systemuser.TSIS.DisplayRule.OnlyShowIfRecordExist" />
+        <DisplayRule Id="ts.systemuser.HideOnWorkOrder" />
       </DisplayRules>
       <Actions>
         <JavaScriptFunction FunctionName="addExistingUsersToWorkOrder" Library="$webresource:ovs_/js/WorkOrderRibbon.js">
@@ -140,6 +181,9 @@
       <DisplayRule Id="Mscrm.CreateSelectedEntityPermission">
         <EntityPrivilegeRule PrivilegeType="Create" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
       </DisplayRule>
+      <DisplayRule Id="Mscrm.DeleteSelectedEntityPermission">
+        <EntityPrivilegeRule PrivilegeType="Delete" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
+      </DisplayRule>
       <DisplayRule Id="Mscrm.HideAddressEntities">
         <EntityRule EntityName="customeraddress" AppliesTo="SelectedEntity" Default="false" InvertResult="true" />
       </DisplayRule>
@@ -151,6 +195,9 @@
       </DisplayRule>
       <DisplayRule Id="Mscrm.NotOnTerritoryForm">
         <FormEntityContextRule EntityName="territory" Default="true" InvertResult="true" />
+      </DisplayRule>
+      <DisplayRule Id="Mscrm.NotShowForManyToManyGrids">
+        <RelationshipTypeRule AppliesTo="SelectedEntity" RelationshipType="ManyToMany" InvertResult="true" />
       </DisplayRule>
       <DisplayRule Id="Mscrm.PrimaryIsNotActivity">
         <EntityPropertyRule AppliesTo="PrimaryEntity" PropertyName="IsActivity" PropertyValue="false" />
@@ -170,6 +217,9 @@
       <DisplayRule Id="ts..CanWriteSelected">
         <EntityPrivilegeRule PrivilegeType="Write" PrivilegeDepth="Basic" AppliesTo="SelectedEntity" />
       </DisplayRule>
+      <DisplayRule Id="ts.systemuser.HideOnWorkOrder">
+        <EntityRule EntityName="msdyn_workorder" Context="SubGridStandard" InvertResult="true" />
+      </DisplayRule>
       <DisplayRule Id="ts.systemuser.TSIS.DisplayRule.OnlyShowIfRecordExist">
         <FormStateRule State="Existing" />
       </DisplayRule>
@@ -185,6 +235,9 @@
         <CustomRule FunctionName="XrmCore.Rules.Online.IsEntityAvailableForUserInMocaOffline" Library="$webresource:Main_system_library.js">
           <CrmParameter Value="SelectedEntityTypeName" />
         </CustomRule>
+      </EnableRule>
+      <EnableRule Id="Mscrm.SelectionCountAtLeastOne">
+        <SelectionCountRule AppliesTo="SelectedEntity" Minimum="1" />
       </EnableRule>
       <EnableRule Id="Mscrm.SystemUser.IsGridEnabledForAccessTeams">
         <CustomRule FunctionName="Mscrm.AppCommon.SystemUser.AccessTeams.checkSystemUserGridAccessTeams" Library="$webresource:AppCommon/ControlWS/SystemUser/SystemUser.js" Default="false">

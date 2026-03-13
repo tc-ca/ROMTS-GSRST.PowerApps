@@ -52,10 +52,11 @@ var ROM;
         function onLoad(eContext) {
             var _a, _b, _c, _d, _e, _f, _g, _h, _j;
             var form = eContext.getFormContext();
-            //Check if user is using Rail Safety App to set filtered view for Work Order Type
+            //Check if user is using Rail Safety App to set filtered view for Work Order Type and show/hide findings field
             isUserUsingRailSafetyApp().then(function (isUsing) {
                 if (isUsing) {
                     setWorkOrderTypeFilteredView(form, true);
+                    showFindingsFieldIfRailSafetyApp(form, true, eContext);
                 }
                 else {
                     setWorkOrderTypeFilteredView(form, false);
@@ -1237,6 +1238,60 @@ var ROM;
             //var preparationTime = form.getAttribute("ts_preparationtime").getValue();
             //var conductingOversight = form.getAttribute("ts_conductingoversight").getValue();
             //var woReportingAndDocumentation = form.getAttribute("ts_woreportinganddocumentation").getValue();
+            //If AvSec
+            var userId = Xrm.Utility.getGlobalContext().userSettings.userId;
+            var currentUserBusinessUnitFetchXML = [
+                "<fetch top='50'>",
+                "  <entity name='businessunit'>",
+                "    <attribute name='name' />",
+                "    <attribute name='businessunitid' />",
+                "    <link-entity name='systemuser' from='businessunitid' to='businessunitid' link-type='inner' alias='ab'>",
+                "      <filter>",
+                "        <condition attribute='systemuserid' operator='eq' value='", userId, "'/>",
+                "      </filter>",
+                "    </link-entity>",
+                "  </entity>",
+                "</fetch>",
+            ].join("");
+            currentUserBusinessUnitFetchXML = "?fetchXml=" + encodeURIComponent(currentUserBusinessUnitFetchXML);
+            Xrm.WebApi.retrieveMultipleRecords("businessunit", currentUserBusinessUnitFetchXML).then(function (businessunit) {
+                return __awaiter(this, void 0, void 0, function () {
+                    var userBU, userBusinessUnitId, workOrderId, isAvSec, fetchFindings;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                if (!businessunit || !businessunit.entities || businessunit.entities.length === 0) {
+                                    return [2 /*return*/];
+                                }
+                                userBU = businessunit.entities[0];
+                                userBusinessUnitId = userBU.businessunitid;
+                                workOrderId = form.data.entity.getId();
+                                return [4 /*yield*/, isAvSecBU(userBusinessUnitId)];
+                            case 1:
+                                isAvSec = _a.sent();
+                                if (isAvSec) {
+                                    if (newSystemStatus == 741130000) {
+                                        fetchFindings = "                       \n                        <fetch>\n                          <entity name=\"ovs_finding\">\n                            <attribute name=\"ovs_findingid\" />\n                            <attribute name=\"ts_findingtype\" />\n                            <filter>\n                              <condition attribute=\"ts_workorder\" operator=\"eq\" value=\"" + workOrderId + "\" />\n                              <condition attribute=\"ts_findingtype\" operator=\"eq\" value=\"717750002\" /> \n                            </filter>\n                            <link-entity name=\"ts_action\" from=\"ts_finding\" to=\"ovs_findingid\" link-type=\"outer\" alias=\"action\">\n                              <attribute name=\"ts_actionid\" />\n                            </link-entity>                            \n                            <filter type=\"and\">\n                                <condition entityname=\"action\" attribute=\"ts_actionid\" operator=\"null\" />\n                            </filter>\n                          </entity>\n                        </fetch>\n                    ";
+                                        Xrm.WebApi.retrieveMultipleRecords("ovs_finding", "?fetchXml=" + encodeURIComponent(fetchFindings)).then(function (findingsResult) {
+                                            var findings = findingsResult.entities;
+                                            if (findings && findings.length > 0) {
+                                                // There are findings
+                                                form.getAttribute("msdyn_systemstatus").setValue(currentSystemStatus);
+                                                var alertStrings_1 = {
+                                                    text: Xrm.Utility.getResourceString("ovs_/resx/WorkOrder", "CloseWOWithNonCompliance")
+                                                };
+                                                var alertOptions_1 = { height: 200, width: 450 };
+                                                Xrm.Navigation.openAlertDialog(alertStrings_1, alertOptions_1);
+                                                return;
+                                            }
+                                        });
+                                    }
+                                }
+                                return [2 /*return*/];
+                        }
+                    });
+                });
+            });
             //If user try to cancel Complete WO
             if (currentSystemStatus == 690970003 && newSystemStatus == 690970005) {
                 var alertStrings = {
@@ -2637,5 +2692,110 @@ var ROM;
                 });
             });
         }
+        function showFindingsFieldIfRailSafetyApp(form, isRailSafetyApp, eContext) {
+            return __awaiter(this, void 0, void 0, function () {
+                var parentWOAttribute, parentWOValue, findingsControl;
+                return __generator(this, function (_a) {
+                    try {
+                        if (isRailSafetyApp) {
+                            parentWOAttribute = form.getAttribute("msdyn_parentworkorder");
+                            parentWOValue = parentWOAttribute === null || parentWOAttribute === void 0 ? void 0 : parentWOAttribute.getValue();
+                            if (parentWOValue != null && parentWOValue.length > 0) {
+                                findingsControl = form.getControl("ts_finding");
+                                if (findingsControl != null) {
+                                    findingsControl.setVisible(true);
+                                    filterFindingsByParentWorkOrder(eContext);
+                                }
+                            }
+                        }
+                    }
+                    catch (error) {
+                        console.error("Error checking Rail Safety App or showing ts_findings field:", error);
+                    }
+                    return [2 /*return*/];
+                });
+            });
+        }
+        //Sets a filtered view on the Finding lookup to show only findings
+        function filterFindingsByParentWorkOrder(eContext) {
+            var _a;
+            try {
+                var form = eContext.getFormContext();
+                var parentWOValue = (_a = form.getAttribute("msdyn_parentworkorder")) === null || _a === void 0 ? void 0 : _a.getValue();
+                var findingControl = form.getControl("ts_finding");
+                // Only apply filter if parent work order exists
+                if (parentWOValue != null && parentWOValue.length > 0) {
+                    var parentWOId_1 = parentWOValue[0].id.replace(/[{}]/g, "");
+                    var findingControl_1 = form.getControl("ts_finding");
+                    if (findingControl_1) {
+                        // Add pre-search event to apply filter
+                        findingControl_1.addPreSearch(function () {
+                            var viewId = '{8A92F38E-3D74-5BED-BC3A-C55899F99D73}';
+                            var entityName = "ovs_finding";
+                            var viewDisplayName = "Findings from Parent Work Order";
+                            var fetchXml = '<fetch version="1.0" output-format="xml-platform" mapping="logical" distinct="false">' +
+                                '  <entity name="ovs_finding">' +
+                                '    <attribute name="ovs_findingid" />' +
+                                '    <attribute name="ovs_finding" />' +
+                                '    <attribute name="ts_findingtype" />' +
+                                '    <attribute name="createdon" />' +
+                                '    <order attribute="ovs_finding" descending="false" />' +
+                                '    <filter type="and">' +
+                                ("      <condition attribute=\"ts_workorder\" operator=\"eq\" value=\"" + parentWOId_1 + "\" />") +
+                                '      <condition attribute="statecode" operator="eq" value="0" />' +
+                                '    </filter>' +
+                                '  </entity>' +
+                                '</fetch>';
+                            var layoutXml = '<grid name="resultset" object="10010" jump="ovs_name" select="1" icon="1" preview="1">' +
+                                '  <row name="result" id="ovs_findingid">' +
+                                '    <cell name="ovs_finding" width="200" />' +
+                                '    <cell name="ts_findingtype" width="150" />' +
+                                '  </row>' +
+                                '</grid>';
+                            findingControl_1.addCustomView(viewId, entityName, viewDisplayName, fetchXml, layoutXml, true);
+                        });
+                    }
+                }
+            }
+            catch (error) {
+                console.error("[WorkOrder.filterFindingsByParentWorkOrder] Error:", error);
+            }
+        }
+        WorkOrder.filterFindingsByParentWorkOrder = filterFindingsByParentWorkOrder;
+        function parentWorkOrderOnChange(eContext) {
+            try {
+                var form_8 = eContext.getFormContext();
+                // Check if user is using Rail Safety App
+                isUserUsingRailSafetyApp().then(function (isUsing) {
+                    if (isUsing) {
+                        var parentWOAttribute = form_8.getAttribute("msdyn_parentworkorder");
+                        var parentWOValue = parentWOAttribute === null || parentWOAttribute === void 0 ? void 0 : parentWOAttribute.getValue();
+                        var findingsControl = form_8.getControl("ts_finding");
+                        if (parentWOValue != null && parentWOValue.length > 0) {
+                            // Parent WO exists - show and filter findings
+                            if (findingsControl) {
+                                findingsControl.setVisible(true);
+                                form_8.getAttribute("ts_finding").setValue(null);
+                                filterFindingsByParentWorkOrder(eContext);
+                            }
+                        }
+                        else {
+                            // Parent WO cleared - hide findings
+                            if (findingsControl) {
+                                // clear findingscontrol value to prevent orphaned references since the filter will no longer apply once parent WO is cleared
+                                form_8.getAttribute("ts_finding").setValue(null);
+                                findingsControl.setVisible(false);
+                            }
+                        }
+                    }
+                }).catch(function (error) {
+                    console.error("[WorkOrder.parentWorkOrderOnChange] Error:", error);
+                });
+            }
+            catch (error) {
+                console.error("[WorkOrder.parentWorkOrderOnChange] Unexpected error:", error);
+            }
+        }
+        WorkOrder.parentWorkOrderOnChange = parentWorkOrderOnChange;
     })(WorkOrder = ROM.WorkOrder || (ROM.WorkOrder = {}));
 })(ROM || (ROM = {}));

@@ -5,7 +5,7 @@
     <IntroducedVersion>1.0.20220825.2</IntroducedVersion>
     <FormPresentation>1</FormPresentation>
     <FormActivationState>1</FormActivationState>
-    <form>
+    <form headerdensity="HighWithControls">
       <tabs>
         <tab verticallayout="true" id="{1034c44d-0e8d-4403-a4c5-6c1d2effaf5d}" IsUserDefined="1">
           <labels>
@@ -91,7 +91,7 @@
         </rows>
       </header>
       <Navigation>
-        <NavBar></NavBar>
+        <NavBar />
         <NavBarAreas>
           <NavBarArea Id="Info">
             <Titles>
@@ -121,6 +121,46 @@
         </NavBarAreas>
       </Navigation>
       <controlDescriptions />
+      <footer id="{4b81f43e-920c-41b4-9a4a-75d40be133c7}" celllabelposition="Top" columns="111" labelwidth="115" celllabelalignment="Left">
+        <rows>
+          <row>
+            <cell id="{9a7547ae-8458-4e5b-a479-16b56637aaaf}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{ee4f732d-c01c-4a5a-9294-ba17eec61beb}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+            <cell id="{254a4f45-1726-4f45-bb0f-ffd8dbacc7ed}" showlabel="false">
+              <labels>
+                <label description="" languagecode="1033" />
+              </labels>
+            </cell>
+          </row>
+        </rows>
+      </footer>
+      <DisplayConditions Order="0" FallbackForm="true">
+        <Everyone />
+      </DisplayConditions>
+      <formLibraries>
+        <Library name="ts_/js/PlanningReason.js" libraryUniqueId="{999ea2a0-e903-42f2-b716-db1fef5f3cd3}" />
+        <Library name="ts_/js/Common.js" libraryUniqueId="{4bb6c404-41f8-49ee-916a-b826968dab94}" />
+      </formLibraries>
+      <events>
+        <event name="onsave" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.PlanningReason.onSave" libraryName="ts_/js/PlanningReason.js" handlerUniqueId="{b60ea003-0506-441a-aae0-fdfa9679902d}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onload" application="false" active="false">
+          <Handlers>
+            <Handler functionName="ROM.PlanningReason.onLoad" libraryName="ts_/js/PlanningReason.js" handlerUniqueId="{6add191e-15fe-4f36-882c-f1d6b0680bcc}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+      </events>
     </form>
     <IsCustomizable>1</IsCustomizable>
     <CanBeDeleted>1</CanBeDeleted>

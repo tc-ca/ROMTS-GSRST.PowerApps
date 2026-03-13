@@ -23,20 +23,57 @@
           <attribute name="msdyn_capacity" />
           <attribute name="businessunitid" />
           <attribute name="systemuserid" />
-          <link-entity name="systemuserroles" to="systemuserid" from="systemuserid" link-type="inner" alias="systemUserRoles">
-            <link-entity name="role" to="roleid" from="roleid" link-type="inner" alias="roleNames">
-              <link-entity name="role" to="parentrootroleid" from="roleid" link-type="inner">
-                <link-entity name="msdyn_personasecurityrolemapping" to="roleid" from="msdyn_securityroleid" link-type="inner" alias="personaMappings">
-                  <filter type="or">
-                    <condition attribute="msdyn_personatype" operator="eq" value="1" />
-                    <condition attribute="msdyn_personatype" operator="eq" value="2" />
-                    <condition attribute="msdyn_personatype" operator="eq" value="3" />
-                    <condition attribute="msdyn_personatype" operator="eq" value="4" />
-                  </filter>
+          <filter>
+            <condition attribute="isdisabled" operator="eq" value="false" />
+          </filter>
+          <filter>
+            <condition attribute="azureactivedirectoryobjectid" operator="not-null" value="" />
+          </filter>
+          <link-entity name="systemuserroles" from="systemuserid" to="systemuserid" link-type="outer" alias="direct_systemuserroles" intersect="true">
+            <link-entity name="role" from="roleid" to="roleid" link-type="outer" alias="direct_role">
+              <link-entity name="roleprivileges" from="roleid" to="roleid" link-type="outer" alias="direct_roleprivileges" intersect="true">
+                <filter type="or">
+                  <condition attribute="privilegeid" operator="eq" value="a1b2c3d4-e5f6-7890-abcd-ef1234567890" />
+                  <condition attribute="privilegeid" operator="eq" value="b2c3d4e5-f6a7-8901-bcde-f23456789012" />
+                  <condition attribute="privilegeid" operator="eq" value="c3d4e5f6-a7b8-9012-cdef-345678901234" />
+                  <condition attribute="privilegeid" operator="eq" value="d4e5f6a7-b8c9-0123-defa-456789012345" />
+                </filter>
+              </link-entity>
+            </link-entity>
+          </link-entity>
+          <link-entity name="teammembership" from="systemuserid" to="systemuserid" link-type="outer" alias="team_membership" intersect="true">
+            <link-entity name="team" from="teamid" to="teamid" link-type="outer" alias="team">
+              <link-entity name="teamroles" from="teamid" to="teamid" link-type="outer" alias="team_roles" intersect="true">
+                <link-entity name="role" from="roleid" to="roleid" link-type="outer" alias="team_role">
+                  <link-entity name="roleprivileges" from="roleid" to="roleid" link-type="outer" alias="team_roleprivileges" intersect="true">
+                    <filter type="or">
+                      <condition attribute="privilegeid" operator="eq" value="a1b2c3d4-e5f6-7890-abcd-ef1234567890" />
+                      <condition attribute="privilegeid" operator="eq" value="b2c3d4e5-f6a7-8901-bcde-f23456789012" />
+                      <condition attribute="privilegeid" operator="eq" value="c3d4e5f6-a7b8-9012-cdef-345678901234" />
+                      <condition attribute="privilegeid" operator="eq" value="d4e5f6a7-b8c9-0123-defa-456789012345" />
+                    </filter>
+                  </link-entity>
                 </link-entity>
               </link-entity>
             </link-entity>
           </link-entity>
+          <link-entity name="systemuserroles" to="systemuserid" from="systemuserid" link-type="outer" alias="persona_systemuserroles" intersect="true">
+            <link-entity name="role" to="roleid" from="roleid" link-type="outer" alias="persona_role">
+              <link-entity name="msdyn_personasecurityrolemapping" to="parentrootroleid" from="msdyn_securityroleid" link-type="outer" alias="persona_mapping">
+                <filter type="or">
+                  <condition attribute="msdyn_personatype" operator="eq" value="1" />
+                  <condition attribute="msdyn_personatype" operator="eq" value="2" />
+                  <condition attribute="msdyn_personatype" operator="eq" value="3" />
+                  <condition attribute="msdyn_personatype" operator="eq" value="4" />
+                </filter>
+              </link-entity>
+            </link-entity>
+          </link-entity>
+          <filter type="or">
+            <condition entityname="direct_roleprivileges" attribute="privilegeid" operator="not-null" />
+            <condition entityname="team_roleprivileges" attribute="privilegeid" operator="not-null" />
+            <condition entityname="persona_mapping" attribute="msdyn_personatype" operator="not-null" />
+          </filter>
         </entity>
       </fetch>
     </fetchxml>

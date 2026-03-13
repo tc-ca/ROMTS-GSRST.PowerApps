@@ -441,6 +441,14 @@
                         <control id="ts_parentworkorder" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_parentworkorder" disabled="false" />
                       </cell>
                     </row>
+                    <row>
+                      <cell id="{2b334d25-c4a9-43e5-9595-868b0d18a261}" locklevel="0" colspan="1" rowspan="1" visible="false">
+                        <labels>
+                          <label description="Finding" languagecode="1033" />
+                        </labels>
+                        <control id="ts_finding" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_finding" disabled="false" />
+                      </cell>
+                    </row>
                   </rows>
                 </section>
               </sections>
@@ -1092,6 +1100,11 @@
         <event name="onchange" application="false" active="false" attribute="ts_recordstatus">
           <Handlers>
             <Handler functionName="ROM.UnplannedWorkOrder.systemStatusOnChange" libraryName="ts_/js/UnplannedWorkOrder.js" handlerUniqueId="{5e1e764e-3732-4029-8dfd-81398842fc6c}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="ts_parentworkorder">
+          <Handlers>
+            <Handler functionName="ROM.UnplannedWorkOrder.parentWorkOrderOnChange" libraryName="ts_/js/UnplannedWorkOrder.js" handlerUniqueId="{05e8e866-c540-4567-a70e-d399a1127a62}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>

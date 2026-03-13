@@ -928,12 +928,11 @@
                       </cell>
                     </row>
                     <row>
-                      <cell id="{3d54e2c3-5839-4e02-b1ac-eead158d0159}" labelid="{0ec82b92-c04c-4558-b3ef-a232b82dfb5d}" showlabel="true" locklevel="0">
+                      <cell id="{fce5911d-b424-425b-bc2e-0d4eb073d39d}" locklevel="0" colspan="1" rowspan="1" visible="false">
                         <labels>
-                          <label description="Opportunity" languagecode="1033" />
-                          <label description="Opportunité" languagecode="1036" />
+                          <label description="Finding" languagecode="1033" />
                         </labels>
-                        <control disabled="false" id="msdyn_opportunityid" datafieldname="msdyn_opportunityid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" uniqueid="{3aa0081a-0320-c59d-7830-1edd2cda6c55}" />
+                        <control id="ts_finding" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ts_finding" disabled="true" />
                       </cell>
                     </row>
                   </rows>
@@ -4381,6 +4380,11 @@
         <event name="onchange" application="false" active="false" attribute="ts_reason">
           <Handlers>
             <Handler functionName="ROM.WorkOrder.rationaleOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{45633e4f-34f7-4cfa-a630-5f1c54c7a2da}" enabled="true" parameters="" passExecutionContext="true" />
+          </Handlers>
+        </event>
+        <event name="onchange" application="false" active="false" attribute="msdyn_parentworkorder">
+          <Handlers>
+            <Handler functionName="ROM.WorkOrder.parentWorkOrderOnChange" libraryName="ovs_/js/WorkOrder.js" handlerUniqueId="{4d2143a3-5a89-43a6-af3c-42fa4079ddd9}" enabled="true" parameters="" passExecutionContext="true" />
           </Handlers>
         </event>
       </events>
