@@ -31,7 +31,7 @@
           </filter>
           <link-entity name="systemuserroles" from="systemuserid" to="systemuserid" link-type="outer" alias="direct_systemuserroles" intersect="true">
             <link-entity name="role" from="roleid" to="roleid" link-type="outer" alias="direct_role">
-              <link-entity name="roleprivileges" from="roleid" to="roleid" link-type="outer" alias="direct_roleprivileges" intersect="true">
+              <link-entity name="roleprivileges" from="roleid" to="parentrootroleid" link-type="outer" alias="direct_roleprivileges" intersect="true">
                 <filter type="or">
                   <condition attribute="privilegeid" operator="eq" value="a1b2c3d4-e5f6-7890-abcd-ef1234567890" />
                   <condition attribute="privilegeid" operator="eq" value="b2c3d4e5-f6a7-8901-bcde-f23456789012" />
@@ -45,7 +45,7 @@
             <link-entity name="team" from="teamid" to="teamid" link-type="outer" alias="team">
               <link-entity name="teamroles" from="teamid" to="teamid" link-type="outer" alias="team_roles" intersect="true">
                 <link-entity name="role" from="roleid" to="roleid" link-type="outer" alias="team_role">
-                  <link-entity name="roleprivileges" from="roleid" to="roleid" link-type="outer" alias="team_roleprivileges" intersect="true">
+                  <link-entity name="roleprivileges" from="roleid" to="parentrootroleid" link-type="outer" alias="team_roleprivileges" intersect="true">
                     <filter type="or">
                       <condition attribute="privilegeid" operator="eq" value="a1b2c3d4-e5f6-7890-abcd-ef1234567890" />
                       <condition attribute="privilegeid" operator="eq" value="b2c3d4e5-f6a7-8901-bcde-f23456789012" />
